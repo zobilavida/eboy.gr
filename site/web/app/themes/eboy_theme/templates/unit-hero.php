@@ -4,8 +4,8 @@
     <div class="col-12">
   <div class="jumbotron jumbotron-fluid mb-0">
       <?
-      $post_14 = get_post(14);
-$content = $post_14->post_content;
+      $intro = get_page_by_path('intro');
+$content = $intro->post_content;
 echo $content
 ?>
      </div>

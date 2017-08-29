@@ -5,14 +5,14 @@
   <div class="col-6">
     <h5>
     <?
-    $post_about = get_post(135);
+    $post_about = get_page_by_path('about');
   $title = $post_about->post_title;
   echo $title
   ?>
 </h5>
 <span class="ido">
 <?
-$post_about = get_post(135);
+$post_about = get_page_by_path('about');
 $content = $post_about->post_content;
 echo $content
 ?>
