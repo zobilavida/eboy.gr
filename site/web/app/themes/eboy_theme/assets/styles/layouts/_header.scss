@@ -1,0 +1,57 @@
+.navbar {
+  -webkit-transition: padding .5s, line-height .5s; /* Safari */
+transition: padding .5s;
+}
+
+.navbar h1 {
+  font-family: 'Brandon Grotesque Medium', sans-serif;
+  font-size: .757rem;
+  letter-spacing: .025rem;
+  margin-top: .7rem;
+  margin-bottom: .1rem
+}
+
+.navbar h2 {
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-size: .84rem;
+  letter-spacing: 0.035rem;
+  margin-bottom: .1rem;
+}
+
+.top-menu .menu-item {
+  font-family: 'Brandon Grotesque Medium', sans-serif;
+  font-size: .9rem;
+  letter-spacing: 0.05rem;
+padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.scrolled-nav {
+  padding: 0.5rem 1rem;
+  -webkit-transition: padding .5s, line-height .5s; /* Safari */
+transition: padding .5s;
+}
+
+.bar {
+  display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+padding-left: 0;
+margin-bottom: 0;
+list-style: none;
+}
+
+.bg-white {
+  background-color: $bg-white;
+}
+
+.jumbotron h1 {
+  font-family: 'Proxima Nova Bo', sans-serif;
+}
+
+.jumbotron h2 {
+  font-family: 'Proxima Nova Smb', sans-serif;
+}
+
+.jumbotron h3 {
+  font-family: 'Proxima Nova Lt', sans-serif;
+}

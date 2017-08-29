@@ -1,0 +1,277 @@
+#wpadminbar {
+  display: none;
+}
+
+.test {
+  border: 1px solid red;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+body {
+  background: $bg-grey;
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-size: 1.4em;
+  text-rendering: optimizelegibility;
+}
+nav {
+    font-size: 0.5em;
+    text-transform: uppercase;
+}
+.wrap {
+  padding: 80px 0;
+}
+
+.no-gutters {
+  padding-right: 0px;
+  padding-left: 0px;
+  }
+
+section .container .row {
+  min-height: 50vh;
+}
+
+.lavalamp-object {
+    background-color: red;
+}
+
+.grid {
+margin: 0px;
+}
+/* ---- .grid_item ---- */
+
+  .grid-sizer,
+  .grid_item {
+      width: 24.1%;
+    padding: .5% .5% .5% .5%;
+margin-bottom: .4%;
+  }
+
+.gutter-sizer {
+  width: 1%;
+ }
+
+
+ .grid_item.selected.big {
+   width: 98%;
+   height: auto;
+ }
+ .big .content_small {
+     display: none;
+ }
+ .content_big {
+     display: none;
+ }
+
+ .big .content_big {
+     display: block;
+ }
+
+.content_body {
+  display: none;
+}
+
+.big .content_body {
+  display: block;
+
+}
+
+
+h3.entry-title {
+  font-family: 'Proxima Nova Bl', sans-serif;
+  font-size: 3.75rem;
+  margin-bottom: .3333333rem;
+}
+
+h4.entry-expert {
+  font-family: 'Proxima Nova Lt', sans-serif;
+  font-size: 2.25rem;
+}
+
+h5 {
+font-family: 'Brandon Grotesque Light', sans-serif;
+font-size: 2.25rem;
+text-transform: uppercase;
+}
+
+/* equal card height */
+
+.row-equal > div[class*='col-'] {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row-equal .card {
+  width: 100%;
+}
+
+
+/* ensure equal card height inside carousel */
+
+.row-equal.carousel-inner>.active,
+.row-equal.carousel-inner>.next,
+.row-equal.carousel-inner>.prev {
+  display: flex;
+}
+
+.row-equal.carousel-inner .next {
+  left: 33%;
+}
+
+.row-equal.carousel-inner .prev {
+  left: -33%;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-inner > .item {
+  overflow: hidden;
+}
+
+
+/* control image height */
+
+.card-img-top-250 {
+  max-height: 580px;
+  overflow: hidden;
+}
+
+.tools {
+  background: url(../images/meta-tools.svg) 10px 10px no-repeat !important;
+  background-size: 24px !important;
+  min-height: 24px;
+}
+
+.time {
+  background: url(../images/meta-time.svg) 10px 10px no-repeat !important;
+  background-size: 24px !important;
+  min-height: 24px;
+}
+.active.menu-item {
+  background: url(../images/menu-arrow.svg) 50% 36px no-repeat !important;
+  background-size: 17px !important;
+}
+
+.meter {
+  height: 5px;
+  position: relative;
+  background: $bg-white;
+  border-radius: 0px;
+margin: 20px 0px 50px;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.bg-black {
+  background-color: $brand-primary;
+}
+.bg-red{
+  background-color:#E81F4D;
+}
+.bg-purple{
+  background-color:#971FE8;
+}
+.bg-blue{
+  background-color:#1F8CE8;
+}
+.bg-green{
+  background-color:#1AB356;
+}
+.bg-yellow{
+  background-color:#EDE20E;
+}
+.bg-orange{
+  background-color:#FC7402;
+}
+@-webkit-keyframes move {
+  0% {
+   background-position: 0 0;
+ }
+ 100% {
+   background-position: 50px 50px;
+ }
+}
+
+span h6 {
+  padding-top: 1rem;
+}
+
+.about {
+  padding-top: 10rem;
+}
+
+.ido {
+  font-family: 'Proxima Nova Lt', sans-serif;
+  font-size: 1rem;
+}
+
+.what-i-do {
+  margin-top: 4rem;
+}
+.what-i-do h5 {
+  margin-bottom: 2rem;
+}
+.design {
+  background: url(../images/ico_design.svg) 50% 0 no-repeat;
+  background-size: 60px;
+  min-height: 120px;
+  display: inline-block;
+}
+.print {
+  background: url(../images/ico_print.svg) 50% 0 no-repeat;
+  background-size: 68px;
+  min-height: 120px;
+}
+
+.ui {
+  background: url(../images/ico_ui.svg) 50% 0 no-repeat;
+  background-size: 80px;
+  min-height: 120px;
+}
+.server {
+  background: url(../images/ico_server.svg) 50% 0 no-repeat;
+  background-size: 50px;
+  min-height: 120px;
+}
+
+.text-service {
+  padding-top: 60px;
+}
+
+.service_head h6 {
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-size: 1.3125rem;
+  letter-spacing: .025rem;
+margin-bottom: 0.5rem;
+}
+.service_text {
+  font-family: 'Proxima Nova Lt', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .025rem;
+display:inline-block;
+}
+
+.service_text .bold {
+  font-family: 'Proxima Nova Smb', sans-serif;
+border-bottom: 1px dotted $brand-primary;
+}
+
+footer  {
+  margin-top: 100px;
+
+  background-color: $brand-primary;
+}
+footer p {
+  color: $bg-white;
+  font-size: 0.8rem;
+    padding: 1rem;
+}
+
+footer p a {
+  color: $bg-white;
+}
