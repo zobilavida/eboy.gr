@@ -184,7 +184,7 @@ function itsg_create_sitemap() {
     $postsForSitemap = get_posts(array(
         'numberposts' => -1,
         'orderby' => 'modified',
-        'post_type'  => array( 'post', 'page' ),
+        'post_type'  => array( 'post', 'portfolio' ),
         'order'    => 'DESC'
     ));
 

@@ -146,7 +146,7 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
-        TweenMax.to(window, 2, {scrollTo:{y:".selected", offsetY:120}});
+    //    TweenMax.to(window, 2, {scrollTo:{y:".selected", offsetY:120}});
         $(".content_text").html('<div class="loading">loading...</div>');
         $(".content_text").load(post_url + " .portfolio_info", function() {
           if ( !$this.hasClass('selected') ) {

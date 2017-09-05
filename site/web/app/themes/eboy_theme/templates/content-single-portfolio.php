@@ -37,16 +37,16 @@
       echo '<td class="tools">';
       echo '</td>';
       echo '<td>';
-      echo '<h5>';
+      echo '<h4>';
       echo $portfolio_item->display('tools');
-      echo '</h5>';
+      echo '</h4>';
       echo '</td>';
       echo '<td class="time">';
       echo '</td>';
       echo '<td>';
-      echo '<h5>';
+      echo '<h4>';
       echo $portfolio_item->display('time');
-      echo '</h5>';
+      echo '</h4>';
       echo '</td>';
       ?>
     </tr>
