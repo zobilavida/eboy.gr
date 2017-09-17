@@ -2,6 +2,9 @@
   background: #ccc;
   border: 1px solid red;
 }
+#wpadminbar {
+  display: none;
+}
 
 .alert {
 font-size: 0.6em;
@@ -723,19 +726,27 @@ div#OR {
 
 .hero {
   text-align: center;
+  min-height: 40vh;
 }
 
 .section_1_class {
   padding: 100px 0px 100px 0px;
   background: #fff;
+  min-height: 50vh;
+  border-bottom: 1px dotted $stroke_grey;
 }
 
 .section_2_class {
-  background: #fff;
+  background: $bg-grey;
+  min-height: 50vh;
+  padding: 8rem;
+
 }
 
 .section_2_class h3 {
-  text-align: left;
+  text-align: center;
+  padding: 2rem 0rem 0rem 0rem;
+font-size: 1.4rem
 }
 
 
@@ -747,6 +758,7 @@ div#OR {
 .section_3_class {
   padding: 100px 0px 100px 0px;
   background: #fff;
+  border-top: 1px dotted $stroke_grey;
 }
 
 .section_4_class {
@@ -819,7 +831,14 @@ div#OR {
   // font-variant-caps: all-small-caps;
 }
 
-
+.section_3_class h2 {
+font-family: 'Roboto', sans-serif;
+font-weight: 100;
+font-size: 0.9rem;
+color: #373a41;
+line-height: 20px;
+letter-spacing: 1.1px
+}
 
 .sticky {
     position: -webkit-sticky;
@@ -1223,4 +1242,32 @@ header {
     border-bottom: 1px solid #ddd;
     padding: 40px 0px 40px 0;
 text-align: center;
+}
+
+
+.icon_services {
+  width: 120px;
+  height: auto;
+  padding: 5px 5px;
+display: inline-block;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px;
+border-radius: 100px;
+-moz-box-shadow: 0px 0px 2px $stroke_grey;
+-webkit-box-shadow: 0px 0px 2px $stroke_grey;
+box-shadow: 0px 0px 2px $stroke_grey;
+}
+
+.icon_viewcars {
+  width: 35px;
+  height: auto;
+  padding: 5px 5px;
+display: inline-block;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px;
+border-radius: 100px;
+-moz-box-shadow: 0px 0px 2px $stroke_grey;
+-webkit-box-shadow: 0px 0px 2px $stroke_grey;
+box-shadow: 0px 0px 2px $stroke_grey;
+
 }

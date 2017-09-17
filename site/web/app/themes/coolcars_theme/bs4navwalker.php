@@ -78,7 +78,7 @@ class bs4Navwalker extends Walker_Nav_Menu
 
         // New
         $class_names .= ' nav-item';
-        
+
         if (in_array('menu-item-has-children', $classes)) {
             $class_names .= ' dropdown';
         }
@@ -108,7 +108,7 @@ class bs4Navwalker extends Walker_Nav_Menu
 
         // New
         if ($depth === 0) {
-            $output .= $indent . '<li' . $id . $class_names .'>';
+            $output .= $indent . '<div' . $id . $class_names .'>';
         }
         //
 
@@ -217,7 +217,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      */
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
         if (isset($args->has_children) && $depth === 0) {
-            $output .= "</li>\n";
+            $output .= "</div>\n";
         }
     }
 }

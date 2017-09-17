@@ -11,7 +11,7 @@ h5 {
     padding: 0;
     border: none;
     border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    //box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
 .card-block {
@@ -40,6 +40,9 @@ h5 {
     clear: both;
     margin-top: .5em;
     color: rgba(0, 0, 0, .68);
+}
+.card h2 {
+  font-size: 1.4rem;
 }
 
 .card-footer {

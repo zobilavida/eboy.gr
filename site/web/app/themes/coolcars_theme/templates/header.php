@@ -36,6 +36,13 @@ cart
 <h1><?php printf( esc_html__( '%s', 'coolcars' ), get_bloginfo ( 'description' ) ); ?></h1>
 </a>
 </div>
+<div class="col-lg-9">
+  <?php
+        if (has_nav_menu('primary_navigation')) :
+          wp_nav_menu(['theme_location' => 'primary_navigation', 'walker' => new IBenic_Walker(), 'menu_class' => ' float-right nav navbar-nav']);
+        endif;
+        ?>
+</div>
 
     </div>
     </nav><!-- .main-navigation -->

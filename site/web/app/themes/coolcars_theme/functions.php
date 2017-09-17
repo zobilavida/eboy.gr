@@ -99,6 +99,10 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'them
 }
 add_action('customize_register', 'themeslug_theme_customizer');
 
+
+
+
+
 add_filter( 'woocommerce_add_cart_item_data', 'ps_empty_cart', 10,  3);
 
 function ps_empty_cart( $cart_item_data, $product_id, $variation_id ) {
@@ -112,7 +116,7 @@ function ps_empty_cart( $cart_item_data, $product_id, $variation_id ) {
 
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5, 0) ;
 add_action ('woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 5, 0) ;
-remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_price') ;
+//remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_price') ;
 //add_action ('woocommerce_before_single_product_summary', 'woocommerce_template_single_price', 10, 0) ;
 // Product meta
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40) ;
@@ -122,6 +126,16 @@ remove_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_ad
 
 remove_action ('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10) ;
 remove_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5) ;
+
+function woocommerce_after_shop_loop_item_price() {
+  global $product;
+    echo $product->get_price_html();
+}
+add_action ('woocommerce_after_shop_loop_item_title', 'woocommerce_after_shop_loop_item_price', 30) ;
+
+
+
+
 
 function woocommerce_template_loop_product_open() {
     echo '<div class="card">';
@@ -135,7 +149,7 @@ add_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_produ
 
 add_action ('woocommerce_shop_loop_item_image', 'woocommerce_loop_item_image_open', 10) ;
 function woocommerce_loop_item_image_open() {
-    echo '<img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">';
+    echo '<img class="card-img-top" src=" ">';
 }
 
 
@@ -504,7 +518,7 @@ add_action( 'template_redirect', 'wc_custom_redirect_after_purchase' );
 function wc_custom_redirect_after_purchase() {
 	global $wp;
   if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
-		wp_redirect( 'https://coolcars.gr/thank-you-for-your-order/' );
+		wp_redirect( 'https://eboy.gr/coolcars/thank-you-for-your-order/' );
 		exit;
 	}
 }

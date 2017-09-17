@@ -6,10 +6,8 @@
     <div class="grid-sizer"></div>
       <div class="gutter-sizer"></div>
   <?php
-if ( get_query_var('paged') ) $paged = get_query_var('paged');
-if ( get_query_var('page') ) $paged = get_query_var('page');
 
-$query = new WP_Query( array( 'post_type' => 'portfolio', 'paged' => $paged ) );
+$query = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => 100, 'facetwp' => true,) );
 
 if ( $query->have_posts() ) : ?>
 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
