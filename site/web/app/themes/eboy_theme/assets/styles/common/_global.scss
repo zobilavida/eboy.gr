@@ -112,34 +112,11 @@ text-transform: uppercase;
 }
 
 
-/* ensure equal card height inside carousel */
-
-.row-equal.carousel-inner>.active,
-.row-equal.carousel-inner>.next,
-.row-equal.carousel-inner>.prev {
-  display: flex;
-}
-
-.row-equal.carousel-inner .next {
-  left: 33%;
-}
-
-.row-equal.carousel-inner .prev {
-  left: -33%;
-}
-
-.carousel,
-.carousel-inner,
-.carousel-inner > .item {
-  overflow: hidden;
-}
 
 
 /* control image height */
 
-.card-img-top-250 {
-  overflow: hidden;
-}
+
 
 .tools {
   background: url(../images/meta-tools.svg) 10px 10px no-repeat !important;

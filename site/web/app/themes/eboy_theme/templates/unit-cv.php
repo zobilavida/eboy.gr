@@ -1,5 +1,9 @@
 <section id="portfolio" >
 
+  <div id="filters">
+    <input type="checkbox" name="web" value=".web" id="web"><label for="web">web</label>
+    <input type="checkbox" name="print" value=".print" id="print"><label for="print">blue</label>
+  </div>
 
   <div class="container-fluid grid">
 
@@ -9,10 +13,17 @@
 
 $query = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => 100, 'facetwp' => true,) );
 
-if ( $query->have_posts() ) : ?>
-<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-  <div class="grid_item card" data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
+if ( $query->have_posts() ) : ?>
+<?php while ( $query->have_posts() ) : $query->the_post();
+
+
+
+
+
+
+?>
+  <div class="grid_item card >" data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
     <div class="content_small">
 <?php if ( has_post_thumbnail() ) {
     $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );

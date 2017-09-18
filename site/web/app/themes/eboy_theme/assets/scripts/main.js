@@ -32,15 +32,6 @@ $(window).scroll(function(){
 
 });
 
-// manual carousel controls
- $(".next").click(function() {
-   $(".carousel").carousel("next");
-   return false;
- });
- $(".prev").click(function() {
-   $(".carousel").carousel("prev");
-   return false;
- });
 
 
 
@@ -122,6 +113,7 @@ $(window).scroll(function(){
         //Isotope
         var $container = $('.grid'),
         $items = $('.grid_item');
+         $checkboxes = $('#filters input');
 
         $container.isotope({
         itemSelector: '.grid_item',
@@ -138,6 +130,17 @@ $(window).scroll(function(){
         sortBy : 'selected'
         });
 
+        $checkboxes.change(function(){
+    var filters = [];
+    // get checked checkboxes values
+    $checkboxes.filter(':checked').each(function(){
+      filters.push( this.value );
+    });
+    // ['.red', '.blue'] -> '.red, .blue'
+    filters = filters.join(', ');
+    $container.isotope({ filter: filters });
+  });
+
         $.ajaxSetup({cache:false});
         $items.click(function(){
 
@@ -148,11 +151,17 @@ $(window).scroll(function(){
         var $previousSelected = $('.selected');
     //    TweenMax.to(window, 2, {scrollTo:{y:".selected", offsetY:120}});
         $(".content_text").html('<div class="loading">loading...</div>');
+        $(".content_slider").html('<div class="loading">loading...</div>');
+        $(".carousel-inner").load(post_url + " .carousel-item");
+        $('.carousel').carousel({
+        interval: 2000
+      });
         $(".content_text").load(post_url + " .portfolio_info", function() {
           if ( !$this.hasClass('selected') ) {
             $this.addClass('selected big');
           }
-          $previousSelected.removeClass('selected big');
+
+       $previousSelected.removeClass('selected big');
 
             // update sortData for new items size
             $container
@@ -161,7 +170,7 @@ $(window).scroll(function(){
               .isotope();
 
           });
-          $('.content_text a').click(function(event){
+          $('.carousel-control-next').click(function(event){
   event.stopPropagation();
 });
           });
@@ -172,6 +181,30 @@ $(window).scroll(function(){
             // layout Isotope after each image loads
                 $container.imagesLoaded().progress( function() {
                 $container.isotope('layout');
+                });
+
+
+                // Make the two sliders have the same height
+                $(function() {
+                  var imgHeight = '';
+
+                  // Define a resize function
+                  function setImgHeight() {
+                    imgHeight = $('.carousel .carousel-item.active img').height();
+                    $('.carousel-img').height(imgHeight);
+                    console.log(imgHeight);
+                  }
+
+                  // Initialize the height
+                  // setTimeout to wait until the image is loaded
+                  setTimeout( function(){
+                    setImgHeight();
+                  }, 1000 );
+
+                  // Recalculate the height if the screen is resized
+                  $( window ).resize(function() {
+                    setImgHeight();
+                  });
                 });
 
 
