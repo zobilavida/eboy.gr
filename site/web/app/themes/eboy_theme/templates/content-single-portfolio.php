@@ -69,7 +69,7 @@
 </div>
 </div>
 </div>
-		<div class="col-6 portfolio_info">
+		<div class="portfolio_info">
     <header>
       <h3 class="entry-title"><?php the_title(); ?></h3>
         <h4 class="entry-expert">

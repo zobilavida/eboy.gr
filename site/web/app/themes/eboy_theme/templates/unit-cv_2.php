@@ -1,6 +1,7 @@
 <section id="portfolio" >
 
   <div id="filters">
+    
     <input type="checkbox" name="web" value=".web" id="web"><label for="web">web</label>
     <input type="checkbox" name="print" value=".print" id="print"><label for="print">blue</label>
   </div>
