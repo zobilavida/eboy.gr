@@ -38,9 +38,13 @@ register_nav_menus( array(
 // Add svg support
 function cc_mime_types( $mimes ){
     $mimes['svg'] = 'image/svg+xml';
+    $mimes['swf']  = 'application/x-shockwave-flash';
+
     return $mimes;
 }
 add_filter( 'upload_mimes', 'cc_mime_types' );
+
+
 
 //enable logo uploading via the customize theme page
 
@@ -210,3 +214,31 @@ function itsg_create_sitemap() {
     fwrite( $fp, $sitemap );
     fclose( $fp );
 }
+
+function get_cats() {
+  $terms = get_terms( 'type' );
+  if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+   echo '<div id="filters">';
+   foreach ( $terms as $term ) {
+     echo '<input type="checkbox" name="' . $term->name . '" value=".type-' . $term->slug . '" id="' . $term->name . '"><label for="' . $term->name . '">' . $term->name . '</label>';
+  //   echo '<li>' . $term->name . '</li>';
+
+   }
+   echo '</div>';
+  }};
+
+add_action ('custom_actions', 'get_cats', 0 );
+
+
+function get_post_cats() {
+
+};
+add_action ('custom_actions', 'get_post_cats');
+
+/**
+ * Enables the Excerpt meta box in Page edit screen.
+ */
+function wpcodex_add_excerpt_support_for_pages() {
+	add_post_type_support( 'portfolio', 'post-formats' );
+}
+add_action( 'init', 'wpcodex_add_excerpt_support_for_pages' );

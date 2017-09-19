@@ -29,8 +29,11 @@ nav {
   padding-left: 0px;
   }
 
-section .container .row {
-  min-height: 50vh;
+#filters label {
+  padding: 1rem 1rem 1rem 0.4rem;
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .lavalamp-object {

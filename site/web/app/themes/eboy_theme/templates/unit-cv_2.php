@@ -1,13 +1,14 @@
 <section id="portfolio" >
 
-  <div id="filters">
-    
-    <input type="checkbox" name="web" value=".web" id="web"><label for="web">web</label>
-    <input type="checkbox" name="print" value=".print" id="print"><label for="print">blue</label>
-  </div>
+<div class="container">
+  <div class="row">
+      <div class="col-12 text-center ">
+    <?php do_action ('custom_actions', 'get_cats');?>
+</div>
+</div>
+</div>
 
   <div class="container-fluid grid">
-
     <div class="grid-sizer"></div>
       <div class="gutter-sizer"></div>
   <?php
@@ -17,14 +18,17 @@ $query = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => 10
 
 if ( $query->have_posts() ) : ?>
 <?php while ( $query->have_posts() ) : $query->the_post();
+$post_categories = wp_get_post_categories( $post->ID );
+$cats = array();
 
-
-
-
-
+foreach($post_categories as $c){
+    $cat = get_category( $c );
+    $cats[] = array( 'name' => $cat->name, 'slug' => $cat->slug );
+    //$custom_cats = $cat->name;
+}
 
 ?>
-  <div class="grid_item card >" data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
+  <div  <?php post_class('grid_item card'); ?> data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
     <div class="content_small">
 <?php if ( has_post_thumbnail() ) {
     $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );

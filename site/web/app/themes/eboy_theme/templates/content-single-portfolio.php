@@ -1,5 +1,6 @@
 
 <?php while (have_posts()) : the_post(); ?>
+
   <article class="row">
 <div class="content_slider">
   <div class="container">
@@ -13,6 +14,13 @@
       <li data-target="#carouselDocumentationIndicators" data-slide-to="1"></li>
       <li data-target="#carouselDocumentationIndicators" data-slide-to="2"></li>
     </ol>
+
+    <?php
+     $format = get_post_format() ? : 'standard';
+     if ( $format == 'video' ) :
+        echo $format;
+        ?>
+       <?php endif;?>
     <div class="carousel-inner out" role="listbox">
       <?php if ( $post->post_type == 'portfolio' && $post->post_status == 'publish' ) {
           $attachments = get_posts( array(
@@ -27,7 +35,7 @@
           if ( $attachments ) {
             foreach ( $attachments as $attachment ) {
               $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
-              $thumbimg = wp_get_attachment_link( $attachment->ID, 'thumbnail-size', true );
+
               $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
               echo '<div class="carousel-item active">';
             //  echo '<img class="' . $class . '">' . $thumbimg . '</img>';
@@ -66,16 +74,18 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+
+
 		<div class="portfolio_info">
+
     <header>
       <h3 class="entry-title"><?php the_title(); ?></h3>
         <h4 class="entry-expert">
           <?php the_excerpt(); ?>
         </h4>
     </header>
+
+
     <div class="entry-meta">
       <table class="table">
         <tbody>
@@ -105,7 +115,9 @@
       <?php the_content(); ?>
     </div>
 	</div>
-
+</div>
+</div>
+</div>
   </article>
 
 
