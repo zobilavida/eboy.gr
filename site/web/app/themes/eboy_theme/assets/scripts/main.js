@@ -1,4 +1,4 @@
-/* ========================================================================
+  /* ========================================================================
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
  *
@@ -149,7 +149,7 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
-    //    TweenMax.to(window, 2, {scrollTo:{y:".selected", offsetY:120}});
+  TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:120}});
         $(".content_text").html('<div class="loading">loading...</div>');
         $(".content_slider").html('<div class="loading">loading...</div>');
         $(".carousel-inner").load(post_url + " .carousel-item");
