@@ -167,6 +167,7 @@ $(window).scroll(function(){
             $container
               .isotope( 'updateSortData', $this )
               .isotope( 'updateSortData', $previousSelected )
+              .isotope('reLayout')
               .isotope();
 
           });
