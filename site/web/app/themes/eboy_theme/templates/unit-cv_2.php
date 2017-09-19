@@ -54,7 +54,7 @@ foreach($post_categories as $c){
                 </ol>
                 <div class="carousel-inner in" role="listbox">
                   <div class="carousel-item active">
-                    <img class="d-block img-fluid" src="http://localhost:3000/app/uploads/2017/09/portfolio_enet_03.jpg" alt="">
+                    <img class="d-block img-fluid" src="http://eboy.dev/app/uploads/2017/08/test_03.jpg" alt="">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselDocumentationIndicators" role="button" data-slide="prev">
