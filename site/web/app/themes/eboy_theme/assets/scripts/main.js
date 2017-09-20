@@ -160,7 +160,7 @@ $(window).scroll(function(){
           if ( !$this.hasClass('selected') ) {
             $this.addClass('selected big');
           }
-          $container.isotope('reLayout');
+        
        $previousSelected.removeClass('selected big');
 
             // update sortData for new items size
