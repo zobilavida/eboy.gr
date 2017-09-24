@@ -149,7 +149,7 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
-  TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:120}});
+
         $(".content_text").html('<div class="loading">loading...</div>');
         $(".content_slider").html('<div class="loading">loading...</div>');
         $(".carousel-inner").load(post_url + " .carousel-item");
@@ -160,14 +160,15 @@ $(window).scroll(function(){
           if ( !$this.hasClass('selected') ) {
             $this.addClass('selected big');
           }
-        
+TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:0}});
        $previousSelected.removeClass('selected big');
 
             // update sortData for new items size
             $container
               .isotope( 'updateSortData', $this )
               .isotope( 'updateSortData', $previousSelected )
-              .isotope('reLayout')
+
+              .isotope('layout')
               .isotope();
 
           });
