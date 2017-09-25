@@ -149,6 +149,10 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
+        var $stamp = $container.find('.selected');
+        var isStamped = false;
+
+
 
         $(".content_text").html('<div class="loading">loading...</div>');
         $(".content_slider").html('<div class="loading">loading...</div>');
@@ -157,18 +161,26 @@ $(window).scroll(function(){
         interval: 2000
       });
         $(".content_text").load(post_url + " .portfolio_info", function() {
+
+
           if ( !$this.hasClass('selected') ) {
             $this.addClass('selected big');
-            $container.isotope("layout");
           }
+
+
+
 TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:0}});
+
        $previousSelected.removeClass('selected big');
+
 
             // update sortData for new items size
             $container
               .isotope( 'updateSortData', $this )
               .isotope( 'updateSortData', $previousSelected )
+        
               .isotope();
+
 
           });
           $('.carousel-control-next').click(function(event){

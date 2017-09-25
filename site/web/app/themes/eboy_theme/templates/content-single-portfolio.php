@@ -34,7 +34,7 @@
 
           if ( $attachments ) {
             foreach ( $attachments as $attachment ) {
-              $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
+              $class = "d-block card-img-top img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
 
               $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
               echo '<div class="carousel-item active">';
