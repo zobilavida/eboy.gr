@@ -159,7 +159,7 @@ $(window).scroll(function(){
         $(".content_text").load(post_url + " .portfolio_info", function() {
           if ( !$this.hasClass('selected') ) {
             $this.addClass('selected big');
-            $container.isotope("relayout");
+            $container.isotope("layout");
           }
 TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:0}});
        $previousSelected.removeClass('selected big');
