@@ -2,18 +2,44 @@
 <?php while (have_posts()) : the_post(); ?>
 
   <article class="row">
-<div class="content_slider">
+<div class="content_slider test">
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-block">
+
+
+
+
   <div id="carouselDocumentationIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselDocumentationIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselDocumentationIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselDocumentationIndicators" data-slide-to="2"></li>
-    </ol>
+    <?php
+     $number = 0;
+     if ( $post->post_type == 'portfolio' && $post->post_status == 'publish' ) {
+         $attachments = get_posts( array(
+           'post_type' => 'attachment',
+           'post_status' => 'inherit',
+           'post_mime_type' => 'image',
+           'numberposts' => 0,
+           'post_parent' => $post->ID
+           //'exclude'     => get_post_thumbnail_id()
+         ) );
+
+         if ( $attachments ) {
+           foreach ( $attachments as $attachment ) {
+             $datatarget = "#carouselDocumentationIndicators";
+
+              echo '<li data-target="' . $datatarget . '" data-slide-to="' . $number++ . '">';
+
+           }
+
+         }
+       }
+    ?>
+  </ol>
+
+
 
     <?php
      $format = get_post_format() ? : 'standard';
@@ -34,7 +60,7 @@
 
           if ( $attachments ) {
             foreach ( $attachments as $attachment ) {
-              $class = "d-block card-img-top img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
+              $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
 
               $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
               echo '<div class="carousel-item active">';
@@ -69,9 +95,9 @@
   		}
   	}
   ?>
-</div>
-</div>
-</div>
+</div> <!-- carousel-inner END  -->
+</div> <!-- carouselDocumentationIndicators END  -->
+</div> <!-- card-block END  -->
 </div>
 </div>
 

@@ -120,14 +120,7 @@ $(window).scroll(function(){
         masonry: {
         columnWidth: '.grid-sizer',
         gutter: '.gutter-sizer'
-        },
-        getSortData : {
-          selected : function( $grid_item ){
-            // sort by selected first, then by original order
-            return ($($grid_item).hasClass('selected') ? -1000 : 0 ) + $($grid_item).index();
-          }
-        },
-        sortBy : 'selected'
+        }
         });
 
         $checkboxes.change(function(){
@@ -141,6 +134,7 @@ $(window).scroll(function(){
     $container.isotope({ filter: filters });
   });
 
+
         $.ajaxSetup({cache:false});
         $items.click(function(){
 
@@ -149,43 +143,33 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
-        var $stamp = $container.find('.selected');
-        var isStamped = false;
 
 
 
-        $(".content_text").html('<div class="loading">loading...</div>');
+        $(".carousel-inner").html('<div class="loading">loading...</div>');
         $(".content_slider").html('<div class="loading">loading...</div>');
-        $(".carousel-inner").load(post_url + " .carousel-item");
-        $('.carousel').carousel({
-        interval: 2000
-      });
-        $(".content_text").load(post_url + " .portfolio_info", function() {
+        $(".portfolio_left").load(post_url + " .card");
 
+        $(".portfolio_right").load(post_url + " .portfolio_info", function() {
 
-          if ( !$this.hasClass('selected') ) {
-            $this.addClass('selected big');
-          }
+          TweenMax.to($(".ajax_content"), 1, {css: {display: "block"}});
+          $('.carousel').carousel({
+              interval: 3100,
+              pause:false
+          });
 
-
-
-TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:0}});
+          $('.carousel').carousel('cycle');
 
        $previousSelected.removeClass('selected big');
-
+       TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:40}});
 
             // update sortData for new items size
             $container
               .isotope( 'updateSortData', $this )
               .isotope( 'updateSortData', $previousSelected )
-        
               .isotope();
-
-
           });
-          $('.carousel-control-next').click(function(event){
-  event.stopPropagation();
-});
+
           });
           var tl = new TimelineMax({repeat:0,yoyo:false});
           tl.staggerFromTo(".grid_item", 0.5,
@@ -196,29 +180,6 @@ TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:0}});
                 $container.isotope('layout');
                 });
 
-
-                // Make the two sliders have the same height
-                $(function() {
-                  var imgHeight = '';
-
-                  // Define a resize function
-                  function setImgHeight() {
-                    imgHeight = $('.carousel .carousel-item.active img').height();
-                    $('.carousel-img').height(imgHeight);
-                    console.log(imgHeight);
-                  }
-
-                  // Initialize the height
-                  // setTimeout to wait until the image is loaded
-                  setTimeout( function(){
-                    setImgHeight();
-                  }, 1000 );
-
-                  // Recalculate the height if the screen is resized
-                  $( window ).resize(function() {
-                    setImgHeight();
-                  });
-                });
 
 
                 function animateProgressBar(){

@@ -1,9 +1,17 @@
 <section id="portfolio" >
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
       <div class="col-12 text-center ">
     <?php do_action ('custom_actions', 'get_cats');?>
+</div>
+</div>
+<div class="row portfolio">
+    <div class="col-6 ajax_content portfolio_left">
+
+</div>
+<div class="col-6 ajax_content portfolio_right">
+  test
 </div>
 </div>
 </div>
