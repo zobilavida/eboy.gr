@@ -2,16 +2,18 @@
 <?php while (have_posts()) : the_post(); ?>
 
   <article class="row">
+    <?php
+     $format = get_post_format() ? : 'standard';
+     if ( $format == 'standard' ) :
+        echo $format;
+        ?>
+
 <div class="content_slider test">
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-block">
-
-
-
-
   <div id="carouselDocumentationIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
     <?php
@@ -25,28 +27,15 @@
            'post_parent' => $post->ID
            //'exclude'     => get_post_thumbnail_id()
          ) );
-
          if ( $attachments ) {
            foreach ( $attachments as $attachment ) {
              $datatarget = "#carouselDocumentationIndicators";
-
               echo '<li data-target="' . $datatarget . '" data-slide-to="' . $number++ . '">';
-
            }
-
          }
        }
     ?>
   </ol>
-
-
-
-    <?php
-     $format = get_post_format() ? : 'standard';
-     if ( $format == 'video' ) :
-        echo $format;
-        ?>
-       <?php endif;?>
     <div class="carousel-inner out" role="listbox">
       <?php if ( $post->post_type == 'portfolio' && $post->post_status == 'publish' ) {
           $attachments = get_posts( array(
@@ -76,7 +65,7 @@
   		$attachments = get_posts( array(
         'post_type' => 'attachment',
         'post_status' => 'inherit',
-        'post_mime_type' => 'image',
+        'post_mime_type' => '',
         'offset' => 1,
         'post_parent' => $post->ID
   		) );
@@ -98,7 +87,30 @@
 </div> <!-- carousel-inner END  -->
 </div> <!-- carouselDocumentationIndicators END  -->
 </div> <!-- card-block END  -->
-</div>
+</div>  <!-- card END  -->
+ <?php endif;?>
+ <?php
+  $format = get_post_format() ? : 'standard';
+  if ( $format == 'video' ) :
+     echo $format;
+     ?>
+
+<div class="content_slider test">
+<div class="container">
+ <div class="row">
+   <div class="col">
+     <div class="card">
+       <div class="card-block">
+test
+<?php
+$portfolio_item = pods('portfolio', get_the_ID() );
+
+echo $portfolio_item->display('flash_fields');
+
+?>
+</div> <!-- card-block END  -->
+</div>  <!-- card END  -->
+<?php endif;?>
 </div>
 
 

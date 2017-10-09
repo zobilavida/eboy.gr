@@ -143,16 +143,16 @@ $(window).scroll(function(){
 
         // don't proceed if already selected
         var $previousSelected = $('.selected');
-
-
-
+        $(this).addClass( "selected" );
         $(".carousel-inner").html('<div class="loading">loading...</div>');
         $(".content_slider").html('<div class="loading">loading...</div>');
         $(".portfolio_left").load(post_url + " .card");
 
         $(".portfolio_right").load(post_url + " .portfolio_info", function() {
-
+          TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:40}});
           TweenMax.to($(".ajax_content"), 1, {css: {display: "block"}});
+        //  TweenMax.from($(".portfolio_left"), 1, {css: {display: "block"}});
+          TweenMax.fromTo( $(".portfolio_left"), 1.2, {css:{left:400, autoAlpha: 0}}, {css:{left:0 , autoAlpha : 1 }, ease: Elastic.easeOut.config(1, 0.3) }) ;
           $('.carousel').carousel({
               interval: 3100,
               pause:false
@@ -161,7 +161,7 @@ $(window).scroll(function(){
           $('.carousel').carousel('cycle');
 
        $previousSelected.removeClass('selected big');
-       TweenMax.to(window, 2, {scrollTo:{y:"#filters", offsetY:40}});
+
 
             // update sortData for new items size
             $container

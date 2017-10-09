@@ -35,7 +35,7 @@ register_nav_menus( array(
     'primary' => __( 'Primary Menu', 'sage' ),
 ) );
 
-// Add svg support
+// Add svg & swf support
 function cc_mime_types( $mimes ){
     $mimes['svg'] = 'image/svg+xml';
     $mimes['swf']  = 'application/x-shockwave-flash';
