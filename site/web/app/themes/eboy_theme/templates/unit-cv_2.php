@@ -11,7 +11,6 @@
 
 </div>
 <div class="col-6 ajax_content portfolio_right">
-  test
 </div>
 </div>
 </div>

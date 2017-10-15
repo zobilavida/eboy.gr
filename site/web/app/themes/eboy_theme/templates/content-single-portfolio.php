@@ -101,7 +101,7 @@
    <div class="col">
      <div class="card">
        <div class="card-block">
-test
+
 <?php
 $portfolio_item = pods('portfolio', get_the_ID() );
 

@@ -50,15 +50,12 @@ margin: 0px;
       width: 24.1%;
     padding: .5% .5% .5% .5%;
 margin-bottom: .4%;
+cursor: pointer;
   }
 
 .gutter-sizer {
   width: 1%;
  }
-
-embed {
-  background-color: #ffffff;
-}
 
  .card.selected {
   display: none;
@@ -124,7 +121,9 @@ text-transform: uppercase;
 
 
 /* control image height */
-
+.ico_hand {
+  padding: 1rem 0 0 0;
+}
 
 
 .tools {

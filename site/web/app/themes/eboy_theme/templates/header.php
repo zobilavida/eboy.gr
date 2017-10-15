@@ -26,14 +26,18 @@
               'theme_location'    => 'primary',
               'depth'             => 2,
               'container'         => 'div',
-              'container_class'   => 'nav justify-content-center top-menu',
+              'container_class'   => 'nav justify-content-center top-menu mr-auto',
               'container_id'      => '',
               'menu_class'        => 'bar top-menu',
               'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
               'walker'            => new wp_bootstrap_navwalker())
           );
       ?>
-
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="onid">
+  <img src="<?= get_template_directory_uri(); ?>/assets/images/ico_hand.svg" alt="Web developer"/>
+  Hire Me!
+</button>
     </div>
     <div class="collapse">
       test

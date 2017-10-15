@@ -125,16 +125,20 @@ $(window).scroll(function(){
 
         $checkboxes.change(function(){
     var filters = [];
+
     // get checked checkboxes values
     $checkboxes.filter(':checked').each(function(){
       filters.push( this.value );
+      TweenMax.fromTo( $(".ajax_content"), 1.2, {css: {display: "block"}}, {css:{display: "none" }, ease: Elastic.easeOut.config(1, 0.3) }) ;
     });
     // ['.red', '.blue'] -> '.red, .blue'
     filters = filters.join(', ');
     $container.isotope({ filter: filters });
   });
 
-
+  $('#onid').on('click', function() {
+         $('#myModal').modal('show');
+     });
         $.ajaxSetup({cache:false});
         $items.click(function(){
 
