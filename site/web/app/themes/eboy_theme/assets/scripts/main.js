@@ -32,7 +32,20 @@ $(window).scroll(function(){
 
 });
 
-
+$( "#contactForm" ).validate({
+   rules: {
+       contactname: {
+       required: true
+     },
+     contactemail: {
+       required: true,
+       email: true
+     },
+     contactcontent: {
+       required: true
+     }
+   }
+ });
 
 
 
@@ -205,6 +218,8 @@ var waypoint = new Waypoint({
   },
   offset: 580
 });
+
+
       }
     },
     // About us page, note the change from about-us to about_us.
