@@ -33,7 +33,7 @@ class ContactFormHandler {
 		 		echo "Contact Us sent. We will reply to your query soon.";
 
 		     }
-		     
+
 
 	   function isNonceSet() {
 	   	if( isset( $_POST['nonce_field_for_submit_contact_form'] )  &&
@@ -92,7 +92,8 @@ class ContactFormHandler {
 			    </fieldset>
 
 			    <fieldset>
-			        <button type="submit" name="submitContactForm" >Send Query</button>
+						
+			        <button type="submit" name="submitContactForm" class="btn btn-primary">Send Query</button>
 			    </fieldset>
 
 			    <?php wp_nonce_field( 'submit_contact_form' , 'nonce_field_for_submit_contact_form'); ?>

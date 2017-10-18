@@ -47,7 +47,9 @@ $( "#contactForm" ).validate({
    }
  });
 
-
+ $(function () {
+   $('[data-toggle="popover"]').popover();
+ });
 
 
 
@@ -149,10 +151,18 @@ $( "#contactForm" ).validate({
     $container.isotope({ filter: filters });
   });
 
-  $('#onid').on('click', function() {
+  var $contact = $('#onid');
+  var contact_url = $contact.attr('data-href');
+
+  $contact.on('click', function() {
          $('#myModal').modal('show');
      });
         $.ajaxSetup({cache:false});
+          $contact.click(function(){
+            $(".modal-body").html('<div class="loading">loading...</div>');
+              $(".modal-body").load(contact_url + " .custom-form");
+
+          });
         $items.click(function(){
 
         var $this = $(this);
