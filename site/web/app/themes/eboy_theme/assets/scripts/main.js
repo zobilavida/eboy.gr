@@ -151,18 +151,22 @@ $( "#contactForm" ).validate({
     $container.isotope({ filter: filters });
   });
 
-  var $contact = $('#onid');
-  var contact_url = $contact.attr('data-href');
-
-  $contact.on('click', function() {
-         $('#myModal').modal('show');
-     });
+  $("button#submit").click(function(){
+  $.ajax({
+  type: "POST",
+  url: "feedback.php",
+  data: $('form.feedback').serialize(),
+  success: function(message){
+  $("#feedback").html(message);
+  $("#feedback-modal").modal('hide');
+  },
+  error: function(){
+  alert("Error");
+  }
+  });
+  });
         $.ajaxSetup({cache:false});
-          $contact.click(function(){
-            $(".modal-body").html('<div class="loading">loading...</div>');
-              $(".modal-body").load(contact_url + " .custom-form");
 
-          });
         $items.click(function(){
 
         var $this = $(this);

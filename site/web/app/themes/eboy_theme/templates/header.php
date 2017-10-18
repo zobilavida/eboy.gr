@@ -34,7 +34,7 @@
           );
       ?>
       <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="onid" data-href="<?php echo get_permalink( $post->ID ); ?>contact" >
+      <div id="feedback"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#feedback-modal">Feedback Modal Form</button></div>
   <img src="<?= get_template_directory_uri(); ?>/assets/images/ico_hand.svg" alt="Web developer"/>
   Hire Me!
 </button>
