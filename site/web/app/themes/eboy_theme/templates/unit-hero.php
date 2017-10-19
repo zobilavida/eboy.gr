@@ -2,7 +2,7 @@
 
   <!-- Modal -->
   <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -14,11 +14,11 @@
           <form class="feedback" name="feedback">
           <strong>Name</strong>
           <br />
-          <input type="text" name="name" class="input-xlarge" value="Laeeq">
+          <input type="text" name="name" class="input-xlarge" value="">
           <br /><br /><strong>Email</strong><br />
-          <input type="email" name="email" class="input-xlarge" value="phpzag@gmail.com">
+          <input type="email" name="email" class="input-xlarge" value="">
           <br /><br /><strong>Message</strong><br />
-          <textarea name="message" class="input-xlarge">Thanks for tutorials and demos!</textarea>
+          <textarea name="message" class="input-xlarge"></textarea>
           </form>
         </div>
         <div class="modal-footer">

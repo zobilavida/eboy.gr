@@ -151,8 +151,6 @@ $( "#contactForm" ).validate({
     $container.isotope({ filter: filters });
   });
 
-  var feedbackDir = "<?php bloginfo('template_directory') ?>/feedback.php";
-
   $("button#submit").click(function(){
   $.ajax({
   type: "POST",
