@@ -151,10 +151,12 @@ $( "#contactForm" ).validate({
     $container.isotope({ filter: filters });
   });
 
+  var feedbackDir = "<?php bloginfo('template_directory') ?>/feedback.php";
+
   $("button#submit").click(function(){
   $.ajax({
   type: "POST",
-  url: "feedback.php",
+  url: "https://eboy.gr/app/themes/eboy_theme/feedback.php",
   data: $('form.feedback').serialize(),
   success: function(message){
   $("#feedback").html(message);
