@@ -52,3 +52,36 @@
     float:right;
     margin-top: 10px;
  }
+
+ .modal-body {
+   padding: 0px;
+ }
+
+ .contact-left {
+   background: url(../images/form_arrow.svg) 100% 15% no-repeat !important;
+   padding: 2rem;
+ }
+
+  .contact-left h1 {
+    font-family: 'Brandon Grotesque Regular', sans-serif;
+    font-size: 1.8rem;
+  }
+
+  .contact-left h2 {
+    font-family: 'Brandon Grotesque Light', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.01rem;
+  }
+  .form_contact {
+    padding: 40px;
+  }
+
+  .phone {
+    background: url(../images/form_phone_1.svg) 0% 0% no-repeat !important;
+
+  }
+
+ .contact-right {
+   background-color: $brand-primary;
+ }

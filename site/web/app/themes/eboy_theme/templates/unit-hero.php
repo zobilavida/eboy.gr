@@ -4,29 +4,44 @@
   <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+
         <div class="modal-body">
-          <form class="feedback" name="feedback">
-          <strong>Name</strong>
-          <br />
-          <input type="text" name="name" class="input-xlarge" value="">
-          <br /><br /><strong>Email</strong><br />
-          <input type="email" name="email" class="input-xlarge" value="">
-          <br /><br /><strong>Message</strong><br />
-          <textarea name="message" class="input-xlarge"></textarea>
-          </form>
+          <div class="container">
+            <div class="row">
+              <div class="col-6 contact-left">
+              <h1>  Let’s get in touch </h1>
+              <h2>I’m currently accepting new freelance projects,
+and willing to hear interesting proposals.</h2>
+<h2>Feel free to call, send email or simpy complete
+the enquiry form.</h2>
+<div class="col-12 no-gutters phone">
+<span class="form_contact "> 0030 6987.16.17.60</span>
+    </div>
+    <div class="col-12">
+    <span class="form_contact skype"> Giannis Sergentakis</span>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Save changes</button>
-          <button class="btn btn-success" id="submit">Send</button>
-					<a href="#" class="btn" data-dismiss="modal">Close</a>
+
+          </div>
+          <div class="col-6 contact-right">
+            <form class="feedback" name="feedback">
+            <strong>Name</strong>
+            <br />
+            <input type="text" name="name" class="input-xlarge" value="">
+            <br /><br /><strong>Email</strong><br />
+            <input type="email" name="email" class="input-xlarge" value="">
+            <br /><br /><strong>Message</strong><br />
+            <textarea name="message" class="input-xlarge"></textarea>
+            </form>
+              <button class="btn btn-success" id="submit">Send</button>
+      </div>
+          </div>
+          </div>
+
+
+
+
         </div>
+
       </div>
     </div>
   </div>
