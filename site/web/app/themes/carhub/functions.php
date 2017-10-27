@@ -63,6 +63,7 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     '
 }
 add_action('customize_register', 'themeslug_theme_customizer');
 
+
 //Google Maps Shortcode
 function do_googleMaps($atts, $content = null) {
    extract(shortcode_atts(array(

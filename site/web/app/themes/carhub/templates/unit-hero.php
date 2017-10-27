@@ -50,27 +50,36 @@
                   <div class="row">
                     <div class="col-2 d-flex justify-content-end">
                       test left
-                      <div class="col-2 d-flex justify-content-end"> <?php
-                      $terms = get_the_terms( $post->ID, 'product_cat' );
-                      foreach ( $terms as $term ) {
-                          $product_cat_id = $term->slug;
-                          echo $product_cat_id;
-                          break;
-                      }
-                      ?>
-                      <h3><?php echo $product->get_name(); ?></h3>
-                      </div>
+
                     </div>
                     <div class="col-8 carinslider">
+                      <div class="row">
+                      <div class="col-2 d-flex justify-content-end">
+                          <div class="row">
+                    <div class="col-12">
+                      <h3><?php echo $product->get_name(); ?></h3>
+                      <div class="col-12 car_slider_seperator"></div>
+                    <h5>from:</h5>
+                         <?php echo $product->get_price_html(); ?>
+                         <button type="button" class="btn btn-danger btn-lg btn-block">Reserve Now</button>
+                    </div>
 
+
+                    </div>
+                      </div>
+                        <div class="col-8">
                         <a href="<?php echo get_permalink() ?>" >
                   <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                   </a>
                   </div>
+                  <div class="col-2 d-flex justify-content-end">
+                    <?php echo $product->get_price_html(); ?>
+                  </div>
+                  </div>
                   <div class="col-2 d-flex justify-content-start">
                     test
-              <?php
-              echo $product->get_price_html(); ?>
+
+                  </div>
                   </div>
                   </div>
                 </div>
@@ -79,20 +88,40 @@
 
               <?php query_posts('post_type=product&showposts=4&offset=1'); ?>
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                      <div class="carousel-item ">
+                      <div class="carousel-item">
                         <div class="row">
-                          <div class="col-2">
+                          <div class="col-2 d-flex justify-content-end">
                             test left
+
                           </div>
                           <div class="col-8 carinslider">
+                            <div class="row">
+                            <div class="col-2 d-flex justify-content-end"> <?php
+                            $terms = get_the_terms( $post->ID, 'product_cat' );
+                            foreach ( $terms as $term ) {
+                                $product_cat_id = $term->slug;
+                                echo $product_cat_id;
+                                break;
+                            }
+                            ?>
+                            <h3><?php echo $product->get_name(); ?></h3>
+                            </div>
+                              <div class="col-8">
                               <a href="<?php echo get_permalink() ?>" >
                         <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                         </a>
                         </div>
-                        <div class="col-2">
-                          test right
+                        <div class="col-2 d-flex justify-content-end">
+                          <?php echo $product->get_price_html(); ?>
                         </div>
-                        </div>                      </div>
+                        </div>
+                        <div class="col-2 d-flex justify-content-start">
+                          test
+
+                        </div>
+                        </div>
+                        </div>
+                      </div>
                     <?php endwhile; endif; ?>
                     <?php wp_reset_query(); ?>
 
