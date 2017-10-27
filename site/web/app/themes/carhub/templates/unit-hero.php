@@ -39,7 +39,7 @@
   $content = $intro->post_content;
   echo $content
   ?>
-  <div class="container-fluid">
+  <div class="container-fluid car_slider">
     <div class="row">
       <div class="col-12">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -48,7 +48,7 @@
               <?php if (have_posts()) : while (have_posts()) : the_post(); global $product;?>
                 <div class="carousel-item active">
                   <div class="row">
-                    <div class="col-4 d-flex justify-content-end">
+                    <div class="col-2 d-flex justify-content-end">
                       test left
                       <div class="col-2 d-flex justify-content-end"> <?php
                       $terms = get_the_terms( $post->ID, 'product_cat' );
@@ -61,13 +61,13 @@
                       <h3><?php echo $product->get_name(); ?></h3>
                       </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-8 carinslider">
 
                         <a href="<?php echo get_permalink() ?>" >
                   <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                   </a>
                   </div>
-                  <div class="col-4 d-flex justify-content-start">
+                  <div class="col-2 d-flex justify-content-start">
                     test
               <?php
               echo $product->get_price_html(); ?>
@@ -84,7 +84,7 @@
                           <div class="col-2">
                             test left
                           </div>
-                          <div class="col-8">
+                          <div class="col-8 carinslider">
                               <a href="<?php echo get_permalink() ?>" >
                         <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                         </a>
