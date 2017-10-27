@@ -62,3 +62,111 @@ background-image: url("https://img.webnots.com/2015/11/parallax2.jpg");
 .carousel-item h3 {
   font-size: 3rem;
 }
+
+
+.services {
+  background-color: $bg-grey;
+  background-image: url(../images/section_arrow_w.svg)  ;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  padding: 4rem;
+}
+
+.services h2 {
+  color: rgba(0, 0, 0, 1);
+  font-family: 'HelveticaNeue-CondensedBlack', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 4rem;
+  text-decoration: underline;
+}
+.underline {
+  font-family: 'HelveticaNeue-CondensedBlack', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  border-bottom: 4px solid $brand-red;
+}
+
+.underline_no {
+  font-family: 'HelveticaNeue-CondensedBlack', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+
+}
+
+.underline_2 {
+  font-family: 'HelveticaNeue-CondensedBlack', sans-serif;
+  color: #fff;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+.underline_under {
+  font-family: 'HelveticaNeue-Light', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  line-height: 1rem;
+}
+.services_icons {
+  padding: 4rem 0 0 0;
+}
+
+.services_text {
+  font-family: 'HelveticaNeue-Light', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  line-height: 4rem;
+
+}
+
+
+.map {
+  background-color: $brand-red;
+    padding: 0.7rem;
+}
+
+.customer_center {
+  padding: 4rem;
+}
+
+.customer_center_box {
+  border: 4px solid $brand-red;
+}
+
+.person {
+  margin-right: -32px;
+margin-top: -70px;
+}
+
+.support {
+  padding: 3rem;
+}
+
+.support_name {
+  font-family: 'HelveticaNeue-Bold', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing:0.03rem;
+  line-height: 1rem;
+
+}
+
+.support_title {
+  font-family: 'HelveticaNeue-Light', sans-serif;
+  font-size: 1rem;
+  letter-spacing:0.03rem;
+  line-height: 1rem;
+}
+
+.support_sep {
+  width: 30px;
+height: 5px;
+margin: 15px 0;
+background-color: $brand-red;
+}
+
+.support_phone {
+  font-family: 'HelveticaNeue-Light', sans-serif;
+  font-size: 1rem;
+  letter-spacing:0.03rem;
+  line-height: 1rem;
+}
