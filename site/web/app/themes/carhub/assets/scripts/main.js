@@ -19,9 +19,17 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
-        GoogleMapsLoader.onLoad(function(google) {
-	console.log('I just loaded google maps api');
-});
+        $(window).scroll(function(){
+          scrollTop = $(window).scrollTop();
+           $('.counter').html(scrollTop);
+
+          if (scrollTop >= 100) {
+            $('.navbar').addClass('scrolled-nav');
+          } else if (scrollTop < 100) {
+            $('.navbar').removeClass('scrolled-nav');
+          }
+
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
