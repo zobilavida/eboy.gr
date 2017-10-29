@@ -19,6 +19,8 @@
                     <div class="col-4 d-flex justify-content-end">
                       <div class="row">
                         <div class="col-6">
+                        </div>
+                        <div class="col-6">
                           <h6> <?php  $terms = get_the_terms( $post->ID, 'product_cat' );
                       foreach ( $terms as $term ) {
                           $product_cat_id = $term->slug;
@@ -39,8 +41,12 @@
                   <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                   </a>
                   </div>
-                  <div class="col-4 d-flex justify-content-start">
-                    <?php do_action ( 'woocommerce_attribute' );  ?>
+                  <div class="col-4">
+                    <?php do_action ( 'woocommerce_attribute_doors' );  ?>
+                    <?php do_action ( 'woocommerce_attribute_passengers' );  ?>
+                    <?php do_action ( 'woocommerce_attribute_luggage' );  ?>
+                    <?php do_action ( 'woocommerce_attribute_transmission' );  ?>
+                    <?php do_action ( 'woocommerce_attribute_air_conditioning' );  ?>
 
                   </div>
                   </div>

@@ -110,6 +110,36 @@ background-image: url("https://img.webnots.com/2015/11/parallax2.jpg");
 .carinslider {
   padding: 4rem 0 0 0 ;
 }
+
+.cars-slider_item-option {
+  width: 100%;
+  background-size: 38px !important;
+  min-height: 38px;
+  margin: .5rem 0 0;
+}
+.cars-slider_item-option h5 {
+  padding: .7rem 0 0 3rem;
+  font-size: 1rem;
+}
+.car-option-doors {
+  background: url(../images/attributes_doors.svg) 0px 0px no-repeat !important;
+}
+
+.car-option-passengers {
+  background: url(../images/attributes_passengers.svg) 0px 0px no-repeat !important;
+}
+
+.car-option-luggage {
+  background: url(../images/attributes_luggage.svg) 0px 0px no-repeat !important;
+}
+
+.car-option-tansmission {
+  background: url(../images/attributes_tansmission.svg) 0px 0px no-repeat !important;
+}
+
+.car-option-air-conditioning {
+  background: url(../images/attributes_aircondition.svg) 0px 0px no-repeat !important;
+}
 .carousel-item h3 {
   font-size: 3rem;
 }
@@ -117,7 +147,7 @@ background-image: url("https://img.webnots.com/2015/11/parallax2.jpg");
 .car_slider_seperator {
   width: 85px;
   height: 12px;
-//  margin: 1rem 0rem 1rem 4rem;
+margin-bottom: .5rem;
 background-color: $brand-red;
 }
 

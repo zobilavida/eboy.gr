@@ -65,13 +65,52 @@ add_action('customize_register', 'themeslug_theme_customizer');
 
 
 
-function funzione_alex() {
+function show_attributes_doors() {
 global $product;
 $product_id = $product->get_id();
 $attribute_slug = 'doors';
 $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fields' => 'names' ) );
 $text = array_shift( $array );
-echo '<div><h5>Doors:' . $text . '</h5></div>';
+echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h5>Doors:' . $text . '</h5></div>';
 }
+add_action( 'woocommerce_attribute_doors', 'show_attributes_doors' );
 
-add_action( 'woocommerce_attribute', 'funzione_alex' );
+function show_attributes_passengers() {
+global $product;
+$product_id = $product->get_id();
+$attribute_slug = 'passengers';
+$array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fields' => 'names' ) );
+$text = array_shift( $array );
+echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h5>passengers:' . $text . '</h5></div>';
+}
+add_action( 'woocommerce_attribute_passengers', 'show_attributes_passengers' );
+
+function show_attributes_luggage() {
+global $product;
+$product_id = $product->get_id();
+$attribute_slug = 'luggage';
+$array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fields' => 'names' ) );
+$text = array_shift( $array );
+echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h5>luggage:' . $text . '</h5></div>';
+}
+add_action( 'woocommerce_attribute_luggage', 'show_attributes_luggage' );
+
+function show_attributes_transmission() {
+global $product;
+$product_id = $product->get_id();
+$attribute_slug = 'transmission';
+$array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fields' => 'names' ) );
+$text = array_shift( $array );
+echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h5>transmission:' . $text . '</h5></div>';
+}
+add_action( 'woocommerce_attribute_tansmission', 'show_attributes_transmission' );
+
+function show_attributes_air_conditioning() {
+global $product;
+$product_id = $product->get_id();
+$attribute_slug = 'air-conditioning';
+$array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fields' => 'names' ) );
+$text = array_shift( $array );
+echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h5>air condtitoning:' . $text . '</h5></div>';
+}
+add_action( 'woocommerce_attribute_air_conditioning', 'show_attributes_air_conditioning' );
