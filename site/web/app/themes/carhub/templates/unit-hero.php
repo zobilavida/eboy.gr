@@ -31,7 +31,7 @@
                       <div class="car_slider_seperator"></div>
                       <h5>From:</h5>
                       <?php echo $product->get_price_html(); ?>
-                      <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                      <button type="button" class="btn btn-primary btn-lg openform">Reserve Now</button>
                       </div>
                       </div>
                     </div>
@@ -49,6 +49,13 @@
                     <?php do_action ( 'woocommerce_attribute_air_conditioning' );  ?>
 
                   </div>
+
+
+
+                  </div>
+                  <div class="container booking_form">
+                  <?php  do_action( 'woocommerce_single_product_summary' );  ?>
+                  <?php do_action( 'woocommerce_after_single_product' ); ?>
                   </div>
                 </div>
               <?php endwhile; endif; ?>
@@ -68,7 +75,9 @@
                         <div class="col-2">
                           test right
                         </div>
-                        </div>                      </div>
+                        </div>
+                       </div>
+
                     <?php endwhile; endif; ?>
                     <?php wp_reset_query(); ?>
 
@@ -85,6 +94,7 @@
   </div>
   </div>
     </div>
+
   </div>
 
  </section>

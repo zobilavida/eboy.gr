@@ -111,6 +111,14 @@ background-image: url("https://img.webnots.com/2015/11/parallax2.jpg");
   padding: 4rem 0 0 0 ;
 }
 
+.booking_form {
+  height: 1px;
+}
+
+.carousel-control-prev,
+.carousel-control-next  {
+  align-items: flex-start;
+}
 .cars-slider_item-option {
   width: 100%;
   background-size: 38px !important;

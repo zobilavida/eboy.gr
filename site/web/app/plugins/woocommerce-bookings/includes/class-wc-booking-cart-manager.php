@@ -352,7 +352,7 @@ class WC_Booking_Cart_Manager {
 					$item_id
 				) );
 			}
-			
+
 			// Set as pending when the booking requires confirmation
 			if ( wc_booking_requires_confirmation( $values['product_id'] ) ) {
 				$booking_status = 'pending-confirmation';

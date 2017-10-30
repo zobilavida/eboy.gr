@@ -39,6 +39,13 @@
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
+        $(".openform").click(function(){
+          TweenMax.fromTo( $(".paralsec"), 1.2, {css: {backgroundSize: "100% 80%"}}, {css:{backgroundSize: "100% 45%" }, ease: Elastic.easeOut.config(1, 0.3) }) ;
+
+          TweenMax.fromTo( $(".booking_form"), 1.2, {css: {height: "1px"}}, {css:{height: "400px" }, ease: Elastic.easeOut.config(1, 0.3) }) ;
+
+
+            });
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
