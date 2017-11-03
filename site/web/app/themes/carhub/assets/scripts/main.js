@@ -58,7 +58,7 @@ $('.choosen_car').html(post_name);
 $("button#submit").click(function(){
 $.ajax({
 type: "POST",
-url: "https://eboy.gr/app/themes/eboy_theme/feedback.php",
+url: "https://eboy.gr/app/themes/carhub/feedback.php",
 data: $('form.feedback').serialize(),
 success: function(message){
 $("#feedback").html(message);
