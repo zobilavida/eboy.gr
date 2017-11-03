@@ -61,8 +61,8 @@ type: "POST",
 url: "https://eboy.gr/app/themes/carhub/feedback.php",
 data: $('form.feedback').serialize(),
 success: function(message){
-$("#feedback").html(message);
-$("#feedback-modal").modal('hide');
+$(".feedback").html(message);
+
 },
 error: function(){
 alert("Error");
