@@ -188,6 +188,15 @@ background-color: $brand-red;
   letter-spacing: 2px;
   border-bottom: 4px solid $brand-red;
 }
+.underline_arrow {
+  font-family: 'HelveticaNeue-CondensedBlack', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  padding: 1rem;
+  background-image: url(../images/under_arrow.svg)  ;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+}
 
 .underline_no {
   font-family: 'HelveticaNeue-CondensedBlack', sans-serif;

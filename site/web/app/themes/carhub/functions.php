@@ -295,3 +295,167 @@ function woocommerce_loop_item_image_open() {
      echo '</fieldset>';
  }
  add_action( 'woocommerce_before_add_to_cart_button', 'add_after_your_first_name_field', 30 );
+
+
+
+
+  function save_your_first_name_field( $cart_item_data, $product_id ) {
+      if( isset( $_REQUEST['your-first-name'] ) ) {
+          $cart_item_data[ 'your_first_name' ] = $_REQUEST['your-first-name'];
+          /* below statement make sure every add to cart action as unique line item */
+          $cart_item_data['unique_key'] = md5( microtime().rand() );
+      }
+      return $cart_item_data;
+  }
+  add_action( 'woocommerce_add_cart_item_data', 'save_your_first_name_field', 10, 2 );
+
+  function save_your_last_name_field( $cart_item_data, $product_id ) {
+      if( isset( $_REQUEST['your-last-name'] ) ) {
+          $cart_item_data[ 'your_last_name' ] = $_REQUEST['your-last-name'];
+          /* below statement make sure every add to cart action as unique line item */
+          $cart_item_data['unique_key'] = md5( microtime().rand() );
+      }
+      return $cart_item_data;
+  }
+ add_action( 'woocommerce_add_cart_item_data', 'save_your_last_name_field', 10, 3 );
+
+
+ function save_your_email_field( $cart_item_data, $product_id ) {
+     if( isset( $_REQUEST['your-email'] ) ) {
+         $cart_item_data[ 'your_email' ] = $_REQUEST['your-email'];
+         /* below statement make sure every add to cart action as unique line item */
+         $cart_item_data['unique_key'] = md5( microtime().rand() );
+     }
+     return $cart_item_data;
+ }
+ add_action( 'woocommerce_add_cart_item_data', 'save_your_email_field', 10, 5 );
+
+ function save_your_phone_field( $cart_item_data, $product_id ) {
+     if( isset( $_REQUEST['your-phone'] ) ) {
+         $cart_item_data[ 'your_phone' ] = $_REQUEST['your-phone'];
+         /* below statement make sure every add to cart action as unique line item */
+         $cart_item_data['unique_key'] = md5( microtime().rand() );
+     }
+     return $cart_item_data;
+ }
+ add_action( 'woocommerce_add_cart_item_data', 'save_your_phone_field', 10, 6 );
+
+ function save_intime_field( $cart_item_data, $product_id ) {
+     if( isset( $_REQUEST['in-time'] ) ) {
+         $cart_item_data[ 'in_time' ] = $_REQUEST['in-time'];
+         /* below statement make sure every add to cart action as unique line item */
+         $cart_item_data['unique_key'] = md5( microtime().rand() );
+     }
+     return $cart_item_data;
+ }
+ add_action( 'woocommerce_add_cart_item_data', 'save_intime_field', 10, 7 );
+
+  function render_on_cart_and_checkout_your_first_name( $cart_data, $cart_item = null ) {
+      $custom_items = array();
+      /* Woo 2.4.2 updates */
+      if( !empty( $cart_data ) ) {
+          $custom_items = $cart_data;
+      }
+      if( isset( $cart_item['your_first_name'] ) ) {
+          $custom_items[] = array( "name" => 'Your first name', "value" => $cart_item['your_first_name'] );
+      }
+      return $custom_items;
+  }
+  add_filter( 'woocommerce_get_item_data', 'render_on_cart_and_checkout_your_first_name', 10, 2 );
+
+  function render_on_cart_and_checkout_your_last_name( $cart_data, $cart_item = null ) {
+      $custom_items = array();
+      /* Woo 2.4.2 updates */
+      if( !empty( $cart_data ) ) {
+          $custom_items = $cart_data;
+      }
+      if( isset( $cart_item['your_last_name'] ) ) {
+          $custom_items[] = array( "name" => 'Your last name', "value" => $cart_item['your_last_name'] );
+      }
+      return $custom_items;
+  }
+ add_filter( 'woocommerce_get_item_data', 'render_on_cart_and_checkout_your_last_name', 10, 3 );
+
+ function render_on_cart_and_checkout_your_email( $cart_data, $cart_item = null ) {
+     $custom_items = array();
+     /* Woo 2.4.2 updates */
+     if( !empty( $cart_data ) ) {
+         $custom_items = $cart_data;
+     }
+     if( isset( $cart_item['your_email'] ) ) {
+         $custom_items[] = array( "name" => 'Your email', "value" => $cart_item['your_email'] );
+     }
+     return $custom_items;
+ }
+
+ add_filter( 'woocommerce_get_item_data', 'render_on_cart_and_checkout_your_email', 10, 4 );
+
+ function render_on_cart_and_checkout_your_phone( $cart_data, $cart_item = null ) {
+     $custom_items = array();
+     /* Woo 2.4.2 updates */
+     if( !empty( $cart_data ) ) {
+         $custom_items = $cart_data;
+     }
+     if( isset( $cart_item['your_phone'] ) ) {
+         $custom_items[] = array( "name" => 'Your Phone', "value" => $cart_item['your_phone'] );
+     }
+     return $custom_items;
+ }
+
+ add_filter( 'woocommerce_get_item_data', 'render_on_cart_and_checkout_your_phone', 10, 5 );
+
+
+ function render_on_cart_and_checkout_in_time( $cart_data, $cart_item = null ) {
+     $custom_items = array();
+     /* Woo 2.4.2 updates */
+     if( !empty( $cart_data ) ) {
+         $custom_items = $cart_data;
+     }
+     if( isset( $cart_item['in_time'] ) ) {
+         $custom_items[] = array( "name" => 'In time', "value" => $cart_item['in_time'] );
+     }
+     return $custom_items;
+ }
+
+ add_filter( 'woocommerce_get_item_data', 'render_on_cart_and_checkout_in_time', 10, 6 );
+
+
+
+
+
+ // Hook in specified cart item data
+ add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+ function custom_override_checkout_fields( $fields  ) {
+
+$stored_value = "something pulled from the DB";
+   unset($fields['billing']['billing_address_1']);
+   unset($fields['billing']['billing_address_2']);
+   unset($fields['billing']['billing_postcode']);
+   unset($fields['billing']['billing_state']);
+   unset($fields['billing']['billing_company']);
+   unset($fields['billing']['billing_address_2']);
+   unset($fields['billing']['billing_country']);
+   unset($fields['billing']['billing_city']);
+ $fields['order']['order_comments']['placeholder'] = 'My new placeholder';
+
+
+     return $fields;
+ }
+ add_filter('woocommerce_email_order_meta_keys', 'my_custom_order_meta_keys');
+
+ function my_custom_order_meta_keys( $keys ) {
+      $keys[] = 'Your Phone'; // This will look for a custom field called 'Tracking Code' and add it to emails
+      return $keys;
+ }
+
+
+ //*Add custom redirection
+add_action( 'template_redirect', 'wc_custom_redirect_after_purchase' );
+function wc_custom_redirect_after_purchase() {
+ global $wp;
+  if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
+   wp_redirect( 'https://eboy.gr/coolcars/thank-you-for-your-order/' );
+   exit;
+ }
+}

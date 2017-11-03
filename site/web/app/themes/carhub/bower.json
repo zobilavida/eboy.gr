@@ -10,7 +10,9 @@
     "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-beta",
     "popper.js": "^1.12.3",
     "bootstrap-align": "^0.1.1",
-    "gsap": "^1.20.3"
+    "gsap": "^1.20.3",
+    "bootstrap-datepicker": "^1.7.1",
+    "bootstrap-timepicker": "^0.5.2"
   },
   "overrides": {
     "gsap": {

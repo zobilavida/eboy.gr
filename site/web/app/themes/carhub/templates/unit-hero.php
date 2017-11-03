@@ -10,7 +10,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
         <?php query_posts('post_type=product&showposts=1'); ?>
               <?php if (have_posts()) : while (have_posts()) : the_post(); global $product;?>
@@ -31,7 +31,7 @@
                       <div class="car_slider_seperator"></div>
                       <h5>From:</h5>
                       <?php echo $product->get_price_html(); ?>
-                      <button type="button" class="btn btn-primary btn-lg openform">Reserve Now</button>
+                      <button type="button" class="btn btn-primary btn-lg openform" data-href="<?php echo $product->get_name(); ?>">Reserve Now</button>
                       </div>
                       </div>
                     </div>
@@ -53,41 +53,66 @@
 
 
                   </div>
-                  <div class="container booking_form">
-                  <?php  do_action( 'woocommerce_single_product_summary' );  ?>
-                  <?php do_action( 'woocommerce_after_single_product' ); ?>
-                  </div>
+
                 </div>
               <?php endwhile; endif; ?>
               <?php wp_reset_query(); ?>
 
               <?php query_posts('post_type=product&showposts=4&offset=1'); ?>
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                      <div class="carousel-item ">
+                    <?php if (have_posts()) : while (have_posts()) : the_post(); global $product;?>
+                      <div class="carousel-item">
                         <div class="row">
-                          <div class="col-2">
+                          <div class="col-4 d-flex justify-content-end">
+                            <div class="row">
+                              <div class="col-6">
+                              </div>
+                              <div class="col-6">
+                                <h6> <?php  $terms = get_the_terms( $post->ID, 'product_cat' );
+                            foreach ( $terms as $term ) {
+                                $product_cat_id = $term->slug;
+                                echo $product_cat_id;
+                                break;
+                            } ?> </h6>
+                            <h3><?php echo $product->get_name(); ?></h3>
+                            <div class="car_slider_seperator"></div>
+                            <h5>From:</h5>
+                            <?php echo $product->get_price_html(); ?>
+                            <button type="button" class="btn btn-primary btn-lg openform" data-href="<?php echo $product->get_name(); ?>">Reserve Now</button>
+                            </div>
+                            </div>
                           </div>
-                          <div class="col-8">
+                          <div class="col-4">
+
                               <a href="<?php echo get_permalink() ?>" >
                         <?php the_post_thumbnail('', array('class' => 'd-block img-fluid mx-auto')); ?>
                         </a>
                         </div>
-                        <div class="col-2">
-                          test right
+                        <div class="col-4">
+                          <?php do_action ( 'woocommerce_attribute_doors' );  ?>
+                          <?php do_action ( 'woocommerce_attribute_passengers' );  ?>
+                          <?php do_action ( 'woocommerce_attribute_luggage' );  ?>
+                          <?php do_action ( 'woocommerce_attribute_transmission' );  ?>
+                          <?php do_action ( 'woocommerce_attribute_air_conditioning' );  ?>
+
                         </div>
+
+
+
                         </div>
-                       </div>
+
+                      </div>
+
 
                     <?php endwhile; endif; ?>
                     <?php wp_reset_query(); ?>
 
 
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
