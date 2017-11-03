@@ -51,7 +51,7 @@
     <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
   </div>
   <div class="col-4 input-group">
-    <input type="text" class="form-control" placeholder="mail" aria-describedby="sizing-addon1">
+    <input type="email" name="email" class="form-control" placeholder="mail" aria-describedby="sizing-addon1">
   </div>
 </div>
 </form>
