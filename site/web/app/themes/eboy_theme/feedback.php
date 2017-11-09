@@ -3,7 +3,7 @@ if (isset($_POST['name'])) {
 $name = strip_tags($_POST['name']);
 $email = strip_tags($_POST['email']);
 $message = strip_tags($_POST['message']);
-$recipient = "giannisduke@gmail.com";
+$recipient = "admin@eboy.gr";
 $subject = "Contact Form";
 $mailheader = "From: $email \r\n";
 mail($recipient, $subject, $message, $mailheader) or die("Error!");
