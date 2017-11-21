@@ -1,0 +1,42 @@
+{
+  "name": "sage",
+  "homepage": "https://roots.io/sage/",
+  "authors": [
+    "Ben Word <ben@benword.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-alpha.6",
+    "gsap": "^1.20.2",
+    "imagesloaded": "^4.1.3",
+    "modernizr": "^3.5.0",
+    "bootstrap-align": "^0.1.1",
+    "jquery.easing": "^1.3.1",
+    "isotope": "^3.0.4",
+    "scrollmagic": "^2.0.5",
+    "waypoints": "^4.0.1",
+    "jquery-validation": "^1.17.0"
+  },
+  "overrides": {
+    "gsap": {
+      "main": [
+        "./src/uncompressed/TweenMax.js",
+        "./src/uncompressed/plugins/ScrollToPlugin.js"
+      ]
+    },
+    "scrollmagic": {
+      "main": [
+        "./scrollmagic/uncompressed/ScrollMagic.js",
+        "./scrollmagic/uncompressed/plugins/animation.gsap.js",
+        "./scrollmagic/uncompressed/plugins/debug.addIndicators.js"
+      ]
+    },
+    "isotope": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
+    }
+  }
+}

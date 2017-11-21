@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors:  woothemes, jshreve, akeda, bor0, jessepearson
+Contributors:  woothemes, jshreve, akeda, bor0, jessepearson, laurendavissmith001
 Tags: woocommerce, bookings, accommodations
 Requires at least: 4.1
-Tested up to: 4.6
-Stable tag: 1.0.9
+Tested up to: 4.9
+Stable tag: 1.1.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,25 @@ This extension extends Bookings and makes it possible to:
 Or use the automatic installation wizard through your admin panel, just search for this plugins name.
 
 == Changelog ==
+
+= 1.1.1 =
+* Fix - PHP Notice when fully booked array is empty.
+* Fix - Bookings outside of available range being checked for availability.
+* Fix - Maximum number of nights allowed option set to 0 breaks page.
+* Fix - Bookable product base cost not being cleared when changing to an Accommodation product.
+* Fix - Update _wc_booking_block_cost when base cost is updated.
+
+= 1.1.0 =
+* Fix - Display cost not used when presenting price to the client.
+* Add - Add woocommerce_accommodation_bookings_range_picker_enabled to disable range picker.
+* Fix - Fallback to default checkin/checkout time values if none are set.
+* Fix - Fully booked days not showing correctly when persons are used.
+* Fix - Resource availability calculated incorrectly.
+* Add - New functionality to restrict the day a booking can start on. 
+* Fix - Tax fields missing.
+* Fix - Display price is showing incorrectly.
+* Fix - Availability rules being ignored.
+* Fix - Today should be shown as booked if it has check out available only
 
 = 1.0.9 =
 * Fix - Additional updates for WooCommerce 3.0 compatibility.

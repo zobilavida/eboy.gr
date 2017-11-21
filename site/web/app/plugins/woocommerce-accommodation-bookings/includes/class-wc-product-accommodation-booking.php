@@ -89,7 +89,7 @@ class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 	 * @return boolean
 	 */
 	public function is_range_picker_enabled() {
-		return true;
+		return apply_filters( 'woocommerce_accommodation_bookings_range_picker_enabled', true );
 	}
 
 	/**
@@ -141,23 +141,21 @@ class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 	 * @return string
 	 */
 	public function get_price_html( $price = '' ) {
-		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-		if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
-			$display_price = $tax_display_mode == 'incl' ? $this->get_price_including_tax( 1, $this->get_price() ) : $this->get_price_excluding_tax( 1, $this->get_price() );
-		} else {
-			$display_price = $tax_display_mode == 'incl' ? wc_get_price_including_tax( $this, array( 'qty' => 1, 'price' => $this->get_price() ) ) : wc_get_price_excluding_tax( $this, array( 'qty' => 1, 'price' => $this->get_price() ) );
 
-		}
-
-		$min_duration = absint( get_post_meta( $this->get_id(), '_wc_booking_min_duration', true ) );
-
-		if ( $min_duration > 1 ) {
-			$display_price = $display_price / $min_duration;
+		// If displau cost is set - user wants that to be displayed
+		$display_price = $this->get_display_cost();
+		if ( ! $display_price ) {
+			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+			if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+				$display_price = $tax_display_mode == 'incl' ? $this->get_price_including_tax( 1, $this->get_price() ) : $this->get_price_excluding_tax( 1, $this->get_price() );
+			} else {
+				$display_price = $tax_display_mode == 'incl' ? wc_get_price_including_tax( $this, array( 'qty' => 1, 'price' => $this->get_price() ) ) : wc_get_price_excluding_tax( $this, array( 'qty' => 1, 'price' => $this->get_price() ) );
+			}
 		}
 
 		if ( $display_price ) {
-			if ( $this->has_additional_costs() ) {
-				$price_html = sprintf( __( '<h3>%s<span class="day">/DAY</span></h3>', 'woocommerce-accommodation-bookings' ), wc_price( $display_price ) ) . $this->get_price_suffix();
+			if ( $this->has_additional_costs() || $this->get_display_cost() ) {
+				$price_html = sprintf( __( 'From %s per night', 'woocommerce-accommodation-bookings' ), wc_price( $display_price ) ) . $this->get_price_suffix();
 			} else {
 				$price_html = wc_price( $display_price ) . $this->get_price_suffix();
 			}
@@ -188,6 +186,23 @@ class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 		$blocks_in_range = $this->get_blocks_in_range_for_day( $start_date, $end_date, $resource_id, $booked );
 
 		return array_unique( $blocks_in_range );
+	}
+
+	/**
+	 * Get checkin and checkout times.
+	 *
+	 * @param string $type
+	 * @return string Time, either from options or default
+	 */
+	public static function get_check_times( $type ) {
+		switch ( $type ) {
+			case 'in':
+				return get_option( 'woocommerce_accommodation_bookings_check_in' ) ?: '14:00';
+			case 'out':
+				return get_option( 'woocommerce_accommodation_bookings_check_out' ) ?: '12:00';
+		}
+
+		return '';
 	}
 }
 
