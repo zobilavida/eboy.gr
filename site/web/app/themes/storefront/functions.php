@@ -108,3 +108,7 @@ function bbloomer_display_acf_field_under_images() {
 	echo ' class="button product_type_simple add_to_cart_button ajax_add_to_cart">Τεχνικά χαρακτηριστικά</a>';
   // Note: 'trade' is the slug of the ACF
 }
+
+add_filter( 'woocommerce_product_tabs', 'sb_woo_remove_reviews_tab', 98);
+function sb_woo_remove_reviews_tab($tabs) { unset($tabs['reviews']);
+return $tabs;}
