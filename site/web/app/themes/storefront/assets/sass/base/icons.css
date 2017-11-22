@@ -3123,3 +3123,12 @@ a#variations_clear:before {
     height: 1em;
     width: 1em;
     margin-top: -.5em; } }
+
+
+.page-template-template-homepage:not(.has-post-thumbnail) .site-main {
+  padding-top: 0em!important;
+}
+
+.page-template-template-homepage .type-page {
+    padding-top: 0em!important;
+}
