@@ -301,7 +301,7 @@ if ( ! function_exists( 'storefront_homepage_header' ) ) {
 		edit_post_link( __( 'Edit this section', 'storefront' ), '', '', '', 'button storefront-hero__button-edit' );
 		?>
 		<header class="entry-header">
-	
+
 		</header><!-- .entry-header -->
 		<?php
 	}
@@ -550,11 +550,11 @@ if ( ! function_exists( 'storefront_product_categories' ) ) {
 		if ( storefront_is_woocommerce_activated() ) {
 
 			$args = apply_filters( 'storefront_product_categories_args', array(
-				'limit' 			=> 3,
-				'columns' 			=> 3,
+				'limit' 			=> 4,
+				'columns' 			=> 4,
 				'child_categories' 	=> 0,
 				'orderby' 			=> 'name',
-				'title'				=> __( 'Shop by Category', 'storefront' ),
+				'title'				=> __( '', 'storefront' ),
 			) );
 
 			$shortcode_content = storefront_do_shortcode( 'product_categories', apply_filters( 'storefront_product_categories_shortcode_args', array(
@@ -569,7 +569,7 @@ if ( ! function_exists( 'storefront_product_categories' ) ) {
 			 */
 			if ( false !== strpos( $shortcode_content, 'product-category' ) ) {
 
-				echo '<section class="storefront-product-section storefront-product-categories" aria-label="' . esc_attr__( 'Product Categories', 'storefront' ) . '">';
+				echo '<section class="storefront-product-section storefront-product-categories col-full" aria-label="' . esc_attr__( 'Product Categories', 'storefront' ) . '">';
 
 				do_action( 'storefront_homepage_before_product_categories' );
 
