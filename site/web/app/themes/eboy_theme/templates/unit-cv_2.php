@@ -44,49 +44,7 @@ foreach($post_categories as $c){
 }
 ?>
 </div>
-<div class="content_body container-fluid no-gutters">
-  <div class="row">
-  <div class="col-lg-6 col-sm-12 no-gutters">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-block">
 
-              <div id="carouselDocumentationIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselDocumentationIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselDocumentationIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselDocumentationIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner in" role="listbox">
-                  <div class="carousel-item active">
-                    <img class="d-block img-fluid" <img src="<?= get_template_directory_uri(); ?>/dist/images/portfolio_single_03.jpg" alt="">
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselDocumentationIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselDocumentationIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    </div>
-    <div class="col-lg-6 col-sm-12 content_text">
-
-      </div>
-
-</div>
-</div>
 
 
 </div>
