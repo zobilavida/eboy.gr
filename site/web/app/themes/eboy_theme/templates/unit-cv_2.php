@@ -15,7 +15,8 @@
 </div>
 </div>
 
-  <div class="container-fluid grid">
+  <div class="container-fluid">
+    <div class="row grid">
     <div class="grid-sizer"></div>
       <div class="gutter-sizer"></div>
   <?php
@@ -35,7 +36,7 @@ foreach($post_categories as $c){
 }
 
 ?>
-  <div  <?php post_class('grid_item card'); ?> data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
+  <div  <?php post_class('grid_item card col-6 col-lg-3 '); ?> data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
     <div class="content_small">
 <?php if ( has_post_thumbnail() ) {
     $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );
@@ -55,5 +56,6 @@ foreach($post_categories as $c){
 <?php else : ?>
 <!-- show 404 error here -->
 <?php endif; ?>
+</div>
 </div>
 </section>

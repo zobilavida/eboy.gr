@@ -134,7 +134,7 @@ $( "#contactForm" ).validate({
         itemSelector: '.grid_item',
         masonry: {
         columnWidth: '.grid-sizer',
-        gutter: '.gutter-sizer'
+      //  gutter: '.gutter-sizer'
         }
         });
 

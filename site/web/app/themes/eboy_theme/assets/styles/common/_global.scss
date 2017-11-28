@@ -45,17 +45,9 @@ margin: 0px;
 }
 /* ---- .grid_item ---- */
 
-  .grid-sizer,
-  .grid_item {
-      width: 24.1%;
-    padding: .5% .5% .5% .5%;
-margin-bottom: .4%;
-cursor: pointer;
-  }
 
-.gutter-sizer {
-  width: 1%;
- }
+
+
 
  .card.selected {
   display: none;
