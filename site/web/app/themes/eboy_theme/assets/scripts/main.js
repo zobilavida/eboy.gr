@@ -151,20 +151,6 @@ $( "#contactForm" ).validate({
     $container.isotope({ filter: filters });
   });
 
-  $("button#submit").click(function(){
-  $.ajax({
-  type: "POST",
-  url: "https://eboy.gr/app/themes/eboy_theme/feedback.php",
-  data: $('form.feedback').serialize(),
-  success: function(message){
-  $("#feedback").html(message);
-  $("#feedback-modal").modal('hide');
-  },
-  error: function(){
-  alert("Error");
-  }
-  });
-  });
         $.ajaxSetup({cache:false});
 
         $items.click(function(){
@@ -211,6 +197,20 @@ $( "#contactForm" ).validate({
                 $container.isotope('layout');
                 });
 
+                $("button#submit").click(function(){
+                $.ajax({
+                type: "POST",
+                url: "https://eboy.gr/app/themes/eboy_theme/feedback.php",
+                data: $('form.feedback').serialize(),
+                success: function(message){
+                $("#feedback").html(message);
+                $("#feedback-modal").modal('hide');
+                },
+                error: function(){
+                alert("Error");
+                }
+                });
+                });
 
 
                 function animateProgressBar(){
@@ -237,9 +237,76 @@ var waypoint = new Waypoint({
       }
     },
     // About us page, note the change from about-us to about_us.
-    'about_us': {
+    'isotope': {
       init: function() {
         // JavaScript to be fired on the about us page
+
+var $grid = $('.grid').isotope({
+  itemSelector: '.grid-item',
+  percentPosition: true,
+  masonry: {
+    columnWidth: '.grid-sizer'
+  }
+});
+
+$grid.on( 'click', '.grid-item-content', function() {
+
+  var itemContent = this;
+  setItemContentPixelSize( itemContent );
+
+  var itemElem = itemContent.parentNode;
+  $( itemElem ).toggleClass('is-expanded');
+
+  // force redraw
+  var redraw = itemContent.offsetWidth;
+  // renable default transition
+  itemContent.style[ transitionProp ] = '';
+
+  addTransitionListener( itemContent );
+  setItemContentTransitionSize( itemContent, itemElem );
+
+  $grid.isotope('layout');
+});
+
+
+var docElemStyle = document.documentElement.style;
+var transitionProp = typeof docElemStyle.transition == 'string' ?
+  'transition' : 'WebkitTransition';
+var transitionEndEvent = {
+  WebkitTransition: 'webkitTransitionEnd',
+  transition: 'transitionend'
+}[ transitionProp ];
+
+function setItemContentPixelSize( itemContent ) {
+  var previousContentSize = getSize( itemContent );
+  // disable transition
+  itemContent.style[ transitionProp ] = 'none';
+  // set current size in pixels
+  itemContent.style.width = previousContentSize.width + 'px';
+  itemContent.style.height = previousContentSize.height + 'px';
+}
+
+function addTransitionListener( itemContent ) {
+  if ( !transitionProp ) {
+    return;
+  }
+  // reset 100%/100% sizing after transition end
+  var onTransitionEnd = function() {
+    itemContent.style.width = '';
+    itemContent.style.height = '';
+    itemContent.removeEventListener( transitionEndEvent, onTransitionEnd );
+  };
+  itemContent.addEventListener( transitionEndEvent, onTransitionEnd );
+}
+
+function setItemContentTransitionSize( itemContent, itemElem ) {
+  // set new size
+  var size = getSize( itemElem );
+  itemContent.style.width = size.width + 'px';
+  itemContent.style.height = size.height + 'px';
+}
+
+
       }
     }
   };
