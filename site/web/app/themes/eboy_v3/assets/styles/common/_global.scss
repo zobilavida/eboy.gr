@@ -1,3 +1,7 @@
+.top {
+  min-height: 40vh;
+}
+
 .bg-image1 {
   background-image: url(../assets/images/store1.jpg)
 }
@@ -16,4 +20,48 @@
 
 .bg-image-jungle {
   background-image: url(../assets/images/jungle1.jpg)
+}
+
+// Carousel fade transition
+// Carousel fade transition
+.carousel-fade {
+	.carousel-item {
+		display: block;
+		position: absolute;
+		opacity: 0;
+		transition: opacity .75s ease-in-out;
+
+		&.active {
+			opacity: 1;
+		}
+	}
+}
+
+
+ // Custom styles for this pen
+html,
+body,
+.carousel,
+.carousel-inner,
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-item {
+  &:nth-child(1) {
+    background-color: red;
+  }
+  &:nth-child(2) {
+    background-color: blue;
+  }
+  &:nth-child(3) {
+    background-color: yellow;
+  }
 }

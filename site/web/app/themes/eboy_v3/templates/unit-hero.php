@@ -1,0 +1,56 @@
+<div id="top" class="bg-white top">
+    <div class="header-content container py-5">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-6 py-3">
+              <div id="myCarousel" class="carousel" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                      <?php query_posts('post_type=post&showposts=1'); ?>
+                          <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
+                            <div class="carousel-item active">
+
+
+                                      <span><?php echo the_title(); ?></span>
+                                      <h1><?php echo the_content(); ?></h1>
+
+
+                            </div>
+                          <?php endwhile; endif; ?>
+                          <?php wp_reset_query(); ?>
+
+                          <?php query_posts('post_type=post&showposts=4&offset=1'); ?>
+
+                              <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
+                                <div class="carousel-item">
+
+
+                                          <span><?php echo the_title(); ?></span>
+                                          <h1><?php echo the_content(); ?></h1>
+
+
+                                </div>
+                              <?php endwhile; endif; ?>
+                              <?php wp_reset_query(); ?>
+
+
+                </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
+            </div>
+            <div class="col-xl-4 ml-xl-auto col-lg-4 ml-lg-auto col-md-5 ml-md-auto py-3">
+                <blockquote class="blockquote">
+                    <h3 class="text-right pt-3">Wow, yeaahh man<br>you <em>are</em> really<br>a hipster nerd</h3>
+                    <br>
+                    <h6 class="text-right"><a href="" class="text-muted link small">We made it easy</a></h6>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>

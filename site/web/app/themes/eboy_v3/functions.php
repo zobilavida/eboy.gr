@@ -63,6 +63,31 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     '
 }
 add_action('customize_register', 'themeslug_theme_customizer');
 
+
+add_filter('site_option_active_sitewide_plugins', 'modify_sitewide_plugins');
+
+function modify_sitewide_plugins($value) {
+    global $current_blog;
+
+     if ( is_page_template( 'template-eboy_v3.php' ) ) {
+        unset($value['woocommerce/woocommerce.php']);
+        unset($value['storefront-woocommerce-customiser/storefront-woocommerce-customiser.php']);
+        unset($value['storefront-designer/storefront-designer.php']);
+        unset($value['revslider/revslider.php']);
+        unset($value['gravityforms-master/gravityforms.php']);
+        unset($value['facetwp-select2/facetwp-select2.php']);
+        unset($value['facetwp/index.php']);
+        unset($value['pods/init.php']);
+        unset($value['woocommerce-bookings/woocommerce-bookings.php']);
+        unset($value['woocommerce-accommodation-bookings/woocommerce-accommodation-bookings.php']);
+    }
+
+    return $value;
+
+    wp_dequeue_style('handle',get_theme_file_uri().'/js/my-script.js',array(), '1.0', true );
+
+}
+
 /**
  * Optimize WooCommerce Scripts
  * Remove WooCommerce Generator tag, styles, and scripts from non WooCommerce pages.
@@ -105,26 +130,7 @@ function child_manage_woocommerce_styles() {
 
 }
 
-add_filter('site_option_active_sitewide_plugins', 'modify_sitewide_plugins');
 
-function modify_sitewide_plugins($value) {
-    global $current_blog;
-
-    if( $current_blog->blog_id == 1 ) {
-        unset($value['woocommerce/woocommerce.php']);
-        unset($value['storefront-woocommerce-customiser/storefront-woocommerce-customiser.php']);
-        unset($value['storefront-designer/storefront-designer.php']);
-        unset($value['revslider/revslider.php']);
-        unset($value['gravityforms-master/gravityforms.php']);
-        unset($value['facetwp-select2/facetwp-select2.php']);
-        unset($value['facetwp/index.php']);
-        unset($value['pods/init.php']);
-        unset($value['woocommerce-bookings/woocommerce-bookings.php']);
-        unset($value['woocommerce-accommodation-bookings/woocommerce-accommodation-bookings.php']);
-    }
-
-    return $value;
-}
 
 add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
 /**
@@ -134,7 +140,8 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
    function CF7_cleanup() {
        global $current_blog;
    /** Dequeue enqueued scripts &amp; styles */
-    //  wp_dequeue_script( 'frontend.css' );
+
+      wp_dequeue_script( 'select2.min.js' );
       wp_dequeue_style( 'frontend.css' );
    /** Only enqueue stuff on the used page ID or page name */
          if( $current_blog->blog_id == 6 || $current_blog->blog_id == 5 ) { //You can use a page name here eg: if ( is_page( 'Contact'))
