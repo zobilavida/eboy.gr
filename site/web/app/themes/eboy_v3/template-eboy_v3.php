@@ -6,4 +6,4 @@
 
 <?php get_template_part('templates/unit', 'hero'); ?>
 <?php get_template_part('templates/unit', 'about'); ?>
-<?php get_template_part('templates/unit', 'portfolio'); ?>
+<?php get_template_part('templates/unit', 'isotope'); ?>

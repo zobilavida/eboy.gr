@@ -150,3 +150,22 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
            wp_enqueue_style( 'frontend.css' );
         } // end if
    } // end function
+
+
+   /**
+   ** Get Filters. **
+   **                                                      **
+   */
+   function get_cats() {
+     $terms = get_terms( 'type' );
+     if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+      echo '<div id="filters">';
+      foreach ( $terms as $term ) {
+        echo '<input type="checkbox" name="' . $term->name . '" value=".type-' . $term->slug . '" id="' . $term->name . '"><label for="' . $term->name . '">' . $term->name . '</label>';
+     //   echo '<li>' . $term->name . '</li>';
+
+      }
+      echo '</div>';
+     }};
+
+   add_action ('custom_actions', 'get_cats', 0 );

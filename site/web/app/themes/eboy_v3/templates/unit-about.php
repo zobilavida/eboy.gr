@@ -1,5 +1,6 @@
-<section id="one" class="vh-100">
+<section class="pb-5">
     <div class="container pt-3">
+
         <div class="row">
             <div class="col-sm-6">
                 <h2 class="d-inline-block mb-2 text-highlight">Deal Cards.</h2>
@@ -21,7 +22,7 @@
                     <div class="progress-bar bg-success w-50 wow slideInLeft" style="visibility: visible; animation: slideInLeft; -webkit-animation: slideInLeft;"></div>
                 </div>
             </div>
-            <div class="col-12 py-2">
+            <div class="col-12 py-2 pt-5">
                 <div class="card-group mt-2 wow fadeIn" style="visibility: visible; animation: fadeIn; -webkit-animation: fadeIn;">
                     <!-- card -->
                     <div class="card card-default text-center">
@@ -44,8 +45,27 @@
                             <h6 class="d-inline">months</h6>
                         </div>
                     </div>
+                    <!-- card -->
+                    <div class="card card-default text-center">
+                        <div class="card-body py-4 pl-0">
+                            <h1>24</h1>
+                            <h6 class="d-inline">months</h6>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="card card-default text-center">
+                        <div class="card-body py-4 pl-0">
+                            <h1>24</h1>
+                            <h6 class="d-inline">months</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 text-center ">
+          <?php echo facetwp_display( 'facet', 'categories' ); ?>
+      </div>
+      </div>
     </div>
 </section>

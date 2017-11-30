@@ -11,25 +11,17 @@
       <div class="gutter-sizer"></div>
   <?php
 
-$query = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => 100, 'facetwp' => true,) );
+$query = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => 100,) );
 
 
 if ( $query->have_posts() ) : ?>
-<?php while ( $query->have_posts() ) : $query->the_post();
-
-
-
-
-
-
-?>
+<?php while ( $query->have_posts() ) : $query->the_post(); ?>
   <div class="grid_item card >" data-href="<?php echo get_permalink( $post->ID ); ?>" data-rel="<?php echo $post->ID ; ?>" >
     <div class="content_small">
 <?php if ( has_post_thumbnail() ) {
     $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );
      echo '<img width="100%" src="' . $image_src_thumbnail[0] . '">';
-
-}
+   }
 ?>
 </div>
 <div class="content_body container-fluid">
