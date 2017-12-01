@@ -138,7 +138,7 @@ class FacetWP_Facet_Checkboxes extends FacetWP_Facet
             }
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
             $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
-            $output .= '<div class="facetwp-checkbox 5' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
+            $output .= '<div class="facetwp-checkbox 3' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
             $output .= esc_html( $result['facet_display_value'] ) . ' <span class="facetwp-counter">(' . $result['counter'] . ')</span>';
             $output .= '</div>';
         }
@@ -183,7 +183,7 @@ class FacetWP_Facet_Checkboxes extends FacetWP_Facet
 
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
             $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
-            $output .= '<div class="facetwp-checkbox' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
+            $output .= '<div class="facetwp-checkbox 4' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
             $output .= esc_html( $result['facet_display_value'] ) . ' <span class="facetwp-counter">(' . $result['counter'] . ')</span>';
             $output .= '</div>';
 

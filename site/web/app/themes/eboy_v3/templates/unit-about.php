@@ -63,6 +63,9 @@
             </div>
         </div>
         <div class="row">
+          <div class="col-12 text-center ">
+        <?php echo facetwp_display( 'facet', 'tags' ); ?>
+    </div>
             <div class="col-12 text-center ">
           <?php echo facetwp_display( 'facet', 'categories' ); ?>
       </div>
