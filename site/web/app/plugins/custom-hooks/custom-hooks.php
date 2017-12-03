@@ -7,6 +7,8 @@ Version: 1.0
 Author: FacetWP, LLC
 */
 
+defined( 'ABSPATH' ) or exit;
+
 add_filter( 'facetwp_facet_types', function( $facet_types ) {
     $facet_types['links'] = new FacetWP_Facet_Links();
     return $facet_types;
@@ -45,7 +47,57 @@ class FacetWP_Facet_Links
         ORDER BY f.depth, counter DESC, f.facet_display_value ASC
         LIMIT $limit";
 
-        return $wpdb->get_results( $sql, ARRAY_A );
+        $output = $wpdb->get_results( $sql, ARRAY_A );
+
+        // Show "ghost" facet choices
+        if ( FWP()->helper->facet_is( $facet, 'ghosts', 'yes' ) && ! empty( FWP()->unfiltered_post_ids ) ) {
+            $raw_post_ids = implode( ',', FWP()->unfiltered_post_ids );
+
+            $sql = "
+            SELECT f.facet_value, f.facet_display_value, f.term_id, f.parent_id, f.depth, 0 AS counter
+            FROM $from_clause
+            WHERE f.facet_name = '{$facet['name']}' AND post_id IN ($raw_post_ids)
+            GROUP BY f.facet_value
+            ORDER BY $orderby
+            LIMIT $limit";
+
+            $ghost_output = $wpdb->get_results( $sql, ARRAY_A );
+
+            // Keep the facet placement intact
+            if ( FWP()->helper->facet_is( $facet, 'preserve_ghosts', 'yes' ) ) {
+                $tmp = array();
+                foreach ( $ghost_output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row;
+                }
+
+                foreach ( $output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row;
+                }
+
+                $output = $tmp;
+            }
+            else {
+                // Make the array key equal to the facet_value (for easy lookup)
+                $tmp = array();
+                foreach ( $output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row; // Force a string array key
+                }
+                $output = $tmp;
+
+                foreach ( $ghost_output as $row ) {
+                    $facet_value = $row['facet_value'];
+                    if ( ! isset( $output[ "$facet_value " ] ) ) {
+                        $output[ "$facet_value " ] = $row;
+                    }
+                }
+            }
+
+            $output = array_splice( $output, 0, $limit );
+            $output = array_values( $output );
+        }
+
+        return $output;
+
     }
 
 
@@ -154,7 +206,7 @@ class FacetWP_Facet_Links
     });
 
     $(document).on('click', '.facetwp-type-links .facetwp-link:not(.disabled)', function() {
-        $(this).toggleClass('checked');
+        $(this).addClass('checked');
         FWP.autoload();
     });
 })(jQuery);
@@ -178,21 +230,117 @@ class FacetWP_Facet_Links
             </td>
             <td><input type="text" class="facet-count" value="10" /></td>
         </tr>
+        <tr>
+            <td>
+                <?php _e('Show ghosts', 'fwp'); ?>:
+                <div class="facetwp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="facetwp-tooltip-content"><?php _e( 'Show choices that would return zero results?', 'fwp' ); ?></div>
+                </div>
+            </td>
+            <td>
+                <select class="facet-ghosts">
+                    <option value="no"><?php _e( 'No', 'fwp' ); ?></option>
+                    <option value="yes"><?php _e( 'Yes', 'fwp' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e('Preserve ghost order', 'fwp'); ?>:
+                <div class="facetwp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="facetwp-tooltip-content"><?php _e( 'Keep ghost choices in the same order?', 'fwp' ); ?></div>
+                </div>
+            </td>
+            <td>
+                <select class="facet-preserve-ghosts">
+                    <option value="no"><?php _e( 'No', 'fwp' ); ?></option>
+                    <option value="yes"><?php _e( 'Yes', 'fwp' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
 <?php
     }
 }
 
 
-add_filter( 'facetwp_facet_types', function( $facet_types ) {
-    $facet_types['Capacity'] = new FacetWP_Facet_Capacity();
+function fwp_color_facet( $facet_types ) {
+    $facet_types['color'] = new FacetWP_Facet_Color();
     return $facet_types;
-});
+}
+add_filter( 'facetwp_facet_types', 'fwp_color_facet' );
 
-class FacetWP_Facet_Capacity
+
+/**
+ * The Color facet class
+ */
+class FacetWP_Facet_Color
 {
 
     function __construct() {
-        $this->label = __( 'Capacity', 'fwp' );
+        $this->label = __( 'Color', 'fwp' );
+    }
+
+
+    /**
+     * Load the available choices
+     */
+    function load_values( $params ) {
+        global $wpdb;
+
+        $facet = $params['facet'];
+        $where_clause = $params['where_clause'];
+
+        // Orderby
+        $orderby = 'counter DESC, f.facet_display_value ASC';
+
+        // Sort by depth just in case
+        $orderby = "f.depth, $orderby";
+
+        // Properly handle "OR" facets
+        if ( 'or' == $facet['operator'] ) {
+
+            // Apply filtering (ignore the facet's current selections)
+            if ( isset( FWP()->or_values ) && ( 1 < count( FWP()->or_values ) || ! isset( FWP()->or_values[ $facet['name'] ] ) ) ) {
+                $post_ids = array();
+                $or_values = FWP()->or_values; // Preserve the original
+                unset( $or_values[ $facet['name'] ] );
+
+                $counter = 0;
+                foreach ( $or_values as $name => $vals ) {
+                    $post_ids = ( 0 == $counter ) ? $vals : array_intersect( $post_ids, $vals );
+                    $counter++;
+                }
+
+                // Return only applicable results
+                $post_ids = array_intersect( $post_ids, FWP()->unfiltered_post_ids );
+            }
+            else {
+                $post_ids = FWP()->unfiltered_post_ids;
+            }
+
+            $post_ids = empty( $post_ids ) ? array( 0 ) : $post_ids;
+            $where_clause = ' AND post_id IN (' . implode( ',', $post_ids ) . ')';
+        }
+
+        // Limit
+        $limit = ctype_digit( $facet['count'] ) ? $facet['count'] : 10;
+        $orderby = apply_filters( 'facetwp_facet_orderby', $orderby, $facet );
+        $where_clause = apply_filters( 'facetwp_facet_where', $where_clause, $facet );
+
+        $sql = "
+        SELECT f.facet_value, f.facet_display_value, f.term_id, f.parent_id, f.depth, COUNT(*) AS counter
+        FROM {$wpdb->prefix}facetwp_index f
+        WHERE f.facet_name = '{$facet['name']}' $where_clause
+        GROUP BY f.facet_value
+        ORDER BY $orderby
+        LIMIT $limit";
+
+        $output = $wpdb->get_results( $sql, ARRAY_A );
+
+        return $output;
     }
 
 
@@ -201,11 +349,27 @@ class FacetWP_Facet_Capacity
      */
     function render( $params ) {
 
+        $facet = $params['facet'];
+
         $output = '';
-        $value = (array) $params['selected_values'];
-        $value = empty( $value ) ? '' : $value[0];
-        $output .= '<input type="text" placeholder="Capacity" class="facetwp-capacity-input" value="' . esc_attr( $value ) . '" />';
-        $output .= '<input type="button" class="facetwp-submit" value="' . __( 'OK', 'fwp' ) . '" />';
+        $values = (array) $params['values'];
+        $selected_values = (array) $params['selected_values'];
+
+        foreach ( $values as $result ) {
+            $selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
+            $selected .= ( 0 == $result['counter'] ) ? ' disabled ' : '';
+            $output .= '<div class="facetwp-color col-4' . $selected . ' ' . $result['facet_value'] . '" data-value="' . $result['facet_value'] . '" data-color="' . esc_attr( $result['facet_display_value'] ) . '">';
+
+            $output .= '<img class="mx-auto d-block" src=" '.get_template_directory_uri(). '/dist/images/ico_' . $result['facet_value'] . '.svg">';
+            $output .= '<h3>';
+            $output .= esc_html( $result['facet_display_value'] );
+            $output .= '</h3>';
+            $output .= '<span class="facetwp-counter">(' . $result['counter'] . ')</span>';
+            $output .= '</div>';
+
+
+        }
+
         return $output;
     }
 
@@ -216,18 +380,34 @@ class FacetWP_Facet_Capacity
     function filter_posts( $params ) {
         global $wpdb;
 
+        $output = array();
         $facet = $params['facet'];
-        $value = $params['selected_values'];
-        $where = '';
+        $selected_values = $params['selected_values'];
 
-        $number = (int) $value[0];
-        $where .= " AND (facet_value + 0) <= '$number'";
-        $where .= " AND (facet_display_value + 0) >= '$number'";
+        $sql = $wpdb->prepare( "SELECT DISTINCT post_id
+            FROM {$wpdb->prefix}facetwp_index
+            WHERE facet_name = %s",
+            $facet['name']
+        );
 
-        $sql = "
-        SELECT DISTINCT post_id FROM {$wpdb->prefix}facetwp_index
-        WHERE facet_name = '{$facet['name']}' $where";
-        return facetwp_sql( $sql, $facet );
+        // Match ALL values
+        if ( 'and' == $facet['operator'] ) {
+            foreach ( $selected_values as $key => $value ) {
+                $results = facetwp_sql( $sql . " AND facet_value IN ('$value')", $facet );
+                $output = ( $key > 0 ) ? array_intersect( $output, $results ) : $results;
+
+                if ( empty( $output ) ) {
+                    break;
+                }
+            }
+        }
+        // Match ANY value
+        else {
+            $selected_values = implode( "','", $selected_values );
+            $output = facetwp_sql( $sql . " AND facet_value IN ('$selected_values')", $facet );
+        }
+
+        return $output;
     }
 
 
@@ -238,16 +418,24 @@ class FacetWP_Facet_Capacity
 ?>
 <script>
 (function($) {
-    wp.hooks.addAction('facetwp/load/capacity', function($this, obj) {
+    wp.hooks.addAction('facetwp/load/color', function($this, obj) {
         $this.find('.facet-source').val(obj.source);
-        $this.find('.facet-source-other').val(obj.source_other);
+        $this.find('.facet-parent-term').val(obj.parent_term);
+        $this.find('.facet-orderby').val(obj.orderby);
+        $this.find('.facet-count').val(obj.count);
+        $this.find('.facet-operator').val(obj.operator);
     });
 
-    wp.hooks.addFilter('facetwp/save/capacity', function(obj, $this) {
+    wp.hooks.addFilter('facetwp/save/color', function(obj, $this) {
         obj['source'] = $this.find('.facet-source').val();
-        obj['source_other'] = $this.find('.facet-source-other').val();
+        obj['parent_term'] = $this.find('.facet-parent-term').val();
+        obj['orderby'] = $this.find('.facet-orderby').val();
+        obj['count'] = $this.find('.facet-count').val();
+        obj['operator'] = $this.find('.facet-operator').val();
         return obj;
     });
+
+
 })(jQuery);
 </script>
 <?php
@@ -259,15 +447,35 @@ class FacetWP_Facet_Capacity
      */
     function front_scripts() {
 ?>
+
+
+
 <script>
 (function($) {
-    wp.hooks.addAction('facetwp/refresh/capacity', function($this, facet_name) {
-        var val = $this.find('.facetwp-capacity-input').val();
-        FWP.facets[facet_name] = ('' !== val) ? [val] : [];
+    wp.hooks.addAction('facetwp/refresh/color', function($this, facet_name) {
+        var selected_values = [];
+        $this.find('.facetwp-color.checked').each(function() {
+            selected_values.push($(this).attr('data-value'));
+        });
+        FWP.facets[facet_name] = selected_values;
     });
 
-    $(document).on('click', '.facetwp-type-capacity .facetwp-submit', function() {
-        FWP.autoload();
+    wp.hooks.addAction('facetwp/ready', function() {
+        $(document).on('click touchstart', '.facetwp-facet .facetwp-color:not(.disabled)', function(e) {
+            if (true === e.handled) {
+                return false;
+            }
+            e.handled = true;
+            $(this).toggleClass('checked');
+            var $facet = $(this).closest('.facetwp-facet');
+            FWP.autoload();
+        });
+    });
+
+    $(document).on('facetwp-loaded', function() {
+        $('.facetwp-color').each(function() {
+            $(this).css('background-color', $(this).attr('data-color'));
+        });
     });
 })(jQuery);
 </script>
@@ -276,29 +484,58 @@ class FacetWP_Facet_Capacity
 
 
     /**
-     * (Admin) Output settings HTML
+     * Output admin settings HTML
      */
     function settings_html() {
-        $sources = FWP()->helper->get_data_sources();
 ?>
         <tr>
             <td>
-                <?php _e('Other data source', 'fwp'); ?>:
+                <?php _e('Behavior', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
-                    <div class="facetwp-tooltip-content"><?php _e( 'Use a separate value for the upper limit?', 'fwp' ); ?></div>
+                    <div class="facetwp-tooltip-content"><?php _e( 'How should multiple selections affect the results?', 'fwp' ); ?></div>
                 </div>
             </td>
             <td>
-                <select class="facet-source-other">
-                    <option value=""><?php _e( 'None', 'fwp' ); ?></option>
-                    <?php foreach ( $sources as $group ) : ?>
-                    <optgroup label="<?php echo $group['label']; ?>">
-                        <?php foreach ( $group['choices'] as $val => $label ) : ?>
-                        <option value="<?php echo esc_attr( $val ); ?>"><?php echo esc_html( $label ); ?></option>
-                        <?php endforeach; ?>
-                    </optgroup>
-                    <?php endforeach; ?>
+                <select class="facet-operator">
+                    <option value="and"><?php _e( 'Narrow the result set', 'fwp' ); ?></option>
+                    <option value="or"><?php _e( 'Widen the result set', 'fwp' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e('Count', 'fwp'); ?>:
+                <div class="facetwp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="facetwp-tooltip-content"><?php _e( 'The maximum number of facet choices to show', 'fwp' ); ?></div>
+                </div>
+            </td>
+            <td><input type="text" class="facet-count" value="10" /></td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e('Parent term', 'fwp'); ?>:
+                <div class="facetwp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="facetwp-tooltip-content">
+                        To show only child terms, enter the parent <a href="https://facetwp.com/how-to-find-a-wordpress-terms-id/" target="_blank">term ID</a>.
+                        Otherwise, leave blank.
+                    </div>
+                </div>
+            </td>
+            <td>
+                <input type="text" class="facet-parent-term" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td><?php _e('Sort by', 'fwp'); ?>:</td>
+            <td>
+                <select class="facet-orderby">
+                    <option value="count"><?php _e( 'Highest Count', 'fwp' ); ?></option>
+                    <option value="display_value"><?php _e( 'Display Value', 'fwp' ); ?></option>
+                    <option value="raw_value"><?php _e( 'Raw Value', 'fwp' ); ?></option>
+                    <option value="term_order"><?php _e( 'Term Order', 'fwp' ); ?></option>
                 </select>
             </td>
         </tr>

@@ -37,6 +37,7 @@ final class FacetWP_Helper
         include( FACETWP_DIR . '/includes/facets/slider.php' );
         include( FACETWP_DIR . '/includes/facets/proximity.php' );
         include( FACETWP_DIR . '/includes/facets/radio.php' );
+        include( FACETWP_DIR . '/includes/facets/iconboxes.php' );
 
         $this->facet_types = apply_filters( 'facetwp_facet_types', array(
             'checkboxes'        => new FacetWP_Facet_Checkboxes(),
@@ -50,6 +51,7 @@ final class FacetWP_Helper
             'number_range'      => new FacetWP_Facet_Number_Range(),
             'proximity'         => new FacetWP_Facet_Proximity_Core(),
             'radio'             => new FacetWP_Facet_Radio_Core(),
+            'iconbox'             => new FacetWP_Facet_Iconboxes(),
         ) );
     }
 

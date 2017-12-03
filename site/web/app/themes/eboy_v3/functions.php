@@ -151,21 +151,51 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
         } // end if
    } // end function
 
+   function get_intro_post() {
+     $found_post = null;
 
-   /**
-   ** Get Filters. **
-   **                                                      **
-   */
-   function get_cats() {
-     $terms = get_terms( 'type' );
-     if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-      echo '<div id="filters">';
-      foreach ( $terms as $term ) {
-        echo '<input type="checkbox" name="' . $term->name . '" value=".type-' . $term->slug . '" id="' . $term->name . '"><label for="' . $term->name . '">' . $term->name . '</label>';
-     //   echo '<li>' . $term->name . '</li>';
+ if ( $posts = get_posts( array(
+     'name' => 'intro',
+     'post_type' => 'post',
+     'post_status' => 'publish',
+     'posts_per_page' => 1
+ ) ) ) $found_post = $posts[0];
 
+ // Now, we can do something with $found_post
+ if ( ! is_null( $found_post ) ){
+     // do something with the post...
+    //echo $content;
+ }
+   }
+   add_action( 'my_custom_functions', 'get_intro_post' );
+
+   remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+   remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+  // remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+  //  add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 15 );
+    remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+    remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+  //  add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 30 );
+
+    remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+  //  add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash',  30 );
+
+      remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+      remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+      remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+
+      function woocommerce_template_single_excerpt_meta() {
+
+        echo wc_get_template( 'single-product/short-description-meta.php' );
       }
-      echo '</div>';
-     }};
+    add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt_meta', 20 );
 
-   add_action ('custom_actions', 'get_cats', 0 );
+
+          function woocommerce_template_single_content() {
+
+            echo wc_get_template( 'single-product/content.php' );
+          }
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_content', 30 );

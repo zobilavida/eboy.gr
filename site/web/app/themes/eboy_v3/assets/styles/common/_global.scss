@@ -1,5 +1,14 @@
+body {
+  font-family: 'Proxima Nova Lt', sans-serif;
+  font-size: 1em;
+  letter-spacing: .015rem;
+  line-height: 1.9rem;
+  text-rendering: optimizelegibility;
+
+}
+
 .top {
-  min-height: 40vh;
+  min-height: 30vh;
 }
 
 .bg-image1 {
@@ -48,4 +57,52 @@
     .modal-dialog {
         flex-grow: 1;
     }
+}
+
+.facetwp-color {
+    display: inline-block;
+  //  margin: 0 12px 12px 0;
+  //  box-shadow: 1px 2px 3px #ccc;
+  //  width: 300px;
+  //  height: 100px;
+    cursor: pointer;
+}
+
+.facetwp-color.checked::after {
+    content: '';
+    position: absolute;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-right: 0;
+    width: 16px;
+    height: 6px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin: 8px 0 0 6px;
+}
+
+.facetwp-color h3 {
+  font-family: 'OpenSans-Regular', sans-serif;
+  font-size: .9em;
+  letter-spacing: .015rem;
+  line-height: 2.9rem;
+  text-rendering: optimizelegibility;
+}
+
+
+.entry-summary h1 {
+  font-family: 'Open Sans Light', 'OpenSans-Light', sans-serif;
+  font-size: 1em;
+  letter-spacing: .01rem;
+  line-height: 2.9rem;
+  text-rendering: optimizelegibility;
+
+}
+
+.woocommerce-product-details__short-description{
+  font-family: 'Proxima Nova Rg', sans-serif;
+  font-size: 1.5em;
+  letter-spacing: .05rem;
+  line-height: 2.5rem;
+  text-rendering: optimizelegibility;
 }
