@@ -36,7 +36,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 
 <div class="col-lg-12 col-sm-12">
 
-	 <div class="carousel slide w-50 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
+	 <div class="carousel slide w-100 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
 		 <div class="carousel-inner" role="listbox">
 
 
@@ -47,7 +47,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			 if ($attachments) {
 							 foreach ( $attachments as $attachment ) {
 											 // Method #1: Allows you to define the image size
-											 $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
+											 $src = wp_get_attachment_image_src( $attachment->ID, "large");
 											 if ($src) {
 												 echo '<div class="carousel-item active">';
 												 //echo '<div class="col-md-12">';

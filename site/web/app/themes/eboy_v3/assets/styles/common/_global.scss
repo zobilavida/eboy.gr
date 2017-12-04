@@ -1,3 +1,9 @@
+.test {
+  border: 1px solid red;
+  //background-color: red;
+}
+
+
 body {
   font-family: 'Proxima Nova Lt', sans-serif;
   font-size: 1em;
@@ -99,7 +105,9 @@ body {
 
 }
 
-.woocommerce-product-details__short-description{
+
+
+.product_description p {
   font-family: 'Proxima Nova Rg', sans-serif;
   font-size: 1.5em;
   letter-spacing: .05rem;

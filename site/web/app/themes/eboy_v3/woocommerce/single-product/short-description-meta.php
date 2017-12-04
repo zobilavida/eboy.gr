@@ -27,19 +27,33 @@ if ( ! $post->post_excerpt ) {
 }
 
 ?>
-<div class="row py-5">
-<div class="col-8">
+<div class="container">
+	<div class="row">
+<div class="col-12 col-lg-8 product_description">
+		<?php the_title( '<h1 class="product_title entry-title my-4">', '</h1>' ); ?>
+
     <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ); ?>
 </div>
-<?php
-global $product;
 
-
-
+<div class="col-12 col-lg-4 pl-5">
+	<div class="row no-gutters">
+		<div class="col-12 no-gutters">
+		<h1 class="product_title entry-title my-4">Tools</h1>
+	</div>
+	<div class="col-12 no-gutters">
+		<?php
+		wp_list_categories(
+		array(
+		'taxonomy' => 'product_cat',
+		'child_of' => 35,
+		'style'    => '',
+		'title_li' => '',
+		'walker' => new My_Walker_Category
+		)
+		);
 ?>
-<div class="col-4">
-	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-
+</div>
+</div>
+</div>
 </div>
 </div>

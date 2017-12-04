@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			do_action( 'woocommerce_before_single_product_summary' );
 		?>
 	</div>
-	<div class="row py-5">
+	<div class="row py-4">
 		<div class="container">
 			<div class="row">
 

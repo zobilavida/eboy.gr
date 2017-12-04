@@ -16,7 +16,7 @@
         <div class="grid-item-content">
       <?php if ( has_post_thumbnail() ) {
         $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );
-        echo '<a href="#myModal" data-toggle="modal">';
+        echo '<a href="'.get_permalink( $post->ID ).'" >';
          echo '<img width="100%" src="' . $image_src_thumbnail[0] . '">';
          echo '</a>';
        }

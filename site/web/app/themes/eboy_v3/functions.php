@@ -29,6 +29,9 @@ unset($file, $filepath);
 // Register Custom Navigation Walker (Soil)
 require_once('wp_bootstrap_navwalker.php');
 
+// Register Custom Navigation Walker (Soil)
+require_once('cat_walker.php');
+
 //declare your new menu
 register_nav_menus( array(
     'primary' => __( 'Primary Menu', 'sage' ),
@@ -171,7 +174,7 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
 
    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-  // remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
   //  add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 15 );
     remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
@@ -199,3 +202,5 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
             echo wc_get_template( 'single-product/content.php' );
           }
         add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_content', 30 );
+
+        
