@@ -46,7 +46,7 @@ if ( ! $post->post_excerpt ) {
 		array(
 		'taxonomy' => 'product_cat',
 		'child_of' => 35,
-		'style'    => '',
+		'style'    => 'list',
 		'title_li' => '',
 		'walker' => new My_Walker_Category
 		)

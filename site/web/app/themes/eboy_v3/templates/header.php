@@ -1,19 +1,16 @@
-<div id="primary-nav">
 
-  <div class="container-fluid">
 
-    <ul class="nav p-4 list-inline text-center align-items-center">
-      <li class="nav-item list-inline-item">
-        <a href="<?= esc_url(home_url('/')); ?>" >
-  <img class="" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-  </a>
-      </li>
-      <li class="nav-item list-inline-item">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-5">
+				<div class="container-fluid">
 
-      </li>
-
-    </ul>
-
-  </div>
-
-</div>
+          <div class="col-3">
+					<a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
+            <img class="" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+          </a>
+        </div>
+		<div class="col-9 text-right">
+          <button type="button" class="btn btn-primary">work</button>
+          <button type="button" class="btn btn-primary">profile</button>
+				</div>
+      </div>
+			</nav>
