@@ -1,4 +1,4 @@
-  <div id="top" class="bg-white top mt-5">
+  <section id="top" class="bg-white top mt-5">
     <div class="header-content container py-5">
         <div class="row">
             <div class="col-xl-8 col-lg-8 col-md-6 py-3">
@@ -53,4 +53,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

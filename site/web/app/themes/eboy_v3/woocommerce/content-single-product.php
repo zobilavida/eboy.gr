@@ -35,8 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 	return;
 	 }
 ?>
-<div class="container py-5">
-	<div class="row">
+
 		<?php
 			/**
 			 * woocommerce_before_single_product_summary hook.
@@ -47,11 +46,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			do_action( 'woocommerce_before_single_product_summary' );
 		?>
 	</div>
-	<div class="row py-4">
+	<div class="row py-0">
 		<div class="container">
 			<div class="row">
 
-<div id="product-<?php the_ID(); ?>" class="col-12">
+<div id="product2-<?php the_ID(); ?>" class="col-12">
 
 
 
@@ -92,5 +91,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div><!-- #product-<?php the_ID(); ?> -->
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>
-</div>
-</div>

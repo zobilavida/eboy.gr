@@ -1,7 +1,5 @@
-<section class="pb-5">
-
-
-  <div class="container-fluid">
+<section class="portfolio">
+<div class="container-fluid">
     <!-- add extra container element for Masonry -->
     <div class="grid row facetwp-template">
 
@@ -52,4 +50,5 @@
   </div>
 
 
+</div>
 </section>

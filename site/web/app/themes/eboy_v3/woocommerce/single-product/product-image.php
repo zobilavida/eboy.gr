@@ -33,7 +33,8 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	'images',
 ) );
 ?>
-
+<div class="container">
+	<div class="row">
 <div class="col-lg-12 col-sm-12">
 
 	 <div class="carousel slide w-100 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
@@ -86,7 +87,6 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 				?>
 		 </div>
 	 </div>
-
 	</div>
-
-	</div>
+</div>
+</div>
