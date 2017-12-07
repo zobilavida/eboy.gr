@@ -5,7 +5,7 @@
 
       <?php
 
-      $query = new WP_Query( array( 'post_type' => 'product', 'posts_per_page' => 12, 'facetwp' => true,) );
+      $query = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'posts_per_page' => 12, 'facetwp' => true,) );
 
 
       if ( $query->have_posts() ) : ?>
