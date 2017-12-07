@@ -244,6 +244,12 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
 }
 add_filter( 'wp_list_categories', 'tax_cat_active', 10, 2 );
 
+function deactivate_plugin_revslider() {
+    $deactivated_plugin_name = 'revslider/revslider.php';
+    deactivate_plugins($deactivated_plugin_name, false, true);
+}
+add_action( 'init', 'deactivate_plugin_revslider' );
+
 
 
 function wpb_screenshots($atts, $content = NULL) {
