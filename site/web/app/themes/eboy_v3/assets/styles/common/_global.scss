@@ -122,3 +122,20 @@ body {
   line-height: 2.5rem;
   text-rendering: optimizelegibility;
 }
+
+.experience-content h1 {
+    font-family: 'Proxima Nova Rg', sans-serif;
+    font-size: 1.1em;
+    text-rendering: optimizelegibility;
+  margin-bottom: .5rem;
+font-family: inherit;
+font-weight: 800;
+line-height: 1.1;
+}
+
+.btn-primary.active {
+  text-decoration: line-through;
+}
+.navbar .btn {
+  margin-left:15px;
+}

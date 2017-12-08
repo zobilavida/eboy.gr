@@ -27,7 +27,7 @@ foreach ($sage_includes as $file) {
 }
 unset($file, $filepath);
 // Register Custom Navigation Walker (Soil)
-require_once('wp_bootstrap_navwalker.php');
+require_once('Microdot_Walker_Nav_Menu.php');
 
 // Register Custom Navigation Walker (Soil)
 require_once('cat_walker.php');
