@@ -1,6 +1,10 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+?>
 <div class="wrap woocommerce">
-	<h2><?php _e( 'Create Booking', 'woocommerce-bookings' ); ?></h2>
+	<h2><?php _e( 'Add Booking', 'woocommerce-bookings' ); ?></h2>
 
 	<?php $this->show_errors(); ?>
 
@@ -21,7 +25,7 @@
 				<tr valign="top">
 					<th scope="row">&nbsp;</th>
 					<td>
-						<input type="submit" name="create_booking_2" class="button-primary" value="<?php _e( 'Create Booking', 'woocommerce-bookings' ); ?>" />
+						<input type="submit" name="create_booking_2" class="button-primary" value="<?php _e( 'Add Booking', 'woocommerce-bookings' ); ?>" />
 						<input type="hidden" name="customer_id" value="<?php echo esc_attr( $customer_id ); ?>" />
 						<input type="hidden" name="bookable_product_id" value="<?php echo esc_attr( $bookable_product_id ); ?>" />
 						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $bookable_product_id ); ?>" />

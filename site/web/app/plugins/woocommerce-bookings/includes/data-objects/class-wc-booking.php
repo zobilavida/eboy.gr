@@ -70,7 +70,8 @@ class WC_Booking extends WC_Bookings_Data {
 	 * Constructor, possibly sets up with post or id belonging to existing booking
 	 * or supplied with an array to construct a new booking.
 	 *
-	 * @param int|array|obj $booking
+	 * @version  1.10.7
+	 * @param    int|array|obj $booking
 	 */
 	public function __construct( $booking = 0 ) {
 		parent::__construct( $booking );
@@ -94,11 +95,14 @@ class WC_Booking extends WC_Bookings_Data {
 
 			// Inherit data from parent.
 			if ( ! empty( $booking['parent_id'] ) ) {
-				if ( ! $booking['order_item_id'] ) {
-					$booking['order_item_id'] = $this->data_store->get_booking_order_item_id( $booking['parent_id'] );
+
+				$parent_booking = new WC_Booking( $booking['parent_id'] );
+
+				if ( empty( $booking['order_item_id'] ) ) {
+					$booking['order_item_id'] = $parent_booking->data_store->get_booking_order_item_id( $parent_booking->get_id() );
 				}
-				if ( ! $booking['customer_id'] ) {
-					$booking['customer_id'] = $this->data_store->get_booking_customer_id( $booking['parent_id'] );
+				if ( empty( $booking['customer_id'] ) ) {
+					$booking['customer_id'] = $parent_booking->data_store->get_booking_customer_id( $parent_booking->get_id() );
 				}
 			}
 
@@ -143,6 +147,8 @@ class WC_Booking extends WC_Bookings_Data {
 
 		if ( $this->get_id() > 0 ) {
 			$this->data_store->read( $this );
+			//For existing booking: avoid doing the transition(default unpaid to the actual state);
+			$this->status_transitioned = false;
 		}
 	}
 
@@ -223,14 +229,17 @@ class WC_Booking extends WC_Bookings_Data {
 	 * @param string $to   Status to.
 	 */
 	protected function status_transitioned_handler( $from, $to ) {
+		// Add note to related order.
+		$order = $this->get_order();
+
+		if ( $order ) {
+			/* translators: 1: booking id 2: old status 3: new status */
+			$order->add_order_note( sprintf( __( 'Booking #%1$d status changed from "%2$s" to "%3$s"', 'woocommerce-bookings' ), $this->get_id(), $from, $to ) );
+		}
+
 		// Fire the events of valid status has been transitioned.
 		do_action( 'woocommerce_booking_' . $this->status_transitioned['to'], $this->get_id(), $this );
 		do_action( 'woocommerce_booking_' . $this->status_transitioned['from'] . '_to_' . $this->status_transitioned['to'], $this->get_id(), $this );
-
-		// add note to related order
-		if ( $order = $this->get_order() ) {
-			$order->add_order_note( sprintf( __( 'Booking #%1$d status changed from "%2$s" to "%3$s"', 'woocommerce-bookings' ), $this->get_id(), $from, $to ) );
-		}
 	}
 
 	/*
@@ -343,7 +352,9 @@ class WC_Booking extends WC_Bookings_Data {
 	 * @return int
 	 */
 	public function get_end( $context = 'view', $deprecated = '' ) {
-		return $this->get_prop( 'end', $context );
+		$end = $this->get_prop( 'end', $context );
+
+		return $this->is_all_day() ? strtotime( 'midnight +1 day -1 second', $end ) : $end;
 	}
 
 	/**
@@ -496,7 +507,9 @@ class WC_Booking extends WC_Bookings_Data {
 	 * @return int
 	 */
 	public function get_start( $context = 'view', $deprecated = '' ) {
-		return $this->get_prop( 'start', $context );
+		$start = $this->get_prop( 'start', $context );
+
+		return $this->is_all_day() ? strtotime( 'midnight', $start ) : $start;
 	}
 
 	/**
@@ -758,14 +771,16 @@ class WC_Booking extends WC_Bookings_Data {
 		$name    = '';
 		$email   = '';
 		$user_id = 0;
+		$order = $this->get_order();
 
-		if ( $order = $this->get_order() ) {
+		if ( $order ) {
 			$first_name = is_callable( array( $order, 'get_billing_first_name' ) ) ? $order->get_billing_first_name() : $order->billing_first_name;
-			$last_name  = is_callable( array( $order, 'get_billing_last_name' ) ) ? $order->get_billing_last_name()   : $order->billing_last_name;
+			$last_name  = is_callable( array( $order, 'get_billing_last_name' ) ) ? $order->get_billing_last_name() : $order->billing_last_name;
 			$name       = trim( $first_name . ' ' . $last_name );
-			$email      = is_callable( array( $order, 'get_billing_email' ) ) ? $order->get_billing_email()           : $order->billing_email;
-			$user_id    = is_callable( array( $order, 'get_customer_id' ) ) ? $order->get_customer_id()               : $order->customer_user;
-			$name 		= 0 !== absint( $user_id ) ? $name : sprintf( _x( '%s (Guest)', 'Guest string with name from booking order in brackets', 'woocommerce-bookings' ), $name );
+			$email      = is_callable( array( $order, 'get_billing_email' ) ) ? $order->get_billing_email() : $order->billing_email;
+			$user_id    = is_callable( array( $order, 'get_customer_id' ) ) ? $order->get_customer_id() : $order->customer_user;
+			/* translators: 1: guest name */
+			$name       = 0 !== absint( $user_id ) ? $name : sprintf( _x( '%s (Guest)', 'Guest string with name from booking order in brackets', 'woocommerce-bookings' ), $name );
 		} elseif ( $this->get_customer_id() ) {
 			$user    = get_user_by( 'id', $this->get_customer_id() );
 			$name    = $user->display_name;
@@ -786,8 +801,9 @@ class WC_Booking extends WC_Bookings_Data {
 	 */
 	public function get_resource() {
 		$resource_id = $this->get_resource_id();
+		$product     = $this->get_product();
 
-		if ( ! $resource_id || ! ( $product = $this->get_product() ) || ! method_exists( $product, 'get_resource' ) ) {
+		if ( ! $resource_id || ! $product || ! method_exists( $product, 'get_resource' ) ) {
 			return false;
 		}
 
@@ -795,19 +811,46 @@ class WC_Booking extends WC_Bookings_Data {
 	}
 
 	/**
+	 * Schedule event for this booking.
+	 *
+	 * @param string $type
+	 * @return bool Whether schedule was done or not.
+	 */
+	public function maybe_schedule_event( $type ) {
+		$tz_addition = 'yes' !== get_option( 'woocommerce_bookings_tz_calculation' ) ? 0 : - wc_booking_timezone_offset();
+
+		switch ( $type ) {
+			case 'reminder':
+				if ( $this->get_start() ) {
+					wp_clear_scheduled_hook( 'wc-booking-reminder', array( $this->get_id() ) );
+					return is_null( wp_schedule_single_event( $tz_addition + strtotime( '-' . absint( apply_filters( 'woocommerce_bookings_remind_before_days', 1 ) ) . ' day', $this->get_start() ), 'wc-booking-reminder', array( $this->get_id() ) ) );
+				}
+				break;
+			case 'complete':
+				if ( $this->get_end() ) {
+					wp_clear_scheduled_hook( 'wc-booking-complete', array( $this->get_id() ) );
+					return is_null( wp_schedule_single_event( $tz_addition + $this->get_end(), 'wc-booking-complete', array( $this->get_id() ) ) );
+				}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Schedule events for this booking.
 	 */
 	public function schedule_events() {
+		$order = $this->get_order();
+
 		if ( in_array( $this->get_status(), get_wc_booking_statuses( 'scheduled' ) ) ) {
-			if ( $this->get_start() && $this->get_order() ) {
-				$order_status = $this->get_order()->get_status();
-				if ( ! in_array( $order_status, array( 'cancelled', 'refunded', 'pending', 'on-hold' ) ) ) {
-					wp_schedule_single_event( strtotime( '-' . absint( apply_filters( 'woocommerce_bookings_remind_before_days', 1 ) ) . ' day', $this->get_start() ), 'wc-booking-reminder', array( $this->get_id() ) );
-				}
+			$order_status = $order ? $order->get_status() : null;
+
+			// If there is no order, or the order is not in one of the statuses then schedule events.
+			if ( ! in_array( $order_status, array( 'cancelled', 'refunded', 'pending', 'on-hold' ) ) ) {
+				$this->maybe_schedule_event( 'reminder' );
 			}
-			if ( $this->get_end() ) {
-				wp_schedule_single_event( $this->get_end(), 'wc-booking-complete', array( $this->get_id() ) );
-			}
+
+			$this->maybe_schedule_event( 'complete' );
 		} else {
 			wp_clear_scheduled_hook( 'wc-booking-reminder', array( $this->get_id() ) );
 			wp_clear_scheduled_hook( 'wc-booking-complete', array( $this->get_id() ) );
@@ -827,7 +870,13 @@ class WC_Booking extends WC_Bookings_Data {
 			$cancel_page = home_url();
 		}
 
-		return apply_filters( 'bookings_cancel_booking_url', wp_nonce_url( add_query_arg( array( 'cancel_booking' => 'true', 'booking_id' => $this->get_id(), 'redirect' => $redirect ), $cancel_page ), 'woocommerce-bookings-cancel_booking' ) );
+		return apply_filters( 'bookings_cancel_booking_url', wp_nonce_url( add_query_arg(
+			array(
+				'cancel_booking' => 'true',
+				'booking_id' => $this->get_id(),
+				'redirect' => $redirect,
+			),
+		$cancel_page ), 'woocommerce-bookings-cancel_booking' ) );
 	}
 
 	/*
@@ -852,7 +901,7 @@ class WC_Booking extends WC_Bookings_Data {
 	 * @return bool
 	 */
 	public function paid() {
-		if ( in_array( $this->get_status(), array( 'unpaid', 'confirmed' ) ) ) {
+		if ( in_array( $this->get_status(), array( 'unpaid', 'confirmed', 'wc-partial-payment' ) ) ) {
 			$this->set_status( 'paid' );
 			$this->save();
 			return true;

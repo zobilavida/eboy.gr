@@ -1,16 +1,32 @@
 <?php
 /**
- * Admin new booking email
+ * Admin new booking email, plain text.
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce-bookings/emails/plain/admin-new-booking.php
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see     https://docs.woocommerce.com/document/bookings-templates/
+ * @author  Automattic
+ * @version 1.10.0
+ * @since   1.0.0
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly
 }
 
-echo "= " . $email_heading . " =\n\n";
+echo '= ' . $email_heading . " =\n\n";
 
-if ( wc_booking_order_requires_confirmation( $booking->get_order() ) && $booking->get_status() == 'pending-confirmation' ) {
+if ( wc_booking_order_requires_confirmation( $booking->get_order() ) && 'pending-confirmation' == $booking->get_status() ) {
+	/* translators: 1: billing first and last name */
 	$opening_paragraph = __( 'A booking has been made by %s and is awaiting your approval. The details of this booking are as follows:', 'woocommerce-bookings' );
 } else {
+	/* translators: 1: billing first and last name */
 	$opening_paragraph = __( 'A new booking has been made by %s. The details of this booking are as follows:', 'woocommerce-bookings' );
 }
 
@@ -33,14 +49,21 @@ if ( ! empty( $first_name ) && ! empty( $last_name ) ) {
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
+/* translators: 1: booking product title */
 echo sprintf( __( 'Booked: %s', 'woocommerce-bookings' ), $booking->get_product()->get_title() ) . "\n";
+/* translators: 1: booking id */
 echo sprintf( __( 'Booking ID: %s', 'woocommerce-bookings' ), $booking->get_id() ) . "\n";
 
-if ( $booking->has_resources() && ( $resource = $booking->get_resource() ) ) {
-	echo sprintf( __( 'Booking Type: %s', 'woocommerce-bookings'), $resource->post_title ) . "\n";
+$resource = $booking->get_resource();
+
+if ( $booking->has_resources() && $resource ) {
+	/* translators: 1: booking title */
+	echo sprintf( __( 'Booking Type: %s', 'woocommerce-bookings' ), $resource->post_title ) . "\n";
 }
 
+/* translators: 1: booking start date */
 echo sprintf( __( 'Booking Start Date: %s', 'woocommerce-bookings' ), $booking->get_start_date() ) . "\n";
+/* translators: 1: booking end date */
 echo sprintf( __( 'Booking End Date: %s', 'woocommerce-bookings' ), $booking->get_end_date() ) . "\n";
 
 if ( $booking->has_persons() ) {
@@ -50,7 +73,8 @@ if ( $booking->has_persons() ) {
 		}
 
 		$person_type = ( 0 < $id ) ? get_the_title( $id ) : __( 'Person(s)', 'woocommerce-bookings' );
-		echo sprintf( __( '%s: %d', 'woocommerce-bookings'), $person_type, $qty ) . "\n";
+		/* translators: 1: person type 2: quantity */
+		echo sprintf( __( '%1$s: %2$d', 'woocommerce-bookings' ), $person_type, $qty ) . "\n";
 	}
 }
 

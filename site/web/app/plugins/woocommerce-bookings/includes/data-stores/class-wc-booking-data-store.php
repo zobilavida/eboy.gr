@@ -76,9 +76,11 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 	 */
 	public function read( &$booking ) {
 		$booking->set_defaults();
+		$booking_id  = $booking->get_id();
+		$post_object = $booking_id ? get_post( $booking_id ) : false;
 
-		if ( ! $booking->get_id() || ! ( $post_object = get_post( $booking->get_id() ) ) || 'wc_booking' !== $post_object->post_type ) {
-			throw new Exception( __( 'Invalid booking.', 'woocommerce' ) );
+		if ( ! $booking_id || ! $post_object || 'wc_booking' !== $post_object->post_type ) {
+			throw new Exception( __( 'Invalid booking.', 'woocommerce-bookings' ) );
 		}
 
 		$set_props = array();
@@ -94,14 +96,14 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 			$value = get_post_meta( $booking->get_id(), $key, true );
 
 			switch ( $prop ) {
-				case 'end' :
-				case 'start' :
+				case 'end':
+				case 'start':
 					$set_props[ $prop ] = $value ? strtotime( $value ) : '';
 					break;
-				case 'all_day' :
+				case 'all_day':
 					$set_props[ $prop ] = wc_bookings_string_to_bool( $value );
 					break;
-				default :
+				default:
 					$set_props[ $prop ] = $value;
 					break;
 			}
@@ -164,14 +166,14 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 				$value = $booking->{ "get_$prop" }( 'edit' );
 
 				switch ( $prop ) {
-					case 'all_day' :
+					case 'all_day':
 						update_post_meta( $booking->get_id(), $key, $value ? 1 : 0 );
 						break;
-					case 'end' :
-					case 'start' :
+					case 'end':
+					case 'start':
 						update_post_meta( $booking->get_id(), $key, $value ? date( 'YmdHis', $value ) : '' );
 						break;
-					default :
+					default:
 						update_post_meta( $booking->get_id(), $key, $value );
 						break;
 				}
@@ -190,7 +192,7 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 
 		$order_ids = wp_parse_id_list( is_array( $order_id ) ? $order_id : array( $order_id ) );
 
-		return wp_parse_id_list( $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'wc_booking' AND post_parent IN (" . implode( ',', array_map( 'esc_sql', $order_ids ) ) . ");" ) );
+		return wp_parse_id_list( $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'wc_booking' AND post_parent IN (" . implode( ',', array_map( 'esc_sql', $order_ids ) ) . ');' ) );
 	}
 
 	/**
@@ -209,6 +211,30 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 				)
 			)
 		);
+	}
+
+	/**
+	 * Check if a given order contains only Bookings items.
+	 * If the order contains non-booking items, it will return false.
+	 * Otherwise, it will return an array of Bookings.
+	 *
+	 * @param  WC_Order $order
+	 * @return bool|array
+	 */
+	public static function get_order_contains_only_bookings( $order ) {
+		$all_booking_ids = array();
+
+		foreach ( array_keys( $order->get_items() ) as $order_item_id ) {
+			$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $order_item_id );
+
+			if ( empty( $booking_ids ) ) {
+				return false;
+			}
+
+			$all_booking_ids = array_merge( $all_booking_ids, $booking_ids );
+		}
+
+		return $all_booking_ids;
 	}
 
 	/**
@@ -242,22 +268,22 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 
 		if ( ! empty( $filters['object_id'] ) ) {
 			switch ( $filters['object_type'] ) {
-				case 'product' :
+				case 'product':
 					$meta_keys[]   = '_booking_product_id';
 					$query_where[] = "_booking_product_id.meta_value IN ('" . implode( "','", array_map( 'esc_sql', $filters['object_id'] ) ) . "')";
 					break;
-				case 'resource' :
+				case 'resource':
 					$meta_keys[]   = '_booking_resource_id';
 					$query_where[] = "_booking_resource_id.meta_value IN ('" . implode( "','", array_map( 'esc_sql', $filters['object_id'] ) ) . "')";
 					break;
-				case 'product_or_resource' :
+				case 'product_or_resource':
 					$meta_keys[]   = '_booking_product_id';
 					$meta_keys[]   = '_booking_resource_id';
 					$query_where[] = "(
 						_booking_product_id.meta_value IN ('" . implode( "','", array_map( 'esc_sql', $filters['object_id'] ) ) . "') OR _booking_resource_id.meta_value IN ('" . implode( "','", array_map( 'esc_sql', $filters['object_id'] ) ) . "')
 					)";
 					break;
-				case 'customer' :
+				case 'customer':
 					$meta_keys[]   = '_booking_customer_id';
 					$query_where[] = "_booking_customer_id.meta_value IN ('" . implode( "','", array_map( 'esc_sql', $filters['object_id'] ) ) . "')";
 					break;
@@ -295,10 +321,10 @@ class WC_Booking_Data_Store extends WC_Data_Store_WP {
 
 		if ( ! empty( $filters['order_by'] ) ) {
 			switch ( $filters['order_by'] ) {
-				case 'date_created' :
+				case 'date_created':
 					$filters['order_by'] = 'p.post_date';
 					break;
-				case 'start_date' :
+				case 'start_date':
 					$meta_keys[]   = '_booking_start';
 					$filters['order_by'] = '_booking_start.meta_value';
 					break;

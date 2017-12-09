@@ -24,7 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</select>
 	</p>
 
-	<div id="min_max_duration"><?php
+	<div id="min_max_duration">
+	<?php
 
 		woocommerce_wp_text_input( array(
 			'id'                => '_wc_booking_min_duration',
@@ -52,14 +53,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			),
 		) );
 		?>
-		<div id="enable-range-picker"><?php
+		<div id="enable-range-picker">
+			<?php
 			woocommerce_wp_checkbox( array(
 				'id'          => '_wc_booking_enable_range_picker',
 				'value'       => $bookable_product->get_enable_range_picker( 'edit' ) ? 'yes' : 'no',
 				'label'       => __( 'Enable Calendar Range Picker?', 'woocommerce-bookings' ),
 				'description' => __( 'Lets the user select a start and end date on the calendar - duration will be calculated automatically.', 'woocommerce-bookings' ),
 			) );
-		?></div>
+			?>
+		</div>
 	</div>
 
 	<?php
@@ -80,14 +83,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'id'          => '_wc_booking_requires_confirmation',
 			'value'       => $bookable_product->get_requires_confirmation( 'edit' ) ? 'yes' : 'no',
 			'label'       => __( 'Requires confirmation?', 'woocommerce-bookings' ),
-			'description' => __( 'Check this box if the booking requires admin approval/confirmation. Payment will not be taken during checkout.', 'woocommerce-bookings' )
+			'description' => __( 'Check this box if the booking requires admin approval/confirmation. Payment will not be taken during checkout.', 'woocommerce-bookings' ),
 		) );
 
 		woocommerce_wp_checkbox( array(
 			'id'          => '_wc_booking_user_can_cancel',
 			'value'       => $bookable_product->get_user_can_cancel( 'edit' ) ? 'yes' : 'no',
 			'label'       => __( 'Can be cancelled?', 'woocommerce-bookings' ),
-			'description' => __( 'Check this box if the booking can be cancelled by the customer after it has been purchased. A refund will not be sent automatically.', 'woocommerce-bookings' )
+			'description' => __( 'Check this box if the booking can be cancelled by the customer after it has been purchased. A refund will not be sent automatically.', 'woocommerce-bookings' ),
 		) );
 
 		$cancel_limit      = $bookable_product->get_cancel_limit( 'edit' );

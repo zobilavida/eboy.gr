@@ -85,8 +85,8 @@ class WC_Bookable_Resource_Details_Meta_Box {
 							'desc_tip'          => true,
 							'type'              => 'number',
 							'custom_attributes' => array(
-								'min'           => '',
-								'step' 	        => '1',
+								'min'  => '',
+								'step' => '1',
 							),
 							'style'             => 'width: 50px;',
 						) );
@@ -111,10 +111,10 @@ class WC_Bookable_Resource_Details_Meta_Box {
 								<tr>
 									<th colspan="6">
 										<a href="#" class="button add_row" data-row="<?php
-											ob_start();
-											include( 'views/html-booking-availability-fields.php' );
-											$html = ob_get_clean();
-											echo esc_attr( $html );
+										ob_start();
+										include( 'views/html-booking-availability-fields.php' );
+										$html = ob_get_clean();
+										echo esc_attr( $html );
 										?>"><?php esc_html_e( 'Add Range', 'woocommerce-bookings' ); ?></a>
 										<span class="description"><?php echo esc_html( get_wc_booking_rules_explanation() ); ?></span>
 									</th>
@@ -122,12 +122,12 @@ class WC_Bookable_Resource_Details_Meta_Box {
 							</tfoot>
 							<tbody id="availability_rows">
 								<?php
-									$values = $resource->get_availability( 'edit' );
-									if ( ! empty( $values ) && is_array( $values ) ) {
-										foreach ( $values as $availability ) {
-											include( 'views/html-booking-availability-fields.php' );
-										}
+								$values = $resource->get_availability( 'edit' );
+								if ( ! empty( $values ) && is_array( $values ) ) {
+									foreach ( $values as $availability ) {
+										include( 'views/html-booking-availability-fields.php' );
 									}
+								}
 								?>
 							</tbody>
 						</table>
@@ -153,40 +153,40 @@ class WC_Bookable_Resource_Details_Meta_Box {
 			$availability[ $i ]['priority'] = intval( $_POST['wc_booking_availability_priority'][ $i ] );
 
 			switch ( $availability[ $i ]['type'] ) {
-				case 'custom' :
+				case 'custom':
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_date'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_date'][ $i ] );
-				break;
-				case 'months' :
+					break;
+				case 'months':
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_month'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_month'][ $i ] );
-				break;
-				case 'weeks' :
+					break;
+				case 'weeks':
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_week'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_week'][ $i ] );
-				break;
-				case 'days' :
+					break;
+				case 'days':
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_day_of_week'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_day_of_week'][ $i ] );
-				break;
-				case 'time' :
-				case 'time:1' :
-				case 'time:2' :
-				case 'time:3' :
-				case 'time:4' :
-				case 'time:5' :
-				case 'time:6' :
-				case 'time:7' :
+					break;
+				case 'time':
+				case 'time:1':
+				case 'time:2':
+				case 'time:3':
+				case 'time:4':
+				case 'time:5':
+				case 'time:6':
+				case 'time:7':
 					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_availability_from_time'][ $i ] );
 					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_availability_to_time'][ $i ] );
-				break;
-				case 'time:range' :
+					break;
+				case 'time:range':
 					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_availability_from_time'][ $i ] );
 					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_availability_to_time'][ $i ] );
 
 					$availability[ $i ]['from_date'] = wc_clean( $_POST['wc_booking_availability_from_date'][ $i ] );
 					$availability[ $i ]['to_date']   = wc_clean( $_POST['wc_booking_availability_to_date'][ $i ] );
-				break;
+					break;
 			}
 		}
 		return $availability;

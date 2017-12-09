@@ -24,26 +24,9 @@ body {
   width: 50px;
   height: auto;
 }
-
-.bg-image1 {
-  background-image: url(../assets/images/store1.jpg)
-}
-
-.bg-image2 {
-  background-image: url(../assets/images/store2.jpg)
-}
-
-.bg-image-fog {
-  background-image: url(../assets/images/bg_fog.jpg)
-}
-
-.bg-image-water {
-  background-image: url(../assets/images/bg_water.jpg)
-}
-
-.bg-image-jungle {
-  background-image: url(../assets/images/jungle1.jpg)
-}
+ .btn {
+   letter-spacing: .067rem;
+ }
 .card {
   border: 0px solid rgba(0, 0, 0, .125);
 }

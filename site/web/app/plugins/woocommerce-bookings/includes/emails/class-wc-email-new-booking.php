@@ -73,7 +73,7 @@ class WC_Email_New_Booking extends WC_Email {
 			if ( ! is_object( $this->object ) || ! $this->object->get_order() ) {
 				return;
 			}
-			
+
 			if ( $this->object->has_status( 'in-cart' ) ) {
 				return;
 			}
@@ -109,7 +109,6 @@ class WC_Email_New_Booking extends WC_Email {
 				$this->replace[] = __( 'N/A', 'woocommerce-bookings' );
 			}
 
-
 			if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 				return;
 			}
@@ -128,7 +127,7 @@ class WC_Email_New_Booking extends WC_Email {
 		ob_start();
 		wc_get_template( $this->template_html, array(
 			'booking'       => $this->object,
-			'email_heading' => $this->get_heading()
+			'email_heading' => $this->get_heading(),
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
@@ -143,7 +142,7 @@ class WC_Email_New_Booking extends WC_Email {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
 			'booking'       => $this->object,
-			'email_heading' => $this->get_heading()
+			'email_heading' => $this->get_heading(),
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
@@ -186,42 +185,47 @@ class WC_Email_New_Booking extends WC_Email {
 				'title'         => __( 'Enable/Disable', 'woocommerce-bookings' ),
 				'type'          => 'checkbox',
 				'label'         => __( 'Enable this email notification', 'woocommerce-bookings' ),
-				'default'       => 'yes'
+				'default'       => 'yes',
 			),
 			'recipient' => array(
 				'title'         => __( 'Recipient(s)', 'woocommerce-bookings' ),
 				'type'          => 'text',
-				'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'woocommerce-bookings' ), esc_attr( get_option('admin_email') ) ),
+				/* translators: 1: admin email */
+				'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'woocommerce-bookings' ), esc_attr( get_option( 'admin_email' ) ) ),
 				'placeholder'   => '',
-				'default'       => ''
+				'default'       => '',
 			),
 			'subject' => array(
 				'title'         => __( 'Subject', 'woocommerce-bookings' ),
 				'type'          => 'text',
+				/* translators: 1: subject */
 				'description'   => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject ),
 				'placeholder'   => '',
-				'default'       => ''
+				'default'       => '',
 			),
 			'subject_confirmation' => array(
 				'title'         => __( 'Subject (Pending confirmation)', 'woocommerce-bookings' ),
 				'type'          => 'text',
+				/* translators: 1: subject confirmation */
 				'description'   => sprintf( __( 'This controls the email subject line for Pending confirmation bookings. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject_confirmation ),
 				'placeholder'   => '',
-				'default'       => ''
+				'default'       => '',
 			),
 			'heading' => array(
 				'title'         => __( 'Email Heading', 'woocommerce-bookings' ),
 				'type'          => 'text',
+				/* translators: 1: heading confirmation */
 				'description'   => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading ),
 				'placeholder'   => '',
-				'default'       => ''
+				'default'       => '',
 			),
 			'heading_confirmation' => array(
 				'title'         => __( 'Email Heading (Pending confirmation)', 'woocommerce-bookings' ),
 				'type'          => 'text',
+				/* translators: 1: heading confirmation */
 				'description'   => sprintf( __( 'This controls the main heading contained within the email notification for Pending confirmation bookings. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading_confirmation ),
 				'placeholder'   => '',
-				'default'       => ''
+				'default'       => '',
 			),
 			'email_type' => array(
 				'title'         => __( 'Email type', 'woocommerce-bookings' ),
@@ -233,8 +237,8 @@ class WC_Email_New_Booking extends WC_Email {
 					'plain'         => __( 'Plain text', 'woocommerce-bookings' ),
 					'html'          => __( 'HTML', 'woocommerce-bookings' ),
 					'multipart'     => __( 'Multipart', 'woocommerce-bookings' ),
-				)
-			)
+				),
+			),
 		);
 	}
 }

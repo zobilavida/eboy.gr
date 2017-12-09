@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * An email sent manually for bookings.
  *
- * @class 		WC_Email_Booking_Notification
- * @extends 	WC_Email
+ * @class   WC_Email_Booking_Notification
+ * @extends WC_Email
  */
 class WC_Email_Booking_Notification extends WC_Email {
 
@@ -19,15 +19,15 @@ class WC_Email_Booking_Notification extends WC_Email {
 	 */
 	public function __construct() {
 
-		$this->id 				= 'booking_notification';
-		$this->title 			= __( 'Booking Notification', 'woocommerce-bookings' );
-		$this->description		= __( 'Booking notification emails are sent manually from WooCommerce > Bookings > Send Notification.', 'woocommerce-bookings' );
+		$this->id             = 'booking_notification';
+		$this->title          = __( 'Booking Notification', 'woocommerce-bookings' );
+		$this->description    = __( 'Booking notification emails are sent manually from WooCommerce > Bookings > Send Notification.', 'woocommerce-bookings' );
 
-		$this->heading 			= ''; // Controlled via form
-		$this->subject      	= ''; // Controlled via form
-		$this->customer_email   = true;
-		$this->template_html 	= 'emails/customer-booking-notification.php';
-		$this->template_plain 	= 'emails/plain/customer-booking-notification.php';
+		$this->heading        = ''; // Controlled via form
+		$this->subject        = ''; // Controlled via form
+		$this->customer_email = true;
+		$this->template_html  = 'emails/customer-booking-notification.php';
+		$this->template_plain = 'emails/plain/customer-booking-notification.php';
 
 		// Call parent constructor
 		parent::__construct();
@@ -60,7 +60,6 @@ class WC_Email_Booking_Notification extends WC_Email {
 
 			$this->find[]    = '{product_title}';
 			$this->replace[] = $this->object->get_product()->get_title();
-
 
 			if ( $this->object->get_order() ) {
 				if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
@@ -107,14 +106,18 @@ class WC_Email_Booking_Notification extends WC_Email {
 				$this->find[]    = '{customer_last_name}';
 				$this->replace[] = __( 'N/A', 'woocommerce-bookings' );
 
-				if ( $this->object->customer_id && ( $customer = get_user_by( 'id', $this->object->customer_id ) ) ) {
+				$customer_id = $this->object->customer_id;
+				$customer    = $customer_id ? get_user_by( 'id', $customer_id ) : false;
+
+				if ( $customer_id && $customer ) {
 					$this->recipient = $customer->user_email;
 				}
 			}
 		}
 
-		if ( ! $this->is_enabled() || ! $this->get_recipient() )
+		if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 			return;
+		}
 
 		$this->heading              = str_replace( $this->find, $this->replace, $notification_subject );
 		$this->subject              = str_replace( $this->find, $this->replace, $notification_subject );
@@ -157,9 +160,9 @@ class WC_Email_Booking_Notification extends WC_Email {
 	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
-			'booking' 		=> $this->object,
-			'email_heading' => $this->get_heading(),
-			'notification_message' => $this->notification_message
+			'booking'              => $this->object,
+			'email_heading'        => $this->get_heading(),
+			'notification_message' => $this->notification_message,
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
@@ -173,41 +176,41 @@ class WC_Email_Booking_Notification extends WC_Email {
 	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
-			'booking' 		=> $this->object,
-			'email_heading' => $this->get_heading(),
-			'notification_message' => $this->notification_message
+			'booking'              => $this->object,
+			'email_heading'        => $this->get_heading(),
+			'notification_message' => $this->notification_message,
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
 
-    /**
-     * Initialise Settings Form Fields
-     *
-     * @access public
-     * @return void
-     */
-    public function init_form_fields() {
-    	$this->form_fields = array(
+	/**
+	 * Initialise Settings Form Fields
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function init_form_fields() {
+		$this->form_fields = array(
 			'enabled' => array(
-				'title' 		=> __( 'Enable/Disable', 'woocommerce-bookings' ),
-				'type' 			=> 'checkbox',
-				'label' 		=> __( 'Enable this email notification', 'woocommerce-bookings' ),
-				'default' 		=> 'yes'
+				'title'   => __( 'Enable/Disable', 'woocommerce-bookings' ),
+				'type'    => 'checkbox',
+				'label'   => __( 'Enable this email notification', 'woocommerce-bookings' ),
+				'default' => 'yes',
 			),
 			'email_type' => array(
-				'title' 		=> __( 'Email type', 'woocommerce-bookings' ),
-				'type' 			=> 'select',
-				'description' 	=> __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
-				'default' 		=> 'html',
-				'class'			=> 'email_type',
-				'options'		=> array(
-					'plain'		 	=> __( 'Plain text', 'woocommerce-bookings' ),
-					'html' 			=> __( 'HTML', 'woocommerce-bookings' ),
-					'multipart' 	=> __( 'Multipart', 'woocommerce-bookings' ),
-				)
-			)
+				'title'       => __( 'Email type', 'woocommerce-bookings' ),
+				'type'        => 'select',
+				'description' => __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
+				'default'     => 'html',
+				'class'       => 'email_type',
+				'options'     => array(
+					'plain'     => __( 'Plain text', 'woocommerce-bookings' ),
+					'html'      => __( 'HTML', 'woocommerce-bookings' ),
+					'multipart' => __( 'Multipart', 'woocommerce-bookings' ),
+				),
+			),
 		);
-    }
+	}
 }
 
 return new WC_Email_Booking_Notification();

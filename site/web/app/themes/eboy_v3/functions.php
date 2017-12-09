@@ -173,6 +173,15 @@ add_action( 'wp_enqueue_scripts', 'CF7_cleanup' );
    add_action( 'my_custom_functions', 'get_intro_post' );
 
    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+   // Remove count - Add facetwp
+   remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+   add_action( 'woocommerce_before_shop_loop', 'woocommerce_facet', 20 );
+   function woocommerce_facet() {
+     echo wc_get_template( 'loop/facetwp.php' );
+   }
+   remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+   
+
    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
   //  add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 15 );

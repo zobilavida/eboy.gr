@@ -37,14 +37,14 @@ class WC_Product_Booking_Resource extends WC_Bookings_Data {
 	 * @param int|object|array $resource
 	 * @param int $product_id
 	 */
-	 public function __construct( $resource = 0, $product_id = 0 ) {
+	public function __construct( $resource = 0, $product_id = 0 ) {
 		parent::__construct( $resource );
 
 		if ( is_numeric( $resource ) && $resource > 0 ) {
 			$this->set_id( $resource );
 		} elseif ( $resource instanceof self ) {
 			$this->set_id( $resource->get_id() );
-		} elseif ( $resource instanceof WP_Post ) {
+		} elseif ( $resource instanceof WP_Post || ! empty( $resource->ID ) ) {
 			$this->set_id( $resource->ID );
 		} else {
 			$this->set_object_read( true );
@@ -59,7 +59,7 @@ class WC_Product_Booking_Resource extends WC_Bookings_Data {
 		if ( $product_id > 0 ) {
 			$this->set_parent_id( $product_id );
 		}
- 	}
+	}
 
 	/**
 	 * Save should create or update based on object existance.
@@ -95,13 +95,13 @@ class WC_Product_Booking_Resource extends WC_Bookings_Data {
 	 */
 	public function __get( $key ) {
 		switch ( $key ) {
-			case 'post_title' :
+			case 'post_title':
 				return $this->get_name();
-			case 'ID' :
+			case 'ID':
 				return $this->get_id();
-			case 'menu_order' :
+			case 'menu_order':
 				return $this->get_sort_order();
-			default :
+			default:
 				return '';
 		}
 	}
@@ -130,7 +130,10 @@ class WC_Product_Booking_Resource extends WC_Bookings_Data {
 	 * @return float
 	 */
 	public function get_base_cost() {
-		if ( $this->get_parent_id() && ( $parent = wc_get_product( $this->get_parent_id() ) ) && $parent->is_type( 'booking' ) ) {
+		$parent_id = $this->get_parent_id();
+		$parent    = $parent_id ? wc_get_product( $parent_id ) : false;
+
+		if ( $parent_id && $parent && $parent->is_type( 'booking' ) ) {
 			$costs = $parent->get_resource_base_costs();
 			$cost  = isset( $costs[ $this->get_id() ] ) ? $costs[ $this->get_id() ] : '';
 		} else {
@@ -146,7 +149,10 @@ class WC_Product_Booking_Resource extends WC_Bookings_Data {
 	 * @return float
 	 */
 	public function get_block_cost() {
-		if ( $this->get_parent_id() && ( $parent = wc_get_product( $this->get_parent_id() ) ) && $parent->is_type( 'booking' ) ) {
+		$parent_id = $this->get_parent_id();
+		$parent    = $parent_id ? wc_get_product( $parent_id ) : false;
+
+		if ( $parent_id && $parent && $parent->is_type( 'booking' ) ) {
 			$costs  = $parent->get_resource_block_costs();
 			$cost   = isset( $costs[ $this->get_id() ] ) ? $costs[ $this->get_id() ] : '';
 		} else {

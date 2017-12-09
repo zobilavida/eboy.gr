@@ -25,17 +25,16 @@ class WC_Bookings_Calendar {
 		$view           = isset( $_REQUEST['view'] ) && 'day' === $_REQUEST['view'] ? 'day' : 'month';
 
 		if ( 'day' === $view ) {
-			$day            = isset( $_REQUEST['calendar_day'] ) ? wc_clean( $_REQUEST['calendar_day'] ) : date( 'Y-m-d' );
-
+			$day = isset( $_REQUEST['calendar_day'] ) ? wc_clean( $_REQUEST['calendar_day'] ) : date( 'Y-m-d' );
 			$this->bookings = WC_Bookings_Controller::get_bookings_in_date_range(
 				strtotime( 'midnight', strtotime( $day ) ),
-				strtotime( 'midnight +1 day', strtotime( $day ) ),
+				strtotime( 'midnight +1 day', strtotime( $day ) ) - 1,
 				$product_filter,
 				false
 			);
 		} else {
 			$month = isset( $_REQUEST['calendar_month'] ) ? absint( $_REQUEST['calendar_month'] ) : date( 'n' );
-			$year  = isset( $_REQUEST['calendar_year'] ) ? absint( $_REQUEST['calendar_year'] )   : date( 'Y' );
+			$year  = isset( $_REQUEST['calendar_year'] ) ? absint( $_REQUEST['calendar_year'] ) : date( 'Y' );
 
 			if ( $year < ( date( 'Y' ) - 10 ) || $year > 2100 ) {
 				$year = date( 'Y' );
@@ -90,24 +89,36 @@ class WC_Bookings_Calendar {
 		foreach ( $this->bookings as $booking ) {
 			if ( $booking->get_start() < $date_end && $booking->get_end() > $date_start ) {
 				echo '<li><a href="' . admin_url( 'post.php?post=' . $booking->get_id() . '&action=edit' ) . '">';
-					echo '<strong>#' . $booking->get_id() . ' - ';
-					if ( $product = $booking->get_product() ) {
-						echo $product->get_title();
-					}
-					echo '</strong>';
-					echo '<ul>';
-						if ( ( $customer = $booking->get_customer() ) && ! empty( $customer->name ) ) {
-							echo '<li>' . __( 'Booked by', 'woocommerce-bookings' ) . ' ' . $customer->name . '</li>';
-						}
-						echo '<li>';
-						if ( $booking->is_all_day() )
-							echo __( 'All Day', 'woocommerce-bookings' );
-						else
-							echo $booking->get_start_date( '', 'g:ia' ) . '&mdash;' . $booking->get_end_date( '', 'g:ia' );
-						echo '</li>';
-						if ( $resource = $booking->get_resource() )
-							echo '<li>' . __( 'Resource #', 'woocommerce-bookings' ) . $resource->ID . ' - ' . $resource->post_title . '</li>';
-					echo '</ul></a>';
+				echo '<strong>#' . $booking->get_id() . ' - ';
+				$product = $booking->get_product();
+				if ( $product ) {
+					echo $product->get_title();
+				}
+				echo '</strong>';
+				echo '<ul>';
+				$customer = $booking->get_customer();
+				if ( $customer && ! empty( $customer->name ) ) {
+					echo '<li>' . __( 'Booked by', 'woocommerce-bookings' ) . ' ' . $customer->name . '</li>';
+				}
+				echo '<li>';
+				if ( $booking->is_all_day() ) {
+					echo __( 'All Day', 'woocommerce-bookings' );
+				} else {
+					echo $booking->get_start_date() . '&mdash;' . $booking->get_end_date();
+				}
+				echo '</li>';
+				$resource = $booking->get_resource();
+				if ( $resource ) {
+					echo '<li>' . __( 'Resource #', 'woocommerce-bookings' ) . $resource->ID . ' - ' . $resource->post_title . '</li>';
+				}
+				$persons  = $booking->get_persons();
+				foreach ( $persons as $person_id => $person_count ) {
+					echo '<li>';
+					/* translators: 1: person id 2: person name 3: person count */
+					printf( __( 'Person #%1$s - %2$s (%3$s)', 'woocommerce-bookings' ), $person_id, get_the_title( $person_id ), $person_count );
+					echo '</li>';
+				}
+				echo '</ul></a>';
 				echo '</li>';
 			}
 		}
@@ -115,6 +126,8 @@ class WC_Bookings_Calendar {
 
 	/**
 	 * List bookings on a day.
+	 *
+	 * @version  1.10.7 [<description>]
 	 */
 	public function list_bookings_for_day() {
 		$bookings_by_time = array();
@@ -127,8 +140,9 @@ class WC_Bookings_Calendar {
 			} else {
 				$start_time = $booking->get_start_date( '', 'Gi' );
 
-				if ( ! isset( $bookings_by_time[ $start_time ] ) )
+				if ( ! isset( $bookings_by_time[ $start_time ] ) ) {
 					$bookings_by_time[ $start_time ] = array();
+				}
 
 				$bookings_by_time[ $start_time ][] = $booking;
 			}
@@ -160,13 +174,28 @@ class WC_Bookings_Calendar {
 		$start_column = $column;
 		$last_end     = 0;
 
+		$day = isset( $_REQUEST['calendar_day'] ) ? wc_clean( $_REQUEST['calendar_day'] ) : date( 'Y-m-d' );
+		$day_timestamp = strtotime( $day );
+		$next_day_timestamp = strtotime( $day . '+1 days' );
+
 		foreach ( $bookings_by_time as $bookings ) {
 			foreach ( $bookings as $booking ) {
 
-				$start_time = $booking->get_start_date( '', 'Gi' );
-				$end_time   = $booking->get_end_date( '', 'Gi' );
+				// Adjust start_time if event starts before the calendar day
+				if ( $booking->get_start() >= $day_timestamp ) {
+					$start_time = $booking->get_start_date( '', 'Hi' );
+				} else {
+					$start_time = '0000';
+				}
 
-				$height     = ( $end_time - $start_time ) / 1.66666667;
+				// Adjust end_time if event ends after the calendar day
+				if ( $booking->get_end() > $next_day_timestamp ) {
+					$end_time = '2400';
+				} else {
+					$end_time  = $booking->get_end_date( '', 'Hi' );
+				}
+
+				$height = ( strtotime( $end_time ) - strtotime( $start_time ) ) / 60;
 
 				if ( $height < 30 ) {
 					$height = 30;
@@ -178,7 +207,12 @@ class WC_Bookings_Calendar {
 					$column = $start_column;
 				}
 
-				echo '<li data-tip="' . $this->get_tip( $booking ) . '" style="background: ' . esc_attr( $unqiue_ids[ $booking->get_product_id() . $booking->get_resource_id() ] ) . '; left:' . esc_attr( 100 * $column ) . 'px; top: ' . esc_attr( ( $start_time * 60 ) / 100 ) . 'px; height: ' . esc_attr( $height ) . 'px;"><a href="' . admin_url( 'post.php?post=' . $booking->get_id() . '&action=edit' ) . '">#' . esc_html( $booking->get_id() ) . '</a></li>';
+				$start_time_stamp   = strtotime( $start_time );
+				$start_hour_in_mins = date( 'H', $start_time_stamp ) * 60;
+				$start_minutes      = date( 'i', strtotime( $start_time ) );
+				$from_top           = $start_hour_in_mins + $start_minutes;
+
+				echo '<li data-tip="' . $this->get_tip( $booking ) . '" style="background: ' . esc_attr( $unqiue_ids[ $booking->get_product_id() . $booking->get_resource_id() ] ) . '; left:' . esc_attr( 100 * $column ) . 'px; top: ' . esc_attr( $from_top ) . 'px; height: ' . esc_attr( $height ) . 'px;"><a href="' . admin_url( 'post.php?post=' . $booking->get_id() . '&action=edit' ) . '">#' . esc_html( $booking->get_id() ) . '</a></li>';
 
 				if ( $end_time > $last_end ) {
 					$last_end = $end_time;
@@ -201,17 +235,35 @@ class WC_Bookings_Calendar {
 	 * @return string
 	 */
 	public function get_tip( $booking ) {
-		$return = "";
+		$return = '';
 
 		$return .= '#' . $booking->get_id() . ' - ';
-		if ( $product = $booking->get_product() ) {
+		$product = $booking->get_product();
+
+		if ( $product ) {
 			$return .= $product->get_title();
 		}
-		if ( ( $customer = $booking->get_customer() ) && ! empty( $customer->name ) ) {
+
+		$customer = $booking->get_customer();
+
+		if ( $customer && ! empty( $customer->name ) ) {
 			$return .= '<br/>' . __( 'Booked by', 'woocommerce-bookings' ) . ' ' . $customer->name;
 		}
-		if ( $resource = $booking->get_resource() )
+
+		$resource = $booking->get_resource();
+
+		if ( $resource ) {
 			$return .= '<br/>' . __( 'Resource #', 'woocommerce-bookings' ) . $resource->ID . ' - ' . $resource->post_title;
+		}
+
+		$persons  = $booking->get_persons();
+
+		foreach ( $persons as $person_id => $person_count ) {
+			$return .= '<br/>';
+
+			/* translators: 1: person id 2: person name 3: person count */
+			$return .= sprintf( __( 'Person #%1$s - %2$s (%3$s)', 'woocommerce-bookings' ), $person_id, get_the_title( $person_id ), $person_count );
+		}
 
 		return esc_attr( $return );
 	}

@@ -72,12 +72,12 @@ class WC_Data_Store {
 		if ( array_key_exists( $object_type, $this->stores ) ) {
 			$store = apply_filters( 'woocommerce_' . $object_type . '_data_store', $this->stores[ $object_type ] );
 			if ( ! class_exists( $store ) ) {
-				throw new Exception( __( 'Invalid data store.', 'woocommerce' ) );
+				throw new Exception( __( 'Invalid data store.', 'woocommerce-bookings' ) );
 			}
 			$this->current_class_name = $store;
 			$this->instance           = new $store;
 		} else {
-			throw new Exception( __( 'Invalid data store.', 'woocommerce' ) );
+			throw new Exception( __( 'Invalid data store.', 'woocommerce-bookings' ) );
 		}
 	}
 

@@ -36,7 +36,7 @@ class WC_Product_Booking_Person_Type extends WC_Bookings_Data {
 	 *
 	 * @param int|object|array $person_type
 	 */
-	 public function __construct( $person_type = 0 ) {
+	public function __construct( $person_type = 0 ) {
 		parent::__construct( $person_type );
 
 		if ( is_numeric( $person_type ) && $person_type > 0 ) {
@@ -54,7 +54,7 @@ class WC_Product_Booking_Person_Type extends WC_Bookings_Data {
 		if ( $this->get_id() > 0 ) {
 			$this->data_store->read( $this );
 		}
- 	}
+	}
 
 	/**
 	 * Save should create or update based on object existance.
@@ -90,15 +90,15 @@ class WC_Product_Booking_Person_Type extends WC_Bookings_Data {
 	 */
 	public function __get( $key ) {
 		switch ( $key ) {
-			case 'post_title' :
+			case 'post_title':
 				return $this->get_name();
-			case 'ID' :
+			case 'ID':
 				return $this->get_id();
-			case 'menu_order' :
+			case 'menu_order':
 				return $this->get_sort_order();
-			case 'post_parent' :
+			case 'post_parent':
 				return $this->get_parent_id();
-			default :
+			default:
 				return '';
 		}
 	}

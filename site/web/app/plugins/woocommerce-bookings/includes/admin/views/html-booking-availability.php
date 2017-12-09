@@ -4,7 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div id="bookings_availability" class="panel woocommerce_options_panel">
-	<div class="options_group"><?php
+	<div class="options_group">
+		<?php
 		$min_date      = $bookable_product->get_min_date_value( 'edit' );
 		$min_date_unit = $bookable_product->get_min_date_unit( 'edit' );
 		$max_date      = $bookable_product->get_max_date_value( 'edit' );
@@ -18,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'desc_tip'          => true,
 			'type'              => 'number',
 			'custom_attributes' => array(
-				'min'           => '',
-				'step' 	        => '1',
+				'min'  => '',
+				'step' => '1',
 			),
 		) );
 
@@ -57,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'id'          => '_wc_booking_apply_adjacent_buffer',
 				'value'       => $bookable_product->get_apply_adjacent_buffer( 'edit' ) ? 'yes' : 'no',
 				'label'       => __( 'Adjacent Buffering?', 'woocommerce-bookings' ),
-				'description' => __( 'By default buffer period applies forward into the future of a booking. Enabling this option will apply adjacently ( Before and After Bookings).', 'woocommerce-bookings' ),
+				'description' => __( 'By default buffer period applies forward into the future of a booking. Enabling this option will apply adjacently (before and after Bookings).', 'woocommerce-bookings' ),
 			)
 		);
 
@@ -71,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'available'     => __( 'available by default', 'woocommerce-bookings' ),
 					'non-available' => __( 'not-available by default', 'woocommerce-bookings' ),
 				),
-				'description'       => __( 'This option affects how you use the rules below.', 'woocommerce-bookings' )
+				'description'       => __( 'This option affects how you use the rules below.', 'woocommerce-bookings' ),
 			)
 		);
 
@@ -85,7 +86,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					''        => __( 'All blocks being booked', 'woocommerce-bookings' ),
 					'start'   => __( 'The starting block only', 'woocommerce-bookings' ),
 				),
-				'description' => __( 'This option affects how bookings are checked for availability.', 'woocommerce-bookings' )
+				'description' => __( 'This option affects how bookings are checked for availability.', 'woocommerce-bookings' ),
 			)
 		);
 		?>
@@ -93,6 +94,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<label for="_wc_booking_first_block_time"><?php _e( 'First block starts at...', 'woocommerce-bookings' ); ?></label>
 			<input type="time" name="_wc_booking_first_block_time" id="_wc_booking_first_block_time" value="<?php echo $bookable_product->get_first_block_time( 'edit' ); ?>" placeholder="HH:MM" />
 		</p>
+
+		<?php
+		woocommerce_wp_checkbox(
+			array(
+				'id'          => '_wc_booking_has_restricted_days',
+				'value'       => $bookable_product->has_restricted_days( 'edit' ) ? 'yes' : 'no',
+				'label'       => __( 'Restrict start days?', 'woocommerce-bookings' ),
+				'description' => __( 'Restrict bookings so that they can only start on certain days of the week. Does not affect availability.', 'woocommerce-bookings' ),
+			)
+		);
+		?>
+
+		<div class="booking-day-restriction">
+			<table class="widefat">
+				<tbody>
+					<tr>
+						<td>&nbsp;</td>
+
+			<?php
+				$weekdays = array(
+					__( 'Sunday', 'woocommerce-bookings' ),
+					__( 'Monday', 'woocommerce-bookings' ),
+					__( 'Tuesday', 'woocommerce-bookings' ),
+					__( 'Wednesday', 'woocommerce-bookings' ),
+					__( 'Thursday', 'woocommerce-bookings' ),
+					__( 'Friday', 'woocommerce-bookings' ),
+					__( 'Saturday', 'woocommerce-bookings' ),
+				);
+
+				for ( $i = 0; $i < 7; $i++ ) {
+					?>
+						<td>
+							<label class="checkbox" for="_wc_booking_restricted_days[<?php echo $i; ?>]"><?php echo $weekdays[ $i ]; ?>&nbsp;</label>
+							<input type="checkbox" class="checkbox" name="_wc_booking_restricted_days[<?php echo $i; ?>]" id="_wc_booking_restricted_days[<?php echo $i; ?>]" value="<?php echo $i; ?>" <?php checked( $restricted_days[ $i ], $i ); ?>>
+						</td>
+					<?php
+				}
+			?>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 	</div>
 	<div class="options_group">
 		<div class="table_grid">
@@ -113,10 +158,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<tr>
 						<th colspan="6">
 							<a href="#" class="button add_row" data-row="<?php
-								ob_start();
-								include( 'html-booking-availability-fields.php' );
-								$html = ob_get_clean();
-								echo esc_attr( $html );
+							ob_start();
+							include( 'html-booking-availability-fields.php' );
+							$html = ob_get_clean();
+							echo esc_attr( $html );
 							?>"><?php _e( 'Add Range', 'woocommerce-bookings' ); ?></a>
 							<span class="description"><?php echo esc_html( get_wc_booking_rules_explanation() ); ?></span>
 						</th>
@@ -124,12 +169,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</tfoot>
 				<tbody id="availability_rows">
 					<?php
-						$values = $bookable_product->get_availability( 'edit' );
-						if ( ! empty( $values ) && is_array( $values ) ) {
-							foreach ( $values as $availability ) {
-								include( 'html-booking-availability-fields.php' );
-							}
+					$values = $bookable_product->get_availability( 'edit' );
+					if ( ! empty( $values ) && is_array( $values ) ) {
+						foreach ( $values as $availability ) {
+							include( 'html-booking-availability-fields.php' );
 						}
+					}
 					?>
 				</tbody>
 			</table>

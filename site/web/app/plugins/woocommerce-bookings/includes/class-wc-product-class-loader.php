@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_Product_Class_Loader {
 	function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'load_product_classes') );
+		add_action( 'plugins_loaded', array( $this, 'load_product_classes' ) );
 	}
 
 	public function load_product_classes() {

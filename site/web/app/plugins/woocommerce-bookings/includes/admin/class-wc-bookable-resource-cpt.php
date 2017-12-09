@@ -82,24 +82,24 @@ class WC_Bookable_Resource_CPT {
 		global $post, $wpdb;
 
 		switch ( $column ) {
-			case 'resource_name' :
+			case 'resource_name':
 				printf( '<a href="%s">%s</a>', admin_url( 'post.php?post=' . absint( $post->ID ) . '&action=edit' ), $post->post_title );
-			break;
-			case 'parents' :
+				break;
+			case 'parents':
 				$parents      = $wpdb->get_col( $wpdb->prepare( "SELECT product_id FROM {$wpdb->prefix}wc_booking_relationships WHERE resource_id = %d ORDER BY sort_order;", $post->ID ) );
 				$parent_posts = array();
 				foreach ( $parents as $parent_id ) {
 					$parent_posts[] = '<a href="' . admin_url( 'post.php?post=' . $parent_id . '&action=edit' ) . '">' . get_the_title( $parent_id ) . '</a>';
 				}
 				echo $parent_posts ? implode( ', ', $parent_posts ) : __( 'N/A', 'woocommerce-bookings' );
-			break;
-			case 'resource_actions' :
+				break;
+			case 'resource_actions':
 				echo '<p>';
 				$actions         = array();
 				$actions['edit'] = array(
-					'url' 		=> admin_url( 'post.php?post=' . $post->ID . '&action=edit' ),
-					'name' 		=> __( 'Edit', 'woocommerce-bookings' ),
-					'action' 	=> 'edit',
+					'url'    => admin_url( 'post.php?post=' . $post->ID . '&action=edit' ),
+					'name'   => __( 'Edit', 'woocommerce-bookings' ),
+					'action' => 'edit',
 				);
 				$actions         = apply_filters( 'woocommerce_admin_bookable_resource_actions', $actions, $post );
 
@@ -107,7 +107,7 @@ class WC_Bookable_Resource_CPT {
 					printf( '<a class="button %s" href="%s">%s</a>', esc_attr( $action['action'] ), esc_url( $action['url'] ), esc_attr( $action['name'] ) );
 				}
 				echo '</p>';
-			break;
+				break;
 		}
 	}
 }

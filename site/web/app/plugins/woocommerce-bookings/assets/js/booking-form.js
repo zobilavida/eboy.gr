@@ -66,12 +66,10 @@ jQuery(document).ready(function($) {
 						$form.find('.wc-bookings-booking-cost').html( result.html );
 						$form.find('.wc-bookings-booking-cost').unblock();
 						$form.find('.single_add_to_cart_button').addClass('disabled');
-						$form.find('.wc-bookings-fields').hide();
 					} else if ( result.result == 'SUCCESS' ) {
 						$form.find('.wc-bookings-booking-cost').html( result.html );
 						$form.find('.wc-bookings-booking-cost').unblock();
 						$form.find('.single_add_to_cart_button').removeClass('disabled');
-						$form.find('.wc-bookings-fields').removeClass('hidden_form');
 					} else {
 						$form.find('.wc-bookings-booking-cost').hide();
 						$form.find('.single_add_to_cart_button').addClass('disabled');
@@ -83,7 +81,6 @@ jQuery(document).ready(function($) {
 				error: function() {
 					$form.find('.wc-bookings-booking-cost').hide();
 					$form.find('.single_add_to_cart_button').addClass('disabled');
-					$form.find('.wc-bookings-fields').removeClass('hidden_form');
 				},
 				dataType: 	"html"
 			});

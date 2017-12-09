@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * An email sent to the user when a booking is confirmed.
  *
- * @class 		WC_Email_Booking_Confirmed
- * @extends 	WC_Email
+ * @class   WC_Email_Booking_Confirmed
+ * @extends WC_Email
  */
 class WC_Email_Booking_Confirmed extends WC_Email {
 
@@ -19,14 +19,14 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 	 */
 	public function __construct() {
 
-		$this->id 				= 'booking_confirmed';
-		$this->title 			= __( 'Booking Confirmed', 'woocommerce-bookings' );
-		$this->description		= __( 'Booking confirmed emails are sent when the status of a booking goes to confirmed.', 'woocommerce-bookings' );
-		$this->heading 			= __( 'Booking Confirmed', 'woocommerce-bookings' );
-		$this->subject      	= __( '[{blogname}] Your booking of "{product_title}" has been confirmed (Order {order_number}) - {order_date}', 'woocommerce-bookings' );
-		$this->customer_email   = true;
-		$this->template_html 	= 'emails/customer-booking-confirmed.php';
-		$this->template_plain 	= 'emails/plain/customer-booking-confirmed.php';
+		$this->id             = 'booking_confirmed';
+		$this->title          = __( 'Booking Confirmed', 'woocommerce-bookings' );
+		$this->description    = __( 'Booking confirmed emails are sent when the status of a booking goes to confirmed.', 'woocommerce-bookings' );
+		$this->heading        = __( 'Booking Confirmed', 'woocommerce-bookings' );
+		$this->subject        = __( '[{blogname}] Your booking of "{product_title}" has been confirmed (Order {order_number}) - {order_date}', 'woocommerce-bookings' );
+		$this->customer_email = true;
+		$this->template_html  = 'emails/customer-booking-confirmed.php';
+		$this->template_plain = 'emails/plain/customer-booking-confirmed.php';
 
 		// Triggers for this email
 		add_action( 'woocommerce_booking_confirmed_notification', array( $this, 'trigger' ) );
@@ -44,11 +44,13 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 	}
 
 	/**
-	 * @since 1.9.13 introduced
-	 * @param $booking_id
+	 * @param    $booking_id
+	 * @since    1.9.13 introduced
+	 * @version  1.10.7
 	 */
 	public function schedule_trigger( $booking_id ) {
-		$ids_pending_confirmation_email = (array) get_transient( 'wc_booking_confirmation_email_send_ids' );
+		$ids_pending_confirmation_email = get_transient( 'wc_booking_confirmation_email_send_ids' );
+		$ids_pending_confirmation_email = is_array( $ids_pending_confirmation_email ) ? $ids_pending_confirmation_email : array();
 		// if id is in array it means were currently processing it in WC_Booking_Email_Manager::trigger_confirmation_email
 		if ( ! in_array( $booking_id, $ids_pending_confirmation_email ) ) {
 			$ids_pending_confirmation_email[] = $booking_id;
@@ -72,7 +74,7 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 		if ( $booking_id ) {
 			$this->object = get_wc_booking( $booking_id );
 
-			if ( ! is_object( $this->object ) || ! $this->object->get_order() ) {
+			if ( ! is_object( $this->object ) ) {
 				return;
 			}
 
@@ -110,7 +112,10 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 				$this->find[]    = '{order_number}';
 				$this->replace[] = __( 'N/A', 'woocommerce-bookings' );
 
-				if ( $this->object->customer_id && ( $customer = get_user_by( 'id', $this->object->customer_id ) ) ) {
+				$customer_id = $this->object->customer_id;
+				$customer    = $customer_id ? get_user_by( 'id', $customer_id ) : false;
+
+				if ( $customer_id && $customer ) {
 					$this->recipient = $customer->user_email;
 				}
 			}
@@ -132,10 +137,10 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
-			'booking' 		=> $this->object,
+			'booking'       => $this->object,
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
-			'plain_text'    => false
+			'plain_text'    => false,
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
@@ -149,56 +154,58 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
-			'booking' 		=> $this->object,
+			'booking'       => $this->object,
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
-			'plain_text'    => true
+			'plain_text'    => true,
 		), 'woocommerce-bookings/', $this->template_base );
 		return ob_get_clean();
 	}
 
-    /**
-     * Initialise Settings Form Fields
-     *
-     * @access public
-     * @return void
-     */
-    public function init_form_fields() {
-    	$this->form_fields = array(
+	/**
+	 * Initialise Settings Form Fields
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function init_form_fields() {
+		$this->form_fields = array(
 			'enabled' => array(
-				'title' 		=> __( 'Enable/Disable', 'woocommerce-bookings' ),
-				'type' 			=> 'checkbox',
-				'label' 		=> __( 'Enable this email notification', 'woocommerce-bookings' ),
-				'default' 		=> 'yes'
+				'title'   => __( 'Enable/Disable', 'woocommerce-bookings' ),
+				'type'    => 'checkbox',
+				'label'   => __( 'Enable this email notification', 'woocommerce-bookings' ),
+				'default' => 'yes',
 			),
 			'subject' => array(
-				'title' 		=> __( 'Subject', 'woocommerce-bookings' ),
-				'type' 			=> 'text',
-				'description' 	=> sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject ),
-				'placeholder' 	=> '',
-				'default' 		=> ''
+				'title'       => __( 'Subject', 'woocommerce-bookings' ),
+				'type'        => 'text',
+				/* translators: 1: subject */
+				'description' => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject ),
+				'placeholder' => '',
+				'default'     => '',
 			),
 			'heading' => array(
-				'title' 		=> __( 'Email Heading', 'woocommerce-bookings' ),
-				'type' 			=> 'text',
-				'description' 	=> sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading ),
-				'placeholder' 	=> '',
-				'default' 		=> ''
+				'title'       => __( 'Email Heading', 'woocommerce-bookings' ),
+				'type'        => 'text',
+				/* translators: 1: heading */
+				'description' => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading ),
+				'placeholder' => '',
+				'default'     => '',
 			),
 			'email_type' => array(
-				'title' 		=> __( 'Email type', 'woocommerce-bookings' ),
-				'type' 			=> 'select',
-				'description' 	=> __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
-				'default' 		=> 'html',
-				'class'			=> 'email_type',
-				'options'		=> array(
-					'plain'		 	=> __( 'Plain text', 'woocommerce-bookings' ),
-					'html' 			=> __( 'HTML', 'woocommerce-bookings' ),
-					'multipart' 	=> __( 'Multipart', 'woocommerce-bookings' ),
-				)
-			)
+				'title'       => __( 'Email type', 'woocommerce-bookings' ),
+				'type'        => 'select',
+				'description' => __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
+				'default'     => 'html',
+				'class'       => 'email_type',
+				'options'     => array(
+					'plain'      => __( 'Plain text', 'woocommerce-bookings' ),
+					'html'       => __( 'HTML', 'woocommerce-bookings' ),
+					'multipart'  => __( 'Multipart', 'woocommerce-bookings' ),
+				),
+			),
 		);
-    }
+	}
 }
 
 return new WC_Email_Booking_Confirmed();

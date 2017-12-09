@@ -1,6 +1,7 @@
 <?php
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 /**
  * Addons integration class.
@@ -41,7 +42,7 @@ class WC_Bookings_Addons {
 		if ( is_object( $post ) ) {
 			$product = wc_get_product( $post->ID );
 			$css_classes .= 'show_if_booking';
-			if ( 'booking' !== $product->product_type ) {
+			if ( ! $product->is_type( 'booking' ) ) {
 				$css_classes .= ' hide_initial_booking_addon_options';
 			}
 		}
@@ -49,11 +50,11 @@ class WC_Bookings_Addons {
 		<tr class="<?php echo esc_attr( $css_classes ); ?>">
 			<td class="addon_wc_booking_person_qty_multiplier addon_required" width="50%">
 				<label for="addon_wc_booking_person_qty_multiplier_<?php echo $loop; ?>"><?php _e( 'Bookings: Multiply cost by person count', 'woocommerce-bookings' ); ?></label>
-				<input type="checkbox" id="addon_wc_booking_person_qty_multiplier_<?php echo $loop; ?>" name="addon_wc_booking_person_qty_multiplier[<?php echo $loop; ?>]" <?php checked( ! empty( $addon['wc_booking_person_qty_multiplier'] ), true ) ?> />
+				<input type="checkbox" id="addon_wc_booking_person_qty_multiplier_<?php echo $loop; ?>" name="addon_wc_booking_person_qty_multiplier[<?php echo $loop; ?>]" <?php checked( ! empty( $addon['wc_booking_person_qty_multiplier'] ), true ); ?> />
 			</td>
 			<td class="addon_wc_booking_block_qty_multiplier addon_required" width="50%">
 				<label for="addon_wc_booking_block_qty_multiplier_<?php echo $loop; ?>"><?php _e( 'Bookings: Multiply cost by block count', 'woocommerce-bookings' ); ?></label>
-				<input type="checkbox" id="addon_wc_booking_block_qty_multiplier_<?php echo $loop; ?>" name="addon_wc_booking_block_qty_multiplier[<?php echo $loop; ?>]" <?php checked( ! empty( $addon['wc_booking_block_qty_multiplier'] ), true ) ?> />
+				<input type="checkbox" id="addon_wc_booking_block_qty_multiplier_<?php echo $loop; ?>" name="addon_wc_booking_block_qty_multiplier[<?php echo $loop; ?>]" <?php checked( ! empty( $addon['wc_booking_block_qty_multiplier'] ), true ); ?> />
 			</td>
 		</tr>
 		<?php
@@ -86,20 +87,6 @@ class WC_Bookings_Addons {
 			}
 		}
 
-		/*// Adjust booking products in cart
-		if ( $product->is_type( 'booking' ) ) {
-			$booking_form = new WC_Booking_Form( $product );
-			$booking_data = $booking_form->get_posted_data( $post_data );
-
-			foreach ( $cart_item_data as $key => $data ) {
-				if ( ! empty( $addon['wc_booking_person_qty_multiplier'] ) && ! empty( $booking_data['_persons'] ) && array_sum( $booking_data['_persons'] ) ) {
-					$cart_item_data[ $key ]['price'] = $data['price'] * array_sum( $booking_data['_persons'] );
-				}
-				if ( ! empty( $addon['wc_booking_block_qty_multiplier'] ) && ! empty( $booking_data['_duration'] ) ) {
-					$cart_item_data[ $key ]['price'] = $data['price'] * $booking_data['_duration'];
-				}
-			}
-		}*/
 		return $cart_item_data;
 	}
 
@@ -128,13 +115,15 @@ class WC_Bookings_Addons {
 				$person_multiplier = 1;
 				$duration_multipler = 1;
 
+				$addon['price'] = ( ! empty( $addon['price'] ) ) ? $addon['price'] : 0;
+
 				if ( ! empty( $addon['wc_booking_person_qty_multiplier'] ) && ! empty( $booking_data['_persons'] ) && array_sum( $booking_data['_persons'] ) ) {
 					$person_multiplier = array_sum( $booking_data['_persons'] );
 				}
 				if ( ! empty( $addon['wc_booking_block_qty_multiplier'] ) && ! empty( $booking_data['_duration'] ) ) {
 					$duration_multipler = (int) $booking_data['_duration'];
 				}
-				$addon_costs += $addon['price'] * $person_multiplier * $duration_multipler;
+				$addon_costs += floatval( $addon['price'] ) * $person_multiplier * $duration_multipler;
 			}
 		}
 

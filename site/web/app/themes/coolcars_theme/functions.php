@@ -164,11 +164,12 @@ function woocommerce_loop_item_image_open() {
  * will be used for getting Your first name
  */
 
+
  function add_before_your_first_name_field() {
-     echo '<fieldset class="wc-bookings-fields second_step hidden_form">';
+     echo '<fieldset class="wc-bookings-fields second_step">';
      echo '<div class="form-group row">';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_before_your_first_name_field', 10 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_before_your_first_name_field', 10, 0  );
 
  function add_intime_field() {
     echo '<div class="row">';
@@ -177,7 +178,7 @@ function woocommerce_loop_item_image_open() {
     echo '<input type="text" name="in-time" value="12:30" class="in_time"/>';
     echo '</div>';
  }
- add_action( 'woocommerce_after_calendar', 'add_intime_field', 11 );
+ add_action( 'woocommerce_after_calendar', 'add_intime_field', 11, 0  );
 
  function add_outtime_field() {
    echo '<div class="col col-lg-6">';
@@ -186,20 +187,20 @@ function woocommerce_loop_item_image_open() {
    echo '</div>';
       echo '</div>';
  }
- add_action( 'woocommerce_after_calendar', 'add_outtime_field', 12 );
+ add_action( 'woocommerce_after_calendar', 'add_outtime_field', 12, 0  );
 
  function add_location_in_start_field() {
   //echo '<div class="row">';
   echo '<div class="col-lg-6">';
    echo '<div class="row form-group">';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_start_field', 13 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_start_field', 13, 0  );
 
   function add_location_in_airport_field() {
     echo '<div class="col-lg-4 text-center custom-radio-airport">';
     echo '<input id="radio1" type="radio" name="pick-up" value="Airport" class="custom-radio" checked="">';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_airport_field', 14 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_airport_field', 14, 0  );
 
   function add_location_in_airport_text_field() {
     echo '<div class="reveal-if-active">
@@ -207,13 +208,13 @@ function woocommerce_loop_item_image_open() {
     </div>
     </div>';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_airport_text_field', 15 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_airport_text_field', 15, 0 );
 
   function add_location_in_port_field() {
     echo '<div class="col-lg-4 text-center custom-radio-port">';
     echo '<input id="radio2" type="radio" name="pick-up" value="Port" class="custom-radio">';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_port_field', 16 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_port_field', 16, 0  );
 
   function add_location_in_port_text_field() {
     echo '<div class="reveal-if-active">
@@ -221,7 +222,7 @@ function woocommerce_loop_item_image_open() {
     </div>
     </div>';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_port_text_field', 17 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_port_text_field', 17, 0  );
 
 
 
@@ -229,7 +230,7 @@ function woocommerce_loop_item_image_open() {
     echo '<div class="col-lg-4 text-center custom-radio-location">';
     echo '<input id="radio1" type="radio" name="pick-up" value="other_location" class="custom-radio">';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_custom_field', 18 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_custom_field', 18, 0  );
 
   function add_location_in_custom_text_field() {
     echo '<div class="reveal-if-active">
@@ -237,7 +238,7 @@ function woocommerce_loop_item_image_open() {
     </div>
     </div>';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_custom_text_field', 19 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_custom_text_field', 19, 0  );
 
 
 
@@ -245,7 +246,7 @@ function woocommerce_loop_item_image_open() {
     echo '</div>';
     echo '</div>';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_end_field', 20 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_in_end_field', 20, 0  );
 
 
 
@@ -253,14 +254,14 @@ function woocommerce_loop_item_image_open() {
       echo '<div class="col-lg-6">';
       echo '<div class="row form-group">';
     }
-    add_action( 'woocommerce_before_add_to_cart_button', 'add_location_out_start_field', 21 );
+    add_action( 'woocommerce_before_add_to_cart_button', 'add_location_out_start_field', 21, 0  );
 
   function add_location_out_end_field() {
     echo '</div>';
     echo '</div>';
     //echo '</div>';
   }
-  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_out_end_field', 22 );
+  add_action( 'woocommerce_before_add_to_cart_button', 'add_location_out_end_field', 22, 0  );
 
  function add_your_first_name_field() {
    echo '<div class="col-lg-6">';
@@ -268,7 +269,7 @@ function woocommerce_loop_item_image_open() {
      echo '<input name="your-first-name" type="text" class="form-control" id="inputName" placeholder="Your First Name" required>';
  echo '</div>';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_your_first_name_field', 23 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_your_first_name_field', 23, 0  );
 
  function add_your_last_name_field() {
  echo '<div class="col-lg-6">';
@@ -278,7 +279,7 @@ function woocommerce_loop_item_image_open() {
  echo '</div>';
  //echo '</div>';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_your_last_name_field', 24 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_your_last_name_field', 24, 0  );
 
 
  function add_your_email_field() {
@@ -287,7 +288,7 @@ function woocommerce_loop_item_image_open() {
      echo '<input type="email" name="your-email" placeholder="email" value="" />';
  echo '</div>';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_your_email_field', 25 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_your_email_field', 25, 0  );
 
  function add_your_phone_field() {
  echo '<div class="col-lg-6">';
@@ -296,7 +297,7 @@ function woocommerce_loop_item_image_open() {
    echo '<input type="text" name="your-phone" placeholder="Phone" value="" />';
  echo '</div>';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_your_phone_field', 26 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_your_phone_field', 26, 0  );
 
 
 
@@ -306,7 +307,7 @@ function woocommerce_loop_item_image_open() {
    echo '</div>';
      echo '</fieldset>';
  }
- add_action( 'woocommerce_before_add_to_cart_button', 'add_after_your_first_name_field', 30 );
+ add_action( 'woocommerce_before_add_to_cart_button', 'add_after_your_first_name_field', 30, 0  );
 
 
 
@@ -512,6 +513,13 @@ $stored_value = "something pulled from the DB";
       return $keys;
  }
 
+
+function bbloomer_redirect_checkout_add_cart( $url ) {
+   $url = get_permalink( get_option( 'woocommerce_checkout_page_id' ) );
+   return $url;
+}
+
+add_filter( 'woocommerce_add_to_cart_redirect', 'bbloomer_redirect_checkout_add_cart' );
 
  //*Add custom redirection
 add_action( 'template_redirect', 'wc_custom_redirect_after_purchase' );

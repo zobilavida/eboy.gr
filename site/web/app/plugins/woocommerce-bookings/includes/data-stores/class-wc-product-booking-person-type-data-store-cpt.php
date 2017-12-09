@@ -15,6 +15,7 @@ class WC_Product_Booking_Person_Type_Data_Store_CPT extends WC_Data_Store_WP {
 	 */
 	public function create( &$person_type ) {
 		if ( ! $person_type->get_name() ) {
+			/* translators: 1: person type sort order */
 			$person_type->set_name( sprintf( __( 'Person Type #%d', 'woocommerce-bookings' ), $person_type->get_sort_order() ) );
 		}
 
@@ -46,6 +47,11 @@ class WC_Product_Booking_Person_Type_Data_Store_CPT extends WC_Data_Store_WP {
 	 */
 	public function read( &$person_type ) {
 		$person_type_post = get_post( $person_type->get_id() );
+
+		if ( ! $person_type_post ) {
+			throw new Exception( __( 'Invalid booking person type.', 'woocommerce-bookings' ) );
+		}
+
 		$person_type->set_defaults();
 		$person_type->set_props( array(
 			'name'        => $person_type_post->post_title,
@@ -67,6 +73,7 @@ class WC_Product_Booking_Person_Type_Data_Store_CPT extends WC_Data_Store_WP {
 	 */
 	public function update( &$person_type ) {
 		if ( ! $person_type->get_name() ) {
+			/* translators: 1: person type sort order */
 			$person_type->set_name( sprintf( __( 'Person Type #%d', 'woocommerce-bookings' ), $person_type->get_sort_order() ) );
 		}
 

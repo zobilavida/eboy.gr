@@ -2,11 +2,11 @@
 
 class Microdot_Walker_Nav_Menu extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $output .= '<ul>';
+        $output .= '';
     }
 
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
-        $output .= '</ul>';
+        $output .= '';
     }
 
     public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {

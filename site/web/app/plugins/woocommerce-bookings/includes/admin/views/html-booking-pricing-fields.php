@@ -31,6 +31,7 @@ $intervals['days'] = array(
 );
 
 for ( $i = 1; $i <= 52; $i ++ ) {
+	/* translators: 1: week number */
 	$intervals['weeks'][ $i ] = sprintf( __( 'Week %s', 'woocommerce-bookings' ), $i );
 }
 
@@ -67,7 +68,7 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 					<option value="time" <?php selected( $pricing['type'], 'time' ); ?>><?php _e( 'Time Range (all week)', 'woocommerce-bookings' ); ?></option>
 					<option value="time:range" <?php selected( $pricing['type'], 'time:range' ); ?>><?php _e( 'Date Range with time', 'woocommerce-bookings' ); ?></option>
 					<?php foreach ( $intervals['days'] as $key => $label ) : ?>
-						<option value="time:<?php echo $key; ?>" <?php selected( $pricing['type'], 'time:' . $key ) ?>><?php echo $label; ?></option>
+						<option value="time:<?php echo $key; ?>" <?php selected( $pricing['type'], 'time:' . $key ); ?>><?php echo $label; ?></option>
 					<?php endforeach; ?>
 				</optgroup>
 			</select>
@@ -78,21 +79,21 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 		<div class="select from_day_of_week">
 			<select name="wc_booking_pricing_from_day_of_week[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['days'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 		<div class="select from_month">
 			<select name="wc_booking_pricing_from_month[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['months'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 		<div class="select from_week">
 			<select name="wc_booking_pricing_from_week[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['weeks'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['from'] ) && $pricing['from'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
@@ -101,7 +102,7 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 			$from_date = '';
 			if ( 'custom' === $pricing['type'] && ! empty( $pricing['from'] ) ) {
 				$from_date = $pricing['from'];
-			} else if ( 'time:range' === $pricing['type'] && ! empty( $pricing['from_date'] ) ) {
+			} elseif ( 'time:range' === $pricing['type'] && ! empty( $pricing['from_date'] ) ) {
 				$from_date = $pricing['from_date'];
 			}
 			?>
@@ -109,11 +110,19 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 		</div>
 
 		<div class="from_time">
-			<input type="time" class="time-picker" name="wc_booking_pricing_from_time[<?php echo esc_attr( $index ); ?>]" value="<?php if ( strrpos( $pricing['type'], 'time' ) === 0 && ! empty( $pricing['from'] ) ) echo $pricing['from'] ?>" placeholder="HH:MM" />
+			<input type="time" class="time-picker" name="wc_booking_pricing_from_time[<?php echo esc_attr( $index ); ?>]" value="<?php
+			if ( strrpos( $pricing['type'], 'time' ) === 0 && ! empty( $pricing['from'] ) ) {
+				echo $pricing['from'];
+			}
+			?>" placeholder="HH:MM" />
 		</div>
 
 		<div class="from">
-			<input type="number" step="1" name="wc_booking_pricing_from[<?php echo esc_attr( $index ); ?>]" value="<?php if ( ! empty( $pricing['from'] ) && is_numeric( $pricing['from'] ) ) echo $pricing['from'] ?>" />
+			<input type="number" step="1" name="wc_booking_pricing_from[<?php echo esc_attr( $index ); ?>]" value="<?php
+			if ( ! empty( $pricing['from'] ) && is_numeric( $pricing['from'] ) ) {
+				echo $pricing['from'];
+			}
+			?>" />
 		</div>
 	</div>
 	</td>
@@ -126,21 +135,21 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 		<div class="select to_day_of_week">
 			<select name="wc_booking_pricing_to_day_of_week[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['days'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 		<div class="select to_month">
 			<select name="wc_booking_pricing_to_month[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['months'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 		<div class="select to_week">
 			<select name="wc_booking_pricing_to_week[<?php echo esc_attr( $index ); ?>]">
 				<?php foreach ( $intervals['weeks'] as $key => $label ) : ?>
-					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ) ?>><?php echo $label; ?></option>
+					<option value="<?php echo $key; ?>" <?php selected( isset( $pricing['to'] ) && $pricing['to'] == $key, true ); ?>><?php echo $label; ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
@@ -149,7 +158,7 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 			$to_date = '';
 			if ( 'custom' === $pricing['type'] && ! empty( $pricing['to'] ) ) {
 				$to_date = $pricing['to'];
-			} else if ( 'time:range' === $pricing['type'] && ! empty( $pricing['to_date'] ) ) {
+			} elseif ( 'time:range' === $pricing['type'] && ! empty( $pricing['to_date'] ) ) {
 				$to_date = $pricing['to_date'];
 			}
 			?>
@@ -157,11 +166,19 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 		</div>
 
 		<div class="to_time">
-			<input type="time" class="time-picker" name="wc_booking_pricing_to_time[<?php echo esc_attr( $index ); ?>]" value="<?php if ( strrpos( $pricing['type'], 'time' ) === 0 && ! empty( $pricing['to'] ) ) echo $pricing['to']; ?>" placeholder="HH:MM" />
+			<input type="time" class="time-picker" name="wc_booking_pricing_to_time[<?php echo esc_attr( $index ); ?>]" value="<?php
+			if ( strrpos( $pricing['type'], 'time' ) === 0 && ! empty( $pricing['to'] ) ) {
+				echo $pricing['to'];
+			}
+			?>" placeholder="HH:MM" />
 		</div>
 
 		<div class="to">
-			<input type="number" step="1" name="wc_booking_pricing_to[<?php echo esc_attr( $index ); ?>]" value="<?php if ( ! empty( $pricing['to'] ) && is_numeric( $pricing['to'] ) ) echo $pricing['to'] ?>" />
+			<input type="number" step="1" name="wc_booking_pricing_to[<?php echo esc_attr( $index ); ?>]" value="<?php
+			if ( ! empty( $pricing['to'] ) && is_numeric( $pricing['to'] ) ) {
+				echo $pricing['to'];
+			}
+			?>" />
 		</div>
 	</div>
 	</td>
@@ -172,10 +189,15 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 				<option <?php selected( $pricing['base_modifier'], 'minus' ); ?> value="minus">-</option>
 				<option <?php selected( $pricing['base_modifier'], 'times' ); ?> value="times">&times;</option>
 				<option <?php selected( $pricing['base_modifier'], 'divide' ); ?> value="divide">&divide;</option>
+				<option <?php selected( $pricing['base_modifier'], 'equals' ); ?> value="equals">=</option>
 			</select>
 		</div>
-		<input type="number" step="0.01" name="wc_booking_pricing_base_cost[<?php echo esc_attr( $index ); ?>]" value="<?php if ( ! empty( $pricing['base_cost'] ) ) echo $pricing['base_cost']; ?>" placeholder="0" />
-        <?php do_action( 'woocommerce_bookings_after_booking_pricing_base_cost', $pricing, $post->ID ); ?>
+		<input type="number" step="0.01" name="wc_booking_pricing_base_cost[<?php echo esc_attr( $index ); ?>]" value="<?php
+		if ( ! empty( $pricing['base_cost'] ) ) {
+			echo $pricing['base_cost'];
+		}
+		?>" placeholder="0" />
+	<?php do_action( 'woocommerce_bookings_after_booking_pricing_base_cost', $pricing, $post->ID ); ?>
 	</td>
 	<td>
 		<div class="select">
@@ -184,10 +206,15 @@ $index = isset( $index ) ? $index : 'bookings_cost_js_index_replace';
 				<option <?php selected( $pricing['modifier'], 'minus' ); ?> value="minus">-</option>
 				<option <?php selected( $pricing['modifier'], 'times' ); ?> value="times">&times;</option>
 				<option <?php selected( $pricing['modifier'], 'divide' ); ?> value="divide">&divide;</option>
+				<option <?php selected( $pricing['modifier'], 'equals' ); ?> value="equals">=</option>
 			</select>
 		</div>
-		<input type="number" step="0.01" name="wc_booking_pricing_cost[<?php echo esc_attr( $index ); ?>]" value="<?php if ( ! empty( $pricing['cost'] ) ) echo $pricing['cost']; ?>" placeholder="0" />
-        <?php do_action( 'woocommerce_bookings_after_booking_pricing_cost', $pricing, $post->ID ); ?>
+		<input type="number" step="0.01" name="wc_booking_pricing_cost[<?php echo esc_attr( $index ); ?>]" value="<?php
+		if ( ! empty( $pricing['cost'] ) ) {
+			echo $pricing['cost'];
+		}
+		?>" placeholder="0" />
+	<?php do_action( 'woocommerce_bookings_after_booking_pricing_cost', $pricing, $post->ID ); ?>
 	</td>
 	<td class="remove">&nbsp;</td>
 </tr>

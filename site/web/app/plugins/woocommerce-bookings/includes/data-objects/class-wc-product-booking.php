@@ -22,7 +22,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	protected $bookable_product_data = array(
 		'apply_adjacent_buffer'      => false,
 		'availability'               => array(),
-		'base_cost'                  => 0,
+		'block_cost'                 => 0,
 		'buffer_period'              => 0,
 		'calendar_display_mode'      => 'always_visible',
 		'cancel_limit_unit'          => 'month',
@@ -41,6 +41,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 		'has_person_types'           => false,
 		'has_persons'                => false,
 		'has_resources'              => false,
+		'has_restricted_days'        => false,
 		'max_date_unit'              => 'month',
 		'max_date_value'             => 12,
 		'max_duration'               => 1,
@@ -58,6 +59,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 		'resource_block_costs'       => array(),
 		'resource_ids'               => array(),
 		'resources_assignment'       => '',
+		'restricted_days'            => '',
 		'user_can_cancel'            => false,
 	);
 
@@ -91,16 +93,13 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	 * Get product price.
 	 *
 	 * @param string $context
+	 * @param bool   $filters
 	 * @return string
 	 */
 	public function get_price( $context = 'view' ) {
-		$price = parent::get_price( $context );
+		$price = get_post_meta( $this->get_id(), '_price', '' );
 
-		if ( ! $price ) {
-			$price = wc_booking_calculated_base_cost( $this );
-		}
-
-		return apply_filters( 'woocommerce_get_price', $price, $this );
+		return $price ? parent::get_price( $context ) : wc_booking_calculated_base_cost( $this );
 	}
 
 	/**
@@ -109,22 +108,36 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	 * @return string
 	 */
 	public function get_price_html( $price = '' ) {
+		$base_price = wc_booking_calculated_base_cost( $this );
+
 		if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
 			if ( function_exists( 'wc_get_price_excluding_tax' ) ) {
-				$display_price = wc_get_price_including_tax( $this );
+				$display_price = wc_get_price_including_tax( $this, array(
+					'qty' => 1,
+					'price' => $base_price,
+				) );
 			} else {
-				$display_price = $this->get_price_including_tax( 1, $this->get_price() );
+				$display_price = $this->get_price_including_tax( 1, $base_price );
 			}
 		} else {
 			if ( function_exists( 'wc_get_price_excluding_tax' ) ) {
-				$display_price = wc_get_price_excluding_tax( $this );
+				$display_price = wc_get_price_excluding_tax( $this, array(
+					'qty' => 1,
+					'price' => $base_price,
+				) );
 			} else {
-				$display_price = $this->get_price_excluding_tax( 1, $this->get_price() );
+				$display_price = $this->get_price_excluding_tax( 1, $base_price );
 			}
 		}
 
-		if ( $display_price ) {
-			if ( $this->has_additional_costs() ) {
+		$display_price_suffix  = wc_price( apply_filters( 'woocommerce_product_get_price', $display_price, $this ) ) . $this->get_price_suffix();
+		$original_price_suffix = wc_price( $display_price ) . $this->get_price_suffix();
+
+		if ( $original_price_suffix !== $display_price_suffix ) {
+			$price_html = "<del>{$original_price_suffix}</del><ins>{$display_price_suffix}</ins>";
+		} elseif ( $display_price ) {
+			if ( $this->has_additional_costs() || $this->get_display_cost() ) {
+				/* translators: 1: display price */
 				$price_html = sprintf( __( 'From: %s', 'woocommerce-bookings' ), wc_price( $display_price ) ) . $this->get_price_suffix();
 			} else {
 				$price_html = wc_price( $display_price ) . $this->get_price_suffix();
@@ -134,6 +147,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 		} else {
 			$price_html = '';
 		}
+
 		return apply_filters( 'woocommerce_get_price_html', $price_html, $this );
 	}
 
@@ -453,18 +467,39 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	 *
 	 * @param  string $context
 	 * @return float
+	 * @deprecated since 1.10.9
 	 */
 	public function get_base_cost( $context = 'view' ) {
-		return (float) $this->get_prop( 'base_cost', $context );
+		return $this->get_block_cost( $context );
 	}
 
 	/**
 	 * Set base_cost.
 	 *
 	 * @param float $value
+	 * @deprecated since 1.10.9
 	 */
 	public function set_base_cost( $value ) {
-		$this->set_prop( 'base_cost', wc_format_decimal( $value ) );
+		$this->set_block_cost( $value );
+	}
+
+	/**
+	 * Get block_cost.
+	 *
+	 * @param  string $context
+	 * @return float
+	 */
+	public function get_block_cost( $context = 'view' ) {
+		return (float) $this->get_prop( 'block_cost', $context );
+	}
+
+	/**
+	 * Set block_cost.
+	 *
+	 * @param float $value
+	 */
+	public function set_block_cost( $value ) {
+		$this->set_prop( 'block_cost', wc_format_decimal( $value ) );
 	}
 
 	/**
@@ -963,6 +998,45 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 		$this->set_prop( 'resource_block_costs', (array) $value );
 	}
 
+	/**
+	 * Get has_restricted_days.
+	 *
+	 * @param  string $context
+	 * @return string
+	 */
+	public function get_has_restricted_days( $context = 'view' ) {
+		return $this->get_prop( 'has_restricted_days', $context );
+	}
+
+	/**
+	 * Set has_restricted_days.
+	 *
+	 * @param string $value
+	 */
+	public function set_has_restricted_days( $value ) {
+		$this->set_prop( 'has_restricted_days', $value );
+	}
+
+	/**
+	 * Get restricted_days.
+	 *
+	 * @param  string $context
+	 * @return string
+	 */
+	public function get_restricted_days( $context = 'view' ) {
+		return $this->get_prop( 'restricted_days', $context );
+	}
+
+	/**
+	 * Set restricted_days.
+	 *
+	 * @param string $value
+	 */
+	public function set_restricted_days( $value ) {
+		$this->set_prop( 'restricted_days', $value );
+	}
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Conditionals
@@ -1078,17 +1152,46 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	 * @return bool
 	 */
 	public function has_additional_costs() {
-		$has_additional_costs = $this->get_has_additional_costs();
+		if ( $this->get_has_additional_costs() ) {
+			return true;
+		}
 
 		if ( $this->has_persons() && $this->get_has_person_cost_multiplier() ) {
-			$has_additional_costs = true;
+			return true;
 		}
 
-		if ( $this->get_min_duration() > 1 && $this->get_base_cost() ) {
-			$has_additional_costs = true;
+		if ( $this->get_has_person_types() ) {
+			$person_types = $this->get_person_types();
+			foreach ( $person_types as $person_type ) {
+				if ( $person_type->get_cost() || $person_type->get_block_cost() ) {
+					return true;
+				}
+			}
 		}
 
-		return $has_additional_costs;
+		if ( $this->has_resources() ) {
+			$resources = $this->get_resources();
+			foreach ( $resources as $resource ) {
+				if ( $resource->get_base_cost() || $resource->get_block_cost() ) {
+					return true;
+				}
+			}
+		}
+
+		if ( $this->get_min_duration() > 1 && $this->get_block_cost() ) {
+			return true;
+		}
+
+		if ( $this->is_duration_type( 'customer' ) ) {
+			return true;
+		}
+
+		$costs = $this->get_costs();
+		if ( ! empty( $costs ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -1127,6 +1230,16 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 	public function get_default_availability() {
 		return 'available' === $this->get_default_date_availability();
 	}
+
+	/**
+	 * See if this booking product has restricted days.
+	 *
+	 * @return boolean
+	 */
+	public function has_restricted_days() {
+		return $this->get_has_restricted_days();
+	}
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -1238,8 +1351,9 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 
 		if ( $id ) {
 			$transient_name = 'book_res_' . md5( http_build_query( array( $id, $this->get_id(), WC_Cache_Helper::get_transient_version( 'bookings' ) ) ) );
+			$relationship_id = get_transient( $transient_name );
 
-			if ( false === ( $relationship_id = get_transient( $transient_name ) ) ) {
+			if ( false === $relationship_id ) {
 				$relationship_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = %d AND resource_id = %d", $this->get_id(), $id ) );
 				set_transient( $transient_name, $relationship_id, DAY_IN_SECONDS * 30 );
 			}
@@ -1378,15 +1492,19 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 			$bookings_for_day = WC_Bookings_Controller::get_bookings_in_date_range( $midnight, $next_day_midnight, $this->has_resources() && $resource_id ? $resource_id : $this->get_id(), true );
 			$bookings_start_and_end = WC_Bookings_Controller::get_bookings_star_and_end_times( $bookings_for_day );
 			$blocks           = $this->get_blocks_in_range( $midnight, $next_day_midnight, '', $resource_id, $bookings_start_and_end );
-			$existing_bookings = WC_Bookings_Controller::get_bookings_in_date_range( $start_date, $end_date - 1, $this->has_resources() && $resource_id ? $resource_id : $this->get_id() );
+			$existing_bookings = WC_Bookings_Controller::get_bookings_in_date_range( $start_date + 1, $end_date - 1, $this->has_resources() && $resource_id ? $resource_id : $this->get_id() );
 		} else {
-			$existing_bookings = WC_Bookings_Controller::get_bookings_in_date_range( $start_date, $end_date - 1, $this->has_resources() && $resource_id ? $resource_id : $this->get_id() );
+			$existing_bookings = WC_Bookings_Controller::get_bookings_in_date_range( $start_date + 1, $end_date - 1, $this->has_resources() && $resource_id ? $resource_id : $this->get_id() );
 			$blocks           = $this->get_blocks_in_range( $start_date, $end_date, '', $resource_id );
 		}
 
-		if ( empty( $blocks ) ) {
+		if ( empty( $blocks ) || ! in_array( $start_date, $blocks ) ) {
 			return false;
 		}
+
+		$blocks = array_unique( array_merge( array_map( function( $booking ) {
+			return $booking->get_start();
+		}, $existing_bookings ), $blocks ) );
 
 		// Check all blocks availability
 		$available_qtys    = array();
@@ -1417,18 +1535,21 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 
 				if ( in_array( $this->get_duration_unit(), array( 'hour', 'minute' ) ) ) {
 					return new WP_Error( 'Error', sprintf(
-						_n( 'There is %d place remaining', 'There are %d places remaining', $display_available_qty , 'woocommerce-bookings' ),
+						/* translators: 1: available quantity */
+						_n( 'There is a maximum of %d place remaining', 'There are a maximum of %d places remaining', $display_available_qty , 'woocommerce-bookings' ),
 						$display_available_qty
 					) );
 				} elseif ( ! $available_qty ) {
 					return new WP_Error( 'Error', sprintf(
-						_n( 'There is %1$d place remaining on %2$s', 'There are %1$d places remaining on %2$s', $display_available_qty , 'woocommerce-bookings' ),
+						/* translators: 1: available quantity 2: booking block date */
+						_n( 'There is a maximum of %1$d place remaining on %2$s', 'There are a maximum of %1$d places remaining on %2$s', $display_available_qty , 'woocommerce-bookings' ),
 						$display_available_qty,
 						date_i18n( wc_date_format(), $block )
 					) );
 				} else {
 					return new WP_Error( 'Error', sprintf(
-						_n( 'There is %1$d place remaining on %2$s', 'There are %1$d places remaining on %2$s', $display_available_qty , 'woocommerce-bookings' ),
+						/* translators: 1: available quantity 2: booking block date */
+						_n( 'There is a maximum of %1$d place remaining on %2$s', 'There are a maximum of %1$d places remaining on %2$s', $display_available_qty , 'woocommerce-bookings' ),
 						$display_available_qty,
 						date_i18n( wc_date_format(), $block )
 					) );
@@ -1552,9 +1673,10 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 		$from       = strtotime( date( 'Y-m-01', $start_date ) );
 		$to         = strtotime( date( 'Y-m-t', $end_date ) );
 		$month_diff = 0;
-		$month_from = $from;
+		$month_from = strtotime( '+1 MONTH', $from );
 
-		while ( ( $month_from = strtotime( '+1 MONTH', $month_from ) ) <= $to ) {
+		while ( $month_from <= $to ) {
+			$month_from = strtotime( '+1 MONTH', $month_from );
 			$month_diff ++;
 		}
 
@@ -1790,7 +1912,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 				// check that start time falls within minutes
 				// and that the correct quantity
 				if ( isset( $minutes_not_available[ $start_time ] )
-					 && $minutes_not_available[ $start_time ] >= $available_qty ) {
+					&& $minutes_not_available[ $start_time ] >= $available_qty ) {
 					continue;
 				}
 
@@ -1811,13 +1933,12 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 				// if default availability is NO/False then it means the minutes we're looking at has already been
 				// generated by using the rules so there's no need to test availability again.
 				if ( $this->get_default_availability()
-				     && ! WC_Product_Booking_Rule_Manager::check_availability_rules_against_time( $start_time, $end_time, $resource_id, $this ) ) {
+					&& ! WC_Product_Booking_Rule_Manager::check_availability_rules_against_time( $start_time, $end_time, $resource_id, $this ) ) {
 					continue;
 				}
 
-
 				if ( $this->are_all_minutes_in_block_available( $start_time, $end_time, $available_qty )
-					 && ! in_array( $start_time, $blocks ) ) {
+					&& ! in_array( $start_time, $blocks ) ) {
 					$blocks[] = $start_time;
 				}
 			}
@@ -1872,7 +1993,7 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 
 		$start_date = $from;
 		if ( empty( $start_date ) ) {
-			$start_date = current( $blocks );
+			$start_date = reset( $blocks );
 		}
 
 		$end_date = $to;
@@ -1928,17 +2049,6 @@ class WC_Product_Booking extends WC_Product_Booking_Compatibility {
 					$available_blocks[] = $time;
 				}
 			}
-		}
-
-		// Even though we checked hours against other days/slots, make sure we only return blocks for this date..
-		if ( in_array( $this->get_duration_unit(), array( 'minute', 'hour' ) ) && ! empty( $from ) ) {
-			$time_blocks = array();
-			foreach ( $available_blocks as $key => $block_date ) {
-				if ( date( 'ymd', $block_date ) == date( 'ymd', $from ) ) {
-					$time_blocks[] = $block_date;
-				}
-			}
-			$available_blocks = $time_blocks;
 		}
 
 		sort( $available_blocks );
