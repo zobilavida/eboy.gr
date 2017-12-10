@@ -23,6 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 ?>
 
-<?php if ( $price_html = $product->get_price_html() ) : ?>
-	<span class="price"><?php echo $price_html; ?></span>
-<?php endif; ?>
+<?php
+echo 'from: ';
+echo '<span class="price_custom">';
+echo get_woocommerce_currency_symbol();
+    echo $product->get_price();
+echo '</span>';
+?>

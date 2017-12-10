@@ -45,3 +45,33 @@ background-image: url("https://coolcars.dev/app/uploads/2017/02/icon_cart_count.
   color: $text-black;
   border-bottom: 1px solid $brand-primary;
 }
+
+.price_custom {
+  font-family: 'roboto';
+  font-weight: 200;
+  font-size: 1.4rem;
+  color: $text-black;
+}
+a {
+    color: $brand-primary;
+}
+
+.logo {
+  width: 240px;
+}
+nav h1 {
+  font-family: 'roboto';
+  font-weight: 200;
+  font-size: 1rem;
+  color: $text-black;
+  padding-top: .3rem;
+
+}
+
+.menu-item {
+  font-family: 'RobotoCondensed-Bold';
+  font-weight: 200;
+  font-size: 1.4rem;
+  color: $text-grey-1;
+  padding-top: .3rem;
+}

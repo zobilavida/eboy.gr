@@ -1,6 +1,6 @@
 <div class="container hero">
   <div class="row">
-    <div class="col-lg-12 col-xs-12 hero">
+    <div class="col-lg-12 col-xs-12">
       <?
     $intro = get_page_by_path('intro');
 $content = $intro->post_content;
@@ -11,46 +11,53 @@ echo $content
 </div>
 <div class="row">
   <div class="col-lg-12 col-xs-12">
-    Test
-    <div id="myCarousel" class="carousel" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
-            <?php query_posts('post_type=product&showposts=1'); ?>
-                <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
+
                   <div class="carousel-item active">
+                      <div class="row">
+                    <?php query_posts('post_type=product&showposts=4'); ?>
+                        <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;
+                        $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );?>
+
+    <div class="col-6 col-lg-3">
+      <img class="d-block w-100" src="<?php echo $image_src_thumbnail[0]; ?>" alt="1 slide">
+      <span><?php echo the_title(); ?></span>
+      <h3><?php echo the_content(); ?></h3>
+    </div>
 
 
-                            <span><?php echo the_title(); ?></span>
-                            <h3><?php echo the_content(); ?></h3>
 
 
-                  </div>
+
                 <?php endwhile; endif; ?>
                 <?php wp_reset_query(); ?>
-
-                <?php query_posts('post_type=product&showposts=4&offset=1'); ?>
-
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
-                      <div class="carousel-item">
+                </div>
+                  </div>
 
 
-                                <span><?php echo the_title(); ?></span>
-                                <h3><?php echo the_content(); ?></h3>
+                <div class="carousel-item">
+                    <div class="row">
+                  <?php query_posts('post_type=product&showposts=4&offset=4'); ?>
+                      <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;
+                      $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );?>
 
-
+                      <div class="col-6 col-lg-3">
+                        <img class="d-block w-100" src="<?php echo $image_src_thumbnail[0]; ?>" alt="1 slide">
+                        <span><?php echo the_title(); ?></span>
+                        <h3><?php echo the_content(); ?></h3>
                       </div>
-                    <?php endwhile; endif; ?>
-                    <?php wp_reset_query(); ?>
+
+
+
+              <?php endwhile; endif; ?>
+              <?php wp_reset_query(); ?>
+              </div>
+                </div>
 
 
       </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+
     </div>
 </div>
 </div>
