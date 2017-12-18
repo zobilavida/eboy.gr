@@ -1,0 +1,136 @@
+.test {
+ //border: 1px solid red;
+}
+html {
+  font-size: 18px;
+}
+body {
+  font-family: 'Gill Sans Hel';
+font-weight: 300;
+font-style: normal;
+font-size: 0.8889rem;
+
+letter-spacing: .055rem;
+line-height: 1.6rem;
+text-rendering: optimizelegibility;
+}
+.menu-text {
+  text-transform: uppercase;
+}
+
+
+.wrap {
+margin-top: 80px;
+}
+
+
+section.intro {
+  min-height: 680px;
+}
+
+.carousel-indicators li {
+  //background-color: red;
+}
+
+.carousel-indicators .active {
+  background-color: $color-black;
+}
+
+.top-black {
+  background: #000;
+  min-height: 30px;
+}
+.second-nav {
+  margin-top: 30px;
+}
+ h1 {
+   font-family: 'Roboto', sans-serif;
+  // font-weight: bold;
+   font-size: 1rem;
+   text-transform: uppercase;
+
+ }
+
+ .header {
+   border-top: 1px solid $color-black;
+   border-bottom: 1px solid $color-black;
+   font-family: 'Libre Baskerville', serif;
+   font-size: 1rem;
+   padding: 0.8rem;
+ }
+
+ .journal h2 {
+   font-family: 'Roboto', sans-serif;
+   font-size: 1rem;
+  // font-weight: bold;
+ }
+
+ .journal figure {
+   //padding: 2rem 2rem 2rem 0;
+   vertical-align: top;
+ }
+
+ .journal figure {
+   padding: 0rem 2rem 0rem 0;
+   vertical-align: top;
+ }
+
+.journal img {
+//  padding: 2rem 2rem 2rem 0;
+  vertical-align: top;
+}
+
+.paralax h1 {
+  color: $color-black;
+  padding: 0rem;
+}
+
+.lookbook {
+  padding: 4rem;
+}
+
+.conect {
+margin:4rem 0 8rem 0;;
+}
+
+.conect label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9444rem;
+  font-weight: 700;
+  margin-bottom: 0rem;
+  text-transform:uppercase;
+}
+
+.conect .social {
+  background: url(../images/social_mockup.jpg) 50% 0% no-repeat !important;
+  background-size: 181px !important;
+  min-height: 51px;
+}
+
+.conect input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  font-size: .8rem;
+  color: $color-black;
+  border-radius: 0rem;
+    margin-bottom: 1rem;
+}
+/* Header Parallax Element Style*/
+.paralax {
+background-attachment: fixed;
+background-size: cover;
+background-position: 50% 50%;
+}
+
+@media(min-width: 768px) {
+  .field-label-responsive {
+    padding-top: .5rem;
+    text-align: right;
+  }
+}
+footer {
+  background-color: $color-black;
+  color: #fff;
+  margin-top: 10rem;
+}

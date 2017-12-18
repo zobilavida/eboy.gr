@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Wed Sep 16 19:40:38 2009
+ By ,,,
+Copyright (c) 2009 by The Monotype Corporation. Gill Sans is a trademark of The Monotype Corporation. Hellenised by H. Haralambous &#38; Modified by P. Haratzopoulos_Cannibal_Athens. All rights reserved.
+</metadata>
+<defs>
+<font id="GillSansHel-Light" horiz-adv-x="278" >
+  <font-face 
+    font-family="Gill Sans Hel Light"
+    font-weight="340"
+    font-stretch="semi-expanded"
+    units-per-em="1000"
+    panose-1="2 0 5 6 4 0 0 2 0 3"
+    ascent="800"
+    descent="-200"
+    bbox="7 -210 793 730"
+    underline-thickness="50"
+    underline-position="-200"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="188" 
+d="M118 0h-48v449h48v-449z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="833" 
+d="M430 233q0 84 -42.5 131t-119.5 47q-79 0 -127.5 -51t-48.5 -134q0 -82 49 -135t124 -53t120 54t45 141zM483 280h254q-5 62 -40 96.5t-88 34.5q-50 0 -88 -36t-38 -95zM793 242h-312q0 -204 142 -204q86 0 160 67v-55q-74 -59 -166 -59q-115 0 -163 105
+q-42 -55 -87.5 -80t-104.5 -25q-95 0 -158 62.5t-63 170.5q0 104 63 169t163 65q115 0 187 -95q23 44 65.5 69.5t88.5 25.5q82 0 133.5 -59.5t51.5 -156.5z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="556" 
+d="M539 714l-10 -48q-39 10 -75 10q-37 0 -52.5 -19t-26.5 -68l-16 -68h109l-11 -47h-107l-121 -557q-15 -70 -45.5 -98.5t-89.5 -28.5q-38 0 -87 15l11 49q44 -11 71 -11q34 0 52 16t27 57l120 558h-82l9 47h82l24 104q25 105 129 105q30 0 89 -16z" />
+  </font>
+</defs></svg>

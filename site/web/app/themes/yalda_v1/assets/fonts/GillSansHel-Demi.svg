@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Wed Sep 16 19:41:30 2009
+ By ,,,
+Copyright (c) 2009 by The Monotype Corporation. Gill Sans is a trademark of The Monotype Corporation. Hellenised by H. Haralambous &#38; Modified by P. Haratzopoulos_Cannibal_Athens. All rights reserved.
+</metadata>
+<defs>
+<font id="GillSansHel-Demi" horiz-adv-x="276" >
+  <font-face 
+    font-family="Gill Sans Hel Light"
+    font-weight="600"
+    font-stretch="semi-expanded"
+    units-per-em="1000"
+    panose-1="2 0 5 6 4 0 0 2 0 3"
+    ascent="800"
+    descent="-200"
+    bbox="-4 -205 851 723"
+    underline-thickness="50"
+    underline-position="-200"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="236" 
+d="M177 0h-118v456h118v-456z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="882" 
+d="M404 229q0 63 -36 102t-92 39q-55 0 -90 -38.5t-35 -101.5q0 -66 34.5 -105t90.5 -39q59 0 93.5 38.5t34.5 104.5zM531 273h203q-3 49 -28.5 76.5t-67.5 27.5q-90 0 -107 -104zM851 208h-322q6 -62 43.5 -95t102.5 -33q82 0 167 58v-91q-88 -57 -196 -57q-114 0 -181 77
+q-28 -33 -78 -54.5t-111 -21.5q-108 0 -176.5 67t-68.5 172q0 102 68.5 168.5t176.5 66.5q118 0 186 -74q64 74 174 74q100 0 157.5 -65.5t57.5 -186.5v-5z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="552" 
+d="M552 705l-25 -101q-44 12 -73 12q-31 0 -44.5 -14.5t-20.5 -54.5l-6 -34h101l-16 -93h-100l-86 -489q-13 -72 -46 -104t-109 -32q-77 0 -131 17l26 99q46 -9 79 -9q31 0 43 16.5t21 69.5l74 432h-98l16 93h98l16 87q12 65 45.5 94t108.5 29q69 0 127 -18z" />
+  </font>
+</defs></svg>
