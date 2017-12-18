@@ -28,12 +28,26 @@ section.intro {
   min-height: 680px;
 }
 
-.carousel-indicators li {
-  //background-color: red;
+ol.carousel-indicators {
+  margin-bottom: 0rem;
+}
+.carousel-indicators img {
+  margin: 1px 0 0 0;
+}
+.carousel-indicators {
+  bottom: 0px;
+  margin-right: 0;
+  margin-left: 0;
+//  opacity: .5;
 }
 
 .carousel-indicators .active {
-  background-color: $color-black;
+  opacity: .5;
+}
+
+.carousel-control-next-icon {
+    background-image : url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    color: black;
 }
 
 .top-black {
@@ -42,6 +56,7 @@ section.intro {
 }
 .second-nav {
   margin-top: 30px;
+  background: #fff;
 }
  h1 {
    font-family: 'Roboto', sans-serif;
@@ -60,6 +75,8 @@ section.intro {
  }
  .journal {
    margin: 4rem 0 4rem 0 ;
+   max-height: 100vh;
+min-height: 100vh;
  }
 
  .journal h2 {
@@ -79,18 +96,20 @@ section.intro {
  }
 
 .journal img {
-//  padding: 2rem 2rem 2rem 0;
+padding: 0 .1rem;
   vertical-align: top;
+}
+
+.paralax {
+  min-height: 40vh;
 }
 
 .paralax h1 {
   color: $color-black;
   padding: 0rem;
+
 }
 
-.lookbook {
-  padding: 4rem;
-}
 
 .conect {
 margin:4rem 0 8rem 0;;
@@ -133,7 +152,7 @@ background-position: 50% 50%;
   }
 }
 footer {
-  background-color: $color-black;
-  color: #fff;
+  font-size: .6rem;
+
   margin-top: 10rem;
 }

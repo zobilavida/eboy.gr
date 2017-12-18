@@ -58,8 +58,11 @@ add_action('customize_register', 'themeslug_theme_customizer');
 
 // Register Custom Navigation Walker (Soil)
 require_once('Microdot_Walker_Nav_Menu.php');
+require_once('wp_bootstrap_navwalker.php');
+require_once('custom-nav-walker-usage.php');
 
 //declare your new menu
 register_nav_menus( array(
       'primary' => __( 'Primary Menu', 'sage' ),
+      'shop' => __( 'Shop Menu', 'sage' ),
 ) );
