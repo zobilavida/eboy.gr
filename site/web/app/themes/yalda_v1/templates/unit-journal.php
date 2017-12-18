@@ -6,7 +6,7 @@
 
 <div class="row">
 <div class="col-24">
-  <?php $catquery = new WP_Query( 'cat=207&posts_per_page=5' );
+  <?php $catquery = new WP_Query( 'cat=16&posts_per_page=5' );
  ?>
 
 
