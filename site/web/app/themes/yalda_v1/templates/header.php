@@ -17,17 +17,17 @@
 			));
 			?>
 			<?php
-					wp_nav_menu( array(
-							'menu'              => 'shop',
-							'theme_location'    => 'shop',
-							'depth'             => 2,
-							'container'         => 'div',
-							'container_class'   => 'nav justify-content-center top-menu mr-auto',
-							'container_id'      => '',
-							'menu_class'        => 'bar top-menu',
-							'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-							'walker'            => new wp_bootstrap_navwalker())
-					);
+			wp_nav_menu( array(
+		'theme_location'	=> 'shop',
+		'container'			=> 'div',
+		'container_class'	=> 'collapse navbar-collapse',
+		'container_id'      => 'navbarCollapse',
+		'menu_class'		=> 'nav navbar-nav',
+		'fallback_cb'		=> '__return_false',
+		'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'depth'				=> 2,
+		'walker'			=> new bootstrap_4_walker_nav_menu()
+	) );
 			?>
       </div>
 			</nav>

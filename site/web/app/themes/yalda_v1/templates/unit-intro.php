@@ -7,7 +7,7 @@
     <?php    // The Query
        $recentposts = get_posts('numberposts=1&category=38');
        foreach ($recentposts as $post) :
-           setup_postdata($post); $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'full' ); ?>
+           setup_postdata($post); $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'large' ); ?>
            <div class="col-lg-9 my-auto"><a href="<?php the_permalink() ?>"><h1><?php the_title(); ?></h1></a>
              <?php echo apply_filters( 'the_excerpt', $post->post_excerpt ); ?>
            </div>
@@ -37,7 +37,7 @@
                    foreach ( $attachments as $attachment ) {
                      $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
 
-                     $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
+                     $src = wp_get_attachment_image_src( $attachment->ID, "large");
                      echo '<div class="carousel-item active">';
                    //  echo '<img class="' . $class . '">' . $thumbimg . '</img>';
                       echo '<img class="' . $class . '" src="' . $src[0] . '" alt="">';
@@ -60,7 +60,7 @@
                foreach ( $attachments as $attachment ) {
                  $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
                  $thumbimg = wp_get_attachment_link( $attachment->ID, 'thumbnail-size', true );
-                 $src = wp_get_attachment_image_src( $attachment->ID, "full-size");
+                 $src = wp_get_attachment_image_src( $attachment->ID, "large");
                  echo '<div class="carousel-item">';
                //  echo '<img class="' . $class . '">' . $thumbimg . '</img>';
                   echo '<img class="' . $class . '" src="' . $src[0] . '" alt="">';
@@ -88,7 +88,7 @@
             if ( $attachments ) {
               foreach ( $attachments as $attachment ) {
                 $class = "d-block img-fluid mime-" . sanitize_title( $attachment->post_mime_type );
-                $src = wp_get_attachment_image_src( $attachment->ID, "thumbnail");
+                $src = wp_get_attachment_image_src( $attachment->ID, "large");
                 $datatarget = "#carouselDocumentationIndicators";
                  echo '<div class="" data-target="' . $datatarget . '" data-slide-to="' . $number++ . '">';
                  echo '<img class="' . $class . '" src="' . $src[0] . '" alt="">';

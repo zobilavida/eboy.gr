@@ -6,7 +6,7 @@
   <div class="carousel slide" data-ride="carousel" id="postsCarousel">
 
     <div class="carousel-inner">
-  <?php $catquery_1 = new WP_Query( 'cat=207&posts_per_page=1' );
+  <?php $catquery_1 = new WP_Query( 'cat=16&posts_per_page=1' );
  ?>
 
 
@@ -23,7 +23,7 @@
   ?>
 
 
-  <?php $catquery_2 = new WP_Query( 'cat=207&posts_per_page=1&offset=1' );
+  <?php $catquery_2 = new WP_Query( 'cat=16&posts_per_page=1&offset=1' );
  ?>
 
 
