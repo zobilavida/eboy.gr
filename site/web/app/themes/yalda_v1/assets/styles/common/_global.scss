@@ -5,17 +5,21 @@ html {
   font-size: 18px;
 }
 body {
-  font-family: 'Gill Sans Hel';
+  font-family: 'Gill Sans Hel', sans-serif;
 font-weight: 300;
-font-style: normal;
 font-size: 0.8889rem;
-
 letter-spacing: .055rem;
 line-height: 1.6rem;
 text-rendering: optimizelegibility;
 }
 .menu-text {
   text-transform: uppercase;
+}
+
+li.ico-shop {
+  background: url(../images/ico-shop.svg) 10px 10px no-repeat !important;
+  background-size: 23px !important;
+  min-height: 23px;
 }
 
 
@@ -60,7 +64,7 @@ ol.carousel-indicators {
 }
  h1 {
    font-family: 'Roboto', sans-serif;
-  // font-weight: bold;
+font-weight: 700;
    font-size: 1rem;
    text-transform: uppercase;
 
