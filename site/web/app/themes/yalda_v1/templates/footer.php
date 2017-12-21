@@ -2,17 +2,17 @@
     <div class="container">
       <div class="row">
       <div class="col-6">
-        <img class="" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-<p> Yalda Ashrafi did not attend any fashion education rather opting for a University education in Business. In fact, she spent many years working in Finance & Accounting before succumbing to her lifelong passion for designing.</p>
+        <p class="footer-copyright">Facebook</p>
+
     </div>
     <div class="col-6">
-    <p class="footer-copyright">© 2016 Copyright Text</p>
+    <p class="footer-copyright">Twitter</p>
   </div>
   <div class="col-6">
-  <p class="footer-copyright">© 2016 Copyright Text</p>
+  <p class="footer-copyright">Instagram</p>
 </div>
 <div class="col-6">
-<p class="footer-copyright">© 2016 Copyright Text</p>
+<p class="footer-copyright"></p>
 </div>
   </div>
 

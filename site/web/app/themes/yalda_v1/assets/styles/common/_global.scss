@@ -1,5 +1,11 @@
+#wpadminbar {
+  display: none;
+}
 .test {
- //border: 1px solid red;
+ border: 1px solid red;
+}
+.test3 {
+ border: 1px solid yellow;
 }
 html {
   font-size: 18px;
@@ -16,17 +22,48 @@ text-rendering: optimizelegibility;
   text-transform: uppercase;
 }
 
+.navbar-toggler {
+  font-size: .9rem;
+    border: 0px solid transparent;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-family: 'Roboto', sans-serif;
+font-weight: 700;
+  font-size: 1rem;
+
+}
+
+.navbars-title {
+  font-family: 'Roboto', sans-serif;
+font-weight: 400;
+  font-size: 1rem;
+}
+
+.ion-bag {
+  font-size: 1.7rem;
+}
+
+.ion-person  {
+  font-size: 1.7rem;
+
+}
 li.ico-shop {
-  background: url(../images/ico-shop.svg) 10px 10px no-repeat !important;
+  background: url(../images/ico-shop.svg) 0% 0% no-repeat !important;
   background-size: 23px !important;
   min-height: 23px;
 }
 
 
-.wrap {
-margin-top: 80px;
+section.intro-split {
+  min-height: 65vh;
+}
+.right-image {
+  min-height: 100vh;
 }
 
+.slideshow .slider .item img.right-image {
+      transform: translate(-50%,-6%);
+}
 
 section.intro {
   min-height: 65vh;
@@ -60,13 +97,12 @@ ol.carousel-indicators {
 }
 .second-nav {
   margin-top: 30px;
-  background: #fff;
 }
  h1 {
    font-family: 'Roboto', sans-serif;
 font-weight: 700;
-   font-size: 1rem;
-   text-transform: uppercase;
+   font-size: 4rem;
+   //text-transform: uppercase;
 
  }
 
@@ -74,7 +110,7 @@ font-weight: 700;
    border-top: 1px solid $color-black;
    border-bottom: 1px solid $color-black;
    font-family: 'Libre Baskerville', serif;
-   font-size: 1rem;
+   font-size: 4rem;
    padding: 0.8rem;
  }
  .journal {
@@ -157,6 +193,18 @@ background-position: 50% 50%;
 }
 footer {
   font-size: .6rem;
-
+  position: absolute;
+  bottom: 0;
   margin-top: 10rem;
+}
+
+
+
+span.Shop {
+        font-family: "Ionicons";
+        content: "\f3d1";
+}
+
+.collections {
+  min-height: 100vh;
 }

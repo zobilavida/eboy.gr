@@ -30,7 +30,8 @@ class Microdot_Walker_Nav_Menu extends Walker_Nav_Menu {
         }
 
       //  $output .= '<div'. $active_class . '><a href="' . $url . '">' . $item->title . '</a>';
-				$output .= '<a href="' . $url . '" class="col '. $active_class . '"  >' . $item->title . '</a>';
+      $output .= '<span class="col '. $active_class . '"><i class="icon ion-' . $item->title . '"></i>' . $item->title . '</span>';
+      //  $output .= '<a href="' . $url . '" class="col '. $active_class . '"  >' . $item->title . '</a>';
 
     }
 

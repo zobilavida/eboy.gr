@@ -72,7 +72,7 @@ class bootstrap_4_walker_nav_menu extends Walker_Nav_menu {
 	function start_lvl( &$output, $depth = 0, $args = array() ){ // ul
 		$indent = str_repeat("\t",$depth); // indents the outputted HTML
 		$submenu = ($depth > 0) ? ' sub-menu' : '';
-		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\">\n";
+		$output .= "\n$indent<div class=\"dropdown-menu$submenu depth_$depth\">\n";
 	}
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ){ // li a span
@@ -97,7 +97,7 @@ class bootstrap_4_walker_nav_menu extends Walker_Nav_menu {
 		$id = apply_filters('nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args);
 		$id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
 
-		$output .= $indent . '<li ' . $id . $value . $class_names . $li_attributes . '>';
+		$output .= $indent . '<div ' . $id . $value . $class_names . $li_attributes . '>';
 
 		$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
 		$attributes .= ! empty( $item->target ) ? ' target="' . esc_attr($item->target) . '"' : '';
@@ -109,7 +109,7 @@ class bootstrap_4_walker_nav_menu extends Walker_Nav_menu {
 		$item_output = $args->before;
 		$item_output .= ( $depth > 0 ) ? '<a class="dropdown-item"' . $attributes . '>' : '<a' . $attributes . '>';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= '</a>';
+		$item_output .= '</a></div>';
 		$item_output .= $args->after;
 
 		$output .= apply_filters ( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
