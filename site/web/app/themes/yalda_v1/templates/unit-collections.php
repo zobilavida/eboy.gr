@@ -1,4 +1,4 @@
-<section class="collections cd-section">
+<section class="collections">
 <div class="container-fluid">
   <div class="row">
 
@@ -7,7 +7,7 @@
     <?php get_template_part('templates/unit', 'title_excerpt'); ?>
   </div>
 
-  <div class="col-20 collections-right">
+  <div class="col-20 collections-right pt-5">
 
   <?php get_template_part('templates/unit', 'content_right'); ?>
 

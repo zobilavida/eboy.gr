@@ -97,7 +97,6 @@ Main Components
     font-size: 1rem;
     font-weight: 300;
   }
-
   [data-hijacking="on"] .cd-section {
     opacity: 0;
     visibility: hidden;
