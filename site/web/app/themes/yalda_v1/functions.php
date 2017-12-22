@@ -117,3 +117,28 @@ class bootstrap_4_walker_nav_menu extends Walker_Nav_menu {
 	}
 
 }
+
+function updateNumbers() {
+    /* numbering the published posts, starting with 1 for oldest;
+    / creates and updates custom field 'incr_number';
+    / to show in post (within the loop) use <?php echo get_post_meta($post->ID,'incr_number',true); ?>
+    / alchymyth 2010 */
+    global $wpdb;
+    $querystr = "SELECT $wpdb->posts.* FROM $wpdb->posts
+                 WHERE $wpdb->posts.post_status = 'publish'
+                 AND $wpdb->posts.post_type = 'post'
+                 ORDER BY $wpdb->posts.post_date ASC";
+    $pageposts = $wpdb->get_results($querystr, OBJECT);
+    $counts = 0 ;
+    if ($pageposts):
+    foreach ($pageposts as $post):
+        $counts++;
+        add_post_meta($post->ID, 'incr_number', $counts, true);
+        update_post_meta($post->ID, 'incr_number', $counts);
+    endforeach;
+endif;
+}
+
+add_action ( 'publish_post', 'updateNumbers', 11 );
+add_action ( 'deleted_post', 'updateNumbers' );
+add_action ( 'edit_post', 'updateNumbers' );

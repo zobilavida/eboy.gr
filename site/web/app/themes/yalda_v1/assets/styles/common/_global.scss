@@ -18,6 +18,22 @@ letter-spacing: .055rem;
 line-height: 1.6rem;
 text-rendering: optimizelegibility;
 }
+a {
+    transition:all 200ms;
+}
+
+li {
+    cursor : pointer;
+}
+.active {
+    color : red;
+    font-size: 2rem;
+
+}
+
+.checkhere {
+    font-weight : bold;
+}
 .menu-text {
   text-transform: uppercase;
 }
@@ -103,9 +119,11 @@ ol.carousel-indicators {
 font-weight: 700;
    font-size: 4rem;
    //text-transform: uppercase;
-
  }
 
+.collections-left {
+  padding-top: 14rem;
+}
  .header {
    border-top: 1px solid $color-black;
    border-bottom: 1px solid $color-black;

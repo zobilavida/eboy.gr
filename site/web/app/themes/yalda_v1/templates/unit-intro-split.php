@@ -1,4 +1,4 @@
-<section class="intro-split">
+<section class="intro-split cd-section visible">
 <div class="container-fluid">
   <div class="row">
 
