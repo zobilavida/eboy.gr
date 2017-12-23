@@ -1,4 +1,4 @@
-<?php $catquery_2 = new WP_Query( 'cat=212&posts_per_page=1' ); ?>
+<?php $catquery_2 = new WP_Query( 'cat=210&posts_per_page=1' ); ?>
 <?php while($catquery_2->have_posts()) : $catquery_2->the_post(); ?>
 <div class="row">
   <div class="col-24">

@@ -30,7 +30,8 @@ $('.checkhere').on('click', function () {
   var $this = $(this);
   var post_url = $this.attr('data-href');
      //alert('clicked');
-     $(this).siblings().removeClass('active');
+
+     $('.checkhere').removeClass('active');
      $(this).addClass('active');
      $(".collections-right").load(post_url + " .entry-content");
 
