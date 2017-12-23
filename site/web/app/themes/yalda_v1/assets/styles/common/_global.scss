@@ -26,8 +26,8 @@ li {
     cursor : pointer;
 }
 .active {
-    color : red;
-    font-size: 2rem;
+    color : $color-black;
+    font-size: 1.8rem;
 
 }
 
@@ -72,6 +72,7 @@ li.ico-shop {
 
 section.intro-split {
   min-height: 65vh;
+  margin-bottom: 8rem;
 }
 .right-image {
   min-height: 100vh;
@@ -170,7 +171,7 @@ padding: 0 .1rem;
 
 
 .conect {
-margin:4rem 0 8rem 0;;
+margin:0rem 0 8rem 0;;
 }
 
 .conect label {
@@ -210,10 +211,12 @@ background-position: 50% 50%;
   }
 }
 footer {
-  font-size: .6rem;
-  position: absolute;
+//  position: absolute;
   bottom: 0;
-  margin-top: 10rem;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f5f5f5;
 }
 
 
@@ -225,4 +228,8 @@ span.Shop {
 
 .collections {
   min-height: 100vh;
+}
+
+.collections-right {
+
 }
