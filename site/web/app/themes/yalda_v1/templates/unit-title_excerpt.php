@@ -10,5 +10,12 @@
     <?php the_title(); ?>
   </div>
 </div>
-  <?php the_excerpt(); ?>
+<div class="row">
+  <div class="col-4 pl-1">
+  </div>
+  <div class="col-18 pl-1">
+    <?php the_excerpt(); ?>
+  </div>
+</div>
+
       <?php endwhile; wp_reset_postdata();?>
