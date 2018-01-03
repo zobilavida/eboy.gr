@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Wed Sep 16 19:39:19 2009
+ By ,,,
+Copyright (c) 2009 by The Monotype Corporation. Gill Sans is a trademark of The Monotype Corporation. Hellenised by H. Haralambous &#38; Modified by P. Haratzopoulos_Cannibal_Athens. All rights reserved.
+</metadata>
+<defs>
+<font id="GillSansHel-SemConBold" horiz-adv-x="260" >
+  <font-face 
+    font-family="Gill Sans Hel SemCon Regular"
+    font-weight="700"
+    font-stretch="condensed"
+    units-per-em="1000"
+    panose-1="2 0 5 6 4 0 0 2 0 3"
+    ascent="800"
+    descent="-200"
+    bbox="12 -170 702 689"
+    underline-thickness="50"
+    underline-position="-200"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="224" 
+d="M165 0h-106v469h106v-469z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="734" 
+d="M351 236q0 67 -30 109t-75 42q-49 0 -79 -42.5t-30 -113.5q0 -66 30.5 -108t76.5 -42q49 0 78 41.5t29 113.5zM459 297h140q-4 92 -65 92q-64 0 -75 -92zM701 232h-246v-20q0 -60 32.5 -93.5t85.5 -33.5q59 0 123 48v-99q-62 -43 -144 -43q-96 0 -150 72
+q-62 -72 -159 -72q-92 0 -152 66t-60 172q0 111 59 180t155 69q109 0 156 -75q43 75 143 75q66 0 112 -58t46 -159q0 -19 -1 -29z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="295" 
+d="M283 679v-88q-18 5 -29 5q-44 0 -62.5 -22.5t-18.5 -68.5v-45h70v-89h-70v-541h-105v541h-56v89h56v41q0 94 41.5 141t113.5 47q32 0 60 -10z" />
+  </font>
+</defs></svg>

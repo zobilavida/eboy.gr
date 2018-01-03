@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Wed Sep 16 19:41:04 2009
+ By ,,,
+Copyright (c) 2009 by The Monotype Corporation. Gill Sans is a trademark of The Monotype Corporation. Hellenised by H. Haralambous &#38; Modified by P. Haratzopoulos_Cannibal_Athens. All rights reserved.
+</metadata>
+<defs>
+<font id="GillSansHel-Regular" horiz-adv-x="278" >
+  <font-face 
+    font-family="Gill Sans Hel Regular"
+    font-weight="400"
+    font-stretch="semi-expanded"
+    units-per-em="1000"
+    panose-1="2 0 5 6 4 0 0 2 0 3"
+    ascent="800"
+    descent="-200"
+    bbox="23 -210 832 729"
+    underline-thickness="50"
+    underline-position="-200"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="219" 
+d="M154 0h-89v449h89v-449z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="871" 
+d="M832 211h-316q21 -135 151 -135q75 0 157 54v-86q-80 -53 -179 -53q-115 0 -175 91q-69 -91 -197 -91q-103 0 -170 67.5t-67 170.5q0 97 69 163t168 66q123 0 194 -86q59 86 170 86q95 0 145 -64.5t50 -182.5zM425 228q0 65 -43.5 107.5t-109.5 42.5q-63 0 -104 -42.5
+t-41 -106.5q0 -70 40 -114t105 -44q72 0 112.5 42.5t40.5 114.5zM518 270h226q-2 50 -30.5 80.5t-74.5 30.5q-101 0 -121 -111z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="552" 
+d="M530 710l-17 -75q-51 14 -78 14q-28 0 -40.5 -18t-20.5 -62l-9 -51h99l-12 -68h-100l-93 -533q-12 -70 -41.5 -98.5t-88.5 -28.5q-47 0 -106 12l17 76q48 -11 75 -11q47 0 58 59l90 524h-98l11 68h99l14 85q11 66 45 96t95 30q37 0 101 -19z" />
+  </font>
+</defs></svg>
