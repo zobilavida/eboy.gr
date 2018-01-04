@@ -25,7 +25,6 @@ global $post;
 if ( ! $post->post_excerpt ) {
 	return;
 }
-
 ?>
 <div class="container">
 	<div class="row">
