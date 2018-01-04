@@ -45,7 +45,7 @@ if ( ! $post->post_excerpt ) {
 		wp_list_categories(
 		array(
 		'taxonomy' => 'product_cat',
-		'child_of' => 35,
+		'child_of' => 15,
 		'style'    => 'list',
 		'title_li' => '',
 		'walker' => new My_Walker_Category
