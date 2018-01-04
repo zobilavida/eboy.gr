@@ -1,7 +1,7 @@
 <section class="intro">
 <div class="container-fluid  ">
 <div class="row">
-<div class="col-2  ">
+<div class="col-2  d-none d-lg-block">
   <?php
       wp_nav_menu( array(
           'menu'              => 'primary',
