@@ -4,11 +4,9 @@
     <div class="col-3 my-auto">
 
       <p>
-      <div class="d-lg-none" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myFunction(this)">
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
-</div>
+      <a class="d-lg-none" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myFunction(this)">
+    <img src="<?= get_template_directory_uri(); ?>/assets/images/menu.svg" class="menu-icon" alt="Web developer"/>
+</a>
 </p>
 
 
