@@ -36,7 +36,7 @@
           if( $images ): ?>
               <div class="row">
                   <?php foreach( $images as $image ): ?>
-                      <div class="col-12 col-lg-2 d-flex justify-content-center">
+                      <div class="col-12 col-lg-3 d-flex justify-content-center">
                           <a href="<?php echo $image['url']; ?>">
                                <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
                                <p class="d-flex justify-content-center"><?php echo $image['caption']; ?></p>
