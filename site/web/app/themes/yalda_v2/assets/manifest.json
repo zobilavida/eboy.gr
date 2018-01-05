@@ -17,6 +17,11 @@
         "scripts/customizer.js"
       ]
     },
+    "IfBreakpoint.js": {
+      "files": [
+        "scripts/IfBreakpoint.js"
+      ]
+    },
     "jquery.js": {
       "bower": ["jquery"]
     }

@@ -23,29 +23,6 @@
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
 
-              $.ajaxSetup({cache:false});
-var  $items = $('.collections_link');
-
-$('.checkhere').on('click', function () {
-  var $this = $(this);
-  var post_url = $this.attr('data-href');
-     //alert('clicked');
-
-     $('.checkhere').removeClass('active');
-     $(this).addClass('active');
-     $(".collections-right").load(post_url + " .entry-content");
-
- });
-
- var tl2 = new TimelineLite();
-tl2.to(".img2", 1, {x:-70, y:63});
-
-var tl3 = new TimelineLite();
-tl3.to(".img3", 1, {x:-70, y:10});
-
-var tl4 = new TimelineLite();
-tl4.to(".img4", 1, {x:-90, y:-15});
-
 
       }
 

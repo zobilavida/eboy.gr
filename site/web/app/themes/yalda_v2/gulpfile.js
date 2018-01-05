@@ -197,6 +197,7 @@ gulp.task('scripts', ['jshint'], function() {
   var merged = merge();
   manifest.forEachDependency('js', function(dep) {
     merged.add(
+
       gulp.src(dep.globs, {base: 'scripts'})
         .pipe(plumber({errorHandler: onError}))
         .pipe(jsTasks(dep.name))
@@ -237,7 +238,8 @@ gulp.task('images', function() {
 gulp.task('jshint', function() {
   return gulp.src([
     'bower.json', 'gulpfile.js'
-  ].concat(project.js))
+  ].concat(project.js)
+.concat('!assets/scripts/IfBreakpoint.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
