@@ -369,7 +369,7 @@ abstract class WC_Abstract_Legacy_Product extends WC_Data {
 	 * @param string $after (default: '').
 	 * @return string
 	 */
-	public function get_categories( $sep = ', ', $before = '<div></div>', $after = '' ) {
+	public function get_categories( $sep = ', ', $before = '', $after = '' ) {
 		wc_deprecated_function( 'WC_Product::get_categories', '3.0', 'wc_get_product_category_list' );
 		return wc_get_product_category_list( $this->get_id(), $sep, $before, $after );
 	}

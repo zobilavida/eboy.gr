@@ -195,7 +195,7 @@ class WC_Bookings_Ajax {
 
 		wp_send_json( array(
 			'result' => 'SUCCESS',
-			'html'   => apply_filters( 'woocommerce_bookings_booking_cost_string', __( 'Booking cost', 'woocommerce-bookings' ), $product ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>',
+			'html'   => apply_filters( 'woocommerce_bookings_booking_cost_string', __( 'Costs', 'woocommerce-bookings' ), $product ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>',
 		) );
 	}
 

@@ -37,7 +37,7 @@ $month_before_day = strpos( __( 'F j, Y' ), 'F' ) < strpos( __( 'F j, Y' ), 'j' 
 		if ( $month_before_day && apply_filters( 'woocommerce_bookings_mdy_format', true ) ) :
 		?>
 		<label>
-			<input type="text" name="<?php echo $name; ?>_month" placeholder="<?php _e( 'mm', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_month" />
+			<input type="text" name="<?php echo $name; ?>_month" placeholder="<?php _e( 'MM', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_month" />
 			<span><?php _e( 'Month', 'woocommerce-bookings' ); ?></span>
 		</label> / <label>
 			<input type="text" name="<?php echo $name; ?>_day" placeholder="<?php _e( 'dd', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_day" />
@@ -48,7 +48,7 @@ $month_before_day = strpos( __( 'F j, Y' ), 'F' ) < strpos( __( 'F j, Y' ), 'j' 
 			<input type="text" name="<?php echo $name; ?>_day" placeholder="<?php _e( 'dd', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_day" />
 			<span><?php _e( 'Day', 'woocommerce-bookings' ); ?></span>
 		</label> / <label>
-			<input type="text" name="<?php echo $name; ?>_month" placeholder="<?php _e( 'mm', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_month" />
+			<input type="text" name="<?php echo $name; ?>_month" placeholder="<?php _e( 'MM', 'woocommerce-bookings' ); ?>" size="2" class="required_for_calculation booking_date_month" />
 			<span><?php _e( 'Month', 'woocommerce-bookings' ); ?></span>
 		</label>
 		<?php endif; ?>

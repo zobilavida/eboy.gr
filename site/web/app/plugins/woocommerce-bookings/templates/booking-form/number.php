@@ -28,7 +28,7 @@ $min   = isset( $field['min'] ) ? $field['min'] : null;
 $name  = $field['name'];
 $step  = isset( $field['step'] ) ? $field['step'] : null;
 ?>
-<p class="form-field form-field-wide <?php echo implode( ' ', $class ); ?>">
+<p class="form-field form-field-wide 2 <?php echo implode( ' ', $class ); ?>">
 	<label for="<?php echo $name; ?>"><?php echo $label; ?>:</label>
 	<input
 		type="number"

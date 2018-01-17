@@ -155,7 +155,7 @@ class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 
 		if ( $display_price ) {
 			if ( $this->has_additional_costs() || $this->get_display_cost() ) {
-				$price_html = sprintf( __( 'From %s per day', 'woocommerce-accommodation-bookings' ), wc_price( $display_price ) ) . $this->get_price_suffix();
+				$price_html = sprintf( __( '%s', 'woocommerce-accommodation-bookings' ), wc_price( $display_price ) ) . $this->get_price_suffix();
 			} else {
 				$price_html = wc_price( $display_price ) . $this->get_price_suffix();
 			}

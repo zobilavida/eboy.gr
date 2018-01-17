@@ -1,0 +1,333 @@
+// Search form
+.search-form {
+  @extend .form-inline;
+}
+.search-form label {
+  font-weight: normal;
+  @extend .form-group;
+}
+.search-form .search-field {
+  @extend .form-control;
+}
+.search-form .search-submit {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+.wc-bookings-booking-form fieldset label {
+    width: 100%;
+}
+
+
+
+.forma {
+  padding: .5rem 0 0 0;
+}
+
+.forma form {
+  padding: 2rem 0 2rem 0;
+}
+
+.form-control {
+  border-radius: 0rem;
+      border: 0px solid rgba(0,0,0,.15);
+  height: 50px;
+}
+
+.input-group-addon {
+  font-family: 'HelveticaNeue-Bold', sans-serif;
+  font-size: .8rem;
+  letter-spacing:0.03rem;
+  line-height: 1rem;
+  //min-width: 134px;
+  border-right: 1px solid $dark;
+  border-radius: 0rem;
+  background-color: $bg-grey-form;
+}
+.addon {
+  border: 1px solid $border-grey-form;
+  margin: 1rem;
+}
+.input-group-addon img {
+  padding: 0 1rem 0 .5rem;
+}
+
+.input-daterange .input-group-addon {
+  width: auto;
+line-height: 1.42857143;
+text-shadow: 0 1px 0 #fff;
+border-width: 1px;
+margin-left: 0px;
+margin-right: 0px;
+min-width: 147px;
+}
+
+.timepicker .input-group-addon {
+  padding: 0 1rem 0 1rem;
+  min-width: 10px;
+}
+
+.timepicker .input-group-addon img {
+  padding: 0px;
+}
+
+body .gform_wrapper .top_label div.ginput_container {
+  margin-top: 0px;
+}
+
+select {
+  border-top-width: 1px;
+  line-height: 2rem;
+border-top-left-radius: 6px;
+  color: $dark;
+  height: 50px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: calc(4.25rem + 2px);
+}
+
+select option {
+  padding: 2rem;
+}
+
+
+
+.gform_wrapper .gform_footer {
+  text-align: center;
+}
+
+.large {
+  width: 100%;
+
+}
+
+.gform_fields input {
+  background: $white;
+  height: 52px;
+  border: 1px solid $bg-grey-form;
+border-radius: 4px;
+
+}
+
+.gfield_label {
+  display: none;
+}
+
+.gfield {
+  padding: .6rem 1.2rem .6rem 0rem;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+}
+
+.dropdown-toggle::after {
+    display:none
+}
+
+.select2-container .select2-selection--single {
+  background: $bg-grey;
+  height: 52px;
+  border: 0px solid #aaa;
+border-radius: 4px
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: $dark;
+  line-height: 50px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background: $brand-red;
+}
+
+
+
+input-group-addon:not(:last-child) {
+  border-right: 1px solid #fff;
+//  border-left: 0px solid #fff;
+}
+
+.reveal-if-active_2 {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  transform: scale(0.8);
+  transition: 0.5s;
+  width: 340px;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  transform: scale(0.8);
+  transition: 0.5s;
+  width: 340px;
+
+  label {
+    display: block;
+    margin: 0 0 3px 0;
+  }
+  input[type=text] {
+    width: 100%;
+  }
+
+  input[type="radio"]#radio1:checked ~ & {
+    opacity: 1;
+    max-height: 100px;
+    padding: 0px 0px;
+    transform: scale(1);
+    overflow: visible;
+  }
+
+  input[type="radio"]#radio2:checked ~ & {
+    opacity: 1;
+    max-height: 100px;
+    padding: 0px 0px;
+    transform: scale(1);
+    overflow: visible;
+  }
+
+  input[type="radio"]#radio3:checked ~ & {
+    opacity: 1;
+    max-height: 100px;
+    padding: 0px 0px;
+    transform: scale(1);
+    overflow: visible;
+  }
+
+}
+
+
+input[type=radio].custom-radio {
+   border: 0;
+   clip: rect(0 0 0 0);
+   height: 1px;
+   margin: -1px;
+   overflow: hidden;
+   padding: 0;
+   position: absolute;
+  width: 1px;
+}
+
+input[type=radio].custom-radio#radio1 ~ label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f072";
+    letter-spacing: 10px;
+    font-size: 1.2em;
+    color: #535353;
+    width: 1.4em;
+}
+
+input[type=radio].custom-radio#radio2 ~ label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f21a";
+    letter-spacing: 10px;
+    font-size: 1.2em;
+    color: #535353;
+    width: 1.4em;
+}
+
+input[type=radio].custom-radio#radio3 ~ label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f041";
+    letter-spacing: 10px;
+    font-size: 1.2em;
+    color: #535353;
+    width: 1.4em;
+}
+
+input[type=radio].custom-radio:checked ~ label:before {
+    content: "\f1b9";
+    font-size: 1.2em;
+    color: $brand-red;
+    letter-spacing: 5px;
+}
+
+input[type=radio].custom-radio:focus ~ label:before,
+input[type=radio].custom-radio:focus ~ label
+{
+    color: $brand-red;
+}
+
+.require-if-active.port-position {
+  margin-left: -109px;
+}
+
+.require-if-active.location-position {
+  margin-left: -215px;
+}
+
+
+.wc-bookings-booking-form fieldset {
+    margin: 0;
+    line-height: 2.25em;
+}
+
+.wc-bookings-booking-form {
+  border: 0px solid #ddd;
+
+    margin: 2rem 0 0 0;
+}
+
+.wc-bookings-booking-cost {
+  font-size: 1.5rem;
+}
+
+.cart {
+  background: $bg-grey-form;
+}
+.input-group-addon:not(:last-child) {
+  background: $white;
+  border-right: 1px solid $border-grey-form;
+
+}
+
+.input-group-addon {
+    padding: .5rem .75rem;
+    margin-bottom: 0;
+    font-family: 'HelveticaNeue-Light',sans-serif;
+    font-size: .8rem!important;
+    letter-spacing: 2px;
+    line-height: 1rem!important;
+    text-align: center;
+    color: #495057;
+    text-align: center;
+    background-color: $white;
+    border: 0px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 'FontAwesome','HelveticaNeue-Bold',sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.01rem;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-calendar-o:before {
+    //content: "\f133";
+    padding: 0 .8rem 0 0;
+}
+.fa-map-o:before {
+  //  content: "\f278";
+    padding: 0 .8rem 0 0;
+}
+
+.label {
+      min-width: 140px;
+}
+
+.second_step textarea {
+  height: 136px;
+  }

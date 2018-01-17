@@ -25,7 +25,7 @@ $label   = $field['label'];
 $name    = $field['name'];
 $options = $field['options'];
 ?>
-<p class="form-field form-field-wide <?php echo implode( ' ', $class ); ?>">
+<p class="form-field form-field-wide 2 <?php echo implode( ' ', $class ); ?>">
 	<label for="<?php echo $name; ?>"><?php echo $label; ?>:</label>
 	<select name="<?php echo $name; ?>" id="<?php echo $name; ?>">
 		<?php foreach ( $options as $key => $value ) : ?>
@@ -33,4 +33,3 @@ $options = $field['options'];
 		<?php endforeach; ?>
 	</select>
 </p>
-

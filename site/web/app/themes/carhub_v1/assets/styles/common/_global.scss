@@ -1,0 +1,116 @@
+.test {
+  border: 1px solid red;
+}
+
+.hidden {
+  display: none;
+
+}
+
+.perday {
+  color: $white;
+font-family: 'HelveticaNeue-Thin', sans-serif;
+font-size: 1.15rem;
+letter-spacing: .15rem;
+text-transform: uppercase;
+}
+.formbg {
+  background: $white;
+}
+.carousel {
+    z-index: 500;
+}
+
+.carousel-inner:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height:68%;
+  background-color: $white;
+  z-index: -1;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  transition: all .1s linear;
+}
+
+@media (max-width: 575px) {
+
+.logo {
+  width: 50%;
+  height: auto;
+  padding: 3rem;
+}
+.navbar h1 {
+  color: $brand-red;
+font-family: 'HelveticaNeue-Light',sans-serif;
+font-size: .8rem!important;
+letter-spacing: 2px;
+line-height: 1rem!important;
+text-align: center;
+text-transform: uppercase;
+}
+  .paral h1 {
+      color: #fff;
+      font-size: 2rem!important;
+      letter-spacing: 3px!important;
+      line-height: 25px!important;
+  },
+
+
+  .paral h2 {
+
+  font-size: 3rem!important;
+  letter-spacing: .16rem!important;
+  line-height: 2rem!important;
+},
+.paral h3 {
+  color: $brand-red;
+    font-family: 'HelveticaNeue-Light',sans-serif;
+    font-size: .75rem!important;
+    letter-spacing: .15rem;
+    text-align: center;
+    line-height: 30px;
+    text-transform: uppercase;
+},
+  .navbar {
+    padding: .5rem 0rem!important;
+    transition: padding .5s;
+  },
+.forma {
+  padding: 0rem!important;
+},
+  /* Remove Bottom Margin from Jumbotron */
+.jumbotron{
+  margin: -180px 0 0 0!important;
+  padding: 140px 0 0!important;
+},
+
+.paralsec {
+  background-size: 100% 63% !important;
+},
+
+.underline_arrow {
+  font-size: 1.6rem!important;
+  background-size: 20%!important;
+},
+.cars-slider_item-option h6 {
+  font-size: .8rem!important;
+  color: $dark!important;
+},
+.carousel-control-prev {
+  top: 34%!important;
+},
+
+.carousel-control-next {
+  top: 34%!important;
+},
+.attribute_row {
+  padding: .5rem 0 4rem 0 !important
+}
+}
+
+.wc-bookings-booking-form fieldset input {
+    width: 30%;
+}
