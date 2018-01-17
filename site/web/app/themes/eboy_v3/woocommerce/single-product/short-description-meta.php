@@ -28,7 +28,7 @@ if ( ! $post->post_excerpt ) {
 ?>
 <div class="container">
 	<div class="row">
-<div class="col-12 col-lg-8 product_description">
+<div class="col-12 col-lg-8 product_description pl-0">
 		<?php the_title( '<h1 class="product_title entry-title my-4">', '</h1>' ); ?>
 
     <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ); ?>
