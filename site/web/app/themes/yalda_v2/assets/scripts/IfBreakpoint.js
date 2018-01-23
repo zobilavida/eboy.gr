@@ -94,8 +94,8 @@
  var tlxl4 = new TimelineLite();
  tlxl4.to(".img4", 1, {x:-90, y:-15});
 
-  var tlxl5 = new TimelineLite();
-  tlxl5.to(".img5", 1, {x:-37, y:-95});
+  var tlxl6 = new TimelineLite();
+  tlxl6.to(".img6", 1, {x:-37, y:-95});
  }
 
  }

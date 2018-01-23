@@ -72,7 +72,7 @@
                           </div>
                           <div class="col-4">
                             <a href="<?php echo $image_4['url']; ?>">
-                                 <img class="img-fluid img5" src="<?php echo $image_4['sizes']['large']; ?>" alt="<?php echo $image_4['alt']; ?>" />
+                                 <img class="img-fluid img6" src="<?php echo $image_4['sizes']['large']; ?>" alt="<?php echo $image_4['alt']; ?>" />
                                  <p class="d-flex justify-content-center"><?php echo $image_4['caption']; ?></p>
                             </a>
                           </div>
