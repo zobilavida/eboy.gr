@@ -23,10 +23,10 @@
         );
     ?>
   </div>
-  <div class="col-lg-10 p-0 ">
     <?php while (have_posts()) : the_post(); ?>
-      <article <?php post_class(); ?>>
-
+  <?php if (in_category( 'collection_1' )) : ?>
+    <div class="col-lg-10 p-0 ">
+        <article <?php post_class(); ?>>
         <div class="entry-content">
           <?php the_content(); ?>
           <?php
@@ -46,8 +46,59 @@
                   <?php endforeach; ?>
               </div>
           <?php endif; ?>
+
         </div>
     </div>
+    <?php endif;?>
+
+
+    <?php if (in_category( 'collection_2' )) : ?>
+      <div class="col-lg-10 p-0 ">
+          <article <?php post_class(); ?>>
+          <div class="entry-content">
+            <?php
+            $images = get_field('collection_gallery');
+            $image_1 = $images[0];
+            $image_2 = $images[1];
+            $image_3 = $images[2];
+            if( $images ): ?>
+                <div class="row">
+
+                        <div class="col-12 col-lg-8 d-flex justify-content-center pt-5 test">
+                            <a href="<?php echo $image_1['url']; ?>">
+                                 <img class="img-fluid" src="<?php echo $image_1['sizes']['large']; ?>" alt="<?php echo $image_1['alt']; ?>" />
+                                 <p class="d-flex justify-content-center"><?php echo $image_1['caption']; ?></p>
+                            </a>
+
+                        </div>
+
+                        <div class="col-12 col-lg-4 test">
+                          <div class="row">
+                              <div class="col-12 test">
+                            <a href="<?php echo $image_2['url']; ?>">
+                                 <img src="<?php echo $image_2['sizes']['medium']; ?>" alt="<?php echo $image_2['alt']; ?>" />
+                                 <p class="d-flex justify-content-center"><?php echo $image_2['caption']; ?></p>
+                            </a>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-12 test">
+                            <a href="<?php echo $image_3['url']; ?>">
+                                 <img src="<?php echo $image_3['sizes']['medium']; ?>" alt="<?php echo $image_3['alt']; ?>" />
+                                 <p class="d-flex justify-content-center"><?php echo $image_3['caption']; ?></p>
+                            </a>
+                            </div>
+                          </div>
+                        </div>
+
+                </div>
+            <?php endif; ?>
+<?php the_content(); ?>
+          </div>
+      </div>
+      <?php endif;?>
+
+
   </div>
 
     <footer>

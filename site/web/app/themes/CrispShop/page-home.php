@@ -20,7 +20,7 @@ get_header(); ?>
 			<a href="<?php echo get_theme_mod('crispshop_banner_link', '/shop/'); ?>"><img src="<?php echo get_theme_mod('crispshop_home_banner', $banner); ?>" /></a>
 		</div>
 
-		<div class="product-block">
+		<div class="product-block 2">
 			<h3><span>Featured Products</span></h3>
 
 			<ul class="products">
@@ -29,7 +29,7 @@ get_header(); ?>
 					'stock'       =>  1,
 					'showposts'   =>  9,
 					'orderby'     =>  'date',
-					'meta_query'  =>  [ 
+					'meta_query'  =>  [
 						['key' => '_featured', 'value' => 'yes' ]
 					]
 				]);

@@ -3,34 +3,34 @@ function crispshop_scripts() {
     $fonts = array();
     $fonts[] = get_theme_mod('crispshop_site_font', 'open_sans');
     $fonts[] = get_theme_mod('crispshop_site_hfont', 'open_sans');
-    
+
     if (in_array("droid_sans", $fonts)) {
         wp_enqueue_style( 'crispshop-droid', 'https://fonts.googleapis.com/css?family=Droid+Sans:400,700' );
-    } 
+    }
 
     if (in_array("open_sans", $fonts)) {
         wp_enqueue_style( 'crispshop-open', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i' );
-    } 
+    }
 
     if (in_array("oswald", $fonts)) {
         wp_enqueue_style( 'crispshop-oswald', 'https://fonts.googleapis.com/css?family=Oswald:300,400,700' );
-    } 
+    }
 
     if (in_array("pt_sans", $fonts)) {
         wp_enqueue_style( 'crispshop-pt', 'https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i' );
-    } 
+    }
 
     if (in_array("lato", $fonts)) {
         wp_enqueue_style( 'crispshop-lato', 'https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i' );
-    } 
+    }
 
     if (in_array("raleway", $fonts)) {
         wp_enqueue_style( 'crispshop-raleway', 'https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i' );
-    } 
+    }
 
     if (in_array("ubuntu", $fonts)) {
         wp_enqueue_style( 'crispshop-ubuntu', 'https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i' );
-    } 
+    }
 
     if (empty($fonts)) {
         wp_enqueue_style( 'crispshop-open', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i' );
@@ -57,12 +57,12 @@ function crispshop_scripts() {
     if (is_singular('product')) {
         wp_enqueue_script( 'crispshop-bxslider', get_template_directory_uri() . '/js/jquery.bxslider.min.js', array('jquery'), '4.2.12', true );
         wp_enqueue_script( 'crispshop-single', get_template_directory_uri() . '/js/crispshop-single.js', array('jquery'), '1.0.0', true );
-        wp_localize_script( 'crispshop-single', 'crispshop_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+      //  wp_localize_script( 'crispshop-single', 'crispshop_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
     }
 
     if (is_shop() || is_product_category()) {
         wp_enqueue_script( 'crispshop-archive', get_template_directory_uri() . '/js/crispshop-archive.js', array('jquery'), '1.0.0', true );
-        wp_localize_script( 'crispshop-archive', 'crispshop_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+      //  wp_localize_script( 'crispshop-archive', 'crispshop_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
     }
 
     wp_enqueue_script( 'crispshop-scripts', get_template_directory_uri() . '/js/crispshop-script.js', array('jquery'), '1.0.0', true );
@@ -84,7 +84,7 @@ function crispshop_custom_css() {
     $site_size = get_theme_mod('crispshop_site_font_size', '14px');
     $site_style = get_theme_mod('crispshop_site_font_style', '400');
     $site_color = get_theme_mod('crispshop_site_font_color', '#111');
-    
+
     $site_css = 'body {';
     if ($background) {
         $site_css .= ' background: ' . $background .'; ';
@@ -240,7 +240,7 @@ function crispshop_custom_css() {
     $site_css .= get_theme_mod('crispshop_custom_css');
 
     wp_add_inline_style( 'crispshop-custom', $site_css );
-    
+
 }
 
 add_action( 'wp_enqueue_scripts', 'crispshop_custom_css' );

@@ -107,6 +107,8 @@ function assets() {
 $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
   wp_enqueue_script('jquery-form');
+  wp_enqueue_script( 'crispshop',  Assets\asset_path('scripts/crispshop.js'), array('jquery'), '1.0.0', true );
+  wp_localize_script( 'crispshop', 'crispshop_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
   //wp_enqueue_script('sage/gijgo', Assets\asset_path('scripts/gijgo.js'), ['sage/js'], null, true);
   //wp_enqueue_script('sage/add-to-cart', Assets\asset_path('scripts/add-to-cart.js'), array( 'jquery' ), WC_VERSION, true );
 //  wp_enqueue_script( 'wc-bookings-booking-form', WC_BOOKINGS_PLUGIN_URL . '/assets/js/booking-form.js', array( 'jquery', 'jquery-blockui' ), WC_BOOKINGS_VERSION, true );

@@ -16,6 +16,7 @@ $sage_includes = [
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
   'lib/customizer.php' // Theme customizer
+
 ];
 
 foreach ($sage_includes as $file) {
@@ -54,7 +55,7 @@ function themeslug_theme_customizer( $wp_customize ) {
     'description' => 'Upload a logo to replace the default site name and description     in the header',
 ) );
 $wp_customize->add_setting( 'themeslug_logo' );
-$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     'themeslug_logo', array(
+$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'themeslug_logo', array(
     'label'    => __( 'Logo', 'themeslug' ),
     'section'  => 'themeslug_logo_section',
     'settings' => 'themeslug_logo',
@@ -142,32 +143,7 @@ remove_action ('woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40) ;
 
 
-function woocommerce_template_loop_cart( $booking_id ) {
-  $product_id = get_post_meta( $booking_id, '_booking_product_id', true );
-  $product   = wc_get_product( $product_id );
 
-  if ( ! is_a( $product, 'WC_Product_Accommodation_Booking' ) ) {
-    return;
-  }
-
-    echo 'Test';
-    global $woocommerce;
-   $items = $woocommerce->cart->get_cart();
-
-       foreach($items as $item => $values) {
-           $_product =  wc_get_product( $values['data']->get_id());
-           echo "<b>".$_product->get_title().'</b>  <br> Quantity: '.$values['quantity'].'<br>';
-           $price = get_post_meta($values['product_id'] , '_price', true);
-           $check_in  = WC_Product_Accommodation_Booking::get_check_times( 'in' );
-           $start = get_post_meta( $booking_id, '_booking_start', true );
-       		$end   = get_post_meta( $booking_id, '_booking_end', true );
-           echo "  Price: ".$price."<br>";
-           echo "  Check on: ".$check_in."<br>";
-           echo "  Check out: ".$start."<br>";
-
-       }
-}
-add_action ('woocommerce_cart_front', 'woocommerce_template_loop_cart', 10) ;
 
 
 
@@ -477,80 +453,6 @@ function wc_custom_redirect_after_purchase() {
  }
 }
 
-
-add_action('wp_footer', 'my_custom_wc_button_script');
-function my_custom_wc_button_script() {
-	?>
-	<script>
-		jQuery(document).ready(function($) {
-			var ajaxurl = "<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>"; // get the url we use to submit AJAX
-			$( document.body).on('click', '.wc-bookings-date-picker-date-fields', function(e) { // i made this delegated, rather than a traditional click handler, so you could add additional buttons via AJAx, if you ever wanted to
-				e.preventDefault(); // stop the click from doing normal button things
-				var $this = $(this);
-				if( $this.is(':disabled') ) { // don't do anything if the button is disabled (item is in cart)... this could be changed to toggle whether you are in cart or not
-					return;
-				}
-				var id = $(this).data("product-id"); // get the product ID from the button
-				var data = { // prep our AJAX request
-					action     : 'my_custom_add_to_cart', // This is the AJAX function we define in PHP below
-					product_id : id
-				};
-				$.post(ajaxurl, data, function(response) {
-					if( response.success ) {
-						// we added to cart so change the message, and make sure no one can add again
-						$this.text("added to cart");
-						$this.attr('disabled', 'disabled');
-						// make woocommerce update cart counts in the menu widget
-						$( document.body ).trigger( 'wc_fragment_refresh' );
-					}
-				}, 'json');
-			})
-		});
-	</script>
-	<?php
-}
-// here's where we define the ajax processing functions.. the part after wp_ajax, and wp_ajax_nopriv has to match the action we used in our javascript
-add_action('wp_ajax_my_custom_add_to_cart', "my_custom_add_to_cart");
-add_action('wp_ajax_nopriv_my_custom_add_to_cart', "my_custom_add_to_cart");
-
-function my_custom_add_to_cart() {
-	// just setting up data to return... we override this as we go
-	$retval = array(
-		'success' => false,
-		'message' => ""
-	);
-
-	if( !function_exists( "WC" ) ) {
-		// check if woocommerce is installed
-		$retval['message'] = "woocommerce not installed";
-	} elseif( empty( $_POST['product_id'] ) ) {
-		// check product id was sent
-		$retval['message'] = "no product id provided";
-	} else {
-		$product_id = $_POST['product_id'];
-		// my_custom_cart_contains is defined below.. checks if the cart contains a product
-		if( my_custom_cart_contains( $product_id ) ) {
-			// make sure we can't add a product twice
-			$retval['message'] = "product already in cart";
-		} else {
-			// we are good to add to cart
-			$cart = WC()->cart;
-			//add_to_cart returns an id, but we only need to make sure it doesn't return false... hence casting to a boolean
-			$retval['success'] = (bool) $cart->add_to_cart( $product_id );
-			if( !$retval['success'] ) {
-				// the add to cart failed
-				$retval['message'] = "product could not be added to cart";
-			} else {
-				// the add succeeded
-				$retval['message'] = "product added to cart";
-			}
-		}
-	}
-	// we send the data back to javascript by outputting it as JSON, and exiting.
-	echo json_encode( $retval );
-	wp_die();
-}
-
 // check if cart contains product
 function my_custom_cart_contains( $product_id ) {
 	$cart = WC()->cart;
@@ -576,39 +478,3 @@ function woo_custom_add_to_cart_before( $cart_item_data ) {
     // Do nothing with the data and return
     return true;
 }
-
-
-/**
- * Add product to cart on page load
- */
- add_action( 'template_redirect', 'bbloomer_add_product_to_cart' );
-
- function bbloomer_add_product_to_cart() {
-
-                 // select ID
-                 $product_id = 851;
-
-                 //check if product already in cart
-         if ( WC()->cart->get_cart_contents_count() == 0 ) {
-
-                         // if no products in cart, add it
-             WC()->cart->add_to_cart( $product_id );
-
-                 }
- }
-
- function single_post_insert() {
-        $new_post = array(
-        'post_title'    => $_POST['title'],
-        'post_content'  => $_POST['content'],
-        'post_status'   => 'publish',
-        'post_type'     => 'post'
-        );
-        //insert the the post into database by passing $new_post to wp_insert_post
-        //store our post ID in a variable $pid
-        $pid = wp_insert_post($new_post);
-    echo json_encode(array('flag'=>'1'));
-  die;
-}
-add_action( 'wp_ajax_single_post', 'single_post_insert' );    // If called from admin panel
-add_action( 'wp_ajax_nopriv_single_post', 'single_post_insert' );

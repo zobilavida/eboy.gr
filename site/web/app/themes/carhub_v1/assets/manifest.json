@@ -12,31 +12,12 @@
       ],
       "main": true
     },
-    "add-to-cart.js": {
+    "crispshop.js": {
    "files": [
-     "scripts/add-to-cart.js"
+     "scripts/crispshop.js"
  ]
  },
- "cart-fragments.js": {
-"files": [
-  "scripts/cart-fragments.js"
-]
-},
-"js.cookie.js": {
-"files": [
- "scripts/js.cookie.js"
-]
-},
-"single-product.js": {
-"files": [
- "scripts/single-product.js"
-]
-},
-"woocommerce.js": {
-"files": [
- "scripts/woocommerce.js"
-]
-},
+
     "jquery.js": {
       "bower": ["jquery"]
     }
