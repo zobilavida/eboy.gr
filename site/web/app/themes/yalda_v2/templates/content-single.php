@@ -1,10 +1,7 @@
 <div class="container-fluid ">
   <div class="row">
     <div class="col-12 d-flex justify-content-center p-0 ">
-  <header>
-    <h1 class="entry-title"><?php the_title(); ?></h1>
 
-  </header>
   </div>
 </div>
   <div class="row">
@@ -61,20 +58,31 @@
             $image_1 = $images[0];
             $image_2 = $images[1];
             $image_3 = $images[2];
+            $image_4 = $images[3];
             if( $images ): ?>
                 <div class="row">
 
-                        <div class="col-12 col-lg-8 d-flex justify-content-center pt-5 test">
+                        <div class="col-12 col-lg-8 d-flex justify-content-center pt-5 ">
+                          <div class="row">
+                          <div class="col-12">
                             <a href="<?php echo $image_1['url']; ?>">
                                  <img class="img-fluid" src="<?php echo $image_1['sizes']['large']; ?>" alt="<?php echo $image_1['alt']; ?>" />
                                  <p class="d-flex justify-content-center"><?php echo $image_1['caption']; ?></p>
                             </a>
+                          </div>
+                          <div class="col-4">
+                            <a href="<?php echo $image_4['url']; ?>">
+                                 <img class="img-fluid img5" src="<?php echo $image_4['sizes']['large']; ?>" alt="<?php echo $image_4['alt']; ?>" />
+                                 <p class="d-flex justify-content-center"><?php echo $image_4['caption']; ?></p>
+                            </a>
+                          </div>
+                          </div>
 
                         </div>
 
-                        <div class="col-12 col-lg-4 test">
+                        <div class="col-12 col-lg-4 ">
                           <div class="row">
-                              <div class="col-12 test">
+                              <div class="col-12 ">
                             <a href="<?php echo $image_2['url']; ?>">
                                  <img src="<?php echo $image_2['sizes']['medium']; ?>" alt="<?php echo $image_2['alt']; ?>" />
                                  <p class="d-flex justify-content-center"><?php echo $image_2['caption']; ?></p>
@@ -82,7 +90,7 @@
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-12 test">
+                            <div class="col-12 ">
                             <a href="<?php echo $image_3['url']; ?>">
                                  <img src="<?php echo $image_3['sizes']['medium']; ?>" alt="<?php echo $image_3['alt']; ?>" />
                                  <p class="d-flex justify-content-center"><?php echo $image_3['caption']; ?></p>
@@ -93,7 +101,12 @@
 
                 </div>
             <?php endif; ?>
-<?php the_content(); ?>
+            <div class="row">
+              <div class="col-12 text-center">
+                 <?php the_content(); ?>
+
+            </div>
+            </div>
           </div>
       </div>
       <?php endif;?>
