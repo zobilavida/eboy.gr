@@ -2,7 +2,9 @@
 <div class="container-fluid ">
   <div class="row">
     <div class="col-3 my-auto">
-
+      <a href="<?= esc_url(home_url('/')); ?>">
+  <img id="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo">
+</a>
       <p>
       <a class="d-lg-none" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myFunction(this)">
     <img src="<?= get_template_directory_uri(); ?>/assets/images/menu.svg" class="menu-icon" alt="Web developer"/>
@@ -12,9 +14,7 @@
 
 </div>
     <div class="col-6">
-      <a href="<?= esc_url(home_url('/')); ?>">
-  <img id="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo">
-</a>
+
 </div>
     <div class="col-3">
 
