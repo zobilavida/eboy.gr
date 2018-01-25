@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-2  d-none d-lg-block">
   <a href="<?= esc_url(home_url('/')); ?>">
-<img id="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo">
+<img id="logo-main" class="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo">
 </a>
   <?php
       wp_nav_menu( array(
