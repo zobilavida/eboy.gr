@@ -61,7 +61,14 @@
 </div>
 
 </div>
-<div class="row  ">
+<div class="row ">
+   <div class="col-12 py-5 px-0">
+
+
+     <?php the_content(); ?>
+
+
+   </div>
   <?php if( get_field('photo_05') ): ?>
  <div class="col-12 py-5 px-0">
    <img class="img-fluid img5" src="<?php the_field('photo_05'); ?>" />
