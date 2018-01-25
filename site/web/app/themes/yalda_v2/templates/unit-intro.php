@@ -65,7 +65,7 @@
    <div class="col-12 py-5 px-0">
 
 
-     <?php the_content(); ?>
+    <?php echo get_post_field('post_content', $post->ID); ?>
 
 
    </div>
