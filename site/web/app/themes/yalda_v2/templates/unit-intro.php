@@ -1,5 +1,5 @@
 <section class="intro">
-<div class="container-fluid p-0">
+<div class="container-fluid py-4">
 <div class="row">
 <div class="col-2  d-none d-lg-block">
   <a href="<?= esc_url(home_url('/')); ?>">
