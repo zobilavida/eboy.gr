@@ -61,16 +61,29 @@
 </div>
 
 </div>
-<div class="row ">
-   <div class="col-12 py-5 px-0">
-
+<div class="row">
+   <div class="col-3 py-5 text_front">
 
     <?php echo get_post_field('post_content', $post->ID); ?>
 
+   </div>
+   <div class="col-3 py-5 text_front">
+
+    <?php echo get_post_field('post_content', $post->ID); ?>
+
+   </div>
+   <div class="col-3 py-5 text_front">
+
+    <?php echo get_post_field('post_content', $post->ID); ?>
+
+   </div>
+   <div class="col-3 py-5 text_front">
+
+    <?php echo get_post_field('post_content', $post->ID); ?>
 
    </div>
   <?php if( get_field('photo_05') ): ?>
- <div class="col-12 py-5 px-0">
+ <div class="col-12">
    <img class="img-fluid img5" src="<?php the_field('photo_05'); ?>" />
    </div>
  <?php endif; ?>
