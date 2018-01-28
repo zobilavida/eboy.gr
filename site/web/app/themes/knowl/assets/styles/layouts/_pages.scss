@@ -1,0 +1,78 @@
+.intro {
+  min-height: 40vh;
+}
+
+
+.right-image {
+  min-height: 100vh;
+}
+
+
+
+/* Buddypress
+-------------------------------------------------*/
+
+.user-nicename {
+  padding: 15px 0px 0px 0px;
+}
+
+.profile-avatar img.avatar {
+  border: 4px solid #00a1c7;
+}
+
+#buddypress div.item-list-tabs ul li a span {
+  background: #eee;
+border-radius: 50%;
+border: 1px solid #ccc;
+color: #6c6c6c;
+display: inline;
+font-size: 70%;
+margin-left: 2px;
+padding: 3px 6px;
+text-align: center;
+vertical-align: middle;
+position: relative;
+right: 10px;
+top: -10px;
+}
+
+h3 .alert {
+  font-size: 1rem;
+}
+
+#members-dir-list a:hover img.avatar {
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+filter: grayscale(100%);
+-webkit-transition: -webkit-filter 0.2s ease-in-out;
+-moz-transition: -moz-filter 0.2s ease-in-out;
+transition: filter 0.2s ease-in-out;
+}
+
+#buddypress #members-list li {
+overflow: auto;
+list-style: none;
+float: left;
+width: 30%;
+margin: 0 20px 28px 0;
+border: 0;
+}
+
+#buddypress #members-dir-list ul.item-list li div.item-title, #buddypress #members-dir-list  ul.item-list li h4, #buddypress #members-dir-list ul.item-list li div.item-meta
+ {
+width: 100%;
+text-align: center;
+}
+
+#buddypress #members-dir-list ul.item-list li div.item-title {
+font-size: 110%;
+}
+
+#buddypress #members-dir-list ul.item-list li div.item-meta {
+text-transform: uppercase;
+font-size: 80%;
+}
+
+#buddypress #members-dir-list ul.item-list li img.avatar {
+margin-bottom: 8px;
+}

@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "scripts/main.js"
+      ],
+      "main": true
+    },
+    "main.css": {
+      "files": [
+        "styles/main.scss"
+      ],
+      "main": true
+    },
+    "customizer.js": {
+      "files": [
+        "scripts/customizer.js"
+      ]
+    },
+    "my_script.js": {
+      "files": [
+        "scripts/my_script.js"
+      ]
+    },
+
+    "jquery.js": {
+      "bower": ["jquery"]
+    }
+  },
+  "config": {
+    "devUrl": "http://eboy.dev/knowl/"
+  }
+}

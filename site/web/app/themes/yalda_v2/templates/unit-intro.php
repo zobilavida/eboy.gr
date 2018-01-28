@@ -21,7 +21,7 @@
 </div>
 <div class="col-lg-10 p-0  ">
   <?php    // The Query
-     $recentposts = get_posts('numberposts=1&category=2');
+     $recentposts = get_posts('numberposts=1&category=215');
      foreach ($recentposts as $post) :
          setup_postdata($post); $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'large' ); ?>
          <div class="container-fluid float-left">

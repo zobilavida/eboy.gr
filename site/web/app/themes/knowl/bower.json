@@ -1,0 +1,35 @@
+{
+  "name": "sage",
+  "homepage": "https://roots.io/sage/",
+  "authors": [
+    "Ben Word <ben@benword.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0-beta",
+    "gsap": "^1.19.0",
+    "scrollmagic": "^2.0.5",
+    "Stickyfill": "^1.1.4",
+    "ekko-lightbox": "^5.0.0"
+  },
+  "overrides": {
+    "gsap": {
+      "main": [
+        "./src/uncompressed/TweenMax.js",
+        "./src/uncompressed/plugins/ScrollToPlugin.js"
+      ]
+    },
+    "scrollmagic": {
+      "main": [
+        "./scrollmagic/uncompressed/ScrollMagic.js",
+        "./scrollmagic/uncompressed/plugins/animation.gsap.js"
+      ]
+    },
+    "Stickyfill": {
+      "main": [
+        "./src/stickyfill.js"
+      ]
+    }
+  }
+}
