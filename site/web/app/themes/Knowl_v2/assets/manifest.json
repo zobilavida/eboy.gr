@@ -17,11 +17,6 @@
         "scripts/customizer.js"
       ]
     },
-    "modernizr.js": {
-      "files": [
-        "scripts/modernizr.js"
-      ]
-    },
     "jquery.js": {
       "bower": ["jquery"]
     }
