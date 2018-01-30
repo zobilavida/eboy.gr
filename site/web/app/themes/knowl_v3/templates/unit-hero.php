@@ -10,7 +10,8 @@
               // WP_Query arguments
               $args = array(
               	'post_type'              => array( 'services' ),
-              	'post_status'            => array( 'published' ),
+              //  'terms'                  => array( 'Εκπαιδεύσεις' ),
+              	'post_status'            => array( 'publish' ),
               );
 
               // The Query

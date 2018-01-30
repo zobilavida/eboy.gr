@@ -2,8 +2,20 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt">Meet Our Team</h2>
-        <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
+        <h2 class="module-title font-alt"><?php
+        $page = get_page_by_title( 'Ποιοι είμαστε' );
+
+        $title = apply_filters('the_content', $page->post_title);
+        echo $title;
+        ?></h2>
+        <div class="module-subtitle font-serif">
+          <?php
+          $page = get_page_by_title( 'Ποιοι είμαστε' );
+
+          $excerpt = apply_filters('the_content', $page->post_excerpt);
+          echo $excerpt;
+          ?>
+        </div>
       </div>
     </div>
     <div class="row">

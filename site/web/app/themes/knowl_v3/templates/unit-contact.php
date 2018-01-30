@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt">Get in touch</h2>
+        <h2 class="module-title font-alt">Επικοινωνία</h2>
         <div class="module-subtitle font-serif"></div>
       </div>
     </div>
@@ -10,7 +10,7 @@
       <div class="col-sm-6 col-sm-offset-3">
         <form id="contactForm" role="form" method="post" action="php/contact.php">
           <div class="form-group">
-            <label class="sr-only" for="name">Name</label>
+            <label class="sr-only" for="name">Όνομα</label>
             <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
             <p class="help-block text-danger"></p>
           </div>
@@ -24,7 +24,7 @@
             <p class="help-block text-danger"></p>
           </div>
           <div class="text-center">
-            <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+            <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Αποστολή</button>
           </div>
         </form>
         <div class="ajax-response font-alt" id="contactFormResponse"></div>

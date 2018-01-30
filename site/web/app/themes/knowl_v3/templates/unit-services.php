@@ -2,67 +2,67 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt">Υπηρεσίες</h2>
-        <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
+        <h2 class="module-title font-alt"><?php
+        $page = get_page_by_title( 'Εκπαιδεύσεις' );
+
+        $title = apply_filters('the_content', $page->post_title);
+        echo '<a href="https://eboy.gr/app/uploads/sites/4/2018/01/Alternative_Video_2.mp4">';
+        echo $title;
+        echo '</a>';
+        ?></h2>
+        <div class="module-subtitle font-serif">      <?php
+        $page = get_page_by_title( 'Εκπαιδεύσεις' );
+        $content = apply_filters('the_content', $page->post_excerpt);
+
+        echo $content;
+        ?></div>
       </div>
     </div>
     <div class="row multi-columns-row">
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-lightbulb"></span></div>
-          <h3 class="features-title font-alt">Ideas and concepts</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-bike"></span></div>
-          <h3 class="features-title font-alt">Optimised for speed</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-tools"></span></div>
-          <h3 class="features-title font-alt">Designs &amp; interfaces</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-gears"></span></div>
-          <h3 class="features-title font-alt">Highly customizable</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-tools-2"></span></div>
-          <h3 class="features-title font-alt">Coding &amp; development</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-genius"></span></div>
-          <h3 class="features-title font-alt">Features &amp; plugins</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-mobile"></span></div>
-          <h3 class="features-title font-alt">Responsive design</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="features-item">
-          <div class="features-icon"><span class="icon-lifesaver"></span></div>
-          <h3 class="features-title font-alt">Dedicated support</h3>
-          <p>Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <?php
+    // WP_Query arguments
+    $args = array(
+      'post_type'              => array( 'courses' ),
+    //  'terms'                  => array( 'Εκπαιδεύσεις' ),
+      'post_status'            => array( 'publish' ),
+    );
+
+    // The Query
+    $query = new WP_Query( $args );
+
+    // The Loop
+    if ( $query->have_posts() ) {
+      while ( $query->have_posts() ) {
+        $query->the_post();
+        // do something
+        echo '<div class="col-md-4 col-sm-6 col-xs-12 services-box">';
+
+        if ( has_post_thumbnail() ) :
+          the_post_thumbnail();
+          echo '</div>';
+          echo '<div class="col-9">';
+       endif;
+
+          the_title( '<h3>', '</h3>' );
+          $my_excerpt = get_the_excerpt();
+          if ( '' != $my_excerpt ) {
+              // Some string manipulation performed
+          }
+
+
+          echo '<h4>';
+          echo $my_excerpt; // Outputs the processed value to the page
+          echo '</h4>';
+            echo '</div>';
+
+
+                }
+        } else {
+          // no posts found
+        }
+
+        // Restore original Post Data
+        wp_reset_postdata();
+          ?>
+          </div>
+        </section>

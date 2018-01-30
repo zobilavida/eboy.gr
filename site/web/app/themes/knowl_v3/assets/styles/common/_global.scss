@@ -2063,3 +2063,48 @@ Google map
 .documentation-page a:hover {
   color: #1C92C9;
 }
+
+
+.services-box {
+  padding: 2rem;
+}
+
+$font-primary: #3d3d3d;
+
+
+.card {
+          margin: 0 auto;
+              background-color: transparent;
+                  border: 0px solid rgba(0,0,0,.125);
+          .carousel-item {
+            height: 200px;
+          }
+          .carousel-caption {
+            padding: 0;
+            right: 0;
+            left: 0;
+            color: $font-primary;
+            h3 {
+              color: $text_white_color;
+              font-size: 2rem;
+            }
+            p {
+              line-height: 30px;
+            }
+            .col-sm-3 {
+              display: flex;
+              align-items: center;
+            }
+            .col-sm-9 {
+              text-align: left;
+            }
+          }
+          .carousel-control-prev, .carousel-control-next {
+            color: $font-primary!important;
+            opacity: 1!important;
+          }
+        }
+
+        .bg-dark-60 {
+          background: $text_black_color;
+        }

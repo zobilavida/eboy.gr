@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="widget">
-          <h5 class="widget-title font-alt">About Titan</h5>
-          <p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
-          <p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
-          <p>Email:<a href="#">somecompany@example.com</a></p>
+          <h5 class="widget-title font-alt">About Knowl</h5>
+          <p>SOCIAL ENTERPRISE FOR LIFE LONG LEARNING.</p>
+          <p>Phone: +1 211 40< 47 438/p>
+          <p>Email:<a href="#">info@knowl.org</a></p>
         </div>
       </div>
       <div class="col-sm-3">

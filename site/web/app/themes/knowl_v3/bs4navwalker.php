@@ -122,7 +122,7 @@ class bs4Navwalker extends Walker_Nav_Menu
 
         // New
         if ($depth === 0) {
-            $atts['class'] = 'nav-link';
+            $atts['class'] = 'nav-link section-scroll';
         }
 
         if ($depth === 0 && in_array('menu-item-has-children', $classes)) {

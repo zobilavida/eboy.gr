@@ -2,7 +2,14 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt">Our Works</h2>
+        <h2 class="module-title font-alt"><?php
+        $page = get_page_by_title( 'Συνεργασίες' );
+
+        $title = apply_filters('the_content', $page->post_title);
+        echo '<a href="https://eboy.gr/app/uploads/sites/4/2018/01/Alternative_Video_2.mp4">';
+        echo $title;
+        echo '</a>';
+        ?></h2>
         <div class="module-subtitle font-serif"></div>
       </div>
     </div>
