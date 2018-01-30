@@ -1,5 +1,5 @@
 <section class="module bg-dark-60 parallax-bg presentation" data-background="assets/images/section-6.jpg">
-  <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=yOSL9L0efhQ', containment:'.presentation', startAt:0, mute:false, autoPlay:false, loop:true, opacity:0.25, showControls:true, showYTLogo:true, vol:25}"></div>
+  <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=yOSL9L0efhQ', containment:'.presentation', startAt:0, mute:false, autoPlay:false, loop:false, opacity:0.25, showControls:true, showYTLogo:true, vol:25}"></div>
 
   <div class="container">
     <div class="row">
