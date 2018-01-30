@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt">Our Services</h2>
+        <h2 class="module-title font-alt">Υπηρεσίες</h2>
         <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
       </div>
     </div>

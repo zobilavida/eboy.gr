@@ -2,9 +2,16 @@ a {
 	color: #111;
 }
 
+.navbar a {
+	color: #fff;
+		font-family: "cfastystd-light-webfont", sans-serif;
+		font-size: 1.3rem;
+		letter-spacing: 0rem;
+}
+
 a:hover, a:focus {
 	text-decoration: none;
-	color: #aaa;
+	color: $brand_color;
 	outline: 0;
 }
 
@@ -44,11 +51,12 @@ h4 {
 .upper {
 	font-family: "avertastdthin", sans-serif;
 	font-size: 2rem;
+	line-height: 8.5rem;
+margin: 0rem 1rem;
 }
 
-.navbar-brand {
-
-	padding: 2rem 0 0 0;
+.menu-item {
+	font-size: 2rem;
 }
 
 p, ol, ul, blockquote {
@@ -89,13 +97,16 @@ blockquote {
 }
 
 .module-title {
+	font-family: "cfastystd-book-webfont", sans-serif;
 	position: relative;
-	letter-spacing: 4px;
+	letter-spacing: 0.1rem;
 	text-align: center;
 	font-weight: 400;
-	font-size: 30px;
-	color: #111;
+	font-size: 2rem;
+	color: $text_grey_color;
 	margin: 0 0 70px;
+	background: url(../images/title_underline.svg) 50% 99% no-repeat!important;
+	padding: 0.5rem;
 }
 
 .module-subtitle {

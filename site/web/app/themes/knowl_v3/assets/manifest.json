@@ -17,6 +17,11 @@
         "scripts/customizer.js"
       ]
     },
+    "main_knowl.js": {
+      "files": [
+        "scripts/main_knowl.js"
+      ]
+    },
     "plugins.js": {
       "files": [
         "scripts/plugins.js"

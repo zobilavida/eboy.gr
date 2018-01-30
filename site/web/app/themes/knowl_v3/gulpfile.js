@@ -237,7 +237,10 @@ gulp.task('images', function() {
 gulp.task('jshint', function() {
   return gulp.src([
     'bower.json', 'gulpfile.js'
-  ].concat(project.js))
+  ].concat(project.js)
+  .concat('!assets/scripts/main_knowl.js')
+  .concat('!assets/scripts/plugins.js'))
+
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));

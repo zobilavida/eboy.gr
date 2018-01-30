@@ -42,3 +42,33 @@
          url('../fonts/avertastdbold.ttf') format('truetype'),
          url('../fonts/avertastdbold.svg#avertastdbold') format('svg');
 }
+
+@font-face {
+    font-family: 'cfastystd-book-webfont';
+    src: url('../fonts/cfastystd-book-webfont.eot');
+    src: url('../fonts/cfastystd-book-webfont.eot') format('embedded-opentype'),
+         url('../fonts/cfastystd-book-webfont.woff2') format('woff2'),
+         url('../fonts/cfastystd-book-webfont.woff') format('woff'),
+         url('../fonts/cfastystd-book-webfont.ttf') format('truetype'),
+         url('../fonts/cfastystd-book-webfont.svg#cfastystd-book-webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'cfastystd-light-webfont';
+    src: url('../fonts/cfastystd-light-webfont.eot');
+    src: url('../fonts/cfastystd-light-webfont.eot') format('embedded-opentype'),
+         url('../fonts/cfastystd-light-webfont.woff2') format('woff2'),
+         url('../fonts/cfastystd-light-webfont.woff') format('woff'),
+         url('../fonts/cfastystd-light-webfont.ttf') format('truetype'),
+         url('../fonts/cfastystd-light-webfont.svg#cfastystd-light-webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'cfastystd-medium-webfont';
+    src: url('../fonts/cfastystd-medium-webfont.eot');
+    src: url('../fonts/cfastystd-medium-webfont.eot') format('embedded-opentype'),
+         url('../fonts/cfastystd-medium-webfont.woff2') format('woff2'),
+         url('../fonts/cfastystd-medium-webfont.woff') format('woff'),
+         url('../fonts/cfastystd-medium-webfont.ttf') format('truetype'),
+         url('../fonts/cfastystd-medium-webfont.svg#cfastystd-medium-webfont') format('svg');
+}

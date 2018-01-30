@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-8 col-sm-offset-2">
-        <h2 class="module-title font-alt">Καλως ήρθατε στη Knowl</h2>
+        <h2 class="module-title font-alt">Ποιοι είμαστε</h2>
         <div class="module-subtitle font-serif large-text">Είμαστε μια ομάδα που ξεχωρίζει
 για τη συμπληρωματικότητα
 των γνώσεων, εμπειριών, ικανοτήτων και δεξιοτήτων των ανθρώπων της,
