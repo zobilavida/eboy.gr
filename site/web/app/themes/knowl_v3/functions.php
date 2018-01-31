@@ -266,3 +266,69 @@ function course() {
 
 }
 add_action( 'init', 'course', 0 );
+
+
+
+// Register Custom Post Type
+function portfolio() {
+
+	$labels = array(
+		'name'                  => _x( 'portfolio', 'Post Type General Name', 'knowl' ),
+		'singular_name'         => _x( 'Portfolio', 'Post Type Singular Name', 'knowl' ),
+		'menu_name'             => __( 'portfolio', 'knowl' ),
+		'name_admin_bar'        => __( 'Portfolio', 'knowl' ),
+		'archives'              => __( 'Item Archives', 'knowl' ),
+		'attributes'            => __( 'Item Attributes', 'knowl' ),
+		'parent_item_colon'     => __( 'Parent Item:', 'knowl' ),
+		'all_items'             => __( 'All Items', 'knowl' ),
+		'add_new_item'          => __( 'Add New Item', 'knowl' ),
+		'add_new'               => __( 'Add New Portfolio', 'knowl' ),
+		'new_item'              => __( 'New Item', 'knowl' ),
+		'edit_item'             => __( 'Edit Item', 'knowl' ),
+		'update_item'           => __( 'Update Item', 'knowl' ),
+		'view_item'             => __( 'View Item', 'knowl' ),
+		'view_items'            => __( 'View Items', 'knowl' ),
+		'search_items'          => __( 'Search Item', 'knowl' ),
+		'not_found'             => __( 'Not found', 'knowl' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'knowl' ),
+		'featured_image'        => __( 'Featured Image', 'knowl' ),
+		'set_featured_image'    => __( 'Set featured image', 'knowl' ),
+		'remove_featured_image' => __( 'Remove featured image', 'knowl' ),
+		'use_featured_image'    => __( 'Use as featured image', 'knowl' ),
+		'insert_into_item'      => __( 'Insert into item', 'knowl' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'knowl' ),
+		'items_list'            => __( 'Items list', 'knowl' ),
+		'items_list_navigation' => __( 'Items list navigation', 'knowl' ),
+		'filter_items_list'     => __( 'Filter items list', 'knowl' ),
+	);
+	$rewrite = array(
+		'slug'                  => 'portfolio',
+		'with_front'            => true,
+		'pages'                 => true,
+		'feeds'                 => true,
+	);
+	$args = array(
+		'label'                 => __( 'Portfolio', 'knowl' ),
+		'description'           => __( 'portfolio Description', 'knowl' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields', 'excerpt' ),
+		'taxonomies'            => array( 'category', 'post_tag' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'rewrite'               => $rewrite,
+		'capability_type'       => 'post',
+		'show_in_rest'          => false,
+	);
+	register_post_type( 'portfolio', $args );
+
+}
+add_action( 'init', 'portfolio', 0 );

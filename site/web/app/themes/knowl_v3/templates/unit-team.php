@@ -18,6 +18,20 @@
         </div>
       </div>
     </div>
+
+    <?php
+    $args2 = array(
+     'role' => 'editor',
+     'orderby' => 'user_nicename',
+     'order' => 'ASC'
+    );
+     $authors = get_users($args2);
+    echo '<ul>';
+     foreach ($authors as $user) {
+     echo '<li>' . $user->display_name.'['.$user->user_email . ']</li>';
+     }
+    echo '</ul>';
+    ?>
     <div class="row">
       <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
         <div class="team-item">
