@@ -24,7 +24,7 @@
           <li><a class="current wow fadeInUp" href="#" data-filter="*">All</a></li>
 
           <?php
-          $args = array('parent' => 20);
+          $args = array('parent' => 3);
           $categories = get_categories( $args );
           foreach($categories as $category) {
               echo '<li>';
