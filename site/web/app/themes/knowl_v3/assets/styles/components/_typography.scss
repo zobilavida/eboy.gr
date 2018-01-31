@@ -2,13 +2,6 @@ a {
 	color: #111;
 }
 
-.navbar a {
-	color: #fff;
-		font-family: "cfastystd-light-webfont", sans-serif;
-		font-size: 1.3rem;
-		letter-spacing: 0rem;
-}
-
 a:hover, a:focus {
 	text-decoration: none;
 	color: $brand_color;
@@ -27,22 +20,24 @@ h1 {
 	font-family: "avertastdbold", sans-serif;
 	font-size: 7.5rem;
 	letter-spacing: 0.04rem;
+	text-transform: uppercase;
 }
 
 h2 {
 	font-family: "avertastdthin", sans-serif;
-	    font-size: 5.5rem;
-	letter-spacing: 0.15rem;
+	font-size: 5.7rem;
+	letter-spacing: .3rem;
+	text-transform: uppercase;
 }
 
 h3 {
-	font-family: 'averta-light-webfont', sans-serif;
+	font-family: 'cfastystd-book-webfont', sans-serif;
 	        font-size: 1.7rem;
 	letter-spacing: 0.078rem;
 }
 
 h4 {
-	font-family: 'averta-light-webfont',sans-serif;
+	font-family: 'cfastystd-book-webfont', sans-serif;
 	    font-size: 0.85rem;
 	letter-spacing: 0.089rem;
 	line-height: 1.33rem;
