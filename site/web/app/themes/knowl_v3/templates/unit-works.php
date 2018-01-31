@@ -33,10 +33,7 @@
           }
           ?>
 
-          <li><a class="wow fadeInUp" href="#" data-filter=".illustration" data-wow-delay="0.2s">Illustration</a></li>
-          <li><a class="wow fadeInUp" href="#" data-filter=".marketing" data-wow-delay="0.4s">Marketing</a></li>
-          <li><a class="wow fadeInUp" href="#" data-filter=".photography" data-wow-delay="0.6s">Photography</a></li>
-          <li><a class="wow fadeInUp" href="#" data-filter=".webdesign" data-wow-delay="0.6s">Web Design</a></li>
+
         </ul>
       </div>
     </div>
@@ -73,46 +70,9 @@
   <?php endwhile; wp_reset_postdata(); ?>
   <?php endif; ?>
 
-    <li class="work-item illustration webdesign"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-1.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Corporate Identity</h3>
-          <div class="work-descr">Illustration</div>
-        </div></a>
-      </li>
 
 
 
 
-    <li class="work-item marketing photography"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-2.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Bag MockUp</h3>
-          <div class="work-descr">Marketing</div>
-        </div></a></li>
-    <li class="work-item illustration photography"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-3.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Disk Cover</h3>
-          <div class="work-descr">Illustration</div>
-        </div></a></li>
-    <li class="work-item marketing photography"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-4.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Business Card</h3>
-          <div class="work-descr">Photography</div>
-        </div></a></li>
-    <li class="work-item illustration webdesign"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-5.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Business Card</h3>
-          <div class="work-descr">Webdesign</div>
-        </div></a></li>
-    <li class="work-item marketing webdesign"><a href="portfolio-single-1.html">
-        <div class="work-image"><img src="assets/images/work-6.jpg" alt="Portfolio Item"/></div>
-        <div class="work-caption font-alt">
-          <h3 class="work-title">Business Cards in paper clip</h3>
-          <div class="work-descr">Marketing</div>
-        </div></a></li>
   </ul>
 </section>
