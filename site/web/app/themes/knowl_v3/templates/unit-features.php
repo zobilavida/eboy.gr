@@ -3,16 +3,16 @@
     <div class="row justify-content-center">
       <div class="col-sm-6 col-sm-offset-3">
         <h2 class="module-title font-alt"><?php
-        $page = get_page_by_title( 'Ιστορικό' );
+        $page = get_page_by_title( 'Προφίλ' );
 
         $title = apply_filters('the_content', $page->post_title);
-        $link = get_permalink( get_page_by_title( 'Ιστορικό' ) );
+        $link = get_permalink( get_page_by_title( 'Προφίλ' ) );
         echo '<a href="'.$link.'">';
         echo $title;
         echo '</a>';
         ?></h2>
         <div class="module-subtitle font-serif"><?php
-        $page = get_page_by_title( 'Ιστορικό' );
+        $page = get_page_by_title( 'Προφίλ' );
 
         $excerpt = apply_filters('the_content', $page->post_excerpt);
         echo $excerpt;

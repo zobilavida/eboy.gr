@@ -8,7 +8,7 @@
     <?php //get_template_part('templates/unit', 'about'); ?>
     <?php get_template_part('templates/unit', 'features'); ?>
     <hr class="divider-w">
-    <?php get_template_part('templates/unit', 'works_more'); ?>
+    <?php //get_template_part('templates/unit', 'works_more'); ?>
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'services'); ?>
     <hr class="divider-w">

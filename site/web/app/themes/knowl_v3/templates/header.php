@@ -10,15 +10,6 @@
          </button>
          <div id="navbarNavDropdown" class="navbar-collapse collapse">
              <ul class="navbar-nav mr-auto">
-                 <li class="nav-item active">
-                   <a class="nav-link" href="#"><div data-icon="f" class="icon"></div></a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#"><div data-icon="g" class="icon"></div></a>
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link" href="#"><div data-icon="h" class="icon"></div></a>
-                 </li>
 
              </ul>
              <?php
@@ -35,6 +26,18 @@
                'walker'          => new bs4navwalker()
              ]);
              ?>
+             <ul class="navbar-nav">
+                 <li class="nav-item active">
+                   <a class="nav-link" href="#"><div data-icon="f" class="icon"></div></a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="#"><div data-icon="g" class="icon"></div></a>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" href="#"><div data-icon="h" class="icon"></div></a>
+                 </li>
+
+             </ul>
          </div>
          </div>
      </nav>
