@@ -12,14 +12,14 @@
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'services'); ?>
     <hr class="divider-w">
-    <?php get_template_part('templates/unit', 'presentation'); ?>
+    <?php //get_template_part('templates/unit', 'presentation'); ?>
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'works'); ?>
 
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'team'); ?>
     <hr class="divider-w">
-    <?php //get_template_part('templates/unit', 'testimonial'); ?>
+    <?php get_template_part('templates/unit', 'testimonial'); ?>
     <?php //get_template_part('templates/unit', 'news'); ?>
     <?php //get_template_part('templates/unit', 'subscribe'); ?>
     <?php //get_template_part('templates/unit', 'contact'); ?>
