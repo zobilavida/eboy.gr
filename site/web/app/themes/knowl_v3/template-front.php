@@ -12,7 +12,7 @@
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'services'); ?>
     <hr class="divider-w">
-    <?php //get_template_part('templates/unit', 'presentation'); ?>
+    <?php get_template_part('templates/unit', 'europe'); ?>
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'works'); ?>
 
