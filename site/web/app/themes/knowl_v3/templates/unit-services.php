@@ -37,14 +37,14 @@
         $query->the_post();
         // do something
         echo '<div class="col-md-4 col-sm-6 col-xs-12 services-box">';
-
+the_title( '<h3>', '</h3>' );
         $my_excerpt = get_the_excerpt();
         if ( '' != $my_excerpt ) {
             // Some string manipulation performed
         }
         if ( has_post_thumbnail() ) :
           the_post_thumbnail();
-            the_title( '<h3>', '</h3>' );
+
                     echo '<h4>';
                     echo $my_excerpt; // Outputs the processed value to the page
                     echo '</h4>';
