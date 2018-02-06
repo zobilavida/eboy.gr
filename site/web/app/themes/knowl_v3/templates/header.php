@@ -28,13 +28,25 @@
              ?>
              <ul class="navbar-nav">
                  <li class="nav-item active">
-                   <a class="nav-link" href="#"><div data-icon="f" class="icon"></div></a>
+                   <a class="nav-link" href="https://www.facebook.com/knowl.gr/">
+                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_fb.svg">
+                   </a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#"><div data-icon="g" class="icon"></div></a>
+                     <a class="nav-link" href="https://www.linkedin.com/company/5005379">
+                        <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_linkedin.svg">
+                     </a>
                  </li>
                  <li class="nav-item">
-                   <a class="nav-link" href="#"><div data-icon="h" class="icon"></div></a>
+                   <a class="nav-link" href="https://www.youtube.com/channel/UCfm_5iKrrBiuWhXLwt8oHwA?">
+                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_youtube.svg">
+                   </a>
+                 </li>
+
+                 <li class="nav-item">
+                   <a class="nav-link" href="https://www.flickr.com/photos/126041650@N04/">
+                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_flickr.svg">
+                   </a>
                  </li>
 
              </ul>

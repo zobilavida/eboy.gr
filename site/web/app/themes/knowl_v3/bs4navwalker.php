@@ -180,10 +180,10 @@ class bs4Navwalker extends Walker_Nav_Menu
         }
         */
         //
-        $item_output .= '<a'. $attributes .'><div data-icon="a" class="icon">';
+        $item_output .= '<a'. $attributes .'>| ';
         /** This filter is documented in wp-includes/post-template.php */
         $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-        $item_output .= '</div></a>';
+        $item_output .= '</a>';
         $item_output .= $args->after;
 
         /**
