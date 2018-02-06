@@ -19,7 +19,7 @@
         ?></div>
       </div>
     </div>
-    <div class="row multi-columns-row">
+    <div class="row ">
     <?php
     // WP_Query arguments
     $args = array(
@@ -38,23 +38,24 @@
         // do something
         echo '<div class="col-md-4 col-sm-6 col-xs-12 services-box">';
 
+        $my_excerpt = get_the_excerpt();
+        if ( '' != $my_excerpt ) {
+            // Some string manipulation performed
+        }
         if ( has_post_thumbnail() ) :
           the_post_thumbnail();
+            the_title( '<h3>', '</h3>' );
+                    echo '<h4>';
+                    echo $my_excerpt; // Outputs the processed value to the page
+                    echo '</h4>';
           echo '</div>';
-          echo '<div class="col-9">';
+      //  echo '<div class="col-9">';
        endif;
 
-          the_title( '<h3>', '</h3>' );
-          $my_excerpt = get_the_excerpt();
-          if ( '' != $my_excerpt ) {
-              // Some string manipulation performed
-          }
 
 
-          echo '<h4>';
-          echo $my_excerpt; // Outputs the processed value to the page
-          echo '</h4>';
-            echo '</div>';
+
+        //    echo '</div>';
 
 
                 }
