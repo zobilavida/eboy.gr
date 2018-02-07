@@ -25,11 +25,13 @@
     //  $postNumber = 1;
       while ( $loop->have_posts() ) : $loop->the_post(); ?>
       <div class="single-post">
-      <h1 class="post-number"><?php echo get_post_meta($post->ID,'your_post_type',true);  ?>.</h1>
+      <h1 class="post-number"><?php echo get_post_meta($post->ID,'europians',true);  ?>.</h1>
       <h3 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
       <div class="post-content"><?php the_excerpt(); ?> </div>
       <?php edit_post_link(); ?>
       </div>
-      <?php endwhile; wp_reset_query();?>          </div>
+      <?php endwhile; wp_reset_query();?>
+
+     </div>
           </div>
         </section>
