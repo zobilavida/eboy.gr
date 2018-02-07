@@ -20,7 +20,7 @@
     <div class="row">
 
       <div class="col-sm-6 col-md-3 col-lg-3">
-        <?php $loop = new WP_Query( array( 'post_type' => 'profile', 'posts_per_page' => 4 ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'profile', 'posts_per_page' => 2 ) ); ?>
         <?php
 
         while ( $loop->have_posts() ) : $loop->the_post(); ?>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="col-sm-6 col-md-3 col-lg-3">
-        <?php $loop = new WP_Query( array( 'post_type' => 'profile','offset' => '-4', 'posts_per_page' => 4 ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'profile','offset' => '-2', 'posts_per_page' => 2 ) ); ?>
         <?php
 
         while ( $loop->have_posts() ) : $loop->the_post(); ?>

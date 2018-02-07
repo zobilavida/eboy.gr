@@ -20,7 +20,7 @@
                'container_id'    => '',
                'container_class' => '',
                'menu_id'         => false,
-               'menu_class'      => 'navbar-nav',
+               'menu_class'      => 'navbar-nav nav-icons',
                'depth'           => 2,
                'fallback_cb'     => 'bs4navwalker::fallback',
                'walker'          => new bs4navwalker()
@@ -29,23 +29,23 @@
              <ul class="navbar-nav">
                  <li class="nav-item active">
                    <a class="nav-link" href="https://www.facebook.com/knowl.gr/">
-                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_fb.svg">
+                     <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_fb.svg">
                    </a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="https://www.linkedin.com/company/5005379">
-                        <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_linkedin.svg">
+                        <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_linkedin.svg">
                      </a>
                  </li>
                  <li class="nav-item">
                    <a class="nav-link" href="https://www.youtube.com/channel/UCfm_5iKrrBiuWhXLwt8oHwA?">
-                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_youtube.svg">
+                     <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_youtube.svg">
                    </a>
                  </li>
 
                  <li class="nav-item">
                    <a class="nav-link" href="https://www.flickr.com/photos/126041650@N04/">
-                     <img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_flickr.svg">
+                     <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_flickr.svg">
                    </a>
                  </li>
 
