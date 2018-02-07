@@ -19,80 +19,37 @@
       </div>
     </div>
 
-    <?php
-    $args2 = array(
-     'role' => 'editor',
-     'orderby' => 'user_nicename',
-     'order' => 'ASC'
-    );
-     $authors = get_users($args2);
-    echo '<ul>';
-     foreach ($authors as $user) {
-     echo '<li>' . $user->display_name.'['.$user->user_email . ']</li>';
-     }
-    echo '</ul>';
-    ?>
+
     <div class="row">
+      <?php $loop = new WP_Query( array( 'post_type' => 'team', 'posts_per_page' => -1 ) ); ?>
+      <?php
+    //  $postNumber = 1;
+      while ( $loop->have_posts() ) : $loop->the_post(); ?>
       <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
         <div class="team-item">
-          <div class="team-image"><img src="assets/images/team-1.jpg" alt="Member Photo"/>
+          <div class="team-image rounded-circle">
+            <?php         if ( has_post_thumbnail() ) :
+                      the_post_thumbnail();
+
+                   endif; ?>
             <div class="team-detail">
               <h5 class="font-alt">Hi all</h5>
               <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
               <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
             </div>
-          </div>
-          <div class="team-descr font-alt">
-            <div class="team-name">Jim Stone</div>
-            <div class="team-role">Art Director</div>
-          </div>
+
         </div>
+
+
+      <div class="team-descr font-alt">
+        <div class="team-name"><?php the_title(); ?></div>
+        <div class="team-role"><?php the_excerpt(); ?> </div>
       </div>
-      <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
-        <div class="team-item">
-          <div class="team-image"><img src="assets/images/team-2.jpg" alt="Member Photo"/>
-            <div class="team-detail">
-              <h5 class="font-alt">Good day</h5>
-              <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
-              <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
-            </div>
-          </div>
-          <div class="team-descr font-alt">
-            <div class="team-name">Andy River</div>
-            <div class="team-role">Creative director</div>
-          </div>
-        </div>
+        <?php edit_post_link(); ?>
       </div>
-      <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
-        <div class="team-item">
-          <div class="team-image"><img src="assets/images/team-3.jpg" alt="Member Photo"/>
-            <div class="team-detail">
-              <h5 class="font-alt">Hello</h5>
-              <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
-              <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
-            </div>
-          </div>
-          <div class="team-descr font-alt">
-            <div class="team-name">Adele Snow</div>
-            <div class="team-role">Account manager</div>
-          </div>
-        </div>
       </div>
-      <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-3" onclick="wow fadeInUp">
-        <div class="team-item">
-          <div class="team-image"><img src="assets/images/team-4.jpg" alt="Member Photo"/>
-            <div class="team-detail">
-              <h5 class="font-alt">Yes, it's me</h5>
-              <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
-              <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
-            </div>
-          </div>
-          <div class="team-descr font-alt">
-            <div class="team-name">Dylan Woods</div>
-            <div class="team-role">Developer</div>
-          </div>
-        </div>
-      </div>
+      <?php endwhile; wp_reset_query();?>
+
     </div>
   </div>
 </section>

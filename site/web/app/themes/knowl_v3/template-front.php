@@ -25,5 +25,5 @@
     <?php //get_template_part('templates/unit', 'contact'); ?>
     <hr class="divider-w">
     <?php get_template_part('templates/unit', 'bottom'); ?>
-    <hr class="divider-d">
+
   </div>

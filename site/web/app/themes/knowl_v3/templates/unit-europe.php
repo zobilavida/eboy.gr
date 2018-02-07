@@ -7,9 +7,7 @@
 
         $title = apply_filters('the_content', $page->post_title);
         $link = get_permalink( get_page_by_title( 'Ευρωπαϊκά Έργα' ) );
-        echo '<a href="'.$link.'">';
         echo $title;
-        echo '</a>';
         ?></h2>
         <div class="module-subtitle font-serif">      <?php
         $page = get_page_by_title( 'Ευρωπαϊκά Έργα' );
@@ -24,7 +22,7 @@
       <?php
     //  $postNumber = 1;
       while ( $loop->have_posts() ) : $loop->the_post(); ?>
-      <div class="single-post">
+      <div class="col-4 single-post">
       <h1 class="post-number"><?php echo get_post_meta($post->ID,'europians',true);  ?>.</h1>
       <h3 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
       <div class="post-content"><?php the_excerpt(); ?> </div>

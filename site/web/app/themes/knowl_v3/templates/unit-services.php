@@ -7,9 +7,9 @@
 
         $title = apply_filters('the_content', $page->post_title);
         $link = get_permalink( get_page_by_title( 'Εκπαιδεύσεις' ) );
-        echo '<a href="'.$link.'">';
+    
         echo $title;
-        echo '</a>';
+
         ?></h2>
         <div class="module-subtitle font-serif">      <?php
         $page = get_page_by_title( 'Εκπαιδεύσεις' );

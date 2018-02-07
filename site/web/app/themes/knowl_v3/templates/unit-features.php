@@ -7,9 +7,7 @@
 
         $title = apply_filters('the_content', $page->post_title);
         $link = get_permalink( get_page_by_title( 'Προφίλ' ) );
-        echo '<a href="'.$link.'">';
         echo $title;
-        echo '</a>';
         ?></h2>
         <div class="module-subtitle font-serif"><?php
         $page = get_page_by_title( 'Προφίλ' );
@@ -53,6 +51,15 @@
         </div>
         <?php endwhile; wp_reset_query();?>
       </div>
-
   </div>
+
+      <div class="row ">
+        <div class="col text-center">
+      <button type="button" class="btn btn-lg btn-warning" >
+        <div style="text-align:center;"><i class="fa fa-download"></i></div>
+          σύντομη παρουσίαση της knowl
+      </button>
+      </div>
+      </div>
+
 </section>
