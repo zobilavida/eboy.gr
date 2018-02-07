@@ -68,6 +68,9 @@ echo $content;
 ?>
 
     </div>
+
   </div>
+  <div class="scroll-up2"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+
   </div>
 </section>

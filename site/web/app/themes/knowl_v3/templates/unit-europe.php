@@ -23,7 +23,17 @@
     //  $postNumber = 1;
       while ( $loop->have_posts() ) : $loop->the_post(); ?>
       <div class="col-4 single-post">
-      <h1 class="post-number"><?php echo get_post_meta($post->ID,'europians',true);  ?>.</h1>
+      <h1 class="post-number"><?php $value = get_field( "number" );
+
+if( $value ) {
+
+    echo $value;
+
+} else {
+
+    echo '';
+
+}  ?>.</h1>
       <h3 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
       <div class="post-content"><?php the_excerpt(); ?> </div>
       <?php edit_post_link(); ?>
