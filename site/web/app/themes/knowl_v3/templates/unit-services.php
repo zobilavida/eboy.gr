@@ -7,7 +7,7 @@
 
         $title = apply_filters('the_content', $page->post_title);
         $link = get_permalink( get_page_by_title( 'Εκπαιδεύσεις' ) );
-    
+
         echo $title;
 
         ?></h2>
@@ -37,7 +37,7 @@
         $query->the_post();
         // do something
         echo '<div class="col-md-4 col-sm-6 col-xs-12 services-box">';
-the_title( '<h3>', '</h3>' );
+the_title( '<span class="text-center"><h3>', '</h3></span>' );
         $my_excerpt = get_the_excerpt();
         if ( '' != $my_excerpt ) {
             // Some string manipulation performed
