@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row ">
-      <?php $loop = new WP_Query( array( 'post_type' => 'europians', 'posts_per_page' => 6 ) ); ?>
+      <?php $loop = new WP_Query( array( 'post_type' => 'europians', 'posts_per_page' => -1 ) ); ?>
       <?php
     //  $postNumber = 1;
       while ( $loop->have_posts() ) : $loop->the_post(); ?>
