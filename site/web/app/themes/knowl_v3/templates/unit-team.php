@@ -1,7 +1,7 @@
 <section class="module" id="team">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <h2 class="module-title font-alt"><?php
         $page = get_page_by_title( 'Ποιοι είμαστε' );
 
@@ -33,9 +33,7 @@
 
                    endif; ?>
             <div class="team-detail">
-              <h5 class="font-alt">Hi all</h5>
-              <p class="font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit lacus, a&amp;nbsp;iaculis diam.</p>
-              <div class="team-social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
+
             </div>
 
         </div>

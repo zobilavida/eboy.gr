@@ -1,13 +1,13 @@
 <section class="module" id="contact">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <h2 class="module-title font-alt">Επικοινωνία</h2>
         <div class="module-subtitle font-serif"></div>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <form id="contactForm" role="form" method="post" action="php/contact.php">
           <div class="form-group">
             <label class="sr-only" for="name">Όνομα</label>

@@ -1,7 +1,7 @@
 <section class="module" id="europe">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <h2 class="module-title font-alt"><?php
         $page = get_page_by_title( 'Ευρωπαϊκά Έργα' );
 

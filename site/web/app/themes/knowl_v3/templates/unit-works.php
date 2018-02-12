@@ -1,7 +1,7 @@
 <section class="module pb-0" id="works">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <h2 class="module-title font-alt"><?php
         $page = get_page_by_title( 'Συνεργασίες' );
 
@@ -17,23 +17,7 @@
     <div class="row">
 
 
-      <div class="col-sm-12">
-        <ul class="filter font-alt" id="filters">
-          <li><a class="current wow fadeInUp" href="#" data-filter="*">All</a></li>
 
-          <?php
-          $args = array('parent' => 6);
-          $categories = get_categories( $args );
-          foreach($categories as $category) {
-              echo '<li>';
-              echo '<a class="wow fadeInUp" href="#" data-filter=".' . $category->slug.'" data-wow-delay="0.2s">' . $category->name.'</a>';
-              echo '</li>';
-          }
-          ?>
-
-
-        </ul>
-      </div>
     </div>
   </div>
   <ul class="works-grid works-grid-gut works-grid-5 works-hover-w" id="works-grid">

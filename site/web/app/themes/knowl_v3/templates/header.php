@@ -28,23 +28,23 @@
              ?>
              <ul class="navbar-nav">
                  <li class="nav-item active">
-                   <a class="nav-link" href="https://www.facebook.com/knowl.gr/">
+                   <a class="nav-link" href="https://www.facebook.com/knowl.gr/" target="_blank">
                      <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_fb.svg">
                    </a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="https://www.linkedin.com/company/5005379">
+                     <a class="nav-link" href="https://www.linkedin.com/company/5005379" target="_blank">
                         <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_linkedin.svg">
                      </a>
                  </li>
                  <li class="nav-item">
-                   <a class="nav-link" href="https://www.youtube.com/channel/UCfm_5iKrrBiuWhXLwt8oHwA?">
+                   <a class="nav-link" href="https://www.youtube.com/channel/UCfm_5iKrrBiuWhXLwt8oHwA?" target="_blank">
                      <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_youtube.svg">
                    </a>
                  </li>
 
                  <li class="nav-item">
-                   <a class="nav-link" href="https://www.flickr.com/photos/126041650@N04/">
+                   <a class="nav-link" href="https://www.flickr.com/photos/126041650@N04/" target="_blank">
                      <img class="ico rounded-circle" src="<?= get_template_directory_uri(); ?>/dist/images/ico_flickr.svg">
                    </a>
                  </li>

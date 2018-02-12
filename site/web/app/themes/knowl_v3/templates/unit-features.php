@@ -1,7 +1,7 @@
 <section class="module" id="alt-features">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-12 col-sm-offset-3">
         <h2 class="module-title font-alt"><?php
         $page = get_page_by_title( 'Προφίλ' );
 
@@ -37,6 +37,10 @@
   if ( has_post_thumbnail() ) {
   the_post_thumbnail();
   }  ?>
+  <button type="button" class="btn btn-lg btn-warning" >
+    <div style="text-align:center;"><i class="fa fa-download"></i></div>
+      συντομη παρουσιαση της knowl
+  </button>
         </div>
       </div>
       <div class="col-sm-6 col-md-3 col-lg-3">
@@ -53,13 +57,6 @@
       </div>
   </div>
 
-      <div class="row ">
-        <div class="col text-center">
-      <button type="button" class="btn btn-lg btn-warning" >
-        <div style="text-align:center;"><i class="fa fa-download"></i></div>
-          σύντομη παρουσίαση της knowl
-      </button>
-      </div>
-      </div>
+
 
 </section>
