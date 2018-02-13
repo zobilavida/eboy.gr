@@ -1,0 +1,21 @@
+{
+  "name": "surfers",
+  "homepage": "https://eboy.gr/surfers/",
+  "authors": [
+    "Giannis <giannis@eboy.gr>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-beta",
+    "popper.js": "^1.12.3",
+    "gsap": "^1.20.3"
+  },
+  "overrides": {
+    "gsap": {
+      "main": [
+        "./src/uncompressed/TweenMax.js"
+      ]
+    }
+}
+}

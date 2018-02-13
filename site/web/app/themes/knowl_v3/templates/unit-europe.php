@@ -17,7 +17,9 @@
         ?></div>
       </div>
     </div>
-    <div class="row ">
+      <div id="myCarousel" class="carousel slide row" data-ride="carousel">
+        <div class="carousel-inner col-12" role="listbox">
+          <div class="row">
       <?php $loop = new WP_Query( array( 'post_type' => 'europians', 'posts_per_page' => -1 ) ); ?>
       <?php
     //  $postNumber = 1;
@@ -39,7 +41,16 @@ if( $value ) {
       <?php edit_post_link(); ?>
       </div>
       <?php endwhile; wp_reset_query();?>
-
-     </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+         </div>
           </div>
         </section>

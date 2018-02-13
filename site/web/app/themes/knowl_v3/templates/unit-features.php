@@ -39,7 +39,7 @@
   }  ?>
   <button type="button" class="btn btn-lg btn-warning" >
     <div style="text-align:center;"><i class="fa fa-download"></i></div>
-      συντομη παρουσιαση της knowl
+    <a href="http://knowl.gr/wp-content/uploads/2018/02/Knowl_Presentation_Jan2018.pdf" target="_blank">συντομη παρουσιαση της knowl</a>
   </button>
         </div>
       </div>
