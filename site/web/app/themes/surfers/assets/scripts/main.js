@@ -22,14 +22,31 @@
 var $wind = $('.wind');
 var $bubble_all = $('.bubble_all');
 var $boy = $('.boy');
+var $col_boy = $('.col_boy');
 var $girl = $('.girl');
+var $col_girl = $('.col_girl');
 
 TweenLite.set($wind, {x: '+=200px', scale: 1});
 TweenLite.set($bubble_all, {x: '+=208px', scale: 1.1});
-TweenLite.set($boy, {x: '+=110px', y:'-=120px', scale: 1});
-TweenLite.set($girl, {x: '+=200px', scale: 1});
+TweenLite.set($boy, {x: '+=110px', y:'+=60px', scale: 1});
+TweenLite.set($girl, {x: '-=20px', y:'+=80px', scale: 1});
 
-      },
+TweenMax.fromTo($wind, 1,
+		{scale: 0}, {delay: 1, ease: Elastic.easeOut.config(2.5, 1), scale: 1, repeat: 0, yoyo: false});
+TweenMax.fromTo($bubble_all, 1,
+		{scale: 0}, {delay: 1.5, ease: Elastic.easeOut.config(2.5, 1), scale: 1, repeat: 0, yoyo: false});
+TweenMax.fromTo($col_boy, 2,
+		{x: 1224}, {delay: 1.75, ease: Elastic.easeOut.config(1, 1), x: 0, repeat: 0, yoyo: false});
+TweenMax.fromTo($boy, 4,
+		{y: 60}, {ease: Bounce.easeOut, y: 80, repeat: -1, yoyo: true});
+TweenMax.fromTo($col_girl, 2,
+		{x: 1224}, {delay: 2, ease: Elastic.easeOut.config(1, 1), x: 0, repeat: 0, yoyo: false});
+TweenMax.fromTo($girl, 4,
+		{y: 60, }, {delay:0.5, ease: Bounce.easeOut, y: 80, repeat: -1, yoyo: true});
+
+
+
+   },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
 

@@ -8,11 +8,11 @@
             <img class="wind" src="<?= get_template_directory_uri(); ?>/dist/images/wind.svg"> </br>
             <img class="bubble_all" src="<?= get_template_directory_uri(); ?>/dist/images/bubble_all.svg">
             </div>
-            <div class="col-5">
+            <div class="col-5 col_boy">
               <img class="boy" src="<?= get_template_directory_uri(); ?>/dist/images/surfer_boy.svg">
 
             </div>
-            <div class="col-5">
+            <div class="col-5 col_girl">
 
               <img class="girl" src="<?= get_template_directory_uri(); ?>/dist/images/surfer_girl.svg">
             </div>
