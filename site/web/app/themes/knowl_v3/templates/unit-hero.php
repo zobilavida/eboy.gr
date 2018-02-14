@@ -22,7 +22,7 @@
               	while ( $query->have_posts() ) {
               		$query->the_post();
               		// do something
-                  echo '<div class="col-4">';
+                  echo '<div class="col-lg-4 py-3">';
                     echo '<div class="row">';
                     echo '<div class="col-3">';
                   if ( has_post_thumbnail() ) :
