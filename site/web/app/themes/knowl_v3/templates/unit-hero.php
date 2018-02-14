@@ -2,7 +2,7 @@
   <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=yOSL9L0efhQ', containment:'.home-section', startAt:0, mute:false, autoPlay:true, loop:true, opacity:0.15, showControls:false, showYTLogo:false, vol:25}"></div>
 
 <div class="container h-100">
-  <div class="video-controls-box">
+  <div class="video-controls-box d-none d-sm-block">
     <div class="container">
           <div class="row">
 
@@ -22,7 +22,7 @@
               	while ( $query->have_posts() ) {
               		$query->the_post();
               		// do something
-                  echo '<div class="col-lg-4 py-3">';
+                  echo '<div class="col-lg-4 col-md-12 py-1">';
                     echo '<div class="row">';
                     echo '<div class="col-3">';
                   if ( has_post_thumbnail() ) :
@@ -70,7 +70,7 @@ echo $content;
     </div>
 
   </div>
-  <div class="scroll-up2"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
 
   </div>
+
 </section>

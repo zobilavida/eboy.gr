@@ -142,6 +142,13 @@ Hero Slider
 	padding: 0px 0 320px 0;
 }
 
+@media (max-width: 575px) {
+
+.caption-content {
+	padding: 0;
+}
+ }
+
 /*
 Photography Page Slider
 */

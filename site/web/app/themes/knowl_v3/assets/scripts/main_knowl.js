@@ -356,42 +356,7 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
          * Owl Carousel
          /* ---------------------------------------------- */
 
-        $('.owl-carousel').each(function(i) {
 
-            // Check items number
-            if ($(this).data('items') > 0) {
-                items = $(this).data('items');
-            } else {
-                items = 4;
-            }
-
-            // Check pagination true/false
-            if (($(this).data('pagination') > 0) && ($(this).data('pagination') === true)) {
-                pagination = true;
-            } else {
-                pagination = false;
-            }
-
-            // Check navigation true/false
-            if (($(this).data('navigation') > 0) && ($(this).data('navigation') === true)) {
-                navigation = true;
-            } else {
-                navigation = false;
-            }
-
-            // Build carousel
-            $(this).owlCarousel( {
-                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                nav: navigation,
-                dots: pagination,
-                loop: true,
-                dotsSpeed: 400,
-                items: items,
-                navSpeed: 300,
-                autoplay: 2000
-            });
-
-        });
 
 
         /* ---------------------------------------------- /*
