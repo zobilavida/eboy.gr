@@ -23,7 +23,7 @@
   <div class="row ">
 
   <!-- Carousel -->
-<div id="promo-carousel" class="carousel slide" data-ride="carousel">
+<div id="promo-carousel" class="carousel slide col" data-ride="carousel">
 
 
 
@@ -112,29 +112,6 @@
 </div>
 
 
-          <div class="row">
-      <?php $loop = new WP_Query( array( 'post_type' => 'europians', 'posts_per_page' => -1 ) ); ?>
-      <?php
-    //  $postNumber = 1;
-      while ( $loop->have_posts() ) : $loop->the_post(); ?>
-      <div class="col-lg-4 col-md-6 single-post">
-      <h1 class="post-number"><?php $value = get_field( "number" );
-
-if( $value ) {
-
-    echo $value;
-
-} else {
-
-    echo '';
-
-}  ?>.</h1>
-      <h3 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
-      <div class="post-content"><?php the_excerpt(); ?> </div>
-      <?php edit_post_link(); ?>
-      </div>
-      <?php endwhile; wp_reset_query();?>
-        </div>
 
 
           </div>
