@@ -20,8 +20,8 @@
 }
 
 .home_2 {
-  background: black;
-  padding: 1rem;
+  background: $text_black_color;
+
 }
 
 
@@ -33,4 +33,8 @@
 
 .home_2 h4 {
   color: white;
+}
+
+.knowl-caption {
+  padding: 8rem 0 0 0;
 }

@@ -2,8 +2,8 @@
 
 
 
-<div class="container">
-      <div class="row justify-content-center d-block d-sm-none home_2">
+<div class="container-fluid">
+      <div class="row justify-content-center d-lg-none home_2 p-5">
 
           <?php
           // WP_Query arguments
@@ -21,13 +21,13 @@
             while ( $query->have_posts() ) {
               $query->the_post();
               // do something
-              echo '<div class="col-lg-4 py-1">';
+              echo '<div class="col-lg-4 py-5">';
                 echo '<div class="row">';
-                echo '<div class="col-3">';
+                echo '<div class="col-md-3 text-center pb-4">';
               if ( has_post_thumbnail() ) :
                 the_post_thumbnail();
                 echo '</div>';
-                echo '<div class="col-9">';
+                echo '<div class="col-md-9">';
              endif;
 
                 the_title( '<h3>', '</h3>' );

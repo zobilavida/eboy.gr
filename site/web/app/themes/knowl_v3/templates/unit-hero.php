@@ -2,7 +2,7 @@
   <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=yOSL9L0efhQ', containment:'.home-section', startAt:0, mute:false, autoPlay:true, loop:true, opacity:0.15, showControls:false, showYTLogo:false, vol:25}"></div>
 
 <div class="container h-100">
-  <div class="video-controls-box d-none d-sm-block">
+  <div class="video-controls-box d-none d-lg-block">
     <div class="container">
           <div class="row">
 
@@ -58,7 +58,7 @@
 
     </div>
   </div>
-  <div class="titan-caption">
+  <div class="knowl-caption">
     <div class="caption-content">
 
       <?php
