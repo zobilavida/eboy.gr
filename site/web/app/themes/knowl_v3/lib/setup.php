@@ -54,8 +54,17 @@ add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
  * Register sidebars
  */
 function widgets_init() {
+  register_sidebar( array(
+      'name' => __( 'Topbar', 'knowl' ),
+      'id' => 'sidebar-top',
+      'description' => __( 'Widgets in this area will be shown on all posts and pages.', 'theme-slug' ),
+      'before_widget' => '<div id="%1$s" class="widget %2$s">',
+'after_widget'  => '</div>',
+'before_title'  => '<h2 class="widgettitle">',
+'after_title'   => '</h2>',
+  ) );
   register_sidebar([
-    'name'          => __('Primary', 'sage'),
+    'name'          => __('Primary', 'knowl'),
     'id'            => 'sidebar-primary',
     'before_widget' => '<section class="widget %1$s %2$s">',
     'after_widget'  => '</section>',
@@ -64,7 +73,7 @@ function widgets_init() {
   ]);
 
   register_sidebar([
-    'name'          => __('Footer', 'sage'),
+    'name'          => __('Footer', 'knowl'),
     'id'            => 'sidebar-footer',
     'before_widget' => '<section class="widget %1$s %2$s">',
     'after_widget'  => '</section>',

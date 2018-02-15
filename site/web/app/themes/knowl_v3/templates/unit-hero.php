@@ -60,12 +60,29 @@
   </div>
   <div class="knowl-caption">
     <div class="caption-content">
+      <?php
+          $currentlang = get_bloginfo('language');
+          if($currentlang=="el"):
+      ?>
 
       <?php
-$page = get_page_by_title( 'Home' );
+$page = get_page_by_title( 'Αρχική' );
 $content = apply_filters('the_content', $page->post_content);
 echo $content;
 ?>
+      <?php elseif(get_locale() == 'en_GB'): ?>
+
+
+          <?php
+    $page = get_page_by_title( 'Home' );
+    $content = apply_filters('the_content', $page->post_content);
+    echo $content;
+    ?>
+
+      <?php endif; ?>
+
+
+
 
     </div>
 
