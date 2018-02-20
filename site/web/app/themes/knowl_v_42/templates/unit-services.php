@@ -2,21 +2,47 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-sm-offset-3">
-        <h2 class="module-title font-alt"><?php
-        $page = get_page_by_title( 'Εκπαιδεύσεις' );
 
-        $title = apply_filters('the_content', $page->post_title);
-        $link = get_permalink( get_page_by_title( 'Εκπαιδεύσεις' ) );
 
-        echo $title;
+                  <?php
+                      $currentlang = get_bloginfo('language');
+                      if($currentlang=="el"):
+                  ?>
 
-        ?></h2>
-        <div class="module-subtitle font-serif">      <?php
-        $page = get_page_by_title( 'Εκπαιδεύσεις' );
-        $content = apply_filters('the_content', $page->post_excerpt);
+                  <?php $page = get_page_by_title( 'Εκπαιδεύσεις' ); ?>
+                  <?php $title = apply_filters('the_content', $page->post_title);
+                  echo '<h2 class="module-title font-alt">';
+                    echo $title;
+                    echo '</h2>';
+                   ?>
 
-        echo $content;
-        ?></div>
+
+            <?php $excerpt = apply_filters('the_content', $page->post_excerpt);
+            echo '<div class="module-subtitle font-serif">';
+              echo $excerpt;
+              echo '</div>';
+
+            ?>
+                  <?php elseif(get_locale() == 'en_GB'): ?>
+
+                    <?php $page = get_page_by_title( 'Trainings' ); ?>
+                    <?php $title = apply_filters('the_content', $page->post_title);
+                    echo '<h2 class="module-title font-alt">';
+                      echo $title;
+                      echo '</h2>';
+                     ?>
+
+
+              <?php $excerpt = apply_filters('the_content', $page->post_excerpt);
+              echo '<div class="module-subtitle font-serif">';
+                echo $excerpt;
+                echo '</div>';
+
+              ?>
+
+                  <?php endif; ?>
+
+
       </div>
     </div>
     <div class="row ">

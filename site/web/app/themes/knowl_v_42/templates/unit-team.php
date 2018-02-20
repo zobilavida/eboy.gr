@@ -2,20 +2,45 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-sm-offset-3">
-        <h2 class="module-title font-alt"><?php
-        $page = get_page_by_title( 'Ποιοι είμαστε' );
 
-        $title = apply_filters('the_content', $page->post_title);
-        echo $title;
-        ?></h2>
-        <div class="module-subtitle font-serif">
-          <?php
-          $page = get_page_by_title( 'Ποιοι είμαστε' );
+        <?php
+            $currentlang = get_bloginfo('language');
+            if($currentlang=="el"):
+        ?>
 
-          $excerpt = apply_filters('the_content', $page->post_excerpt);
-          echo $excerpt;
-          ?>
-        </div>
+        <?php $page = get_page_by_title( 'Ποιοι είμαστε' ); ?>
+        <?php $title = apply_filters('the_content', $page->post_title);
+        echo '<h2 class="module-title font-alt">';
+          echo $title;
+          echo '</h2>';
+         ?>
+
+
+  <?php $excerpt = apply_filters('the_content', $page->post_excerpt);
+  echo '<div class="module-subtitle font-serif">';
+    echo $excerpt;
+    echo '</div>';
+
+  ?>
+        <?php elseif(get_locale() == 'en_GB'): ?>
+
+          <?php $page = get_page_by_title( 'Who we are' ); ?>
+          <?php $title = apply_filters('the_content', $page->post_title);
+          echo '<h2 class="module-title font-alt">';
+            echo $title;
+            echo '</h2>';
+           ?>
+
+
+    <?php $excerpt = apply_filters('the_content', $page->post_excerpt);
+    echo '<div class="module-subtitle font-serif">';
+      echo $excerpt;
+      echo '</div>';
+
+    ?>
+
+        <?php endif; ?>
+
       </div>
     </div>
 
