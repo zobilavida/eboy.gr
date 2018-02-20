@@ -64,10 +64,23 @@
   if ( has_post_thumbnail() ) {
   the_post_thumbnail();
   }  ?>
+
+  <?php
+      $currentlang = get_bloginfo('language');
+      if($currentlang=="el"):
+  ?>
   <button type="button" class="btn btn-lg btn-warning" >
     <div style="text-align:center;"><i class="fa fa-download"></i></div>
     <a href="http://knowl.gr/wp-content/uploads/2018/02/Knowl_Presentation_Jan2018.pdf" target="_blank">συντομη παρουσιαση της knowl</a>
   </button>
+<?php elseif(get_locale() == 'en_GB'): ?>
+  <button type="button" class="btn btn-lg btn-warning" >
+    <div style="text-align:center;"><i class="fa fa-download"></i></div>
+    <a href="http://knowl.gr/wp-content/uploads/2018/02/Knowl_Presentation_Jan2018.pdf" target="_blank">Presentation</a>
+  </button>
+
+  
+  <?php endif; ?>
         </div>
       </div>
       <div class="col-sm-6 col-md-3 col-lg-3">
