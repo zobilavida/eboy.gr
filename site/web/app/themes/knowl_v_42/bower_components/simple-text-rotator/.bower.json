@@ -1,0 +1,21 @@
+{
+  "name": "simple-text-rotator",
+  "version": "1.0.0",
+  "main": "jquery.simple-text-rotator.js",
+  "ignore": [
+    "demo.html"
+  ],
+  "dependencies": {
+    "jQuery": ">=2.0.0"
+  },
+  "homepage": "https://github.com/swashcap/simple-text-rotator",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "f643ce596f64b6da930a74e38b6716d831c2b02a"
+  },
+  "_source": "https://github.com/swashcap/simple-text-rotator.git",
+  "_target": "^1.0.0",
+  "_originalSource": "simple-text-rotator"
+}

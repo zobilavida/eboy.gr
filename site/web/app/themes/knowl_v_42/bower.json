@@ -1,0 +1,30 @@
+{
+  "name": "knowl",
+  "homepage": "https://eboy.gr/knowl/",
+  "authors": [
+    "Giannis <giannis@eboy.gr>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-beta",
+    "popper.js": "^1.12.3",
+    "animate.css": "^3.5.2",
+    "components-font-awesome": "^4.7.0",
+    "etlinefont": "git@github.com:pprince/etlinefont-bower.git",
+    "simple-text-rotator": "^1.0.0",
+    "wow": "wowjs#^1.1.2",
+    "jquery.mb.ytplayer": "jquery.mb.YTPlayer#^3.1.11",
+    "isotope": "^3.0.4",
+    "imagesloaded": "^4.1.4",
+    "jquery-nice-select": "^1.1.0"
+  },
+  "overrides": {
+    "isotope": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
+    }
+  }
+}
