@@ -2,19 +2,29 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-sm-offset-3">
-        <h2 class="module-title font-alt"><?php
-        $page = get_page_by_title( 'Προφίλ' );
+        <h2 class="module-title font-alt">
 
-        $title = apply_filters('the_content', $page->post_title);
-        $link = get_permalink( get_page_by_title( 'Προφίλ' ) );
-        echo $title;
-        ?></h2>
-        <div class="module-subtitle font-serif"><?php
-        $page = get_page_by_title( 'Προφίλ' );
+          <?php
+              $currentlang = get_bloginfo('language');
+              if($currentlang=="el"):
+          ?>
 
+          <?php
+    $page = get_page_by_title( 'Προφίλ' );
+    $excerpt = apply_filters('the_content', $page->post_excerpt);
+    echo $excerpt;
+    ?>
+          <?php elseif(get_locale() == 'en_GB'): ?>
+
+
+              <?php
+        $page = get_page_by_title( 'Profile' );
         $excerpt = apply_filters('the_content', $page->post_excerpt);
         echo $excerpt;
-        ?></div>
+        ?>
+
+          <?php endif; ?>
+</div>
       </div>
     </div>
     <div class="row">
