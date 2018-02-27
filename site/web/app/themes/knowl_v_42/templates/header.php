@@ -11,7 +11,8 @@
          </button>
 
 
-         <ul><?php if(function_exists('pll_the_languages')){
+         <ul class="list-inline">
+           <?php if(function_exists('pll_the_languages')){
     pll_the_languages( array( 'show_flags' => 1,'show_names' => 0  ));
 } ?></ul>
          <?php // get_template_part('templates/unit', 'lanquage'); ?>

@@ -27,6 +27,6 @@ if ( ! $post->post_excerpt ) {
 }
 
 ?>
-<div class="woocommerce-product-details__short-description">
+<div class="alert alert-info" role="alert">
     <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ); ?>
 </div>

@@ -261,7 +261,7 @@ class PLL_Lingotek {
 				<ul>
 					<?php
 					foreach ( $list as $item ) {
-						printf( '<li>%s</li>', esc_html( $item ) );
+						printf( '', esc_html( $item ) );
 					}
 					?>
 				</ul>

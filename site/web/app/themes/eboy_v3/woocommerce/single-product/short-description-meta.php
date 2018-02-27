@@ -10,49 +10,25 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @author  Automattic
+ * @package WooCommerce/Templates
+ * @version 3.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 global $post;
 
-if ( ! $post->post_excerpt ) {
+$short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
+
+if ( ! $short_description ) {
 	return;
 }
-?>
-<div class="container">
-	<div class="row">
-<div class="col-12 col-lg-8 product_description pl-0">
-		<?php the_title( '<h1 class="product_title entry-title my-4">', '</h1>' ); ?>
 
-    <?php echo apply_filters( 'woocommerce_short_description', $post->post_excerpt ); ?>
-</div>
-
-<div class="col-12 col-lg-4 pl-5">
-	<div class="row no-gutters">
-		<div class="col-12 no-gutters">
-		<h1 class="product_title entry-title my-4">Tools</h1>
-	</div>
-	<div class="col-12 no-gutters">
-		<?php
-		wp_list_categories(
-		array(
-		'taxonomy' => 'product_cat',
-		'child_of' => 15,
-		'style'    => 'list',
-		'title_li' => '',
-		'walker' => new My_Walker_Category
-		)
-		);
 ?>
-</div>
-</div>
-</div>
-</div>
+<div class="woocommerce-product-details__short-description">
+	<?php echo $short_description; // WPCS: XSS ok. ?>
 </div>

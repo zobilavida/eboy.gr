@@ -37,7 +37,7 @@ class Nav_Footer_Walker extends Walker_Nav_Menu {
 		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
 		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .' class="btn btn-primary" role="button">';
+		$item_output .= '<a'. $attributes .' class="btn btn-primary btn2" role="button">';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 		$item_output .= '</a>';
 		$item_output .= $args->after;

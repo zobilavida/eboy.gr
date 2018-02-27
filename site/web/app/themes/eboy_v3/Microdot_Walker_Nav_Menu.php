@@ -28,9 +28,18 @@ class Microdot_Walker_Nav_Menu extends Walker_Nav_Menu {
         if( !empty( $item->url ) ) {
             $url = $item->url;
         }
+        $icon = get_template_directory_uri();
 
       //  $output .= '<div'. $active_class . '><a href="' . $url . '">' . $item->title . '</a>';
-				$output .= '<a href="' . $url . '" class="btn btn-primary '. $active_class . '" role="button" >' . $item->title . '</a>';
+				$output .= '<a href="' . $url . '" class="btn btn-primary btn2'. $active_class . '" role="button" >  ' ;
+      //  $output .= '<img class="ico" src="';
+      //  $output .=  $icon;
+//$output .= '/dist/images/ico_';
+      ///  $output .= $item->title;
+      //  $output .= '.svg';
+      //  $output .= '">';
+        $output .=  $item->title;
+        $output .= '</a>';
 
     }
 
