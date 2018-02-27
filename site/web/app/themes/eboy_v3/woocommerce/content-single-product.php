@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="row py-0">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-7 pt-5">
+				<div class="col-lg-8 pt-5 pr-5">
 				<?php do_action( 'woocommerce_product_title' ); ?>
 			</div>
 			<div class="col-lg-4 pt-5 text-center">
@@ -75,11 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 */
 				do_action( 'woocommerce_single_product_summary' );
 			?>
-			<div class="row">
-				<div class="col-12 pt-3">
-				  <?php the_content(); ?>
-					</div>
-				</div>
+
 	</div>
 
 
@@ -87,6 +83,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php //get_template_part('templates/unit', 'bars'); ?>
 <?php dynamic_sidebar('sidebar-product'); ?>
 	</div>
+
+
+		<div class="col-12 py-4">
+			<?php the_content(); ?>
+			</div>
+
 
 	<div class="col-12">
 
@@ -99,7 +101,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked woocommerce_upsell_display - 15
 		 * @hooked woocommerce_output_related_products - 20
 		 */
- // do_action( 'woocommerce_after_single_product_summary' );
+// do_action( 'woocommerce_after_single_product_summary' );
 	?>
 </div>
 			</div>
