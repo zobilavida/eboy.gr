@@ -81,7 +81,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="col-4 pt-0">
 <?php //get_template_part('templates/unit', 'bars'); ?>
-<?php dynamic_sidebar('sidebar-product'); ?>
+<?php //dynamic_sidebar('sidebar-product'); ?>
+<?php do_action( 'eboy_woocommerce_current_tags' ); ?>
 	</div>
 
 
