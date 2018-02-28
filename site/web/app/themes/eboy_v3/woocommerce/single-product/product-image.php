@@ -32,8 +32,20 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	'woocommerce-product-gallery--columns-' . absint( $columns ),
 	'images',
 ) );
+$next_arrow		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/button_icon_2.svg">';
+
 ?>
 <div class="container">
+	<a class="carousel-control-prev" href="#postsCarousel" role="button" data-slide="prev">
+		<img class="" src="<?= get_template_directory_uri(); ?>/dist/images/ico_previous_01.svg">
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#postsCarousel" role="button" data-slide="next">
+		<img class="" src="<?= get_template_directory_uri(); ?>/dist/images/ico_next_01.svg">
+		<span class="sr-only">Next</span>
+	</a>
+
+
 	<div class="row">
 <div class="col-lg-12 col-sm-12">
 
@@ -86,7 +98,9 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 				}
 				?>
 		 </div>
+
 	 </div>
+
 	</div>
 </div>
 </div>
