@@ -5,6 +5,9 @@
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group">
             <ul>
+                <?php $filter_icon		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
+
+              <li class="active pl-0" data-filter="*"><?php echo $filter_icon; ?></li>
   <?php
   $tags = get_terms( 'product_tag', array(
     'smallest' => 1, // size of least used tag
