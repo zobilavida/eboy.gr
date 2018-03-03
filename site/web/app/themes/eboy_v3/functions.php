@@ -306,7 +306,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 
-function eboy_woocommerce_current_tags_products() {
+function eboy_woocommerce_current_tags_links() {
   $output = array();
 
 // get an array of the WP_Term objects for a defined product ID
@@ -330,4 +330,31 @@ if( count($terms) > 0 ){
     echo $output;
 }
 }
-add_action ('eboy_woocommerce_current_tags', 'eboy_woocommerce_current_tags_products');
+add_action ('eboy_woocommerce_current_tags', 'eboy_woocommerce_current_tags_links');
+
+
+function eboy_woocommerce_current_tags_sketo() {
+  $output = array();
+
+// get an array of the WP_Term objects for a defined product ID
+$terms = wp_get_post_terms( get_the_id(), 'product_tag' );
+
+// Loop through each product tag for the current product
+if( count($terms) > 0 ){
+    foreach($terms as $term){
+        $term_id = $term->term_id; // Product tag Id
+        $term_name = $term->name; // Product tag Name
+        $term_slug = $term->slug; // Product tag slug
+        $term_link = get_term_link( $term, 'product_tag' ); // Product tag link
+
+        // Set the product tag names in an array
+        $output[] = $term_slug;
+    }
+    // Set the array in a coma separated string of product tags for example
+    $output = implode( ' ', $output );
+
+    // Display the coma separated string of the product tags
+    echo $output;
+}
+}
+add_action ('eboy_woocommerce_current_tags_thumb', 'eboy_woocommerce_current_tags_sketo');
