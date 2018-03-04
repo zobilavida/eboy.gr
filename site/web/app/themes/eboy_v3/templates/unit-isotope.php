@@ -3,11 +3,11 @@
   <div class="row py-5">
     <div class="col-12">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group">
-            <ul>
+          <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group" id="box2">
+            <ul id="menu2">
                 <?php $filter_icon		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
 
-              <li class="active pl-0" data-filter="*"><?php echo $filter_icon; ?></li>
+              <li class="active pl-0" data-filter="*"><a href="javascript:;"><?php echo $filter_icon; ?></a></li>
   <?php
   $tags = get_terms( 'product_tag', array(
     'smallest' => 1, // size of least used tag
@@ -22,7 +22,11 @@
 
   if ( $tags ) :
       foreach ( $tags as $tag ) : ?>
-        <li data-filter=".<?php echo esc_html( $tag->slug ); ?>"><?php echo esc_html( $tag->name ); ?></li>
+        <li data-filter=".<?php echo esc_html( $tag->slug ); ?>">
+          <a href="javascript:;">
+          <?php echo esc_html( $tag->name ); ?>
+          </a>
+        </li>
       <?php endforeach; ?>
   <?php endif; ?>
 </ul>
