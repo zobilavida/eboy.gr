@@ -7,7 +7,7 @@
             <ul id="menu2">
                 <?php $filter_icon		= '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
 
-              <li class="active pl-0" data-filter="*"><a href="javascript:;"><?php echo $filter_icon; ?></a></li>
+              <li class="active pl-0 filter_index" data-filter="*"><a href="javascript:;"><?php echo $filter_icon; ?></a></li>
   <?php
   $tags = get_terms( 'product_tag', array(
     'smallest' => 1, // size of least used tag
@@ -23,7 +23,7 @@
   if ( $tags ) :
       foreach ( $tags as $tag ) : ?>
         <li data-filter=".<?php echo esc_html( $tag->slug ); ?>">
-          <a href="javascript:;">
+          <a href="javascript:;" class="top">
           <?php echo esc_html( $tag->name ); ?>
           </a>
         </li>
