@@ -5,7 +5,7 @@
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group" id="box2">
             <ul id="menu2">
-                <?php $filter_icon		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
+                <?php $filter_icon		= '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
 
               <li class="active pl-0" data-filter="*"><a href="javascript:;"><?php echo $filter_icon; ?></a></li>
   <?php

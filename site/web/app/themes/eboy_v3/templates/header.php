@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-custom pt-5 pb-0">
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom pt-4 pb-0">
 				<div class="container-fluid">
 					<div class="row">
           <div class="col-3">
