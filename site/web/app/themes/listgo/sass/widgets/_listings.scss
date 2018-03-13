@@ -1,0 +1,53 @@
+.widget_listings {
+	ul {
+		padding: 0;
+		margin: 0;
+
+		li {
+			list-style: none;
+			overflow: hidden;
+			border-bottom: 1px solid #eee;
+			padding: 10px 0;
+
+			&:first-child {
+				padding-top: 0;
+			}
+		}
+
+		img, img.lazy[data-src] {
+			float: left;
+			width: 70px;
+			margin-right: 18px;
+		}
+
+		.cat {
+			color: #9a9b9c;
+		}
+
+		h4 {
+			font-size: 16px;
+			margin-top: 3px;
+			margin-bottom: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			transition: all 0.3s ease;
+			&:hover {
+				opacity: 0.6;
+			}
+		}
+
+		.rating__star {
+			font-size: 14px;
+			@extend %color-primary;
+		}
+	}
+}
+
+.widget_termslisting {
+
+	h4 {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+}

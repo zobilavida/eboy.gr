@@ -1,0 +1,6010 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-14 13:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: 404.php:23
+msgid "404"
+msgstr ""
+
+#: 404.php:24
+#, php-format
+msgid "Sorry, We coundn't find <strong>%s</strong>. May be try a search?"
+msgstr ""
+
+#: comment-template.php:10
+msgid "Leave your Review"
+msgstr ""
+
+#: comment-template.php:10 comments.php:83
+msgid "Leave your comment"
+msgstr ""
+
+#: comment-template.php:11
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: comment-template.php:12
+msgid "Cancel Review"
+msgstr ""
+
+#: comment-template.php:13
+msgid "Post Comment"
+msgstr ""
+
+#: comment-template.php:15 comments.php:79
+#: admin/public/class.WilokePublic.php:4082
+#: admin/public/template/vc/wiloke_posts_slider.php:42
+msgid "Comment"
+msgstr ""
+
+#: comment-template.php:21
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: comment-template.php:27 comments.php:88
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: comment-template.php:34
+msgid "Your email address will not be published."
+msgstr ""
+
+#: comment-template.php:39
+#, php-format
+msgid ""
+"You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags "
+"and attributes: %s"
+msgstr ""
+
+#: comments.php:30
+msgid "Post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: comments.php:38
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:75
+msgid "Your name"
+msgstr ""
+
+#: comments.php:76
+msgid "Your Email"
+msgstr ""
+
+#: content-none.php:10
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:11
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: footer.php:87
+msgid "Claim This Listing"
+msgstr ""
+
+#: footer.php:93
+msgid "Business Phone"
+msgstr ""
+
+#: footer.php:97
+msgid "Contact Me"
+msgstr ""
+
+#: functions.php:58
+msgid "Menu Horizontal"
+msgstr ""
+
+#: functions.php:65 configs/config.themeoptions.php:1359
+#: configs/config.themeoptions.php:1384 configs/config.vc.php:21
+#: configs/config.vc.php:103 configs/config.vc.php:839
+msgid "Default"
+msgstr ""
+
+#: index.php:78 admin/public/template/vc/wiloke_posts_slider.php:95
+msgid "Read More"
+msgstr ""
+
+#: page.php:71 single.php:85
+msgid "Previous article"
+msgstr ""
+
+#: page.php:74 single.php:88
+msgid "Next article"
+msgstr ""
+
+#: review-form.php:14
+msgid "Reviews"
+msgstr ""
+
+#: review-form.php:14
+msgid "Review"
+msgstr ""
+
+#: review-form.php:19
+msgid "Write A Review"
+msgstr ""
+
+#: review-form.php:23
+msgid "Newest First"
+msgstr ""
+
+#: review-form.php:24
+msgid "Top Reviews"
+msgstr ""
+
+#: review-form.php:49
+msgid "Write a Review"
+msgstr ""
+
+#: review-form.php:56
+msgid "Your overall rating of this property"
+msgstr ""
+
+#: review-form.php:60
+msgid "Terrible"
+msgstr ""
+
+#: review-form.php:61
+msgid "Poor"
+msgstr ""
+
+#: review-form.php:62
+msgid "Average"
+msgstr ""
+
+#: review-form.php:63
+msgid "Very Good"
+msgstr ""
+
+#: review-form.php:64
+msgid "Excellent"
+msgstr ""
+
+#: review-form.php:66 review-form.php:66
+msgid "Click to rate"
+msgstr ""
+
+#: review-form.php:74 wiloke-submission/signup-signin-in-addlisting.php:19
+#: wiloke-submission/signup-signin-popup.php:47
+#: wiloke-submission/account/edit-profile.php:126
+msgid "Email"
+msgstr ""
+
+#: review-form.php:78 configs/config.vc.php:1468
+#: wiloke-submission/signup-signin-in-addlisting.php:26
+#: wiloke-submission/signup-signin-in-addlisting.php:47
+#: wiloke-submission/signup-signin-popup.php:23
+#: wiloke-submission/signup-signin-popup.php:59
+#: admin/public/template/vc/wiloke_registration_form.php:7
+msgid "Password"
+msgstr ""
+
+#: review-form.php:84
+msgid "Title of your review"
+msgstr ""
+
+#: review-form.php:85
+msgid "Summarize about service or highlight an interesting detail"
+msgstr ""
+
+#: review-form.php:89
+msgid "Your Review"
+msgstr ""
+
+#: review-form.php:90
+msgid ""
+"Write down your experience about something like food, service or recommend "
+"this destination is famous for"
+msgstr ""
+
+#: review-form.php:97 templates/edit-claimed.php:305
+#: wiloke-submission/addlisting-old.php:508
+#: wiloke-submission/addlisting.php:516
+msgid "Upload Gallery"
+msgstr ""
+
+#: review-form.php:108
+msgid "Add a photo"
+msgstr ""
+
+#: review-form.php:109
+#, php-format
+msgid "The image size should smaller than or equal to %s"
+msgstr ""
+
+#: review-form.php:118
+msgid "Signup & Submit Review"
+msgstr ""
+
+#: review-form.php:118
+msgid "Submit Review"
+msgstr ""
+
+#: single.php:73
+msgid "Tags"
+msgstr ""
+
+#: taxonomy-listing_cat.php:31 taxonomy-listing_location.php:33
+#: templates/listing.php:104 admin/public/class.WilokePublic.php:1660
+#: admin/public/template/vc/wiloke_half_map.php:86
+msgid "Filter"
+msgstr ""
+
+#: taxonomy-listing_cat.php:32 taxonomy-listing_location.php:34
+#: templates/listing.php:105 wiloke-submission/addlisting.php:378
+#: wiloke-submission/signup-signin-popup.php:112
+#: admin/public/template/vc/wiloke_half_map.php:87
+msgid "Close"
+msgstr ""
+
+#: taxonomy-listing_cat.php:36 taxonomy-listing_location.php:38
+#: templates/listing.php:109
+#: admin/public/template/vc/wiloke_awesome_map.php:123
+#: admin/public/template/vc/wiloke_half_map.php:91
+msgid "Apply"
+msgstr ""
+
+#: admin/class.wiloke.php:776
+msgid "Sorry"
+msgstr ""
+
+#: admin/class.wiloke.php:776
+msgid "Class doesn't exist!"
+msgstr ""
+
+#: admin/class.wiloke.php:801
+#, php-format
+msgid ""
+"The file with name %s doesn't exist. Please open a topic via support.wiloke."
+"com to report this problem."
+msgstr ""
+
+#: admin/class.wiloke.php:1569
+msgid "Use default menu"
+msgstr ""
+
+#: admin/class.wiloke.php:1575
+msgid "There are no menus"
+msgstr ""
+
+#: admin/run.php:3
+msgid ""
+"PHP 5.6 or higher is required by the theme. Please access to your cPanel "
+"(the site manager of your hosting provider) to upgrade your PHP."
+msgstr ""
+
+#: configs/config.addlisting.php:8
+msgid "Classic"
+msgstr ""
+
+#. Name of the template
+#: configs/config.addlisting.php:14 configs/config.themeoptions.php:818
+msgid "Creative Sidebar"
+msgstr ""
+
+#. Name of the template
+#: configs/config.addlisting.php:20 configs/config.themeoptions.php:819
+msgid "Lively"
+msgstr ""
+
+#. Name of the template
+#: configs/config.addlisting.php:26 configs/config.themeoptions.php:820
+msgid "Blur Behind"
+msgstr ""
+
+#: configs/config.addlisting.php:32 configs/config.themeoptions.php:817
+#: configs/config.vc.php:507 configs/config.vc.php:575
+#: templates/edit-claimed.php:98
+msgid "Creative"
+msgstr ""
+
+#. Name of the template
+#: configs/config.addlisting.php:38 configs/config.themeoptions.php:821
+#: templates/edit-claimed.php:100
+msgid "Lisa"
+msgstr ""
+
+#. Name of the template
+#: configs/config.addlisting.php:44 templates/edit-claimed.php:101
+msgid "Howard Roark"
+msgstr ""
+
+#: configs/config.frontend.php:37 configs/config.frontend.php:43
+msgid "ListGo Menu"
+msgstr ""
+
+#: configs/config.frontend.php:76
+msgid "Monday"
+msgstr ""
+
+#: configs/config.frontend.php:77
+msgid "Tuesday"
+msgstr ""
+
+#: configs/config.frontend.php:78
+msgid "Wednesday"
+msgstr ""
+
+#: configs/config.frontend.php:79
+msgid "Thursday"
+msgstr ""
+
+#: configs/config.frontend.php:80
+msgid "Friday"
+msgstr ""
+
+#: configs/config.frontend.php:81
+msgid "Saturday"
+msgstr ""
+
+#: configs/config.frontend.php:82
+msgid "Sunday"
+msgstr ""
+
+#: configs/config.frontend.php:96 configs/config.metaboxes.php:329
+#: configs/config.themeoptions.php:755
+msgid "$ - Cheap"
+msgstr ""
+
+#: configs/config.frontend.php:97 configs/config.metaboxes.php:330
+#: configs/config.themeoptions.php:761
+msgid "$$ - Moderate"
+msgstr ""
+
+#: configs/config.frontend.php:98 configs/config.metaboxes.php:331
+#: configs/config.themeoptions.php:767
+msgid "$$$ - Expensive"
+msgstr ""
+
+#: configs/config.frontend.php:99 configs/config.metaboxes.php:332
+#: configs/config.themeoptions.php:773
+msgid "$$$$ - Ultra high"
+msgstr ""
+
+#: configs/config.general.php:24
+msgid "Wiloke Options"
+msgstr ""
+
+#: configs/config.general.php:41
+msgid "Portfolio Permalinks"
+msgstr ""
+
+#: configs/config.install_plugins.php:9
+msgid "Redux Framework"
+msgstr ""
+
+#: configs/config.install_plugins.php:17
+msgid "Visual Composer"
+msgstr ""
+
+#: configs/config.install_plugins.php:26
+msgid "Wiloke Sharing Post"
+msgstr ""
+
+#: configs/config.install_plugins.php:35
+msgid "Wiloke Service"
+msgstr ""
+
+#: configs/config.install_plugins.php:44
+msgid "Wiloke Listgo Widgets"
+msgstr ""
+
+#: configs/config.install_plugins.php:53
+msgid "Wiloke Mega Menu"
+msgstr ""
+
+#: configs/config.install_plugins.php:62
+msgid "Wiloke Listgo Functionaliy"
+msgstr ""
+
+#: configs/config.install_plugins.php:71
+msgid "Login With Social"
+msgstr ""
+
+#: configs/config.install_plugins.php:80
+msgid "Contact Form 7"
+msgstr ""
+
+#: configs/config.install_plugins.php:89
+msgid "WooCommcerce"
+msgstr ""
+
+#: configs/config.install_plugins.php:97
+msgid "WP All Import - Listgo Addon"
+msgstr ""
+
+#: configs/config.metaboxes.php:8
+msgid "Page Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:17
+msgid "Page color"
+msgstr ""
+
+#: configs/config.metaboxes.php:18
+msgid ""
+"From ListGo 1.1.5 you can set the main color for each page. Note that you "
+"can also the theme color to whole site by clicking on Appearance -> Theme "
+"Options -> Advanced Settings."
+msgstr ""
+
+#: configs/config.metaboxes.php:21 configs/config.metaboxes.php:42
+msgid "Inherit From ThemeOptions"
+msgstr ""
+
+#: configs/config.metaboxes.php:22 configs/config.themeoptions.php:1385
+msgid "Green"
+msgstr ""
+
+#: configs/config.metaboxes.php:23 configs/config.themeoptions.php:1386
+msgid "Lime"
+msgstr ""
+
+#: configs/config.metaboxes.php:24 configs/config.themeoptions.php:1387
+msgid "Pink"
+msgstr ""
+
+#: configs/config.metaboxes.php:25 configs/config.themeoptions.php:1388
+msgid "Yellow"
+msgstr ""
+
+#: configs/config.metaboxes.php:26 configs/config.themeoptions.php:1360
+#: configs/config.themeoptions.php:1389
+msgid "Custom"
+msgstr ""
+
+#: configs/config.metaboxes.php:32 configs/config.metaboxes.php:51
+msgid "Custom Page Color"
+msgstr ""
+
+#: configs/config.metaboxes.php:39
+msgid "Menu Background"
+msgstr ""
+
+#: configs/config.metaboxes.php:43 configs/config.themeoptions.php:342
+msgid "Transparent"
+msgstr ""
+
+#: configs/config.metaboxes.php:44 configs/config.themeoptions.php:343
+msgid "Black"
+msgstr ""
+
+#: configs/config.metaboxes.php:45 configs/config.themeoptions.php:1396
+msgid "Custom Color"
+msgstr ""
+
+#: configs/config.metaboxes.php:58 configs/config.themeoptions.php:359
+msgid "Custom Menu Item Color"
+msgstr ""
+
+#: configs/config.metaboxes.php:65
+msgid "Toggle Header Image"
+msgstr ""
+
+#: configs/config.metaboxes.php:67
+msgid ""
+"This feature is only available for Page Builder template. We recommend that "
+"you do not enable this feature if, in case, you want to build a Home Page. "
+"We recommend you do use Hero shortcode instead. But, in case, you want to "
+"build a page such as Pricing Table, Our team, this feature is recommended."
+msgstr ""
+
+#: configs/config.metaboxes.php:70 configs/config.metaboxes.php:642
+#: configs/config.metaboxes.php:653 configs/config.metaboxes.php:664
+#: configs/config.metaboxes.php:675 configs/config.metaboxes.php:686
+#: configs/config.metaboxes.php:697 configs/config.metaboxes.php:716
+#: configs/config.metaboxes.php:726 configs/config.themeoptions.php:384
+#: configs/config.themeoptions.php:581 configs/config.themeoptions.php:662
+#: configs/config.themeoptions.php:781 configs/config.themeoptions.php:851
+#: configs/config.themeoptions.php:882 configs/config.themeoptions.php:920
+#: configs/config.themeoptions.php:941 configs/config.themeoptions.php:958
+#: configs/config.themeoptions.php:975 configs/config.themeoptions.php:992
+#: configs/config.themeoptions.php:1014 configs/config.themeoptions.php:1024
+#: configs/config.themeoptions.php:1034 configs/config.themeoptions.php:1044
+#: configs/config.themeoptions.php:1054 configs/config.themeoptions.php:1065
+#: configs/config.themeoptions.php:1076 configs/config.themeoptions.php:1087
+#: configs/config.themeoptions.php:1108 configs/config.themeoptions.php:1187
+#: configs/config.themeoptions.php:1251 configs/config.vc.php:209
+#: configs/config.vc.php:264 configs/config.vc.php:864
+#: configs/config.vc.php:876 configs/config.vc.php:888
+#: configs/config.vc.php:909 configs/config.vc.php:931
+#: configs/config.vc.php:944 configs/config.vc.php:965
+#: configs/config.vc.php:986 configs/config.vc.php:1081
+#: configs/config.vc.php:1947 templates/edit-claimed.php:49
+#: wiloke-submission/addlisting-old.php:21 wiloke-submission/checkout.php:81
+#: admin/inc/class.WilokeAdminGeneral.php:96
+#: admin/inc/class.WilokeAdminGeneral.php:384
+msgid "Disable"
+msgstr ""
+
+#: configs/config.metaboxes.php:71
+msgid "Enbale"
+msgstr ""
+
+#: configs/config.metaboxes.php:77 configs/config.themeoptions.php:290
+msgid "Header Image"
+msgstr ""
+
+#: configs/config.metaboxes.php:79
+msgid "We recommend an image of 1200px of the width"
+msgstr ""
+
+#: configs/config.metaboxes.php:84 configs/config.taxonomy.php:15
+#: configs/config.taxonomy.php:33 configs/config.taxonomy.php:51
+#: configs/config.taxonomy.php:83 configs/config.taxonomy.php:100
+#: configs/config.taxonomy.php:118
+msgid "Header Overlay"
+msgstr ""
+
+#: configs/config.metaboxes.php:86
+msgid ""
+"If you want to create a blur on the Header Image, this setting is useful for "
+"you."
+msgstr ""
+
+#: configs/config.metaboxes.php:92
+msgid "Template Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:102 configs/config.vc.php:626
+msgid "Listing Layout"
+msgstr ""
+
+#: configs/config.metaboxes.php:105 configs/config.themeoptions.php:534
+#: configs/config.themeoptions.php:694 configs/config.vc.php:495
+#: configs/config.vc.php:646 configs/config.vc.php:2116
+#: configs/config.vc.php:2334
+msgid "Grid"
+msgstr ""
+
+#: configs/config.metaboxes.php:106 configs/config.themeoptions.php:695
+#: configs/config.vc.php:647
+msgid "Grid 2"
+msgstr ""
+
+#: configs/config.metaboxes.php:107 configs/config.vc.php:648
+msgid "Grid 3"
+msgstr ""
+
+#: configs/config.metaboxes.php:108 configs/config.vc.php:649
+msgid "Grid 4"
+msgstr ""
+
+#: configs/config.metaboxes.php:109 configs/config.vc.php:650
+msgid "Grid 5"
+msgstr ""
+
+#: configs/config.metaboxes.php:110 configs/config.themeoptions.php:696
+#: configs/config.vc.php:651
+msgid "List"
+msgstr ""
+
+#: configs/config.metaboxes.php:111 configs/config.themeoptions.php:697
+#: configs/config.vc.php:652
+msgid "List 2"
+msgstr ""
+
+#: configs/config.metaboxes.php:112 configs/config.themeoptions.php:698
+#: configs/config.vc.php:653
+msgid "List Circle Thumbnail (New)"
+msgstr ""
+
+#: configs/config.metaboxes.php:113 configs/config.themeoptions.php:699
+#: configs/config.vc.php:654
+msgid "List Creative Rectangle (New)"
+msgstr ""
+
+#: configs/config.metaboxes.php:119
+msgid "Order by"
+msgstr ""
+
+#: configs/config.metaboxes.php:122 configs/config.vc.php:760
+#: wiloke-submission/account/billing.php:142
+#: wiloke-submission/account/billing.php:189
+msgid "Date"
+msgstr ""
+
+#: configs/config.metaboxes.php:123 configs/config.themeoptions.php:588
+#: configs/config.vc.php:177 configs/config.vc.php:345
+#: configs/config.vc.php:761
+msgid "Title"
+msgstr ""
+
+#: configs/config.metaboxes.php:124 configs/config.vc.php:763
+#: configs/config.vc.php:1668
+msgid "Comment Count"
+msgstr ""
+
+#: configs/config.metaboxes.php:125 configs/config.themeoptions.php:1125
+#: configs/config.vc.php:762
+msgid "Author"
+msgstr ""
+
+#: configs/config.metaboxes.php:126 configs/config.vc.php:231
+#: configs/config.vc.php:528 configs/config.vc.php:764
+#: configs/config.vc.php:1522 configs/config.vc.php:1669
+msgid "Random"
+msgstr ""
+
+#: configs/config.metaboxes.php:127 configs/config.vc.php:765
+msgid "Featured Listings First"
+msgstr ""
+
+#: configs/config.metaboxes.php:133 configs/config.metaboxes.php:829
+msgid "Show Terms"
+msgstr ""
+
+#: configs/config.metaboxes.php:134 configs/config.metaboxes.php:830
+#: configs/config.vc.php:479 configs/config.vc.php:1143
+msgid "Choosing kind of terms will be shown on each project item."
+msgstr ""
+
+#: configs/config.metaboxes.php:137 configs/config.metaboxes.php:833
+#: configs/config.vc.php:483 configs/config.vc.php:725
+#: configs/config.vc.php:1147
+msgid "Listing Locations and Listing Categories"
+msgstr ""
+
+#: configs/config.metaboxes.php:138 configs/config.metaboxes.php:834
+#: configs/config.vc.php:484 configs/config.vc.php:726
+#: configs/config.vc.php:1148
+msgid "Only Listing Locations"
+msgstr ""
+
+#: configs/config.metaboxes.php:139 configs/config.metaboxes.php:835
+#: configs/config.vc.php:485 configs/config.vc.php:727
+#: configs/config.vc.php:1149
+msgid "Only Listing Categories"
+msgstr ""
+
+#: configs/config.metaboxes.php:144 configs/config.metaboxes.php:200
+#: configs/config.vc.php:779 configs/config.vc.php:1545
+#: configs/config.vc.php:1814
+msgid "Image Size"
+msgstr ""
+
+#: configs/config.metaboxes.php:146 configs/config.metaboxes.php:202
+#: configs/config.vc.php:780 configs/config.vc.php:1546
+#: configs/config.vc.php:1815
+msgid ""
+"Set image size for the feature image. You can use one of the following "
+"keywords: large, medium, thumbnail or specify size by following this "
+"structure w,h, for example: 1000,400, it means you want to display a "
+"featured image of 1000 width x 4000 height."
+msgstr ""
+
+#: configs/config.metaboxes.php:152
+msgid "Sidebar Position"
+msgstr ""
+
+#: configs/config.metaboxes.php:155 admin/inc/class.WilokeMetaboxes.php:130
+msgid "Inherit Theme Options"
+msgstr ""
+
+#: configs/config.metaboxes.php:156 configs/config.themeoptions.php:417
+#: configs/config.themeoptions.php:439 configs/config.themeoptions.php:450
+#: configs/config.themeoptions.php:461 configs/config.themeoptions.php:472
+#: configs/config.themeoptions.php:484 configs/config.themeoptions.php:495
+msgid "Left Sidebar"
+msgstr ""
+
+#: configs/config.metaboxes.php:157 configs/config.themeoptions.php:418
+#: configs/config.themeoptions.php:440 configs/config.themeoptions.php:451
+#: configs/config.themeoptions.php:462 configs/config.themeoptions.php:473
+#: configs/config.themeoptions.php:485 configs/config.themeoptions.php:496
+msgid "Right Sidebar"
+msgstr ""
+
+#: configs/config.metaboxes.php:158 configs/config.themeoptions.php:419
+#: configs/config.themeoptions.php:441 configs/config.themeoptions.php:452
+#: configs/config.themeoptions.php:463 configs/config.themeoptions.php:474
+#: configs/config.themeoptions.php:486 configs/config.themeoptions.php:497
+msgid "No Sidebar"
+msgstr ""
+
+#: configs/config.metaboxes.php:163 configs/config.vc.php:787
+#: configs/config.vc.php:2111
+msgid "Display Style"
+msgstr ""
+
+#: configs/config.metaboxes.php:167
+msgid "Show all"
+msgstr ""
+
+#: configs/config.metaboxes.php:168 configs/config.vc.php:795
+msgid "Pagination"
+msgstr ""
+
+#: configs/config.metaboxes.php:169
+msgid "Load more button"
+msgstr ""
+
+#: configs/config.metaboxes.php:174 configs/config.metaboxes.php:193
+msgid "Posts per page"
+msgstr ""
+
+#: configs/config.metaboxes.php:177 configs/config.metaboxes.php:195
+msgid "Leave empty to use the general setting (General -> Settings -> Reading)"
+msgstr ""
+
+#: configs/config.metaboxes.php:184
+msgid "Events Template Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:207 configs/config.themeoptions.php:167
+#: configs/config.vc.php:1753
+msgid "Excerpt Length"
+msgstr ""
+
+#: configs/config.metaboxes.php:215 configs/config.metaboxes.php:249
+msgid "Map Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:225 configs/config.vc.php:1068
+msgid "Map Theme"
+msgstr ""
+
+#: configs/config.metaboxes.php:226 configs/config.vc.php:1069
+msgid ""
+"Leave empty to use the Theme Options setting. Please refer to Wiloke Guide ->"
+" FAQs -> How to create a Map page to know more."
+msgstr ""
+
+#: configs/config.metaboxes.php:232 configs/config.metaboxes.php:809
+#: configs/config.vc.php:1061 configs/config.vc.php:1120
+msgid "Map Center"
+msgstr ""
+
+#: configs/config.metaboxes.php:233
+msgid "Leave empty means select the first article"
+msgstr ""
+
+#: configs/config.metaboxes.php:240 wiloke-submission/addlisting.php:451
+msgid "Listing Information"
+msgstr ""
+
+#: configs/config.metaboxes.php:250
+msgid ""
+"Enter in post's Lat&Long. If the map does not work, please go to Appearance -"
+"> Theme Options -> General -> Google Map API key."
+msgstr ""
+
+#: configs/config.metaboxes.php:257 configs/config.translation.php:11
+#: templates/edit-claimed.php:133 wiloke-submission/addlisting-old.php:351
+#: wiloke-submission/addlisting.php:458 admin/inc/class.WilokeUser.php:41
+#: admin/public/class.WilokeHead.php:363
+#: admin/public/class.WilokePublic.php:1001
+#: wiloke-submission/account/edit-profile.php:117
+msgid "Phone"
+msgstr ""
+
+#: configs/config.metaboxes.php:258 configs/config.metaboxes.php:265
+msgid "Leave empty inherit Your profile settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:264 configs/config.translation.php:12
+#: templates/edit-claimed.php:141 wiloke-submission/addlisting-old.php:359
+#: wiloke-submission/addlisting.php:466 admin/public/class.WilokeHead.php:364
+#: admin/public/class.WilokePublic.php:997
+#: wiloke-submission/account/edit-profile.php:108
+msgid "Website"
+msgstr ""
+
+#: configs/config.metaboxes.php:272
+msgid "Open Table Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:273
+msgid ""
+"You can find your restaurant id here <a href=\"https://www.otrestaurant."
+"com/marketing/reservationwidget\" target=\"_blank\">https://www.otrestaurant."
+"com</a>"
+msgstr ""
+
+#: configs/config.metaboxes.php:282
+msgid "Restaurant Name"
+msgstr ""
+
+#: configs/config.metaboxes.php:288
+msgid "Restaurant ID"
+msgstr ""
+
+#: configs/config.metaboxes.php:295
+msgid "Listing Claim"
+msgstr ""
+
+#: configs/config.metaboxes.php:304
+msgid "Claim Status"
+msgstr ""
+
+#: configs/config.metaboxes.php:305
+msgid ""
+"Note that you need to enable Claim System in Appearance -> Theme Options -> "
+"Listing Settings first."
+msgstr ""
+
+#: configs/config.metaboxes.php:308
+msgid "Not Claimed"
+msgstr ""
+
+#: configs/config.metaboxes.php:309
+msgid "Claimed"
+msgstr ""
+
+#: configs/config.metaboxes.php:316 templates/edit-claimed.php:169
+#: wiloke-submission/addlisting-old.php:371
+#: wiloke-submission/addlisting.php:305
+msgid "Price Segment"
+msgstr ""
+
+#: configs/config.metaboxes.php:325
+msgid "Range Segment"
+msgstr ""
+
+#: configs/config.metaboxes.php:328 configs/config.themeoptions.php:161
+msgid "Thanks, but no thanks"
+msgstr ""
+
+#: configs/config.metaboxes.php:338
+msgid "Price From"
+msgstr ""
+
+#: configs/config.metaboxes.php:345
+msgid "Price To"
+msgstr ""
+
+#: configs/config.metaboxes.php:353 templates/edit-claimed.php:262
+#: wiloke-submission/addlisting-old.php:464
+msgid "Social Media"
+msgstr ""
+
+#: configs/config.metaboxes.php:362
+msgid "Facebook"
+msgstr ""
+
+#: configs/config.metaboxes.php:368
+msgid "Twitter"
+msgstr ""
+
+#: configs/config.metaboxes.php:374 templates/edit-claimed.php:265
+#: wiloke-submission/addlisting-old.php:467
+#: wiloke-submission/addlisting.php:473
+msgid "Google+"
+msgstr ""
+
+#: configs/config.metaboxes.php:380
+msgid "Linkedin"
+msgstr ""
+
+#: configs/config.metaboxes.php:386
+msgid "Tumblr"
+msgstr ""
+
+#: configs/config.metaboxes.php:392
+msgid "Instagram"
+msgstr ""
+
+#: configs/config.metaboxes.php:398
+msgid "Pinterest"
+msgstr ""
+
+#: configs/config.metaboxes.php:404
+msgid "Vimeo"
+msgstr ""
+
+#: configs/config.metaboxes.php:410
+msgid "Youtube"
+msgstr ""
+
+#: configs/config.metaboxes.php:416
+msgid "Whatsapp"
+msgstr ""
+
+#: configs/config.metaboxes.php:423 configs/config.metaboxes.php:773
+msgid "Gallery"
+msgstr ""
+
+#: configs/config.metaboxes.php:434 configs/config.vc.php:1173
+#: configs/config.vc.php:1226
+msgid "Upload Images"
+msgstr ""
+
+#: configs/config.metaboxes.php:441
+msgid "Other Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:450 configs/config.themeoptions.php:1210
+#: configs/config.vc.php:112 configs/config.vc.php:1823
+msgid "Overlay Color"
+msgstr ""
+
+#: configs/config.metaboxes.php:451
+msgid "Leave empty to use the default setting in the ThemeOptions"
+msgstr ""
+
+#: configs/config.metaboxes.php:459
+msgid "Testimonial Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:468
+msgid "Profile picture"
+msgstr ""
+
+#: configs/config.metaboxes.php:469
+msgid "We recommend an image of 128x128px"
+msgstr ""
+
+#: configs/config.metaboxes.php:475
+msgid "Job Position"
+msgstr ""
+
+#: configs/config.metaboxes.php:482 configs/config.metaboxes.php:560
+#: configs/config.metaboxes.php:734
+msgid "Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:491
+msgid "Place Detail"
+msgstr ""
+
+#: configs/config.metaboxes.php:492
+msgid "Enter the address where organize this event."
+msgstr ""
+
+#: configs/config.metaboxes.php:499
+msgid "Latitude"
+msgstr ""
+
+#: configs/config.metaboxes.php:507
+msgid "Longitude"
+msgstr ""
+
+#: configs/config.metaboxes.php:515
+msgid "Event start on"
+msgstr ""
+
+#: configs/config.metaboxes.php:516
+msgid ""
+"When does event start? Note that it will be show like July 16, 2017 on the "
+"front-end."
+msgstr ""
+
+#: configs/config.metaboxes.php:523
+msgid "Event start at"
+msgstr ""
+
+#: configs/config.metaboxes.php:524
+msgid "Showing exactly the time event is opening"
+msgstr ""
+
+#: configs/config.metaboxes.php:530
+msgid "Event end at"
+msgstr ""
+
+#: configs/config.metaboxes.php:531
+msgid "Showing exactly the time event is closed"
+msgstr ""
+
+#: configs/config.metaboxes.php:537
+msgid "Event end on"
+msgstr ""
+
+#: configs/config.metaboxes.php:545
+msgid "Event belongs to"
+msgstr ""
+
+#: configs/config.metaboxes.php:546
+msgid "Set the listing, which this event belongs to"
+msgstr ""
+
+#: configs/config.metaboxes.php:552
+msgid "Link to event"
+msgstr ""
+
+#: configs/config.metaboxes.php:553
+msgid ""
+"For example: An agency pay for you to promote their event. On their website "
+"has an article about this event, you can put that link here, when your user "
+"click on this event, it redirects to the agency page."
+msgstr ""
+
+#: configs/config.metaboxes.php:569
+msgid "Important"
+msgstr ""
+
+#: configs/config.metaboxes.php:570
+msgid ""
+"If you are using 2Checkout Payment Gateway, Please read this tutorial <a "
+"href=\"https://blog.wiloke.com/setup-plan-for-2checkout-payment-gateway/\" "
+"target=\"_blank\">SETUP PLAN FOR 2CHECKOUT PAYMENT GATEWAY</a>"
+msgstr ""
+
+#: configs/config.metaboxes.php:575 configs/config.vc.php:184
+#: configs/config.vc.php:353 configs/config.vc.php:1214
+#: configs/config.vc.php:1365 configs/config.vc.php:1698
+#: configs/config.vc.php:1972 admin/public/class.WilokePublic.php:3337
+msgid "Description"
+msgstr ""
+
+#: configs/config.metaboxes.php:581
+msgid "Duration (day)"
+msgstr ""
+
+#: configs/config.metaboxes.php:582
+msgid ""
+"Set duration of an article start from it is published. If this field is "
+"empty, it means unlimited time. <strong class=\"help red\">This feature is "
+"only available for Non-recurring Payment</strong> or This is a <strong "
+"class=\"red help\">Free</strong> package plan. Regarding <strong class=\"red "
+"help\">Recurring Payment</strong>, the listing will be hidden after your "
+"user could not pay for their plan."
+msgstr ""
+
+#: configs/config.metaboxes.php:588
+msgid "Regular Price (number)"
+msgstr ""
+
+#: configs/config.metaboxes.php:589
+msgid ""
+"Leave empty to set this pricing table as free. Notice: Only enter number."
+msgstr ""
+
+#: configs/config.metaboxes.php:594
+msgid "Regular Period (day)"
+msgstr ""
+
+#: configs/config.metaboxes.php:595
+msgid ""
+"Set a Billing Frequency. For example: If you set the value is 30, it means "
+"auto payment will be proceed each month. <strong class=\"help red\">0 means "
+"Unlimited Availability package. Otherwise, Regular must be less than or "
+"equal to one year</strong>. <strong class=\"help red\">This feature is "
+"available for Recurring Payment method</strong>"
+msgstr ""
+
+#: configs/config.metaboxes.php:600
+msgid "Trial Price (number)"
+msgstr ""
+
+#: configs/config.metaboxes.php:601
+msgid ""
+"<strong class=\"help red\">A trial price cannot the same the regular "
+"price</strong>. Enter <strong class=\"red\">0</strong> means Your customer "
+"can use this package, with <strong class=\"help red\">X days</strong> free "
+"trial, for the package <strong class=\"help red\">X is Trial Period setting "
+"below</strong>. After the free trial, the customer is billed X (X is regular "
+"price) dollar per <strong class=\"help red\">Regular Period (day)</strong>. "
+"<strong class=\"help red\">This feature is available for Recurring Payment "
+"method</strong>"
+msgstr ""
+
+#: configs/config.metaboxes.php:606
+msgid "Trial Period (day)"
+msgstr ""
+
+#: configs/config.metaboxes.php:607
+msgid ""
+"<strong class=\"help red\">This feature is available for Recurring Payment "
+"method and You can not leave empty if you want to trial feature.</strong>"
+msgstr ""
+
+#: configs/config.metaboxes.php:612
+msgid "Number of Listings"
+msgstr ""
+
+#: configs/config.metaboxes.php:613
+msgid ""
+"Set maximum listings will be created by this pricing. Leave empty to set "
+"unlimited listings."
+msgstr ""
+
+#: configs/config.metaboxes.php:618
+msgid "Number of listings Per"
+msgstr ""
+
+#: configs/config.metaboxes.php:619
+msgid ""
+"This feature is only available for Recurring Payment. Eg: Regular Period: 30,"
+" Number of listings: 10, Number of Listings per: Regular Period, it means "
+"your user can add maximum 10 listings / month. <strong class=\"help red\">"
+"This feature is available for Recurring Payment method</strong>. Regarding "
+"No-recurring package, it always is Lifetime."
+msgstr ""
+
+#: configs/config.metaboxes.php:622
+msgid "Regular Period"
+msgstr ""
+
+#: configs/config.metaboxes.php:623
+msgid "Lifetime"
+msgstr ""
+
+#: configs/config.metaboxes.php:631
+msgid "Event Package"
+msgstr ""
+
+#: configs/config.metaboxes.php:632
+msgid ""
+"Once a client purchased this plan, they will be offered an event plan (on "
+"the first time billing only). The event plan allows creating events for "
+"their listing. You can create the event plan by clicking on Event Pricings ->"
+" Add New."
+msgstr ""
+
+#: configs/config.metaboxes.php:637 wiloke-submission/checkout.php:74
+msgid "Publish on map"
+msgstr ""
+
+#: configs/config.metaboxes.php:638
+msgid ""
+"When your customers purchase this pricing, their listings will be "
+"published/unpublish on Map"
+msgstr ""
+
+#: configs/config.metaboxes.php:641 configs/config.metaboxes.php:652
+#: configs/config.metaboxes.php:663 configs/config.metaboxes.php:674
+#: configs/config.metaboxes.php:685 configs/config.metaboxes.php:696
+#: configs/config.metaboxes.php:715 configs/config.metaboxes.php:725
+#: configs/config.themeoptions.php:385 configs/config.themeoptions.php:580
+#: configs/config.themeoptions.php:663 configs/config.themeoptions.php:782
+#: configs/config.themeoptions.php:850 configs/config.themeoptions.php:881
+#: configs/config.themeoptions.php:919 configs/config.themeoptions.php:940
+#: configs/config.themeoptions.php:957 configs/config.themeoptions.php:974
+#: configs/config.themeoptions.php:991 configs/config.themeoptions.php:1013
+#: configs/config.themeoptions.php:1023 configs/config.themeoptions.php:1033
+#: configs/config.themeoptions.php:1043 configs/config.themeoptions.php:1053
+#: configs/config.themeoptions.php:1064 configs/config.themeoptions.php:1075
+#: configs/config.themeoptions.php:1086 configs/config.themeoptions.php:1107
+#: configs/config.themeoptions.php:1186 configs/config.themeoptions.php:1250
+#: configs/config.vc.php:208 configs/config.vc.php:263
+#: configs/config.vc.php:863 configs/config.vc.php:875
+#: configs/config.vc.php:887 configs/config.vc.php:908
+#: configs/config.vc.php:930 configs/config.vc.php:943
+#: configs/config.vc.php:964 configs/config.vc.php:985
+#: configs/config.vc.php:1080 configs/config.vc.php:1946
+#: templates/edit-claimed.php:48 wiloke-submission/addlisting-old.php:20
+#: wiloke-submission/checkout.php:81 admin/inc/class.WilokeAdminGeneral.php:95
+#: admin/inc/class.WilokeAdminGeneral.php:383
+msgid "Enable"
+msgstr ""
+
+#: configs/config.metaboxes.php:648 admin/inc/class.WilokeAdminGeneral.php:87
+msgid "Featured Listing"
+msgstr ""
+
+#: configs/config.metaboxes.php:649
+msgid ""
+"When your customers purchase this pricing, A ribbon will be added to their "
+"listings."
+msgstr ""
+
+#: configs/config.metaboxes.php:659
+msgid "Toggle add gallery on the sidebar"
+msgstr ""
+
+#: configs/config.metaboxes.php:660
+msgid ""
+"When Allow / Not Allow ability to add a gallery onto the Listing sidebar"
+msgstr ""
+
+#: configs/config.metaboxes.php:670
+msgid "Toggle Embed Video into Listing Content"
+msgstr ""
+
+#: configs/config.metaboxes.php:671
+msgid "Allow / Not Allow ability to embed Video into Listing"
+msgstr ""
+
+#: configs/config.metaboxes.php:681
+msgid "Toggle Listing Template"
+msgstr ""
+
+#: configs/config.metaboxes.php:682
+msgid "Allow using all listing template or just use the default template."
+msgstr ""
+
+#: configs/config.metaboxes.php:692
+msgid "Toggle Listing Shortcodes"
+msgstr ""
+
+#: configs/config.metaboxes.php:693
+msgid "Allow using Accordion, Listing Features, Menu Prices shortcodes or not."
+msgstr ""
+
+#: configs/config.metaboxes.php:705
+msgid "Custom Fields"
+msgstr ""
+
+#: configs/config.metaboxes.php:706
+msgid ""
+"Select a Group Custom Field that will be used on this package. Note that "
+"this group must be set to \"Post Type is equal to Listing\" rule"
+msgstr ""
+
+#: configs/config.metaboxes.php:712
+msgid "Toggle Open Table"
+msgstr ""
+
+#: configs/config.metaboxes.php:713
+msgid ""
+"Allow your users to embed their Restaurant on www.opentable.com to their "
+"listing."
+msgstr ""
+
+#: configs/config.metaboxes.php:722
+msgid "High Light"
+msgstr ""
+
+#: configs/config.metaboxes.php:723
+msgid "Set this pricing as highlight feature"
+msgstr ""
+
+#: configs/config.metaboxes.php:743
+msgid "How Add Event Listing works?"
+msgstr ""
+
+#: configs/config.metaboxes.php:744
+msgid ""
+"Please read this article to know more <a href=\"https://blog.wiloke."
+"com/event-plan-works/\" target=\"_blank\">HOW “EVENT PLAN” WORKS?</a>"
+msgstr ""
+
+#: configs/config.metaboxes.php:749
+msgid "Price"
+msgstr ""
+
+#: configs/config.metaboxes.php:750
+msgid ""
+"This price must be bigger than 0. You can create a relationship between "
+"Event Plan and Pricing Plan by going to Pricing -> For: Package A -> "
+"Assigning this plan to the Package A."
+msgstr ""
+
+#: configs/config.metaboxes.php:755
+msgid "Number of Events"
+msgstr ""
+
+#: configs/config.metaboxes.php:756
+msgid ""
+"Set maximum listings will be created by this pricing. The number must be "
+"bigger than 0."
+msgstr ""
+
+#: configs/config.metaboxes.php:762
+msgid "Review Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:780
+msgid "Half Map Settings"
+msgstr ""
+
+#: configs/config.metaboxes.php:790 configs/config.themeoptions.php:218
+#: configs/config.themeoptions.php:255 configs/config.vc.php:1097
+msgid "Map Maximum Zoom (Desktop)"
+msgstr ""
+
+#: configs/config.metaboxes.php:796 configs/config.themeoptions.php:224
+#: configs/config.themeoptions.php:261 configs/config.vc.php:1105
+msgid "Map Minimum Zoom (Desktop)"
+msgstr ""
+
+#: configs/config.metaboxes.php:797 configs/config.themeoptions.php:225
+#: configs/config.themeoptions.php:262 configs/config.vc.php:1106
+msgid "A negative number is allowable"
+msgstr ""
+
+#: configs/config.metaboxes.php:803 configs/config.themeoptions.php:231
+#: configs/config.themeoptions.php:268 configs/config.vc.php:1113
+msgid "Map Center Zoom"
+msgstr ""
+
+#: configs/config.metaboxes.php:810
+msgid ""
+"Eg: 38.8913,-77.02. Leave empty to set the first listing as the map center."
+msgstr ""
+
+#: configs/config.metaboxes.php:816 configs/config.themeoptions.php:237
+#: configs/config.vc.php:1128
+msgid "Map Cluster Radius"
+msgstr ""
+
+#: configs/config.metaboxes.php:817 configs/config.themeoptions.php:238
+#: configs/config.vc.php:1129
+msgid "The maximum radius that a cluster will cover from the central marker"
+msgstr ""
+
+#: configs/config.metaboxes.php:823 configs/config.vc.php:1136
+msgid "Listings per page"
+msgstr ""
+
+#: configs/config.taxonomy.php:7 configs/config.taxonomy.php:25
+#: configs/config.taxonomy.php:43 configs/config.taxonomy.php:75
+#: configs/config.taxonomy.php:110 templates/edit-claimed.php:111
+#: templates/edit-claimed.php:113 wiloke-submission/addlisting-old.php:309
+#: wiloke-submission/addlisting-old.php:311
+#: wiloke-submission/addlisting.php:402 wiloke-submission/addlisting.php:405
+msgid "Featured Image"
+msgstr ""
+
+#: configs/config.taxonomy.php:59
+msgid "Location Timezone"
+msgstr ""
+
+#: configs/config.taxonomy.php:60
+msgid ""
+"This setting is useful to detect whether a resaturent, a bar is closed or "
+"opening. Leave empty to use the default settings in Settings -> General."
+msgstr ""
+
+#: configs/config.taxonomy.php:66
+msgid "Place ID"
+msgstr ""
+
+#: configs/config.taxonomy.php:67
+msgid ""
+"This feature available in ListGo 1.0.8 and higher. You can find the place "
+"here <a href=\"https://developers.google."
+"com/maps/documentation/javascript/examples/places-placeid-finder\" "
+"target=\"_blank\">PlaceID finder</a>"
+msgstr ""
+
+#: configs/config.taxonomy.php:90
+msgid "Map Marker"
+msgstr ""
+
+#: configs/config.taxonomy.php:91
+msgid ""
+"You can download Wiloke Map Icons here <a href=\"https://www.dropbox."
+"com/s/l67lf2t135j1ns0/map-icons.zip?dl=0\" target=\"_blank\">Download Map "
+"Icons</a>"
+msgstr ""
+
+#: configs/config.themeoptions.php:5 configs/config.themeoptions.php:20
+#: configs/config.themeoptions.php:21
+msgid "Theme Options"
+msgstr ""
+
+#: configs/config.themeoptions.php:119
+msgid "General"
+msgstr ""
+
+#: configs/config.themeoptions.php:128
+msgid "Logo"
+msgstr ""
+
+#: configs/config.themeoptions.php:129
+msgid ""
+"Upload a logo for this site. This logo will be displayed at the top right of "
+"header."
+msgstr ""
+
+#: configs/config.themeoptions.php:137
+msgid "Retina Logo"
+msgstr ""
+
+#: configs/config.themeoptions.php:138
+msgid "Upload a logo for retina-display devices."
+msgstr ""
+
+#: configs/config.themeoptions.php:144
+msgid "Upload favicon"
+msgstr ""
+
+#: configs/config.themeoptions.php:150
+msgid "Mobile Menu"
+msgstr ""
+
+#: configs/config.themeoptions.php:151
+msgid ""
+"The menu will automatically switch to Mobile style if the screen is smaller  "
+"than or enqual to x px"
+msgstr ""
+
+#: configs/config.themeoptions.php:157
+msgid "Enable Pre-loader"
+msgstr ""
+
+#: configs/config.themeoptions.php:160 configs/config.vc.php:54
+#: configs/config.vc.php:77 configs/config.vc.php:96 configs/config.vc.php:141
+msgid "Yes"
+msgstr ""
+
+#: configs/config.themeoptions.php:173
+msgid "404 Background Image"
+msgstr ""
+
+#: configs/config.themeoptions.php:180
+msgid "Map General Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:181
+msgid ""
+"If you are using any cache plugin, You need to flush cache after the "
+"settings is changed."
+msgstr ""
+
+#: configs/config.themeoptions.php:186
+msgid "Google Map API (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:187
+msgid ""
+"It is required if you wanna use Google MAP. Please go to this link to "
+"generate your <a href=\"https://developers.google."
+"com/maps/documentation/javascript/get-api-key\" target=\"_blank\">Google API "
+"key</a>. Once the Google Map is activated, make sure that the following "
+"things are enabled <a href=\"https://landing.wiloke.com/listgo/wiloke-"
+"guide/enable-google-api.png\"></a>"
+msgstr ""
+
+#: configs/config.themeoptions.php:193
+msgid "MapBox Token (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:194
+msgid ""
+"It is required if you wanna use Map Shortcode. Please go to this link to "
+"generate your <a href=\"https://www.mapbox.com/studio/account/tokens\" "
+"target=\"_blank\">Mapbox Token</a>"
+msgstr ""
+
+#: configs/config.themeoptions.php:200
+msgid "MapBox Theme (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:201
+msgid ""
+"This setting is required. Watch this video <a href=\"https://www.youtube."
+"com/watch?v=-3tdKCxpWIY\">How to create a Mapbox Theme?</a> to know more."
+msgstr ""
+
+#: configs/config.themeoptions.php:213
+msgid "Map Template Settings and Map Shortcode Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:250
+msgid "Map on Single Listing settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:280 configs/config.vc.php:1202
+msgid "Header"
+msgstr ""
+
+#: configs/config.themeoptions.php:295
+msgid "Blog Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:296
+msgid ""
+"This image will be used on blog page, post page, category page and archive "
+"page. But if a post / a category / a tag is EXISTING a Featured Image, that "
+"image will be used instead. In other word, You can override this image."
+msgstr ""
+
+#: configs/config.themeoptions.php:302
+msgid "Blog Overlay Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:308
+msgid "Listing Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:309
+msgid "If the featured image is empty, this image will be used."
+msgstr ""
+
+#: configs/config.themeoptions.php:315
+msgid "Listing Overlay Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:321
+msgid "WooCommerce Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:322
+msgid "This image will be used on wooocommerce pages"
+msgstr ""
+
+#: configs/config.themeoptions.php:328
+msgid "WooCommerce Overlay Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:339
+msgid "Navigation Background Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:340
+msgid ""
+"Note that some special pages such as Listing Creative Layout always keep "
+"Transparent Background."
+msgstr ""
+
+#: configs/config.themeoptions.php:344
+msgid "Custom Background"
+msgstr ""
+
+#: configs/config.themeoptions.php:352
+msgid "Custom Background Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:367
+msgid "Sign Up, Sign in, Review"
+msgstr ""
+
+#: configs/config.themeoptions.php:376
+msgid "Sign Up Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:377
+msgid ""
+"By creating an account you agree to our <a href=\"#\">Terms and "
+"Conditions</a> and our <a href=\"#\">Privacy Policy</a>"
+msgstr ""
+
+#: configs/config.themeoptions.php:382
+msgid "Toggle Google reCAPTCHA"
+msgstr ""
+
+#: configs/config.themeoptions.php:393
+msgid "Google reCAPTCHA - Site Key"
+msgstr ""
+
+#: configs/config.themeoptions.php:400
+msgid "Google reCAPTCHA - Secret Key"
+msgstr ""
+
+#: configs/config.themeoptions.php:407
+msgid "Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:422 configs/config.widgets.php:32
+msgid "Blog Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:428 configs/config.themeoptions.php:506
+msgid "All widgets in a box"
+msgstr ""
+
+#: configs/config.themeoptions.php:429 configs/config.themeoptions.php:507
+msgid "Each item separated by a box"
+msgstr ""
+
+#: configs/config.themeoptions.php:432
+msgid "Blog Sidebar style "
+msgstr ""
+
+#: configs/config.themeoptions.php:433
+msgid "This setting will be used on the category page, tag page, post page"
+msgstr ""
+
+#: configs/config.themeoptions.php:444
+msgid "Page Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:455
+msgid "Archive, Home, Search "
+msgstr ""
+
+#: configs/config.themeoptions.php:466
+msgid "Listing Location Sidebar & Listing Category Sidebar "
+msgstr ""
+
+#: configs/config.themeoptions.php:477
+msgid "Listing Sidebar Position "
+msgstr ""
+
+#: configs/config.themeoptions.php:478
+msgid ""
+"To set the listing sidebar, please go to Appearance -> Widgets -> Dragging "
+"widget items into Listing Sidebar area."
+msgstr ""
+
+#: configs/config.themeoptions.php:489
+msgid "Event Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:500
+msgid "WooCommerce Sidebar "
+msgstr ""
+
+#: configs/config.themeoptions.php:510
+msgid "WooCommerce Sidebar style "
+msgstr ""
+
+#: configs/config.themeoptions.php:517
+msgid "Blog"
+msgstr ""
+
+#: configs/config.themeoptions.php:526 admin/inc/func.visualComposer.php:130
+msgid "General Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:532
+msgid "Blog Layout"
+msgstr ""
+
+#: configs/config.themeoptions.php:535
+msgid "Standard"
+msgstr ""
+
+#: configs/config.themeoptions.php:542
+msgid "Articles per row on Desktops"
+msgstr ""
+
+#: configs/config.themeoptions.php:544 configs/config.themeoptions.php:557
+msgid "3 articles / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:545 configs/config.themeoptions.php:558
+msgid "4 articles / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:546 configs/config.themeoptions.php:556
+msgid "2 articles / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:554
+msgid "Articles per row on Tablets"
+msgstr ""
+
+#: configs/config.themeoptions.php:572
+msgid "Article Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:578
+msgid "Related Posts"
+msgstr ""
+
+#: configs/config.themeoptions.php:594
+msgid "Number of articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:596
+msgid "3 Articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:597
+msgid "2 Articles"
+msgstr ""
+
+#: configs/config.themeoptions.php:606
+msgid "Listing Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:612
+msgid "Listing Slug settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:620
+msgid "Listing Location Slug"
+msgstr ""
+
+#: configs/config.themeoptions.php:621 configs/config.themeoptions.php:635
+#: configs/config.themeoptions.php:642
+msgid ""
+"Leave empty to use the default setting. Warning: Please click on Settings -> "
+"Permalinks -> Select Post Name and click Save Changes button"
+msgstr ""
+
+#: configs/config.themeoptions.php:627
+msgid "Listing Category Slug"
+msgstr ""
+
+#: configs/config.themeoptions.php:628
+msgid ""
+"Leave empty to use the default setting. Warning: Please click on Settings -> "
+"Reading -> Select Post Name and click Save Changes button"
+msgstr ""
+
+#: configs/config.themeoptions.php:634
+msgid "Listing Tag Slug"
+msgstr ""
+
+#: configs/config.themeoptions.php:641
+msgid "Single Listing Slug"
+msgstr ""
+
+#: configs/config.themeoptions.php:651 wiloke-submission/addlisting-old.php:181
+msgid "Add Listing"
+msgstr ""
+
+#: configs/config.themeoptions.php:659
+msgid "Toggle Add Listing Button on the mobile"
+msgstr ""
+
+#: configs/config.themeoptions.php:669
+msgid "Select Location Type"
+msgstr ""
+
+#: configs/config.themeoptions.php:672
+msgid "Add Locations by admin only"
+msgstr ""
+
+#: configs/config.themeoptions.php:673
+msgid "Automatically Add Location By Google"
+msgstr ""
+
+#: configs/config.themeoptions.php:682
+msgid "Listing Category and Listing Location Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:690
+msgid "Listing Category & Listing Location Layout"
+msgstr ""
+
+#: configs/config.themeoptions.php:691
+msgid "Set a layout for listing category page & listing location page."
+msgstr ""
+
+#: configs/config.themeoptions.php:709
+msgid "Search Form Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:717
+msgid "Search Form Action"
+msgstr ""
+
+#: configs/config.themeoptions.php:720
+msgid "Redirect To Search page"
+msgstr ""
+
+#: configs/config.themeoptions.php:721
+msgid "Show the search results on the self page."
+msgstr ""
+
+#: configs/config.themeoptions.php:729
+msgid "Search Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:731
+msgid ""
+"When user click on Search button, it will redirect to this page. To create a "
+"search page, please go to Pages -> Add New -> Set that page as Listing "
+"template or Map page Template (This setting should under Page Attributes box)"
+msgstr ""
+
+#: configs/config.themeoptions.php:736
+msgid "Label for the keyword field"
+msgstr ""
+
+#: configs/config.themeoptions.php:737 configs/config.vc.php:280
+msgid "Address, city or select suggestion category"
+msgstr ""
+
+#: configs/config.themeoptions.php:742
+msgid "Label for the Location field"
+msgstr ""
+
+#: configs/config.themeoptions.php:743 configs/config.translation.php:9
+#: configs/config.vc.php:288 admin/public/class.WilokeHead.php:361
+#: admin/public/class.WilokePublic.php:993
+#: admin/public/template/vc/wiloke_awesome_map.php:105
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:606
+msgid "Location"
+msgstr ""
+
+#: configs/config.themeoptions.php:748
+msgid "Label for the default cost"
+msgstr ""
+
+#: configs/config.themeoptions.php:749
+msgid "Cost - It does't matter"
+msgstr ""
+
+#: configs/config.themeoptions.php:754
+msgid "Label for Cheap Segment"
+msgstr ""
+
+#: configs/config.themeoptions.php:760
+msgid "Label for Moderate Segment"
+msgstr ""
+
+#: configs/config.themeoptions.php:766
+msgid "Label for Expensive Segment"
+msgstr ""
+
+#: configs/config.themeoptions.php:772
+msgid "Label for  Ultra high"
+msgstr ""
+
+#: configs/config.themeoptions.php:778
+msgid "Toggle Search By Tags"
+msgstr ""
+
+#: configs/config.themeoptions.php:788
+msgid "Maximum Radius (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:794
+msgid "Minimum Radius (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:800
+msgid "Set Default Radius (*)"
+msgstr ""
+
+#: configs/config.themeoptions.php:812
+msgid "Single Listing Layout"
+msgstr ""
+
+#: configs/config.themeoptions.php:813
+msgid ""
+"Set a layout for listing page. Note that you can override  this setting for "
+"each individual page by using Listing Template"
+msgstr ""
+
+#: configs/config.themeoptions.php:816 templates/edit-claimed.php:99
+msgid "Traditional"
+msgstr ""
+
+#: configs/config.themeoptions.php:822
+msgid "Roark"
+msgstr ""
+
+#: configs/config.themeoptions.php:835
+msgid "Set Contact Form 7"
+msgstr ""
+
+#: configs/config.themeoptions.php:836
+msgid ""
+"This contact form will be used on the Contact & Map tab and on the Contact "
+"Widget"
+msgstr ""
+
+#: configs/config.themeoptions.php:839
+msgid "Claim Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:847
+msgid "Toggle Claim Listings"
+msgstr ""
+
+#: configs/config.themeoptions.php:857
+msgid "Claim Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:858
+msgid "Is this your business?"
+msgstr ""
+
+#: configs/config.themeoptions.php:864
+msgid "Claim Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:865
+msgid "Claim listing is the best way to manage and protect your business"
+msgstr ""
+
+#: configs/config.themeoptions.php:871
+msgid "Claim Popup Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:872
+msgid ""
+"Claim your listing in order to manage the listing page. You will get access "
+"to the listing dashboard, where you can upload photos, change the listing "
+"content and much more."
+msgstr ""
+
+#: configs/config.themeoptions.php:878
+msgid "Toggle Required Supply Business Phone"
+msgstr ""
+
+#: configs/config.themeoptions.php:897
+msgid "Edit Claimed Page"
+msgstr ""
+
+#: configs/config.themeoptions.php:898
+msgid "Where claimer guy could be edit his Listing"
+msgstr ""
+
+#: configs/config.themeoptions.php:908
+msgid "Listings Near By You"
+msgstr ""
+
+#: configs/config.themeoptions.php:916
+msgid "Ask For Current User Position"
+msgstr ""
+
+#: configs/config.themeoptions.php:932
+msgid "Tab Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:937
+msgid "Toggle Description Tab"
+msgstr ""
+
+#: configs/config.themeoptions.php:947
+msgid "Description Tab"
+msgstr ""
+
+#: configs/config.themeoptions.php:954
+msgid "Toggle Contact And Map Tab"
+msgstr ""
+
+#: configs/config.themeoptions.php:964
+msgid "Contact And Map Tab"
+msgstr ""
+
+#: configs/config.themeoptions.php:971
+msgid "Toggle Review and rating"
+msgstr ""
+
+#: configs/config.themeoptions.php:981
+msgid "Review And Rating Tab"
+msgstr ""
+
+#: configs/config.themeoptions.php:988
+msgid "Allow user to add photos in their review"
+msgstr ""
+
+#: configs/config.themeoptions.php:1004
+msgid "Toggle Meta Data"
+msgstr ""
+
+#: configs/config.themeoptions.php:1009
+msgid "Posted On"
+msgstr ""
+
+#: configs/config.themeoptions.php:1010
+msgid "Showing when the article was created"
+msgstr ""
+
+#: configs/config.themeoptions.php:1020
+msgid "Toggle Categories"
+msgstr ""
+
+#: configs/config.themeoptions.php:1030
+msgid "Toggle Locations"
+msgstr ""
+
+#: configs/config.themeoptions.php:1040
+msgid "Rating Result"
+msgstr ""
+
+#: configs/config.themeoptions.php:1050
+msgid "Following Author's Article"
+msgstr ""
+
+#: configs/config.themeoptions.php:1060
+#: admin/public/class.WilokePublic.php:2706
+msgid "Report"
+msgstr ""
+
+#: configs/config.themeoptions.php:1061
+msgid ""
+"If this feature is enabled, A bad article could be report to admin by reader."
+msgstr ""
+
+#: configs/config.themeoptions.php:1071
+msgid "Sharing Article"
+msgstr ""
+
+#: configs/config.themeoptions.php:1072
+msgid "Important: Wiloke Sharing Posts plugin is required by this feature."
+msgstr ""
+
+#: configs/config.themeoptions.php:1082
+msgid "Add To My Favorite"
+msgstr ""
+
+#: configs/config.themeoptions.php:1083
+msgid "Important: Listgo Functionality plugin is required by this feature."
+msgstr ""
+
+#: configs/config.themeoptions.php:1096
+msgid "Related Listings"
+msgstr ""
+
+#: configs/config.themeoptions.php:1104
+msgid "Toggle Related Listings"
+msgstr ""
+
+#: configs/config.themeoptions.php:1115
+msgid "Related Listing Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:1122
+msgid "Get Related Listings By"
+msgstr ""
+
+#: configs/config.themeoptions.php:1126 configs/config.vc.php:412
+#: configs/config.vc.php:662 configs/config.vc.php:1616
+msgid "Listing Category"
+msgstr ""
+
+#: configs/config.themeoptions.php:1127 configs/config.vc.php:413
+#: configs/config.vc.php:663 configs/config.vc.php:1036
+#: configs/config.vc.php:1615 wiloke-submission/addlisting-old.php:263
+msgid "Listing Location"
+msgstr ""
+
+#: configs/config.themeoptions.php:1140
+msgid "WooCommerce"
+msgstr ""
+
+#: configs/config.themeoptions.php:1149
+msgid "Products per row on large Desktops"
+msgstr ""
+
+#: configs/config.themeoptions.php:1151 configs/config.themeoptions.php:1163
+msgid "3 products / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:1152 configs/config.themeoptions.php:1164
+msgid "4 products / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:1153 configs/config.themeoptions.php:1162
+msgid "2 products / row"
+msgstr ""
+
+#: configs/config.themeoptions.php:1160
+msgid "Products per row on small Tablets"
+msgstr ""
+
+#: configs/config.themeoptions.php:1173
+msgid "Footer"
+msgstr ""
+
+#: configs/config.themeoptions.php:1182
+msgid "Footer Widgets"
+msgstr ""
+
+#: configs/config.themeoptions.php:1183
+msgid ""
+"Select Enable if you want to use this feature. To set Footer Widgets, please "
+"go to Appearance -> Widgets -> Dragging your widgets into Footer 1 area and "
+"Footer 2 area."
+msgstr ""
+
+#: configs/config.themeoptions.php:1194
+msgid "Footer Style"
+msgstr ""
+
+#: configs/config.themeoptions.php:1197
+msgid "Footer Style 1"
+msgstr ""
+
+#: configs/config.themeoptions.php:1198
+msgid "Footer Style 2"
+msgstr ""
+
+#: configs/config.themeoptions.php:1204
+msgid "Footer Background"
+msgstr ""
+
+#: configs/config.themeoptions.php:1216
+msgid "Footer Logo"
+msgstr ""
+
+#: configs/config.themeoptions.php:1217
+msgid "Leave empty to use the logo at General Section"
+msgstr ""
+
+#: configs/config.themeoptions.php:1222
+msgid "Copyright"
+msgstr ""
+
+#: configs/config.themeoptions.php:1230 admin/inc/class.WilokeUser.php:157
+#: wiloke-submission/account/edit-profile.php:177
+msgid "Social Networks"
+msgstr ""
+
+#: configs/config.themeoptions.php:1240
+msgid "SEO"
+msgstr ""
+
+#: configs/config.themeoptions.php:1254
+msgid "Open Graph Meta"
+msgstr ""
+
+#: configs/config.themeoptions.php:1255
+msgid ""
+"Elements that describe the object in different ways and are represented by "
+"meta tags included on the object page"
+msgstr ""
+
+#: configs/config.themeoptions.php:1260
+msgid "Image"
+msgstr ""
+
+#: configs/config.themeoptions.php:1261
+msgid ""
+"This image represent your website within the social graph. It should use a "
+"1200x1200px  or large square image."
+msgstr ""
+
+#: configs/config.themeoptions.php:1267
+msgid "Homepage custom title"
+msgstr ""
+
+#: configs/config.themeoptions.php:1268
+msgid ""
+"The title will be displayed in homepage between &lt;title>&lt;/title> tags"
+msgstr ""
+
+#: configs/config.themeoptions.php:1275
+msgid "Blog Name | Blog Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:1276
+msgid "Blog Description | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:1277
+msgid "Blog Name Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:1280
+msgid "Home Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:1281 configs/config.themeoptions.php:1293
+msgid "If Homepage custom title not set"
+msgstr ""
+
+#: configs/config.themeoptions.php:1287
+msgid "Category Name | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:1288
+msgid "Blog Name | Category Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:1289
+msgid "Category Name Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:1292
+msgid "Category Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:1299
+msgid "Post Title | Blog Name"
+msgstr ""
+
+#: configs/config.themeoptions.php:1300
+msgid "Blog Name | Post Title"
+msgstr ""
+
+#: configs/config.themeoptions.php:1301
+msgid "Post Title Only"
+msgstr ""
+
+#: configs/config.themeoptions.php:1304
+msgid "Single Post Page Title Format"
+msgstr ""
+
+#: configs/config.themeoptions.php:1310
+msgid "Home Meta Keywords"
+msgstr ""
+
+#: configs/config.themeoptions.php:1311
+msgid "Add tags for the search engines and especially Google"
+msgstr ""
+
+#: configs/config.themeoptions.php:1316
+msgid "Home Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:1322
+msgid "Author Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:1328
+msgid "Contact Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:1334
+msgid "Other Meta Keywords"
+msgstr ""
+
+#: configs/config.themeoptions.php:1340
+msgid "Other Meta Description"
+msgstr ""
+
+#: configs/config.themeoptions.php:1348
+msgid "Advanced Settings"
+msgstr ""
+
+#: configs/config.themeoptions.php:1357 configs/config.themeoptions.php:1368
+msgid "Google Fonts"
+msgstr ""
+
+#: configs/config.themeoptions.php:1370
+msgid ""
+"The theme allows replace current Google Fonts with another Google Fonts. Go "
+"to https://fonts.google.com/specimen to get a the Font that you want. For "
+"example: https://fonts.googleapis.com/css?family=Prompt"
+msgstr ""
+
+#: configs/config.themeoptions.php:1376
+msgid "Css Rules"
+msgstr ""
+
+#: configs/config.themeoptions.php:1377
+msgid ""
+"This code shoule be under Google Font link. For example: font-family: "
+"'Prompt', sans-serif;"
+msgstr ""
+
+#: configs/config.themeoptions.php:1382
+msgid "Theme Color"
+msgstr ""
+
+#: configs/config.themeoptions.php:1402
+msgid "Widget Caching"
+msgstr ""
+
+#: configs/config.themeoptions.php:1403
+msgid ""
+"Leave empty mean no caching. But We highly recommend using this feature. "
+"Unit is hour, it means if you enter in 1, the widget will be cached in 1 "
+"hour."
+msgstr ""
+
+#: configs/config.themeoptions.php:1409
+msgid "Add More Sidebar"
+msgstr ""
+
+#: configs/config.themeoptions.php:1410
+msgid ""
+"You can add more sidebar by entering in your sidebar id here. For example: "
+"my_custom_sidebar_1,my_custom_sidebar_2"
+msgstr ""
+
+#: configs/config.themeoptions.php:1416
+msgid "Custom CSS Code"
+msgstr ""
+
+#: configs/config.themeoptions.php:1423
+msgid "Custom Javascript Code"
+msgstr ""
+
+#: configs/config.tours.php:13
+msgid ""
+"Using Custom Fields to add Portfolio Info. Look at Portfolio Info Guide to "
+"know more"
+msgstr ""
+
+#: configs/config.translation.php:3 wiloke-submission/addlisting-old.php:52
+#: wiloke-submission/addlisting.php:59 admin/public/class.WilokeHead.php:355
+msgid "You don't have permission to access this page."
+msgstr ""
+
+#: configs/config.translation.php:4 admin/public/class.WilokeHead.php:356
+msgid "Select an option"
+msgstr ""
+
+#: configs/config.translation.php:5 admin/public/class.WilokeHead.php:357
+msgid "Please select your location"
+msgstr ""
+
+#: configs/config.translation.php:6 admin/public/class.WilokeHead.php:358
+msgid ""
+"Could you please tell us why this article should not display on our website?"
+msgstr ""
+
+#: configs/config.translation.php:7 admin/public/class.WilokeHead.php:359
+#: admin/public/class.WilokePublic.php:325
+msgid "Open now"
+msgstr ""
+
+#: configs/config.translation.php:8 admin/public/class.WilokeHead.php:360
+#: admin/public/class.WilokePublic.php:327
+msgid "Closed now"
+msgstr ""
+
+#: configs/config.translation.php:10 admin/inc/class.WilokeUser.php:36
+#: admin/public/class.WilokeHead.php:362
+#: wiloke-submission/account/billing.php:295
+#: wiloke-submission/account/edit-profile.php:99
+#: admin/public/template/vc/wiloke_events.php:73
+#: admin/public/template/vc/wiloke_events.php:79
+#: admin/public/template/vc/events-layout/default.php:30
+#: admin/public/template/vc/events-layout/default.php:36
+msgid "Address"
+msgstr ""
+
+#: configs/config.translation.php:13 admin/public/class.WilokeHead.php:365
+msgid "Contact Us"
+msgstr ""
+
+#: configs/config.translation.php:14 admin/public/class.WilokeHead.php:366
+msgid "Favorite"
+msgstr ""
+
+#: configs/config.translation.php:15 admin/inc/class.WilokeHtmlHelper.php:254
+#: admin/public/class.WilokeHead.php:367
+#: admin/public/class.WilokePublic.php:1048
+#: admin/inc/lib/custom-metaboxes/init.php:1355
+#: admin/public/template/vc/wiloke_listing_layout.php:26
+msgid "Save"
+msgstr ""
+
+#: configs/config.translation.php:16 admin/public/class.WilokeHead.php:368
+msgid "Follow this author"
+msgstr ""
+
+#: configs/config.translation.php:17 admin/public/class.WilokeHead.php:369
+#: admin/public/class.WilokePublic.php:1099
+msgid "Something went wrong"
+msgstr ""
+
+#: configs/config.translation.php:18 admin/public/class.WilokeHead.php:370
+msgid "Please sign up to follow this author"
+msgstr ""
+
+#: configs/config.translation.php:19 admin/public/class.WilokeHead.php:371
+msgid "OOps! You can not follow yourself"
+msgstr ""
+
+#: configs/config.translation.php:20 admin/public/class.WilokeHead.php:372
+msgid "This user does not exist."
+msgstr ""
+
+#: configs/config.translation.php:21 admin/public/class.WilokeHead.php:373
+msgid "Thanks for your following. You will receive each new post by email."
+msgstr ""
+
+#: configs/config.translation.php:22 admin/public/class.WilokeHead.php:374
+msgid "Sign up to follow this author's article"
+msgstr ""
+
+#: configs/config.translation.php:23 admin/public/class.WilokeHead.php:375
+msgid "You are following the author's article"
+msgstr ""
+
+#: configs/config.translation.php:24 admin/public/class.WilokeHead.php:376
+msgid "Please supply your email address"
+msgstr ""
+
+#: configs/config.translation.php:25 admin/public/class.WilokeHead.php:377
+#: admin/public/class.WilokePublic.php:2053
+msgid "Find directions"
+msgstr ""
+
+#: configs/config.translation.php:26 admin/public/class.WilokeHead.php:378
+msgid "Go To Map"
+msgstr ""
+
+#: configs/config.translation.php:27 configs/config.vc.php:955
+#: admin/public/class.WilokeHead.php:379
+#: admin/public/class.WilokePublic.php:2034
+#: admin/public/class.WilokePublic.php:2042
+msgid "View Detail"
+msgstr ""
+
+#: configs/config.translation.php:28 admin/public/class.WilokeHead.php:380
+#: admin/public/class.WilokePublic.php:4106 woocommerce/loop/pagination.php:38
+msgid "Next"
+msgstr ""
+
+#: configs/config.translation.php:29 admin/public/class.WilokeHead.php:381
+#: woocommerce/loop/pagination.php:37
+msgid "Prev"
+msgstr ""
+
+#: configs/config.translation.php:30 admin/public/class.WilokeHead.php:382
+msgid ""
+"Sorry, We did not find any like what you are looking for! Please try another "
+"searching"
+msgstr ""
+
+#: configs/config.translation.php:31 admin/public/class.WilokeHead.php:383
+msgid ""
+"Oops! Something went wrong. Please contact the administrator to report this "
+"issue"
+msgstr ""
+
+#: configs/config.translation.php:32 admin/public/class.WilokeHead.php:384
+msgid "The package does not exists."
+msgstr ""
+
+#: configs/config.translation.php:33 admin/public/class.WilokeHead.php:385
+msgid "The email address you entered is already in use on another account"
+msgstr ""
+
+#: configs/config.translation.php:34 admin/public/class.WilokeHead.php:386
+msgid "Please enter your password."
+msgstr ""
+
+#: configs/config.translation.php:35 admin/public/class.WilokeHead.php:387
+msgid "Wrong username or password."
+msgstr ""
+
+#: configs/config.translation.php:36 admin/public/class.WilokeHead.php:388
+msgid "You entered a wrong email, please try another one."
+msgstr ""
+
+#: configs/config.translation.php:37 admin/public/class.WilokeHead.php:389
+msgid "The title is required"
+msgstr ""
+
+#: configs/config.translation.php:38 admin/public/class.WilokeHead.php:390
+msgid "The content is required"
+msgstr ""
+
+#: configs/config.translation.php:39 admin/public/class.WilokeHead.php:391
+msgid "Please select a package before submitting"
+msgstr ""
+
+#: configs/config.translation.php:40 admin/public/class.WilokeHead.php:392
+msgid ""
+"Your submission has been rejected. Reason: The post id does not exist or you "
+"are not author of this article"
+msgstr ""
+
+#: configs/config.translation.php:41 admin/public/class.WilokeHead.php:393
+msgid ""
+"We are reviewing this article so You can not edit it at the time. Please be "
+"patient and waiting an email from us"
+msgstr ""
+
+#: configs/config.translation.php:42 admin/public/class.WilokeHead.php:394
+msgid ""
+"Checkout page is not found. Please contact the site manager about this issue."
+msgstr ""
+
+#: configs/config.translation.php:43 admin/public/class.WilokeHead.php:395
+msgid "Security code is wrong"
+msgstr ""
+
+#: configs/config.translation.php:44 admin/public/class.WilokeHead.php:396
+msgid "Read more"
+msgstr ""
+
+#: configs/config.translation.php:45 admin/public/class.WilokeHead.php:397
+msgid "Get directions"
+msgstr ""
+
+#: configs/config.translation.php:46 admin/public/class.WilokeHead.php:398
+#: admin/public/class.WilokePublic.php:2272
+#: wiloke-submission/account/followers.php:39
+#: wiloke-submission/account/following.php:39
+#: admin/public/template/vc/wiloke_our_members.php:97
+msgid "Following"
+msgstr ""
+
+#: configs/config.translation.php:47 admin/public/class.WilokeHead.php:399
+msgid "Follow"
+msgstr ""
+
+#: configs/config.translation.php:48 admin/public/class.WilokeHead.php:400
+msgid "Pinned Listing"
+msgstr ""
+
+#: configs/config.translation.php:49 admin/public/class.WilokeHead.php:401
+msgid "Pin To Top"
+msgstr ""
+
+#: configs/config.translation.php:50 admin/public/class.WilokeHead.php:402
+msgid "Geocoder failed due to:"
+msgstr ""
+
+#: configs/config.translation.php:51 admin/public/class.WilokeHead.php:403
+msgid "No results found"
+msgstr ""
+
+#: configs/config.translation.php:52 newfeature/dashbroad.php:56
+#: wiloke-submission/new-myaccount.php:93 admin/public/class.WilokeHead.php:404
+#: wiloke-submission/account/listings.php:36
+#: wiloke-submission/account/user-dashboard.php:24
+msgid "Published"
+msgstr ""
+
+#: configs/config.translation.php:53 admin/public/class.WilokeHead.php:405
+msgid "Pending"
+msgstr ""
+
+#: configs/config.translation.php:54 newfeature/dashbroad.php:77
+#: wiloke-submission/new-myaccount.php:113
+#: admin/public/class.WilokeHead.php:406
+#: wiloke-submission/account/listings.php:39
+#: wiloke-submission/account/new-user-dashboard.php:50
+#: wiloke-submission/account/user-dashboard.php:48
+msgid "Expired"
+msgstr ""
+
+#: configs/config.vc.php:6
+msgid "Row"
+msgstr ""
+
+#: configs/config.vc.php:12
+msgid "Content"
+msgstr ""
+
+#: configs/config.vc.php:14
+msgid "Place content elements inside the row"
+msgstr ""
+
+#: configs/config.vc.php:18
+msgid "Row stretch"
+msgstr ""
+
+#: configs/config.vc.php:22
+msgid "Stretch row"
+msgstr ""
+
+#: configs/config.vc.php:23
+msgid "Stretch row and content"
+msgstr ""
+
+#: configs/config.vc.php:24
+msgid "Stretch row and content (no paddings)"
+msgstr ""
+
+#: configs/config.vc.php:26
+msgid ""
+"Select stretching options for row and content (Note: stretched may not work "
+"properly if parent container has \"overflow: hidden\" CSS property)."
+msgstr ""
+
+#: configs/config.vc.php:30
+msgid "Columns gap"
+msgstr ""
+
+#: configs/config.vc.php:47
+msgid "Select gap between columns in row."
+msgstr ""
+
+#: configs/config.vc.php:51
+msgid "Full height row?"
+msgstr ""
+
+#: configs/config.vc.php:53
+msgid "If checked row will be set to full height."
+msgstr ""
+
+#: configs/config.vc.php:58
+msgid "Columns position"
+msgstr ""
+
+#: configs/config.vc.php:61 configs/config.vc.php:105
+msgid "Middle"
+msgstr ""
+
+#: configs/config.vc.php:62 configs/config.vc.php:104
+msgid "Top"
+msgstr ""
+
+#: configs/config.vc.php:63 configs/config.vc.php:106
+msgid "Bottom"
+msgstr ""
+
+#: configs/config.vc.php:64
+msgid "Stretch"
+msgstr ""
+
+#: configs/config.vc.php:66
+msgid "Select columns position within row."
+msgstr ""
+
+#: configs/config.vc.php:74
+msgid "Use video background?"
+msgstr ""
+
+#: configs/config.vc.php:76
+msgid "If checked, video will be used as row background."
+msgstr ""
+
+#: configs/config.vc.php:81
+msgid "YouTube link"
+msgstr ""
+
+#: configs/config.vc.php:85
+msgid "Add YouTube link."
+msgstr ""
+
+#: configs/config.vc.php:93
+msgid "Equal height"
+msgstr ""
+
+#: configs/config.vc.php:95
+msgid "If checked columns will be set to equal height."
+msgstr ""
+
+#: configs/config.vc.php:100
+msgid "Content position"
+msgstr ""
+
+#: configs/config.vc.php:108
+msgid "Select content position within columns."
+msgstr ""
+
+#: configs/config.vc.php:118
+msgid "Background Gradient - Left."
+msgstr ""
+
+#: configs/config.vc.php:119
+msgid ""
+"Notice: If you want to use Background Gradient for the hero section, the "
+"both Background Gradient Left and Background Gradient Right are required. "
+"This setting will override the Overlay Color setting above."
+msgstr ""
+
+#: configs/config.vc.php:125
+msgid "Background Gradient - Right"
+msgstr ""
+
+#: configs/config.vc.php:131
+msgid "Row ID"
+msgstr ""
+
+#: configs/config.vc.php:133
+#, php-format
+msgid ""
+"Enter row ID (Note: make sure it is unique and valid according to <a "
+"href=\"%s\" target=\"_blank\">w3c specification</a>)."
+msgstr ""
+
+#: configs/config.vc.php:137
+msgid "Disable row"
+msgstr ""
+
+#: configs/config.vc.php:140
+msgid ""
+"If checked the row won't be visible on the public side of your website. You "
+"can switch it back any time."
+msgstr ""
+
+#: configs/config.vc.php:145
+msgid "Extra class name"
+msgstr ""
+
+#: configs/config.vc.php:147
+msgid ""
+"Style particular content element differently - add a class name and refer to "
+"it in custom CSS."
+msgstr ""
+
+#: configs/config.vc.php:154
+msgid "Hero"
+msgstr ""
+
+#: configs/config.vc.php:155
+msgid "This shortcode should be used at the top of the page"
+msgstr ""
+
+#: configs/config.vc.php:164
+msgid "Following instructions"
+msgstr ""
+
+#: configs/config.vc.php:166
+msgid ""
+"Please following our instructions to know how to  <a href=\"https://goo."
+"gl/jEkify\" target=\"_blank\">create a hero for your site</a>"
+msgstr ""
+
+#: configs/config.vc.php:170
+msgid "Sup title"
+msgstr ""
+
+#: configs/config.vc.php:189
+msgid "Button Name"
+msgstr ""
+
+#: configs/config.vc.php:196 configs/config.vc.php:1379
+msgid "Button Link"
+msgstr ""
+
+#: configs/config.vc.php:203
+msgid "Toggle Browsing Listing Categories"
+msgstr ""
+
+#: configs/config.vc.php:204
+msgid ""
+"Adding a list of categories under the button above. To show the icon like "
+"our demo, please click on Listings -> Listing Location -> Upload Map Marker "
+"icon for each category"
+msgstr ""
+
+#: configs/config.vc.php:216
+msgid "Browsing Title"
+msgstr ""
+
+#: configs/config.vc.php:217
+msgid "Similar to \"Return\" in keyboard phone."
+msgstr ""
+
+#: configs/config.vc.php:219 admin/public/template/vc/wiloke_hero.php:22
+msgid "Or browse the highlights"
+msgstr ""
+
+#: configs/config.vc.php:225
+msgid "Get Listing Categories By"
+msgstr ""
+
+#: configs/config.vc.php:230
+msgid "Date - Latest Categories"
+msgstr ""
+
+#: configs/config.vc.php:232
+msgid "Count - Displaying terms that have the most listings"
+msgstr ""
+
+#: configs/config.vc.php:233
+msgid "Specify Category IDs"
+msgstr ""
+
+#: configs/config.vc.php:239
+msgid "Which categories that you want to show."
+msgstr ""
+
+#: configs/config.vc.php:240 configs/config.vc.php:251
+msgid "It should smaller or enqual to 6 categories"
+msgstr ""
+
+#: configs/config.vc.php:250
+msgid "Number of categories"
+msgstr ""
+
+#: configs/config.vc.php:259
+msgid "Toggle Search Form"
+msgstr ""
+
+#: configs/config.vc.php:270
+msgid "Search Form Title"
+msgstr ""
+
+#: configs/config.vc.php:272
+msgid "Search ListGo and Beyond"
+msgstr ""
+
+#: configs/config.vc.php:278
+msgid "Search Field Title"
+msgstr ""
+
+#: configs/config.vc.php:286
+msgid "Location Title"
+msgstr ""
+
+#: configs/config.vc.php:294
+msgid "Search page"
+msgstr ""
+
+#: configs/config.vc.php:295
+msgid ""
+"A search page is required by search form. When someone click on Search "
+"button, it will redirect to this page. Leave empty to use the default "
+"setting: Appearance  -> Theme Options -> Listing Settings"
+msgstr ""
+
+#: configs/config.vc.php:303 configs/config.vc.php:361
+#: configs/config.vc.php:1993
+msgid "Alignment"
+msgstr ""
+
+#: configs/config.vc.php:307
+msgid "Center Style 1"
+msgstr ""
+
+#: configs/config.vc.php:308
+msgid "Center Style 2"
+msgstr ""
+
+#: configs/config.vc.php:309
+msgid "Center Style 3"
+msgstr ""
+
+#: configs/config.vc.php:310
+msgid "Text on right and Search Form on Left Style 1"
+msgstr ""
+
+#: configs/config.vc.php:311
+msgid "Text on right and Search Form on Left Style 2"
+msgstr ""
+
+#: configs/config.vc.php:312
+msgid "Text on right and Search Form on Left Style 3"
+msgstr ""
+
+#: configs/config.vc.php:318
+msgid "Height"
+msgstr ""
+
+#: configs/config.vc.php:321
+msgid "Enter height of hero. Default set full screen."
+msgstr ""
+
+#: configs/config.vc.php:328 configs/config.vc.php:1358
+#: configs/config.vc.php:1444 configs/config.vc.php:1565
+#: configs/config.vc.php:1965
+msgid "Heading"
+msgstr ""
+
+#: configs/config.vc.php:337
+msgid "Block Name"
+msgstr ""
+
+#: configs/config.vc.php:365 configs/config.vc.php:1997
+msgid "Left"
+msgstr ""
+
+#: configs/config.vc.php:366 configs/config.vc.php:1998
+msgid "Right"
+msgstr ""
+
+#: configs/config.vc.php:367 configs/config.vc.php:1996
+msgid "Center"
+msgstr ""
+
+#: configs/config.vc.php:373
+msgid "Blog name color"
+msgstr ""
+
+#: configs/config.vc.php:378
+msgid "Title Color"
+msgstr ""
+
+#: configs/config.vc.php:383 configs/config.vc.php:1405
+msgid "Description Color"
+msgstr ""
+
+#: configs/config.vc.php:391
+msgid "Wiloke Design Tool"
+msgstr ""
+
+#: configs/config.vc.php:402 configs/config.vc.php:635
+msgid "Following our instructions"
+msgstr ""
+
+#: configs/config.vc.php:404
+msgid ""
+"Please following our instructions to know how to use <a href=\"https://goo."
+"gl/elaFy3\" target=\"_blank\">Wiloke Design Tool</a>"
+msgstr ""
+
+#: configs/config.vc.php:408 configs/config.vc.php:659
+msgid "Get Listings By"
+msgstr ""
+
+#: configs/config.vc.php:409
+msgid ""
+"Featured Listings: To set a listing as Featured Listing, please click on "
+"Listings -> Your Listing -> Select Enable Featured Listing."
+msgstr ""
+
+#: configs/config.vc.php:414 configs/config.vc.php:529
+msgid "Featured Listings"
+msgstr ""
+
+#: configs/config.vc.php:415 configs/config.vc.php:1500
+msgid "Specify Listing IDs"
+msgstr ""
+
+#: configs/config.vc.php:421
+msgid "Pickup Listing Categories - Holding Ctrl to select multiple items."
+msgstr ""
+
+#: configs/config.vc.php:424 configs/config.vc.php:435
+#: configs/config.vc.php:687 configs/config.vc.php:698
+#: configs/config.vc.php:2072 configs/config.vc.php:2083
+#: configs/config.vc.php:2313 configs/config.vc.php:2324
+msgid "Choosing the categories where posts will be get from."
+msgstr ""
+
+#: configs/config.vc.php:432
+msgid "Pickup Locations - Holding Ctrl to select multiple items"
+msgstr ""
+
+#: configs/config.vc.php:443
+msgid "Specify Post IDs"
+msgstr ""
+
+#: configs/config.vc.php:444 configs/config.vc.php:707
+msgid "Enter in the title for searching."
+msgstr ""
+
+#: configs/config.vc.php:456
+msgid "Item Type"
+msgstr ""
+
+#: configs/config.vc.php:457
+msgid ""
+"Taxonomy: Showing themselves Locations / Categories. It is very useful if "
+"you want, for example, to create a block of continentals such as Asia, "
+"American, European, Africa. Listing: Showing articles that are children of "
+"the picked categories/locations."
+msgstr ""
+
+#: configs/config.vc.php:461 templates/listing.php:17
+#: wiloke-submission/myaccount.php:54 wiloke-submission/new-myaccount.php:60
+#: wiloke-submission/account/notifications.php:32
+msgid "Listings"
+msgstr ""
+
+#: configs/config.vc.php:462
+msgid "Taxonomies"
+msgstr ""
+
+#: configs/config.vc.php:469
+msgid "Text Subfix after number of articles"
+msgstr ""
+
+#: configs/config.vc.php:470
+msgid ""
+"The text after number of articles. For example: We have 123 articles in Asia "
+"Listing Location. If you enter in a subfix as \"Landmarks\", it should be "
+"show 123 Landmarks on the front-page. Note that you can also use "
+"Landmark|Landmarks. Landmark will be used if, in case, there is only one "
+"post in the category. "
+msgstr ""
+
+#: configs/config.vc.php:478 configs/config.vc.php:719
+#: configs/config.vc.php:1142
+msgid "Show terms"
+msgstr ""
+
+#: configs/config.vc.php:501
+msgid "Masonry"
+msgstr ""
+
+#: configs/config.vc.php:513
+msgid "Choose Layout"
+msgstr ""
+
+#: configs/config.vc.php:519 configs/config.vc.php:755
+#: configs/config.vc.php:1512 configs/config.vc.php:1660
+msgid "Order By"
+msgstr ""
+
+#: configs/config.vc.php:520
+msgid "This item is only available for Listing Item Type "
+msgstr ""
+
+#: configs/config.vc.php:524
+msgid "Listing Date"
+msgstr ""
+
+#: configs/config.vc.php:525 templates/edit-claimed.php:86
+#: wiloke-submission/addlisting-old.php:227
+#: wiloke-submission/addlisting.php:234
+msgid "Listing Title"
+msgstr ""
+
+#: configs/config.vc.php:526
+msgid "Listing Author"
+msgstr ""
+
+#: configs/config.vc.php:527
+msgid "Comments Count"
+msgstr ""
+
+#: configs/config.vc.php:535
+msgid "Sort the result-set in"
+msgstr ""
+
+#: configs/config.vc.php:539
+msgid "Descending Order (DESC)"
+msgstr ""
+
+#: configs/config.vc.php:540
+msgid "Ascending Order (ASC)"
+msgstr ""
+
+#: configs/config.vc.php:546
+msgid "Portfolio"
+msgstr ""
+
+#: configs/config.vc.php:583
+msgid "Items Per Row"
+msgstr ""
+
+#: configs/config.vc.php:584
+msgid "How many items per row?"
+msgstr ""
+
+#: configs/config.vc.php:596
+msgid "Horizontal Spacing"
+msgstr ""
+
+#: configs/config.vc.php:602
+msgid "Vertical Spacing"
+msgstr ""
+
+#: configs/config.vc.php:608
+msgid "Amount of Loadmore"
+msgstr ""
+
+#: configs/config.vc.php:609
+msgid ""
+"In the case Load more projects functionality (General Tab) to be used, this "
+"setting is effected. Leave empty means it is equal to number of posts."
+msgstr ""
+
+#: configs/config.vc.php:637
+msgid ""
+"Please following our instructions to know how to use <a href=\"https://goo."
+"gl/mBLnlm\" target=\"_blank\">Listing Layout Shortcode</a>"
+msgstr ""
+
+#: configs/config.vc.php:641
+msgid "Layout"
+msgstr ""
+
+#: configs/config.vc.php:664 configs/config.vc.php:706
+msgid "Specify Listings IDs"
+msgstr ""
+
+#: configs/config.vc.php:665
+msgid "Latest Articles"
+msgstr ""
+
+#: configs/config.vc.php:666
+msgid "Post Authors"
+msgstr ""
+
+#: configs/config.vc.php:672
+msgid "Set Post Authors"
+msgstr ""
+
+#: configs/config.vc.php:676
+msgid "Enter in author username here"
+msgstr ""
+
+#: configs/config.vc.php:684 configs/config.vc.php:2069
+#: configs/config.vc.php:2309
+msgid "Pickup Listing Categories"
+msgstr ""
+
+#: configs/config.vc.php:695 configs/config.vc.php:2080
+#: configs/config.vc.php:2320
+msgid "Pickup Listing Locations"
+msgstr ""
+
+#: configs/config.vc.php:720
+msgid ""
+"Choosing kind of terms will be shown on each project item. Note that Circle "
+"Layout, Creative Rectangle does not support render the both Listing "
+"Locations and Listing Categories "
+msgstr ""
+
+#: configs/config.vc.php:732
+msgid "Filter Type"
+msgstr ""
+
+#: configs/config.vc.php:733
+msgid ""
+"Showing Filter Navigation at the top of the block. Filter items are Listing "
+"Categories or Listing Locations - it depents on your \"Get listings by\" "
+"setting"
+msgstr ""
+
+#: configs/config.vc.php:737
+msgid "Navigation"
+msgstr ""
+
+#: configs/config.vc.php:738
+msgid "Drop down"
+msgstr ""
+
+#: configs/config.vc.php:739
+msgid "None"
+msgstr ""
+
+#: configs/config.vc.php:746
+msgid "Filter Result Description"
+msgstr ""
+
+#: configs/config.vc.php:747
+msgid ""
+"This setting describes the result from a filter action. %found_listing%: "
+"Number of listings are matched with filter pattern: %result_text%: If we "
+"found smaller than 2 results, the text before | will be used. "
+"%total_listing%: Showing number of listings currently. If you enter a "
+"structure like this *open_result*%found_listing% "
+"%result_text=\"Result|Results\"% *end_result* in %total_listing% "
+"Destinations\", The front-end should show like this: 33 Results in 123 "
+"Destinations."
+msgstr ""
+
+#: configs/config.vc.php:771
+msgid "Number of Articles"
+msgstr ""
+
+#: configs/config.vc.php:792
+msgid "Show All"
+msgstr ""
+
+#: configs/config.vc.php:793
+msgid "Load more"
+msgstr ""
+
+#: configs/config.vc.php:794
+msgid "Link to Listings page"
+msgstr ""
+
+#: configs/config.vc.php:801 configs/config.vc.php:1372
+msgid "Button name"
+msgstr ""
+
+#: configs/config.vc.php:802
+msgid "Enter in a name for the button. Maybe Load more or View more"
+msgstr ""
+
+#: configs/config.vc.php:811
+msgid "Set Page Link"
+msgstr ""
+
+#: configs/config.vc.php:819
+msgid "Button alignment"
+msgstr ""
+
+#: configs/config.vc.php:820 configs/config.vc.php:847
+msgid "Set a position for the button"
+msgstr ""
+
+#: configs/config.vc.php:825
+msgid "Text Center"
+msgstr ""
+
+#: configs/config.vc.php:826
+msgid "Text Left"
+msgstr ""
+
+#: configs/config.vc.php:827
+msgid "Text Right"
+msgstr ""
+
+#: configs/config.vc.php:833
+msgid "Button Style"
+msgstr ""
+
+#: configs/config.vc.php:834
+msgid "Set a style for the button"
+msgstr ""
+
+#: configs/config.vc.php:840
+msgid "Round"
+msgstr ""
+
+#: configs/config.vc.php:846
+msgid "Button Size"
+msgstr ""
+
+#: configs/config.vc.php:852
+msgid "Large"
+msgstr ""
+
+#: configs/config.vc.php:853
+msgid "Small"
+msgstr ""
+
+#: configs/config.vc.php:859 configs/config.vc.php:871
+#: configs/config.vc.php:883 configs/config.vc.php:895
+#: configs/config.vc.php:904 configs/config.vc.php:916
+#: configs/config.vc.php:926 configs/config.vc.php:938
+#: configs/config.vc.php:951 configs/config.vc.php:959
+#: configs/config.vc.php:972 configs/config.vc.php:980
+#: configs/config.vc.php:993
+msgid "Meta Data"
+msgstr ""
+
+#: configs/config.vc.php:860
+msgid "Toggle Author Avatar"
+msgstr ""
+
+#: configs/config.vc.php:872
+msgid "Toggle Average Rating"
+msgstr ""
+
+#: configs/config.vc.php:884
+msgid "Toggle Favorite Icon"
+msgstr ""
+
+#: configs/config.vc.php:896
+msgid "Favorite Text"
+msgstr ""
+
+#: configs/config.vc.php:905
+msgid "Toggle Listing Excerpt"
+msgstr ""
+
+#: configs/config.vc.php:917
+msgid "Post Excerpt"
+msgstr ""
+
+#: configs/config.vc.php:918
+msgid "Maximum of character will be shown on the list item."
+msgstr ""
+
+#: configs/config.vc.php:927
+msgid "Toggle Listing Address"
+msgstr ""
+
+#: configs/config.vc.php:939
+msgid "Toggle View Detail Button"
+msgstr ""
+
+#: configs/config.vc.php:952
+msgid "View Detail Text"
+msgstr ""
+
+#: configs/config.vc.php:960
+msgid "Toggle Get Directions"
+msgstr ""
+
+#: configs/config.vc.php:973
+msgid "Get Directions Description"
+msgstr ""
+
+#: configs/config.vc.php:976
+msgid "Get Directions"
+msgstr ""
+
+#: configs/config.vc.php:981
+msgid "Toggle Link To Map Page"
+msgstr ""
+
+#: configs/config.vc.php:982
+msgid ""
+"If you want to use this feature, please ensure that a Map page has been set "
+"to: Appearance -> Theme Options -> Listing Settings -> Map Page."
+msgstr ""
+
+#: configs/config.vc.php:994
+msgid "Link To Map Page Description"
+msgstr ""
+
+#: configs/config.vc.php:997 admin/public/class.WilokePublic.php:1997
+#: admin/public/class.WilokePublic.php:2006
+msgid "Go to map"
+msgstr ""
+
+#: configs/config.vc.php:1002
+msgid "Block ID"
+msgstr ""
+
+#: configs/config.vc.php:1003
+msgid ""
+"This field SHOULD NOT empty and an unique id is required. This id will be "
+"used as a caching key"
+msgstr ""
+
+#: configs/config.vc.php:1020
+msgid "Listings In Map"
+msgstr ""
+
+#: configs/config.vc.php:1029
+msgid "Source Map"
+msgstr ""
+
+#: configs/config.vc.php:1034
+msgid "All Taxonomies"
+msgstr ""
+
+#: configs/config.vc.php:1035
+msgid "Listing Cat"
+msgstr ""
+
+#: configs/config.vc.php:1041
+msgid "Listing Locations"
+msgstr ""
+
+#: configs/config.vc.php:1042 configs/config.vc.php:1052
+msgid "Leave empty to get all locations"
+msgstr ""
+
+#: configs/config.vc.php:1051
+msgid "Listing Cats"
+msgstr ""
+
+#: configs/config.vc.php:1062 configs/config.vc.php:1121
+msgid ""
+"Set coordinate you want display as the map center. For example:21.027764,105."
+"834160.  Leave empty to get the first article"
+msgstr ""
+
+#: configs/config.vc.php:1075
+msgid "Disable draggable when init"
+msgstr ""
+
+#: configs/config.vc.php:1076
+msgid ""
+"This feature is useful, in case, you want to use Map shortcode combile with "
+"the other shortcodes. The user can Enable draggable by clicking on Draggable "
+"button"
+msgstr ""
+
+#: configs/config.vc.php:1088
+msgid "Listings In Map 2 (Half Map)"
+msgstr ""
+
+#: configs/config.vc.php:1098
+msgid ""
+"If you want to build a map page only, We recommend using Half Map template "
+"instead"
+msgstr ""
+
+#: configs/config.vc.php:1157
+msgid "Grid rotator"
+msgstr ""
+
+#: configs/config.vc.php:1166 configs/config.vc.php:2056
+msgid "Get Listings by"
+msgstr ""
+
+#: configs/config.vc.php:1170
+msgid "Latest Listings"
+msgstr ""
+
+#: configs/config.vc.php:1171
+msgid "Specify Locations"
+msgstr ""
+
+#: configs/config.vc.php:1172
+msgid "Specify Categories"
+msgstr ""
+
+#: configs/config.vc.php:1178
+msgid "Select categories"
+msgstr ""
+
+#: configs/config.vc.php:1190
+msgid "Select Locations"
+msgstr ""
+
+#: configs/config.vc.php:1203 configs/config.vc.php:1215
+msgid "An overlay image will automatically appear if you enter in a text."
+msgstr ""
+
+#: configs/config.vc.php:1235 configs/config.vc.php:1652
+#: configs/config.vc.php:2103 wiloke-submission/checkout.php:73
+msgid "Number of listings"
+msgstr ""
+
+#: configs/config.vc.php:1236
+msgid ""
+"Maximum listings are got in the shortcodes. It should bigger than "
+"ItemsPerRow*Columns because We need items for replacing."
+msgstr ""
+
+#: configs/config.vc.php:1238 configs/config.vc.php:1248
+#: configs/config.vc.php:1255 configs/config.vc.php:1263
+#: configs/config.vc.php:1271 configs/config.vc.php:1279
+#: configs/config.vc.php:1288 configs/config.vc.php:1295
+#: configs/config.vc.php:1303 configs/config.vc.php:1331
+#: configs/config.vc.php:1340
+msgid "Configurations"
+msgstr ""
+
+#: configs/config.vc.php:1244
+msgid "Max Step"
+msgstr ""
+
+#: configs/config.vc.php:1245
+msgid ""
+"Maximum number of listings that are replaced at the same time. Note that the "
+"number of listings should be "
+msgstr ""
+
+#: configs/config.vc.php:1253
+msgid "Listing Per Row On Desktop Devices"
+msgstr ""
+
+#: configs/config.vc.php:1261
+msgid "Number Of Rows On Desktop Devices"
+msgstr ""
+
+#: configs/config.vc.php:1269
+msgid "Listing Per Row On Tablet Devices"
+msgstr ""
+
+#: configs/config.vc.php:1277
+msgid "Number Of Rows On Tablet Devices"
+msgstr ""
+
+#: configs/config.vc.php:1285
+msgid "Listing Per Row On Mobile Devices"
+msgstr ""
+
+#: configs/config.vc.php:1293
+msgid "Number Of Rows On Mobile Devices"
+msgstr ""
+
+#: configs/config.vc.php:1301
+msgid "Animate Type"
+msgstr ""
+
+#: configs/config.vc.php:1328
+msgid "Animation Speed"
+msgstr ""
+
+#: configs/config.vc.php:1329
+msgid "Note 1000 means 1s"
+msgstr ""
+
+#: configs/config.vc.php:1337
+msgid "Set Interval"
+msgstr ""
+
+#: configs/config.vc.php:1338
+msgid "The item(s) will be replaced every x seconds. Note 1000 means 1s"
+msgstr ""
+
+#: configs/config.vc.php:1349
+msgid "Promotion"
+msgstr ""
+
+#: configs/config.vc.php:1361
+msgid "Do you need some books for your traveling?"
+msgstr ""
+
+#: configs/config.vc.php:1368
+msgid ""
+"Preparing for your traveling is very important. Our book store has lots of e-"
+"books, it might useful for you"
+msgstr ""
+
+#: configs/config.vc.php:1375
+msgid "Go to book store"
+msgstr ""
+
+#: configs/config.vc.php:1386
+msgid "Click action"
+msgstr ""
+
+#: configs/config.vc.php:1387
+msgid "Select an action when user click on this button"
+msgstr ""
+
+#: configs/config.vc.php:1392
+msgid "Refresh this page"
+msgstr ""
+
+#: configs/config.vc.php:1393
+msgid "Open a new tab"
+msgstr ""
+
+#: configs/config.vc.php:1398
+msgid "Heading Color"
+msgstr ""
+
+#: configs/config.vc.php:1412
+msgid "Button Background Color"
+msgstr ""
+
+#: configs/config.vc.php:1419
+msgid "Button Text Color"
+msgstr ""
+
+#: configs/config.vc.php:1426
+msgid "Background Color"
+msgstr ""
+
+#: configs/config.vc.php:1435
+msgid "Registration Form"
+msgstr ""
+
+#: configs/config.vc.php:1447
+#: admin/public/template/vc/wiloke_registration_form.php:5
+msgid "Register Now"
+msgstr ""
+
+#: configs/config.vc.php:1451
+msgid "Email Label"
+msgstr ""
+
+#: configs/config.vc.php:1454
+#: admin/public/template/vc/wiloke_registration_form.php:8
+msgid "Email Address"
+msgstr ""
+
+#: configs/config.vc.php:1458
+msgid "Username Label"
+msgstr ""
+
+#: configs/config.vc.php:1461
+#: admin/public/template/vc/wiloke_registration_form.php:6
+msgid "User Name"
+msgstr ""
+
+#: configs/config.vc.php:1465
+msgid "Password Label"
+msgstr ""
+
+#: configs/config.vc.php:1472
+msgid "Button Text"
+msgstr ""
+
+#: configs/config.vc.php:1475 wiloke-submission/signup-signin-popup.php:39
+#: admin/public/template/vc/wiloke_registration_form.php:9
+msgid "Register"
+msgstr ""
+
+#: configs/config.vc.php:1482
+msgid "Articles Slider"
+msgstr ""
+
+#: configs/config.vc.php:1490
+msgid "Post type"
+msgstr ""
+
+#: configs/config.vc.php:1491
+msgid "Where do you want to get from?"
+msgstr ""
+
+#: configs/config.vc.php:1497
+msgid "Post"
+msgstr ""
+
+#: configs/config.vc.php:1498 templates/listing.php:17
+#: wiloke-submission/myaccount.php:54 wiloke-submission/new-myaccount.php:60
+msgid "Listing"
+msgstr ""
+
+#: configs/config.vc.php:1499
+msgid "Page"
+msgstr ""
+
+#: configs/config.vc.php:1504
+msgid "Select Post IDs"
+msgstr ""
+
+#: configs/config.vc.php:1505
+msgid "Enter in the title for searching"
+msgstr ""
+
+#: configs/config.vc.php:1518 configs/config.vc.php:1664
+msgid "Post Date"
+msgstr ""
+
+#: configs/config.vc.php:1519 configs/config.vc.php:1665
+msgid "Post Title"
+msgstr ""
+
+#: configs/config.vc.php:1520 configs/config.vc.php:1667
+msgid "Post ID"
+msgstr ""
+
+#: configs/config.vc.php:1521 configs/config.vc.php:1666
+msgid "Post Author"
+msgstr ""
+
+#: configs/config.vc.php:1526
+msgid "Number of posts"
+msgstr ""
+
+#: configs/config.vc.php:1527
+msgid "Set maximum posts will be got from source."
+msgstr ""
+
+#: configs/config.vc.php:1535
+msgid "Show posts"
+msgstr ""
+
+#: configs/config.vc.php:1536
+msgid "How many posts do you want to show at the same time?"
+msgstr ""
+
+#: configs/config.vc.php:1556
+msgid "Categories Cover"
+msgstr ""
+
+#: configs/config.vc.php:1571 configs/config.vc.php:1623
+#: configs/config.vc.php:1958 admin/public/template/vc/wiloke_hero.php:175
+#: admin/public/template/vc/wiloke_hero.php:239
+msgid "Icon"
+msgstr ""
+
+#: configs/config.vc.php:1578 configs/config.vc.php:1630
+msgid "Heading background"
+msgstr ""
+
+#: configs/config.vc.php:1584 configs/config.vc.php:1636
+msgid "Pickup categories"
+msgstr ""
+
+#: configs/config.vc.php:1592 configs/config.vc.php:1644
+msgid "Pickup Locations"
+msgstr ""
+
+#: configs/config.vc.php:1603
+msgid "Listings Cover"
+msgstr ""
+
+#: configs/config.vc.php:1612
+msgid "Get listings by"
+msgstr ""
+
+#: configs/config.vc.php:1653
+msgid "Set number of listings will be shown on this place"
+msgstr ""
+
+#: configs/config.vc.php:1678
+msgid "Testimonials"
+msgstr ""
+
+#: configs/config.vc.php:1689
+msgid "Events Carousel"
+msgstr ""
+
+#: configs/config.vc.php:1700 admin/public/template/vc/wiloke_events.php:5
+msgid "Event Information"
+msgstr ""
+
+#: configs/config.vc.php:1705
+msgid "Limit character"
+msgstr ""
+
+#: configs/config.vc.php:1706
+msgid ""
+"Leave empty to show full post content or set maximum character will be shown."
+msgstr ""
+
+#: configs/config.vc.php:1713
+msgid "View all events description"
+msgstr ""
+
+#: configs/config.vc.php:1715
+msgid "Click on this link to view all upcoming events and ongoing events"
+msgstr ""
+
+#: configs/config.vc.php:1720
+msgid "View all events Button name"
+msgstr ""
+
+#: configs/config.vc.php:1722
+msgid "View All Events"
+msgstr ""
+
+#: configs/config.vc.php:1727
+msgid "View all events Link"
+msgstr ""
+
+#: configs/config.vc.php:1728
+msgid ""
+"You can create an events page by creating a new page and set that page to "
+"Events template."
+msgstr ""
+
+#: configs/config.vc.php:1737
+msgid "Events List"
+msgstr ""
+
+#: configs/config.vc.php:1746
+msgid "Events Per page"
+msgstr ""
+
+#: configs/config.vc.php:1760
+#: admin/public/template/vc/wiloke_events_list.php:10
+msgid "Event Description"
+msgstr ""
+
+#: configs/config.vc.php:1762
+msgid "Event Detail"
+msgstr ""
+
+#: configs/config.vc.php:1767
+msgid "Thumbnail Size"
+msgstr ""
+
+#: configs/config.vc.php:1777
+msgid "Packages"
+msgstr ""
+
+#: configs/config.vc.php:1786
+msgid "Select Packages"
+msgstr ""
+
+#: configs/config.vc.php:1787
+msgid ""
+"From ListGo 1.0.9, You have to go to Wiloke Submission -> Settings -> "
+"Customer Plans to add your plans to the pricing page. It means this setting "
+"is no longer available."
+msgstr ""
+
+#: configs/config.vc.php:1795
+msgid "Items per rown"
+msgstr ""
+
+#: configs/config.vc.php:1799
+msgid "2 items per rown"
+msgstr ""
+
+#: configs/config.vc.php:1800
+msgid "3 items per rown"
+msgstr ""
+
+#: configs/config.vc.php:1801
+msgid "4 items per rown"
+msgstr ""
+
+#: configs/config.vc.php:1806
+msgid "Check out button"
+msgstr ""
+
+#: configs/config.vc.php:1807
+msgid ""
+"Ensure that the check out page is set. If you have not done it yet, Please "
+"go to Pricing -> Settings to set check out page."
+msgstr ""
+
+#: configs/config.vc.php:1809
+msgid "Get Now"
+msgstr ""
+
+#: configs/config.vc.php:1832
+msgid "Our members"
+msgstr ""
+
+#: configs/config.vc.php:1841 configs/config.vc.php:1894
+msgid ""
+"All members who has role are listed below will be shown. Leave empty to show "
+"all members."
+msgstr ""
+
+#: configs/config.vc.php:1848
+msgid "Members per row"
+msgstr ""
+
+#: configs/config.vc.php:1851
+msgid "2 members / row"
+msgstr ""
+
+#: configs/config.vc.php:1852
+msgid "3 members / row"
+msgstr ""
+
+#: configs/config.vc.php:1853
+msgid "4 members / row"
+msgstr ""
+
+#: configs/config.vc.php:1862
+msgid "Our team"
+msgstr ""
+
+#: configs/config.vc.php:1871
+msgid "Let intro about your team"
+msgstr ""
+
+#: configs/config.vc.php:1877 admin/inc/class.WilokeUser.php:142
+#: wiloke-submission/account/edit-profile.php:49
+msgid "Cover Image"
+msgstr ""
+
+#: configs/config.vc.php:1883
+msgid "Get members by"
+msgstr ""
+
+#: configs/config.vc.php:1884 configs/config.vc.php:1895
+#: configs/config.vc.php:1907
+msgid "Members"
+msgstr ""
+
+#: configs/config.vc.php:1887
+msgid "Roles"
+msgstr ""
+
+#: configs/config.vc.php:1888
+msgid "Specify Members"
+msgstr ""
+
+#: configs/config.vc.php:1906
+msgid "Select members"
+msgstr ""
+
+#: configs/config.vc.php:1921
+msgid "Content Boxes"
+msgstr ""
+
+#: configs/config.vc.php:1931
+msgid "Style"
+msgstr ""
+
+#: configs/config.vc.php:1934
+msgid "Style 1"
+msgstr ""
+
+#: configs/config.vc.php:1935
+msgid "Style 2"
+msgstr ""
+
+#: configs/config.vc.php:1943
+msgid "Toggle numerical order list"
+msgstr ""
+
+#: configs/config.vc.php:1953
+msgid "Box Group"
+msgstr ""
+
+#: configs/config.vc.php:1973
+msgid ""
+"Allow to use the following html tags: &lt;li>, &lt;strong>, &lt;br> &lt;i>, "
+"&lt;a>"
+msgstr ""
+
+#: configs/config.vc.php:1982
+msgid "Items per row"
+msgstr ""
+
+#: configs/config.vc.php:1985
+msgid "2 Items / Row"
+msgstr ""
+
+#: configs/config.vc.php:1986
+msgid "3 Items / Row"
+msgstr ""
+
+#: configs/config.vc.php:1987
+msgid "4 Items / Row"
+msgstr ""
+
+#: configs/config.vc.php:2007
+msgid "Custom Map"
+msgstr ""
+
+#: configs/config.vc.php:2016
+msgid "Enter in your Latitude & Longitude (*)"
+msgstr ""
+
+#: configs/config.vc.php:2017
+msgid ""
+"For example: 21.027764,105.834160. You can find your Lat&Long here <a "
+"href=\"http://www.latlong.net/\" target=\"_blank\">www.latlong.net</a>"
+msgstr ""
+
+#: configs/config.vc.php:2024
+msgid "Map marker"
+msgstr ""
+
+#: configs/config.vc.php:2031
+msgid "Map Info"
+msgstr ""
+
+#: configs/config.vc.php:2038
+msgid "Map Height"
+msgstr ""
+
+#: configs/config.vc.php:2047
+msgid "Mega Menu - List Listings"
+msgstr ""
+
+#: configs/config.vc.php:2059
+msgid "Latest listings"
+msgstr ""
+
+#: configs/config.vc.php:2060
+msgid "Top Rated"
+msgstr ""
+
+#: configs/config.vc.php:2061
+msgid "Specify listings"
+msgstr ""
+
+#: configs/config.vc.php:2062 configs/config.vc.php:2302
+msgid "Specify listing categories"
+msgstr ""
+
+#: configs/config.vc.php:2063 configs/config.vc.php:2303
+msgid "Specify listing locations"
+msgstr ""
+
+#: configs/config.vc.php:2091
+msgid "Specify Listings"
+msgstr ""
+
+#: configs/config.vc.php:2115
+msgid "Simple List"
+msgstr ""
+
+#: configs/config.vc.php:2117 configs/config.vc.php:2335
+msgid "Slider"
+msgstr ""
+
+#: configs/config.vc.php:2119 configs/config.vc.php:2337
+msgid "Display style grid or slider. Default set grid."
+msgstr ""
+
+#: configs/config.vc.php:2124 configs/config.vc.php:2342
+msgid "Nav"
+msgstr ""
+
+#: configs/config.vc.php:2127 configs/config.vc.php:2345
+msgid "Show next/prev buttons."
+msgstr ""
+
+#: configs/config.vc.php:2137 configs/config.vc.php:2355
+msgid "Dots"
+msgstr ""
+
+#: configs/config.vc.php:2140 configs/config.vc.php:2358
+msgid "Show dots navigation."
+msgstr ""
+
+#: configs/config.vc.php:2150 configs/config.vc.php:2368
+msgid "Items per row (≥1200px)"
+msgstr ""
+
+#: configs/config.vc.php:2158 configs/config.vc.php:2181
+#: configs/config.vc.php:2204 configs/config.vc.php:2227
+#: configs/config.vc.php:2250 configs/config.vc.php:2372
+#: configs/config.vc.php:2391 configs/config.vc.php:2410
+#: configs/config.vc.php:2429 configs/config.vc.php:2448
+msgid "1"
+msgstr ""
+
+#: configs/config.vc.php:2159 configs/config.vc.php:2182
+#: configs/config.vc.php:2205 configs/config.vc.php:2228
+#: configs/config.vc.php:2251 configs/config.vc.php:2373
+#: configs/config.vc.php:2392 configs/config.vc.php:2411
+#: configs/config.vc.php:2430 configs/config.vc.php:2449
+msgid "2"
+msgstr ""
+
+#: configs/config.vc.php:2160 configs/config.vc.php:2183
+#: configs/config.vc.php:2206 configs/config.vc.php:2229
+#: configs/config.vc.php:2252 configs/config.vc.php:2374
+#: configs/config.vc.php:2393 configs/config.vc.php:2412
+#: configs/config.vc.php:2431 configs/config.vc.php:2450
+msgid "3"
+msgstr ""
+
+#: configs/config.vc.php:2161 configs/config.vc.php:2184
+#: configs/config.vc.php:2207 configs/config.vc.php:2230
+#: configs/config.vc.php:2253 configs/config.vc.php:2375
+#: configs/config.vc.php:2394 configs/config.vc.php:2413
+#: configs/config.vc.php:2432 configs/config.vc.php:2451
+msgid "4"
+msgstr ""
+
+#: configs/config.vc.php:2162 configs/config.vc.php:2185
+#: configs/config.vc.php:2208 configs/config.vc.php:2231
+#: configs/config.vc.php:2254 configs/config.vc.php:2273
+#: configs/config.vc.php:2376 configs/config.vc.php:2395
+#: configs/config.vc.php:2414 configs/config.vc.php:2433
+#: configs/config.vc.php:2452 configs/config.vc.php:2467
+msgid "5"
+msgstr ""
+
+#: configs/config.vc.php:2163 configs/config.vc.php:2186
+#: configs/config.vc.php:2209 configs/config.vc.php:2232
+#: configs/config.vc.php:2255 configs/config.vc.php:2377
+#: configs/config.vc.php:2396 configs/config.vc.php:2415
+#: configs/config.vc.php:2434 configs/config.vc.php:2453
+msgid "6"
+msgstr ""
+
+#: configs/config.vc.php:2164 configs/config.vc.php:2187
+#: configs/config.vc.php:2210 configs/config.vc.php:2233
+#: configs/config.vc.php:2256 configs/config.vc.php:2378
+#: configs/config.vc.php:2397 configs/config.vc.php:2416
+#: configs/config.vc.php:2435 configs/config.vc.php:2454
+msgid "7"
+msgstr ""
+
+#: configs/config.vc.php:2165 configs/config.vc.php:2188
+#: configs/config.vc.php:2211 configs/config.vc.php:2234
+#: configs/config.vc.php:2257 configs/config.vc.php:2379
+#: configs/config.vc.php:2398 configs/config.vc.php:2417
+#: configs/config.vc.php:2436 configs/config.vc.php:2455
+msgid "8"
+msgstr ""
+
+#: configs/config.vc.php:2166 configs/config.vc.php:2189
+#: configs/config.vc.php:2212 configs/config.vc.php:2235
+#: configs/config.vc.php:2258 configs/config.vc.php:2380
+#: configs/config.vc.php:2399 configs/config.vc.php:2418
+#: configs/config.vc.php:2437 configs/config.vc.php:2456
+msgid "9"
+msgstr ""
+
+#: configs/config.vc.php:2167 configs/config.vc.php:2190
+#: configs/config.vc.php:2213 configs/config.vc.php:2236
+#: configs/config.vc.php:2259 configs/config.vc.php:2274
+#: configs/config.vc.php:2381 configs/config.vc.php:2400
+#: configs/config.vc.php:2419 configs/config.vc.php:2438
+#: configs/config.vc.php:2457 configs/config.vc.php:2468
+msgid "10"
+msgstr ""
+
+#: configs/config.vc.php:2173 configs/config.vc.php:2387
+msgid "Items per row (≥992px)"
+msgstr ""
+
+#: configs/config.vc.php:2196 configs/config.vc.php:2406
+msgid "Items per row (≥768px)"
+msgstr ""
+
+#: configs/config.vc.php:2219 configs/config.vc.php:2425
+msgid "Items per row (≥576px)"
+msgstr ""
+
+#: configs/config.vc.php:2242 configs/config.vc.php:2444
+msgid "Items per row (<576px)"
+msgstr ""
+
+#: configs/config.vc.php:2265 configs/config.vc.php:2463
+msgid "Space"
+msgstr ""
+
+#: configs/config.vc.php:2275 configs/config.vc.php:2469
+msgid "15"
+msgstr ""
+
+#: configs/config.vc.php:2276 configs/config.vc.php:2470
+msgid "20"
+msgstr ""
+
+#: configs/config.vc.php:2277 configs/config.vc.php:2471
+msgid "25"
+msgstr ""
+
+#: configs/config.vc.php:2278 configs/config.vc.php:2472
+msgid "30"
+msgstr ""
+
+#: configs/config.vc.php:2279 configs/config.vc.php:2473
+msgid "35"
+msgstr ""
+
+#: configs/config.vc.php:2280 configs/config.vc.php:2474
+msgid "40"
+msgstr ""
+
+#: configs/config.vc.php:2281 configs/config.vc.php:2475
+msgid "45"
+msgstr ""
+
+#: configs/config.vc.php:2282 configs/config.vc.php:2476
+msgid "50"
+msgstr ""
+
+#: configs/config.vc.php:2284 configs/config.vc.php:2478
+msgid "Set space for items."
+msgstr ""
+
+#: configs/config.vc.php:2290
+msgid "Mega Menu - Listing Locations+Categories"
+msgstr ""
+
+#: configs/config.vc.php:2299
+msgid "Get taxonomy by"
+msgstr ""
+
+#: configs/config.vc.php:2331
+msgid "Display"
+msgstr ""
+
+#: configs/config.widgets.php:5
+msgid "Events Sidebar"
+msgstr ""
+
+#: configs/config.widgets.php:7
+msgid "Widgets in this area will be shown on the Events Page Template"
+msgstr ""
+
+#: configs/config.widgets.php:14
+msgid "Listing Sidebar"
+msgstr ""
+
+#: configs/config.widgets.php:16
+msgid ""
+"Widgets in this area will be shown on Listing Location page, Listing "
+"Category page and Listing Template page."
+msgstr ""
+
+#: configs/config.widgets.php:23
+msgid "Single Listing Sidebar"
+msgstr ""
+
+#: configs/config.widgets.php:25
+msgid "All widgets in this area will be shown only on the single listing page."
+msgstr ""
+
+#: configs/config.widgets.php:34
+msgid ""
+"Widgets in this area will be shown on Blog, Archive, Search and Single page."
+msgstr ""
+
+#: configs/config.widgets.php:41
+msgid "WooCommerce Sidebar"
+msgstr ""
+
+#: configs/config.widgets.php:43
+msgid "Widgets in this area will be shown on whole WooCommerce pages."
+msgstr ""
+
+#: configs/config.widgets.php:50
+msgid "Footer 1"
+msgstr ""
+
+#: configs/config.widgets.php:52 configs/config.widgets.php:61
+#: configs/config.widgets.php:70
+msgid "We recommend you to use only one widget item for this area"
+msgstr ""
+
+#: configs/config.widgets.php:59
+msgid "Footer 2"
+msgstr ""
+
+#: configs/config.widgets.php:68
+msgid "Footer 3"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:16 newfeature/dashbroad.php:16
+#: wiloke-submission/myaccount.php:61 wiloke-submission/new-myaccount.php:23
+#: admin/public/class.WilokePublic.php:3945
+msgid "+ Add Listing"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:18 newfeature/dashbroad.php:18
+#: wiloke-submission/myaccount.php:20 wiloke-submission/new-myaccount.php:27
+msgid "Dashboards"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:20 newfeature/dashbroad.php:20
+#: wiloke-submission/myaccount.php:29 wiloke-submission/new-myaccount.php:35
+#: admin/public/class.WilokePublic.php:3577
+#: wiloke-submission/account/user-dashboard.php:6
+msgid "Dashboard"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:21 newfeature/dashbroad.php:21
+#: wiloke-submission/myaccount.php:30 wiloke-submission/myaccount.php:49
+#: wiloke-submission/new-myaccount.php:36
+#: wiloke-submission/new-myaccount.php:55
+#: wiloke-submission/account/guest-dashboard.php:3
+msgid "Profile"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:23 newfeature/dashbroad.php:23
+msgid "My listings (20)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:25 newfeature/dashbroad.php:25
+msgid "All Listings (20)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:26 newfeature/dashbroad.php:26
+msgid "Published (10)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:27 newfeature/dashbroad.php:27
+msgid "In Review (03)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:28 newfeature/dashbroad.php:28
+msgid "Unpaid (02)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:31 newfeature/dashbroad.php:31
+msgid "Notifications (20)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:32 newfeature/dashbroad.php:32
+msgid "Favourites (12)"
+msgstr ""
+
+#: newfeature/dashbroad-listing.php:33 newfeature/dashbroad.php:33
+#: wiloke-submission/myaccount.php:34 wiloke-submission/new-myaccount.php:40
+#: admin/public/class.WilokePublic.php:3594
+#: wiloke-submission/account/billing.php:13
+msgid "Billing"
+msgstr ""
+
+#: newfeature/dashbroad.php:49 wiloke-submission/new-myaccount.php:86
+#: wiloke-submission/account/user-dashboard.php:16
+msgid "All Listings"
+msgstr ""
+
+#: newfeature/dashbroad.php:63 wiloke-submission/new-myaccount.php:100
+#: wiloke-submission/account/listings.php:37
+#: wiloke-submission/account/new-user-dashboard.php:34
+#: wiloke-submission/account/user-dashboard.php:32
+msgid "In Review"
+msgstr ""
+
+#: newfeature/dashbroad.php:70 wiloke-submission/new-myaccount.php:107
+#: wiloke-submission/account/listings.php:38
+#: wiloke-submission/account/new-user-dashboard.php:42
+#: wiloke-submission/account/user-dashboard.php:40
+msgid "Unpaid"
+msgstr ""
+
+#. Name of the template
+msgid "Blog Grid"
+msgstr ""
+
+#. Name of the template
+msgid "Blog Standard"
+msgstr ""
+
+#: templates/edit-claimed.php:7 wiloke-submission/checkout.php:11
+msgid "You do not have permission to access this page"
+msgstr ""
+
+#: templates/edit-claimed.php:32 wiloke-submission/addlisting-old.php:139
+#: wiloke-submission/addlisting.php:146
+msgid "Rather not say"
+msgstr ""
+
+#: templates/edit-claimed.php:74
+msgid "Edit Listing"
+msgstr ""
+
+#: templates/edit-claimed.php:95
+msgid "Listing Style"
+msgstr ""
+
+#: templates/edit-claimed.php:123 wiloke-submission/addlisting-old.php:335
+#: wiloke-submission/addlisting.php:433
+msgid "Listing Content"
+msgstr ""
+
+#: templates/edit-claimed.php:149 wiloke-submission/addlisting-old.php:288
+#: wiloke-submission/addlisting.php:274
+msgid "Listing Google Address"
+msgstr ""
+
+#: templates/edit-claimed.php:151 wiloke-submission/addlisting-old.php:290
+#: wiloke-submission/addlisting.php:276
+msgid "Listing Address, Eg:  Manchester, United Kingdom"
+msgstr ""
+
+#: templates/edit-claimed.php:152 wiloke-submission/addlisting-old.php:291
+#: wiloke-submission/addlisting.php:278
+msgid "Latitude and Longitude, Eg: 53.480759,-2.242631"
+msgstr ""
+
+#: templates/edit-claimed.php:159 wiloke-submission/addlisting-old.php:298
+#: wiloke-submission/addlisting.php:284
+msgid ""
+"Please go to Appearance -> Theme Options -> General and supply your Google "
+"API key"
+msgstr ""
+
+#: templates/edit-claimed.php:165
+msgid "Price Ranger"
+msgstr ""
+
+#: templates/edit-claimed.php:181 wiloke-submission/addlisting-old.php:388
+#: wiloke-submission/addlisting.php:321
+msgid "Minimum Price"
+msgstr ""
+
+#: templates/edit-claimed.php:189 wiloke-submission/addlisting-old.php:396
+#: wiloke-submission/addlisting.php:329
+msgid "Maximum Price"
+msgstr ""
+
+#: templates/edit-claimed.php:198 wiloke-submission/addlisting-old.php:405
+#: admin/inc/class.WilokeAdminGeneral.php:356
+msgid "Business Hours"
+msgstr ""
+
+#: templates/edit-claimed.php:202 wiloke-submission/addlisting-old.php:409
+#: wiloke-submission/addlisting.php:344
+msgid "Toggle Business Hours"
+msgstr ""
+
+#: templates/edit-claimed.php:218 templates/edit-claimed.php:230
+#: wiloke-submission/addlisting-old.php:423
+#: wiloke-submission/addlisting-old.php:434
+#: wiloke-submission/addlisting.php:350 wiloke-submission/addlisting.php:361
+#: admin/inc/class.WilokeAdminGeneral.php:394
+msgid "Day"
+msgstr ""
+
+#: templates/edit-claimed.php:219 wiloke-submission/addlisting-old.php:424
+#: wiloke-submission/addlisting.php:351 wiloke-submission/addlisting.php:362
+#: admin/inc/class.WilokeAdminGeneral.php:395
+msgid "Start time"
+msgstr ""
+
+#: templates/edit-claimed.php:220 wiloke-submission/addlisting-old.php:425
+#: wiloke-submission/addlisting.php:352 wiloke-submission/addlisting.php:370
+#: admin/inc/class.WilokeAdminGeneral.php:396
+msgid "End time"
+msgstr ""
+
+#: templates/edit-claimed.php:221 wiloke-submission/addlisting-old.php:426
+#: wiloke-submission/addlisting.php:353
+#: admin/inc/class.WilokeAdminGeneral.php:397
+msgid "Closed"
+msgstr ""
+
+#: templates/edit-claimed.php:235 templates/edit-claimed.php:243
+#: wiloke-submission/addlisting-old.php:439
+#: wiloke-submission/addlisting-old.php:447
+#: wiloke-submission/addlisting.php:366 wiloke-submission/addlisting.php:374
+#: admin/inc/class.WilokeAdminGeneral.php:411
+#: admin/inc/class.WilokeAdminGeneral.php:419
+msgid "AM"
+msgstr ""
+
+#: templates/edit-claimed.php:236 templates/edit-claimed.php:244
+#: wiloke-submission/addlisting-old.php:440
+#: wiloke-submission/addlisting-old.php:448
+#: wiloke-submission/addlisting.php:367 wiloke-submission/addlisting.php:375
+#: admin/inc/class.WilokeAdminGeneral.php:412
+#: admin/inc/class.WilokeAdminGeneral.php:420
+msgid "PM"
+msgstr ""
+
+#: templates/edit-claimed.php:283 wiloke-submission/addlisting-old.php:487
+#: wiloke-submission/addlisting.php:496
+msgid "Keywords"
+msgstr ""
+
+#: templates/edit-claimed.php:285 wiloke-submission/addlisting-old.php:489
+#: wiloke-submission/addlisting.php:498
+msgid "Each keyword is sereparated by a comma. Eg: wordpress,drupal"
+msgstr ""
+
+#: templates/edit-claimed.php:291 wiloke-submission/addlisting-old.php:500
+#: wiloke-submission/addlisting.php:508
+msgid "Add Gallery"
+msgstr ""
+
+#: templates/edit-claimed.php:300 wiloke-submission/addlisting-old.php:505
+#: wiloke-submission/addlisting.php:513
+#: admin/public/class.WilokePublic.php:3815
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:390
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1194
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1256
+msgid "Remove"
+msgstr ""
+
+#: templates/edit-claimed.php:321
+msgid "Save Changes"
+msgstr ""
+
+#: templates/listing.php:87
+msgid "Edit profile"
+msgstr ""
+
+#: templates/listing.php:95
+msgid "By"
+msgstr ""
+
+#. Name of the template
+msgid "Creative Layout"
+msgstr ""
+
+#. Name of the template
+msgid "Classic Layout"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:33 wiloke-submission/addlisting.php:40
+#, php-format
+msgid ""
+"You need to select a package before. <a href=\"%s\">Return Package Page</a>"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:44 wiloke-submission/addlisting.php:51
+#, php-format
+msgid "This package does not exist.<a href=\"%s\">Return Package Page</a>"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:65 wiloke-submission/addlisting.php:72
+msgid "We are reviewing your listing. Please wait for replying from us."
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:74 wiloke-submission/addlisting.php:81
+msgid "You can not edit a published listing."
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:198
+#: wiloke-submission/addlisting.php:199
+#, php-format
+msgid "Select Template (%d)"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:216
+#: wiloke-submission/addlisting.php:217
+msgid "Activated"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:238
+#: wiloke-submission/addlisting.php:247
+msgid "Listing Categories"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:240
+#: wiloke-submission/addlisting.php:249
+msgid "Select Listing Categories"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:265
+msgid "Select Your listing location"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:324
+#: wiloke-submission/addlisting.php:420
+msgid "Upload Featured Image"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:326
+#: wiloke-submission/addlisting-old.php:527
+#: wiloke-submission/addlisting.php:422 wiloke-submission/addlisting.php:535
+msgid "The image size should smaller or equal "
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:367
+msgid "Price Settings"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:524
+#: wiloke-submission/addlisting.php:532
+msgid "Upload Gallery Image"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:543
+#: wiloke-submission/addlisting.php:559
+#: wiloke-submission/account/edit-profile.php:209
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2723
+msgid "Update"
+msgstr ""
+
+#: wiloke-submission/addlisting-old.php:545
+#: wiloke-submission/addlisting.php:561
+msgid "Preview"
+msgstr ""
+
+#: wiloke-submission/addlisting.php:452
+msgid "Skip this step if you want to display your profile information."
+msgstr ""
+
+#: wiloke-submission/checkout.php:25
+msgid ""
+"You have not setup any payment gateways yet. Please go to Wiloke Submission -"
+"> Settings and set one."
+msgstr ""
+
+#: wiloke-submission/checkout.php:27
+msgid "We do not accept any payment method at the moment"
+msgstr ""
+
+#: wiloke-submission/checkout.php:32
+#, php-format
+msgid "We do not accept payment via %s"
+msgstr ""
+
+#: wiloke-submission/checkout.php:63
+msgid "Your package"
+msgstr ""
+
+#: wiloke-submission/checkout.php:70
+msgid "Package"
+msgstr ""
+
+#: wiloke-submission/checkout.php:71 wiloke-submission/account/billing.php:144
+#: wiloke-submission/account/billing.php:191
+msgid "Amount"
+msgstr ""
+
+#: wiloke-submission/checkout.php:72
+msgid "Listing availability"
+msgstr ""
+
+#: wiloke-submission/checkout.php:79
+msgid "Unlimited availability"
+msgstr ""
+
+#: wiloke-submission/checkout.php:80
+msgid "Unlimited listings"
+msgstr ""
+
+#: wiloke-submission/checkout.php:87
+msgid "Proceed to checkout"
+msgstr ""
+
+#. Name of the template
+#. Name of the template
+msgid "User Dashboard"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:31 wiloke-submission/new-myaccount.php:37
+msgid "My Listings"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:32 wiloke-submission/new-myaccount.php:38
+#: wiloke-submission/account/notifications.php:8
+msgid "Notifications"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:33 wiloke-submission/new-myaccount.php:39
+#: admin/public/class.WilokePublic.php:3590
+msgid "Favorites"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:39 wiloke-submission/new-myaccount.php:45
+msgid "Shop"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:42 wiloke-submission/new-myaccount.php:48
+msgid "My Cart"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:43 wiloke-submission/new-myaccount.php:49
+msgid "Orders"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:44 wiloke-submission/new-myaccount.php:50
+msgid "Downloads"
+msgstr ""
+
+#: wiloke-submission/myaccount.php:73 wiloke-submission/new-myaccount.php:121
+msgid "You don't have permission to access this page"
+msgstr ""
+
+#: wiloke-submission/payment-thankyou.php:27
+msgid "Thanks for your submitting! We will send an email to you soon."
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:14
+msgid "Create an account?"
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:23
+msgid "Invalid Email"
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:30
+#: admin/public/class.WilokePublic.php:2892
+msgid "We need your password"
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:40
+msgid "Username Or Email Address"
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:44
+msgid "Please enter in your username or your email."
+msgstr ""
+
+#: wiloke-submission/signup-signin-in-addlisting.php:53
+#: wiloke-submission/signup-signin-popup.php:9
+#: wiloke-submission/signup-signin-popup.php:36
+#: wiloke-submission/signup-signin-popup.php:75
+msgid "Sign In"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:10
+#: wiloke-submission/signup-signin-popup.php:71
+msgid "Sign Up"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:17
+#: wiloke-submission/signup-signin-popup.php:85
+msgid "Username or Email Address"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:31
+msgid "Remember me?"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:33
+msgid "Lost your password"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:39
+msgid "Don't have an account?"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:53
+msgid "Username"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:75
+msgid "Already have an account?"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:91
+msgid "Reset Password"
+msgstr ""
+
+#: wiloke-submission/signup-signin-popup.php:94
+msgid "Cancel"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminBar.php:32
+msgid "Theme Support"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminBar.php:44
+msgid "Browse Our Products"
+msgstr ""
+
+#: admin/inc/class.WilokeAdminGeneral.php:380
+msgid "Toggle Business Hour"
+msgstr ""
+
+#: admin/inc/class.WilokeAjax.php:81
+msgid "There are no contact forms"
+msgstr ""
+
+#: admin/inc/class.WilokeAjax.php:690
+msgid "Sorry, your nonce did not verify"
+msgstr ""
+
+#: admin/inc/class.WilokeAlert.php:49 admin/inc/class.WilokeAlert.php:91
+msgid "Note that this message is only seen by the admin."
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:38
+msgid "Contact form 7 Option"
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:40
+msgid "Click Import button make this contact form look like demo."
+msgstr ""
+
+#: admin/inc/class.WilokeContactForm.php:51
+#: admin/inc/class.WilokeContactForm.php:51
+msgid "Import"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:65
+msgid "Upload Image"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:257
+msgid "Submit"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:421
+msgid "Select User"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:451
+#, php-format
+msgid "The post type %s does not exist or there is no any post yet"
+msgstr ""
+
+#: admin/inc/class.WilokeHtmlHelper.php:462
+msgid "Select Value"
+msgstr ""
+
+#: admin/inc/class.WilokeSocialNetworks.php:40
+msgid "Social icon will not display if you leave empty"
+msgstr ""
+
+#: admin/inc/class.WilokeThemeOptions.php:95
+msgid "Redux Framework plugin is required."
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:37
+msgid "City"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:38
+msgid "State"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:39
+msgid "Zipcode"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:40
+msgid "Country"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:142
+msgid "Upload a cover image for your profile page"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:143
+msgid "Color Overlay"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:143
+msgid "Set a blur color on the cover image"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:151
+msgid "Profile Picture"
+msgstr ""
+
+#: admin/inc/class.WilokeUser.php:151
+msgid "We strongly recommend using an image of 400x400px"
+msgstr ""
+
+#: admin/inc/class.WilokeWidget.php:34
+msgid ""
+"This is a custom sidebar, which has been created in the Appearance -> Theme "
+"Options -> Advanced Settings."
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:111
+msgid "Extract Class"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:121
+msgid "Css"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:123 admin/inc/func.visualComposer.php:132
+msgid "Design Options"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:497
+msgid "Toggle Select"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:501
+msgid "There are no posts in this taxonomy"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:522
+msgid ""
+"<p>Wiloke Service plugin is required. If the plugin doesn't install, please "
+"go to Appearance -> Install Plugins to do it. If this plugin has already "
+"been installed, please go to Plugins -> Looking for Wiloke Service and "
+"activate it.</p>"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:528
+msgid "Refresh"
+msgstr ""
+
+#: admin/inc/func.visualComposer.php:793
+msgid "We found no package. Please go to Pricings and create some"
+msgstr ""
+
+#: admin/public/class.WilokeFrontPage.php:41
+msgctxt "Google font: on or off"
+msgid "on"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:272
+msgid "Opens at"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:276
+#: admin/public/class.WilokePublic.php:281
+msgid "today"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:278
+msgid "tomorrow"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:287
+#: admin/public/class.WilokePublic.php:289
+msgid "Closes in"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:287
+msgid "hour"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:287
+#: admin/public/class.WilokePublic.php:289
+msgid "minutes"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:312
+msgid "Ad"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:811
+msgid "Price:"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1103
+msgid "Please enter in your destination"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1114
+msgid "Nothing found. Please try another keyword."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1545
+#: admin/public/template/vc/wiloke_awesome_map.php:112
+msgid "Open Now"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1551
+#: admin/public/template/vc/wiloke_awesome_map.php:118
+msgid "Highest Rated"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1558
+msgid "Cost - It doesn't matter"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1563
+msgid "Cost"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1575
+msgid "Radius"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1579
+msgid "Kilometer"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1580
+msgid "Mile"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1593
+msgid "Search Now"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1629
+#: admin/public/class.WilokePublic.php:2170
+msgid "Home"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1642
+msgid "Search"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1702
+msgid "Search results for: "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1705
+msgid "Category: "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1712
+msgid "Tag: "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1742
+msgid "All posts by: "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1748
+msgid "Archive: "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1788
+msgid "Pingback:"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1788
+msgid "(Edit)"
+msgstr ""
+
+#. 1: date, 2: time
+#: admin/public/class.WilokePublic.php:1825
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1834
+msgid "Reply"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1837
+msgid "Edit"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1868
+msgid "Filter by tags"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1907
+msgid "Worldwide"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:1916
+msgid "My Location"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2061
+msgid "Find Directions"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2271
+#: wiloke-submission/account/followers.php:38
+#: wiloke-submission/account/following.php:38
+#: admin/public/template/vc/wiloke_our_members.php:96
+msgid "Followers"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2285
+#: wiloke-submission/account/edit-profile.php:3
+msgid "Edit Profile"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2603
+msgid "Posted on"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2610
+msgid "Category|Categories"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2616
+msgid "Location|Locations"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2621
+#: admin/public/class.WilokePublic.php:3075
+msgid "Rating"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2632
+#: wiloke-submission/account/billing.php:146
+#: wiloke-submission/account/billing.php:193
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2554
+msgid "Status"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2712
+msgid "Share"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2861
+msgid "Please write something about your review"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:2869
+msgid "Please enter a title for your review"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3014
+#: admin/public/class.WilokePublic.php:3027
+msgid "Thanks for your reviewing!"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3075
+msgid "Ratings"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3183
+msgid "By "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3341
+msgid "Contact & Map"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3344
+msgid "Review & Rating"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3357
+msgid ""
+"Styled unordered list. If you want to mark a service as not supported, "
+"please add class not-supported to li tab. For example: &lt;li class=\"not-"
+"support\">Game:&lt;/li> "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3410
+msgid "More Listings By "
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3583
+#: wiloke-submission/account/listings.php:7
+msgid "My listings"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3599
+msgid "My cart"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3607
+msgid "Logout"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3620
+msgid "The security code is wrong."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3628
+msgid "You entered an invalid email address."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3634
+msgid "The display name is required."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3640
+msgid "The Nickname is required."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3660
+msgid "The current password is wrong."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3666
+msgid "These password don't match.  Please try again!"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3674
+msgid "This password is wrong. Please try again!"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3693
+msgid "Congrats, Your information have been updated!"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3733
+#: admin/public/class.WilokePublic.php:3776
+#: admin/public/class.WilokePublic.php:3859
+msgid "There are no listings"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3744
+#: admin/public/template/vc/wiloke_pricing.php:142
+msgid "Free"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3868
+#: admin/public/class.WilokePublic.php:3883
+#: admin/public/class.WilokePublic.php:3908
+msgid "You do not have permission to change the post status."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3876
+#: admin/public/class.WilokePublic.php:3916
+msgid "You are not author of the post."
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3967
+msgid "Avatar"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:3981
+msgid "Login Register"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:4056
+msgid "Badge"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:4084
+#: wiloke-submission/account/notifications.php:27
+#: admin/public/template/vc/wiloke_posts_slider.php:40
+msgid "Comments"
+msgstr ""
+
+#: admin/public/class.WilokePublic.php:4105
+msgid "Previous"
+msgstr ""
+
+#: admin/public/class.WilokeWooCommerce.php:46
+msgctxt "breadcrumb"
+msgid "Home"
+msgstr ""
+
+#: admin/public/class.WilokeWooCommerce.php:61
+msgid "items"
+msgstr ""
+
+#: admin/public/class.WilokeWooCommerce.php:61
+msgid "item"
+msgstr ""
+
+#: templates/single-listing-elements/contact-tab.php:20
+msgid ""
+"Please go to Appearance -> Theme Options -> Listing Settings and assign a "
+"conform to Set Contact Form 7 setting."
+msgstr ""
+
+#: wiloke-submission/account/billing.php:59
+msgid "My Subscription"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:59
+msgid "No Plan"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:59
+msgid "Remaining Listing(s)"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:63
+msgid "Updating Your Business Plan ... "
+msgstr ""
+
+#: wiloke-submission/account/billing.php:81
+msgid "Want to Modify Your Plan?"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:100
+msgid "Proceed with"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:109
+msgid "Update Plan"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:117
+msgid "Whoops! There's an outstanding balance on your account"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:118
+#, php-format
+msgid ""
+"We noticed that your account has an outstanding balance of %s. We can't "
+"automatically deduct from PayPal account, so to pay the balance please click "
+"on Bill Outstanding Amount above"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:130
+msgid "Bill Outstanding Amount"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:137
+#: wiloke-submission/account/billing.php:184
+msgid "Billing History"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:143
+msgid "GateWay"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:145
+#: wiloke-submission/account/billing.php:192
+msgid "Package Info"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:164
+#: wiloke-submission/account/billing.php:211
+msgid "There is no billing yet."
+msgstr ""
+
+#: wiloke-submission/account/billing.php:190
+msgid "Gateway"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:228
+msgid "Credit / Debit Card"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:242
+msgid "Card Number"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:251
+msgid "Expiration Date (MM/YYYY)"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:258
+msgid "MM"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:266
+msgid "YYYY"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:276
+msgid "CVC"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:286
+msgid "Name On Card"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:304
+msgid "Card holder's City"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:313
+msgid "Card holder's Country"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:325
+msgid "Card holder's Email"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:334
+msgid "Card holder's Phone"
+msgstr ""
+
+#: wiloke-submission/account/billing.php:346
+msgid "Save Card"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:44
+msgid "Change Avatar"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:54
+msgid "Header Overlay Color"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:63
+msgid "First name"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:72
+msgid "Last name"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:81
+msgid "Nickname"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:90
+msgid "Display Name"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:135
+msgid "Intro your self"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:144
+msgid "Change Password"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:150
+msgid "Current Password"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:159
+msgid "New Password"
+msgstr ""
+
+#: wiloke-submission/account/edit-profile.php:168
+msgid "Confirm New Password"
+msgstr ""
+
+#: wiloke-submission/account/favorites.php:7
+msgid "My Favorites"
+msgstr ""
+
+#: wiloke-submission/account/favorites.php:41
+msgid "There is no favorite yet"
+msgstr ""
+
+#: wiloke-submission/account/followers.php:38
+#: wiloke-submission/account/following.php:38
+#: admin/public/template/vc/wiloke_our_members.php:96
+msgid "Follower"
+msgstr ""
+
+#: wiloke-submission/account/followers.php:48
+msgid "There are no followers yet."
+msgstr ""
+
+#: wiloke-submission/account/following.php:48
+msgid "There are no following yet."
+msgstr ""
+
+#: wiloke-submission/account/guest-dashboard.php:14
+msgid ""
+"Your life is secret ;)! The other people do not know anything about you. You "
+"can change this status by clicking on the General Settings and updating your "
+"information."
+msgstr ""
+
+#: wiloke-submission/account/guest-dashboard.php:16
+msgid "My life is secret ;)!"
+msgstr ""
+
+#: wiloke-submission/account/listings.php:35
+#: admin/public/template/vc/wiloke_listing_layout.php:244
+#: admin/public/template/vc/wiloke_listing_layout.php:270
+msgid "All"
+msgstr ""
+
+#: wiloke-submission/account/listings.php:48
+msgid ""
+"You have not configured Check out page. Please go to Pricings -> Settings to "
+"complete it. If you do not see Pricing item on the admin menu, it means "
+"Wiloke Functionality is disabled, please go to Appearance -> Install Plugins "
+"to activate this plugin. Note that the plugin is required by Submission "
+"system."
+msgstr ""
+
+#: wiloke-submission/account/listings.php:62
+msgid ""
+"You do not have any listing yet. Please click on Add Listing button to "
+"create one."
+msgstr ""
+
+#: wiloke-submission/account/new-user-dashboard.php:15
+#: wiloke-submission/account/new-user-dashboard.php:65
+#: wiloke-submission/account/user-dashboard.php:61
+msgid "Total Views"
+msgstr ""
+
+#: wiloke-submission/account/new-user-dashboard.php:25
+msgid "Total Favourites"
+msgstr ""
+
+#: wiloke-submission/account/new-user-dashboard.php:76
+#: wiloke-submission/account/user-dashboard.php:72
+msgid "Total Reviews"
+msgstr ""
+
+#: wiloke-submission/account/notifications.php:15
+msgid "View more"
+msgstr ""
+
+#: wiloke-submission/account/notifications.php:22
+msgid "Filter Notifications"
+msgstr ""
+
+#: wiloke-submission/account/notifications.php:25
+msgid "Show all notifications belong to "
+msgstr ""
+
+#: woocommerce/myaccount/dashboard.php:29
+#, php-format
+msgid "Hello %1$s (not %1$s? <a href=\"%2$s\">Log out</a>)"
+msgstr ""
+
+#: woocommerce/myaccount/dashboard.php:37
+#, php-format
+msgid ""
+"You are in Shop Dashboard area. From your account dashboard you can view "
+"your <a href=\"%1$s\">recent orders</a>."
+msgstr ""
+
+#: woocommerce/myaccount/dashboard.php:39
+#, php-format
+msgid ""
+" If you want to go to the main Dashboard, please click on <a href=\"%s\">"
+"Main Dashboard</a> link."
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/init.php:299
+msgid "Select / Deselect All"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:327
+msgid "Install Required Plugins"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:328
+msgid "Install Plugins"
+msgstr ""
+
+#. %s: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:330
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#. %s: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:332
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:333
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:334
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:340
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:346
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:352
+#, php-format
+msgid "There is an update available for: %1$s."
+msgid_plural "There are updates available for the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:358
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:364
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:370
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:375
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:380
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:385
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:386
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:827
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2533
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3580
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:387
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3159
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:388
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2952
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#. 1: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:390
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#. 1: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:392
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#. 1: dashboard link.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:394
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:395
+msgid "Dismiss this notice"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:396
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:397
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:523
+msgid "Update Required"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:934
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:934
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:937
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:937
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:1121
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2948
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr ""
+
+#. %s: version number
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:1982
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2273
+msgid "Required"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2276
+msgid "Recommended"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2292
+msgid "WordPress Repository"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2295
+msgid "External Source"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2298
+msgid "Pre-Packaged"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2315
+msgid "Not Installed"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2319
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2321
+msgid "Active"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2327
+msgid "Required Update not Available"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2330
+msgid "Requires Update"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2333
+msgid "Update recommended"
+msgstr ""
+
+#. 1: install status, 2: update status
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2342
+#, php-format
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#. 1: number of plugins.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2388
+#, php-format
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2392
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2396
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2400
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2482
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2490
+msgid "Installed version:"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2498
+msgid "Minimum required version:"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2510
+msgid "Available version:"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2533
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2547
+msgid "Plugin"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2548
+msgid "Source"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2549
+msgid "Type"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2553
+msgid "Version"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2603
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2608
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2614
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2717
+msgid "Install"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2726
+msgid "Activate"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:2934
+msgid "No plugins are available to be activated at this time."
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3158
+msgid "Plugin activation failed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3498
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#. 1: plugin name, 2: error message.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3501
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#. 1: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3503
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3507
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#. 1: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3509
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3509
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3517
+msgid "Show Details"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3509
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3517
+msgid "Hide Details"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3510
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3512
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3515
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#. 1: plugin name.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3517
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3518
+msgid "All installations have been completed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: admin/inc/lib/tgm-plugin/class-tgm-plugin-activation.php:3520
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: admin/public/template/footer/box-fixed.php:21
+msgid "SCROLL TO TOP"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_awesome_map.php:76
+#: admin/public/template/vc/wiloke_half_map.php:76
+msgid ""
+"The <strong>MapBox Token</strong> and <strong>MapBox theme</strong> are "
+"required. You can find these settings by clicking on <strong>Theme "
+"Options</strong> at the top bar -> <strong>General</strong> or <strong>"
+"Appearance</strong> -> <strong>Theme Options</strong> -> <strong>"
+"General</strong>. "
+msgstr ""
+
+#: admin/public/template/vc/wiloke_awesome_map.php:86
+msgid "Search..."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_awesome_map.php:127
+msgid "Sorry, We found no listings matching your search."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_boxes_icon.php:20
+msgid "Box Content is empty now. You should create at least one or Remove it"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_events.php:69
+msgid "This event starts:"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_events.php:74
+#: admin/public/template/vc/events-layout/default.php:31
+#: admin/public/template/vc/events-layout/default.php:41
+msgid "From"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_events.php:75
+#: admin/public/template/vc/events-layout/default.php:32
+#: admin/public/template/vc/events-layout/default.php:49
+msgid "To"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_events_list.php:15
+#: admin/public/template/vc/wiloke_listing_layout.php:16
+msgid "Load More"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_events_list.php:67
+msgid "There are no events yet."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_half_map.php:8
+msgid "Pan to marker"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_listing_layout.php:194
+msgid "Whoops! We found no articles of this author!"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_listing_layout.php:196
+msgid ""
+"Sorry --- We couldn't find what you are looking for. You should try: "
+"Searching a different area, A more general search (Paris, Shopping, etc), "
+"Checking your spelling."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_listing_layout.php:268
+msgid "Find By "
+msgstr ""
+
+#: admin/public/template/vc/wiloke_map.php:16
+msgid ""
+"You are using the Map Shortcode but Latitude and Longitude - It is required "
+"by the shortcode - are empty."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_our_members.php:92
+msgid "Articles"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_our_members.php:92
+msgid "Article"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:26
+msgid ""
+"You need to configure Payment page before: Wiloke Submission ->  Settings. "
+"If you do not see Wiloke Submission on the left menu, please go to "
+"Appearance -> Install Plugins -> Installing and Activating Wiloke Listgo "
+"Functionality plugin."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:34
+#, php-format
+msgid ""
+"Whoops! You already purchased a package plan before. You can change your "
+"plan by going to <a href=\"%s\">Dashboard's Billing</a> section or go to <a "
+"href=\"%s\">Add Listing page</a> to add a new listing."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:99
+msgid "It seems this post is not publish."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:160
+msgid "You already have used up all listings in the free package."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:163
+msgid ""
+"Whoops! There's an outstanding balance on this package. Please make a "
+"payment to continue using."
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:177
+msgid "Purchased"
+msgstr ""
+
+#: admin/public/template/vc/wiloke_pricing.php:179
+msgid "Remaining: "
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:47
+msgid "Please Try Again"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:131
+msgid "Remove Embed"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_ajax.php:134
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_field.php:469
+msgid "Add Group"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_field.php:470
+msgid "Remove Group"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:333
+msgid "Add Row"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:558
+msgid "Upload"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:606
+msgid "Latitude & Longitude"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1044
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1095
+msgid "No terms"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1162
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1216
+msgid "Add or Upload File"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1183
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1248
+msgid "Remove Image"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1194
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1256
+msgid "File:"
+msgstr ""
+
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1194
+#: admin/inc/lib/custom-metaboxes/helpers/cmb_Meta_Box_types.php:1256
+msgid "Download"
+msgstr ""
+
+#: admin/inc/redux-extensions/wiloke-pickupicon/wiloke_pickupicon_field/field_wiloke_pickupicon_field.php:86
+#: admin/inc/redux-extensions/wiloke-repeater/wiloke_repeater_field/field_wiloke_repeater_field.php:88
+msgid "Add New"
+msgstr ""
+
+#: admin/public/template/vc/events-layout/default.php:26
+msgid "Event Detail: "
+msgstr ""
+
+#. Name of the theme
+msgid "ListGo"
+msgstr ""
+
+#. Description of the theme
+msgid "Listing WordPress Theme"
+msgstr ""
+
+#. URI of the theme
+msgid "https://listgo.wiloke.com/"
+msgstr ""
+
+#. Author of the theme
+msgid "wiloke"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://wiloke.com"
+msgstr ""
