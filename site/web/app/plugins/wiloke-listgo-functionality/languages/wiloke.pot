@@ -1,0 +1,4483 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-14 13:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: wiloke-listgo-functionality.php:41
+#, php-format
+msgid ""
+"We found an error on the line %s in the %s of wiloke-listgo-functionality "
+"plugin. Please contact us at sale@wiloke.com or piratesmorefun@gmail.com to "
+"report this issue"
+msgstr ""
+
+#: wiloke-listgo-functionality.php:43 app/Frontend/FrontendClaimListing.php:101
+#: app/Frontend/FrontendClaimListing.php:244 app/Payment/EventPayment.php:265
+#: app/Payment/EventPayment.php:696 app/Payment/PayPal.php:631
+#: app/Payment/PayPal.php:1131 app/Payment/PayPal.php:1161
+#: app/Payment/PayPal.php:1167 app/Payment/PayPal.php:1244
+#: app/Payment/PayPal.php:1388 app/Payment/TwoCheckout.php:286
+#: app/Payment/TwoCheckout.php:369 app/Submit/AddListing.php:903
+msgid "Something went wrong"
+msgstr ""
+
+#: config/app.php:13 config/app.php:40 config/app.php:58 config/app.php:77
+#: config/app.php:95 config/app.php:114 config/app.php:133
+msgid "Description."
+msgstr ""
+
+#: config/app.php:189 app/Frontend/FrontendListingManagement.php:321
+msgid "Unpaid"
+msgstr ""
+
+#: config/app.php:195
+#, php-format
+msgid "Unpaid <span class=\"count\">(%s)</span>"
+msgid_plural "Unpaid <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/app.php:198 app/Frontend/FrontendEvents.php:619
+#: app/Frontend/FrontendListingManagement.php:327
+msgid "Expired"
+msgstr ""
+
+#: config/app.php:204
+#, php-format
+msgid "Expired <span class=\"count\">(%s)</span>"
+msgid_plural "Expired <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/app.php:207 app/Frontend/FrontendListingManagement.php:377
+msgid "Renew"
+msgstr ""
+
+#: config/app.php:213
+#, php-format
+msgid "Renew <span class=\"count\">(%s)</span>"
+msgid_plural "Renew <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/app.php:216 app/Frontend/FrontendListingManagement.php:330
+#: app/Frontend/FrontendListingManagement.php:387
+msgid "Temporary Closed"
+msgstr ""
+
+#: config/app.php:223
+#, php-format
+msgid "Temporary closed <span class=\"count\">(%s)</span>"
+msgid_plural "Temporary closed <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: config/app.php:230
+msgid "General Settings"
+msgstr ""
+
+#: config/app.php:237
+msgid "Toggle Wiloke Submission"
+msgstr ""
+
+#: config/app.php:238
+msgid ""
+"Ensure that the New User Default Role has been set to Wiloke Submission: "
+"Settings -> General -> New User Default Role"
+msgstr ""
+
+#: config/app.php:242 config/app.php:409 config/app.php:923 config/app.php:937
+msgid "Disable"
+msgstr ""
+
+#: config/app.php:243 config/app.php:410 config/app.php:924 config/app.php:938
+msgid "Enable"
+msgstr ""
+
+#: config/app.php:249
+msgid "Your Brand (*)"
+msgstr ""
+
+#: config/app.php:250
+msgid ""
+"The brand name will be shown on the PayPal payment page and it also used as "
+"Email Subject."
+msgstr ""
+
+#: config/app.php:258
+msgid "Approved Method"
+msgstr ""
+
+#: config/app.php:260
+msgid "What method is used to review?"
+msgstr ""
+
+#: config/app.php:265
+msgid "Manual Review"
+msgstr ""
+
+#: config/app.php:266
+msgid "Automatically Approval After Payment Success"
+msgstr ""
+
+#: config/app.php:271
+msgid "Automatically Delete Unpaid Listing"
+msgstr ""
+
+#: config/app.php:272
+msgid ""
+"A robot will automatically check all unpaid listings each day, and if a "
+"listing has been submitted more than x hours, it will be deleted. Leave "
+"empty to disable this feature."
+msgstr ""
+
+#: config/app.php:280
+msgid "Edit Published Listing Type"
+msgstr ""
+
+#: config/app.php:282
+msgid "Allow / Not allow editing a listing that has been published"
+msgstr ""
+
+#: config/app.php:287
+msgid "Editable and Need to review before re-publishing"
+msgstr ""
+
+#: config/app.php:288
+msgid "Editable and immediately approved"
+msgstr ""
+
+#: config/app.php:289
+msgid "Not allow editing"
+msgstr ""
+
+#: config/app.php:293
+msgid "Payment gateways"
+msgstr ""
+
+#: config/app.php:300
+msgid "Accept Payment Via"
+msgstr ""
+
+#: config/app.php:310
+msgid "PayPal"
+msgstr ""
+
+#: config/app.php:315 app/Payment/Payment.php:96
+msgid "Credit Card (2Checkout)"
+msgstr ""
+
+#: config/app.php:320
+msgid "Check Payment"
+msgstr ""
+
+#: config/app.php:327
+msgid "Billing Type *"
+msgstr ""
+
+#: config/app.php:331
+msgid "Non-Recurring Payments"
+msgstr ""
+
+#: config/app.php:332
+msgid "Recurring Payments"
+msgstr ""
+
+#: config/app.php:337
+msgid "PayPal Live"
+msgstr ""
+
+#: config/app.php:344 config/app.php:371
+msgid "User Name"
+msgstr ""
+
+#: config/app.php:351 config/app.php:378
+msgid "Password"
+msgstr ""
+
+#: config/app.php:358 config/app.php:385 config/app.php:722
+msgid "Signature"
+msgstr ""
+
+#: config/app.php:364
+msgid "PayPal Sandbox"
+msgstr ""
+
+#: config/app.php:391
+msgid "2Checkout General Settings *"
+msgstr ""
+
+#: config/app.php:398
+msgid ""
+"Important: You have to follow step by step in this tutorial <a href=\"https:"
+"//blog.wiloke.com/recurring-payments-2checkout-gateway-configuration/\" "
+"target=\"_blank\">RECURRING PAYMENTS – 2CHECKOUT GATEWAY CONFIGURATION</a> "
+"to complete the settings."
+msgstr ""
+
+#: config/app.php:403
+msgid "Auto Refund After Your Customer Changed Their Plan"
+msgstr ""
+
+#: config/app.php:415
+msgid "Secret Word *"
+msgstr ""
+
+#: config/app.php:416
+msgid ""
+"<a href=\"http://help.2checkout.com/articles/FAQ/Where-do-I-set-up-the-"
+"Secret-Word/\" target=\"_blank\">Where do I set up the Secret Word?</a>"
+msgstr ""
+
+#: config/app.php:423
+msgid "2Checkout Instant Notification Service (INS) *"
+msgstr ""
+
+#: config/app.php:430
+msgid ""
+"2Checkout's Instant Notification Service allows 2Checkout to communicate "
+"with your store, keeping transaction data in sync. INS must be set up "
+"properly for recurring billing to work. From your 2Checkout account, "
+"navigate to the <a href=\"https://www.2checkout.com/va/notifications/\" "
+"target=\"_blank\">Notifications</a> screen and enable all notifications."
+msgstr ""
+
+#: config/app.php:435
+msgid ""
+"The URL should be set to: http://example.com/?wiloke-submission-"
+"listener=2Checkout. Note: please replace \"example.com\" with the "
+"appropriate name of your website."
+msgstr ""
+
+#: config/app.php:440
+msgid ""
+"Important! If INS is not properly configured, subscription tracking will not "
+"work."
+msgstr ""
+
+#: config/app.php:444
+msgid "2Checkout Username and Password"
+msgstr ""
+
+#: config/app.php:451
+msgid ""
+"Please read this tutorial <a href=\"https://blog.wiloke.com/recurring-"
+"payments-2checkout-gateway-configuration/\" target=\"_blank\">RECURRING "
+"PAYMENTS – 2CHECKOUT GATEWAY CONFIGURATION</a> to know how to configure your "
+"2Checkout Username and Password"
+msgstr ""
+
+#: config/app.php:455
+msgid "2Checkout Sandbox"
+msgstr ""
+
+#: config/app.php:462 config/app.php:491
+msgid "Seller ID (*)"
+msgstr ""
+
+#: config/app.php:471 config/app.php:500
+msgid "Publishable Key (*)"
+msgstr ""
+
+#: config/app.php:478 config/app.php:507
+msgid "Private Key (*)"
+msgstr ""
+
+#: config/app.php:484
+msgid "2Checkout Live"
+msgstr ""
+
+#: config/app.php:513
+msgid "Payment General Settings (*)"
+msgstr ""
+
+#: config/app.php:520
+msgid "Mode"
+msgstr ""
+
+#: config/app.php:524
+msgid "Sandbox"
+msgstr ""
+
+#: config/app.php:525
+msgid "Live"
+msgstr ""
+
+#: config/app.php:531
+msgid "Currency Code"
+msgstr ""
+
+#: config/app.php:574
+msgid "Maximum Failed Payments (PayPal)"
+msgstr ""
+
+#: config/app.php:578
+msgid ""
+"Number of scheduled payments that can fail before the profile is "
+"automatically suspended."
+msgstr ""
+
+#: config/app.php:583
+msgid "Currency position"
+msgstr ""
+
+#: config/app.php:587
+msgid "Left $99.99"
+msgstr ""
+
+#: config/app.php:588
+msgid "Right 99.99$"
+msgstr ""
+
+#: config/app.php:589
+msgid "Left With Space $ 99.99"
+msgstr ""
+
+#: config/app.php:590
+msgid "Right With Space 99.99 $"
+msgstr ""
+
+#: config/app.php:595
+msgid "Payment Pages (*)"
+msgstr ""
+
+#: config/app.php:602
+msgid "Package page"
+msgstr ""
+
+#: config/app.php:603
+msgid ""
+"Set the package leads to Pricing table. Please click on Wiloke Guide -> FAQs "
+"-> Setup Package page to know more."
+msgstr ""
+
+#: config/app.php:612
+msgid "Customer Plans*"
+msgstr ""
+
+#: config/app.php:613
+msgid ""
+" Deciding what plans will be shown on the Package page. Notice: From ListGo "
+"1.0.9, We moved Custom Plans to Wiloke Submission place. This setting in "
+"Packages shortcode is no longer available."
+msgstr ""
+
+#: config/app.php:633
+msgid "Add Listing Page"
+msgstr ""
+
+#: config/app.php:634
+msgid ""
+"This page tell Wiloke Submission where to add a listing on the front-end. To "
+"create an Add Listing Page, please click on Pages -> Add New -> Create a new "
+"page -> Assing that page to Add Listing Template"
+msgstr ""
+
+#: config/app.php:643
+msgid "Checkout Page"
+msgstr ""
+
+#: config/app.php:644
+msgid ""
+"To create an Checkout Page, please click on Pages -> Add New -> Create a new "
+"page -> Assing that page to Add Checkout Template"
+msgstr ""
+
+#: config/app.php:653
+msgid "My Account Page"
+msgstr ""
+
+#: config/app.php:654
+msgid ""
+"To create an Checkout Page, please click on Pages -> Add New -> Create a new "
+"page -> Assing that page to User template"
+msgstr ""
+
+#: config/app.php:663
+msgid "Thank you Page"
+msgstr ""
+
+#: config/app.php:664
+msgid "Once your customer paid to you, the browser will redirect to this page."
+msgstr ""
+
+#: config/app.php:673
+msgid "Cancel Page"
+msgstr ""
+
+#: config/app.php:674
+msgid ""
+"For example: When your customer click on Proceed to PayPal button but then "
+"he/she decided to cancel that session, then the browser will redirect to "
+"this page."
+msgstr ""
+
+#: config/app.php:682
+msgid "Listings Expired Management"
+msgstr ""
+
+#: config/app.php:689
+msgid "Move listing to expired store after x days"
+msgstr ""
+
+#: config/app.php:690
+msgid ""
+"When a listing is expired, It will be moved to expired store. It means this "
+"article will temporary removed from the front-end until the post author do a "
+"renew for it. Leave empty or 0 mean do it immediately."
+msgstr ""
+
+#: config/app.php:697
+msgid "Emails"
+msgstr ""
+
+#: config/app.php:704
+msgid "\"From\" "
+msgstr ""
+
+#: config/app.php:707
+msgid "Leave empty to use the admin email"
+msgstr ""
+
+#: config/app.php:712
+msgid "Logo (*)"
+msgstr ""
+
+#: config/app.php:716
+msgid "We recommend using an image of 224x90px"
+msgstr ""
+
+#: config/app.php:730
+msgid "Processing Payment"
+msgstr ""
+
+#: config/app.php:733
+msgid ""
+"Congratulations! Your invoice has been received! [breakdown] Invoice Number: "
+"%invoice_number%. [breakdown]Payment Method: %payment_method%. [breakdown] "
+"Package Name: %package_title%."
+msgstr ""
+
+#: config/app.php:737
+msgid "Completed Payment"
+msgstr ""
+
+#: config/app.php:740
+msgid ""
+"Congratulations! Your payment has been successfully! [breakdown] Invoice "
+"Number: %invoice_number%. [breakdown] Payment Method: %payment_method%. "
+"[breakdown] Package Name: %package_title%."
+msgstr ""
+
+#: config/app.php:744
+msgid "Failed Payment"
+msgstr ""
+
+#: config/app.php:747
+msgid ""
+"Unfortunately, Your payment has been failed. [breakdown] Invoice Number: "
+"%invoice_number%. [breakdown] Payment Method: %payment_method%. [breakdown] "
+"Package Name: %package_title%. [breakdown] Invoice Date: %invoice_date%."
+msgstr ""
+
+#: config/app.php:751
+msgid "Listing approved"
+msgstr ""
+
+#: config/app.php:754
+msgid ""
+"Congratulations! Your submission - %post_title% - on %brand% has been "
+"approved. You can view your article here: %post_link%.[break_down] Thanks "
+"for your submission!"
+msgstr ""
+
+#: config/app.php:758
+msgid "Listing Expired"
+msgstr ""
+
+#: config/app.php:761
+msgid ""
+"Dear %customer%! One of your listings with name %post_title% expired "
+"%expired%. But You can still renew now. If you wish to renew, simply click "
+"on the link below and follow the instructions. Renew now: %post_link%"
+msgstr ""
+
+#: config/app.php:765
+msgid "Notification for Out Balance account"
+msgstr ""
+
+#: config/app.php:768
+msgid ""
+"Dear %customer%! Thank you for uploading with us! Unfortunately, we were not "
+"able to charge your PayPal account for your subscription as part of "
+"Subscription Pack %post_title% for the next billing, so to pay the balance "
+"please log into %homeurl% and make a payment through payment in the "
+"Dashboard's Billing section."
+msgstr ""
+
+#: config/app.php:772
+msgid "Log File Name"
+msgstr ""
+
+#: config/app.php:779 config/app.php:846 config/app.php:910
+msgid "Submit"
+msgstr ""
+
+#: config/app.php:787
+msgid "Grant Payment To"
+msgstr ""
+
+#: config/app.php:788
+msgid "Enter in username of the customer."
+msgstr ""
+
+#: config/app.php:797
+msgid "Package Type"
+msgstr ""
+
+#: config/app.php:798
+msgid "Buy Add Event package or Add Listing Package."
+msgstr ""
+
+#: config/app.php:803
+msgid "Add Listing Package"
+msgstr ""
+
+#: config/app.php:804
+msgid "Add Event Package"
+msgstr ""
+
+#: config/app.php:811
+msgid "Select Add Listing Package"
+msgstr ""
+
+#: config/app.php:812
+msgid "This setting is required by Add Listing Package"
+msgstr ""
+
+#: config/app.php:821
+msgid "Select Add Event Package"
+msgstr ""
+
+#: config/app.php:822
+msgid "This setting is required by Add Event Packae"
+msgstr ""
+
+#: config/app.php:831 app/Register/RegisterWilokeSubmission.php:607
+msgid "Order Status"
+msgstr ""
+
+#: config/app.php:836
+msgid "Completed"
+msgstr ""
+
+#: config/app.php:837 config/app.php:884
+#: app/Frontend/FrontendListingManagement.php:324
+#: app/Register/RegisterClaim.php:43
+msgid "Pending"
+msgstr ""
+
+#: config/app.php:838
+msgid "Processing"
+msgstr ""
+
+#: config/app.php:839
+msgid "Canceled"
+msgstr ""
+
+#: config/app.php:840
+msgid "Failed"
+msgstr ""
+
+#: config/app.php:854
+msgid "Listings For Claim"
+msgstr ""
+
+#: config/app.php:863
+msgid "Listing Author"
+msgstr ""
+
+#: config/app.php:870 app/Frontend/FrontendClaimListing.php:293
+msgid "Claimed By"
+msgstr ""
+
+#: config/app.php:878 app/Register/RegisterWilokeSubmission.php:886
+#: app/Register/RegisterWilokeSubmission.php:928
+#: app/Register/RegisterWilokeSubmission.php:959
+msgid "Status"
+msgstr ""
+
+#: config/app.php:883 app/Register/RegisterClaim.php:40
+msgid "Approved"
+msgstr ""
+
+#: config/app.php:885
+msgid "Decline"
+msgstr ""
+
+#: config/app.php:891
+msgid "Claimer Phone"
+msgstr ""
+
+#: config/app.php:901
+msgid "Enter \"delete\" text in this field to confirm your action"
+msgstr ""
+
+#: config/app.php:902
+msgid "Delete the rest claims of people who also claimed this listing."
+msgstr ""
+
+#: config/app.php:916
+msgid "Toggle Show Event On Event Carousel Shortcode"
+msgstr ""
+
+#: config/app.php:917
+msgid ""
+"All events that belong to this plan will be shown/hidden on the event "
+"carousel shortcode. Events Carousel shortcode is a extended Visual Composer "
+"shortcode."
+msgstr ""
+
+#: config/app.php:930
+msgid "Toggle Show Event On Event Listing Shortcode"
+msgstr ""
+
+#: config/app.php:931
+msgid ""
+"All events that belong to this plan will be shown/hidden on the event "
+"listing shortcode. Events List shortcode is a extended Visual Composer "
+"shortcode."
+msgstr ""
+
+#: config/app.php:944
+msgid "Afghanistan"
+msgstr ""
+
+#: config/app.php:945
+msgid "&#197;land Islands"
+msgstr ""
+
+#: config/app.php:946
+msgid "Albania"
+msgstr ""
+
+#: config/app.php:947
+msgid "Algeria"
+msgstr ""
+
+#: config/app.php:948
+msgid "American Samoa"
+msgstr ""
+
+#: config/app.php:949
+msgid "Andorra"
+msgstr ""
+
+#: config/app.php:950
+msgid "Angola"
+msgstr ""
+
+#: config/app.php:951
+msgid "Anguilla"
+msgstr ""
+
+#: config/app.php:952
+msgid "Antarctica"
+msgstr ""
+
+#: config/app.php:953
+msgid "Antigua and Barbuda"
+msgstr ""
+
+#: config/app.php:954
+msgid "Argentina"
+msgstr ""
+
+#: config/app.php:955
+msgid "Armenia"
+msgstr ""
+
+#: config/app.php:956
+msgid "Aruba"
+msgstr ""
+
+#: config/app.php:957
+msgid "Australia"
+msgstr ""
+
+#: config/app.php:958
+msgid "Austria"
+msgstr ""
+
+#: config/app.php:959
+msgid "Azerbaijan"
+msgstr ""
+
+#: config/app.php:960
+msgid "Bahamas"
+msgstr ""
+
+#: config/app.php:961
+msgid "Bahrain"
+msgstr ""
+
+#: config/app.php:962
+msgid "Bangladesh"
+msgstr ""
+
+#: config/app.php:963
+msgid "Barbados"
+msgstr ""
+
+#: config/app.php:964
+msgid "Belarus"
+msgstr ""
+
+#: config/app.php:965
+msgid "Belgium"
+msgstr ""
+
+#: config/app.php:966
+msgid "Belau"
+msgstr ""
+
+#: config/app.php:967
+msgid "Belize"
+msgstr ""
+
+#: config/app.php:968
+msgid "Benin"
+msgstr ""
+
+#: config/app.php:969
+msgid "Bermuda"
+msgstr ""
+
+#: config/app.php:970
+msgid "Bhutan"
+msgstr ""
+
+#: config/app.php:971
+msgid "Bolivia"
+msgstr ""
+
+#: config/app.php:972
+msgid "Bonaire, Saint Eustatius and Saba"
+msgstr ""
+
+#: config/app.php:973
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: config/app.php:974
+msgid "Botswana"
+msgstr ""
+
+#: config/app.php:975
+msgid "Bouvet Island"
+msgstr ""
+
+#: config/app.php:976
+msgid "Brazil"
+msgstr ""
+
+#: config/app.php:977
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: config/app.php:978
+msgid "British Virgin Islands"
+msgstr ""
+
+#: config/app.php:979
+msgid "Brunei"
+msgstr ""
+
+#: config/app.php:980
+msgid "Bulgaria"
+msgstr ""
+
+#: config/app.php:981
+msgid "Burkina Faso"
+msgstr ""
+
+#: config/app.php:982
+msgid "Burundi"
+msgstr ""
+
+#: config/app.php:983
+msgid "Cambodia"
+msgstr ""
+
+#: config/app.php:984
+msgid "Cameroon"
+msgstr ""
+
+#: config/app.php:985
+msgid "Canada"
+msgstr ""
+
+#: config/app.php:986
+msgid "Cape Verde"
+msgstr ""
+
+#: config/app.php:987
+msgid "Cayman Islands"
+msgstr ""
+
+#: config/app.php:988
+msgid "Central African Republic"
+msgstr ""
+
+#: config/app.php:989
+msgid "Chad"
+msgstr ""
+
+#: config/app.php:990
+msgid "Chile"
+msgstr ""
+
+#: config/app.php:991
+msgid "China"
+msgstr ""
+
+#: config/app.php:992
+msgid "Christmas Island"
+msgstr ""
+
+#: config/app.php:993
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: config/app.php:994
+msgid "Colombia"
+msgstr ""
+
+#: config/app.php:995
+msgid "Comoros"
+msgstr ""
+
+#: config/app.php:996
+msgid "Congo (Brazzaville)"
+msgstr ""
+
+#: config/app.php:997
+msgid "Congo (Kinshasa)"
+msgstr ""
+
+#: config/app.php:998
+msgid "Cook Islands"
+msgstr ""
+
+#: config/app.php:999
+msgid "Costa Rica"
+msgstr ""
+
+#: config/app.php:1000
+msgid "Croatia"
+msgstr ""
+
+#: config/app.php:1001
+msgid "Cuba"
+msgstr ""
+
+#: config/app.php:1002
+msgid "Cura&ccedil;ao"
+msgstr ""
+
+#: config/app.php:1003
+msgid "Cyprus"
+msgstr ""
+
+#: config/app.php:1004
+msgid "Czech Republic"
+msgstr ""
+
+#: config/app.php:1005
+msgid "Denmark"
+msgstr ""
+
+#: config/app.php:1006
+msgid "Djibouti"
+msgstr ""
+
+#: config/app.php:1007
+msgid "Dominica"
+msgstr ""
+
+#: config/app.php:1008
+msgid "Dominican Republic"
+msgstr ""
+
+#: config/app.php:1009
+msgid "Ecuador"
+msgstr ""
+
+#: config/app.php:1010
+msgid "Egypt"
+msgstr ""
+
+#: config/app.php:1011
+msgid "El Salvador"
+msgstr ""
+
+#: config/app.php:1012
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: config/app.php:1013
+msgid "Eritrea"
+msgstr ""
+
+#: config/app.php:1014
+msgid "Estonia"
+msgstr ""
+
+#: config/app.php:1015
+msgid "Ethiopia"
+msgstr ""
+
+#: config/app.php:1016
+msgid "Falkland Islands"
+msgstr ""
+
+#: config/app.php:1017
+msgid "Faroe Islands"
+msgstr ""
+
+#: config/app.php:1018
+msgid "Fiji"
+msgstr ""
+
+#: config/app.php:1019
+msgid "Finland"
+msgstr ""
+
+#: config/app.php:1020
+msgid "France"
+msgstr ""
+
+#: config/app.php:1021
+msgid "French Guiana"
+msgstr ""
+
+#: config/app.php:1022
+msgid "French Polynesia"
+msgstr ""
+
+#: config/app.php:1023
+msgid "French Southern Territories"
+msgstr ""
+
+#: config/app.php:1024
+msgid "Gabon"
+msgstr ""
+
+#: config/app.php:1025
+msgid "Gambia"
+msgstr ""
+
+#: config/app.php:1026
+msgid "Georgia"
+msgstr ""
+
+#: config/app.php:1027
+msgid "Germany"
+msgstr ""
+
+#: config/app.php:1028
+msgid "Ghana"
+msgstr ""
+
+#: config/app.php:1029
+msgid "Gibraltar"
+msgstr ""
+
+#: config/app.php:1030
+msgid "Greece"
+msgstr ""
+
+#: config/app.php:1031
+msgid "Greenland"
+msgstr ""
+
+#: config/app.php:1032
+msgid "Grenada"
+msgstr ""
+
+#: config/app.php:1033
+msgid "Guadeloupe"
+msgstr ""
+
+#: config/app.php:1034
+msgid "Guam"
+msgstr ""
+
+#: config/app.php:1035
+msgid "Guatemala"
+msgstr ""
+
+#: config/app.php:1036
+msgid "Guernsey"
+msgstr ""
+
+#: config/app.php:1037
+msgid "Guinea"
+msgstr ""
+
+#: config/app.php:1038
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: config/app.php:1039
+msgid "Guyana"
+msgstr ""
+
+#: config/app.php:1040
+msgid "Haiti"
+msgstr ""
+
+#: config/app.php:1041
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: config/app.php:1042
+msgid "Honduras"
+msgstr ""
+
+#: config/app.php:1043
+msgid "Hong Kong"
+msgstr ""
+
+#: config/app.php:1044
+msgid "Hungary"
+msgstr ""
+
+#: config/app.php:1045
+msgid "Iceland"
+msgstr ""
+
+#: config/app.php:1046 config/app.php:1193
+msgid "India"
+msgstr ""
+
+#: config/app.php:1047
+msgid "Indonesia"
+msgstr ""
+
+#: config/app.php:1048
+msgid "Iran"
+msgstr ""
+
+#: config/app.php:1049
+msgid "Iraq"
+msgstr ""
+
+#: config/app.php:1050
+msgid "Ireland"
+msgstr ""
+
+#: config/app.php:1051
+msgid "Isle of Man"
+msgstr ""
+
+#: config/app.php:1052
+msgid "Israel"
+msgstr ""
+
+#: config/app.php:1053
+msgid "Italy"
+msgstr ""
+
+#: config/app.php:1054
+msgid "Ivory Coast"
+msgstr ""
+
+#: config/app.php:1055
+msgid "Jamaica"
+msgstr ""
+
+#: config/app.php:1056
+msgid "Japan"
+msgstr ""
+
+#: config/app.php:1057
+msgid "Jersey"
+msgstr ""
+
+#: config/app.php:1058
+msgid "Jordan"
+msgstr ""
+
+#: config/app.php:1059
+msgid "Kazakhstan"
+msgstr ""
+
+#: config/app.php:1060
+msgid "Kenya"
+msgstr ""
+
+#: config/app.php:1061
+msgid "Kiribati"
+msgstr ""
+
+#: config/app.php:1062
+msgid "Kuwait"
+msgstr ""
+
+#: config/app.php:1063
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: config/app.php:1064
+msgid "Laos"
+msgstr ""
+
+#: config/app.php:1065
+msgid "Latvia"
+msgstr ""
+
+#: config/app.php:1066
+msgid "Lebanon"
+msgstr ""
+
+#: config/app.php:1067
+msgid "Lesotho"
+msgstr ""
+
+#: config/app.php:1068
+msgid "Liberia"
+msgstr ""
+
+#: config/app.php:1069
+msgid "Libya"
+msgstr ""
+
+#: config/app.php:1070
+msgid "Liechtenstein"
+msgstr ""
+
+#: config/app.php:1071
+msgid "Lithuania"
+msgstr ""
+
+#: config/app.php:1072
+msgid "Luxembourg"
+msgstr ""
+
+#: config/app.php:1073
+msgid "Macao S.A.R., China"
+msgstr ""
+
+#: config/app.php:1074
+msgid "Macedonia"
+msgstr ""
+
+#: config/app.php:1075
+msgid "Madagascar"
+msgstr ""
+
+#: config/app.php:1076
+msgid "Malawi"
+msgstr ""
+
+#: config/app.php:1077
+msgid "Malaysia"
+msgstr ""
+
+#: config/app.php:1078
+msgid "Maldives"
+msgstr ""
+
+#: config/app.php:1079
+msgid "Mali"
+msgstr ""
+
+#: config/app.php:1080
+msgid "Malta"
+msgstr ""
+
+#: config/app.php:1081
+msgid "Marshall Islands"
+msgstr ""
+
+#: config/app.php:1082
+msgid "Martinique"
+msgstr ""
+
+#: config/app.php:1083
+msgid "Mauritania"
+msgstr ""
+
+#: config/app.php:1084
+msgid "Mauritius"
+msgstr ""
+
+#: config/app.php:1085
+msgid "Mayotte"
+msgstr ""
+
+#: config/app.php:1086
+msgid "Mexico"
+msgstr ""
+
+#: config/app.php:1087
+msgid "Micronesia"
+msgstr ""
+
+#: config/app.php:1088
+msgid "Moldova"
+msgstr ""
+
+#: config/app.php:1089
+msgid "Monaco"
+msgstr ""
+
+#: config/app.php:1090
+msgid "Mongolia"
+msgstr ""
+
+#: config/app.php:1091
+msgid "Montenegro"
+msgstr ""
+
+#: config/app.php:1092
+msgid "Montserrat"
+msgstr ""
+
+#: config/app.php:1093
+msgid "Morocco"
+msgstr ""
+
+#: config/app.php:1094
+msgid "Mozambique"
+msgstr ""
+
+#: config/app.php:1095
+msgid "Myanmar"
+msgstr ""
+
+#: config/app.php:1096
+msgid "Namibia"
+msgstr ""
+
+#: config/app.php:1097
+msgid "Nauru"
+msgstr ""
+
+#: config/app.php:1098
+msgid "Nepal"
+msgstr ""
+
+#: config/app.php:1099
+msgid "Netherlands"
+msgstr ""
+
+#: config/app.php:1100
+msgid "New Caledonia"
+msgstr ""
+
+#: config/app.php:1101
+msgid "New Zealand"
+msgstr ""
+
+#: config/app.php:1102
+msgid "Nicaragua"
+msgstr ""
+
+#: config/app.php:1103
+msgid "Niger"
+msgstr ""
+
+#: config/app.php:1104
+msgid "Nigeria"
+msgstr ""
+
+#: config/app.php:1105
+msgid "Niue"
+msgstr ""
+
+#: config/app.php:1106
+msgid "Norfolk Island"
+msgstr ""
+
+#: config/app.php:1107
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: config/app.php:1108
+msgid "North Korea"
+msgstr ""
+
+#: config/app.php:1109
+msgid "Norway"
+msgstr ""
+
+#: config/app.php:1110
+msgid "Oman"
+msgstr ""
+
+#: config/app.php:1111
+msgid "Pakistan"
+msgstr ""
+
+#: config/app.php:1112
+msgid "Palestinian Territory"
+msgstr ""
+
+#: config/app.php:1113
+msgid "Panama"
+msgstr ""
+
+#: config/app.php:1114
+msgid "Papua New Guinea"
+msgstr ""
+
+#: config/app.php:1115
+msgid "Paraguay"
+msgstr ""
+
+#: config/app.php:1116
+msgid "Peru"
+msgstr ""
+
+#: config/app.php:1117
+msgid "Philippines"
+msgstr ""
+
+#: config/app.php:1118
+msgid "Pitcairn"
+msgstr ""
+
+#: config/app.php:1119
+msgid "Poland"
+msgstr ""
+
+#: config/app.php:1120
+msgid "Portugal"
+msgstr ""
+
+#: config/app.php:1121
+msgid "Puerto Rico"
+msgstr ""
+
+#: config/app.php:1122
+msgid "Qatar"
+msgstr ""
+
+#: config/app.php:1123
+msgid "Reunion"
+msgstr ""
+
+#: config/app.php:1124
+msgid "Romania"
+msgstr ""
+
+#: config/app.php:1125
+msgid "Russia"
+msgstr ""
+
+#: config/app.php:1126
+msgid "Rwanda"
+msgstr ""
+
+#: config/app.php:1127
+msgid "Saint Barth&eacute;lemy"
+msgstr ""
+
+#: config/app.php:1128
+msgid "Saint Helena"
+msgstr ""
+
+#: config/app.php:1129
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+#: config/app.php:1130
+msgid "Saint Lucia"
+msgstr ""
+
+#: config/app.php:1131
+msgid "Saint Martin (French part)"
+msgstr ""
+
+#: config/app.php:1132
+msgid "Saint Martin (Dutch part)"
+msgstr ""
+
+#: config/app.php:1133
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: config/app.php:1134
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: config/app.php:1135
+msgid "San Marino"
+msgstr ""
+
+#: config/app.php:1136
+msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
+msgstr ""
+
+#: config/app.php:1137
+msgid "Saudi Arabia"
+msgstr ""
+
+#: config/app.php:1138
+msgid "Senegal"
+msgstr ""
+
+#: config/app.php:1139
+msgid "Serbia"
+msgstr ""
+
+#: config/app.php:1140
+msgid "Seychelles"
+msgstr ""
+
+#: config/app.php:1141
+msgid "Sierra Leone"
+msgstr ""
+
+#: config/app.php:1142
+msgid "Singapore"
+msgstr ""
+
+#: config/app.php:1143
+msgid "Slovakia"
+msgstr ""
+
+#: config/app.php:1144
+msgid "Slovenia"
+msgstr ""
+
+#: config/app.php:1145
+msgid "Solomon Islands"
+msgstr ""
+
+#: config/app.php:1146
+msgid "Somalia"
+msgstr ""
+
+#: config/app.php:1147
+msgid "South Africa"
+msgstr ""
+
+#: config/app.php:1148
+msgid "South Georgia/Sandwich Islands"
+msgstr ""
+
+#: config/app.php:1149
+msgid "South Korea"
+msgstr ""
+
+#: config/app.php:1150
+msgid "South Sudan"
+msgstr ""
+
+#: config/app.php:1151
+msgid "Spain"
+msgstr ""
+
+#: config/app.php:1152
+msgid "Sri Lanka"
+msgstr ""
+
+#: config/app.php:1153
+msgid "Sudan"
+msgstr ""
+
+#: config/app.php:1154
+msgid "Suriname"
+msgstr ""
+
+#: config/app.php:1155
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+#: config/app.php:1156
+msgid "Swaziland"
+msgstr ""
+
+#: config/app.php:1157
+msgid "Sweden"
+msgstr ""
+
+#: config/app.php:1158
+msgid "Switzerland"
+msgstr ""
+
+#: config/app.php:1159
+msgid "Syria"
+msgstr ""
+
+#: config/app.php:1160
+msgid "Taiwan"
+msgstr ""
+
+#: config/app.php:1161
+msgid "Tajikistan"
+msgstr ""
+
+#: config/app.php:1162
+msgid "Tanzania"
+msgstr ""
+
+#: config/app.php:1163
+msgid "Thailand"
+msgstr ""
+
+#: config/app.php:1164
+msgid "Timor-Leste"
+msgstr ""
+
+#: config/app.php:1165
+msgid "Togo"
+msgstr ""
+
+#: config/app.php:1166
+msgid "Tokelau"
+msgstr ""
+
+#: config/app.php:1167
+msgid "Tonga"
+msgstr ""
+
+#: config/app.php:1168
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: config/app.php:1169
+msgid "Tunisia"
+msgstr ""
+
+#: config/app.php:1170
+msgid "Turkey"
+msgstr ""
+
+#: config/app.php:1171
+msgid "Turkmenistan"
+msgstr ""
+
+#: config/app.php:1172
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: config/app.php:1173
+msgid "Tuvalu"
+msgstr ""
+
+#: config/app.php:1174
+msgid "Uganda"
+msgstr ""
+
+#: config/app.php:1175
+msgid "Ukraine"
+msgstr ""
+
+#: config/app.php:1176
+msgid "United Arab Emirates"
+msgstr ""
+
+#: config/app.php:1177
+msgid "United Kingdom (UK)"
+msgstr ""
+
+#: config/app.php:1178
+msgid "United States (US)"
+msgstr ""
+
+#: config/app.php:1179
+msgid "United States (US) Minor Outlying Islands"
+msgstr ""
+
+#: config/app.php:1180
+msgid "United States (US) Virgin Islands"
+msgstr ""
+
+#: config/app.php:1181
+msgid "Uruguay"
+msgstr ""
+
+#: config/app.php:1182
+msgid "Uzbekistan"
+msgstr ""
+
+#: config/app.php:1183
+msgid "Vanuatu"
+msgstr ""
+
+#: config/app.php:1184
+msgid "Vatican"
+msgstr ""
+
+#: config/app.php:1185
+msgid "Venezuela"
+msgstr ""
+
+#: config/app.php:1186
+msgid "Vietnam"
+msgstr ""
+
+#: config/app.php:1187
+msgid "Wallis and Futuna"
+msgstr ""
+
+#: config/app.php:1188
+msgid "Western Sahara"
+msgstr ""
+
+#: config/app.php:1189
+msgid "Samoa"
+msgstr ""
+
+#: config/app.php:1190
+msgid "Yemen"
+msgstr ""
+
+#: config/app.php:1191
+msgid "Zambia"
+msgstr ""
+
+#: config/app.php:1192
+msgid "Zimbabwe"
+msgstr ""
+
+#: app/AlterTable/AlterTableComments.php:19
+msgid "Rated"
+msgstr ""
+
+#: app/AlterTable/AlterTableComments.php:52
+msgid "Value must be less than or equal to 5"
+msgstr ""
+
+#: app/AlterTable/AlterTableComments.php:80
+msgid "Rating"
+msgstr ""
+
+#: app/AlterTable/AlterTableComments.php:84
+msgid "Rated:"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:658
+#, php-format
+msgid ""
+"You have exceeded the number of listings for this plan. Please go to <a "
+"href=\"%s\">Package Plan</a> and purchase a new plan to continue adding "
+"listing"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:664
+#, php-format
+msgid ""
+"You have exceeded the number of listings for this plan. Fortunately, You can "
+"continue submitting by upgrading to higher plan. <a href=\"%s\">Yes, I want "
+"to upgrade my plan.</a>"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:678
+msgid "Whoops! There's an outstanding balance on your account"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:679
+#, php-format
+msgid ""
+"We can not automatically deduct from your PayPal account, so to pay the "
+"balance you'll need make a payment through  PayPal in the Dashboard's "
+"Billing section: <a href=\"%s\">Go to My Dashboard</a> Please let us know if "
+"you have any additional questions by contacting us at <a href=\"mail:%s\">"
+"%s</a>"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:690
+msgid "Your subscription is still available now"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:691
+#, php-format
+msgid "<a href=\"%s\">Go to Add Listing page</a>"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:701
+msgid "You need to select one package before"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:702
+#, php-format
+msgid "<a href=\"%s\">Go to Add Pricing page</a>"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:712
+msgid "It is not yours listing."
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:713 app/Payment/TwoCheckout.php:294
+#: app/Payment/TwoCheckout.php:377 app/Payment/TwoCheckout.php:461
+#: app/Payment/TwoCheckout.php:469
+msgid "You do not permission to access this page."
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:729
+#, php-format
+msgid ""
+"We notice that your account has an outstanding balance of %s, so the payment "
+"will include the package price and your outstanding amount."
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:840 app/Payment/PayPal.php:212
+msgid ""
+"Payment could not process because you have not configure your PayPal. Please "
+"go to Pricing -> Settings to complete it"
+msgstr ""
+
+#: app/CustomerPlan/CustomerPlan.php:842 app/Payment/CheckPayment.php:37
+#: app/Payment/PayPal.php:214
+msgid "OOps! Something went wrong. Please report this issue to "
+msgstr ""
+
+#: app/Email/SendMail.php:23
+msgid "From: "
+msgstr ""
+
+#: app/Email/SendMail.php:114
+msgid "Your listing: "
+msgstr ""
+
+#: app/Email/SendMail.php:114
+msgid " has been expired."
+msgstr ""
+
+#: app/Email/SendMail.php:127
+msgid "Failed Payment Notification for Subscription Pack: "
+msgstr ""
+
+#: app/Email/SendMail.php:147
+msgid "Refund from"
+msgstr ""
+
+#: app/Email/SendMail.php:148
+#, php-format
+msgid "Dear %s! We just refund %s to you. Thanks for using our service!"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:42 app/Frontend/FrontendTwoCheckout.php:88
+#: app/Frontend/templates/card-form.php:44
+msgid "Card Number"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:46
+msgid "Name On Card"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:50
+msgid "Card Type"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:52
+msgid "Visa"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:53
+msgid "MasterCard"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:54
+msgid "Discover"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:55
+msgid "Amex"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:59
+msgid "Expiry Date"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:61
+msgid "Jan"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:62
+msgid "Feb"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:63
+msgid "Mar"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:64
+msgid "Apr"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:65
+msgid "May"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:66
+msgid "Jun"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:67
+msgid "Jul"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:68
+msgid "Aug"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:69
+msgid "Sep"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:70
+msgid "Oct"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:71
+msgid "Nov"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:72
+msgid "Dec"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:83
+msgid "CVV"
+msgstr ""
+
+#: app/Frontend/FrontendCheckout.php:86
+msgid "Proceed Payment With PayPal"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:52 app/Submit/AddListing.php:927
+msgid "The listing does not exist."
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:57 app/Submit/AddListing.php:551
+msgid ""
+"You do not permission to edit this article. Please contact admin to make a "
+"deal."
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:228
+#: app/Frontend/FrontendEvents.php:488 app/Frontend/FrontendEvents.php:672
+#: app/Payment/TwoCheckout.php:103
+msgid "Wrong Security Code"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:236
+msgid "Please supply your phone number"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:255
+msgid "You need to login before claiming this listing."
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:351
+msgid "Claimed"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:364
+msgid "Is this your business?"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:365
+msgid "Claim listing is the best way to manage and protect  your business"
+msgstr ""
+
+#: app/Frontend/FrontendClaimListing.php:367
+msgid "Claim it now!"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:57
+msgid "Create"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:58 app/Frontend/FrontendEvents.php:789
+#: app/Frontend/FrontendEvents.php:838 app/Frontend/templates/add-event.php:35
+#: app/Frontend/templates/add-event.php:123
+msgid "Create Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:195 app/Frontend/FrontendEvents.php:220
+msgid "Whoops! Sorry, We can't find what you are looking for."
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:332
+msgid "Enter event name or Select a suggestion category"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:347
+msgid "Location"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:415
+msgid "Oops! The website has not any payment gateway yet."
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:459
+msgid "Price"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:464
+msgid "Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:464
+msgid "Events"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:467 app/Frontend/templates/add-event.php:99
+msgid "Description"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:504 app/Payment/EventPayment.php:162
+msgid "You don't have permission to access this area"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:620
+msgid "Expired Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:625
+msgid "Upcoming"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:626
+msgid "Upcoming Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:631
+msgid "Ongoing"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:632
+msgid "Ongoing Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:683
+msgid "You are not author of this listing"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:691 app/Payment/EventPayment.php:223
+msgid "Event Content is required"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:704
+msgid ""
+"You have exceeded the maximum number of listings allowed for this plan, "
+"please purchase a new event plan to add more."
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:724
+msgid "You don't have permission to access this area."
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:787
+msgid "Saved"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:788
+msgid "Error"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:790 app/Frontend/templates/add-event.php:120
+msgid "Update Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:791
+#: app/Frontend/FrontendListingManagement.php:371
+#: app/Frontend/templates/add-event.php:119
+#: app/Frontend/templates/add-event.php:144
+msgid "Pay & Publish"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:794
+msgid "Please expand the card form and complete all your information"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:894
+msgid ""
+"You have not any event yet. Note that this message is only seen by admin"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:923
+msgid "Add Event"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:941
+msgid "Address"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:942
+msgid "From"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:943 app/Frontend/templates/add-event.php:73
+msgid "To"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:952
+msgid "Events starts"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:962
+msgid "Events closes"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:987
+msgid "This event can not be edited after"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:989
+msgid "Countdown:"
+msgstr ""
+
+#: app/Frontend/FrontendEvents.php:990
+msgid " minutes"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:40
+msgid "Are you sure?"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:43
+msgid ""
+"Just a friendly popup to ensure that you want to change your subscription "
+"level?"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:258
+#: app/Payment/EventPayment.php:146 app/Payment/EventPayment.php:176
+msgid "Wrong Security code"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:269
+msgid "You don't have permission to edit this listing"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:292
+msgid "Unpin from the top of the author page"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:318
+msgid "Published"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:350
+msgid "Pinned Listing"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:352
+msgid "Pin to top of your author page"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:352
+msgid "Pin To Top"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:357
+msgid "View"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:368
+#: app/Frontend/FrontendListingManagement.php:383
+#: app/Shortcodes/Shortcodes.php:359
+msgid "Edit"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:391
+#: app/Register/RegisterWilokeSubmission.php:932
+#: app/Register/RegisterWilokeSubmission.php:963
+#: app/Register/RegisterWilokeSubmission.php:964
+#: app/Shortcodes/Shortcodes.php:360
+msgid "Remove"
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:429
+msgid "Congratulation! Your plan has been upgraded."
+msgstr ""
+
+#: app/Frontend/FrontendListingManagement.php:439
+msgid "Something went to wrong"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:56
+#: app/Frontend/templates/card-form.php:13
+msgid "Card holder's name"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:60
+#: app/Frontend/templates/card-form.php:17
+msgid "Card holder's Street Address"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:64
+#: app/Frontend/templates/card-form.php:21
+msgid "Card holder's City"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:68
+#: app/Frontend/templates/card-form.php:25
+msgid "Card holder's Country"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:76
+#: app/Frontend/templates/card-form.php:33
+msgid "Card holder's Email"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:83
+#: app/Frontend/templates/card-form.php:39
+msgid "Card holder's Phone"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:92
+#: app/Frontend/templates/card-form.php:48
+msgid "Expiration Date (MM/YYYY)"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:95
+#: app/Frontend/templates/card-form.php:51
+msgid "MM"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:98
+#: app/Frontend/templates/card-form.php:54
+msgid "YYYY"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:104
+#: app/Frontend/templates/card-form.php:60
+msgid "CVC"
+msgstr ""
+
+#: app/Frontend/FrontendTwoCheckout.php:111
+msgid "Proceed Payment With 2Checkout"
+msgstr ""
+
+#: app/Frontend/Notification.php:123 app/Frontend/Notification.php:232
+#, php-format
+msgid "purchased %s plan."
+msgstr ""
+
+#: app/Frontend/Notification.php:345
+msgid "Your submitted has been approved"
+msgstr ""
+
+#: app/Frontend/Notification.php:346
+#, php-format
+msgid ""
+"Congrats! Your listing <a href=\"%s\"><strong>%s</strong></a> has been "
+"approved."
+msgstr ""
+
+#: app/Frontend/Notification.php:350
+msgid "Your claim has been approved"
+msgstr ""
+
+#: app/Frontend/Notification.php:351
+#, php-format
+msgid ""
+"Congrats! Your claim <a href=\"%s\"><strong>%s</strong></a> has been "
+"approved."
+msgstr ""
+
+#: app/Frontend/Notification.php:355
+msgid "Unfortunately, your claim has been declined!"
+msgstr ""
+
+#: app/Frontend/Notification.php:356
+#, php-format
+msgid ""
+"Unfortunately! Your claim <a href=\"%s\"><strong>%s</strong></a> has been "
+"declined."
+msgstr ""
+
+#: app/Frontend/Notification.php:595
+msgid "You do not have permission to delete this notification"
+msgstr ""
+
+#: app/Frontend/Notification.php:606 app/Frontend/Notification.php:618
+msgid ""
+"Whoops! You don't have any notification yet! Try to follow some users and "
+"get useful articles"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:35
+msgid "Payment could not process because you have not configure your Payment."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:42 app/Submit/AddListing.php:855
+msgid "You do not have permission to access this page"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:63
+msgid "The user already purchased this package. It stills available now."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:97
+msgid "The user already purcharsed this package. It stills available now."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:109
+msgid "This payment does not exist."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:126
+msgid "Updated Payment successfully"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:252
+msgid ""
+"Could not insert payment history. Please contact us at sale@wiloke.com or "
+"open a topic via http://support.wiloke.com to report this issue."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:270
+msgid "Insert Payment successfully"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:298
+msgid "Could not insert Package Status"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:319
+msgid "The package does not exist. Please select another one."
+msgstr ""
+
+#: app/Payment/CheckPayment.php:363
+msgid ""
+"Could not update Payment History. The possible reason: Wrong Payment ID. "
+"Wrong Customer ID"
+msgstr ""
+
+#: app/Payment/CheckPayment.php:399
+msgid ""
+"Could not update Payment History. The possible reason: Wrong Payment ID."
+msgstr ""
+
+#: app/Payment/EventPayment.php:154 app/Payment/EventPayment.php:184
+msgid "You don't have permission to access this page."
+msgstr ""
+
+#: app/Payment/EventPayment.php:207
+msgid ""
+"This payment method is not supported by the website. Please try another "
+"payment method."
+msgstr ""
+
+#: app/Payment/EventPayment.php:215
+msgid "Please fill up all event information"
+msgstr ""
+
+#: app/Payment/EventPayment.php:231
+msgid "Please select an event plan."
+msgstr ""
+
+#: app/Payment/EventPayment.php:239
+msgid "Please select your payment method"
+msgstr ""
+
+#: app/Payment/EventPayment.php:251
+msgid "Please back to step 2 and fill up all require settings."
+msgstr ""
+
+#: app/Payment/EventPayment.php:649 app/Payment/PayPal.php:690
+#: app/Payment/PayPal.php:1396
+msgid "Error connecting to "
+msgstr ""
+
+#: app/Payment/EventPayment.php:653 app/Payment/PayPal.php:694
+#: app/Payment/PayPal.php:1214 app/Payment/PayPal.php:1400
+msgid "Invalid configuration. Please check your configuration file"
+msgstr ""
+
+#: app/Payment/EventPayment.php:694
+#, php-format
+msgid ""
+"We found an error on the line %s in the %s of wiloke-listgo-functionality "
+"plugin. Please contact us at sale@wiloke.com or sale@wiloke.com to report "
+"this issue"
+msgstr ""
+
+#: app/Payment/Payment.php:94
+msgid "Check payment"
+msgstr ""
+
+#: app/Payment/Payment.php:95
+msgid "Proceed with PayPal"
+msgstr ""
+
+#: app/Payment/PayPal.php:397
+#, php-format
+msgid "The Package with ID: %s does not exist"
+msgstr ""
+
+#: app/Payment/PayPal.php:697 app/Payment/PayPal.php:1217
+#: app/Payment/PayPal.php:1372
+msgid "Message:"
+msgstr ""
+
+#: app/Payment/PayPal.php:697 app/Payment/PayPal.php:1217
+#: app/Payment/PayPal.php:1372
+msgid ". Detailed Message:"
+msgstr ""
+
+#: app/Payment/PayPal.php:704
+msgid "Wrong security code"
+msgstr ""
+
+#: app/Payment/PayPal.php:716 app/Payment/PayPal.php:726
+#: app/Payment/PayPal.php:735
+msgid "Outstanding balance must be > 0"
+msgstr ""
+
+#: app/Payment/PayPal.php:792 app/Payment/TwoCheckout.php:804
+msgid "Congratulation! Your payment has been successfully."
+msgstr ""
+
+#: app/Payment/PayPal.php:802
+msgid "Please bill outstanding amount before changing your plan."
+msgstr ""
+
+#: app/Payment/PayPal.php:831 app/Payment/PayPal.php:894
+#: app/Payment/TwoCheckout.php:725
+msgid "You can not downgrade from Premium Plan to Free Plan"
+msgstr ""
+
+#: app/Payment/PayPal.php:847 app/Payment/TwoCheckout.php:676
+msgid ""
+"Transaction refused because the time of the update is too close to the "
+"preview update."
+msgstr ""
+
+#: app/Payment/PayPal.php:859 app/Payment/TwoCheckout.php:651
+msgid "Knock ... Knock ... You are really using this plan!"
+msgstr ""
+
+#: app/Payment/PayPal.php:903
+msgid "You have exceeded the number of listings for this package"
+msgstr ""
+
+#: app/Payment/PayPal.php:919 app/Payment/TwoCheckout.php:750
+msgid "Congratulation! Your new plan has been updated."
+msgstr ""
+
+#: app/Payment/PayPal.php:972
+msgid "Congratulation! Your new plan has been changed."
+msgstr ""
+
+#: app/Payment/PayPal.php:1210
+msgid "Error connecting to"
+msgstr ""
+
+#: app/Payment/PayPal.php:1533
+msgid "Receipt for your payment to "
+msgstr ""
+
+#: app/Payment/PayPal.php:1534
+msgid "Thank you for your order. The below is your order information: "
+msgstr ""
+
+#: app/Payment/PayPal.php:1536
+msgid "Failed Payment Notification"
+msgstr ""
+
+#: app/Payment/PayPal.php:1537
+msgid ""
+"Thank you for using our service. Unfortunately, Your payment via PayPal has "
+"been failed. The below is your order information: "
+msgstr ""
+
+#: app/Payment/PayPal.php:1540
+msgid "Payment Method: PayPal"
+msgstr ""
+
+#: app/Payment/PayPal.php:1541
+msgid "Transition ID: "
+msgstr ""
+
+#: app/Payment/PayPal.php:1543
+msgid "Please feel free to contact us with any questions."
+msgstr ""
+
+#: app/Payment/PayPal.php:1544
+msgid "Thanks again!"
+msgstr ""
+
+#: app/Payment/PayPal.php:1565
+msgid "The package does not exists."
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:113
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:165
+msgid "Thanks for your Order!"
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:286 app/Payment/TwoCheckout.php:369
+#: app/Payment/TwoCheckout.php:452
+msgid "Please go to Wiloke Submission -> Settings and Complete your setting"
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:303 app/Payment/TwoCheckout.php:386
+msgid "You have not configured 2Checkout yet."
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:309 app/Payment/TwoCheckout.php:392
+#: app/Submit/AddListing.php:582 app/Submit/AddListing.php:591
+#: app/Submit/AddListing.php:956 app/Submit/AddListing.php:966
+msgid "The package does not exist"
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:436
+msgid "A token is required"
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:443
+msgid "The price must be bigger than 0"
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:452
+msgid "2Checkout Error: Please contact the administrator to report this bug."
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:734
+msgid "You have exceeded the number of listings for this plan."
+msgstr ""
+
+#: app/Payment/TwoCheckout.php:998
+msgid "Changed to another plan"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:19
+msgid "Super Admin"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:25
+msgid "Administrator"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:31
+msgid "Editor"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:37
+msgid "Author"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:43
+msgid "Submission"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:49
+msgid "Contributor"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:55
+msgid "Subscriber"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:64 app/Register/RegisterBadges.php:64
+msgid "Badges"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:149
+msgid "Badges Settings"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:155
+#, php-format
+msgid ""
+"The image is top priority, so you can ignore the color setting and the icon "
+"setting if you decide to use the image badge instead.  The Font-awesome is "
+"used for creating the Badge. You can choose the icons  <a href=\"%s\" "
+"target=\"_blank\">here</a>"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:159
+msgid "Role"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:160
+msgid "Label"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:161
+msgid "Icon"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:162
+msgid "Color"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:163
+msgid "Image"
+msgstr ""
+
+#: app/Register/RegisterBadges.php:190
+msgid "Save Settings"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:37
+msgid "Declined"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:54
+msgid "Claim Status"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:97
+msgid "Edit Claimed"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:169
+msgid "You do not have permission to do that."
+msgstr ""
+
+#: app/Register/RegisterClaim.php:177
+msgid "You can not delete nothingness. Stupid ...!"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:186
+msgid "Claim ID is empty. Your requirement has been rejected. Bey Bey!"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:205
+msgid "Congratulations! The rest claims of this listing have been deleted"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:223
+msgid "Claim Details"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:230
+msgid "Delete the rest claims"
+msgstr ""
+
+#: app/Register/RegisterClaim.php:293
+msgid "\">another author</a>"
+msgstr ""
+
+#: app/Register/RegisterEventPricing.php:28
+msgid "Show Event On Event Carousel Shortcode"
+msgstr ""
+
+#: app/Register/RegisterEventPricing.php:35
+msgid "Show Event On Event Listing Shortcode"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:45
+msgid "You can not follow your self"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:103
+msgid "Follow"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:135
+msgid "Following"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:149 app/Register/RegisterFollow.php:149
+msgid "Followers"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:189
+msgid "List of followers"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:193
+msgid "Nick name"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:194
+msgid "Email address"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:203
+msgid "You have not anyone following yet"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:211
+msgid "No name"
+msgstr ""
+
+#: app/Register/RegisterFollow.php:223
+msgid "Export Following"
+msgstr ""
+
+#: app/Register/RegisterNavMenu.php:16
+msgid "ListGo Menu"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:79
+msgctxt "admin menu"
+msgid "Listings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:80
+msgctxt "admin menu"
+msgid "Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:81
+msgctxt "admin bar"
+msgid "Listings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:82
+msgid "Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:83
+msgid "Add New"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:84
+msgid "Add New Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:85
+msgid "New Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:86 app/Submit/AddListing.php:119
+msgid "Edit Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:87
+msgid "View Listing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:88
+msgid "All Listings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:89
+msgid "Search Listings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:90
+msgid "Parent Listings:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:91
+msgid "No Listings found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:92
+msgid "No Listings found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:97
+msgctxt "post type general name"
+msgid "Claims"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:98
+msgctxt "post type singular name"
+msgid "Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:99
+msgctxt "admin menu"
+msgid "Claims"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:100
+msgctxt "add new on admin bar"
+msgid "Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:101
+msgctxt "listing"
+msgid "Add Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:102
+msgid "Add New Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:103
+msgid "New Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:104
+msgid "Edit Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:105
+msgid "View Claim"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:106
+msgid "All Claims"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:107
+msgid "Search Claims"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:108
+msgid "No Claims found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:109
+msgid "No Claims found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:114
+msgctxt "post type general name"
+msgid "Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:115
+msgctxt "post type singular name"
+msgid "Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:116
+msgctxt "admin menu"
+msgid "Testimonials"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:117
+msgctxt "add new on admin bar"
+msgid "Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:118 app/Register/RegisterPostType.php:190
+msgctxt "Testimonial"
+msgid "Add New"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:119
+msgid "Add New Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:120
+msgid "New Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:121
+msgid "Edit Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:122
+msgid "View Testimonial"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:123
+msgid "All Testimonials"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:124
+msgid "Search Testimonials"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:125
+msgid "Parent Testimonials:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:126
+msgid "No Testimonials found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:127
+msgid "No Testimonials found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:132
+msgctxt "post type general name"
+msgid "Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:133
+msgctxt "post type singular name"
+msgid "Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:134
+msgctxt "admin menu"
+msgid "Events"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:135
+msgctxt "add new on admin bar"
+msgid "Events"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:136
+msgctxt "Event"
+msgid "Add New"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:137
+msgid "Add New Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:138
+msgid "New Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:139
+msgid "Edit Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:140
+msgid "View Events"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:141
+msgid "All Events"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:142
+msgid "Search Events"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:143
+msgid "Parent Events:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:144
+msgid "No Events found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:145
+msgid "No Events found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:150
+msgctxt "post type general name"
+msgid "Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:151
+msgctxt "post type singular name"
+msgid "Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:152
+msgctxt "admin menu"
+msgid "Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:153
+msgctxt "add new on admin bar"
+msgid "Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:154
+msgctxt "Listing Pricing"
+msgid "Add Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:155
+msgid "Add New Listing Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:156
+msgid "New Listing Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:157
+msgid "Edit Listing Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:158
+msgid "View Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:159
+msgid "All Listing Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:160
+msgid "Search Listing Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:161
+msgid "Parent Listing Pricing:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:162
+msgid "No Listing Pricing found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:163
+msgid "No Listing Pricing found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:168
+msgctxt "post type general name"
+msgid "Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:169
+msgctxt "post type singular name"
+msgid "Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:170
+msgctxt "admin menu"
+msgid "Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:171
+msgctxt "add new on admin bar"
+msgid "Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:172
+msgctxt "Event Pricing"
+msgid "Add Event"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:173
+msgid "Add New Event Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:174
+msgid "New Event Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:175
+msgid "Edit Event Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:176
+msgid "View Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:177
+msgid "All Event Pricings"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:178
+msgid "Search Event Pricing"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:179
+msgid "Parent Event Pricing:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:180
+msgid "No Event Pricing found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:181
+msgid "No Event Pricing found in Trash."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:186
+msgctxt "post type general name"
+msgid "Reviews"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:187
+msgctxt "post type singular name"
+msgid "Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:188
+msgctxt "admin menu"
+msgid "Reviews"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:189
+msgctxt "add new on admin bar"
+msgid "Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:191
+msgid "Add New Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:192
+msgid "New Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:193
+msgid "Edit Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:194
+msgid "View Review"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:195
+msgid "All Reviews"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:196
+msgid "Search Reviews"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:197
+msgid "Parent Reviews:"
+msgstr ""
+
+#: app/Register/RegisterPostType.php:198
+msgid "No Reviews found."
+msgstr ""
+
+#: app/Register/RegisterPostType.php:199
+msgid "No Reviews found in Trash."
+msgstr ""
+
+#: app/Register/RegisterReport.php:70 app/Register/RegisterReport.php:70
+msgid "Reports"
+msgstr ""
+
+#: app/Register/RegisterReport.php:148
+msgid "Thanks for your reporting! Your action make the website better."
+msgstr ""
+
+#: app/Register/RegisterReport.php:298 app/Register/RegisterReport.php:349
+msgid "Post Title"
+msgstr ""
+
+#: app/Register/RegisterReport.php:299
+msgid "IP Address"
+msgstr ""
+
+#: app/Register/RegisterReport.php:307
+msgid "Everything is progressing well. There are no reports."
+msgstr ""
+
+#: app/Register/RegisterReport.php:309
+msgid "Search Not Found"
+msgstr ""
+
+#: app/Register/RegisterReport.php:311
+msgid "Reset Default"
+msgstr ""
+
+#: app/Register/RegisterReport.php:322
+msgid "Target"
+msgstr ""
+
+#: app/Register/RegisterReport.php:333
+msgid "Enter in your keywords here"
+msgstr ""
+
+#: app/Register/RegisterReport.php:336
+msgid "Search"
+msgstr ""
+
+#: app/Register/RegisterReport.php:346
+msgid "Report analytics"
+msgstr ""
+
+#: app/Register/RegisterReport.php:350
+msgid "Post Author"
+msgstr ""
+
+#: app/Register/RegisterReport.php:351
+msgid "Reported By IP"
+msgstr ""
+
+#: app/Register/RegisterReport.php:352
+msgid "Reported At"
+msgstr ""
+
+#: app/Register/RegisterReport.php:353
+msgid "Reason"
+msgstr ""
+
+#: app/Register/RegisterReport.php:354
+msgid "Ban IP"
+msgstr ""
+
+#: app/Register/RegisterReport.php:355
+msgid "Delete"
+msgstr ""
+
+#: app/Register/RegisterReport.php:387
+msgid "Pagination "
+msgstr ""
+
+#: app/Register/RegisterReport.php:401
+msgid "List of banned IPs"
+msgstr ""
+
+#: app/Register/RegisterReport.php:402
+msgid ""
+"If you want to remove an IP address from this black list, please click on "
+"that ip"
+msgstr ""
+
+#: app/Register/RegisterReport.php:415
+msgid "Post Title:"
+msgstr ""
+
+#: app/Register/RegisterReport.php:415
+msgid "The title of post has been reported"
+msgstr ""
+
+#: app/Register/RegisterReport.php:416
+msgid "Post Author:"
+msgstr ""
+
+#: app/Register/RegisterReport.php:416
+msgid "The author of post has been reported"
+msgstr ""
+
+#: app/Register/RegisterReport.php:417
+msgid "Reported By IP:"
+msgstr ""
+
+#: app/Register/RegisterReport.php:417
+msgid "The post has been reported by that IP address"
+msgstr ""
+
+#: app/Register/RegisterReport.php:418
+msgid "Ban IP:"
+msgstr ""
+
+#: app/Register/RegisterReport.php:418
+msgid "Do not allow person who has that IP address be reported anymore"
+msgstr ""
+
+#: app/Register/RegisterReport.php:419
+msgid "Delete Report:"
+msgstr ""
+
+#: app/Register/RegisterReport.php:419
+msgid "If a report is wrong, You can delete that."
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:27
+msgctxt "taxonomy general name"
+msgid "Listing Locations"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:28
+msgctxt "taxonomy singular name"
+msgid "Listing Location"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:29
+msgid "Search Listing Locations"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:30
+msgid "All Listing Locations"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:31
+msgid "Parent Listing Location"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:32
+msgid "Parent Listing Location:"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:33
+msgid "Edit Listing Location"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:34
+msgid "Update Listing Location"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:35
+msgid "Add New Listing Location"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:36
+msgid "New Listing Location Name"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:37
+msgid "Listing Locations"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:42
+msgctxt "taxonomy general name"
+msgid "Listing Categories"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:43
+msgctxt "taxonomy singular name"
+msgid "Listing Category"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:44
+msgid "Search Listing Categories"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:45
+msgid "All Listing Categories"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:46
+msgid "Parent Listing Category"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:47
+msgid "Parent Listing Category:"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:48
+msgid "Edit Listing Category"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:49
+msgid "Update Listing Category"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:50
+msgid "Add New Listing Category"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:51
+msgid "New Listing Category Name"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:52
+msgid "Listing Categories"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:57
+msgctxt "taxonomy general name"
+msgid "Listing Tags"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:58
+msgctxt "taxonomy singular name"
+msgid "Listing Tag"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:59
+msgid "Search Listing Tags"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:60
+msgid "All Listing Tags"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:61
+msgid "Parent Listing Tag"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:62
+msgid "Parent Listing Tag:"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:63
+msgid "Edit Listing Tag"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:64
+msgid "Update Listing Tag"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:65
+msgid "Add New Listing Tag"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:66
+msgid "New Listing Tag Name"
+msgstr ""
+
+#: app/Register/RegisterTaxonomy.php:67
+msgid "Listing Tags"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:237
+msgid "Widget area does not exist in theme (using Inactive)"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:259
+msgid "Site does not support widget"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:283
+msgid "Widget already exists"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:351
+msgid "Imported"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:354
+msgid "Imported to Inactive"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:361
+msgid "No Title"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:648
+msgid "Oops! Something when wrong"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:656
+msgid ""
+"Please log into your hosting provider -> PHP Configuration and increment "
+"upload_max_filesize, post_max_size to 40M. You can set back the default "
+"after the import is complete."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:680
+msgid ""
+"We could not install plugins because your server does not UnZip function. "
+"Please click on FAQ tab and refer to Manually Install Plugins"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:720
+msgid ""
+"Your server does not allow to install plugins via our channel. Please click "
+"on FAQs tab and read Manually Install Plugins to know how to install plugins "
+"manually."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:741 app/Register/RegisterWelcome.php:763
+msgid ""
+"Your server does not allow to install plugins via our chanel. Please click "
+"on FAQs tab and read Manually Install Plugins to know how to install plugins "
+"manually."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:790
+msgid ""
+"Congratulations! All plugins have been installed. Now let's build your "
+"website or click on FAQs tab to refer the useful information."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:811
+msgid "Wiloke Submission's pages have been setup"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:827
+msgid "The theme options data has been imported."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:857
+msgid "Taxonomies options have been imported."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:872
+msgid "Terms's Parent have been updated."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:878
+msgid "Failed update Terms's Parent"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:891
+msgid "Widgets have been imported."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:899
+msgid "The mega menu has been setup"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:899
+msgid "We could not setup the mega menu"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:924
+msgid ""
+"Congratulations! All plugins have been installed. Now let's build data or "
+"click on FAQs tab to refer the useful information."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:947
+#, php-format
+msgid "%s has been imported"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:947
+#, php-format
+msgid "%s has been failed."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1000
+msgid "Wiloke Listgo"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1000
+msgid "Wiloke Guide"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1013
+msgid "Welcome to Wiloke!"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1015
+msgid ""
+"First of all, thanks for using Wiloke Theme! The below are some useful "
+"information that explain how to setup the theme and how to set up the "
+"theme's elements. But, in case, you have any beyond question, don't hesitate "
+"to open a topic via Support Forum - <a href=\"http://support.wiloke.com\" "
+"target=\"_blank\">support.wiloke.com</a> - or mail to us - <a href=\"mailto:"
+"sale@wiloke.com\">sale@wiloke.com</a>."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1017
+msgid "Don't forget to follow our fan page. We announce Wiloke's news via"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1020
+msgid ""
+"If you love theme and satisfied with our service, please give us a <a "
+"href=\"http://themeforest.net/downloads\" target=\"_blank\">rate of 5 "
+"stars</a>, it will give us lots of energies!"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1025
+msgid "Import Demo"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1026
+msgid "FAQs"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1037
+msgid ""
+"Make sure that your website data is empty. You can do that by using "
+"WordPress Reset plugin. Please go to <strong>Plugins</strong> -> <strong>Add "
+"New</strong> -> Entering <strong>WordPress Reset</strong> keyword -> <strong>"
+"Installing</strong> and <strong>Activating</strong> the plugin then Go to "
+"<strong>Tools</strong> -> <strong>WordPress Reset</strong> -> <strong>"
+"Clicking on Reset button</strong>.  If you already created your data before "
+"but now You only want to import a Home page, please go to <strong>Wiloke "
+"Service</strong> -> <strong>Import Demo</strong>, We also add the new demos "
+"via this chanel."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1040
+msgid ""
+"It may takes up to almost 10 minutes, so please patient. But if it takes "
+"more than 10 minutes, please access to your WordPress folder - Using "
+"FileZilla or the same tools - Opening <strong>wp-config.php</strong> -> Put "
+"<strong>define(\"FS_METHOD\", \"direct\")</strong> before <strong>That's all,"
+" stop editing! Happy blogging.</strong> text -> Back to the page and click "
+"<strong>Install demo & Setup required plugins</strong> again."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1047
+msgid "Installing plugins only"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1048
+msgid "Installing plugins without importing the demos data."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1049 app/Register/RegisterWelcome.php:1071
+msgid ""
+"Notice: Downloading Wiloke Social Login plugin takes more time than normal "
+"in this chanel, it is faster if you click on Appearance -> Install Plugins ->"
+" Installing Wiloke Social Login Plugin."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1054 app/Register/RegisterWelcome.php:1076
+msgid "Except WooCommerce"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1059
+#: app/Register/RegisterWilokeSubmission.php:288
+msgid "Install"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1062 app/Register/RegisterWelcome.php:1084
+msgid "System is running ..."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1069
+msgid "Installing plugins & Importing Demos"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1070
+msgid "Installing all plugins without importing the demos data."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1081
+msgid "Install & Import"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1095
+#: app/Register/RegisterWilokeSubmission.php:76
+#: app/Register/RegisterWilokeSubmission.php:148
+#: app/Register/RegisterWilokeSubmission.php:148
+#: app/Register/RegisterWilokeSubmission.php:174 app/Submit/User.php:92
+msgid "Wiloke Submission"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1100
+msgid ""
+"Wiloke Submission is a main featured of the theme. It allows your users to "
+"upload an article to your site. The user can be upload as free or premium or "
+"the both, let's example, You create 3 packages, there are 2 packages are "
+"premium packages and the last is free package."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1105
+msgid "How to setup Wiloke Submission?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1109
+msgid ""
+"Firstly, ensure that Wiloke Listgo Functionality is activated, If you do not "
+"do that, please follow the first guide - Plugin Installation - to know t to "
+"do it."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1111
+msgid "Setup Payment Pages"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1112
+msgid ""
+"We have 6 payment pages: <strong>Package</strong>, <strong>Add "
+"listing</strong>, <strong>Checkout</strong>, <strong>My account</strong>, "
+"<strong>Thank you</strong> and <strong>Cancel</strong>. You can manually set "
+"those pages by going to Pages -> Add New -> Creating the payment pages, then "
+"go to <strong>Wiloke Submission</strong> -> </Settings> to complete the last "
+"step, but We highly recommend using <strong>Automatically Install Payment "
+"Page</strong> feature: "
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1114
+msgid "Click on <strong>Wiloke Submission</strong> from the admin sidebar"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1115
+msgid "Click on <strong>Install</strong> button and wait for few seconds."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1119
+msgid "Now you need to setup your packages"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1121
+msgid "Click on <strong>Pricings</strong> -> <strong>Add New</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1124
+msgid "Finally, We need to assign our packages to the Package page: "
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1126
+msgid ""
+"Click on <strong>Pages</strong> -> Looking for <strong>Wiloke "
+"Package</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1127
+msgid "Switch WordPress Editor to <strong>BACKEND EDITOR</strong> mode"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1128
+msgid ""
+"Click on <strong>Add Element</strong> -> Looking for <strong>"
+"Packages</strong> shortcode -> <strong>Add your package here</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1143
+msgid "How to setup a partner account?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1147
+msgid "It is so cool if we have a partner in any relationship."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1150
+msgid "Creating a partner account with full permissions"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1152
+msgid ""
+"If you want to create an account with full permissions - it means they can "
+"do anything you do - You just need to click on <strong>Users</strong> -> "
+"<strong>Add New</strong> -> and set role as <strong>Administrator</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1155
+msgid "Creating a partner account with Wiloke Submission permission."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1157
+msgid ""
+"This feature allow to create a partner account but We will limit its "
+"permission, This account can submit a listing through Front-end. Please "
+"follow these steps below: "
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1159
+msgid ""
+"Go to <strong>Pricings</strong> -> <strong>Add New</strong> -> Creating a "
+"package, We will leave empty the following fields: Price, Duration, Number "
+"of posts. This package <strong>SHOULD NOT</strong> publish on the <strong>"
+"Package</strong> page (Refer to Wiloke Submission section to know what "
+"Package page is)."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1160
+msgid ""
+"Go to <strong>Users</strong> -> <strong>Add New</strong> -> Grant <strong>"
+"Wiloke Submission</strong> role to this user."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1161
+msgid ""
+"Finally, click on <strong>Wiloke Submission</strong> -> <strong>"
+"Invoices</strong> -> <strong>Add new order</strong> -> Grandt package that "
+"you created at the first step to the user, who you created a the below step."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1176
+msgid "How to create a Map page?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1179
+msgid "We support 2 ways to create a Map page:"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1181
+#, php-format
+msgid ""
+"<a href=\"%s\" class=\"single-popup\"><img title=\"Click to show popup\" "
+"class=\"ui top aligned small image space\" src=\"%s\"></a> Using <strong>"
+"Listings In Map</strong> shortcode. You should use the shortcode, in case, "
+"you want to <strong style=\"color:red;\">combine</strong> Map section with "
+"the other sections. You can refer this demo <a href=\"https://listgo.wiloke."
+"com/home-gallery-2/\" target=\"_blank\">Home Gallery 2</a>. We highly "
+"recommend you to enable <strong>Disable draggable when init</strong> feature "
+"of the shortcode."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1185
+#, php-format
+msgid ""
+"<a href=\"%s\" class=\"single-popup\"><img class=\"ui top aligned small "
+"image space\" src=\"%s\"></a> Using <strong>Map</strong> template. This is "
+"faster way to create the Map page. You should use this way, in case, you "
+"want to create a full screen Map page."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1188
+msgid "Map maker"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1190
+msgid ""
+"Click on <strong>Listings</strong> -> <strong>Add New</strong>, You will see "
+"a box called <strong>Listing Categories</strong>, <strong style=\"color:"
+"red\">each category represent one service</strong>, this is our idea."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1191
+msgid ""
+"Each category has its own map marker: <strong>Listings</strong> -> <strong>"
+"Listing Categories</strong> -> <strong>Select a category</strong>, You will "
+"see Map marker setting here. So, let's an example, if a Listing belongs to "
+"<strong>Restaurent</strong> Category, it will be set the maker of this "
+"category. If a listing has more than 1 Category, the first category will be "
+"choosen."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1201
+msgid "Mapbox Theme"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1215
+msgid "Why Map doesn't work?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1220
+msgid ""
+"Google Map API key and Map box token are required by the theme. Please go to "
+"<strong>Appearance</strong> -> <strong>Theme Options</strong> -> <strong>"
+"General</strong> -> <strong>Scroll down to the bottom of your screen</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1227
+msgid "Wiloke Map Icons"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1232
+msgid ""
+"You can download our Map Icons here <a href=\"https://www.dropbox."
+"com/s/l67lf2t135j1ns0/map-icons.zip?dl=0\" target=\"_blank\">Wiloke Map "
+"Icons</a>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1239
+msgid "How to use Wiloke Design Tool?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1243
+msgid ""
+"Wiloke Design Tool is a feature developed by Wiloke team. It allows to "
+"create a modern layout in seconds."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1247
+msgid "To use Wiloke Design Tool, please follow the steps below: "
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1249
+msgid "Go to <strong>Pages</strong> -> <strong>Add New</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1250
+msgid ""
+"Ensure that you are using <strong>Back end</strong> Editor mode. Now click "
+"on Add New ShortCode icon."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1251
+msgid ""
+"Looking for <strong>Wiloke Design Tool</strong> or Navigate to <strong>"
+"Wiloke</strong> tab then select <strong>Wiloke Design Tool. Click on it."
+"</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1252
+msgid "What does Item Type mean?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1254
+msgid ""
+"Listing mode means the Wiloke Design Tool will show the listings in Listing "
+"Locations / Listing Categories - it depends on <strong>Get Listings "
+"By</strong> settings. For example, If you choose Get Listings By Listing "
+"Location, and at <strong>Pickup Listing Locations</strong> you want to use "
+"France, Vietnam. Wiloke Design Tools will show listings, which belong to "
+"France, and Vietnam."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1267
+msgid "How to create a sidebar on the listing page?"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1273
+msgid ""
+"Click on <strong>Listings</strong> -> <strong>Add New</strong> from the "
+"admin sidebar"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1274
+msgid ""
+"Look at the right of your screen, you will see <strong>Page Attributes "
+"box</strong>, Page template should be under the box, and it is Page style "
+"setting. We offer two styles for you: <a href=\"https://listgo.wiloke."
+"com/listing/mickies-dairy-bar/\" target=\"_blank\">Classic Layout</a> and <a "
+"href=\"https://listgo.wiloke.com/listing/matts-big-breakfast/\" "
+"target=\"_blank\">Creative Layout</a>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1279
+msgid ""
+"Sidebar layout helps to show all listing information such as: Listing "
+"Gallery, Business Hours, Location."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1280
+msgid "Wiloke ListGo Widgets plugin is required by this feature."
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1282
+msgid ""
+"Click on <strong>Appearance</strong> -> <strong>Widgets</strong> from the "
+"admin sidebar"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1283
+msgid ""
+"Here you will see <strong>Single Listing Sidebar</strong> area. All Widget "
+"Items that belong to <strong>Single Listing Sidebar</strong> always contain "
+"<strong>OSP</strong> in its own name. Dragging these widgets into <strong>"
+"Single Listing Sidebar</strong>"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1293
+msgid "Wiloke Minify Scripts"
+msgstr ""
+
+#: app/Register/RegisterWelcome.php:1298
+msgid ""
+"<strong>Wiloke Minify Scripts</strong> is a feature of <strong>Wiloke "
+"Service</strong>, it helps to speed up your website. To use this feature, "
+"please go to Wiloke Service -> Minify Scripts."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:72
+#: app/Register/RegisterWilokeSubmission.php:169
+msgid "Wiloke Package"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:81
+#: app/Register/RegisterWilokeSubmission.php:179
+msgid "Wiloke Checkout"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:86
+#: app/Register/RegisterWilokeSubmission.php:184
+msgid "Wiloke My Account"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:91
+#: app/Register/RegisterWilokeSubmission.php:189
+msgid "Wiloke Thank You"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:96
+#: app/Register/RegisterWilokeSubmission.php:194
+msgid "Wiloke Cancel"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:149
+#: app/Register/RegisterWilokeSubmission.php:149
+#: app/Register/RegisterWilokeSubmission.php:867
+msgid "Invoices"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:150
+#: app/Register/RegisterWilokeSubmission.php:150
+msgid "Settings"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:151
+msgid "Submission Detail"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:162
+msgid "You do not have permission to access this page!"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:248
+msgid "You have already installed all required pages before."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:256
+msgid "Congratulations! Your setup has been successfully."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:257
+msgid "Here are list of pages have been installed: "
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:263
+msgid ""
+"One more thing, The pricing page - Where you show your packages  -  requires "
+"at least one package. So if you have not created any package yet before, "
+"please click on Pricings -> Creating some packages. Then go to Pages -> "
+"Pricing Tables page and insert those packages to this page. Please refer to "
+"Wiloke Guide -> FAQs -> Looking for Creating Package page to know more."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:275
+msgid "Tools"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:277
+msgid "Install Wiloke Submission Pages"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:283
+msgid ""
+"This tool will install all the missing Wiloke Submission pages. Pages "
+"already defined and set up will not be replaced."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:312
+#: app/Register/RegisterWilokeSubmission.php:364
+msgid "You do not permission to edit this page."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:320
+msgid "Please choose an add listing package."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:328
+msgid "The user is required"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:336
+msgid "Order Status is required"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:353
+msgid "This package has been added"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:372
+msgid "Please choose a package."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:380
+msgid "The user id does not exist!"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:388
+msgid "The payment ID is required!"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:396
+msgid "Please assign a status for this order"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:404
+#: app/Register/RegisterWilokeSubmission.php:422
+#: app/Register/RegisterWilokeSubmission.php:519
+msgid "Your update has been successfully"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:439
+#: app/Register/RegisterWilokeSubmission.php:504
+#: app/Register/RegisterWilokeSubmission.php:996
+msgid "Add New order"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:506
+msgid "This order does not exist"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:514
+#, php-format
+msgid "Order #%d details."
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:535
+msgid "Payment method"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:545
+msgid "Customer IP"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:564
+#: app/Register/RegisterWilokeSubmission.php:926
+#: app/Register/RegisterWilokeSubmission.php:946
+msgid "Customer"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:568
+#, php-format
+msgid "<a href=\"%s\">Check Customer Information</a>"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:576
+msgid "Customer Email"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:580
+#, php-format
+msgid "<a href=\"mailto:%s\">Mail to customer</a>"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:589
+msgid "Order date"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:608
+msgid "Change Order status is possbile"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:616
+msgid "Purchased Package Information: "
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:629
+msgid "This package has been removed"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:636
+msgid "Package Name"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:646
+msgid "Package Price"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:647
+#: app/Register/RegisterWilokeSubmission.php:951
+msgid "Free"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:656
+msgid "Listing Duration"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:666
+msgid "Listing Availability"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:676
+msgid "Allow Publish On map"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:683
+msgid "Change Package"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:697
+#: app/Register/RegisterWilokeSubmission.php:709
+msgid "Add New Package"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:699
+#: app/Register/RegisterWilokeSubmission.php:711
+msgid "Switch to new package for customer"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:720
+msgid "Save Changes"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:875
+#: app/Register/RegisterWilokeSubmission.php:929
+#: app/Register/RegisterWilokeSubmission.php:960
+#: app/Register/RegisterWilokeSubmission.php:961
+msgid "Package"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:897
+#: app/Register/RegisterWilokeSubmission.php:931
+#: app/Register/RegisterWilokeSubmission.php:962
+msgid "Date"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:907
+msgid "Date Start"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:908
+msgid "Date End"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:911
+msgid "Posts Per Page"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:915
+msgid "Apply"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:916
+msgid "Filter"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:927
+#: app/Register/RegisterWilokeSubmission.php:947
+msgid "Total"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:930
+msgid "Type"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:938
+msgid "There is no any payment yet"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:945
+#: app/Register/RegisterWilokeSubmission.php:948
+#: app/Register/RegisterWilokeSubmission.php:959
+#: app/Register/RegisterWilokeSubmission.php:960
+#: app/Register/RegisterWilokeSubmission.php:961
+#: app/Register/RegisterWilokeSubmission.php:962
+msgid "View Invoice Detail"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:946
+msgid "View customer information"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:954
+msgid " Via "
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:964
+msgid "Delete Payment"
+msgstr ""
+
+#: app/Register/RegisterWilokeSubmission.php:1001
+msgid "Export Payments"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:356
+msgid "Menu Prices"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:357
+msgid "List Features"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:358
+msgid "Accordion"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:361
+#: app/Shortcodes/templates/accordion-title.tpl.php:3
+#: app/Shortcodes/templates/list-features-title.tpl.php:3
+#: app/Shortcodes/templates/price-title.tpl.php:3
+msgid "Title"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:362
+msgid "Name"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:363
+msgid "5$"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:364
+msgid "Write something to describe about this item"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:365
+msgid "Einstein"
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:366
+msgid ""
+"Life is like riding a bicycle. To keep your balance you must keep moving."
+msgstr ""
+
+#: app/Shortcodes/Shortcodes.php:367
+msgid "Please update to higher plan to use this feature"
+msgstr ""
+
+#: app/Submit/AddListing.php:92
+msgid ""
+"We found no table what you are looking for. Please try with another keywords"
+msgstr ""
+
+#: app/Submit/AddListing.php:120
+msgid "Submit Listing"
+msgstr ""
+
+#: app/Submit/AddListing.php:289
+msgid "{{wiloke_brandname}} - Your payment has been successfully"
+msgstr ""
+
+#: app/Submit/AddListing.php:291
+#, php-format
+msgid "{{wiloke_brandname}} - Your order is processing (%s)"
+msgstr ""
+
+#: app/Submit/AddListing.php:293
+#, php-format
+msgid "{{wiloke_brandname}} - Failed Invoice (%s)"
+msgstr ""
+
+#: app/Submit/AddListing.php:343
+msgid "{{wiloke_brandname}} - Your submission has been approved"
+msgstr ""
+
+#: app/Submit/AddListing.php:390
+#, php-format
+msgid "Article title: <a href=\"%s\">%s</a>"
+msgstr ""
+
+#: app/Submit/AddListing.php:394
+#, php-format
+msgid "New Submission On %s From %s:"
+msgstr ""
+
+#: app/Submit/AddListing.php:545
+msgid "You can not edit this article while we are reviewing."
+msgstr ""
+
+#: app/Submit/AddListing.php:575
+msgid "You need to select a package before"
+msgstr ""
+
+#: app/Submit/AddListing.php:602 app/Submit/AddListing.php:626
+#: app/Submit/AddListing.php:646
+msgid ""
+"You have exceeded the number of listings for this plan. Please upgrade to "
+"higher plan to continue adding the listing"
+msgstr ""
+
+#: app/Submit/AddListing.php:619
+msgid "Wrong package plan."
+msgstr ""
+
+#: app/Submit/AddListing.php:716
+msgid ""
+"OOps! You have used all of free listings. Please purchasing a premium "
+"package to continue adding listing."
+msgstr ""
+
+#: app/Submit/AddListing.php:744
+msgid "Security code is wrong. This upload has been rejected."
+msgstr ""
+
+#: app/Submit/AddListing.php:785
+msgid "There are no files have been uploaded"
+msgstr ""
+
+#: app/Submit/AddListing.php:842
+msgid ""
+"We regret to say that this file could not upload. The possible reason: Wrong "
+"file type or the file size is bigger than the allowance value"
+msgstr ""
+
+#: app/Submit/AddListing.php:897
+msgid "Congratulations! Your listing has been updated."
+msgstr ""
+
+#: app/Submit/AddListing.php:935
+msgid "You do not permission to access this page"
+msgstr ""
+
+#: app/Submit/AddListing.php:946
+msgid "You do not have permission to submit this post."
+msgstr ""
+
+#: app/Submit/AddListing.php:976
+msgid ""
+"Payment Service need configuring, please contact the administrator to report "
+"this issue"
+msgstr ""
+
+#: app/Submit/AddListing.php:1006
+msgid "You need to be selected a package before"
+msgstr ""
+
+#: app/Submit/AddListing.php:1015 app/Submit/AddListing.php:1063
+msgid ""
+"You have exceeded the number of listings for this package. Please upgrade "
+"your package to continue adding listing."
+msgstr ""
+
+#: app/Submit/AddListing.php:1055
+msgid "Wrong Package Plan."
+msgstr ""
+
+#: app/Submit/AddListing.php:1173
+msgid "You entered a wrong email or wrong password"
+msgstr ""
+
+#: app/Submit/AddListing.php:1174
+msgid "Please enter an email address to sign up."
+msgstr ""
+
+#: app/Submit/AddListing.php:1815 app/Frontend/templates/add-event.php:122
+#: app/Frontend/templates/remove-event.php:8
+#: app/Shortcodes/templates/accordion-settings-skeleton.tpl.php:37
+#: app/Shortcodes/templates/list-features-settings-skeleton.tpl.php:38
+#: app/Shortcodes/templates/price-settings-skeleton.tpl.php:37
+msgid "Cancel"
+msgstr ""
+
+#: app/Submit/AddListing.php:1816 app/Frontend/templates/remove-event.php:9
+msgid "Yes"
+msgstr ""
+
+#: app/Submit/User.php:136
+msgid ""
+"We just mailed a reset link to your email. Please check your mail box / spam "
+"box and click on that link."
+msgstr ""
+
+#: app/Submit/User.php:145
+msgid "<strong>ERROR</strong>: Enter a username or email address."
+msgstr ""
+
+#: app/Submit/User.php:149
+msgid ""
+"<strong>ERROR</strong>: There is no user registered with that email address."
+msgstr ""
+
+#: app/Submit/User.php:161
+msgid "<strong>ERROR</strong>: Invalid username or email."
+msgstr ""
+
+#: app/Submit/User.php:174
+msgid "Someone has requested a password reset for the following account:"
+msgstr ""
+
+#: app/Submit/User.php:177
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: app/Submit/User.php:178
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#. Password reset email subject. 1: Site name
+#: app/Submit/User.php:192
+#, php-format
+msgid "[%s] Password Reset"
+msgstr ""
+
+#: app/Submit/User.php:195
+msgid "The email could not be sent."
+msgstr ""
+
+#: app/Submit/User.php:195
+msgid "Possible reason: your host may have disabled the mail() function."
+msgstr ""
+
+#: app/Submit/User.php:246
+#, php-format
+msgid "Hello %s! Nice to see you back."
+msgstr ""
+
+#: app/Submit/User.php:270
+msgid "We need your password."
+msgstr ""
+
+#: app/Submit/User.php:277
+#, php-format
+msgid "Sorry, the email %s is already existed! Please try another one."
+msgstr ""
+
+#: app/Submit/User.php:285
+#, php-format
+msgid "Sorry, the username %s is already existed! Please try another one."
+msgstr ""
+
+#: app/Submit/User.php:329
+msgid ""
+"Congratulations! Your account has been created successfully. Please check "
+"your inbox or spam to get your password."
+msgstr ""
+
+#: app/Submit/User.php:366
+msgid "Gah! CAPTCHA verification failed"
+msgstr ""
+
+#: app/Submit/User.php:456
+msgid "Invalid email"
+msgstr ""
+
+#: app/Submit/User.php:463
+msgid "The email address you entered is already in use on another account"
+msgstr ""
+
+#: app/Submit/User.php:492
+msgid "We need your password"
+msgstr ""
+
+#: app/Submit/User.php:558
+msgid "You don't have permission to access this page"
+msgstr ""
+
+#: app/Submit/User.php:571
+msgid "Congratulations! Your card information have been updated."
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:17
+msgid "Select your Event Plan"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:26
+msgid "Let's Create Event"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:44
+msgid "Event Title"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:50
+msgid "Where"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:52
+msgid "Detail Place"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:59
+msgid "This event starts from"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:61
+#: app/Frontend/templates/add-event.php:75
+msgid "08:00"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:90
+msgid "Featured Image"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:118
+#: app/Frontend/templates/add-event.php:143
+msgid "Back"
+msgstr ""
+
+#: app/Frontend/templates/add-event.php:132
+msgid "Select Payment Method"
+msgstr ""
+
+#: app/Lib/wordpress-importer/wordpress-importer.php:821
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: app/Lib/wordpress-importer/wordpress-importer.php:828
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: app/Shortcodes/templates/accordion-settings-skeleton.tpl.php:6
+msgid "Accordion Settings"
+msgstr ""
+
+#: app/Shortcodes/templates/accordion-settings-skeleton.tpl.php:38
+#: app/Shortcodes/templates/list-features-settings-skeleton.tpl.php:39
+#: app/Shortcodes/templates/price-settings-skeleton.tpl.php:38
+msgid "Insert Shortcode"
+msgstr ""
+
+#: app/Shortcodes/templates/list-feature-item.tpl.php:12
+msgid "Unavailable"
+msgstr ""
+
+#: app/Shortcodes/templates/list-features-settings-skeleton.tpl.php:6
+msgid "List Features Settings"
+msgstr ""
+
+#: app/Shortcodes/templates/price-settings-skeleton.tpl.php:6
+msgid "Price tables"
+msgstr ""
+
+#: app/Submit/fields/opentable.php:16
+msgid "Open Table settings"
+msgstr ""
+
+#: app/Submit/fields/opentable.php:22
+msgid "Restaurant Name"
+msgstr ""
+
+#. Name of the plugin
+msgid "Wiloke Listgo Functionality"
+msgstr ""
+
+#. Description of the plugin
+msgid "This plugin is required with List Go"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://wiloke.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "Wiloke"
+msgstr ""

@@ -1,0 +1,616 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-14 13:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: class.piwidgets.php:41 class.piwidgets.php:60 class.piwidgets.php:182
+#: class.piwidgets.php:209
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: class.piwidgets.php:145 class.piwidgets.php:145 class.piwidgets.php:170
+#: class.piwidgets.php:170 app/Supports/Helpers.php:173
+#: app/Supports/Helpers.php:173 app/Supports/Helpers.php:201
+msgid "Upload"
+msgstr ""
+
+#: class.piwidgets.php:250
+msgid "<p>There aren no posts yet</p>"
+msgstr ""
+
+#: class.piwidgets.php:287
+msgid "<p>There are no any comments yet</p>"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:24 class.wilokeWidgetOptions.php:24
+msgid "Wiloke Instagram"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:25 class.wilokeWidgetOptions.php:25
+msgid "Wiloke Twitter"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:66
+msgid "Sign in with Instagram"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:68
+msgid "Do It"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:89
+msgid "User ID"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:97
+msgid "User Name"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:105
+msgid "Access Token"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:115 class.wilokeWidgetOptions.php:191
+msgid "Cache Interval"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:119
+msgid "Leave empty to clear cache. Unit: mini seconds"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:127 class.wilokeWidgetOptions.php:209
+#: app/Widgets/func.mailchimp.php:94
+msgid "Save"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:154
+msgid "Username *"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:160
+msgid "Consumer Key *"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:167
+msgid "Consumer Secret *"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:175
+msgid "Access Token *"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:183
+msgid "Access Secret Token *"
+msgstr ""
+
+#: class.wilokeWidgetOptions.php:199
+msgid "Creating my twitter application."
+msgstr ""
+
+#: app/Widgets/Ads.php:8
+msgid "Wiloke Content Box"
+msgstr ""
+
+#: app/Widgets/Ads.php:9
+msgid "Content Box"
+msgstr ""
+
+#: app/Widgets/FacebookFanpage.php:15 app/Widgets/FlickrFeed.php:21
+#: app/Widgets/func.mailchimp.php:51 app/Widgets/InstagramFeed.php:27
+#: app/Widgets/WilokeContactFormSeven.php:20
+#: app/Widgets/WilokeContentBox.php:20 app/Widgets/WilokeFlickr.php:16
+#: app/Widgets/WilokeGallery.php:20 app/Widgets/WilokeInstagram.php:20
+#: app/Widgets/WilokeListingPosts.php:17 app/Widgets/WilokeListingPrice.php:20
+#: app/Widgets/WilokeListOfTerms.php:16 app/Widgets/WilokeMailChimp.php:15
+#: app/Widgets/WilokeMap.php:20 app/Widgets/WilokeOpeningHours.php:19
+#: app/Widgets/WilokeOpenTable.php:24
+#: app/Widgets/WilokeSimplePostsSlider.php:15
+#: app/Widgets/WilokeTwitterFeeds.php:15
+msgid "Title"
+msgstr ""
+
+#: app/Widgets/FacebookFanpage.php:16
+msgid "App ID"
+msgstr ""
+
+#: app/Widgets/FacebookFanpage.php:19
+msgid "Find my App Id"
+msgstr ""
+
+#: app/Widgets/FacebookFanpage.php:22
+msgid "Facebook Page URL:"
+msgstr ""
+
+#: app/Widgets/FlickrFeed.php:22 app/Widgets/WilokeFlickr.php:17
+msgid "Flickr ID (*)"
+msgstr ""
+
+#: app/Widgets/FlickrFeed.php:23 app/Widgets/InstagramFeed.php:28
+#: app/Widgets/WilokeFlickr.php:18 app/Widgets/WilokeInstagram.php:23
+msgid "Number Of Photos"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:13 app/Widgets/func.mailchimp.php:13
+msgid "Wiloke MailChimp"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:57 app/Widgets/Mailchimp.php:28
+#: app/Widgets/WilokeContentBox.php:37
+msgid "Description"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:63
+msgid "Thanks for subscribing"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:69
+msgid "API key"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:70
+msgid "How to get mailchimp"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:72
+msgid "Get Lists"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:75
+msgid "List ID"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:141 app/Widgets/func.mailchimp.php:147
+msgid "Can not get list from your MailChimp"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:144
+msgid "This api key is already exist!"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:164
+msgid "Wrong Security code"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:168
+msgid "You entered an invalid email. Please try with another"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:176
+msgid "You haven't configured MailChimp yet!"
+msgstr ""
+
+#: app/Widgets/func.mailchimp.php:178 app/Widgets/func.mailchimp.php:199
+msgid ""
+"Oops! Something went wrong. Please feedback this issue to the administrator."
+msgstr ""
+
+#: app/Widgets/InstagramFeed.php:29
+msgid "Cache interval"
+msgstr ""
+
+#: app/Widgets/InstagramFeed.php:32
+msgid "Leave empty to clear cache"
+msgstr ""
+
+#: app/Widgets/InstagramFeed.php:80 app/Widgets/WilokeInstagram.php:69
+msgid "Please config your instagram"
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:29
+msgid "Warning Message"
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:34
+#, php-format
+msgid ""
+"You haven't configured your mailchimp yet. Please go <a href=\"%s\" "
+"target=\"_blank\">here</a> to do it."
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:73
+#, php-format
+msgid ""
+"<p>Please <a href=\"%s\" target=\"_blank\" style=\"color:#ff0771\">config</a>"
+" your mailchimp</p>"
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:82
+msgid "Your mail..."
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:83
+msgid "Processing"
+msgstr ""
+
+#: app/Widgets/Mailchimp.php:88
+msgid "Submit success - Bigs thank for you"
+msgstr ""
+
+#: app/Widgets/TwitterFeed.php:31
+msgid "click  me"
+msgstr ""
+
+#: app/Widgets/TwitterFeed.php:60
+msgid "You haven't configured your twitter api"
+msgstr ""
+
+#: app/Widgets/TwitterFeed.php:88
+msgid "There are no tweets yet."
+msgstr ""
+
+#: app/Widgets/WilokeAuthorInformation.php:14
+msgid "This widget is only available for author page."
+msgstr ""
+
+#: app/Widgets/WilokeAuthorInformation.php:100
+#: app/Widgets/WilokeListingInformation.php:144
+#: app/Widgets/WilokeListingInformation.php:148
+msgid "Visit Website"
+msgstr ""
+
+#: app/Widgets/WilokeContactFormSeven.php:14 app/Widgets/WilokeGallery.php:15
+#: app/Widgets/WilokeListingInformation.php:14
+#: app/Widgets/WilokeListingPrice.php:14 app/Widgets/WilokeMap.php:14
+#: app/Widgets/WilokeOpeningHours.php:14 app/Widgets/WilokeOpenTable.php:14
+msgid ""
+"OSP - Only Single Page. This widget is only available for single listing "
+"page."
+msgstr ""
+
+#: app/Widgets/WilokeContactFormSeven.php:21
+msgid ""
+"Note that Contact Form 7 plugin is required by the widget. To create a "
+"contact form, please go to Appearance -> Theme Options -> Listing Settings ->"
+" Assign a contact form to Contact Form 7 to  Set Contact Form 7 setting."
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:27
+msgid "Add New"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:28 app/Widgets/WilokeOpenTable.php:25
+msgid "Button Name"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:29
+msgid "Button Link"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:30
+msgid "Button Target"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:30
+msgid "Open the page in the same frame"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:30
+msgid "Open the page in a new window"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:35
+msgid "Heading"
+msgstr ""
+
+#: app/Widgets/WilokeContentBox.php:36 app/Widgets/WilokeListingPrice.php:19
+msgid "Icon"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:10
+msgid "Flickr Feed"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:19 app/Widgets/WilokeInstagram.php:24
+msgid "Images Per Row"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:20 app/Widgets/WilokeInstagram.php:25
+msgid "3 Items / Row"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:21 app/Widgets/WilokeInstagram.php:26
+msgid "4 Items / Row"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:22 app/Widgets/WilokeInstagram.php:27
+msgid "2 Items / Row"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:23 app/Widgets/WilokeInstagram.php:28
+msgid "6 Items / Row"
+msgstr ""
+
+#: app/Widgets/WilokeFlickr.php:49
+msgid "Please supply Flickr ID for this widget"
+msgstr ""
+
+#: app/Widgets/WilokeInstagram.php:10
+msgid "Instagram Feed"
+msgstr ""
+
+#: app/Widgets/WilokeInstagram.php:21
+msgid "Instagram user name"
+msgstr ""
+
+#: app/Widgets/WilokeInstagram.php:22
+msgid ""
+"Leave empty if you want to use the default setting in Settings -> Wiloke "
+"Instagram"
+msgstr ""
+
+#: app/Widgets/WilokeInstagram.php:33
+#, php-format
+msgid ""
+"Instagram Access Token is required. Please <a target=\"_blank\" href=\"%s\"> "
+"click me to provide your instagram information.</a>"
+msgstr ""
+
+#: app/Widgets/WilokeListingInformation.php:75
+msgid "Follow"
+msgstr ""
+
+#: app/Widgets/WilokeListingInformation.php:79
+msgid "Following"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:11
+msgid "List of Listings"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:18 app/Widgets/WilokeListOfTerms.php:17
+msgid "Number of posts"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19 app/Widgets/WilokeListOfTerms.php:18
+msgid "Order By"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19
+msgid "Latest Listings"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19
+msgid "Review Count"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19
+msgid "Rating Score"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19
+msgid "Featured Listings"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:19
+msgid "Random"
+msgstr ""
+
+#: app/Widgets/WilokeListingPosts.php:20
+msgid "Image Size"
+msgstr ""
+
+#: app/Widgets/WilokeListingPrice.php:52
+msgid "Price range"
+msgstr ""
+
+#: app/Widgets/WilokeListingPrice.php:92
+msgid "Price Range: "
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:10
+msgid "List of Terms"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:18
+msgid "Term Count"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:18
+msgid "Term Name"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:19
+msgid "Get Term By"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:19
+msgid "Listing Location"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:19
+msgid "Listing Category"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:20
+msgid "Post Count Prefix"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:60
+msgid "article"
+msgstr ""
+
+#: app/Widgets/WilokeListOfTerms.php:61
+msgid "articles"
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:9
+msgid "MailChimp"
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:16
+msgid ""
+"Ensure that MailChimp Information has been configured. If you still not do "
+"that, please go to Settings -> Wiloke MailChimp"
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:41
+msgid ""
+"You have not configured MailChimp yet! Please go to Settings -> Wiloke "
+"MailChimp to do that"
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:48
+msgid "Enter your email..."
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:49
+msgid "Sending"
+msgstr ""
+
+#: app/Widgets/WilokeMailChimp.php:49
+msgid "Send"
+msgstr ""
+
+#: app/Widgets/WilokeMap.php:21
+msgid "Get Direction Text"
+msgstr ""
+
+#: app/Widgets/WilokeOpeningHours.php:71
+msgid "Closed"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:78
+msgid "1 Person"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:79
+msgid "2 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:80
+msgid "3 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:81
+msgid "4 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:82
+msgid "5 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:83
+msgid "6 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:84
+msgid "7 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:85
+msgid "8 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:86
+msgid "9 People"
+msgstr ""
+
+#: app/Widgets/WilokeOpenTable.php:87
+msgid "10 People"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:9
+msgid "Registration"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:15
+msgid "Register Now"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:16
+msgid "Email address Label"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:17
+msgid "Username Label"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:18
+msgid "Password Label"
+msgstr ""
+
+#: app/Widgets/WilokeRegistrationForm.php:19
+msgid "Register Button"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:9
+msgid "Posts Slider"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:16
+#: app/Widgets/WilokeTwitterFeeds.php:16
+msgid "Number of Feeds"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:18
+msgid "Post Type"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:22
+msgid "Post"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:23
+msgid "Listing"
+msgstr ""
+
+#: app/Widgets/WilokeSimplePostsSlider.php:24
+msgid "Event"
+msgstr ""
+
+#: app/Widgets/WilokeTwitterFeeds.php:9
+msgid "Twitter Feed"
+msgstr ""
+
+#: app/Widgets/WilokeTwitterFeeds.php:17
+msgid ""
+"Ensure that Twitter Information has been configured. If you still not do "
+"that, please go to Settings -> Wiloke Twitter"
+msgstr ""
+
+#: app/Widgets/WilokeTwitterFeeds.php:47
+msgid "Please supply your Twitter Information: Settings -> Wiloke Twitter."
+msgstr ""
+
+#: app/Widgets/WilokeTwitterFeeds.php:63
+msgid ""
+"Invalid or expired token. Please go to Settings -> Wiloke Twitter and check "
+"it again."
+msgstr ""
+
+#: app/Widgets/WilokeTwitterFeeds.php:97
+msgid ""
+"There is no any tweet yet. Please go to your Twitter and tweets something."
+msgstr ""
+
+#. Name of the plugin
+msgid "Wiloke Listgo Widgets"
+msgstr ""
+
+#. Description of the plugin
+msgid "The bundle widgets for WordPress"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wiloke.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "wiloke"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://themeforest.net/user/wiloke"
+msgstr ""

@@ -1,0 +1,18 @@
+#listgo-table-wrapper { margin: 30px 15px 20px 15px; max-width: 100%; } #listgo-table { margin-bottom: 10px; } #listgo-table .invoices-id { width: 50px; } #listgo-table .invoices-remove { width: 70px; } #listgo-table .invoices-date { width: 200px; } #listgo-table .button { color: #aaa; cursor: pointer; vertical-align: middle } #listgo-table .edit:hover { color: #0a79df } #listgo-table .delete:hover { color: #dc2a2a } #listgo-table .js_action { cursor: pointer; display: block } #listgo-table .js_action i { line-height: 40px } #listgo-table a { text-decoration: none } #listgo-table-wrapper .tags { list-style: none; margin: 0; overflow: hidden; padding: 0 } #listgo-table-wrapper .tags li { float: left } #listgo-table-wrapper .tag { background: #ed1c40; border-radius: 3px 0 0 3px; color: #fff; display: inline-block; height: 26px; line-height: 26px; padding: 0 20px 0 23px; position: relative; margin: 0 10px 10px 0; text-decoration: none; -webkit-transition: color .2s } #listgo-table-wrapper .tag::before { background: #fff; border-radius: 10px; box-shadow: inset 0 1px rgba(0, 0, 0, 0.25); content: ''; height: 6px; left: 10px; position: absolute; width: 6px; top: 10px } #listgo-table-wrapper .tag::after { background-color: #F1F1F1; border-bottom: 13px solid transparent; border-left: 10px solid #ed1c40; border-top: 13px solid transparent; content: ''; position: absolute; right: 0; top: 0 } #listgo-table-wrapper .tag:hover { background-color: #dc143c; color: #fff } #listgo-table-wrapper .tag:hover::after { border-left-color: #dc143c } .js_ban_ip.banned { color: #ff0000 } .settings-error { display: none; } #listgo-table .report-content .text-center { text-align: center } #listgo-table tfoot th, #listgo-table tfoot td { border-top: 3px solid #ddd; } #listgo-table tfoot a { padding: 5px; } #listgo-table tfoot a.active { padding: 5px; color: red } #listgo-table-wrapper .searchform { margin-bottom: 5px; overflow: hidden; } #listgo-table-wrapper .searchform label { display: inline-block; vertical-align: middle; } #listgo-table-wrapper .search-field { margin-right: 10px; display: inline-block; vertical-align: middle; } #listgo-table-wrapper .search-field input { display: inline-block; vertical-align: middle; } .invoices-actions form { display: inline-block; margin-left: 10px; } .text-center { text-align: center } #setting-error-tgmpa { display: none !important; }
+@media(max-width: 782px) {
+
+	#listgo-table-wrapper #filter-by-period {
+		display: none;
+	}
+
+	#listgo-table-wrapper .search-field:nth-child(7) {
+		display: none;
+	}
+}
+
+@media(max-width: 600px) {
+
+	#listgo-table-wrapper .search-field:nth-child(5) {
+		display: none;
+	}
+}

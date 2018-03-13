@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "WilokeListGoFunctionality\\":"app/"
+        }
+    },
+    "require": {
+        "paypal/merchant-sdk-php": "3.8.*"
+    }
+}

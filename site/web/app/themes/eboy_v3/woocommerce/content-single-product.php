@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<div class="row">
 				<div class="col-8 summary entry-summary pr-5">
-
+				
 			<?php
 				/**
 				 * woocommerce_single_product_summary hook.

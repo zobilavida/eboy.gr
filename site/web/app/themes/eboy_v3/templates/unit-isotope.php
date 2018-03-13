@@ -23,7 +23,7 @@
   if ( $tags ) :
       foreach ( $tags as $tag ) : ?>
         <li data-filter=".<?php echo esc_html( $tag->slug ); ?>">
-          <a href="javascript:;">
+          <a href="javascript:;" >
           <?php echo esc_html( $tag->name ); ?>
           </a>
         </li>

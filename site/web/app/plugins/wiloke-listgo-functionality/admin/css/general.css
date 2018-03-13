@@ -1,0 +1,6 @@
+.ui.button{
+    height: auto !important;
+}
+.hidden, .addlisting-popup-wrap.hidden{
+    display: none;
+}

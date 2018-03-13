@@ -1,0 +1,345 @@
+#setting-error-tgmpa{
+    display: none !important;
+}
+input[readonly='']{
+    background-color: rgba(35, 40, 45, 0.05) !important;
+}
+.ui.button{
+    height:auto;
+}
+
+#wiloke-submission-wrapper{
+    padding: 20px;
+}
+
+.wiloke-submission-addnew{
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+.field.error{
+    border-color: transparent !important;
+    margin-left: 0 !important;
+    background: transparent !important;
+    border-left: 0 !important;
+    padding: 0 !important;
+}
+
+#wiloke-submission-wrapper .header.dividing{
+    margin-bottom: 40px;
+}
+
+#setting-error-tgmpa{
+    display: none !important;
+}
+input[readonly='']{
+    background-color: rgba(35, 40, 45, 0.05) !important;
+}
+.ui.button{
+    height:auto;
+}
+
+#wiloke-submission-wrapper{
+    padding: 20px;
+}
+
+.wiloke-submission-addnew{
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+.field.error{
+    border-color: transparent !important;
+    margin-left: 0 !important;
+    background: transparent !important;
+    border-left: 0 !important;
+    padding: 0 !important;
+}
+
+#menu-posts-listing .dashicons-before {
+    line-height: 34px;
+}
+
+#menu-posts-listing .dashicons-before:before {
+    content: "";
+    background-image: url(img/listing_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#menu-posts-testimonial .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-testimonial .dashicons-before:before {
+    content: "";
+    background-image: url(img/testimonial_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_listgo-reports .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_listgo-reports .dashicons-before:before {
+    content: "";
+    background-image: url(img/report_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_listgo-followers .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_listgo-followers .dashicons-before:before {
+    content: "";
+    background-image: url(img/followers_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#menu-posts-event .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-event .dashicons-before:before {
+    content: "";
+    background-image: url(img/events_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_wiloke-submission .dashicons-before {
+    line-height: 34px;
+}
+#toplevel_page_wiloke-submission .dashicons-before:before {
+    content: "";
+    background-image: url(img/submission_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_listgo-badges .dashicons-before {
+    line-height: 34px;
+}
+#toplevel_page_listgo-badges .dashicons-before:before {
+    content: "";
+    background-image: url(img/badges_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#menu-posts-pricing .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-pricing .dashicons-before:before {
+    content: "";
+    background-image: url(img/pricing_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#menu-posts-review .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-review .dashicons-before:before {
+    content: "";
+    background-image: url(img/review_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_wiloke-login-with-social .dashicons-before {
+    line-height: 34px;
+}
+#toplevel_page_wiloke-login-with-social .dashicons-before:before {
+    content: "";
+    background-image: url(img/social_login_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+#toplevel_page_wiloke-welcome .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-welcome .dashicons-before:before {
+    content: "";
+    background-image: url(img/guide.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#menu-posts-wiloke-menu .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-wiloke-menu .dashicons-before:before {
+    content: "";
+    background-image: url(img/mega_menu.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-export .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-export .dashicons-before:before {
+    content: "";
+    background-image: url(img/export_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-service .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-service .dashicons-before:before {
+    content: "";
+    background-image: url(img/service_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-update-data .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-update-data .dashicons-before:before {
+    content: "";
+    background-image: url(img/update_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#menu-posts-wiloke-menu .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-wiloke-menu .dashicons-before:before {
+    content: "";
+    background-image: url(img/mega_menu.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-export .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-export .dashicons-before:before {
+    content: "";
+    background-image: url(img/export_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-service .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-service .dashicons-before:before {
+    content: "";
+    background-image: url(img/service_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#toplevel_page_wiloke-update-data .dashicons-before{
+    line-height: 34px;
+}
+#toplevel_page_wiloke-update-data .dashicons-before:before {
+    content: "";
+    background-image: url(img/update_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#menu-posts-claim .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-claim .dashicons-before:before {
+    content: "";
+    background-image: url(img/claims_icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+#menu-posts-event-pricing .dashicons-before{
+    line-height: 34px;
+}
+#menu-posts-event-pricing .dashicons-before:before {
+    content: "";
+    background-image: url(img/event_pricing.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+}
+
+
+#wiloke-submission-wrapper div.ui:not(.tab){
+    margin-top: 20px;
+}
+.virtual-a{
+    cursor: pointer;
+}
+.ui.segment{
+    overflow: hidden;
+}
+.gallery-popup{
+    overflow: hidden;
+}
+.gallery-popup a{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    float: left;
+    border: 4px solid rgba(2, 0, 0, 0.2);
+    padding: 20px;
+    margin-left: 20px;
+    box-shadow: none;
+}
+.gallery-popup a img{
+    max-width: 100%;
+}
+
+.single-popup{
+    float: left;
+    border: 4px solid rgba(2, 0, 0, 0.2);
+    margin-right: 20px;
+    box-shadow: none !important;
+}
+.single-popup:focus, .gallery-popup a:focus{
+    outline: 0;
+}
+
+.ui.loading.form:before {
+    border-width: 0;
+    animation: none;
+    border-radius: 0;
+}

@@ -1,0 +1,5 @@
+#wiloke-map{
+    height: 250px !important;
+    max-height: 250px !important;
+    overflow: hidden;
+}
