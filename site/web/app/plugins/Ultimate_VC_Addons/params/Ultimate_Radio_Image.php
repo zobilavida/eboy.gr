@@ -46,7 +46,7 @@ if(!class_exists('Ultimate_Radio_Image_Param'))
 				'background-repeat' => 'repeat',
 				'background-size' => 'cover'
 			);
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$type = isset($settings['type']) ? $settings['type'] : '';
 			$options = isset($settings['options']) ? $settings['options'] : '';
@@ -58,14 +58,14 @@ if(!class_exists('Ultimate_Radio_Image_Param'))
 			$uni = uniqid();
 
 			$output = '';
-			$output = '<input id="radio_image_setting_val_'.$uni.'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . ' '.$value.' vc_ug_gradient" name="' . $param_name . '"  style="display:none"  value="'.$value.'" '.$dependency.'/>';
-			$output .= '<div class="ult-radio-image-box" data-uniqid="'.$uni.'">';
+			$output = '<input id="radio_image_setting_val_'.esc_attr( $uni ).'" class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr( $type ) . ' ' . esc_attr( $class ) . ' '.esc_attr( $value ).' vc_ug_gradient" name="' . esc_attr( $param_name ) . '"  style="display:none"  value="'.esc_attr( $value ).'" '.$dependency.'/>';
+			$output .= '<div class="ult-radio-image-box" data-uniqid="'.esc_attr( $uni ).'">';
 				if($value == 'transperant')
 					$checked = 'checked';
 				else
 					$checked = '';
 				$output .= '<label>
-					<input type="radio" name="radio_image_'.$uni.'" '.$checked.' class="radio_pattern_image" value="'.$default.'" />
+					<input type="radio" name="radio_image_'.esc_attr( $uni ).'" '.$checked.' class="radio_pattern_image" value="'.esc_attr( $default ).'" />
 					<span class="pattern-background no-bg" style="background:transperant;"></span>
 				</label>';
 				foreach($options as $key => $img_url)
@@ -81,8 +81,8 @@ if(!class_exists('Ultimate_Radio_Image_Param'))
 						$key = $temp_filename;
 					}
 					$output .= '<label>
-						<input type="radio" name="radio_image_'.$uni.'" '.$checked.' class="radio_pattern_image" value="'.$key.'" />
-						<span class="pattern-background" style="background:url('.$img_url.')"></span>
+						<input type="radio" name="radio_image_'.esc_attr( $uni ).'" '.$checked.' class="radio_pattern_image" value="'.esc_attr( $key ).'" />
+						<span class="pattern-background" style="background:url('.esc_url( $img_url ).')"></span>
 					</label>';
 				}
 			$output .= '</div>';

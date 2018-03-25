@@ -202,7 +202,7 @@ $tp_color_picker_presets = TPColorpicker::get_color_presets();
 				<li><a target="_blank" href="https://www.themepunch.com/faq/updating-make-sure-clear-caches#hosting"><?php _e('Hosting Cache', 'revslider'); ?></a></li>
 				<li><a target="_blank" href="https://www.themepunch.com/faq/updating-make-sure-clear-caches#plugins"><?php _e('Caching Plugins', 'revslider'); ?></a></li>
 				<li><a target="_blank" href="https://www.themepunch.com/faq/updating-make-sure-clear-caches#cdn"><?php _e('CDNs (Content Delivery Networks)', 'revslider'); ?></a></li>
-				<li><a target="_blank" href="https://www.themepunch.com/faq/updating-make-sure-clear-caches#browser"><?php _e('Browser Cache', 'revslider'); ?></li>
+				<li><a target="_blank" href="https://www.themepunch.com/faq/updating-make-sure-clear-caches#browser"><?php _e('Browser Cache', 'revslider'); ?></a></li>
 			</ul>
 		</div>
 		<div class="rs-premium-benefits-block" style="border:none;">

@@ -321,7 +321,7 @@ $slide_general_addon = apply_filters('revslider_slide_settings_addons', array(),
 							<div class="tp-clearfix"></div>
 
 							<!-- THE YOUTUBE SELECTOR -->
-							<label><?php _e("YouTube Video",'revslider'); ?></label>
+							<label id="label_radio_back_youtube"><?php _e("YouTube Video",'revslider'); ?></label>
 							<input type="radio" name="background_type" value="youtube"  data-callid="tp-bgyoutubesrc" class="bgsrcchanger" data-bgtype="youtube" id="radio_back_youtube" <?php checked($bgType, 'youtube'); ?>>
 							<div class="tp-clearfix"></div>
 							
@@ -337,7 +337,7 @@ $slide_general_addon = apply_filters('revslider_slide_settings_addons', array(),
 							<div class="tp-clearfix"></div>
 							
 							<!-- THE VIMEO SELECTOR -->
-							<label><?php _e("Vimeo Video",'revslider'); ?></label>
+							<label id="label_radio_back_vimeo"><?php _e("Vimeo Video",'revslider'); ?></label>
 							<input type="radio" name="background_type" value="vimeo"  data-callid="tp-bgvimeosrc" class="bgsrcchanger" data-bgtype="vimeo" id="radio_back_vimeo" <?php checked($bgType, 'vimeo'); ?>>
 							<div class="tp-clearfix"></div>
 
@@ -506,7 +506,7 @@ $slide_general_addon = apply_filters('revslider_slide_settings_addons', array(),
 							
 							<div class="vid-rev-vimeo-youtube video_volume_wrapper">
 								<label for="video_volume"><?php _e('Video Volume:', 'revslider'); ?></label>
-								<input type="text" id="video_volume" name="video_volume" <?php echo esc_attr($video_volume); ?>>
+								<input type="text" id="video_volume" name="video_volume" value="<?php echo esc_attr($video_volume); ?>">
 							</div>
 
 							<span id="vid-rev-youtube-options">

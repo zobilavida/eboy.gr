@@ -1,5 +1,6 @@
 .ult-tooltipster-base,
 .ult-tooltipster-base * {
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-box-sizing: border-box
 }
@@ -29,6 +30,7 @@
     /*border-radius: 5px;
     background: #fff;
     color: #4c4c4c;*/
+    text-align: center;
     max-width: 100%
 }
 .ult-tooltipster-default .ult-tooltipster-content {
@@ -144,9 +146,6 @@
 .ult-tooltipster-fade {
     opacity: 0;
     -webkit-transition-property: opacity;
-    -moz-transition-property: opacity;
-    -o-transition-property: opacity;
-    -ms-transition-property: opacity;
     transition-property: opacity
 }
 .ult-tooltipster-fade-show {
@@ -154,76 +153,52 @@
 }
 .ult-tooltipster-glow {
     -webkit-transform: scale(0, 0);
-    -moz-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
     -ms-transform: scale(0, 0);
     transform: scale(0, 0);
     -webkit-transition-property: -webkit-transform;
-    -moz-transition-property: -moz-transform;
-    -o-transition-property: -o-transform;
-    -ms-transition-property: -ms-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-backface-visibility: hidden
 }
 .ult-tooltipster-glow-show {
     -webkit-transform: scale(1, 1);
-    -moz-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     transform: scale(1, 1);
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1);
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -moz-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -ms-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -o-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
     transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15)
 }
 .ult-tooltipster-swing {
     opacity: 0;
     -webkit-transform: rotateZ(4deg);
-    -moz-transform: rotateZ(4deg);
-    -o-transform: rotateZ(4deg);
     -ms-transform: rotateZ(4deg);
     transform: rotateZ(4deg);
     -webkit-transition-property: -webkit-transform, opacity;
-    -moz-transition-property: -moz-transform;
-    -o-transition-property: -o-transform;
-    -ms-transition-property: -ms-transform;
-    transition-property: transform
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform
 }
 .ult-tooltipster-swing-show {
     opacity: 1;
     -webkit-transform: rotateZ(0deg);
-    -moz-transform: rotateZ(0deg);
-    -o-transform: rotateZ(0deg);
     -ms-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
     -webkit-transition-timing-function: cubic-bezier(0.23, .635, .495, 1);
     -webkit-transition-timing-function: cubic-bezier(0.23, .635, .495, 2.4);
-    -moz-transition-timing-function: cubic-bezier(0.23, .635, .495, 2.4);
-    -ms-transition-timing-function: cubic-bezier(0.23, .635, .495, 2.4);
-    -o-transition-timing-function: cubic-bezier(0.23, .635, .495, 2.4);
     transition-timing-function: cubic-bezier(0.23, .635, .495, 2.4)
 }
 .ult-tooltipster-fall {
     top: 0;
     -webkit-transition-property: top;
-    -moz-transition-property: top;
-    -o-transition-property: top;
-    -ms-transition-property: top;
     transition-property: top;
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1);
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -moz-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -ms-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -o-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
     transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15)
 }
 .ult-tooltipster-fall.ult-tooltipster-dying {
     -webkit-transition-property: all;
-    -moz-transition-property: all;
-    -o-transition-property: all;
-    -ms-transition-property: all;
     transition-property: all;
     top: 0!important;
     opacity: 0
@@ -231,25 +206,22 @@
 .ult-tooltipster-slide {
     left: -40px;
     -webkit-transition-property: left;
-    -moz-transition-property: left;
-    -o-transition-property: left;
-    -ms-transition-property: left;
     transition-property: left;
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1);
     -webkit-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -moz-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -ms-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
-    -o-transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15);
     transition-timing-function: cubic-bezier(0.175, .885, .32, 1.15)
 }
 .ult-tooltipster-euclid {
     opacity: 0;
     -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
     -webkit-transform: rotate3d(0, 0, 1, 20deg);
     transform: rotate3d(0, 0, 1, 20deg);
     -webkit-transition: opacity .2s, -webkit-transform .2s;
+    transition: opacity .2s, -webkit-transform .2s;
     transition: opacity .2s, transform .2s;
+    transition: opacity .2s, transform .2s, -webkit-transform .2s;
     -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out
 }
@@ -261,9 +233,6 @@
 }
 .ult-tooltipster-slide.ult-tooltipster-dying {
     -webkit-transition-property: all;
-    -moz-transition-property: all;
-    -o-transition-property: all;
-    -ms-transition-property: all;
     transition-property: all;
     left: 0!important;
     opacity: 0
@@ -271,12 +240,11 @@
 .ult-tooltipster-content-changing {
     opacity: .5;
     -webkit-transform: scale(1.1, 1.1);
-    -moz-transform: scale(1.1, 1.1);
-    -o-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1)
 }
 .ult-tooltipster-light {
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background: #ededed;
@@ -290,8 +258,10 @@
     margin: 0 auto
 }
 .ult-tooltipster-shadow {
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     background: #fff;
+    -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, .3);
     box-shadow: 0 0 14px rgba(0, 0, 0, .3);
     color: #2c2c2c
 }
@@ -302,6 +272,7 @@
     padding: 8px 10px
 }
 .ult-tooltipster-punk {
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     border-bottom: 3px solid #f71169;
     background: #2a2a2a;
@@ -314,6 +285,7 @@
     padding: 8px 10px
 }
 .ult-tooltipster-noir {
+    -webkit-border-radius: 0;
     border-radius: 0;
     border: 3px solid #2c2c2c;
     background: #fff;

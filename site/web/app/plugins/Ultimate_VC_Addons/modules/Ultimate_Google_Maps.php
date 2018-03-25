@@ -6,13 +6,23 @@
 if(!class_exists("Ultimate_Google_Maps")){
 	class Ultimate_Google_Maps{
 		function __construct(){
-			add_action("init",array($this,"google_maps_init"));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action("init",array($this,"google_maps_init"));
+			}
 			add_shortcode("ultimate_google_map",array($this,"display_ultimate_map"));
 			add_action('wp_enqueue_scripts', array($this, 'ultimate_google_map_script'),1);
 		}
 		function ultimate_google_map_script()
 		{
-			wp_register_script("googleapis","https://maps.googleapis.com/maps/api/js?v=3.21&sensor=false",array(),ULTIMATE_VERSION,false);
+			$api = 'https://maps.googleapis.com/maps/api/js';
+			$map_key = bsf_get_option('map_key');
+			if($map_key != false) {
+				$arr_params = array(
+					'key' => $map_key
+				);
+				$api = esc_url( add_query_arg( $arr_params , $api ));
+			}
+			wp_register_script("googleapis",$api,null,null,false);
 		}
 		function google_maps_init(){
 			if ( function_exists('vc_map'))
@@ -61,7 +71,7 @@ if(!class_exists("Ultimate_Google_Maps")){
 							"param_name" => "lat",
 							"admin_label" => true,
 							"value" => "18.591212",
-							"description" => '<a href="http://universimmedia.pagesperso-orange.fr/geo/loc.htm" target="_blank">'.__('Here is a tool','ultimate_vc').'</a> '.__('where you can find Latitude & Longitude of your location', 'ultimate_vc'),
+							"description" => '<a href="http://universimmedia.pagesperso-orange.fr/geo/loc.htm" target="_blank" rel="noopener">'.__('Here is a tool','ultimate_vc').'</a> '.__('where you can find Latitude & Longitude of your location', 'ultimate_vc'),
 							"group" => "General Settings"
 						),
 						array(
@@ -71,7 +81,7 @@ if(!class_exists("Ultimate_Google_Maps")){
 							"param_name" => "lng",
 							"admin_label" => true,
 							"value" => "73.741261",
-							"description" => '<a href="http://universimmedia.pagesperso-orange.fr/geo/loc.htm" target="_blank">'.__('Here is a tool','ultimate_vc').'</a> '.__('where you can find Latitude & Longitude of your location', "ultimate_vc"),
+							"description" => '<a href="http://universimmedia.pagesperso-orange.fr/geo/loc.htm" target="_blank" rel="noopener">'.__('Here is a tool','ultimate_vc').'</a> '.__('where you can find Latitude & Longitude of your location', "ultimate_vc"),
 							"group" => "General Settings"
 						),
 						array(
@@ -151,14 +161,6 @@ if(!class_exists("Ultimate_Google_Maps")){
 							"value" => array(__("Disable", "ultimate_vc") => "false", __("Enable", "ultimate_vc") => "true"),
 							"group" => "Advanced"
 						),
-						/*array(
-							"type" => "dropdown",
-							"class" => "",
-							"heading" => __("Map pan control", "ultimate_vc"),
-							"param_name" => "pancontrol",
-							"value" => array(__("Disable", "ultimate_vc") => "false", __("Enable", "ultimate_vc") => "true"),
-							"group" => "Advanced"
-						),*/
 						array(
 							"type" => "dropdown",
 							"class" => "",
@@ -170,18 +172,32 @@ if(!class_exists("Ultimate_Google_Maps")){
 						array(
 							"type" => "dropdown",
 							"class" => "",
-							"heading" => __("Zoom control size", "ultimate_vc"),
-							"param_name" => "zoomcontrolsize",
-							"value" => array(__("Small", "ultimate_vc") => "SMALL", __("Large", "ultimate_vc") => "LARGE"),
-							"dependency" => Array("element" => "zoomControl","value" => array("true")),
+							"heading" => __("Zoom Control Position", "ultimate_vc"),
+							"param_name" => "zoomcontrolposition",
+							"value" => array(
+									__("Right Bottom", "ultimate_vc") => "RIGHT_BOTTOM",
+									__("Right Top", "ultimate_vc") => "RIGHT_TOP", 
+									__("Right Center", "ultimate_vc") => "RIGHT_CENTER",
+									__("Left Top", "ultimate_vc") => "LEFT_TOP",
+									__("Left Center", "ultimate_vc") => "LEFT_CENTER", 
+									__("Left Bottom", "ultimate_vc") => "LEFT_BOTTOM",
+								),
+							"dependency" => Array("element" => "zoomcontrol", "value" => 'true'),
 							"group" => "Advanced"
 						),
-
 						array(
 							"type" => "dropdown",
 							"class" => "",
-							"heading" => __("Disable dragging on Mobile", "ultimate_vc"),
+							"heading" => __("Dragging on Mobile", "ultimate_vc"),
 							"param_name" => "dragging",
+							"value" => array( __("Enable", "ultimate_vc") => "true", __("Disable", "ultimate_vc") => "false"),
+							"group" => "Advanced"
+						),
+						array(
+							"type" => "dropdown",
+							"class" => "",
+							"heading" => __("Dragging on Desktop", "ultimate_vc"),
+							"param_name" => "dragging_desktop",
 							"value" => array( __("Enable", "ultimate_vc") => "true", __("Disable", "ultimate_vc") => "false"),
 							"group" => "Advanced"
 						),
@@ -225,7 +241,7 @@ if(!class_exists("Ultimate_Google_Maps")){
 							"heading" => __("Google Styled Map JSON","ultimate_vc"),
 							"param_name" => "map_style",
 							"value" => "",
-							"description" => "<a target='_blank' href='http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html'>".__("Click here","ultimate_vc")."</a> ".__("to get the style JSON code for styling your map.","ultimate_vc"),
+							"description" => "<a target='_blank' rel='noopener' href='http://googlemaps.github.io/js-samples/styledmaps/wizard/index.html'>".__("Click here","ultimate_vc")."</a> ".__("to get the style JSON code for styling your map.","ultimate_vc"),
 							"group" => "Styling",
 						),
 						array(
@@ -237,17 +253,101 @@ if(!class_exists("Ultimate_Google_Maps")){
 						),
 						array(
 							"type" => "ult_param_heading",
-							"text" => "<span style='display: block;'><a href='http://bsf.io/f57sh' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+							"text" => "<span style='display: block;'><a href='http://bsf.io/f57sh' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 							"param_name" => "notification",
 							'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 							"group" => "General Settings"
 						),
+						array(
+								"type" => "dropdown",
+								"class" => "",
+								"heading" => __("MapBorder Style", "ultimate_vc"),
+								"param_name" => "map_border_style",
+								"value" => array(
+									"None"=> "",
+									"Solid"=> "solid",
+									"Dashed" => "dashed",
+									"Dotted" => "dotted",
+									"Double" => "double",
+									"Inset" => "inset",
+									"Outset" => "outset",
+								),
+								"description" => "",
+								"group" => "Border"
+							),
+							array(
+								"type" => "colorpicker",
+								"class" => "",
+								"heading" => __("Border Color", "ultimate_vc"),
+								"param_name" => "map_color_border",
+								"value" => "",
+								"description" => "",
+								"dependency" => Array("element" => "map_border_style", "not_empty" => true),
+								"group" => "Border"
+							),
+							array(
+								"type" => "number",
+								"class" => "",
+								"heading" => __("Border Width", "ultimate_vc"),
+								"param_name" => "map_border_size",
+								"value" => 1,
+								"min" => 1,
+								"max" => 10,
+								"suffix" => "px",
+								"description" => "",
+								"dependency" => Array("element" => "map_border_style", "not_empty" => true),
+								"group" => "Border"
+							),
+							array(
+								"type" => "number",
+								"class" => "",
+								"heading" => __("Border Radius","ultimate_vc"),
+								"param_name" => "map_radius",
+								"value" => 3,
+								"min" => 0,
+								"max" => 500,
+								"suffix" => "px",
+								"description" => "",
+								"dependency" => Array("element" => "map_border_style", "not_empty" => true),
+								"group" => "Border"
+						  	),
+						  	array(
+						            "type" => "ultimate_spacing",
+						            "heading" => " Map Margin ",
+						            "param_name" => "gmap_margin",
+						            "mode"  => "margin",                    //  margin/padding
+						            "unit"  => "px",                        //  [required] px,em,%,all     Default all
+						            "positions" => array(                   //  Also set 'defaults'
+						              	"Top" => "",
+						              	"Right" => "",
+						              	"Bottom" => "",
+						              	"Left" => "",
+						            ),
+						            'group' => __( 'Styling', 'ultimate_vc' ),
+									"description" => __("Add spacing from outside to the map.", "ultimate_vc"),
+						        ),
+							array(
+						            "type" => "ultimate_spacing",
+						            "heading" => " Map padding ",
+						            "param_name" => "gmap_padding",
+						            "mode"  => "padding",                    //  margin/padding
+						            "unit"  => "px",                        //  [required] px,em,%,all     Default all
+						            "positions" => array(                   //  Also set 'defaults'
+						              	"Top" => "",
+						              	"Right" => "",
+						              	"Bottom" => "",
+						              	"Left" => "",
+						            ),
+						            'group' => __( 'Styling', 'ultimate_vc' ),
+									"description" => __("Add spacing from outside to the map.", "ultimate_vc"),
+						        ),
 					)
 				));
 			}
 		}
 		function display_ultimate_map($atts,$content = null){
-			$width = $height = $map_type = $lat = $lng = $zoom = $streetviewcontrol = $maptypecontrol = $top_margin = $pancontrol = $zoomcontrol = $zoomcontrolsize = $dragging = $marker_icon = $icon_img = $map_override = $output = $map_style = $scrollwheel = $el_class = '';
+			$width = $height = $map_type = $lat = $lng = $zoom = $streetviewcontrol = $maptypecontrol = $top_margin = $pancontrol = $zoomcontrol = $zoomcontrolposition = $dragging = $dragging_desktop = $marker_icon = $icon_img = $map_override = $output = $map_style = $scrollwheel = $el_class = $map_border_style = $map_color_border = $map_border_size = $map_radius ='';
+
 			extract(shortcode_atts(array(
 				//"id" => "map",
 				"width" => "100%",
@@ -261,18 +361,31 @@ if(!class_exists("Ultimate_Google_Maps")){
 				"maptypecontrol" => "false",
 				"pancontrol" => "false",
 				"zoomcontrol" => "false",
-				"zoomcontrolsize" => "SMALL",
+				"zoomcontrolposition" => "RIGHT_BOTTOM",
 				"dragging" => "true",
+				"dragging_desktop" => "true",
 				"marker_icon" => "default",
 				"icon_img" => "",
 				"top_margin" => "page_margin_top",
 				"map_override" => "0",
 				"map_style" => "",
 				"el_class" => "",
-				"infowindow_open" => "",
-				"map_vc_template" => ""
+				"infowindow_open" => "infowindow_open_value",
+				"map_vc_template" => "",
+				"map_border_style" => "",
+				"map_color_border" => "",
+				"map_border_size" => "",
+				"map_radius" => "",
+				"gmap_margin" => "",
+				"gmap_padding" => "",
 			), $atts));
 
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
+
+			$border_css= $gmap_design_css ='';
+			$gmap_design_css = $gmap_margin;
+			$gmap_design_css .=$gmap_padding;
 			$marker_lat = $lat;
 			$marker_lng = $lng;
 			if($marker_icon == "default_self"){
@@ -294,21 +407,31 @@ if(!class_exists("Ultimate_Google_Maps")){
 				$margin_css = $top_margin;
 			}
 
+			if($map_border_style !='')
+				$border_css .='border-style:'.$map_border_style.';';
+			if($map_color_border != '')
+				$border_css .= 'border-color:'.$map_color_border.';';
+			if($map_border_size != '')
+				$border_css .= 'border-width:'.$map_border_size.'px;';
+			if($map_radius !='')
+				$border_css .='border-radius:'.$map_radius.'px;';
 			if($map_vc_template == 'map_vc_template_value')
 				$el_class .= 'uvc-boxed-layout';
 
-			$output .= "<div id='".$wrap_id."' class='ultimate-map-wrapper ".$el_class."' style='".($map_height!="" ? "height:" . $map_height . ";" : "")."'><div id='" . $id . "' data-map_override='".$map_override."' class='ultimate_google_map wpb_content_element ".$margin_css."'" . ($width!="" || $map_height!="" ? " style='" . ($width!="" ? "width:" . $width . ";" : "") . ($map_height!="" ? "height:" . $map_height . ";" : "") . "'" : "") . "></div></div>";
+			$output .= "<div id='".esc_attr($wrap_id)."' class='ultimate-map-wrapper ".esc_attr($is_vc_49_plus)." ".esc_attr($el_class)."' style='".esc_attr($gmap_design_css)." ".($map_height!="" ? "height:" . $map_height . ";" : "")."'><div id='" . esc_attr($id) . "' data-map_override='".esc_attr($map_override)."' class='ultimate_google_map wpb_content_element ".esc_attr($margin_css)."'" . ($width!="" || $map_height!="" ? " style='".esc_attr($border_css) . ($width!="" ? "width:" . esc_attr($width) . ";" : "") . ($map_height!="" ? "height:" . esc_attr($map_height) . ";" : "") . "'" : "") . "></div></div>";
+
 			if($scrollwheel == "disable"){
 				$scrollwheel = 'false';
 			} else {
 				$scrollwheel = 'true';
 			}
+
 			$output .= "<script type='text/javascript'>
 			(function($) {
   			'use strict';
 			var map_$id = null;
 			var coordinate_$id;
-			var isDraggable = $(document).width() > 641 ? true : $dragging;
+			var isDraggable = $(document).width() > 641 ? $dragging_desktop : $dragging;
 			try
 			{
 				var map_$id = null;
@@ -326,7 +449,7 @@ if(!class_exists("Ultimate_Google_Maps")){
 					scrollwheel: $scrollwheel,
 					draggable: isDraggable,
 					zoomControlOptions: {
-					  style: google.maps.ZoomControlStyle.$zoomcontrolsize
+						position: google.maps.ControlPosition.$zoomcontrolposition
 					},";
 					if($map_style == ""){
 						$output .= "mapTypeId: google.maps.MapTypeId.$map_type,";
@@ -349,12 +472,12 @@ if(!class_exists("Ultimate_Google_Maps")){
 				if($marker_lat!="" && $marker_lng!="")
 				{
 				$output .= "
-						var x = '".$infowindow_open."';
+						var x = '".esc_attr($infowindow_open)."';
 						var marker_$id = new google.maps.Marker({
 						position: new google.maps.LatLng($marker_lat, $marker_lng),
 						animation:  google.maps.Animation.DROP,
 						map: map_$id,
-						icon: '".$icon_url."'
+						icon: '".esc_url($icon_url)."'
 					});
 					google.maps.event.addListener(marker_$id, 'click', toggleBounce);";
 
@@ -435,11 +558,28 @@ if(!class_exists("Ultimate_Google_Maps")){
 			}
 			})(jQuery);
 			</script>";
+			$is_preset = false; //Retrieve preset Code
+				if(isset($_GET['preset'])) {
+					$is_preset = true;
+				}
+				if($is_preset) {
+					$text = 'array ( ';
+					foreach ($atts as $key => $att) {
+						$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+					}
+					if($content != '') {
+						$text .= '<br/>	\'content\' => \''.$content.'\',';
+					}
+					$text .= '<br/>)';
+					$output .= '<pre>';
+					$output .= $text;
+					$output .= '</pre>'; // remove backslash once copied
+				}
 			return $output;
 		}
 	}
 	new Ultimate_Google_Maps;
-	if(class_exists('WPBakeryShortCode'))
+	if(class_exists('WPBakeryShortCode') && !class_exists('WPBakeryShortCode_ultimate_google_map'))
 	{
 		class WPBakeryShortCode_ultimate_google_map extends WPBakeryShortCode {
 		}

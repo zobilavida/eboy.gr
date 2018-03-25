@@ -26,12 +26,10 @@
     position: absolute;
     opacity: 0;
     -webkit-transition: all .3s;
-    -moz-transition: all .3s;
     transition: all .3s
 }
 .uvc-ctaction-data {
     -webkit-transition: all .45s;
-    -moz-transition: all .45s;
     transition: all .45s;
     display: inline-block
 }
@@ -39,8 +37,6 @@
     top: 500px;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     line-height: 1;
@@ -48,11 +44,12 @@
 }
 .ultimate-call-to-action-hover .ctaction-icon-bottom-push {
     top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
 .ultimate-call-to-action-hover .uvc-ctaction-data-bottom-push {
     -webkit-transform: translateY(-500px);
-    -moz-transform: translateY(-500px);
     -ms-transform: translateY(-500px);
     transform: translateY(-500px)
 }
@@ -60,8 +57,6 @@
     top: -500px;
     left: 50%;
     -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     line-height: 1;
@@ -69,11 +64,12 @@
 }
 .ultimate-call-to-action-hover .ctaction-icon-top-push {
     top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
 .ultimate-call-to-action-hover .uvc-ctaction-data-top-push {
     -webkit-transform: translateY(500px);
-    -moz-transform: translateY(500px);
     -ms-transform: translateY(500px);
     transform: translateY(500px)
 }
@@ -81,8 +77,6 @@
     left: -200%;
     top: 50%;
     -webkit-transform: translate(0, 50%);
-    -moz-transform: translate(0, 50%);
-    -o-transform: translate(0, 50%);
     -ms-transform: translate(0, 50%);
     transform: translate(0, 50%);
     line-height: 1;
@@ -90,11 +84,12 @@
 }
 .ultimate-call-to-action-hover .ctaction-icon-left-push {
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
 .ultimate-call-to-action-hover .uvc-ctaction-data-left-push {
     -webkit-transform: translateX(1000%);
-    -moz-transform: translateX(1000%);
     -ms-transform: translateX(1000%);
     transform: translateX(1000%)
 }
@@ -102,8 +97,6 @@
     left: 200%;
     top: 50%;
     -webkit-transform: translate(0, -50%);
-    -moz-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
     line-height: 1;
@@ -111,11 +104,12 @@
 }
 .ultimate-call-to-action-hover .ctaction-icon-right-push {
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
 .ultimate-call-to-action-hover .uvc-ctaction-data-right-push {
     -webkit-transform: translateX(-1000%);
-    -moz-transform: translateX(-1000%);
     -ms-transform: translateX(-1000%);
     transform: translateX(-1000%)
 }

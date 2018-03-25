@@ -33,7 +33,7 @@
 		options.input_target.val(selection.id).trigger('change')
 		$("body").trigger(options.trigger, [selection, options]);
 	}
-	$(document).ready(function () 
+	$(document).ready(function ()
 	{
 		$.SmileTrigger.media_new();
 		//Fonts Zip file upload
@@ -50,7 +50,8 @@ EXTRA FUNCTIONS, NOT NECESSARY FOR THE DEFAULT UPLOAD
 		options.input_target.val("");
 		var manager = $('.smile_iconfont_manager');
 		var msg = $('#msg');
-		if(selection.subtype !== 'zip')
+		var proceed = (selection.subtype == 'zip' || selection.subtype == 'x-zip') ? true : false;
+		if(proceed == false)
 		{
 			$('.spinner').hide();
 			msg.html("<div class='error'><p>Please upload a valid ZIP file.<br/>You can create the file on icomoon.io</p></div>");
@@ -64,19 +65,25 @@ EXTRA FUNCTIONS, NOT NECESSARY FOR THE DEFAULT UPLOAD
 		$.ajax({
 				type: "POST",
 				url: ajaxurl,
-				data: 
+				data:
 				{
 					action: 'smile_ajax_add_zipped_font',
+					security: uavc.add_zipped_font,
 					values: selection,
 				},
 				beforeSend: function()
 				{
 					$('.spinner').css({opacity:0, display:"block", visibility:'visible',position:'absolute', top:'21px', left:'345px'}).animate({opacity:1});
 				},
-				/*error: function()
+				error: function()
 				{
-					alert('Couldn\'t add the font because the server didn’t respond.<br/>Please reload the page, then try again');
-				},*/
+					$('.spinner').hide();
+					msg.html("<div class='error'><p>Couldn\'t add the font because the server didn’t respond. Please reload the page, then try again.</p></div>");
+					msg.show();
+					setTimeout(function() {
+						msg.slideUp();
+					}, 5000);
+				},
 				success: function(response)
 				{
 					$('.spinner').hide();
@@ -116,10 +123,11 @@ EXTRA FUNCTIONS, NOT NECESSARY FOR THE DEFAULT UPLOAD
 		$.ajax({
 			type: "POST",
 			url: ajaxurl,
-			data: 
+			data:
 			{
 				action: 'smile_ajax_remove_zipped_font',
 				del_font: del_font,
+				security: uavc.remove_zipped_font
 			},
 			beforeSend: function()
 			{
@@ -159,7 +167,7 @@ EXTRA FUNCTIONS, NOT NECESSARY FOR THE DEFAULT UPLOAD
 				//msg.fadeOut('slow');
 			},
 			complete: function(response)
-			{	
+			{
 				//alert(response);
 			}
 		});

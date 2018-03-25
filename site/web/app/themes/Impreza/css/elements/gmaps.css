@@ -1,0 +1,30 @@
+/* 
+ * Google Maps
+ */
+
+.w-map img {
+	max-width: none !important;
+	}
+.w-map label {
+	display: inline;
+	width: auto;
+	}
+.gm-style .gm-style-iw > div {
+	width: auto !important;
+	}
+	.gm-style-iw {
+		color: #333;
+		}
+		.gm-style-iw h1,
+		.gm-style-iw h2,
+		.gm-style-iw h3,
+		.gm-style-iw h4,
+		.gm-style-iw h5,
+		.gm-style-iw h6,
+		.gm-style-iw p,
+		.gm-style-iw ul,
+		.gm-style-iw ol {
+			margin: 0;
+			padding: 0.6rem 0.6rem 0.3rem !important;
+			color: inherit !important;
+			}

@@ -9,7 +9,9 @@ if(!class_exists('Ultimate_Swatch_Book')){
 		var $swatch_width;
 		var $swatch_height;
 		function __construct(){
-			add_action( 'init', array($this, 'swatch_book_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action( 'init', array($this, 'swatch_book_init'));
+			}
 			add_action("wp_enqueue_scripts", array($this, "register_swatch_assets"),1);
 			if(function_exists('vc_is_inline')){
 				if(!vc_is_inline()){
@@ -23,19 +25,9 @@ if(!class_exists('Ultimate_Swatch_Book')){
 		}
 		function register_swatch_assets()
 		{
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_script("swatchbook-js",plugins_url($js_path."swatchbook".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION);
-			wp_register_style("swatchbook-css",plugins_url($css_path."swatchbook".$ext.".css",__FILE__),array(),ULTIMATE_VERSION);
+			Ultimate_VC_Addons::ultimate_register_script( 'swatchbook-js', 'swatchbook', false, array( 'jquery' ), ULTIMATE_VERSION, false );
+
+			Ultimate_VC_Addons::ultimate_register_style( 'swatchbook-css', 'swatchbook' );
 		}
 		function swatch_book_init(){
 			if(function_exists('vc_map'))
@@ -208,7 +200,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "ultimate_vc"),
 								"param_name" => "main_strip_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Advanced Settings",
 							),
 							array(
@@ -297,8 +289,8 @@ if(!class_exists('Ultimate_Swatch_Book')){
 						)
 					)
 				); // vc_map
-				
-				vc_map( 
+
+				vc_map(
 					array(
 						"name" => __("Swatch Book Item", "ultimate_vc"),
 						"base" => "swatch_item",
@@ -333,7 +325,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
@@ -376,7 +368,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								"param_name" => "icon_color",
 								"value" => "#333333",
 								"description" => __("Give it a nice paint!", "ultimate_vc"),
-								"dependency" => Array("element" => "icon_type","value" => array("selector")),						
+								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
 								"type" => "dropdown",
@@ -397,7 +389,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								"heading" => __("Background Color", "ultimate_vc"),
 								"param_name" => "icon_color_bg",
 								"value" => "#ffffff",
-								"description" => __("Select background color for icon.", "ultimate_vc"),	
+								"description" => __("Select background color for icon.", "ultimate_vc"),
 								"dependency" => Array("element" => "icon_style", "value" => array("circle","square","advanced")),
 							),
 							array(
@@ -423,7 +415,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								"heading" => __("Border Color", "ultimate_vc"),
 								"param_name" => "icon_color_border",
 								"value" => "#333333",
-								"description" => __("Select border color for icon.", "ultimate_vc"),	
+								"description" => __("Select border color for icon.", "ultimate_vc"),
 								"dependency" => Array("element" => "icon_border_style", "not_empty" => true),
 							),
 							array(
@@ -551,7 +543,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 				); // vc_map
 			}
 		}
-		
+
 		function swatch_container($atts,$content=null){
 			$swatch_style = $swatch_index_center = $swatch_space_degree = $swatch_trans_speed = $swatch_distance_sibling = $swatch_init_closed = $swatch_open_at
  = $swatch_width = $swatch_height = $swatch_trans_bg_img = $swatch_main_strip_text = $swatch_main_strip_highlight_text = $swatch_main_strip_font_size = $swatch_main_strip_font_style = $swatch_main_strip_color = $swatch_main_strip_highlight_font_size = $swatch_main_strip_highlight_font_weight = $swatch_main_strip_highlight_color = $swatch_main_strip_bg_color = $main_strip_font_family = $main_strip_font_style = '';
@@ -586,7 +578,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 				// $img = $img[0];
 				$img = apply_filters('ult_get_img_single', $swatch_trans_bg_img, 'url');
 				$this->swatch_trans_bg_img = $swatch_trans_bg_img;
-				$style .= 'background-image: url('.$img.');';
+				$style .= 'background-image: url('.esc_url($img).');';
 			}
 			if($swatch_width !== ''){
 				$style .= 'width:'.$swatch_width.'px;';
@@ -596,7 +588,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 				$style .= 'height:'.$swatch_height.'px;';
 				$this->swatch_height = $swatch_height;
 			}
-			
+
 			if($swatch_main_strip_highlight_font_size !== ''){
 				$highlight_style .= 'font-size:'.$swatch_main_strip_highlight_font_size.'px;';
 			}
@@ -606,7 +598,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 			if($swatch_main_strip_highlight_color !== ''){
 				$highlight_style .= 'color:'.$swatch_main_strip_highlight_color.';';
 			}
-			
+
 			if($main_strip_font_family != '')
 			{
 				$mhfont_family = get_ultimate_font_family($main_strip_font_family);
@@ -625,21 +617,21 @@ if(!class_exists('Ultimate_Swatch_Book')){
 			if($swatch_main_strip_bg_color !== ''){
 				$main_style .= 'background:'.$swatch_main_strip_bg_color.';';
 			}
-			
-			$output .= '<div id="ulsb-container-'.$uid.'" class="ulsb-container ulsb-'.$swatch_style.'" style="width:'.$swatch_width.'px; height:'.$swatch_height.'px;">';
+
+			$output .= '<div id="ulsb-container-'.esc_attr($uid).'" class="ulsb-container ulsb-'.esc_attr($swatch_style).'" style="width:'.esc_attr($swatch_width).'px; height:'.esc_attr($swatch_height).'px;">';
 			$output .= do_shortcode($content);
-			$output .= '<div class="ulsb-strip highlight-strip" style="'.$style.'">';
-			$output .= '<h4 class="strip_main_text" style="'.$main_style.'"><span>'.$swatch_main_strip_text.'</span></h4>';
-			$output .= '<h5 class="strip_highlight_text" style="'.$highlight_style.'"><span>'.$swatch_main_strip_highlight_text.'</span></h5>';
+			$output .= '<div class="ulsb-strip highlight-strip" style="'.esc_attr($style).'">';
+			$output .= '<h4 class="strip_main_text" style="'.esc_attr($main_style).'"><span>'.$swatch_main_strip_text.'</span></h4>';
+			$output .= '<h5 class="strip_highlight_text" style="'.esc_attr($highlight_style).'"><span>'.$swatch_main_strip_highlight_text.'</span></h5>';
 			$output .= '</div>';
 			$output .= '</div>';
 			$output .= '<script type="text/javascript">
 						jQuery(function() {';
 			if($swatch_style == 'style-1'){
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook();';
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook();';
 			}
 			if($swatch_style == 'style-2'){
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook( {
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook( {
 									angleInc : -10,
 									proximity : -45,
 									neighbor : -4,
@@ -647,7 +639,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								} );';
 			}
 			if($swatch_style == 'style-3'){
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook( {
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook( {
 									angleInc : 15,
 									neighbor : 15,
 									initclosed : true,
@@ -655,7 +647,7 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								} );';
 			}
 			if($swatch_style == 'style-4'){
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook( {
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook( {
 									speed : 500,
 									easing : "ease-out",
 									center : 7,
@@ -665,26 +657,26 @@ if(!class_exists('Ultimate_Swatch_Book')){
 								} );';
 			}
 			if($swatch_style == 'style-5'){
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook( {	openAt : 0	} );';
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook( {	openAt : 0	} );';
 			}
 			if($swatch_style == 'custom'){
 				$swatch_options = '';
 				if($swatch_trans_speed !== '')
-					$swatch_options .= 'speed : '.$swatch_trans_speed.',';
+					$swatch_options .= 'speed : '.esc_attr($swatch_trans_speed).',';
 				if($swatch_index_center !== '')
-					$swatch_options .= 'center : '.$swatch_index_center.',';
+					$swatch_options .= 'center : '.esc_attr($swatch_index_center).',';
 				if($swatch_space_degree !== '')
-					$swatch_options .= 'angleInc : '.$swatch_space_degree.',';
+					$swatch_options .= 'angleInc : '.esc_attr($swatch_space_degree).',';
 				if($swatch_distance_sibling !== '')
-					$swatch_options .= 'neighbor : '.$swatch_distance_sibling.',';
+					$swatch_options .= 'neighbor : '.esc_attr($swatch_distance_sibling).',';
 				if($swatch_open_at !== '')
-					$swatch_options .= 'openAt : '.$swatch_open_at.',';
+					$swatch_options .= 'openAt : '.esc_attr($swatch_open_at).',';
 				if($swatch_init_closed === 'on')
 					$swatch_init_closed = 'true';
 				else
 					$swatch_init_closed = 'false';
-					$swatch_options .= 'closeIdx : '.$swatch_init_closed.',';
-					$output .= 'jQuery( "#ulsb-container-'.$uid.'" ).swatchbook( {
+					$swatch_options .= 'closeIdx : '.esc_attr($swatch_init_closed).',';
+					$output .= 'jQuery( "#ulsb-container-'.esc_attr($uid).'" ).swatchbook( {
 									'.$swatch_options.'
 									easing : "ease-out",
 									proximity : 40,
@@ -695,14 +687,14 @@ if(!class_exists('Ultimate_Swatch_Book')){
 						var ult_strip = jQuery(".highlight-strip");
 						ult_strip.each(function(index, element) {
 							var strip_main_text = jQuery(this).children(".strip_main_text").outerHeight();
-							var height = '.$swatch_height.'-strip_main_text;
+							var height = '.esc_attr($swatch_height).'-strip_main_text;
 							jQuery(this).children(".strip_highlight_text").css("height",height);
 						});
 					});';
 			$output .= '</script>';
 			return $output;
 		}
-		
+
 		function swatch_item($atts,$content=null){
 			$icon_type = $icon_img = $img_width = $icon = $icon_color = $icon_color_bg = $icon_size = $icon_style = $icon_border_style = $icon_border_radius = $icon_color_border = $icon_border_size = $icon_border_spacing = $el_class = $icon_animation = $swatch_strip_font_size = $swatch_strip_font_weight =  $swatch_strip_font_color = $swatch_strip_bg_color = $swatch_strip_title_bg_color = '';
 			extract(shortcode_atts(array(
@@ -711,11 +703,11 @@ if(!class_exists('Ultimate_Swatch_Book')){
 				'icon' => '',
 				'icon_img' => '',
 				'img_width' => '',
-				'icon_size' => '',				
+				'icon_size' => '',
 				'icon_color' => '',
 				'icon_style' => '',
 				'icon_color_bg' => '',
-				'icon_color_border' => '',			
+				'icon_color_border' => '',
 				'icon_border_style' => '',
 				'icon_border_size' => '',
 				'icon_border_radius' => '',
@@ -729,26 +721,26 @@ if(!class_exists('Ultimate_Swatch_Book')){
 				'el_class' => '',
 			),$atts));
 			$output = '';
-			$box_icon = do_shortcode('[just_icon icon_type="'.$icon_type.'" icon="'.$icon.'" icon_img="'.$icon_img.'" img_width="'.$img_width.'" icon_size="'.$icon_size.'" icon_color="'.$icon_color.'" icon_style="'.$icon_style.'" icon_color_bg="'.$icon_color_bg.'" icon_color_border="'.$icon_color_border.'"  icon_border_style="'.$icon_border_style.'" icon_border_size="'.$icon_border_size.'" icon_border_radius="'.$icon_border_radius.'" icon_border_spacing="'.$icon_border_spacing.'" icon_animation="'.$icon_animation.'"]');
+			$box_icon = do_shortcode('[just_icon icon_type="'.esc_attr($icon_type).'" icon="'.esc_attr($icon).'" icon_img="'.esc_attr($icon_img).'" img_width="'.esc_attr($img_width).'" icon_size="'.esc_attr($icon_size).'" icon_color="'.esc_attr($icon_color).'" icon_style="'.esc_attr($icon_style).'" icon_color_bg="'.esc_attr($icon_color_bg).'" icon_color_border="'.esc_attr($icon_color_border).'"  icon_border_style="'.esc_attr($icon_border_style).'" icon_border_size="'.esc_attr($icon_border_size).'" icon_border_radius="'.esc_attr($icon_border_radius).'" icon_border_spacing="'.esc_attr($icon_border_spacing).'" icon_animation="'.esc_attr($icon_animation).'"]');
 			$style = '';
 			if($this->swatch_trans_bg_img !== ''){
 				// $img = wp_get_attachment_image_src( $this->swatch_trans_bg_img, 'large');
 				// $img = $img[0];
 				$img = apply_filters('ult_get_img_single', $this->swatch_trans_bg_img, 'url');
-				$style .= 'background-image: url('.$img.');';
+				$style .= 'background-image: url('.esc_url($img).');';
 			}
 			if($swatch_strip_bg_color !== ''){
-				$style .= 'background-color: '.$swatch_strip_bg_color.';';
+				$style .= 'background-color: '.esc_attr($swatch_strip_bg_color).';';
 			}
 			if($this->swatch_width !== ''){
-				$style .= 'width:'.$this->swatch_width.'px;';
+				$style .= 'width:'.esc_attr($this->swatch_width).'px;';
 			}
 			if($this->swatch_height!== ''){
-				$style .= 'height:'.$this->swatch_height.'px;';
+				$style .= 'height:'.esc_attr($this->swatch_height).'px;';
 			}
-			$output .= '<div class="ulsb-strip '.$el_class.'" style="'.$style.'">';
+			$output .= '<div class="ulsb-strip '.esc_attr($el_class).'" style="'.esc_attr($style).'">';
         	$output .= '<span class="ulsb-icon">'.$box_icon.'</span>';
-        	$output .= '<h4 style="color:'.$swatch_strip_font_color.'; background:'.$swatch_strip_title_bg_color.'; font-size:'.$swatch_strip_font_size.'px; font-style: '.$swatch_strip_font_weight.';"><span>'.$swatch_strip_text.'</span></h4>';
+        	$output .= '<h4 style="color:'.esc_attr($swatch_strip_font_color).'; background:'.esc_attr($swatch_strip_title_bg_color).'; font-size:'.esc_attr($swatch_strip_font_size).'px; font-style: '.esc_attr($swatch_strip_font_weight).';"><span>'.$swatch_strip_text.'</span></h4>';
     		$output .= '</div>';
 			return $output;
 		}
@@ -760,17 +752,22 @@ global $Ultimate_Swatch_Book;
 $Ultimate_Swatch_Book = new Ultimate_Swatch_Book;
 if(class_exists('WPBakeryShortCodesContainer'))
 {
-	class WPBakeryShortCode_swatch_container extends WPBakeryShortCodesContainer {
-		function content( $atts, $content = null ) {
-            global $Ultimate_Swatch_Book;
-            return $Ultimate_Swatch_Book->swatch_container($atts, $content);
-        }
-
+	if(!class_exists('WPBakeryShortCode_swatch_container'))
+	{
+		class WPBakeryShortCode_swatch_container extends WPBakeryShortCodesContainer {
+			function content( $atts, $content = null ) {
+	            global $Ultimate_Swatch_Book;
+	            return $Ultimate_Swatch_Book->swatch_container($atts, $content);
+	        }
+	    }
 	}
-	class WPBakeryShortCode_swatch_item extends WPBakeryShortCode {
-		function content( $atts, $content = null ) {
-            global $Ultimate_Swatch_Book;
-            return $Ultimate_Swatch_Book->swatch_item($atts, $content);
-        }
+	if(!class_exists('WPBakeryShortCode_swatch_item'))
+	{
+		class WPBakeryShortCode_swatch_item extends WPBakeryShortCode {
+			function content( $atts, $content = null ) {
+	            global $Ultimate_Swatch_Book;
+	            return $Ultimate_Swatch_Book->swatch_item($atts, $content);
+	        }
+		}
 	}
 }

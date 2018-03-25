@@ -35,12 +35,12 @@ if(!class_exists('Ultimate_Margin_Param'))
 
 		function ultimate_margins_param($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$positions = $settings['positions'];
 			$html = '<div class="ultimate-margins">
-						<input type="hidden" name="'.$settings['param_name'].'" class="wpb_vc_param_value ultimate-margin-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.'/>';
+						<input type="hidden" name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ultimate-margin-value '. esc_attr( $settings['param_name'] ).' '. esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.'/>';
 					foreach($positions as $key => $position)
-						$html .= $key.' <input type="text" style="width:50px;padding:3px" data-hmargin="'.$position.'" class="ultimate-margin-inputs" id="margin-'.$key.'" /> &nbsp;&nbsp;';
+						$html .= esc_attr( $key ).' <input type="text" style="width:50px;padding:3px" data-hmargin="'.esc_attr( $position ).'" class="ultimate-margin-inputs" id="margin-'.esc_attr( $key ).'" /> &nbsp;&nbsp;';
 			$html .= '</div>';
 			return $html;
 		}

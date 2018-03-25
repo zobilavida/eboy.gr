@@ -724,9 +724,9 @@ class RevSliderNavigation {
 								$overwrite = true;
 							}
 						}
-					}else{
+					}/*else{
 						$default_presets = array();
-					}
+					}*/
 					
 					if($overwrite === false){
 						$default_presets[$nav['id']][] = array(

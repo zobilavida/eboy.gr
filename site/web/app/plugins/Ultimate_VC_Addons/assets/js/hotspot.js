@@ -21,6 +21,7 @@
 
 		function init_tooltip()
 		{
+			var parama1 = "", parama2 = "";
 			$('a[href="#"]').click(function(event){ 
 				event.preventDefault(); 
 			});
@@ -61,9 +62,15 @@
 					var k = a(this).find(".hotspot-tooltip-content").html(),
 						l = 3,
 						m = a(this).data("tooltip-offsety") || 0;
-					
+
 					k = a(this).find(".hotspot-tooltip-content").html(k).text();
 
+					var custid = a(this).data("mycust-id");
+					
+					parama1 =a(this).data("ultimate-target");
+					parama2 =a(this).data("responsive-json-new");
+					parama2 = JSON.stringify(parama2);
+						 
 					if(j == 'top')
 					{
 						y = 0;
@@ -114,7 +121,7 @@
 		
 						//  Bubble arrow
 						//arrow: true,
-		
+						//customid: custid,
 						delay: 100,
 						speed: 300,
 						interactive: !0,
@@ -127,7 +134,13 @@
 						/*minWidth: r,*/
 						/*ultContainerWidth: f,*/  /* ultimate */
 						/*ultContentSize: r,*/  /* ultimate */
+
+						ult_adv_id: custid,
+						responsive_json_new:parama2,
+						ultimate_target:parama1
 					});
+
+
 				});
 			});
 		}

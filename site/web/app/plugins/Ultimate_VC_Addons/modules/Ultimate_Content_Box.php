@@ -2,8 +2,10 @@
   if(!class_exists('Ult_Content_Box')) {
 	class Ult_Content_Box {
 		function __construct() {
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action( 'init', array( $this, 'ult_content_box_init' ) );
+			}
 			add_shortcode("ult_content_box",array($this,"ult_content_box_callback"));
-			add_action( 'init', array( $this, 'ult_content_box_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'ult_content_box_scripts' ), 1 );
 		}
 		function ult_content_box_callback($atts, $content = null){
@@ -34,25 +36,25 @@
 			  ), $atts ) );
 
 		  	/* 	init var's 	*/
-		  	$style = $url = $link_title = $target = $responsive_margins = $normal_margins = $hover = $shadow = $data_attr = '';
+		  	$style = $url = $link_title = $target = $responsive_margins = $normal_margins = $hover = $shadow = $data_attr = $target = $link_title  = $rel = '';
 
 		  	if($bg_type!='') {
 		  		switch ($bg_type) {
 		  			case 'bg_color':	/* 	background color 	*/
 										if($bg_color!='') {
 											$style .= 'background-color:'.$bg_color.';';
-											$data_attr .= ' data-bg="'.$bg_color.'" ';
+											$data_attr .= ' data-bg="'.esc_attr( $bg_color ).'" ';
 										}
 										if($hover_bg_color!='') {
-											$hover .= ' data-hover_bg_color="'.$hover_bg_color.'" ';
+											$hover .= ' data-hover_bg_color="'.esc_attr($hover_bg_color).'" ';
 										}
 		  				break;
 		  			case 'bg_image': 	if($bg_image != '') {
 											$img = wp_get_attachment_image_src( $bg_image, 'large');
-										 	$style .= "background-image:url('".$img[0]."');";
-											$style .= 'background-size: '.$bg_size.';';
-											$style .= 'background-repeat: '.$bg_repeat.';';
-											$style .= 'background-position: '.$bg_position.';';
+										 	$style .= "background-image:url('".esc_url($img[0])."');";
+											$style .= 'background-size: '.esc_attr($bg_size).';';
+											$style .= 'background-repeat: '.esc_attr($bg_repeat).';';
+											$style .= 'background-position: '.esc_attr($bg_position).';';
 											$style .= 'background-color: rgba(0, 0, 0, 0);';
 									  	}
 					break;
@@ -80,7 +82,7 @@
 					}
 				}
 
-				$hover .= ' data-hover_box_shadow="'.$data.'" ';
+				$hover .= ' data-hover_box_shadow="'.esc_attr($data).'" ';
 			}
 
 
@@ -96,17 +98,17 @@
 				}
 				$temp_border = str_replace( '|', '', $border );
 				$style .= $temp_border;
-				$data_attr .= ' data-border_color="'.$border_color.'" ';
+				$data_attr .= ' data-border_color="'.esc_attr($border_color).'" ';
 			}
 
 			/* 	link 	*/
 			if($link!='') {
-			  $href 		= 	vc_build_link($link);
-			  $url 			= 	$href['url'];
-			  $link_title	=	$href['title'];
-			  $target		=	trim($href['target']);
+				$href 			= 	vc_build_link($link);
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
 			}
-
 
 		  	/* 	padding  	*/
 			if($padding!=''){ 	$style .= $padding; 	}
@@ -116,9 +118,9 @@
 
 			// HOVER
 			if($hover_border_color!='') {
-				$hover .= ' data-hover_border_color="'.$hover_border_color.'" ';
+				$hover .= ' data-hover_border_color="'.esc_attr($hover_border_color).'" ';
 			}
-			if($min_height!='') { $style .= 'min-height:'.$min_height.'px;'; }
+			if($min_height!='') { $style .= 'min-height:'.esc_attr($min_height).'px;'; }
 
 			// Transition Effect
 			if($trans_property!='' && $trans_duration!='' && $trans_function!='') {
@@ -131,18 +133,18 @@
 
 			/* 	Margins - Responsive 	*/
 			if($responsive_margin!='') {
-				$responsive_margins .= ' data-responsive_margins="'.$responsive_margin.'" ';
+				$responsive_margins .= ' data-responsive_margins="'.esc_attr($responsive_margin).'" ';
 			}
 			/* 	Margins - Normal  */
 			if($margin!='') {
-				$normal_margins .= ' data-normal_margins="'.$margin.'" ';
+				$normal_margins .= ' data-normal_margins="'.esc_attr($margin).'" ';
 			}
 
-			$output  = '<div class="ult-content-box-container '.$el_class.'" >';
+			$output  = '<div class="ult-content-box-container '.esc_attr($el_class).'" >';
 			if($link!='') {
-				$output .= '	<a class="ult-content-box-anchor" href="'.$url.'" title="'.$link_title.'" target="'.$target.'" >';
+				$output .= '	<a class="ult-content-box-anchor" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>';
 			}
-			$output .= '		<div class="ult-content-box" style="'.$style.'" '.$hover.' '.$responsive_margins.' '.$normal_margins.' '.$data_attr.'>';
+			$output .= '		<div class="ult-content-box" style="'.esc_attr($style).'" '.$hover.' '.$responsive_margins.' '.$normal_margins.' '.$data_attr.'>';
 			$output .=				do_shortcode( $content );
 			$output .= '		</div>';
 			if($link!='') {
@@ -451,24 +453,14 @@
 			  }
 		}
 		function ult_content_box_scripts() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-		  	wp_register_style( 'ult_content_box_css', plugins_url($css_path.'content-box'.$ext.'.css',__FILE__) );
-		  	wp_register_script('ult_content_box_js', plugins_url($js_path.'content-box'.$ext.'.js',__FILE__) , array('jquery'), ULTIMATE_VERSION, true);
+			Ultimate_VC_Addons::ultimate_register_style( 'ult_content_box_css', 'content-box' );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ult_content_box_js', 'content-box', false, array( 'jquery' ) );
 		}
 	}
 	// Finally initialize code
 	new Ult_Content_Box;
-		if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+		if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_ult_content_box' ) ) {
 			class WPBakeryShortCode_ult_content_box extends WPBakeryShortCodesContainer {
 			}
 		}

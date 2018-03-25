@@ -14,10 +14,22 @@
     });
     function responsive_sizes(el, ww, h, w, rh, rw) {
         if(ww!='') {
+            
+
             if(ww>=768) {
-                $(el).find('.ult-ih-item, .ult-ih-img, .ult-ih-image-block, .ult-ih-list-item').css({'height': h,'width': w});
+                if( $(el).find('.ult-ih-item').hasClass('ult-ih-effect20') ) {
+                    $(el).find('.spinner').css({'height': parseInt(h),'width': parseInt(w)});
+                }
+                else {
+                    $(el).find('.ult-ih-item, .ult-ih-img, .ult-ih-image-block, .ult-ih-list-item').css({'height': h,'width': w});
+                }
             } else {
-                $(el).find('.ult-ih-item, .ult-ih-img, .ult-ih-image-block, .ult-ih-list-item').css({'height': rh,'width': rw});
+                if(  $(el).find('.ult-ih-item').hasClass('ult-ih-effect20') ) {
+                    $(el).find('.spinner').css({'height': parseInt(rh),'width': parseInt(rw)});
+                }
+                else {
+                    $(el).find('.ult-ih-item, .ult-ih-img, .ult-ih-image-block, .ult-ih-list-item').css({'height': rh,'width': rw});
+                }
             }
         }
     }

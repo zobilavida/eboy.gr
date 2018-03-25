@@ -55,8 +55,6 @@ a.ult_ivan_button {
     top: 50%;
     right: 0;
     -webkit-transform: translate(50%, -50%);
-    -moz-transform: translate(50%, -50%);
-    -o-transform: translate(50%, -50%);
     -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
     height: 26px;
@@ -69,15 +67,12 @@ a.ult_ivan_button {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
     border-radius: 100%;
     font-size: 11px;
     border: 2px solid #e7e7e7;
     font-weight: 400;
     z-index: 12;
     -webkit-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
-    -moz-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
-    -o-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
     transition: border-color ease 500ms, background ease 500ms, color ease 500ms
 }
 .ult_dual_button .middle-text .middle-inner {
@@ -86,8 +81,6 @@ a.ult_ivan_button {
     left: 50%;
     width: 100%;
     -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     line-height: .8em
@@ -136,8 +129,6 @@ a.ult_ivan_button {
     text-align: center;
     position: relative;
     -webkit-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
-    -moz-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
-    -o-transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
     transition: border-color ease 500ms, background ease 500ms, color ease 500ms;
     font-size: 14px;
     font-weight: 400;
@@ -151,8 +142,6 @@ a.ult_ivan_button {
     background-color: #e7e7e7;
     border: none;
     -webkit-transition: background ease 150ms;
-    -moz-transition: background ease 150ms;
-    -o-transition: background ease 150ms;
     transition: background ease 150ms
 }
 .ult_ivan_button:hover {
@@ -183,22 +172,18 @@ a.ult_ivan_button {
 }
 .ult_ivan_button.square {
     -webkit-border-radius: 0;
-    -moz-border-radius: 0;
     border-radius: 0
 }
 .ult_ivan_button.round {
     -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
     border-radius: 50px
 }
 .ult_ivan_button.round-square {
     -webkit-border-radius: inherit;
-    -moz-border-radius: inherit;
     border-radius: inherit
 }
 .ult_ivan_button.circular {
     -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
     border-radius: 100%;
     padding: 0;
     width: 53px;
@@ -288,19 +273,13 @@ a.ult_ivan_button {
 }
 .ult_ivan_button.button-zoom {
     -webkit-transition: all ease 300ms;
-    -moz-transition: all ease 300ms;
-    -o-transition: all ease 300ms;
     transition: all ease 300ms;
     -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -o-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1)
 }
 .ult_ivan_button.button-zoom:hover {
     -webkit-transform: scale(1.15);
-    -moz-transform: scale(1.15);
-    -o-transform: scale(1.15);
     -ms-transform: scale(1.15);
     transform: scale(1.15)
 }
@@ -518,21 +497,24 @@ a.ult_ivan_button {
     display: block;
     text-align: center;
     cursor: pointer;
+    -webkit-box-shadow: inherit;
     box-shadow: inherit;
+    -webkit-border-top-left-radius: inherit;
     border-top-left-radius: inherit;
+    -webkit-border-bottom-left-radius: 0;
     border-bottom-left-radius: 0;
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s
 }
 .ult-dual-btn3 .ult_dual2 {
     display: block;
     text-align: center;
     cursor: pointer;
+    -webkit-box-shadow: inherit;
     box-shadow: inherit;
+    -webkit-border-bottom-right-radius: inherit;
     border-bottom-right-radius: inherit;
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s
 }
 .ult-dual-btn3 .aio-icon,
@@ -540,26 +522,26 @@ a.ult_ivan_button {
 .ult-dual-btn3 .icon-simple,
 .ult-dual-btn3 .ult-dual-button-title {
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s
 }
 .ult-dual-btn4 .ult_dual1 {
     display: block;
     text-align: center;
     cursor: pointer;
+    -webkit-box-shadow: inherit;
     box-shadow: inherit;
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s;
+    -webkit-border-bottom-left-radius: 0;
     border-bottom-left-radius: 0
 }
 .ult-dual-btn4 .ult_dual2 {
     display: block;
     text-align: center;
     cursor: pointer;
+    -webkit-box-shadow: inherit;
     box-shadow: inherit;
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s
 }
 .ult-dual-btn4 .aio-icon,
@@ -567,43 +549,26 @@ a.ult_ivan_button {
 .ult-dual-btn4 .icon-simple,
 .ult-dual-btn4 .ult-dual-button-title {
     -webkit-transition: all ease .8s;
-    -moz-transition: all ease .8s;
     transition: all ease .8s
 }
 .ult-dual-btn .ult_dual1,
 .ult-dual-btn .ult_dual2 {
     display: block;
     -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
     transition: .5s
 }
 .ult-dual-btn .ult-dual-button-title {
-    -moz-transition: .5s;
     -webkit-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
     transition: .5s
 }
 .ult-dual-btn .aio-icon,
 .ult-dual-btn .aio-icon-img,
 .ult-dual-btn .icon-simple {
     -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
     transition: .5s
 }
 .ult_dual_button .aio-icon {
     display: block!important
-}
-.ult_dual_button .dual_img {
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    position: absolute
 }
 .icon-right1 {
     padding: 0 22px 0 10px!important
@@ -627,22 +592,4 @@ a.ult_ivan_button {
 }
 .ult_btn1span {
     height: 100%
-}
-html[data-rtl=true] .ult_dual_button .title_right,
-html[dir=rtl] .ult_dual_button .title_right {
-    padding-right: 0!important;
-    padding-left: 20px!important
-}
-html[data-rtl=true] .ult_dual_button .icon-left2,
-html[dir=rtl] .ult_dual_button .icon-left2 {
-    padding-left: 10px!important
-}
-html[data-rtl=true] .ult_dual_button .title_left,
-html[dir=rtl] .ult_dual_button .title_left {
-    padding-right: 20px!important;
-    padding-left: 0!important
-}
-html[data-rtl=true] .ult_dual_button .icon-right1,
-html[dir=rtl] .ult_dual_button .icon-right1 {
-    padding-right: 10px!important
 }

@@ -1,181 +1,192 @@
 /*Admin CSS for Icon Manager*/
-.ultimate_icons{
+i.ultimate_icons{
 	background-image: url(../img/icon-icons.png) !important;
 	background-position:0 0 !important;
 }
-.ultimate_carousel{
+i.ultimate_carousel{
 	background-image: url(../img/icon-advanced-carousel.png) !important;
 	background-position:0 0 !important;
 }
-.ultimate_icon_list{
+i.ultimate_icon_list{
 	background-image: url(../img/icon-list-icon-parent.png) !important;
 	background-position:0 0 !important;
 }
-.icon_list_item {
+i.icon_list_item {
 	background-image: url(../img/icon-list-icon-child.png) !important;
 	background-position:0 0 !important;
 }
-.ult_buttons{
+i.ult_buttons{
 	background-image: url(../img/icon-button.png) !important;
 	background-position:0 0 !important;
 }
-.animation_block {
+i.animation_block {
 	background-image: url(../img/icon-animation.png) !important;
 	background-position:0 0 !important;
 }
-.vc_swatch_container {
+i.vc_swatch_container {
 	background-image: url(../img/icon-swatch-parent.png) !important;
 	background-position:0 0 !important;
 }
-.vc_swatch_item {
+i.vc_swatch_item {
 	background-image: url(../img/icon-swatch-child.png) !important;
 	background-position:0 0 !important;
 }
-.list_icon{
+i.list_icon{
 	background-image: url(../img/icon-list.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_tabs{
+i.vc_icon_tabs{
 	background-image: url(../img/icon-info-tabs.png) !important;
 	background-position:0 0 !important;
 }
-.uavc_heading_nav{
+i.uavc_heading_nav{
 	background-image: url(../img/icon-heading.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_heading{
+i.vc_ultimate_heading{
 	background-image: url(../img/icon-heading.png) !important;
 	background-position:0 0 !important;
 }
-.vc_google_trends{
+i.vc_google_trends{
 	background-image: url(../img/icon-google-trends.png) !important;
 	background-position:0 0 !important;
 }
-.vc_countdown{
+i.vc_countdown{
 	background-image: url(../img/icon-countdown.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_info_table{
+i.vc_ultimate_info_table{
 	background-image: url(../img/icon-info-table.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_info_table{
+i.vc_ultimate_info_table{
 	background-image: url(../img/icon-info-table.png) !important;
 	background-position:0 0 !important;
 }
-.vc_info_circle_item{
+i.vc_info_circle_item{
 	background-image: url(../img/icon-info-circle-block.png) !important;
 	background-position:0 0 !important;
 }
-.vc_info_circle {
+i.vc_info_circle {
 	background-image: url(../img/icon-info-circle.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_pricing{
+i.vc_ultimate_pricing{
 	background-image: url(../img/icon-price-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_pricing{
+i.vc_ultimate_pricing{
 	background-image: url(../img/icon-price-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_spacer{
+i.vc_ultimate_spacer{
 	background-image: url(../img/icon-spacer.png) !important;
 	background-position:0 0 !important;
 }
-.vc_timeline_feat_icon{
+i.vc_timeline_feat_icon{
 	background-image: url(../img/icon-timeline-featured.png) !important;
 	background-position:0 0 !important;
 }
-.vc_timeline_sep_icon{
+i.vc_timeline_sep_icon{
 	background-image: url(../img/icon-timeline-sep.png) !important;
 	background-position:0 0 !important;
 }
-.vc_timeline_item_icon {
+i.vc_timeline_item_icon {
 	background-image: url(../img/icon-timeline.png) !important;
 	background-position:0 0 !important;
 }
-.vc_timeline_icon{
+i.vc_timeline_icon{
 	background-image: url(../img/icon-timeline.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_block{
+i.vc_icon_block{
 	background-image: url(../img/icon-flip-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_list{
+i.vc_icon_list{
 	background-image: url(../img/icon-info-list.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_content_box{
+i.vc_icon_content_box{
 	background-image: url(../img/content-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_stats, .vc_stats_counter > .wpb_element_wrapper {
+i.vc_icon_stats, .vc_stats_counter > .wpb_element_wrapper {
 	background-image: url(../img/icon-counter.png) !important;
 }
-.vc_just_icon{
+i.vc_just_icon{
 	background-image: url(../img/icon-just-icon.png) !important;
 	background-position:0 0 !important;
 }
-.vc_info_box, .info_box{
+i.vc_info_box, .info_box{
 	background-image: url(../img/icon-info-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_modal_box, .modal_box{
+i.vc_modal_box, .modal_box{
 	background-image: url(../img/icon-modal.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_interactive{
+i.vc_icon_interactive{
 	background-image: url(../img/icon-interactive-banner.png) !important;
 	background-position:0 0 !important;
 }
-.vc_google_map{
+i.vc_google_map{
 	background-image: url(../img/icon-map.png) !important;
 	background-position:0 0 !important;
 }
-.vc_ultimate_fancytext{
+i.vc_ultimate_fancytext{
 	background-image: url(../img/icon-fancy-text.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_ctaction{
+i.vc_icon_ctaction{
 	background-image: url(../img/icon-highlight-box.png) !important;
 	background-position:0 0 !important;
 }
-.vc_icon_info_banner{
+i.vc_icon_info_banner{
 	background-image: url(../img/icon-info-banner.png) !important;
 	background-position:0 0 !important;
 }
-.ult_ihover{
+i.ult_ihover{
 	background-image: url(../img/icon-hover.png) !important;
 	background-position:0 0 !important;
 }
-.ult_hotspot {
+i.ult_hotspot {
 	background-image: url(../img/icon-hotspot.png) !important;
 	background-position: 0 0 !important;
 }
-.vc_ultimate_video_banner {
+i.vc_ultimate_video_banner {
 	background-image: url(../img/icon-video-banner.png) !important;
 	background-position: 0 0 !important;
 }
-.vc_icon_img_separator {
+i.vc_icon_img_separator {
 	background-image: url(../img/icon-image-separator.png) !important;
 	background-position: 0 0 !important;
 }
-a#ult_tab_element .vc_element-icon,
-.ult_tab_eleicon {
+i.vc_icon_team {
+	background-image: url(../img/icon-team.png) !important;
+	background-position: 0 0 !important;
+}
+i.vc_icon_sticky_section {
+	background-image: url(../img/icon-sticky-section.png) !important;
+	background-position: 0 0 !important;
+}
+i.vc_icon_range_slider {
+	background-image: url(../img/icon-range-slider.png) !important;
+	background-position: 0 0 !important;
+}
+a#ult_tab_element .vc_element-icon {
 	background-image: url(../img/tab-icon.png) !important;
 	background-position: 0 0 !important;
 }
-.uvc_creative_link {
+i.uvc_creative_link {
 	background-image: url(../img/creative-link.png) !important;
 	background-position: 0 0 !important;
 }
-.uvc_expandable {
+i.uvc_expandable {
 	background-image: url(../img/collapsable.png) !important;
 	background-position: 0 0 !important;
 }
-.uvc_dual_button {
+i.uvc_dual_button {
 	background-image: url(../img/dual_button.png) !important;
 	background-position: 0 0 !important;
 }

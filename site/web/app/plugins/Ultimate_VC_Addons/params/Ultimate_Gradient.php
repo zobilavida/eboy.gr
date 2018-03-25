@@ -21,7 +21,7 @@ if(!class_exists('Ultimate_Gradient_Param'))
 
 		function gradient_picker($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$type = isset($settings['type']) ? $settings['type'] : '';
 			$color1 = isset($settings['color1']) ? $settings['color1'] : ' ';
@@ -33,19 +33,19 @@ if(!class_exists('Ultimate_Gradient_Param'))
 			$dependency_value_json =  json_encode($dependency_value);
 
 			$uni = uniqid();
-			$output = '<div class="vc_ug_control" data-uniqid="'.$uni.'" data-color1="'.$color1.'" data-color2="'.$color2.'">';
+			$output = '<div class="vc_ug_control" data-uniqid="'.esc_attr( $uni ).'" data-color1="'.esc_attr( $color1 ).'" data-color2="'.esc_attr( $color2 ).'">';
 			//$output .= '<div class="wpb_element_label" style="margin-top: 10px;">'.__('Gradient Type','upb_parallax').'</div>
-			$output .= '<select id="grad_type'.$uni.'" class="grad_type" data-uniqid="'.$uni.'">
+			$output .= '<select id="grad_type'.esc_attr( $uni ).'" class="grad_type" data-uniqid="'.esc_attr( $uni ).'">
 				<option value="vertical">'.__('Vertical','ultimate_vc').'</option>
 				<option value="horizontal">'.__('Horizontal','ultimate_vc').'</option>
 				<option value="custom">'.__('Custom','ultimate_vc').'</option>
 			</select>
-			<div id="grad_type_custom_wrapper'.$uni.'" class="grad_type_custom_wrapper" style="display:none;"><input type="number" id="grad_type_custom'.$uni.'" placeholder="45" data-uniqid="'.$uni.'" class="grad_custom" style="width: 200px; margin-bottom: 10px;"/> deg</div>';
+			<div id="grad_type_custom_wrapper'.esc_attr( $uni ).'" class="grad_type_custom_wrapper" style="display:none;"><input type="number" id="grad_type_custom'.esc_attr( $uni ).'" placeholder="45" data-uniqid="'.esc_attr( $uni ).'" class="grad_custom" style="width: 200px; margin-bottom: 10px;"/> deg</div>';
 			$output .= '<div class="wpb_element_label" style="margin-top: 10px;">'.__('Choose Colors','ultimate_vc').'</div>';
-			$output .= '<div class="grad_hold" id="grad_hold'.$uni.'"></div>';
-			$output .= '<div class="grad_trgt" id="grad_target'.$uni.'"></div>';
+			$output .= '<div class="grad_hold" id="grad_hold'.esc_attr( $uni ).'"></div>';
+			$output .= '<div class="grad_trgt" id="grad_target'.esc_attr( $uni ).'"></div>';
 
-			$output .= '<input id="grad_val'.$uni.'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . ' vc_ug_gradient" name="' . $param_name . '"  style="display:none"  value="'.$value.'" '.$dependency.'/></div>';
+			$output .= '<input id="grad_val'.esc_attr( $uni ).'" class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr( $type ) . ' ' . esc_attr( $class ) . ' vc_ug_gradient" name="' . esc_attr( $param_name ) . '"  style="display:none"  value="'.esc_attr( $value ).'" '.$dependency.'/></div>';
 
 			?>
 				<script type="text/javascript">

@@ -33,6 +33,8 @@ jQuery(document).ready(function() {
    }
   /* bind trigger on click event*/
     jQuery(this).trigger("select");
+  /* trigger on click event*/
+    jQuery( document ).trigger( "ult-expandable", jQuery(this).next(".ult_exp_content") );
    
   });
 

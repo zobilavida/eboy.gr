@@ -1,6 +1,7 @@
 @charset "utf-8";
 .ubtn {
     border: inherit;
+    -webkit-border-radius: none;
     border-radius: none;
     font-size: 12px;
     font-weight: normal;
@@ -9,14 +10,13 @@
     background: transparent;
     cursor: pointer;
     display: inline-block;
-    margin: 15px 0;
+    margin: 0px;
     padding: 25px 80px;
     outline: 0;
     text-align: center;
     text-decoration: none;
     position: relative;
     -webkit-transition: all .3s;
-    -moz-transition: all .3s;
     transition: all .3s;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -25,6 +25,7 @@
     z-index: 1;
     max-width: 100%;
     visibility: visible;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden
 }
 .ubtn:after {
@@ -32,7 +33,6 @@
     position: absolute;
     z-index: -1;
     -webkit-transition: all .3s;
-    -moz-transition: all .3s;
     transition: all .3s
 }
 .ubtn-data {
@@ -54,20 +54,32 @@ button.ubtn:active,
 button.ubtn:visited {
     color: inherit;
     background: inherit;
+    -webkit-box-shadow: inherit;
     box-shadow: inherit;
     outline: 0
 }
-.ubtn-right {
+/*.ubtn-right {
     float: right
+}*/
+.ubtn-ctn-left {
+    display: block;
+    text-align: left
 }
 .ubtn-ctn-center {
-    margin: 0 auto;
     display: block;
+    text-align: center
+}
+.ubtn-ctn-right {
+    display: block;
+    text-align: right
+}
+.ubtn-ctn-inline {
+    display: inline-block;
     text-align: center
 }
 a.ubtn-link {
     display: inline-block;
-    margin: 15px 0;
+    margin:0px;
     color: inherit;
     text-decoration: none;
     max-width: 100%
@@ -114,11 +126,12 @@ button.ubtn-custom {
     }
 }
 .ubtn-shd {
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     background: #eaeaea;
+    -webkit-box-shadow: 0 5px #bebebe;
     box-shadow: 0 5px #bebebe;
     -webkit-transition: none !important;
-    -moz-transition: none !important;
     transition: none !important
 }
 .ubtn-sep-icon .ubtn-icon {
@@ -126,13 +139,10 @@ button.ubtn-custom {
     top: 50%;
     opacity: 0;
     -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     line-height: 1;
     -webkit-transition: all .3s;
-    -moz-transition: all .3s;
     transition: all .3s
 }
 .ubtn-sep-icon:hover .ubtn-icon {
@@ -155,13 +165,19 @@ button.ubtn-custom {
     right: 0;
     bottom: 0;
     -webkit-transform: translate(0);
-    -moz-transform: translate(0);
-    -o-transform: translate(0);
     -ms-transform: translate(0);
     transform: translate(0)
 }
 .ubtn-sep-icon.ubtn-sep-icon-at-left .ubtn-icon {
     left: 20px;
+    opacity: 1
+}
+.ubtn-img-container .ubtn-sep-icon.ubtn-sep-icon-at-left .ubtn-icon {
+    left: 20px;
+    opacity: 1
+}
+.ubtn-img-container .ubtn-sep-icon.ubtn-sep-icon-at-right .ubtn-icon {
+    right: 20px;
     opacity: 1
 }
 .ubtn-sep-icon.ubtn-sep-icon-at-right .ubtn-icon {
@@ -172,7 +188,10 @@ button.ubtn-custom {
     left: -2em
 }
 .ubtn-sep-icon-left:hover .ubtn-icon {
-    left: 20px
+    left: 10px
+}
+.ubtn-img-container .ubtn-sep-icon-left:hover .ubtn-icon {
+    left: 10px
 }
 .ubtn-sep-icon-left-rev .ubtn-icon {
     left: 4em
@@ -183,8 +202,11 @@ button.ubtn-custom {
 .ubtn-sep-icon-right .ubtn-icon {
     right: -2em
 }
+.ubtn-img-container .ubtn-sep-icon-right:hover .ubtn-icon {
+    right: 30px
+}
 .ubtn-sep-icon-right:hover .ubtn-icon {
-    right: 20px
+    right: 5px
 }
 .ubtn-sep-icon-right-rev .ubtn-icon {
     right: 4em
@@ -205,8 +227,6 @@ button.ubtn-custom {
     bottom: 0;
     opacity: 1;
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -o-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
     line-height: 1
@@ -219,8 +239,6 @@ button.ubtn-custom {
     top: 50%;
     left: 50%;
     -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -o-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%)
 }
@@ -230,7 +248,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-bottom-push .ubtn-text {
     display: inline-block;
     -webkit-transform: translateX(0) translateY(0);
-    -moz-transform: translateX(0) translateY(0);
     -ms-transform: translateX(0) translateY(0);
     transform: translateX(0) translateY(0)
 }
@@ -243,7 +260,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-top-push:hover .ubtn-text {
     display: inline-block;
     -webkit-transform: translateY(500px);
-    -moz-transform: translateY(500px);
     -ms-transform: translateY(500px);
     transform: translateY(500px)
 }
@@ -252,7 +268,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-top-push .ubtn-text,
 .ubtn-sep-icon.ubtn-sep-icon-top-push:hover .ubtn-text {
     -webkit-transition: all .45s;
-    -moz-transition: all .45s;
     transition: all .45s
 }
 .ubtn-sep-icon.ubtn-sep-icon-bottom-push .ubtn-icon {
@@ -264,7 +279,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-bottom-push:hover .ubtn-text {
     display: inline-block;
     -webkit-transform: translateY(-500px);
-    -moz-transform: translateY(-500px);
     -ms-transform: translateY(-500px);
     transform: translateY(-500px)
 }
@@ -273,7 +287,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-bottom-push .ubtn-text,
 .ubtn-sep-icon.ubtn-sep-icon-bottom-push:hover .ubtn-text {
     -webkit-transition: all .45s;
-    -moz-transition: all .45s;
     transition: all .45s
 }
 .ubtn-sep-icon.ubtn-sep-icon-left-push .ubtn-icon {
@@ -285,7 +298,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-left-push:hover .ubtn-text {
     display: inline-block;
     -webkit-transform: translateX(500px);
-    -moz-transform: translateX(500px);
     -ms-transform: translateX(500px);
     transform: translateX(500px)
 }
@@ -294,7 +306,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-left-push .ubtn-text,
 .ubtn-sep-icon.ubtn-sep-icon-left-push:hover .ubtn-text {
     -webkit-transition: all .6s;
-    -moz-transition: all .6s;
     transition: all .6s
 }
 .ubtn-sep-icon.ubtn-sep-icon-right-push .ubtn-icon {
@@ -306,7 +317,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-right-push:hover .ubtn-text {
     display: inline-block;
     -webkit-transform: translateX(-500px);
-    -moz-transform: translateX(-500px);
     -ms-transform: translateX(-500px);
     transform: translateX(-500px)
 }
@@ -315,7 +325,6 @@ button.ubtn-custom {
 .ubtn-sep-icon.ubtn-sep-icon-right-push .ubtn-text,
 .ubtn-sep-icon.ubtn-sep-icon-right-push:hover .ubtn-text {
     -webkit-transition: all .6s;
-    -moz-transition: all .6s;
     transition: all .6s
 }
 .ubtn-hover {
@@ -329,8 +338,8 @@ button.ubtn-custom {
     background: transparent;
     z-index: 2;
     -webkit-transition: all .3s;
-    -moz-transition: all .3s;
     transition: all .3s;
+    -webkit-border-radius:inherit;
     border-radius:inherit;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -379,7 +388,6 @@ button.ubtn-custom {
     background: #CCC;
     opacity: 0;
     -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%)
 }
@@ -399,7 +407,6 @@ button.ubtn-custom {
     background: #CCC;
     opacity: 0;
     -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%)
 }
@@ -419,7 +426,6 @@ button.ubtn-custom {
     background: #CCC;
     opacity: 0;
     -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transform: translateX(-50%) translateY(-50%) rotate(45deg)
 }
@@ -432,9 +438,9 @@ button.ubtn-custom {
     opacity: 1
 }
 .no-ubtn-shadow {
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
     -webkit-transition: all 50ms linear !important;
-    -moz-transition: all 50ms linear !important;
     transition: all 50ms linear !important
 }
 .ubtn-img-container {
@@ -445,32 +451,35 @@ button.ubtn-custom {
     display: block;
     max-width: 100%;
     border: 0;
+    -webkit-box-shadow: none;
     box-shadow: none;
     margin: 0 auto;
     padding: 0
 }
 .ubtn-img-container .ubtn {
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%)
+    position: relative;
+    display: block ;
+    margin: 0 auto ;
+    top: 0;
+    left: 0 ;
+    -webkit-transform: none;
+    -ms-transform: none ;
+    transform: none ;
 }
 .ubtn-img-container .ubtn.ubtn-right {
-    -webkit-transform: translateX(0%) translateY(-50%);
+/*    -webkit-transform: translateX(0%) translateY(-50%);
     -moz-transform: translateX(0%) translateY(-50%);
-    transform: translateX(0%) translateY(-50%);
+    transform: translateX(0%) translateY(-50%);*/ /* Raju changes */
     right: 0;
+    margin-right: 0;
     left: initial;
 }
 .ubtn-img-container .ubtn.ubtn-left {
-    -webkit-transform: translateX(0%) translateY(-50%);
+/*    -webkit-transform: translateX(0%) translateY(-50%);
     -moz-transform: translateX(0%) translateY(-50%);
-    transform: translateX(0%) translateY(-50%);
+    transform: translateX(0%) translateY(-50%);*/ /* Raju changes */
     left: 0;
+    margin-left: 0;
     right: initial;
 }
 .ubtn-img-container .ubtn-data {
@@ -478,14 +487,17 @@ button.ubtn-custom {
     display: inline-block
 }
 .ubtn-img-container a.ubtn-link {
-    display: block
+    display: inline-block
 }
 .ulta-grow {
     display: inline-block;
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -493,6 +505,7 @@ button.ubtn-custom {
 .ulta-grow:focus,
 .ulta-grow:active {
     -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
     transform: scale(1.1)
 }
 .ulta-shrink {
@@ -500,7 +513,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -508,6 +524,7 @@ button.ubtn-custom {
 .ulta-shrink:focus,
 .ulta-shrink:active {
     -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
     transform: scale(0.9)
 }
 @-webkit-keyframes ulta-pulse {
@@ -688,7 +705,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -696,6 +716,7 @@ button.ubtn-custom {
 .ulta-rotate:focus,
 .ulta-rotate:active {
     -webkit-transform: rotate(4deg);
+    -ms-transform: rotate(4deg);
     transform: rotate(4deg)
 }
 .ulta-grow-rotate {
@@ -703,7 +724,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -711,6 +735,7 @@ button.ubtn-custom {
 .ulta-grow-rotate:focus,
 .ulta-grow-rotate:active {
     -webkit-transform: scale(1.1) rotate(4deg);
+    -ms-transform: scale(1.1) rotate(4deg);
     transform: scale(1.1) rotate(4deg)
 }
 .ulta-float {
@@ -718,7 +743,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -726,6 +754,7 @@ button.ubtn-custom {
 .ulta-float:focus,
 .ulta-float:active {
     -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
     transform: translateY(-5px)
 }
 .ulta-sink {
@@ -733,7 +762,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -741,6 +773,7 @@ button.ubtn-custom {
 .ulta-sink:focus,
 .ulta-sink:active {
     -webkit-transform: translateY(5px);
+    -ms-transform: translateY(5px);
     transform: translateY(5px)
 }
 @-webkit-keyframes ulta-hover {
@@ -768,7 +801,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .5s;
     transition-duration: .5s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -776,6 +812,7 @@ button.ubtn-custom {
 .ulta-hover:focus,
 .ulta-hover:active {
     -webkit-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
     transform: translateY(-6px);
     -webkit-animation-name: ulta-hover;
     animation-name: ulta-hover;
@@ -815,7 +852,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .5s;
     transition-duration: .5s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -823,6 +863,7 @@ button.ubtn-custom {
 .ulta-hang:focus,
 .ulta-hang:active {
     -webkit-transform: translateY(6px);
+    -ms-transform: translateY(6px);
     transform: translateY(6px);
     -webkit-animation-name: ulta-hang;
     animation-name: ulta-hang;
@@ -842,7 +883,10 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
@@ -850,6 +894,7 @@ button.ubtn-custom {
 .ulta-skew:focus,
 .ulta-skew:active {
     -webkit-transform: skew(-10deg);
+    -ms-transform: skew(-10deg);
     transform: skew(-10deg)
 }
 .ulta-skew-forward {
@@ -857,8 +902,12 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
     transform-origin: 0 100%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
@@ -867,6 +916,7 @@ button.ubtn-custom {
 .ulta-skew-forward:focus,
 .ulta-skew-forward:active {
     -webkit-transform: skew(-10deg);
+    -ms-transform: skew(-10deg);
     transform: skew(-10deg)
 }
 .ulta-skew-backward {
@@ -874,8 +924,12 @@ button.ubtn-custom {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     -webkit-transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
     transition-property: transform;
+    transition-property: transform, -webkit-transform;
     -webkit-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
     transform-origin: 0 100%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
@@ -884,6 +938,7 @@ button.ubtn-custom {
 .ulta-skew-backward:focus,
 .ulta-skew-backward:active {
     -webkit-transform: skew(10deg);
+    -ms-transform: skew(10deg);
     transform: skew(10deg)
 }
 @-webkit-keyframes ulta-wobble-vertical {
@@ -1217,6 +1272,7 @@ button.ubtn-custom {
 .ulta-wobble-top {
     display: inline-block;
     -webkit-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
     transform-origin: 0 100%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
@@ -1288,6 +1344,7 @@ button.ubtn-custom {
 .ulta-wobble-bottom {
     display: inline-block;
     -webkit-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
     transform-origin: 100% 0;
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
@@ -1514,19 +1571,72 @@ button.ubtn-custom {
 .ubtn-img-container .ubtn-data.ubtn-icon i {
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 .ubtn-img-container .ubtn-data.ubtn-icon {
     height: 100%;
     position: absolute;
 }
-.ubtn-img-container .ubtn-data.ubtn-text {
+/*.ubtn-img-container .ubtn-data.ubtn-text {
     left: 15px;
-    /*Left to align space for icon*/
+    Left to align space for icon
 }
+*/
 .ubtn-hover {
     opacity: 0;
 }
 .ubtn-hover-active {
     opacity: 1;
+}
+/*swapnil*/
+.ubtn-img-container .ubtn-sep-icon-right .ubtn-data.ubtn-text{
+    left: -10px;
+}
+
+.ubtn-img-container .ubtn-sep-icon-at-left .ubtn-data.ubtn-text{
+    right: -15px;
+}
+/* Raju */
+/* Center */
+.ubtn-img-container .ubtn-ctn-center{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.ubtn-img-container .ubtn-ctn-inline{
+    position: absolute;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+/* Left */
+.ubtn-img-container .ubtn-ctn-left {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 50%;
+    -webkit-transform: translateX(0) translateY(-50%);
+    -ms-transform: translateX(0) translateY(-50%);
+    transform: translateX(0) translateY(-50%);
+}
+
+
+/* Right */
+.ubtn-img-container .ubtn-ctn-right {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    top: 50%;
+    -webkit-transform: translateX(0) translateY(-50%);
+    -ms-transform: translateX(0) translateY(-50%);
+    transform: translateX(0) translateY(-50%);
 }

@@ -22,7 +22,7 @@ if(!class_exists('Ultimate_ColorPicker_Param'))
 		function colorpicker_alpha_gen($settings, $value)
 		{
 			$base = $opacity = $output = '';
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$type = isset($settings['type']) ? $settings['type'] : '';
 			$class = isset($settings['class']) ? $settings['class'] : '';
@@ -43,10 +43,10 @@ if(!class_exists('Ultimate_ColorPicker_Param'))
 				//$base='#fff';
 			}
 			$output = '
-                <input id="alpha_val'.$uni.'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . ' vc_column_alpha" value="'.$value.'" '.$dependency.' data-uniqid="'.$uni.'" data-opacity="'.$opacity.'" data-hex-code="'.$base.'"/>
+                <input id="alpha_val'. esc_attr( $uni ).'" class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr( $type ) . ' ' . esc_attr( $class ) . ' vc_column_alpha" value="'. esc_attr( $value ).'" '.$dependency.' data-uniqid="'.esc_attr( $uni ).'" data-opacity="'.esc_attr( $opacity ).'" data-hex-code="'.esc_attr( $base ).'"/>
 ';
 			$output .= '
-<input class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" '.$dependency.' name="'.$param_name.'" value="'.$value.'" style="display:none"/>
+<input class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr($type) . ' ' . esc_attr($class) . '" '.$dependency.' name="'.esc_attr($param_name).'" value="'.esc_attr($value).'" style="display:none"/>
 <button class="alpha_clear" type="button">'.__('Clear','ultimate_vc').'</button>
 ';
 			?>

@@ -829,7 +829,6 @@ class RevSliderOutput {
 					$urlSlideImage = $urlImageTransparent;
 					$slideBGColor = TPColorpicker::get($slide->getParam('slide_bg_color', '#d0d0d0'));										
 					$styleImage = "data-bgcolor='".$slideBGColor."' style='background:".$slideBGColor."'";
-									
 				break;
 				case 'streamvimeo':
 				case 'streamyoutube':
@@ -1272,7 +1271,7 @@ class RevSliderOutput {
 				if(empty($arguments))
 					$arguments = RevSliderGlobals::DEFAULT_VIMEO_ARGUMENTS;
 				
-				$arguments ='background=1&'.$arguments;
+				// $arguments ='background=1&'.$arguments;
 				if($mute_video == 'off'){
 					$add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
 				}
@@ -1317,6 +1316,13 @@ class RevSliderOutput {
 				if(!empty($html_mpeg)) $add_data .= '			data-videomp4="'.$html_mpeg.'"'." \n";
 				
 				$add_data .= '			data-videopreload="auto"'." \n";
+				
+				if($mute_video == 'off'){
+					/* JASON */
+					// no volume option for HTML5 video settings, setting to 100 as default when mute is off
+					// $add_data .= '			data-volume="'.intval($volume_video).'"'." \n";
+					$add_data .= '			data-volume="100"'." \n";
+				}
 				
 				$video_added = true;
 			break;
@@ -1450,22 +1456,27 @@ class RevSliderOutput {
 		//$frame_start['to']
 		$blurfilter = RevSliderFunctions::getVal($layer['deformation'], 'blurfilter', 0);
 		$grayscalefilter = RevSliderFunctions::getVal($layer['deformation'], 'grayscalefilter', 0);
+		$brightnessfilter = RevSliderFunctions::getVal($layer['deformation'], 'brightnessfilter', 100);
 
 		$hover_blurfilter = 0;
 		$hover_grayscalefilter = 0;
+		$hover_brightnessfilter = 0;
 		//$frame_hover
 		if(isset($layer['deformation-hover'])){
 			$hover_blurfilter = RevSliderFunctions::getVal($layer['deformation-hover'], 'blurfilter', 0);
 			$hover_grayscalefilter = RevSliderFunctions::getVal($layer['deformation-hover'], 'grayscalefilter', 0);
+			$hover_brightnessfilter = RevSliderFunctions::getVal($layer['deformation-hover'], 'brightnessfilter', 100);
 		}
 		
 		//$frame_start['from']
 		$anim_blurfilter_start = RevSliderFunctions::getVal($layer, 'blurfilter_start', 0);
 		$anim_grayscalefilter_start = RevSliderFunctions::getVal($layer, 'grayscalefilter_start', 0);
+		$anim_brightnessfilter_start = RevSliderFunctions::getVal($layer, 'brightnessfilter_start', 100);
 
 		//$frame_end
 		$anim_blurfilter_end = RevSliderFunctions::getVal($layer, 'blurfilter_end', 0);
 		$anim_grayscalefilter_end = RevSliderFunctions::getVal($layer, 'grayscalefilter_end', 0);
+		$anim_brightnessfilter_end = RevSliderFunctions::getVal($layer, 'brightnessfilter_end', 100);
 
 		$blur_write_all = ($blurfilter != 0 && $blurfilter != '0px' ||
 							$hover_blurfilter != 0 && $hover_blurfilter != '0px' ||
@@ -1476,6 +1487,11 @@ class RevSliderOutput {
 							$hover_grayscalefilter != 0 && $hover_grayscalefilter != '0%' ||
 							$anim_grayscalefilter_start != 0 && $anim_grayscalefilter_start != '0%' ||
 							$anim_grayscalefilter_end != 0 && $anim_grayscalefilter_end != '0%') ? true : false;
+
+		$brightness_write_all = ($brightnessfilter != 100 && $brightnessfilter != '100%' ||
+							$hover_brightnessfilter != 100 && $hover_brightnessfilter != '100%' ||
+							$anim_brightnessfilter_start != 100 && $anim_brightnessfilter_start != '100%' ||
+							$anim_brightnessfilter_end != 100 && $anim_brightnessfilter_end != '100%') ? true : false;
 							
 		$isFullWidthVideo = false;
 		switch($type){
@@ -1612,6 +1628,9 @@ class RevSliderOutput {
 		if($anim_grayscalefilter_start != 0 && $anim_grayscalefilter_start != '0%' || $grayscale_write_all){
 			$tcin .= 'fg:'.$anim_grayscalefilter_start.';';
 		}
+		if($anim_brightnessfilter_start != 100 && $anim_brightnessfilter_start != '100%' || $brightness_write_all){
+			$tcin .= 'fbr:'.$anim_brightnessfilter_start.';';
+		}
 		
 		if($tcin !== ''){
 			$frame_start['from'] = $tcin;
@@ -1659,7 +1678,18 @@ class RevSliderOutput {
 		
 		$frame_start['speed'] = RevSliderFunctions::getVal($frame_start, 'speed', RevSliderFunctions::getVal($layer, 'speed', '300')); //fallback
 		$frame_start['easing'] = RevSliderFunctions::getVal($frame_start, 'easing', RevSliderFunctions::getVal($layer, 'easing', 'easeOutExpo')); //fallback
+				
+		if (RevSliderFunctions::getVal($frame_start, 'use_text_c')==1) 
+			$frame_start['color'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_start, 'text_c', 'transparent'));
 
+		if (RevSliderFunctions::getVal($frame_start, 'use_bg_c')==1) 
+			$frame_start['bgcolor'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_start, 'bg_c', 'transparent'));
+		
+		unset($frame_start['use_text_c']);
+		unset($frame_start['use_bg_c']);
+		unset($frame_start['text_c']);
+		unset($frame_start['bg_c']);
+		
 		$frame_start['sfx_effect'] = RevSliderFunctions::getVal($frame_start, 'sfx_effect', RevSliderFunctions::getVal($layer, 'sfx_effect', '')); //fallback
 		$frame_start['sfxcolor'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_start, 'sfxcolor', RevSliderFunctions::getVal($layer, 'sfxcolor', '#ffffff'))); //fallback
 		
@@ -2361,9 +2391,11 @@ class RevSliderOutput {
 						
 						if(empty($videoArgs))
 							$videoArgs = RevSliderGlobals::DEFAULT_VIMEO_ARGUMENTS;
-
+						
+						/*
 						if ($v_controls)
 							$videoArgs = 'background=1&'.$videoArgs;
+						*/
 
 						//check if full URL
 						if(strpos($videoID, 'http') !== false){
@@ -2404,6 +2436,11 @@ class RevSliderOutput {
 						$add_data .= ($v_controls) ? ' data-videocontrols="none"' : ' data-videocontrols="controls"';
 						$add_data .= ' data-videowidth="'.$videoWidth.'" data-videoheight="'.$videoHeight.'"';
 						
+						// JASON
+						$play_inline = RevSliderFunctions::getVal($videoData, 'video_play_inline', false);
+						$play_inline = RevSliderFunctions::strToBool($play_inline);
+						if($play_inline) $add_data .= ' data-videoinline="true"';
+						
 						if(is_ssl()){
 							$urlPoster = str_replace("http://", "https://", $urlPoster);
 						}
@@ -2425,11 +2462,17 @@ class RevSliderOutput {
 
 						if(!empty($videopreload)) $add_data .= ' data-videopreload="'.$videopreload.'"';
 						
+						if(!$mute){
+							$volume = RevSliderFunctions::getVal($videoData, "volume", '100');
+							$htmlMute = '			data-volume="'.intval($volume).'"';
+						}
+						
 						$large_controls = RevSliderFunctions::strToBool(RevSliderFunctions::getVal($videoData, "large_controls"));
 						if(!$large_controls){
 							//$add_data .= ' data-viodelargecontrols="off"';
 							$classes .= ' disabled_lc';
 						}
+						
 					break;
 					default:
 						RevSliderFunctions::throwError("wrong video type: $videoType");
@@ -2748,6 +2791,17 @@ class RevSliderOutput {
 		$es = RevSliderFunctions::getVal($frame_end, 'speed', RevSliderFunctions::getVal($layer, 'endspeed'));
 		$ee = trim(RevSliderFunctions::getVal($frame_end, 'easing', RevSliderFunctions::getVal($layer, 'endeasing')));
 		
+		if (RevSliderFunctions::getVal($frame_end, 'use_text_c')==1) 
+			$frame_end['color'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_end, 'text_c', 'transparent'));
+
+		if (RevSliderFunctions::getVal($frame_end, 'use_bg_c')==1) 
+			$frame_end['bgcolor'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_end, 'bg_c', 'transparent'));
+		
+		unset($frame_end['use_text_c']);
+		unset($frame_end['use_bg_c']);
+		unset($frame_end['text_c']);
+		unset($frame_end['bg_c']);
+
 		$frame_end['sfx_effect'] = RevSliderFunctions::getVal($frame_end, 'sfx_effect', RevSliderFunctions::getVal($layer, 'sfx_effect', '')); 
 		$frame_end['sfxcolor'] = TPColorpicker::get(RevSliderFunctions::getVal($frame_end, 'sfxcolor', RevSliderFunctions::getVal($layer, 'sfxcolor', '#ffffff'))); //fallback
 
@@ -2759,6 +2813,10 @@ class RevSliderOutput {
 		}
 		if($anim_grayscalefilter_end != 0 && $anim_grayscalefilter_end != '0%' || $grayscale_write_all){
 			$tcout .= 'fg:'.$anim_grayscalefilter_end.';';
+		}
+
+		if($anim_brightnessfilter_end != 100 && $anim_brightnessfilter_end != '100%' || $brightness_write_all){
+			$tcout .= 'fbr:'.$anim_brightnessfilter_end.';';
 		}
 		
 		if($tcout !== ''){
@@ -3291,6 +3349,10 @@ class RevSliderOutput {
 		if($grayscalefilter != 0 && $grayscalefilter != '0%' || $grayscale_write_all){
 			$def_string .= 'fg:'.$grayscalefilter.';';
 		}
+
+		if($brightnessfilter != 100 && $brightnessfilter != '100%' || $brightness_write_all){
+			$def_string .= 'fbr:'.$brightnessfilter.';';
+		}
 		
 		//check if hover is active for the layer
 		$is_hover_active = RevSliderFunctions::getVal($layer, 'hover', '0');
@@ -3421,6 +3483,9 @@ class RevSliderOutput {
 			}
 			if($hover_grayscalefilter != 0 && $hover_grayscalefilter != '0%' || $grayscale_write_all){
 				$def_string_h .= 'fg:'.$hover_grayscalefilter.';';
+			}
+			if($hover_brightnessfilter != 100 && $hover_brightnessfilter != '100%' || $brightness_write_all){
+				$def_string_h .= 'fbr:'.$hover_brightnessfilter.';';
 			}
 			
 			
@@ -4129,7 +4194,6 @@ class RevSliderOutput {
 				unset($frame_end['sfx_effect']);
 				unset($frame_end['sfxcolor']);
 			}
-			
 			echo "			data-frames='[";
 			echo json_encode($frame_start);
 			echo ',';
@@ -4493,6 +4557,8 @@ class RevSliderOutput {
 			$parallax_type = $this->slider->getParam("parallax_type","mouse");
 			$parallax_origo = $this->slider->getParam("parallax_origo","enterpoint");
 			$parallax_speed = $this->slider->getParam("parallax_speed","400");
+			$parallax_bg_speed = $this->slider->getParam("parallax_bg_speed","0");
+			$parallax_ls_speed = $this->slider->getParam("parallax_ls_speed","0");
 
 			if ($parallax_ddd=="on") {
 				$parallax_type="3D";
@@ -5077,6 +5143,8 @@ var revapi<?php echo $sliderID; ?>,
 		echo '				type:"'. esc_attr($parallax_type) .'",'."\n";
 		echo '				origo:"'. esc_attr($parallax_origo) .'",'."\n";
 		echo '				speed:'. esc_attr($parallax_speed) .','."\n";
+		echo '				speedbg:'. esc_attr($parallax_bg_speed) .','."\n";
+		echo '				speedls:'. esc_attr($parallax_ls_speed) .','."\n";
 		echo '				levels:['. esc_attr($parallax_level) .'],'."\n";
 		
 		if ($parallax_type == '3D') {
@@ -5443,6 +5511,8 @@ var revapi<?php echo $sliderID; ?>,
 				$this->slider->initByMixed($sliderID);
 			}
 			
+			do_action('revslider_modify_core_settings', $this->slider);
+			
 			//modify settings if there are any special settings given through the shortcode
 			if(!empty($settings))
 				$this->modify_settings($settings);
@@ -5511,6 +5581,7 @@ var revapi<?php echo $sliderID; ?>,
 			}
 			
 			$htmlBeforeSlider .= RevSliderOperations::printCleanFontImport();
+			
 			if($markup_export === true){
 				$htmlBeforeSlider .= '<!-- /FONT -->';
 			}

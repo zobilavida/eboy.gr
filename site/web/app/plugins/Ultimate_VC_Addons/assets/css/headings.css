@@ -7,7 +7,10 @@
 .uvc-heading .uvc-main-heading h3,
 .uvc-heading .uvc-main-heading h4,
 .uvc-heading .uvc-main-heading h5,
-.uvc-heading .uvc-main-heading h6 {
+.uvc-heading .uvc-main-heading h6,
+.uvc-heading .uvc-main-heading div,
+.uvc-heading .uvc-main-heading p,
+.uvc-heading .uvc-main-heading span {
     margin: 0;
     padding: 0;
     line-height: normal
@@ -23,6 +26,7 @@
 }
 .uvc-heading-spacer img {
     vertical-align: middle;
+    -webkit-box-shadow: none!important;
     box-shadow: none!important;
     max-width: 100%
 }

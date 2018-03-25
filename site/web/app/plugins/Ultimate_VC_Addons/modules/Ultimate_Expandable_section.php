@@ -10,28 +10,21 @@ if(!class_exists('AIO_ultimate_exp_section'))
 	{
 		function __construct()
 		{
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ultimate_ultimate_exp_section'));
+			}
 			add_shortcode('ultimate_exp_section',array($this,'ultimate_exp_section_shortcode'));
-			add_action('init',array($this,'ultimate_ultimate_exp_section'));
 			add_action( 'wp_enqueue_scripts', array( $this, 'ultimate_exp_scripts') , 1);
 
 		}
 
 		function ultimate_exp_scripts(){
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style( 'style_ultimate_expsection', plugins_url($css_path.'expandable-section'.$ext.'.css', __FILE__),array(),ULTIMATE_VERSION,FALSE);
-			wp_register_script("jquery_ultimate_expsection",plugins_url($js_path."expandable-section".$ext.".js",__FILE__),array('jquery','jquery_ui'),ULTIMATE_VERSION);
-			wp_register_script("jquery_ui",plugins_url($js_path."jquery-ui".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION);
+			
+			Ultimate_VC_Addons::ultimate_register_style( 'style_ultimate_expsection', 'expandable-section' );
 
+			Ultimate_VC_Addons::ultimate_register_script( 'jquery_ultimate_expsection', 'expandable-section', false, array('jquery','jquery_ui'), ULTIMATE_VERSION, false );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'jquery_ui', 'jquery-ui', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 		}
 
 		// Shortcode handler function for stats Icon
@@ -43,7 +36,7 @@ if(!class_exists('AIO_ultimate_exp_section'))
 			$icon_hover_color=$icon_style=$icon_color_bg=$icon_color_hoverbg=
 			$icon_border_style=$icon_color_border=$icon_color_hoverborder=
 			$icon_border_size=$icon_border_radius=$icon_border_spacing=$map_override=
-			$icon_align=$el_class=$css_editor='';
+			$icon_align=$el_class=$css_editor=$title_alignment='';
 
 			extract(shortcode_atts( array(
 
@@ -90,6 +83,7 @@ if(!class_exists('AIO_ultimate_exp_section'))
 				'icon_active_color'		=>'#333333',
 				'icon_active_color_bg'  =>'#ffffff',
 				'title_margin'			=>' ',
+				'title_alignment'	 	=> 'center',
 				'iconmargin_css'		=>' ',
 				'icon_color_activeborder'=>'#333333',
 				'title_margin' 			=>' ',
@@ -101,36 +95,41 @@ if(!class_exists('AIO_ultimate_exp_section'))
 
 				),$atts));
 
-				//echo $exp_effect;
+				$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+				$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
 
 				/*---------- data attribute-----------------------------*/
 				//echo $title_margin.$title_padding;
 				$data='';
-				$data.='data-textcolor="'.$text_color.'"';
+				$data.='data-textcolor="'.esc_attr($text_color).'"';
 				if($text_hovercolor==' '){
 					$text_hovercolor=$text_color;
 				}
 
-				$data.='data-texthover="'.$text_hovercolor.'"';
-				$data.='data-icncolor="'.$icon_color.'"';
-				$data.='data-ihover="'.$icon_hover_color.'"';
-				$data.='data-height="'.$section_height.'"';
+				if ( $title_alignment == '' ) {
+					$title_alignment = 'center';
+				}
 
-				$data.='data-cntbg="'.$background_color.'"';
-				$data.='data-cnthvrbg="'.$bghovercolor.'"';
-				$data.='data-headerbg="'.$background_color.'"';
+				$data.='data-texthover="'.esc_attr($text_hovercolor).'"';
+				$data.='data-icncolor="'.esc_attr($icon_color).'"';
+				$data.='data-ihover="'.esc_attr($icon_hover_color).'"';
+				$data.='data-height="'.esc_attr($section_height).'"';
+
+				$data.='data-cntbg="'.esc_attr($background_color).'"';
+				$data.='data-cnthvrbg="'.esc_attr($bghovercolor).'"';
+				$data.='data-headerbg="'.esc_attr($background_color).'"';
 				if($bghovercolor==' '){
 					$bghovercolor=$background_color;
 				}
-				$data.='data-headerhover="'.$bghovercolor.'"';
-				$data.='data-title="'.$title.'"';
+				$data.='data-headerhover="'.esc_attr($bghovercolor).'"';
+				$data.='data-title="'.esc_attr($title).'"';
 				if($new_title==' '){
 					$new_title=$title;
 				}
 
-				$data.='data-newtitle="'.$new_title.'"';
+				$data.='data-newtitle="'.esc_attr($new_title).'"';
 				//echo $new_icon;
-				$data.='data-icon="'.$icon.'"';
+				$data.='data-icon="'.esc_attr($icon).'"';
 				//echo $new_icon;
 				if($new_icon==' '){
 					$new_icon=$icon;
@@ -138,56 +137,56 @@ if(!class_exists('AIO_ultimate_exp_section'))
 				if($new_icon =='none'){
 				 $new_icon=$icon;
 				}
-				$data.='data-newicon="'.$new_icon.'"';
+				$data.='data-newicon="'.esc_attr($new_icon).'"';
 				/*----active icon --------*/
 
 				if($icon_active_color==''){
 					$icon_active_color=$icon_hover_color;
 				}
-				$data.='data-activeicon="'.$icon_active_color.'"';
+				$data.='data-activeicon="'.esc_attr($icon_active_color).'"';
 
 
 				if($icon_style!= 'none'){
-					$data.='data-icnbg="'.$icon_color_bg.'"';
-					$data.='data-icnhvrbg="'.$icon_color_hoverbg.'"';
+					$data.='data-icnbg="'.esc_attr($icon_color_bg).'"';
+					$data.='data-icnhvrbg="'.esc_attr($icon_color_hoverbg).'"';
 					if($icon_active_color_bg==' '){
 					$icon_active_color_bg=$icon_color_hoverbg;
 					}
-					$data.='data-activeiconbg="'.$icon_active_color_bg.'"';
+					$data.='data-activeiconbg="'.esc_attr($icon_active_color_bg).'"';
 
 				}
 				if($icon_style== 'advanced'){
-					$data.='data-icnbg="'.$icon_color_bg.'"';
-					$data.='data-icnhvrbg="'.$icon_color_hoverbg.'"';
-					$data.='data-icnborder="'.$icon_color_border.'"';
+					$data.='data-icnbg="'.esc_attr($icon_color_bg).'"';
+					$data.='data-icnhvrbg="'.esc_attr($icon_color_hoverbg).'"';
+					$data.='data-icnborder="'.esc_attr($icon_color_border).'"';
 					if($icon_color_hoverborder==' '){
 					$icon_color_hoverborder=$icon_color_border;
 					}
-					$data.='data-icnhvrborder="'.$icon_color_hoverborder.'"';
+					$data.='data-icnhvrborder="'.esc_attr($icon_color_hoverborder).'"';
 					if($icon_active_color_bg==' '){
 					$icon_active_color_bg=$bghovercolor;
 					}
-					$data.='data-activeiconbg="'.$icon_active_color_bg.'"';
+					$data.='data-activeiconbg="'.esc_attr($icon_active_color_bg).'"';
 
 					if($icon_color_activeborder==' '){
 					$icon_color_activeborder=$icnhvrborder;
 					}
-					$data.='data-activeborder="'.$icon_color_activeborder.'"';
+					$data.='data-activeborder="'.esc_attr($icon_color_activeborder).'"';
 
 				}
-				$data.='data-effect="'.$exp_effect.'"';
-				$data.='data-override="'.$map_override.'"';
+				$data.='data-effect="'.esc_attr($exp_effect).'"';
+				$data.='data-override="'.esc_attr($map_override).'"';
 
 				/*---active color ----------*/
 				if($title_active==''){
 					$title_active=$text_hovercolor;
 				}
-				$data.='data-activetitle="'.$title_active.'"';
+				$data.='data-activetitle="'.esc_attr($title_active).'"';
 
 				if($title_active_bg==' '){
 					$title_active_bg=$bghovercolor;
 				}
-				$data.='data-activebg="'.$title_active_bg.'"';
+				$data.='data-activebg="'.esc_attr($title_active_bg).'"';
 
 				/*----active icon --------*/
 
@@ -202,10 +201,10 @@ if(!class_exists('AIO_ultimate_exp_section'))
 				$data.='data-activeicon="'.$icon_active_color_bg.'"';*/
 
 
-/*------------icon style---------*/
-$iconoutput =$newsrc=$src1=$img_ext='';
-$style =$css_trans=$iconbgstyle='';
-if($icon_type == 'custom'){
+				/*------------icon style---------*/
+				$iconoutput =$newsrc=$src1=$img_ext='';
+				$style =$css_trans=$iconbgstyle='';
+				if($icon_type == 'custom'){
 
 				if($icon_img!==''){
 
@@ -215,7 +214,7 @@ if($icon_type == 'custom'){
 
 				$newsrc=$newimg;
 				$src1=$img;
-				$alt = get_post_meta($icon_img, '_wp_attachment_image_alt', true);
+				$alt = apply_filters('ult_get_img_single', $icon_img, 'alt');
 
 				if($icon_style !== 'none'){
 					if($icon_color_bg !== '')
@@ -242,8 +241,8 @@ if($icon_type == 'custom'){
 					if($icon_align == 'center') {
 						$style .= 'display:inline-block;';
 					}
-					$iconoutput .= "\n".'<span class="aio-icon-img '.$el_class.' '.'ult_expsection_icon " style="font-size:'.$img_width.'px;'.$style.'" '.$css_trans.'>';
-					$iconoutput .= "\n\t".'<img class="img-icon ult_exp_img '.$img_ext.'" alt="'.$alt.'" src="'.$img.'" />';
+					$iconoutput .= "\n".'<span class="aio-icon-img '.esc_attr($el_class).' '.'ult_expsection_icon " style="font-size:'.esc_attr($img_width).'px;'.esc_attr($style).'" '.$css_trans.'>';
+					$iconoutput .= "\n\t".'<img class="img-icon ult_exp_img '.esc_attr($img_ext).'" alt="'.esc_attr($alt).'" src="'.esc_url(apply_filters('ultimate_images', $img)).'" />';
 					$iconoutput .= "\n".'</span>';
 				}
 				if(!empty($img)){
@@ -279,8 +278,8 @@ if($icon_type == 'custom'){
 					$style .= 'display:inline-block;';
 				}
 				if($icon !== ""){
-					$iconoutput .= "\n".'<span class="aio-icon  '.$icon_style.' '.$el_class.' ult_expsection_icon " '.$css_trans.' style="'.$style.'">';
-					$iconoutput .= "\n\t".'<i class="'.$icon.' ult_ex_icon"  ></i>';
+					$iconoutput .= "\n".'<span class="aio-icon  '.esc_attr($icon_style).' '.esc_attr($el_class).' ult_expsection_icon " '.$css_trans.' style="'.esc_attr($style).'">';
+					$iconoutput .= "\n\t".'<i class="'.esc_attr($icon).' ult_ex_icon"  ></i>';
 					$iconoutput .= "\n".'</span>';
 				}
 				if($icon !== "" && $icon!=="none"){
@@ -298,11 +297,11 @@ if($icon_type == 'custom'){
 
 /*----------- image replace ----------------*/
 
-$data.='data-img="'.$src1.'"';
+$data.='data-img="'.esc_url($src1).'"';
 if($newsrc==''){
 	$newsrc=$src1;
 }
-$data.='data-newimg="'.$newsrc.'"';
+$data.='data-newimg="'.esc_url($newsrc).'"';
 
 /*------------header bg style---------*/
 
@@ -320,12 +319,27 @@ if (function_exists('get_ultimate_font_family')) {
 	if (function_exists('get_ultimate_font_style')) {
 		$headerstyle .= get_ultimate_font_style($heading_style);
 	}
-	if($title_font_size!=''){
-		$headerstyle.='font-size:'.$title_font_size.'px;';
-	}
-	if($title_line_ht!=''){
-		$headerstyle.='line-height:'.$title_line_ht.'px;';
-	}
+	// if($title_font_size!=''){
+	// 	$headerstyle.='font-size:'.$title_font_size.'px;';
+	// }
+	// if($title_line_ht!=''){
+	// 	$headerstyle.='line-height:'.$title_line_ht.'px;';
+	// }
+	if (is_numeric($title_font_size)) {
+        $title_font_size = 'desktop:'.$title_font_size.'px;';
+    }
+    if (is_numeric($title_line_ht)) {
+        $title_line_ht = 'desktop:'.$title_line_ht.'px;';
+    }
+    $ult_expandable_id = 'uvc-exp-wrap-'.rand(1000, 9999);
+    $ult_expandable_args = array(
+                'target' => '#'.$ult_expandable_id. '', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $title_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $title_line_ht
+                ),
+            );
+	$data_list = get_ultimate_vc_responsive_media_css($ult_expandable_args);
 $headerstyle.=$title_margin;
 $headerstyle.=$title_padding;
 
@@ -370,7 +384,7 @@ $icon_output='';
 $text_align='';
 if($icon_align=='top'){
 	if($icon_type == 'custom'){
-	$text_align .='text-align:-webkit-center;';
+	$text_align .='text-align:center;';
 	}
 	else{
 	$text_align .='text-align:center;';
@@ -380,9 +394,11 @@ if($icon_align=='top'){
 }
 $text_align.=$icon_margin;
 
+$headerstyle .= 'text-align:' . $title_alignment . ';';
+
 if($iconoutput!=''){
 	$icon_output='	<div class="ult-just-icon-wrapper ult_exp_icon">
-					<div class="align-icon '.$icon_css_class.'" style="text-align:'.$icon_align.';'.$text_align.'">
+					<div class="align-icon '.esc_attr($icon_css_class).'">
 						'.$iconoutput.'
 					</div>
 				</div>';
@@ -397,34 +413,34 @@ if($section_width !==' '){
 	$section_style='max-width:'.$section_width.'px;';
 }
 
-$output.='
-<div class="ult_exp_section_layer '.$extra_class.'" >
-	<div class="ult_exp_section '.$css_class .'" style="'.$headerstyle.'" '.$data.'>';
+$output.='<div class="ult_exp_section_layer '.esc_attr($is_vc_49_plus).' '.esc_attr($extra_class).'" >
+	<div id="'.esc_attr( $ult_expandable_id ).'"  '.$data_list.' class="ult_exp_section  ult-responsive '.esc_attr($css_class) .'" style="'.esc_attr($headerstyle).'" '.$data.'>';
+
 		if($icon_align=='left'){
-			$output.='<div class="ult_exp_section-main '.$position.'">'.$icon_output.'
-				<div class="ult_expheader" align="'.$icon_align.'" >'.$title.'
+			$output.='<div class="ult_exp_section-main '.esc_attr($position).'">'.$icon_output.'
+				<div class="ult_expheader" >'.$title.'
 				</div>
 			</div>
 		</div>';
 		}
 		else if($icon_align=='top'){
-		$output.='<div class="ult_exp_section-main '.$position.'">
+		$output.='<div class="ult_exp_section-main '.esc_attr($position).'">
 						'.$icon_output.'
-						<div class="ult_expheader" align="center" >'.$title.'
+						<div class="ult_expheader" >'.$title.'
 						 </div></div>
 				</div>';
 
 		}else{
 
-		$output.='<div class="ult_exp_section-main '.$position.'">
-					<div class="ult_expheader" align="'.$icon_align.'" >'.$title.'
+		$output.='<div  class="ult_exp_section-main '.esc_attr($position).'">
+					<div class="ult_expheader" >'.$title.'
 					 </div>'.$icon_output.'</div>
 				</div>';
 		}
 		if($content!=''){
-		$output.='<div class="ult_exp_content '.$desc_css_class.'" style="'.$cnt_style.'">';
+		$output.='<div class="ult_exp_content '.esc_attr($desc_css_class).'" style="'.esc_attr($cnt_style).'">';
 
-		$output.='<div class="ult_ecpsub_cont" style="'.$section_style.'" >';
+		$output.='<div class="ult_ecpsub_cont" style="'.esc_attr($section_style).'" >';
 		$output.=	do_shortcode($content);
 		$output.='</div>';
 		}
@@ -585,7 +601,7 @@ $output.='
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 								"group" => __("Icon","ultimate_vc"),
 							),
@@ -628,7 +644,7 @@ $output.='
 								"heading" => __("Select Icon For On Click ","ultimate_vc"),
 								"param_name" => "new_icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 								"group" => __("Icon","ultimate_vc"),
 							),
@@ -903,14 +919,19 @@ $output.='
 									'edit_field_class' => 'ult-param-heading-wrapper vc_column vc_col-sm-12',
 
 								),
-						/*	array(
-					            'type' => 'css_editor',
-					            'heading' => __( ' ', 'ultimate_vc' ),
-					            'param_name' => 'css',
-					            'group' => __( 'Design ', 'ultimate_vc' ),
-					           // 'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-lineborder',
-					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border',
-					        ),*/
+							array(
+								"type" => "dropdown",
+								"class" => "",
+								"heading" => __("Title Text Alignment", "ultimate_vc"),
+								"param_name" => "title_alignment",
+								"value" =>array(
+									"Center"=>"center",
+									"Left"=>"left",
+									"Right"=>"right"
+								),
+								"description" => __("Select the title and icon alignment.", "ultimate_vc"),
+								'group' => __( 'Design ', 'ultimate_vc' ),
+								),
 							array(
 						            "type" => "ultimate_spacing",
 						            "heading" => " Title Margin ",
@@ -1018,7 +1039,7 @@ $output.='
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Title Font Family", "ultimate_vc"),
 								"param_name" => "font_family",
-								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=ultimate-font-manager' target='_blank'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-google-font-manager' target='_blank' rel='noopener'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography ",
 								),
 
@@ -1029,24 +1050,56 @@ $output.='
 
 								"group" => "Typography ",
 							),
+							// array(
+							// 	"type" => "number",
+							// 	"param_name" => "title_font_size",
+							// 	"heading" => __("Font size","ultimate_vc"),
+							// 	"value" => "",
+							// 	"suffix" => "px",
+							// 	"group" => "Typography ",
+							// ),
 							array(
-								"type" => "number",
-								"param_name" => "title_font_size",
-								"heading" => __("Font size","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"group" => "Typography ",
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Font size", 'ultimate_vc'),
+                                "param_name" => "title_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography ",
+                            ),
 
+							// array(
+							// 	"type" => "number",
+							// 	"param_name" => "title_line_ht",
+							// 	"heading" => __("Line Height","ultimate_vc"),
+							// 	"value" => "",
+							// 	"suffix" => "px",
+							// 	"group" => "Typography ",
+
+							// ),
 							array(
-								"type" => "number",
-								"param_name" => "title_line_ht",
-								"heading" => __("Line Height","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"group" => "Typography ",
-
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Line Height", 'ultimate_vc'),
+                                "param_name" => "title_line_ht",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography ",
+                            ),
 						),
 					"js_view" => 'VcColumnView'
 					)
@@ -1064,7 +1117,7 @@ $AIO_ultimate_exp_section = new AIO_ultimate_exp_section;
 
 }
 
-if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_ultimate_exp_section' ) ) {
 		class WPBakeryShortCode_ultimate_exp_section extends WPBakeryShortCodesContainer {
 		}
 	}

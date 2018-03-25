@@ -35,9 +35,10 @@
 }
 .ultimate-vticker.ticker,
 .ultimate-vticker.ticker-down {
-    display: inline-block !important
+    display: inline-block !important;
+    vertical-align: top
 }
-.ultimate-vticker.ticker, 
+.ultimate-vticker.ticker,
 .ultimate-vticker.ticker *,
 .ultimate-vticker.ticker-down,
 .ultimate-vticker.ticker-down * {
@@ -62,11 +63,8 @@
 .typed-cursor {
     opacity: 1;
     font-weight: 100;
-    -webkit-animation: blink .7s infinite;
-    -moz-animation: blink .7s infinite;
-    -ms-animation: blink .7s infinite;
-    -o-animation: blink .7s infinite;
-    animation: blink .7s infinite
+    -webkit-animation: ult-blink .7s infinite;
+    animation: ult-blink .7s infinite;
 }
 .ultimate-typed-main {
     font-family: inherit!important;
@@ -75,7 +73,7 @@
     font-style: inherit !important;
     line-height: inherit !important;
 }
-@-keyframes blink {
+@keyframes ult-blink {
     0 {
         opacity: 1
     }
@@ -86,40 +84,7 @@
         opacity: 1
     }
 }
-@-webkit-keyframes blink {
-    0 {
-        opacity: 1
-    }
-    50% {
-        opacity: 0
-    }
-    100% {
-        opacity: 1
-    }
-}
-@-moz-keyframes blink {
-    0 {
-        opacity: 1
-    }
-    50% {
-        opacity: 0
-    }
-    100% {
-        opacity: 1
-    }
-}
-@-ms-keyframes blink {
-    0 {
-        opacity: 1
-    }
-    50% {
-        opacity: 0
-    }
-    100% {
-        opacity: 1
-    }
-}
-@-o-keyframes blink {
+@-webkit-keyframes ult-blink {
     0 {
         opacity: 1
     }

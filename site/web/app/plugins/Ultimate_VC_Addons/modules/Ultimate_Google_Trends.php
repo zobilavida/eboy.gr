@@ -6,7 +6,9 @@
 if(!class_exists("Ultimate_Google_Trends")){
 	class Ultimate_Google_Trends{
 		function __construct(){
-			add_action("init",array($this,"google_trends_init"));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action("init",array($this,"google_trends_init"));
+			}
 			add_shortcode("ultimate_google_trends",array($this,"display_ultimate_trends"));
 		}
 		function google_trends_init(){
@@ -40,8 +42,8 @@ if(!class_exists("Ultimate_Google_Trends")){
 							"heading" => __("Comparison Terms", "ultimate_vc"),
 							"param_name" => "gtrend_query",
 							"value" => "",
-							"description" => __("Enter maximum 5 terms separated by comma. Example:","ultimate_vc")." <em>".__("Google, Facebook, LinkedIn","ultimate_vc")."</em>",	
-							//"dependency" => Array("element" => "search_by","value" => array("q")),				
+							"description" => __("Enter maximum 5 terms separated by comma. Example:","ultimate_vc")." <em>".__("Google, Facebook, LinkedIn","ultimate_vc")."</em>",
+							//"dependency" => Array("element" => "search_by","value" => array("q")),
 						),
 						/*array(
 							"type" => "textfield",
@@ -49,8 +51,8 @@ if(!class_exists("Ultimate_Google_Trends")){
 							"heading" => __("Comparison Term", "smile"),
 							"param_name" => "gtrend_query_2",
 							"value" => "",
-							"description" => __("Enter single term. Example: <em>Love</em>", "smile"),	
-							"dependency" => Array("element" => "search_by","value" => array("geo","date")),				
+							"description" => __("Enter single term. Example: <em>Love</em>", "smile"),
+							"dependency" => Array("element" => "search_by","value" => array("geo","date")),
 						),*/
 						array(
 							"type" => "dropdown",
@@ -59,78 +61,78 @@ if(!class_exists("Ultimate_Google_Trends")){
 							"param_name" => "location_by",
 							"admin_label" => true,
 							"value" => array(
-								__("Worldwide", "ultimate_vc") => "", 
-								__("Argentina", "ultimate_vc") => "AR", 
+								__("Worldwide", "ultimate_vc") => "",
+								__("Argentina", "ultimate_vc") => "AR",
 								__("Australia", "ultimate_vc") => "AU",
-								__("Austria", "ultimate_vc") => "AT", 
+								__("Austria", "ultimate_vc") => "AT",
 								__("Bangladesh", "ultimate_vc") => "BD",
-								__("Belgium", "ultimate_vc") => "BE", 
+								__("Belgium", "ultimate_vc") => "BE",
 								__("Brazil", "ultimate_vc") => "BR",
-								__("Bulgaria", "ultimate_vc") => "BG", 
+								__("Bulgaria", "ultimate_vc") => "BG",
 								__("Canada", "ultimate_vc") => "CA",
-								__("Chile", "ultimate_vc") => "CL", 
+								__("Chile", "ultimate_vc") => "CL",
 								__("China", "ultimate_vc") => "CN",
-								__("Colombia", "ultimate_vc") => "CO", 
+								__("Colombia", "ultimate_vc") => "CO",
 								__("Costa Rica", "ultimate_vc") => "CR",
-								__("Croatia", "ultimate_vc") => "HR", 
+								__("Croatia", "ultimate_vc") => "HR",
 								__("Czech Republic", "ultimate_vc") => "CZ",
-								__("Denmark", "ultimate_vc") => "DK", 
+								__("Denmark", "ultimate_vc") => "DK",
 								__("Dominican Republic", "ultimate_vc") => "DO",
-								__("Ecuador", "ultimate_vc") => "EC", 
+								__("Ecuador", "ultimate_vc") => "EC",
 								__("Egypt", "ultimate_vc") => "EG",
-								__("El Salvador", "ultimate_vc") => "SV", 
+								__("El Salvador", "ultimate_vc") => "SV",
 								__("Estonia", "ultimate_vc") => "EE",
-								__("Finland", "ultimate_vc") => "FI", 
+								__("Finland", "ultimate_vc") => "FI",
 								__("France", "ultimate_vc") => "FR",
-								__("Germany", "ultimate_vc") => "DE", 
+								__("Germany", "ultimate_vc") => "DE",
 								__("Ghana", "ultimate_vc") => "GH",
 								__("Greece",'ultimate_vc') => "GR",
-								__("Guatemala", "ultimate_vc") => "GT", 
+								__("Guatemala", "ultimate_vc") => "GT",
 								__("Honduras", "ultimate_vc") => "HN",
-								__("Hong Kong", "ultimate_vc") => "HK", 
+								__("Hong Kong", "ultimate_vc") => "HK",
 								__("Hungary", "ultimate_vc") => "HU",
-								__("India", "ultimate_vc") => "IN", 
-								__("Indonesia", "ultimate_vc") => "ID", 
+								__("India", "ultimate_vc") => "IN",
+								__("Indonesia", "ultimate_vc") => "ID",
 								__("Ireland", "ultimate_vc") => "IE",
-								__("Israel", "ultimate_vc") => "IL", 
+								__("Israel", "ultimate_vc") => "IL",
 								__("Italy", "ultimate_vc") => "IT",
-								__("Japan", "ultimate_vc") => "JP", 
+								__("Japan", "ultimate_vc") => "JP",
 								__("Kenya", "ultimate_vc") => "KE",
-								__("Latvia", "ultimate_vc") => "LV", 
+								__("Latvia", "ultimate_vc") => "LV",
 								__("Lithuania", "ultimate_vc") => "LT",
-								__("Malaysia", "ultimate_vc") => "MY", 
+								__("Malaysia", "ultimate_vc") => "MY",
 								__("Mexico", "ultimate_vc") => "MX",
-								__("Netherlands", "ultimate_vc") => "NL", 
+								__("Netherlands", "ultimate_vc") => "NL",
 								__("New Zealand", "ultimate_vc") => "NZ",
-								__("Nigeria", "ultimate_vc") => "NG", 
+								__("Nigeria", "ultimate_vc") => "NG",
 								__("Norway", "ultimate_vc") => "NO",
-								__("Pakistan", "ultimate_vc") => "PK", 
+								__("Pakistan", "ultimate_vc") => "PK",
 								__("Panama", "ultimate_vc") => "PA",
-								__("Peru", "ultimate_vc") => "PE", 
+								__("Peru", "ultimate_vc") => "PE",
 								__("Philippines", "ultimate_vc") => "PH",
-								__("Poland", "ultimate_vc") => "PL", 
+								__("Poland", "ultimate_vc") => "PL",
 								__("Portugal", "ultimate_vc") => "PT",
-								__("Puerto Rico", "ultimate_vc") => "PR", 
+								__("Puerto Rico", "ultimate_vc") => "PR",
 								__("Romania", "ultimate_vc") => "RO",
-								__("Russia", "ultimate_vc") => "RU", 
+								__("Russia", "ultimate_vc") => "RU",
 								__("Saudi Arabia", "ultimate_vc") => "SA",
-								__("Senegal", "ultimate_vc") => "SN", 
+								__("Senegal", "ultimate_vc") => "SN",
 								__("Serbia", "ultimate_vc") => "RS",
-								__("Singapore", "ultimate_vc") => "SG", 
+								__("Singapore", "ultimate_vc") => "SG",
 								__("Slovakia", "ultimate_vc") => "SK",
-								__("Slovenia", "ultimate_vc") => "SI", 
+								__("Slovenia", "ultimate_vc") => "SI",
 								__("South Africa", "ultimate_vc") => "ZA",
-								__("South Korea", "ultimate_vc") => "KR", 
+								__("South Korea", "ultimate_vc") => "KR",
 								__("Spain", "ultimate_vc") => "ES",
-								__("Sweden", "ultimate_vc") => "SE", 
+								__("Sweden", "ultimate_vc") => "SE",
 								__("Switzerland", "ultimate_vc") => "CH",
-								__("Taiwan", "ultimate_vc") => "TW", 
+								__("Taiwan", "ultimate_vc") => "TW",
 								__("Thailand", "ultimate_vc") => "TH",
-								__("Turkey", "ultimate_vc") => "TR", 
+								__("Turkey", "ultimate_vc") => "TR",
 								__("Uganda", "ultimate_vc") => "UG",
-								__("Ukraine", "ultimate_vc") => "UA", 
+								__("Ukraine", "ultimate_vc") => "UA",
 								__("United Arab Emirates", "ultimate_vc") => "AE",
-								__("United Kingdom", "ultimate_vc") => "GB", 
+								__("United Kingdom", "ultimate_vc") => "GB",
 								__("United States", "ultimate_vc") => "US",
 								__("Uruguay", "ultimate_vc") => "UY",
 								__("Venezuela", "ultimate_vc") => "VE",
@@ -179,16 +181,24 @@ if(!class_exists("Ultimate_Google_Trends")){
 						),
 						array(
 							"type" => "ult_param_heading",
-							"text" => "<span style='display: block;'><a href='http://bsf.io/skwuz' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+							"text" => "<span style='display: block;'><a href='http://bsf.io/skwuz' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 							"param_name" => "notification",
 							'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 						),
+						array(
+					            'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_gtrend_design',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 					)
 				));
 			}
 		}
 		function display_ultimate_trends($atts,$content = null){
 			$width = $height = $graph_type = $graph_type_2 = $search_by = $location_by = $gtrend_query = $gtrend_query_2 = $el_class = '';
+			$css_design_style = '';
 			extract(shortcode_atts(array(
 				//"id" => "map",
 				"gtrend_width" => "",
@@ -199,8 +209,15 @@ if(!class_exists("Ultimate_Google_Trends")){
 				"location_by" => "",
 				"gtrend_query" => "",
 				"gtrend_query_2" => "",
-				"el_class" => ""
+				"el_class" => "",
+				"css_gtrend_design" => "",
 			), $atts));
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
+			
+			$css_design_style = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_gtrend_design, ' ' ), "ultimate_google_trends", $atts );
+ 			$css_design_style = esc_attr( $css_design_style );
+			
 			if($search_by === 'q')
 			{
 				$graph_type_new = $graph_type;
@@ -222,14 +239,14 @@ if(!class_exists("Ultimate_Google_Trends")){
 				$height = '&amp;h='.$height;
 			}
 			$id = uniqid('vc-trends-');
-			$output = '<div id="'.$id.'" class="ultimate-google-trends '.$el_class.'">
-				<script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&amp;q='.$gtrend_query_new.'&cmpt='.$search_by.'&amp;geo='.$location_by.'&amp;content=1&amp;cid='.$graph_type_new.'&amp;export=5'.$width.$height.'"></script>
+			$output = '<div id="'.esc_attr($id).'" class="ultimate-google-trends '.esc_attr($is_vc_49_plus).' '.esc_attr($el_class).' '.esc_attr($css_design_style).'">
+				<script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&amp;q='.esc_attr($gtrend_query_new).'&cmpt='.esc_attr($search_by).'&amp;geo='.esc_attr($location_by).'&amp;content=1&amp;cid='.esc_attr($graph_type_new).'&amp;export=5'.esc_attr($width).esc_attr($height).'"></script>
 			</div>';
 			return $output;
 		}
 	}
 	new Ultimate_Google_Trends;
-	if(class_exists('WPBakeryShortCode'))
+	if(class_exists('WPBakeryShortCode') && !class_exists('WPBakeryShortCode_ultimate_google_trends'))
 	{
 		class WPBakeryShortCode_ultimate_google_trends extends WPBakeryShortCode {
 		}

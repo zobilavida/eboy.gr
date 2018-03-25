@@ -24,14 +24,14 @@ if(!class_exists('Ult_Spacing'))
 
     function ultimate_spacing_callback($settings, $value)
     {
-        $dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+        $dependency = '';
         $positions = $settings['positions'];
         $mode = $settings['mode'];
 
         $uid = 'ultimate-spacing-'. rand(1000, 9999);
         if(isset($settings['unit'])) { $unit = $settings['unit']; } else { $unit = ''; }
 
-          $html  = '<div class="ultimate-spacing" id="'.$uid.'" data-unit="'.$unit.'" >';
+          $html  = '<div class="ultimate-spacing" id="'.esc_attr( $uid ).'" data-unit="'.esc_attr( $unit ).'" >';
 
           //  Expand / Collapse
           $html .= '<div class="ult-spacing-expand">';
@@ -64,22 +64,22 @@ if(!class_exists('Ult_Spacing'))
 
           $html .= '<div class="ultimate-spacing-input-block ult-spacing-all " data-status="hide-all">
                       <span class="ultimate-spacing-icon"><i class="dashicons dashicons-editor-expand"></i></span>
-                      <input type="text" class="ultimate-spacing-inputs ultimate-spacing-input" data-unit="'.$unit.'" data-default="" data-id="'.$mode.'" placeholder="All">
+                      <input type="text" class="ultimate-spacing-inputs ultimate-spacing-input" data-unit="'.esc_attr( $unit ).'" data-default="" data-id="'.esc_attr( $mode ).'" placeholder="All">
                     </div>';
 
           $html .= $this->get_units($unit);
           $html .= '</div><!-- .ultimate-four-input-section -->';
 
-        $html .= '  <input type="hidden" data-unit="'.$unit.'" name="'.$settings['param_name'].'" class="wpb_vc_param_value ultimate-spacing-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.' />';
+        $html .= '  <input type="hidden" data-unit="'.esc_attr( $unit ).'" name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ultimate-spacing-value '.esc_attr( $settings['param_name'] ).' '.esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.' />';
         $html .= '</div>';
       return $html;
     }
     function ultimate_spacing_param_item($dashicon, $mode, $unit,/* $default_value,*/$default_value, $key) {
         $html  = '  <div class="ultimate-spacing-input-block ult-spacing-single">';
         $html .= '    <span class="ultimate-spacing-icon">';
-        $html .= '      <i class="'.$dashicon.'"></i>';
+        $html .= '      <i class="'.esc_attr($dashicon).'"></i>';
         $html .= '    </span>';
-        $html .= '    <input type="text" class="ultimate-spacing-inputs ultimate-spacing-input" data-unit="'.$unit.'" data-default="'.$default_value.'" data-id="'.$mode.'-'.strtolower($key).'" placeholder="'.$key.'" />';
+        $html .= '    <input type="text" class="ultimate-spacing-inputs ultimate-spacing-input" data-unit="'.esc_attr( $unit ).'" data-default="'.esc_attr( $default_value ).'" data-id="'.esc_attr( $mode.'-'.strtolower($key) ).'" placeholder="'.esc_attr( $key ).'" />';
         $html .= '  </div>';
         return $html;
     }

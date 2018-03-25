@@ -111,6 +111,7 @@ class RevSliderFront extends RevSliderBaseFront{
 		
 		add_action('wp_head', array('RevSliderFront', 'add_meta_generator'));
 		add_action('wp_head', array('RevSliderFront', 'add_setREVStartSize'), 99);
+		add_action('admin_head', array('RevSliderFront', 'add_setREVStartSize'), 99);
 		add_action("wp_footer", array('RevSliderFront',"load_icon_fonts") );
 		
 		// Async JS Loading
@@ -234,8 +235,20 @@ class RevSliderFront extends RevSliderBaseFront{
 			$cur_ver = '1.0.0';
 		}
 		
-		if(version_compare($cur_ver, '1.0.1', '<')){ //add missing settings field, for new creates lines in slide editor for example
+		if(version_compare($cur_ver, '1.0.6', '<')){
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			
+			$tableName = RevSliderGlobals::TABLE_SLIDERS_NAME;
+			$sql = "CREATE TABLE " .self::$table_prefix.$tableName ." (
+						  id int(9) NOT NULL AUTO_INCREMENT,
+						  title tinytext NOT NULL,
+						  alias tinytext,
+						  params LONGTEXT NOT NULL,
+						  settings TEXT NULL,
+						  type VARCHAR(191) NOT NULL DEFAULT '',
+						  UNIQUE KEY id (id)
+						);";
+			dbDelta($sql);
 			
 			$tableName = RevSliderGlobals::TABLE_SLIDES_NAME;
 			$sql = "CREATE TABLE " .self::$table_prefix.$tableName ." (
@@ -244,7 +257,7 @@ class RevSliderFront extends RevSliderBaseFront{
 						  slide_order int not NULL,
 						  params LONGTEXT NOT NULL,
 						  layers LONGTEXT NOT NULL,
-						  settings text NOT NULL,
+						  settings TEXT NOT NULL DEFAULT '',
 						  UNIQUE KEY id (id)
 						);";
 			dbDelta($sql);
@@ -255,117 +268,32 @@ class RevSliderFront extends RevSliderBaseFront{
 						  slider_id int(9) NOT NULL,
 						  params LONGTEXT NOT NULL,
 						  layers LONGTEXT NOT NULL,
-						  settings text NOT NULL,
+						  settings TEXT NOT NULL,
 						  UNIQUE KEY id (id)
 						);";
 			dbDelta($sql);
 			
-			update_option('revslider_table_version', '1.0.1');
-			$cur_ver = '1.0.1';
-		}
-		
-		if(version_compare($cur_ver, '1.0.2', '<')){
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			$tableName = RevSliderGlobals::TABLE_SLIDERS_NAME;
-			
-			$sql = "CREATE TABLE " .self::$table_prefix.$tableName ." (
-						  id int(9) NOT NULL AUTO_INCREMENT,
-						  title tinytext NOT NULL,
-						  alias tinytext,
-						  params LONGTEXT NOT NULL,
-						  settings text NULL,
-						  UNIQUE KEY id (id)
-						);";
-			dbDelta($sql);
-			
-			update_option('revslider_table_version', '1.0.2');
-			$cur_ver = '1.0.2';
-		}
-		
-		if(version_compare($cur_ver, '1.0.3', '<')){
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			$tableName = RevSliderGlobals::TABLE_CSS_NAME;
-			
 			$sql = "CREATE TABLE " .self::$table_prefix.$tableName ." (
 						  id int(9) NOT NULL AUTO_INCREMENT,
 						  handle TEXT NOT NULL,
 						  settings LONGTEXT,
 						  hover LONGTEXT,
-						  advanced MEDIUMTEXT,
-						  params TEXT NOT NULL,
+						  advanced LONGTEXT,
+						  params LONGTEXT NOT NULL,
 						  UNIQUE KEY id (id)
 						);";
 			dbDelta($sql);
 			
-			update_option('revslider_table_version', '1.0.3');
-			$cur_ver = '1.0.3';
-		}
-		
-		if(version_compare($cur_ver, '1.0.4', '<')){
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_SLIDERS_NAME ." (
+			$tableName = RevSliderGlobals::TABLE_LAYER_ANIMS_NAME;
+			$sql = "CREATE TABLE " .self::$table_prefix.$tableName ." (
+					  id int(9) NOT NULL AUTO_INCREMENT,
+					  settings text NULL,
 					  UNIQUE KEY id (id)
 					);";
 			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_SLIDES_NAME ." (
-					  UNIQUE KEY id (id)
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_STATIC_SLIDES_NAME ." (
-					  UNIQUE KEY id (id)
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_CSS_NAME ." (
-					  UNIQUE KEY id (id)
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_LAYER_ANIMS_NAME ." (
-					  UNIQUE KEY id (id)
-					);";
-			dbDelta($sql);
-			
-			update_option('revslider_table_version', '1.0.4');
-			$cur_ver = '1.0.4';
-		}
-		
-		if(version_compare($cur_ver, '1.0.5', '<')){
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_LAYER_ANIMS_NAME ." (
-					  settings text NULL
-					);";
-			dbDelta($sql);
-			
-			update_option('revslider_table_version', '1.0.5');
-			$cur_ver = '1.0.5';
-		}
-		
-		if(version_compare($cur_ver, '1.0.6', '<')){
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_SLIDERS_NAME ." (
-					 type VARCHAR(191) NOT NULL DEFAULT '',
-					 params LONGTEXT NOT NULL
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_SLIDES_NAME ." (
-					  settings text NOT NULL DEFAULT '',
-					  params LONGTEXT NOT NULL,
-					  layers LONGTEXT NOT NULL
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_STATIC_SLIDES_NAME ." (
-					  params LONGTEXT NOT NULL,
-					  layers LONGTEXT NOT NULL
-					);";
-			dbDelta($sql);
-			$sql = "CREATE TABLE " .self::$table_prefix.RevSliderGlobals::TABLE_CSS_NAME ." (
-					  advanced LONGTEXT
-					);";
-			dbDelta($sql);
-			
+
 			update_option('revslider_table_version', '1.0.6');
-			$cur_ver = '1.0.6';
 		}
 
 	}
@@ -410,6 +338,8 @@ class RevSliderFront extends RevSliderBaseFront{
 						  title tinytext NOT NULL,
 						  alias tinytext,
 						  params LONGTEXT NOT NULL,
+						  settings TEXT NULL,
+						  type VARCHAR(191) NOT NULL DEFAULT '',
 						  UNIQUE KEY id (id)
 						);";
 			break;
@@ -420,6 +350,7 @@ class RevSliderFront extends RevSliderBaseFront{
 							  slide_order int not NULL,
 							  params LONGTEXT NOT NULL,
 							  layers LONGTEXT NOT NULL,
+							  settings TEXT NOT NULL DEFAULT '',
 							  UNIQUE KEY id (id)
 							);";
 			break;
@@ -429,6 +360,7 @@ class RevSliderFront extends RevSliderBaseFront{
 							  slider_id int(9) NOT NULL,
 							  params LONGTEXT NOT NULL,
 							  layers LONGTEXT NOT NULL,
+							  settings TEXT NOT NULL,
 							  UNIQUE KEY id (id)
 							);";
 			break;
@@ -438,6 +370,7 @@ class RevSliderFront extends RevSliderBaseFront{
 							  handle TEXT NOT NULL,
 							  settings LONGTEXT,
 							  hover LONGTEXT,
+							  advanced LONGTEXT,
 							  params LONGTEXT NOT NULL,
 							  UNIQUE KEY id (id)
 							);";
@@ -448,6 +381,7 @@ class RevSliderFront extends RevSliderBaseFront{
 							  id int(9) NOT NULL AUTO_INCREMENT,
 							  handle TEXT NOT NULL,
 							  params TEXT NOT NULL,
+							  settings TEXT NULL,
 							  UNIQUE KEY id (id)
 							);";
 			break;
@@ -535,8 +469,7 @@ class RevSliderFront extends RevSliderBaseFront{
 	 * adds async loading
 	 * @since: 5.0
 	 */
-	public static function add_defer_forscript($url)
-	{
+	public static function add_defer_forscript($url){
 	    if ( strpos($url, 'themepunch.enablelog.js' )===false && strpos($url, 'themepunch.revolution.min.js' )===false  && strpos($url, 'themepunch.tools.min.js' )===false )
 	        return $url;
 	    else if (is_admin())

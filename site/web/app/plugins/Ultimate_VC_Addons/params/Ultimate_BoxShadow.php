@@ -42,12 +42,11 @@ if(!class_exists('Ultimate_BoxShadow'))
       }
 
       add_action( 'admin_enqueue_scripts', array( $this, 'ultimate_boxshadow_param_scripts' ) );
-      add_filter('Ultimate_GetBoxShadow', array( $this, 'ultimate_get_box_shadow'),10,3);
     }
 
     function ultimate_boxshadow_callback($settings, $value) {
 
-        $dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+        $dependency = '';
         $positions = $settings['positions'];
         $enable_color = isset($settings['enable_color']) ? $settings['enable_color'] : true;
         //$enable_radius = isset($settings['enable_radius']) ? $settings['enable_radius'] : true ;
@@ -55,7 +54,7 @@ if(!class_exists('Ultimate_BoxShadow'))
 
         $uid = 'ultimate-boxshadow-'. rand(1000, 9999); //$settings['param_name'];
         //$uid = uniqid('ultimate-boxshadow-'. $settings['param_name'] .'-'. rand());
-          $html  = '<div class="ultimate-boxshadow" id="'.$uid.'" data-unit="'.$unit.'" >';
+        $html  = '<div class="ultimate-boxshadow" id="'.esc_attr( $uid ).'" data-unit="'.esc_attr( $unit ).'" >';
 
         //  Box Shadow - Style
         $label = "Shadow Style";
@@ -107,7 +106,7 @@ if(!class_exists('Ultimate_BoxShadow'))
           if(isset($settings['label_color']) && $settings['label_color']!='' ) { $label = $settings['label_color']; }
           $html .= '  <div class="ultbs-colorpicker-block">';
           $html .= '    <div class="label wpb_element_label">';
-          $html .=        $label;
+          $html .=        esc_html( $label );
           $html .= '    </div>';
           $html .= '    <div class="ultbs-colorpicker-wrap">';
           $html .= '      <input name="" class="ultbs-colorpicker cs-wp-color-picker" type="text" value="" />';
@@ -115,7 +114,7 @@ if(!class_exists('Ultimate_BoxShadow'))
           $html .= '  </div>';
         }
 
-        $html .= '  <input type="hidden" data-unit="'.$unit.'" name="'.$settings['param_name'].'" class="wpb_vc_param_value ultbs-result-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.' />';
+        $html .= '  <input type="hidden" data-unit="'. esc_attr( $unit ) .'" name="'. esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ultbs-result-value '. esc_attr( $settings['param_name'] ) .' '. esc_attr( $settings['type'] ) .'_field" value="'. esc_attr( $value ) .'" '.$dependency.' />';
         $html .= '</div>';
       return $html;
     }
@@ -123,72 +122,20 @@ if(!class_exists('Ultimate_BoxShadow'))
         $html  = '  <div class="ultbs-input-wrap">';
         $html .= '    <span class="ultbs-icon">';
         $html .= '      <span class="ultbs-tooltip">'.esc_html( $key ).'</span>';
-        $html .= '      <i class="'.$dashicon.'"></i>';
+        $html .= '      <i class="'.esc_attr($dashicon).'"></i>';
         $html .= '    </span>';
-        $html .= '    <input type="number" class="ultbs-input" data-unit="'.$unit.'" data-id="'.strtolower($key).'" data-default="'.$default_value.'" placeholder="'.$key.'" />';
+        $html .= '    <input type="number" class="ultbs-input" data-unit="'. esc_attr( $unit ) .'" data-id="'.strtolower( esc_attr( $key ) ).'" data-default="'. esc_attr( $default_value ) .'" placeholder="'. esc_attr( $key ) .'" />';
         $html .= '  </div>';
         return $html;
     }
     function get_units($unit) {
       //  set units - px, em, %
       $html  = '<div class="ultbs-unit">';
-      $html .= '  <label>'.$unit.'</label>';
+      $html .= '  <label>'.esc_html( $unit ).'</label>';
       $html .= '</div>';
       return $html;
     }
-    function ultimate_get_box_shadow( $content = null, $data = '' ){
-        //    e.g.    horizontal:14px|vertical:20px|blur:30px|spread:40px|color:#81d742|style:inset|
-      $final = '';
-
-      if($content!='') {
-
-        //  Create an array
-        $mainStr = explode('|', $content);
-        $string = '';
-        $mainArr = array();
-        if( !empty($mainStr) && is_array($mainStr) ) {
-          foreach ($mainStr as $key => $value) {
-            if(!empty($value)) {
-              $string=explode(":",$value);
-              if(is_array($string)) {
-                if( !empty($string[1]) && $string[1] != 'outset' ) {
-                  $mainArr[$string[0]]=$string[1];
-                }
-              }
-            }
-          }
-        }
-
-        $rm_bar = str_replace("|","",$content);
-        $rm_colon = str_replace(":"," ",$rm_bar);
-        $rmkeys = str_replace("horizontal","",$rm_colon);
-        $rmkeys = str_replace("vertical","",$rmkeys);
-        $rmkeys = str_replace("blur","",$rmkeys);
-        $rmkeys = str_replace("spread","",$rmkeys);
-        $rmkeys = str_replace("color","",$rmkeys);
-        $rmkeys = str_replace("style","",$rmkeys);
-        $rmkeys = str_replace("outset","",$rmkeys);     // Remove outset from style - To apply {outset} box shadow
-
-        if($data!='') {
-          switch ($data) {
-            case 'data':
-                          $final  = $rmkeys;
-              break;
-            case 'array':
-                          $final = $mainArr;
-              break;
-            case 'css':
-            default:
-                      $final  = 'box-shadow:'.$rmkeys.';';
-              break;
-          }
-        } else {
-          $final  = 'box-shadow:'.$rmkeys.';';
-        }
-      }
-
-      return $final;
-    }
+    
     function ultimate_boxshadow_param_scripts($hook) {
       if($hook == "post.php" || $hook == "post-new.php"){
         $bsf_dev_mode = bsf_get_option('dev_mode');

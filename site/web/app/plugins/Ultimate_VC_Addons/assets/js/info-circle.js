@@ -234,15 +234,15 @@ function info_circle_slide (delay,identity) {
 function show_next_info_circle(obj){
 	var highlight_style= obj.parents('.info-c-full-br').data('highlight-style');
 	if(highlight_style!=''){
-		obj.parents('.info-c-full-br').find('.'+highlight_style).removeClass(highlight_style).removeClass('info-cirlce-active');
-		obj.addClass(highlight_style).addClass('info-cirlce-active');
+		obj.parents('.info-c-full-br').find('.'+highlight_style).removeClass(highlight_style).removeClass('info-circle-active');
+		obj.addClass(highlight_style).addClass('info-circle-active');
 	}
 	var txt = obj.next();
 	var cont_f_size =obj.parents('.info-c-full-br').data('icon-show-size');
 	if(obj.parents('.info-c-full-br').data('icon-show')=='not-show'){
-		txt.find('i').remove();
-		txt.find('img').remove();
-		obj.parents('.info-c-full-br').find('.info-c-full').addClass('cirlce-noicon');
+		txt.find('i.info-circle-icon').remove();
+		txt.find('img.info-circle-img-icon').remove();
+		obj.parents('.info-c-full-br').find('.info-c-full').addClass('circle-noicon');
 	}
 	txt = txt.html();
 	//obj.parents('.icon-circle-list').find('.info-details').animate({opacity:0});
@@ -263,7 +263,7 @@ function show_next_info_circle(obj){
 		//obj.parents('.info-c-full-br').find('.info-c-full i').css({'font-size':(parseInt(size)*2.5)+'px'});
 		//obj.parents('.info-c-full-br').find('.info-c-full img').css({'width':(parseInt(size)*2.5)+'px','margin-top':'20px'});
 		obj_par.find('.info-c-full i').css({'font-size':parseInt(cont_f_size)+'px'});
-		obj_par.find('.info-c-full img').css({'width':parseInt(cont_f_size)+'px'});
+		obj_par.find('.info-c-full .info-circle-img-icon').css({'width':parseInt(cont_f_size)+'px'});
 		//obj.parents('.info-c-full-br').find('.info-c-full').css('background-color',bg_col);
 		obj.parents('.info-c-full-br').find('.info-c-full-wrap').animate({opacity:1},'slow');
 	});
@@ -304,10 +304,22 @@ function responsive_check(obj){
 	})
 }
 function make_info_circle(selector,resized){
-	jQuery(selector).each(function(){
-		var f_size = jQuery(this).data('icon-size');
-		jQuery(this).parent().css({'margin-top':(f_size)+'px','margin-bottom':(f_size)+'px'})
-		jQuery(this).find(".icon-circle-list .info-circle-icons").css({"font-size":f_size+'px','height':(f_size*2)+'px','width':(f_size*2)+'px','margin':'-'+(f_size+'px'),'line-height':(f_size*2)+'px'});
+	jQuery(selector).each(function(k,circle_item){
+		var f_size = jQuery(circle_item).data('icon-size');
+		jQuery(jQuery(circle_item).find(".icon-circle-list .info-circle-icons")).each(function(i,icon){
+			var icon_height, icon_width, icon_margin, icon_line_height;
+			var is_icon_wo_back = (jQuery(icon).hasClass('info-circle-icon-without-background')) ? true : false;
+			if(!is_icon_wo_back) {
+				icon_height = icon_width = icon_line_height = (f_size*2);
+				icon_margin = f_size;
+			}
+			else {
+				icon_height = icon_width = icon_line_height = f_size;
+				icon_margin = (f_size/2);
+			}
+			jQuery(circle_item).parent().css({'margin-top':(icon_margin+10)+'px','margin-bottom':(icon_margin+10)+'px'});
+			jQuery(circle_item).find(".icon-circle-list .info-circle-icons").css({"font-size":f_size+'px','height':icon_height+'px','width':icon_width+'px','margin':'-'+(icon_margin+'px'),'line-height':icon_line_height+'px'});
+		});
 	});
 	if(selector=='.info-c-full-br'){
 		jQuery(selector).each(function(){

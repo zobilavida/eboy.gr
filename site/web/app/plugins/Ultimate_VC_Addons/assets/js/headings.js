@@ -28,6 +28,14 @@
 			var icon_type = $jh(this).attr('data-hicon_type');
 			var align = $jh(this).attr('data-halign');
 			var spacer = $jh(this).attr('data-hspacer');
+
+			left_rtl = 'left';
+			right_rtl = 'right';
+			if ( jQuery( 'body' ).hasClass('rtl') ) {
+				left_rtl = 'right';
+				right_rtl = 'left';
+			}
+
 			if(spacer == 'line_with_icon')
 			{
 				var id = $jh(this).attr('id');
@@ -64,7 +72,7 @@
 				if(align == 'center')
 				{	
 					$jh(this).find('.aio-icon-img').css({'margin':'0 auto'});
-					var border_css = '#'+id+' .uvc-heading-spacer.line_with_icon:before{right:'+line_pos+'px;}#'+id+' .uvc-heading-spacer.line_with_icon:after{left:'+line_pos+'px;}';
+					var border_css = '#'+id+' .uvc-heading-spacer.line_with_icon:before{'+ right_rtl +':'+line_pos+'px;}#'+id+' .uvc-heading-spacer.line_with_icon:after{'+ left_rtl +':'+line_pos+'px;}';
 				}
 				else if(align == 'left')
 				{

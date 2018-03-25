@@ -3,12 +3,15 @@ if(!class_exists('ULT_HotSpot')) {
 	class ULT_HotSpot {
 
 		function __construct() {
+			
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				// We safely integrate with VC with this hook
+				add_action( 'init', array( $this, 'ult_hotspot_init' ),99 );
+			}
+			
 			// Use this when creating a shortcode addon
 			add_shortcode( 'ult_hotspot', array( $this, 'ult_hotspot_callback' ) );
 			add_shortcode( 'ult_hotspot_items', array($this, 'ult_hotspot_items_callback' ) );
-
-			// We safely integrate with VC with this hook
-			add_action( 'init', array( $this, 'ult_hotspot_init' ),99 );
 			add_action('admin_enqueue_scripts',array($this, 'enqueue_admin_assets'),999);
 
 			// Register CSS and JS
@@ -30,12 +33,12 @@ if(!class_exists('ULT_HotSpot')) {
 
 		function ultimate_hotspot_param_callback($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$class = isset($settings['class']) ? $settings['class'] : '';
-			$output = '<div class="ult-hotspot-image-wrapper '.$class.'">';
+			$output = '<div class="ult-hotspot-image-wrapper '.esc_attr($class).'">';
 				$output .= '<img src="" class="ult-hotspot-image" alt="image"/>';
 				$output .= '<div class="ult-hotspot-draggable"></div>';
-				$output .= '<input type="hidden" name="'.$settings['param_name'].'" value="'.$value.'" class="ult-hotspot-positions wpb_vc_param_value" '.$dependency.'/>';
+				$output .= '<input type="hidden" name="'.esc_attr($settings['param_name']).'" value="'.esc_attr($value).'" class="ult-hotspot-positions wpb_vc_param_value" '.$dependency.'/>';
 			$output .= '</div>';
 			return $output;
 		}
@@ -62,19 +65,26 @@ if(!class_exists('ULT_HotSpot')) {
 				'el_class'        => '',
 			), $atts ) );
 
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
+
 			$content = wpb_js_remove_wpautop($content, true); // fix unclosed/unwanted paragraph tags in $content
 
-			$mnimg = apply_filters('ult_get_img_single', $main_img, 'url');
+			$mnimg = $alt = '';
+			if( $main_img !== '' ) {
+				$mnimg = apply_filters('ult_get_img_single', $main_img, 'url');
+				$alt = apply_filters('ult_get_img_single', $main_img, 'alt');
+			}
 			$cust_size = '';
 			if( $main_img_size== 'main_img_custom'){
 				if($main_img_width!='') {
 					$cust_size .= "width:".$main_img_width."px;";
 				}
 			}
-			$output  = "<div class='ult_hotspot_container ult-hotspot-tooltip-wrapper ".$el_class."' style=".$cust_size.">";
-			$output .= "  <img class='ult_hotspot_image' src=".$mnimg." />";
+			$output  = "<div class='ult_hotspot_container ".esc_attr($is_vc_49_plus)." ult-hotspot-tooltip-wrapper ".esc_attr($el_class)."' style=".esc_attr($cust_size).">";
+			$output .= "  <img class='ult_hotspot_image' src=".esc_url(apply_filters('ultimate_images', $mnimg))." alt='".esc_attr($alt)."'/>";
 			$output .= "     <div class='utl-hotspot-items ult-hotspot-item'>".do_shortcode($content)."</div>";
-			$output .= "     <div style='color:#000;' data-image='".$GLOBALS['hotspot_icon']." ".$GLOBALS['hotspot_icon_bg_color']." ".$GLOBALS['hotspot_icon_color']." ".$GLOBALS['hotspot_icon_size']." ".$GLOBALS['tooltip_continuous_animation']."'></div>";
+			$output .= "     <div style='color:#000;' data-image='".esc_attr($GLOBALS['hotspot_icon'])." ".esc_attr($GLOBALS['hotspot_icon_bg_color'])." ".esc_attr($GLOBALS['hotspot_icon_color'])." ".esc_attr($GLOBALS['hotspot_icon_size'])." ".esc_attr($GLOBALS['tooltip_continuous_animation'])."'></div>";
 			$output .= "</div>";
 			return $output;
 		}
@@ -135,7 +145,7 @@ if(!class_exists('ULT_HotSpot')) {
 							$glow_color = 'style="background-color:'.$glow_color.'"';
 						else
 							$glow_color = '';
-								$glow = " <div class='ult-glow' ".$glow_color."></div>";
+								$glow = " <div class='ult-glow' ".esc_attr($glow_color)."></div>";
 						break;
 				}
 			}
@@ -149,15 +159,35 @@ if(!class_exists('ULT_HotSpot')) {
 			$font_args = array();
 			$tooltip_content_style = '';
 			$tooltip_base_style = '';
-
+			$hotspot_tooltip_id = '';
 			if($tooltip_font != '') {
 				$font_family = get_ultimate_font_family($tooltip_font);
 				$tooltip_content_style .= 'font-family:'.$font_family.';';
 				array_push($font_args, $tooltip_font);
 			}
 			if($tooltip_font_style != '') { $tooltip_content_style .= get_ultimate_font_style($tooltip_font_style); }
-			if($tooltip_font_size != '') { $tooltip_content_style .= 'font-size:'.$tooltip_font_size.'px;'; }
-			if($tooltip_font_line_height != '') { $tooltip_content_style .= 'line-height:'.$tooltip_font_line_height.'px;'; }
+			// if($tooltip_font_size != '') { $tooltip_content_style .= 'font-size:'.$tooltip_font_size.'px;'; }
+			// if($tooltip_font_line_height != '') { $tooltip_content_style .= 'line-height:'.$tooltip_font_line_height.'px;'; }
+
+			if(is_numeric($tooltip_font_size)){
+				$tooltip_font_size = 'desktop:'.$tooltip_font_size.'px;';
+			}
+
+			if(is_numeric($tooltip_font_line_height)){
+				$tooltip_font_line_height = 'desktop:'.$tooltip_font_line_height.'px;';
+			}
+
+			$hotspot_tooltip_id = 'hotspot-tooltip-'.rand(1000, 9999);
+
+			$hotspot_tooltip_args = array(
+                'target' => '#'.$hotspot_tooltip_id.' .ult-tooltipster-content', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $tooltip_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $tooltip_font_line_height
+                ),
+            );
+
+            $hotspot_tooltip_data_list = get_ultimate_vc_responsive_media_css($hotspot_tooltip_args);
 
 			//  Width
 			if($tooltip_width!=''){ $tooltip_content_style .= 'width:' .$tooltip_width. 'px;'; }
@@ -186,8 +216,11 @@ if(!class_exists('ULT_HotSpot')) {
 
 
 			$data = '';
-			if($tooltip_content_style!='')  { $data .= 'data-tooltip-content-style="'.$tooltip_content_style. '"'; }
-			if($tooltip_base_style!='')     { $data .= 'data-tooltip-base-style="'.$tooltip_base_style. '"'; }
+
+			if($hotspot_tooltip_id !='')    { $data .= 'data-mycust-id="'.esc_attr($hotspot_tooltip_id).'" ';}
+			if($hotspot_tooltip_data_list !='')		{ $data .=$hotspot_tooltip_data_list;}
+			if($tooltip_content_style!='')  { $data .= 'data-tooltip-content-style="'.esc_attr($tooltip_content_style). '"'; }
+			if($tooltip_base_style!='')     { $data .= 'data-tooltip-base-style="'.esc_attr($tooltip_base_style). '"'; }
 
 			if($enable_bubble_arrow!='' && $enable_bubble_arrow == 'on') {
 			  $data .= ' data-bubble-arrow="true" ';
@@ -197,9 +230,9 @@ if(!class_exists('ULT_HotSpot')) {
 
 			$hotspot_position = explode(',', $hotspot_position);
 			if($icon_type == 'custom')
-				$temp_icon_size = ($img_width/2)-14;
+				$temp_icon_size = ($img_width/2);
 			else
-				$temp_icon_size = ($icon_size/2)-14;
+				$temp_icon_size = ($icon_size/2);
 				//$temp_icon_size = 0;
 
 			$hotspot_x_position = $hotspot_position[0];
@@ -211,34 +244,35 @@ if(!class_exists('ULT_HotSpot')) {
 				$tooltip_offsetY = $temp_icon_size;
 			//}
 
-			if($tooltip_animation!='')      { $data .= 'data-tooltipanimation="'.$tooltip_animation.'"';}
-			if($tooltip_trigger!='')        { $data .= 'data-trigger="'.$tooltip_trigger.'"';}
-			if($tooltip_offsetY!='')        { $data .= 'data-tooltip-offsety="'.$tooltip_offsetY.'"';}
-			if($tooltip_position!='')       { $data .= 'data-arrowposition="'.$tooltip_position.'"';}
+			if($tooltip_animation!='')      { $data .= 'data-tooltipanimation="'.esc_attr($tooltip_animation).'"';}
+			if($tooltip_trigger!='')        { $data .= 'data-trigger="'.esc_attr($tooltip_trigger).'"';}
+			if($tooltip_offsetY!='')        { $data .= 'data-tooltip-offsety="'.esc_attr($tooltip_offsetY).'"';}
+			if($tooltip_position!='')       { $data .= 'data-arrowposition="'.esc_attr($tooltip_position).'"';}
 
 			$icon_animation = '';
-			$icon_inline = do_shortcode('[just_icon icon_align="'.$alignment.'" icon_type="'.$icon_type.'" icon="'.$icon.'" icon_img="'.$icon_img.'" img_width="'.$img_width.'" icon_size="'.$icon_size.'" icon_color="'.$icon_color.'" icon_style="'.$icon_style.'" icon_color_bg="'.$icon_color_bg.'" icon_color_border="'.$icon_color_border.'"  icon_border_style="'.$icon_border_style.'" icon_border_size="'.$icon_border_size.'" icon_border_radius="'.$icon_border_radius.'" icon_border_spacing="'.$icon_border_spacing.'" icon_animation="'.$icon_animation.'"]');
+			$icon_inline = do_shortcode('[just_icon icon_align="'.esc_attr($alignment).'" icon_type="'.esc_attr($icon_type).'" icon="'.esc_attr($icon).'" icon_img="'.esc_attr($icon_img).'" img_width="'.esc_attr($img_width).'" icon_size="'.esc_attr($icon_size).'" icon_color="'.esc_attr($icon_color).'" icon_style="'.esc_attr($icon_style).'" icon_color_bg="'.esc_attr($icon_color_bg).'" icon_color_border="'.esc_attr($icon_color_border).'"  icon_border_style="'.esc_attr($icon_border_style).'" icon_border_size="'.esc_attr($icon_border_size).'" icon_border_radius="'.esc_attr($icon_border_radius).'" icon_border_spacing="'.esc_attr($icon_border_spacing).'" icon_animation="'.esc_attr($icon_animation).'"]');
 
-			$url = $link_title = $target = '';
+			$url = $link_title = $target = $rel = '';
 
 			// Hotspot has simple link
 			if( $link_style == 'link' && $icon_link !='' ){
-				$href 		= 	vc_build_link($icon_link);
-				$url 		= 	$href['url'];
-				$link_title	=	' title="'.$href['title'].'" ';
-				$target		=	' target="'.trim($href['target']).'" ';
+				$href 		= vc_build_link($icon_link);
+
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
 			}
 
-  			//$output  = "<div class='ult-hotspot-item ".$pulse."' style='top:-webkit-calc(".$hotspot_x_position."% - ".$temp_icon_size."px);top:-moz-calc(".$hotspot_x_position."% - ".$temp_icon_size."px);top:calc(".$hotspot_x_position."% - ".$temp_icon_size."px);left: -webkit-calc(".$hotspot_y_position."% - ".$temp_icon_size."px);left: -moz-calc(".$hotspot_y_position."% - ".$temp_icon_size."px);left: calc(".$hotspot_y_position."% - ".$temp_icon_size."px);' >";
-			$output  = "<div class='ult-hotspot-item ".$pulse."' style='top:-webkit-calc(".$hotspot_x_position."% - ".$temp_icon_size."px);top:-moz-calc(".$hotspot_x_position."% - ".$temp_icon_size."px);top:calc(".$hotspot_x_position."% - ".$temp_icon_size."px);left: -webkit-calc(".$hotspot_y_position."% - ".$temp_icon_size."px);left: -moz-calc(".$hotspot_y_position."% - ".$temp_icon_size."px);left: calc(".$hotspot_y_position."% - ".$temp_icon_size."px);' >";
+			$output  = "<div class='ult-hotspot-item ".esc_attr($pulse)."' style='top:-webkit-calc(".esc_attr($hotspot_x_position)."% - ".esc_attr($temp_icon_size)."px);top:-moz-calc(".esc_attr($hotspot_x_position)."% - ".esc_attr($temp_icon_size)."px);top:calc(".esc_attr($hotspot_x_position)."% - ".esc_attr($temp_icon_size)."px);left: -webkit-calc(".esc_attr($hotspot_y_position)."% - ".esc_attr($temp_icon_size)."px);left: -moz-calc(".esc_attr($hotspot_y_position)."% - ".esc_attr($temp_icon_size)."px);left: calc(".esc_attr($hotspot_y_position)."% - ".esc_attr($temp_icon_size)."px);' >";
   			$output .= "  <div style='z-index: 39;position: relative;'>";
 
 			if($link_style == 'link'){
-	 			$output .= "   <a data-link_style='simple' class='ult-tooltip ult-tooltipstered ult-hotspot-tooltip' href='".$url."' ".$link_title." ".$target." data-status='hide'>";
+	 			$output .= "   <a data-link_style='simple' class='ult-tooltipstered ult-hotspot-tooltip' ". Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel )." data-status='hide'>";
 				$output .= $icon_inline;
 				$output .= "  </a>";
 			} else {
-				$output .= "   <a data-link_style='tootip' ".$data." class='ult-tooltip ult-tooltipstered ult-hotspot-tooltip' href='#' data-status='show'>";
+				$output .= "   <a data-link_style='tootip' ".$data." class='ult-tooltipstered ult-hotspot-tooltip' href='#' data-status='show'>";
 					$output .= $icon_inline;
 					$output .= "<span class='hotspot-tooltip-content'>".esc_html( str_replace('"', '\'', $hotspot_content ) )."</span>";
 				$output .= "  </a>";
@@ -359,7 +393,7 @@ if(!class_exists('ULT_HotSpot')) {
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 								"group" => "Icon",
 							),
@@ -699,7 +733,7 @@ if(!class_exists('ULT_HotSpot')) {
 							  "param_name" => "tooltip_font",
 							  "value" => "",
 							  "group" => "Typography",
-							  "dependency" => Array("element" => "link_style","value" => "tooltip"),
+							  //"dependency" => Array("element" => "link_style","value" => "tooltip"),
 							),
 							array(
 							  "type" => "ultimate_google_fonts_style",
@@ -707,28 +741,58 @@ if(!class_exists('ULT_HotSpot')) {
 							  "param_name" => "tooltip_font_style",
 							  "value" => "",
 							  "group" => "Typography",
-							  "dependency" => Array("element" => "link_style","value" => "tooltip"),
+							  //"dependency" => Array("element" => "link_style","value" => "tooltip"),
 							),
+							// array(
+							//   "type" => "number",
+							//   "param_name" => "tooltip_font_size",
+							//   "heading" => __("Font size","ultimate_vc"),
+							//   "value" => "12",
+							//   "suffix" => "px",
+							//   "min" => 10,
+							//   "group" => "Typography",
+							//   "dependency" => Array("element" => "link_style","value" => "tooltip"),
+							// ),
+							// array(
+							//   "type" => "number",
+							//   "param_name" => "tooltip_font_line_height",
+							//   "heading" => __("Line Height","ultimate_vc"),
+							//   "value" => "18",
+							//   "suffix" => "px",
+							//   "min" => 10,
+							//   "group" => "Typography",
+							//   "dependency" => Array("element" => "link_style","value" => "tooltip"),
+							// ),
 							array(
-							  "type" => "number",
-							  "param_name" => "tooltip_font_size",
-							  "heading" => __("Font size","ultimate_vc"),
-							  "value" => "12",
-							  "suffix" => "px",
-							  "min" => 10,
-							  "group" => "Typography",
-							  "dependency" => Array("element" => "link_style","value" => "tooltip"),
-							),
-							array(
-							  "type" => "number",
-							  "param_name" => "tooltip_font_line_height",
-							  "heading" => __("Line Height","ultimate_vc"),
-							  "value" => "18",
-							  "suffix" => "px",
-							  "min" => 10,
-							  "group" => "Typography",
-							  "dependency" => Array("element" => "link_style","value" => "tooltip"),
-							),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "tooltip_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "tooltip_font_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 							array(
 								"type" => "dropdown",
 								"class" => "",
@@ -741,7 +805,7 @@ if(!class_exists('ULT_HotSpot')) {
 									__("Justify","ultimate_vc") 	=> "justify"
 								),
 								"group" => "Typography",
-								"dependency" => Array("element" => "link_style","value" => "tooltip"),
+								//"dependency" => Array("element" => "link_style","value" => "tooltip"),
 							),
 							array(
 								"type" => "dropdown",
@@ -782,23 +846,24 @@ if(!class_exists('ULT_HotSpot')) {
 				$ext = '.min';
 			}
 			//  css
-			//wp_register_style( 'ult_hotspot_tooltip_min_css',plugins_url( 'assets/css/hotspot-tooltip-min.css', dirname( __FILE__ )) );
-			wp_register_style( 'ult_hotspot_css', plugins_url($css_path."hotspot".$ext.".css",__FILE__),array(),ULTIMATE_VERSION,false);
-			wp_register_style( 'ult_hotspot_tooltipster_css',plugins_url($css_path."hotspot-tooltipster".$ext.".css",__FILE__),array(),ULTIMATE_VERSION,false);
+				
+			Ultimate_VC_Addons::ultimate_register_style( 'ult_hotspot_css', 'hotspot' );
+			Ultimate_VC_Addons::ultimate_register_style( 'ult_hotspot_tooltipster_css', 'hotspot-tooltipster' );
 
 			//  js
-			wp_register_script( 'ult_hotspot_js',plugins_url($js_path."hotspot".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION,false );
-			wp_register_script( 'ult_hotspot_tooltipster_js',plugins_url($js_path."hotspot-tooltipster".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION,false);
+			Ultimate_VC_Addons::ultimate_register_script( 'ult_hotspot_js', 'hotspot', false, array( 'jquery' ), ULTIMATE_VERSION, false );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ult_hotspot_tooltipster_js', 'hotspot-tooltipster', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 		}
   	}
 
   	new ULT_HotSpot;
 
-	if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+	if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_ult_hotspot' ) ) {
 	  class WPBakeryShortCode_ult_hotspot extends WPBakeryShortCodesContainer {
 	  }
 	}
-	if ( class_exists( 'WPBakeryShortCode' ) ) {
+	if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ult_hotspot_items' ) ) {
 	  class WPBakeryShortCode_ult_hotspot_items extends WPBakeryShortCode {
 	  }
 	}

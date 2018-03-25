@@ -1,0 +1,136 @@
+/*
+ * Title Bar
+ */
+
+.l-titlebar {
+	position: relative;
+	z-index: 1;
+	transition: padding 0.3s;
+	}
+	.l-titlebar-img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0;
+		transition: opacity 0.5s;
+		}
+	.l-titlebar-img.loaded {
+		opacity: 1;
+		}
+	.l-titlebar-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		}
+	.l-titlebar-h {
+		position: relative;
+		margin: 0 auto;
+		}
+		.l-titlebar h1 {
+			margin: 0;
+			}
+		.l-titlebar p {
+			margin: 0.5rem 0 0;
+			opacity: 0.66;
+			}
+		.l-titlebar .g-breadcrumbs {
+			font-size: 0.9rem;
+			line-height: 1.4;
+			margin: 0.8rem 0 0.3rem;
+			}
+			.g-breadcrumbs-separator {
+				margin: 0 0.5rem;
+				}
+				.g-breadcrumbs-separator:before {
+					content: '\f105';
+					font-family: fontawesome;
+					vertical-align: top;
+					}
+
+/* TitleBar: sizes */
+.l-titlebar.size_small .l-titlebar-h,
+.l-titlebar.size_medium .l-titlebar-h {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0;
+	}
+.l-titlebar.size_medium .l-titlebar-h {
+	padding: 2rem 0;
+	}
+	.l-titlebar.size_small h1,
+	.l-titlebar.size_medium h1 {
+		display: inline-block;
+		font-size: 1.8rem;
+		margin: 0.3rem 1.5rem 0.3rem 0;
+		}
+	.l-titlebar.size_small p,
+	.l-titlebar.size_medium p {
+		display: inline-block;
+		margin: 0.3rem 1.5rem 0.3rem 0;
+		}
+	.l-titlebar.size_small .g-breadcrumbs,
+	.l-titlebar.size_medium .g-breadcrumbs {
+		margin-top: 0.3rem;
+		}
+
+.l-titlebar.size_large,
+.l-titlebar.size_huge {
+	text-align: center;
+	}
+.header_hor .l-header.bg_transparent ~ .l-titlebar.size_large,
+.header_hor .l-header.bg_transparent ~ .l-titlebar.size_huge {
+	padding-bottom: 2rem;
+	}
+	.l-titlebar.size_huge .l-titlebar-h {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+		}
+		@media (min-width: 900px) {
+		.l-titlebar.size_huge h1 {
+			font-size: 3rem;
+			line-height: 1.1;
+			}
+		}
+
+/* TitleBar: colors */
+.l-titlebar.color_default .l-titlebar-h {
+	padding-bottom: 0 !important;
+	}
+.l-titlebar.color_primary,
+.l-titlebar.color_secondary {
+	color: #fff;
+	}
+	.l-titlebar.color_primary h1,
+	.l-titlebar.color_primary a,
+	.l-titlebar.color_secondary h1,
+	.l-titlebar.color_secondary a,
+	.no-touch .l-titlebar.color_secondary a:hover {
+		color: inherit;
+		}
+
+/* TitleBar: imgsize */
+.l-titlebar.imgsize_initial .l-titlebar-img {
+	background-size: initial;
+	}
+.l-titlebar.imgsize_contain .l-titlebar-img {
+	background-size: contain;
+	}
+	
+/* TitleBar: parallax */
+.no-touch .l-titlebar.parallax_ver .l-titlebar-img,
+.no-touch .l-titlebar.parallax_fixed .l-titlebar-img {
+	background-attachment: fixed;
+	}
+.l-titlebar.parallax_hor {
+	overflow: hidden;
+	}
+	.l-titlebar.parallax_hor .l-titlebar-img {
+		width: 120%;
+		right: auto;
+		}

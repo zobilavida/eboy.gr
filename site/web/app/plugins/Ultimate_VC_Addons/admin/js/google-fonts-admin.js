@@ -4,6 +4,7 @@ $gf(document).ready(function () {
 		$gf(this).next('.spinner').css({'display':'inline-block','float':'none','vertical-align': 'middle','visibility':'visible'});
 		var data = {
 			action: 'ultimate_google_fonts_refresh',
+			security: uavc.google_font_nonce,
 		};
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		$gf.post(ajaxurl, data, function(response) {
@@ -69,10 +70,11 @@ $gf(document).ready(function () {
 					font_family: font_family,
 					font_name: font_name,
 					variants: variants_array,
-					subsets: subsets_array
+					subsets: subsets_array,
+					security: uavc.add_google_fonts
 				};
 				$gf.post(ajaxurl, data, function(response) {
-					//console.log(response);
+					// console.log(response);
 					button.next('.spinner').hide();
 					button.val('Added in collection');
 					button.addClass('font-added');
@@ -159,7 +161,8 @@ $gf(document).ready(function () {
 			var font_name = $gf(this).attr('data-gfont_name');
 			var data = {
 				action: 'delete_google_font',
-				font_name: font_name
+				font_name: font_name,
+				security: uavc.delete_google_fonts
 			};
 			$gf.post(ajaxurl, data, function(response) {
 				$gf('.font-delete').each(function(i,e){
@@ -202,11 +205,12 @@ $gf(document).ready(function () {
 			action: 'update_google_font',
 			font_name: font_name,
 			variants: variant_array,
-			subsets: subset_array
+			subsets: subset_array,
+			security: uavc.update_google_fonts
 		};
 		$gf(this).next('.fspinner').addClass('fspinner-show');
 		$gf.post(ajaxurl, data, function(response) {
-				$gf('.fspinner').removeClass('fspinner-show');
+			$gf('.fspinner').removeClass('fspinner-show');
 		});
 	});
 	$gf('body').on('click', '.selected-font-top', function () {
@@ -234,7 +238,8 @@ function get_google_fonts()
 		action : 'get_google_fonts',
 		start : gstart,
 		fetch : gfetch,
-		search : gsearch
+		search : gsearch,
+		security : uavc.get_google_fonts
 	};
 	$gf.post(ajaxurl, data, function(response) {
 		var object = jQuery.parseJSON(response);
@@ -338,7 +343,7 @@ function convert_json_to_html(object)
 			} //end of subsets
 			html += '<div class="clear"></div>';
 		html += '</div>';
-		$gf('head').append('<link href="http://fonts.googleapis.com/css?family='+font_call+'" type="text/css" media="all" rel="stylesheet"/>');
+		$gf('head').append('<link href="//fonts.googleapis.com/css?family='+font_call+'" type="text/css" media="all" rel="stylesheet"/>');
 	});
 	return html;
 }

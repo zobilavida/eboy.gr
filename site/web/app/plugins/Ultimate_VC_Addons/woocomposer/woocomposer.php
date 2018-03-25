@@ -135,14 +135,21 @@ if(!class_exists("WooComposer")){
 						$output .= '<option '.$selected.' value="'.get_the_ID().'">'.__(get_the_title(),'ultimate_vc').'</option>';
 					endwhile;
 			$output .= '</select>';
-			$output .= '<script type="text/javascript">
-							jQuery(document).ready(function(){
-								jQuery("select#products").select2("destroy").select2({
-									placeholder: "Select a Product",
-									allowClear: true
-								});
-							});
-						</script>';
+
+			// Disable WooComposer select2 js to break incompatibility with WooCommerce 3.0.0 +
+			// $output .= '<script type="text/javascript">
+			// 				jQuery(document).ready(function(){
+			// 					if ( jQuery(".wpb_el_type_product_search #products").data("select2") ) {
+			// 						jQuery(".wpb_el_type_product_search #products").select2("destroy");
+			// 					}
+
+			// 					// WooComposer is depracated.
+			// 					// jQuery(".wpb_el_type_product_search #products").select2({
+			// 					// 	placeholder: "Select a Product",
+			// 					// 	allowClear: true
+			// 					// });
+			// 				});
+			// 			</script>';
 			return $output;
 		} /* end woo_product_search */
 		function woo_product_categories($settings, $value){
@@ -169,15 +176,17 @@ if(!class_exists("WooComposer")){
 			$output .= '</select>';
 
 			$output .= "<input type='hidden' name='".$param_name."' value='".$value."' class='wpb_vc_param_value ".$param_name." ".$type." ".$class."' id='sel_cat'>";
-			$output .= '<script type="text/javascript">
-							jQuery("#sel2_cat").select2({
-								placeholder: "Select Categories",
-								allowClear: true
-							});
-							jQuery("#sel2_cat").on("change",function(){
-								jQuery("#sel_cat").val(jQuery(this).val());
-							});
-						</script>';
+
+			// Disable WooComposer select2 js to break incompatibility with WooCommerce 3.0.0 +
+			// $output .= '<script type="text/javascript">
+			// 				jQuery("#sel2_cat").select2({
+			// 					placeholder: "Select Categories",
+			// 					allowClear: true
+			// 				});
+			// 				jQuery("#sel2_cat").on("change",function(){
+			// 					jQuery("#sel_cat").val(jQuery(this).val());
+			// 				});
+			// 			</script>';
 			return $output;
 
 		} /* end woo_product_categories*/
@@ -190,27 +199,22 @@ if(!class_exists("WooComposer")){
 						wp_register_style("woocomposer-admin",plugins_url("admin/css/admin.css",__FILE__));
 						wp_register_style("woocomposer-select2-bootstrap",plugins_url("admin/css/select2-bootstrap.css",__FILE__));
 						wp_register_style("woocomposer-select2",plugins_url("admin/css/select2.css",__FILE__));
-
 						wp_enqueue_style("woocomposer-admin");
-						wp_enqueue_style("woocomposer-select2-bootstrap");
-						wp_enqueue_style("woocomposer-select2");
 
-						//wp_register_script("woocomposer-unveil",plugins_url("assets/js/unveil.js",__FILE__),array('jquery'),'',true);
-						wp_register_script("woocomposer-select2-js",plugins_url("admin/js/select2.js",__FILE__),array('jquery'),'',true);
-						//wp_enqueue_script("woocomposer-slick",plugins_url("assets/js/slick.js",__FILE__),array('jquery'),'',true);
-						//wp_enqueue_script("woocomposer-js",plugins_url("assets/js/custom.js",__FILE__),array('jquery'),'',true);
-
-						//wp_enqueue_script("woocomposer-unveil");
-						wp_enqueue_script("woocomposer-select2-js");
-						//wp_enqueue_script("woocomposer-slick");
-						//wp_enqueue_script("woocomposer-js");
+						// Disable WooComposer select2 js to break incompatibility with WooCommerce 3.0.0 +
+						// wp_enqueue_style("woocomposer-select2-bootstrap");
+						// wp_enqueue_style("woocomposer-select2");						
+						// wp_register_script("woocomposer-select2-js",plugins_url("admin/js/select2.js",__FILE__),array('jquery'),'',true);
+						// wp_enqueue_script("woocomposer-select2-js");
 					}
 					else {
-						wp_register_style("woocomposer-admin-style",plugins_url("admin/css/ultimate-woocomposer-backend.min.css",__FILE__));
-						wp_enqueue_style("woocomposer-admin-style");
 
-						wp_enqueue_script("woocomposer-admin-script",plugins_url("admin/js/ultimate-woocomposer-backend.min.js",__FILE__),array('jquery'),'',true);
-						wp_enqueue_style("woocomposer-admin-script");
+						// Disable WooComposer select2 js to break incompatibility with WooCommerce 3.0.0 +
+						// wp_register_style("woocomposer-admin-style",plugins_url("admin/css/ultimate-woocomposer-backend.min.css",__FILE__));
+						// wp_enqueue_style("woocomposer-admin-style");
+
+						// wp_enqueue_script("woocomposer-admin-script",plugins_url("admin/js/ultimate-woocomposer-backend.min.js",__FILE__),array('jquery'),'',true);
+						// wp_enqueue_style("woocomposer-admin-script");
 					}
 				}
 			}
@@ -220,50 +224,53 @@ if(!class_exists("WooComposer")){
 			if(!is_404() && !is_search() && !is_archive()){
 				global $post;
 				$count = 0;
-				$content = $post->post_content;
-				$shortcodes = array('woocomposer_product','woocomposer_list','woocomposer_grid','woocomposer_grid_cat','woocomposer_carousel_cat','woocomposer_carousel');
-				foreach($shortcodes as $shortcode){
-					if(has_shortcode($content, $shortcode)) {
-						$count++;
+				if ( NULL !== $post ) {
+					$content = $post->post_content;
+					$shortcodes = array('woocomposer_product','woocomposer_list','woocomposer_grid','woocomposer_grid_cat','woocomposer_carousel_cat','woocomposer_carousel');
+					foreach($shortcodes as $shortcode){
+						if(has_shortcode($content, $shortcode)) {
+							$count++;
+						}
+					}
+
+					wp_register_script('woocomposer-unveil',plugins_url('assets/js/unveil.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
+					wp_register_script('woocomposer-slick',plugins_url('assets/js/slick.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
+					wp_register_script('woocomposer-js',plugins_url('assets/js/custom.js',__FILE__),array('jquery','woocomposer-slick'),WOOCOMPOSER_VERSION,true);
+
+					wp_register_style('woocomposer-front',plugins_url('assets/css/style.css',__FILE__),array(),WOOCOMPOSER_VERSION);
+					wp_register_style('woocomposer-front-wooicon',plugins_url('assets/css/wooicon.css',__FILE__),array(),WOOCOMPOSER_VERSION);
+					wp_register_style('woocomposer-front-slick',plugins_url('assets/css/slick.css',__FILE__),array(),WOOCOMPOSER_VERSION);
+					wp_register_style('woocomposer-animate',plugins_url('assets/css/animate.min.css',__FILE__),array(),WOOCOMPOSER_VERSION);
+
+					wp_register_script('woocomposer-script',plugins_url('assets/js/woocomposer.min.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
+					wp_register_style('woocomposer-style',plugins_url('assets/css/woocomposer.min.css',__FILE__),array(),WOOCOMPOSER_VERSION);
+
+					if(defined('WOOCOMMERCE_VERSION') && version_compare( '2.1.0', WOOCOMMERCE_VERSION, '<' ) && $count !== 0) {
+						$ultimate_css = get_option('ultimate_css');
+						$bsf_dev_mode = bsf_get_option('dev_mode');
+						if($ultimate_css == "enable" && $bsf_dev_mode !== 'enable'){
+							wp_enqueue_style("woocomposer-style");
+						}
+						else {
+							wp_enqueue_style("woocomposer-front");
+							wp_enqueue_style("woocomposer-front-wooicon");
+							wp_enqueue_style("woocomposer-front-slick");
+							wp_enqueue_style("woocomposer-animate");
+						}
+
+						$ultimate_js = get_option('ultimate_js');
+						wp_enqueue_script('jquery');
+						if($ultimate_js == 'enable') {
+							wp_enqueue_script("woocomposer-script");
+						}
+						else {
+							wp_enqueue_script("woocomposer-unveil");
+							wp_enqueue_script("woocomposer-slick");
+							wp_enqueue_script("woocomposer-js");
+						}
 					}
 				}
 
-				wp_register_script('woocomposer-unveil',plugins_url('assets/js/unveil.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
-				wp_register_script('woocomposer-slick',plugins_url('assets/js/slick.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
-				wp_register_script('woocomposer-js',plugins_url('assets/js/custom.js',__FILE__),array('jquery','woocomposer-slick'),WOOCOMPOSER_VERSION,true);
-
-				wp_register_style('woocomposer-front',plugins_url('assets/css/style.css',__FILE__),array(),WOOCOMPOSER_VERSION);
-				wp_register_style('woocomposer-front-wooicon',plugins_url('assets/css/wooicon.css',__FILE__),array(),WOOCOMPOSER_VERSION);
-				wp_register_style('woocomposer-front-slick',plugins_url('assets/css/slick.css',__FILE__),array(),WOOCOMPOSER_VERSION);
-				wp_register_style('woocomposer-animate',plugins_url('assets/css/animate.min.css',__FILE__),array(),WOOCOMPOSER_VERSION);
-
-				wp_register_script('woocomposer-script',plugins_url('assets/js/woocomposer.min.js',__FILE__),array('jquery'),WOOCOMPOSER_VERSION,true);
-				wp_register_style('woocomposer-style',plugins_url('assets/css/woocomposer.min.css',__FILE__),array(),WOOCOMPOSER_VERSION);
-
-				if(defined('WOOCOMMERCE_VERSION') && version_compare( '2.1.0', WOOCOMMERCE_VERSION, '<' ) && $count !== 0) {
-					$ultimate_css = get_option('ultimate_css');
-					$bsf_dev_mode = bsf_get_option('dev_mode');
-					if($ultimate_css == "enable" && $bsf_dev_mode !== 'enable'){
-						wp_enqueue_style("woocomposer-style");
-					}
-					else {
-						wp_enqueue_style("woocomposer-front");
-						wp_enqueue_style("woocomposer-front-wooicon");
-						wp_enqueue_style("woocomposer-front-slick");
-						wp_enqueue_style("woocomposer-animate");
-					}
-
-					$ultimate_js = get_option('ultimate_js');
-					wp_enqueue_script('jquery');
-					if($ultimate_js == 'enable') {
-						wp_enqueue_script("woocomposer-script");
-					}
-					else {
-						wp_enqueue_script("woocomposer-unveil");
-						wp_enqueue_script("woocomposer-slick");
-						wp_enqueue_script("woocomposer-js");
-					}
-				}
 			}
 		}/* end front_scripts */
 	}

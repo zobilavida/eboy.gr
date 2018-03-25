@@ -3,30 +3,26 @@
   //background-color: red;
 }
 
-
-body {
-  font-family: 'Proxima Nova Lt', sans-serif;
-  font-size: 1em;
-  letter-spacing: .015rem;
-  line-height: 1.9rem;
-  text-rendering: optimizelegibility;
-
-}
-
 .top {
   min-height: 40vh;
 }
+.main {
+    padding-top: 8rem;
+}
+
 .portfolio {
-  min-height: 90vh;
+//  min-height: 90vh;
 }
 
 .logo {
-  width: 50px;
+  width: 4rem;
   height: auto;
 }
- .btn {
-   letter-spacing: .067rem;
- }
+
+.logo_small {
+  width: 2.4rem;
+}
+
 .card {
   border: 0px solid rgba(0, 0, 0, .125);
 }
@@ -86,18 +82,6 @@ body {
   text-rendering: optimizelegibility;
 }
 
-
-.entry-summary h1 {
-  font-family: 'Open Sans Light', 'OpenSans-Light', sans-serif;
-  font-size: 1em;
-  letter-spacing: .01rem;
-  line-height: 2.9rem;
-  text-rendering: optimizelegibility;
-
-}
-
-
-
 .product_description p {
   font-family: 'Proxima Nova Rg', sans-serif;
   font-size: 1.5em;
@@ -121,4 +105,93 @@ line-height: 1.1;
 }
 .navbar .btn {
   margin-left:15px;
+}
+
+hr.style4 {
+	border-top: 1px dotted #8c8b8b;
+}
+
+.ico {
+  width: 2em;
+  height: auto;
+}
+
+
+
+
+
+section.widget {
+  padding: 0 0 1rem 0;
+}
+
+section.widget h3 {
+  display: none;
+}
+
+section.about h1 {
+  font-family: 'Proxima Nova Lt', sans-serif;
+  font-size: 1em;
+  letter-spacing: .05rem;
+  line-height: 2.5rem;
+  text-rendering: optimizelegibility;
+}
+
+section.about h2 {
+  font-family: 'Proxima Nova Semibold', sans-serif;
+  font-size: 1em;
+  letter-spacing: .05rem;
+  line-height: 2.5rem;
+  text-rendering: optimizelegibility;
+}
+
+
+x,
+#box2{
+  position:relative;
+  height:40px;
+  margin:0 0 0 0;
+}
+
+ul{
+  margin:0;
+  padding:0;
+  display:block;
+}
+
+li {
+  float:left;
+  margin:0;
+  list-style-type:none;
+  padding:0;
+  padding:5px 20px;
+}
+
+li a {
+  display:block;
+  font-family: 'Proxima Nova Lt';
+      font-weight: 300;
+      font-style: normal;
+}
+
+li a.active {
+  color:#CC0000;
+}
+
+#menu li.slide-line,
+#menu2 li.slide-line {
+	display: block;
+  padding:0;
+  margin:0;
+	  background: none $gray-900;
+	  position: absolute;
+	  top: 0;
+  width: 43px;
+  height: 0.05rem;
+  left: 20px;
+  top: 30px;
+  z-index: 0;
+}
+
+.filters a:hover {
+  text-decoration: none;
 }

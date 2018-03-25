@@ -1,0 +1,26 @@
+/* 
+ * Counter
+ */
+
+.w-counter-number {
+	line-height: 1;
+	}
+.l-section.color_primary .w-counter.color_heading .w-counter-number,
+.l-section.color_secondary .w-counter.color_heading .w-counter-number,
+.l-section.color_custom .w-counter.color_heading .w-counter-number {
+	color: inherit;
+	}
+.w-counter.size_small .w-counter-number {
+	font-size: 4rem;
+	}
+.w-counter.size_medium .w-counter-number {
+	font-size: 5rem;
+	}
+.w-counter.size_large .w-counter-number {
+	font-size: 6rem;
+	}
+.w-counter-title {
+	line-height: 1.4;
+	padding: 0.6rem 0;
+	margin: 0;
+	}

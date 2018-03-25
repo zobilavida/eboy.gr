@@ -2,36 +2,43 @@
 /*
 
 # Param Use -
-
 	array(
-		"type" => "ultimate_responsive",
-		"unit"  => "px",                                  // use '%' or 'px'
-		"media" => array(
-			"Large Screen"      => '',
-			"Desktop"           => '28',                  // Here '28' is default value set for 'Desktop'
-			"Tablet"            => '',
-			"Tablet Portrait"   => '',
-			"Mobile Landscape"  => '',
-			"Mobile"            => '',
-		),
+	  	"type" => "ultimate_responsive",
+	  	"class" => "",
+	  	"heading" => __("Font size", 'ultimate_vc'),
+	  	"param_name" => "YOUR_PARAM_NAME_FONT_SIZE",
+	  	"unit"  => "px",								// use '%' or 'px'
+	  	"media" => array(
+	  	    // "Large Screen"      => '',
+	  	    "Desktop"           => '28', 				// Here '28' is default value set for 'Desktop'
+	  	    "Tablet"            => '',
+	  	    "Tablet Portrait"   => '',
+	  	    "Mobile Landscape"  => '',
+	  	    "Mobile"            => '',
+	  	),
+	  	"group" => "Typography"
 	),
-
 
 # Module implementation -
 
 	1]  Create Data List -
 		$args = array(
-        	'target'      =>  '#id .ult-ih-heading',  // set targeted element e.g. unique class/id etc.
+        	'target'      =>  '#ID .TARGET_element_CLASS, #ID #TARGET_element_ID',  // set targeted element e.g. unique class/id etc.
            	'media_sizes' => array(
-				// set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
-               'font-size' => $title_responsive_font_size,
-			   'line-height' => $title_responsive_line_height
+				font-size' => $YOUR_PARAM_NAME_FONT_SIZE, 		//	Your PARAM_NAME which you set in array
+			   'line-height' => $YOUR_PARAM_NAME_LINE_HEIGHT 	//	Your PARAM_NAME which you set in array
             ),
        	);
 		$data_list = get_ultimate_vc_responsive_media_css($args);
 
-	2] Set responsive class and data list
-		<div class='ult-ih-heading ult-responsive' '.$data_list.'  >     // add $data_list to targeted element and "ult-responsive" class
+	2] Add ID and class 'ult-responsive' and set data attribute - $data_list to targeted element
+		<div id="#ID" class='ult-responsive' '.$data_list.' >
+			<div class="TARGET_element_ID">
+				...
+			</div>
+			<div class="TARGET_element_CLASS">
+				...
+			</div>
         	....
       	</div>
 
@@ -63,7 +70,7 @@ if(!class_exists('Ultimate_Responsive'))
 
 		function ultimate_responsive_callback($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$unit = $settings['unit'];
 			$medias = $settings['media'];
 
@@ -79,20 +86,18 @@ if(!class_exists('Ultimate_Responsive'))
 				foreach($medias as $key => $default_value ) {
 					//$html .= $key;
 					switch ($key) {
-						/*case 'Large Screen':
-							$data_id  = strtolower((preg_replace('/\s+/', '_', $key)));
-							$class = 'required';
-							$dashicon = "<i class='dashicons dashicons-welcome-view-site'></i>";
-							$html .= $this->ultimate_responsive_param_media($class, $dashicon, $key, $default_value ,$unit, $data_id);
-						break;*/
 						case 'Desktop':
 							$class = 'required';
 							$data_id  = strtolower((preg_replace('/\s+/', '_', $key)));
 							$dashicon = "<i class='dashicons dashicons-desktop'></i>";
+							$icons = 'simplify-icon dashicons dashicons-arrow-right-alt2';
+							if ( is_rtl() ) {
+								$icons = 'simplify-icon dashicons dashicons-arrow-left-alt2';
+							}
 							$html .= $this->ultimate_responsive_param_media($class, $dashicon, $key, $default_value ,$unit, $data_id);
 							$html .= "<div class='simplify'>
 										<div class='ult-tooltip simplify-options'>".__("Responsive Options","ultimate_vc")."</div>
-										<i class='simplify-icon dashicons dashicons-arrow-right-alt2'></i>
+										<i class='$icons'></i>
 									  </div>";
 						break;
 						case 'Tablet':
@@ -123,7 +128,7 @@ if(!class_exists('Ultimate_Responsive'))
 				}
 			$html .= '  </div>';
 			$html .= $this->get_units($unit);
-			$html .= '  <input type="hidden" data-unit="'.$unit.'"  name="'.$settings['param_name'].'" class="wpb_vc_param_value ultimate-responsive-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.' />';
+			$html .= '  <input type="hidden" data-unit="'.esc_attr( $unit ).'"  name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ultimate-responsive-value '. esc_attr( $settings['param_name'] ).' '.esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.' />';
 
 			$html .= '</div>';
 
@@ -131,19 +136,19 @@ if(!class_exists('Ultimate_Responsive'))
 		}
 		function ultimate_responsive_param_media($class, $dashicon, $key, $default_value, $unit, $data_id) {
 			$tooltipVal  = str_replace('_', ' ', $data_id);
-			$html  = '  <div class="ult-responsive-item '.$class.' '.$data_id.' ">';
+			$html  = '  <div class="ult-responsive-item '.esc_attr( $class ).' '.esc_attr( $data_id ).' ">';
 			$html .= '    <span class="ult-icon">';
-        	$html .= '    	<div class="ult-tooltip '.$class.' '.$data_id.'">'.ucwords($tooltipVal).'</div>';
+        	$html .= '    	<div class="ult-tooltip '.esc_attr( $class ).' '.esc_attr( $data_id ).'">'.ucwords($tooltipVal).'</div>';
 			$html .=          $dashicon;
 			$html .= '     </span>';
-			$html .= '    <input type="text" class="ult-responsive-input" data-default="'.$default_value.'" data-unit="'.$unit.'" data-id="'.$data_id.'" />';
+			$html .= '    <input type="text" class="ult-responsive-input" data-default="'.esc_attr( $default_value ) .'" data-unit="'.esc_attr( $unit ).'" data-id="'.esc_attr( $data_id ).'" />';
 			$html .= '  </div>';
 			return $html;
 		}
 		function get_units($unit) {
 			//  set units - px, em, %
 			$html  = '<div class="ultimate-unit-section">';
-			$html .= '  <label>'.$unit.'</label>';
+			$html .= '  <label>'.esc_html( $unit ).'</label>';
 			$html .= '</div>';
 			return $html;
 		}
@@ -153,7 +158,13 @@ if(!class_exists('Ultimate_Responsive'))
 				wp_enqueue_style( 'wp-color-picker' );
 				$bsf_dev_mode = bsf_get_option('dev_mode');
 				if($bsf_dev_mode === 'enable') {
-					wp_register_style('ultimate_responsive_param_css', plugins_url('../admin/vc_extend/css/ultimate_responsive.min.css', __FILE__ ));
+
+					$css_ext = '.css';
+					if ( is_rtl() ) {
+						$css_ext = '-rtl.css';
+					}
+					Ultimate_VC_Addons::ultimate_register_style( 'ultimate_responsive_param_css', plugins_url( '../admin/vc_extend/css/ultimate_responsive' . $css_ext, __FILE__ ), true );
+					// wp_register_style('ultimate_responsive_param_css', plugins_url('../admin/vc_extend/css/ultimate_responsive.min.css', __FILE__ ));
 					wp_enqueue_style( 'ultimate_responsive_param_css');
 				}
 			}
@@ -164,25 +175,4 @@ if(!class_exists('Ultimate_Responsive'))
 if(class_exists('Ultimate_Responsive'))
 {
 	$Ultimate_Responsive = new Ultimate_Responsive();
-}
-
-// return responsive data
-function get_ultimate_vc_responsive_media_css($args) {
-	$content = '';
-	if(isset($args) && is_array($args)) {
-		//  get targeted css class/id from array
-		if (array_key_exists('target',$args)) {
-			if(!empty($args['target'])) {
-				$content .=  " data-ultimate-target='".$args['target']."' ";
-			}
-		}
-
-		//  get media sizes
-		if (array_key_exists('media_sizes',$args)) {
-			if(!empty($args['media_sizes'])) {
-				$content .=  " data-responsive-json-new='".json_encode($args['media_sizes'])."' ";
-			}
-		}
-	}
-	return $content;
 }

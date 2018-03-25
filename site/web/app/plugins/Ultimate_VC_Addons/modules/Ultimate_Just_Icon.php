@@ -3,13 +3,15 @@
 * Add-on Name: Just Icon for Visual Composer
 * Add-on URI: http://dev.brainstormforce.com
 */
-if(!class_exists('AIO_Just_Icon')) 
+if(!class_exists('AIO_Just_Icon'))
 {
 	class AIO_Just_Icon
 	{
 		function __construct()
 		{
-			add_action('init',array($this,'just_icon_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'just_icon_init'));
+			}
 			add_shortcode('just_icon',array($this,'just_icon_shortcode'));
 		}
 		function just_icon_init()
@@ -24,7 +26,7 @@ if(!class_exists('AIO_Just_Icon'))
 					   "icon" => "vc_just_icon",
 					   "category" => "Ultimate VC Addons",
 					   "description" => __("Add a simple icon and give some custom style.","ultimate_vc"),
-					   "params" => array(							
+					   "params" => array(
 							// Play with icon selector
 							array(
 								"type" => "dropdown",
@@ -43,7 +45,7 @@ if(!class_exists('AIO_Just_Icon'))
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
@@ -87,7 +89,7 @@ if(!class_exists('AIO_Just_Icon'))
 								"param_name" => "icon_color",
 								"value" => "#333333",
 								"description" => __("Give it a nice paint!", "ultimate_vc"),
-								"dependency" => Array("element" => "icon_type","value" => array("selector")),						
+								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
 								"type" => "dropdown",
@@ -98,6 +100,7 @@ if(!class_exists('AIO_Just_Icon'))
 									__("Simple","ultimate_vc") => "none",
 									__("Circle Background","ultimate_vc") => "circle",
 									__("Square Background","ultimate_vc") => "square",
+									__("Hexagon Background","ultimate_vc") => "hexagon",
 									__("Design your own","ultimate_vc") => "advanced",
 								),
 								"description" => __("We have given three quick preset if you are in a hurry. Otherwise, create your own with various options.", "ultimate_vc"),
@@ -108,8 +111,8 @@ if(!class_exists('AIO_Just_Icon'))
 								"heading" => __("Background Color", "ultimate_vc"),
 								"param_name" => "icon_color_bg",
 								"value" => "#ffffff",
-								"description" => __("Select background color for icon.", "ultimate_vc"),	
-								"dependency" => Array("element" => "icon_style", "value" => array("circle","square","advanced")),
+								"description" => __("Select background color for icon.", "ultimate_vc"),
+								"dependency" => Array("element" => "icon_style", "value" => array("circle","square","advanced", "hexagon" )),
 							),
 							array(
 								"type" => "dropdown",
@@ -134,7 +137,7 @@ if(!class_exists('AIO_Just_Icon'))
 								"heading" => __("Border Color", "ultimate_vc"),
 								"param_name" => "icon_color_border",
 								"value" => "#333333",
-								"description" => __("Select border color for icon.", "ultimate_vc"),	
+								"description" => __("Select border color for icon.", "ultimate_vc"),
 								"dependency" => Array("element" => "icon_border_style", "not_empty" => true),
 							),
 							array(
@@ -226,7 +229,7 @@ if(!class_exists('AIO_Just_Icon'))
 									__("Tooltip from Bottom","ultimate_vc") => "bottom",
 								),
 								"description" => __("Select the tooltip position","ultimate_vc"),
-							),							
+							),
 							array(
 								"type" => "textfield",
 								"class" => "",
@@ -255,6 +258,13 @@ if(!class_exists('AIO_Just_Icon'))
 								"value" => "",
 								"description" => __("Ran out of options? Need more styles? Write your own CSS and mention the class name here.", "ultimate_vc"),
 							),
+							array(
+								'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_just_icon',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						),
 					)
 				);
@@ -264,16 +274,16 @@ if(!class_exists('AIO_Just_Icon'))
 		function just_icon_shortcode($atts)
 		{
 			$icon_type = $icon_img = $img_width = $icon = $icon_color = $icon_color_bg = $icon_size = $icon_style = $icon_border_style = $icon_border_radius = $icon_color_border = $icon_border_size = $icon_border_spacing = $icon_link = $el_class = $icon_animation =  $tooltip_disp = $tooltip_text = $icon_align = '';
-			extract(shortcode_atts( array(				
+			extract(shortcode_atts( array(
 				'icon_type' => 'selector',
 				'icon' => 'none',
 				'icon_img' => '',
 				'img_width' => '48',
-				'icon_size' => '32',				
+				'icon_size' => '32',
 				'icon_color' => '#333',
 				'icon_style' => 'none',
 				'icon_color_bg' => '#ffffff',
-				'icon_color_border' => '#333333',			
+				'icon_color_border' => '#333333',
 				'icon_border_style' => '',
 				'icon_border_size' => '1',
 				'icon_border_radius' => '500',
@@ -283,37 +293,48 @@ if(!class_exists('AIO_Just_Icon'))
 				'tooltip_disp' => '',
 				'tooltip_text' => '',
 				'el_class'=>'',
-				'icon_align' => 'center'
+				'icon_align' => 'center',
+				'css_just_icon' => '',
 			),$atts));
+			$is_preset = false;
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			$css_just_icon = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_just_icon, ' ' ), "just_icon", $atts );
+			$css_just_icon = esc_attr( $css_just_icon );
 			$ultimate_js = get_option('ultimate_js');
 			if($tooltip_text != '' && $ultimate_js == 'disable')
 				wp_enqueue_script('ultimate-tooltip');
-				
-			$output = $style = $link_sufix = $link_prefix = $target = $href = $icon_align_style = $css_trans = '';	
-			
+
+			$output = $style = $link_sufix = $link_prefix = $target = $href = $icon_align_style = $css_trans = $target = $link_title  = $rel = '';
+
 			if(trim($icon_animation) === '')
 				$icon_animation = 'none';
-				
+
 			if($icon_animation !== 'none')
 			{
-				$css_trans = 'data-animation="'.$icon_animation.'" data-animation-delay="03"';
+				$css_trans = 'data-animation="'.esc_attr($icon_animation).'" data-animation-delay="03"';
 			}
-			
+
 			$uniqid = uniqid();
 			if($icon_link !== ''){
 				$href = vc_build_link($icon_link);
-				$target = (isset($href['target'])) ? "target='".$href['target']."'" : '';
-				$link_prefix .= '<a class="aio-tooltip '.$uniqid.'" href = "'.$href['url'].'" '.$target.' data-toggle="tooltip" data-placement="'.$tooltip_disp.'" title="'.$tooltip_text.'">';
+
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+				$link_prefix .= '<a class="aio-tooltip '.esc_attr($uniqid).'" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).' data-toggle="tooltip" data-placement="'.esc_attr($tooltip_disp).'">';
 				$link_sufix .= '</a>';
 			} else {
 				if($tooltip_disp !== ""){
-					$link_prefix .= '<div class="aio-tooltip '.$uniqid.'" href = "'.$href.'" '.$target.' data-toggle="tooltip" data-placement="'.$tooltip_disp.'" title="'.$tooltip_text.'">';
+					$link_prefix .= '<div class="aio-tooltip '.esc_attr($uniqid).'" href = "'.esc_url($href).'" '.$target.' data-toggle="tooltip" data-placement="'.esc_attr($tooltip_disp).'" title="'.esc_attr($tooltip_text).'">';
 					$link_sufix .= '</div>';
 				}
 			}
-			
+
 			$elx_class = '';
-			
+
 			/* position fix */
 			if($icon_align == 'right')
 				$icon_align_style .= 'text-align:right;';
@@ -321,20 +342,15 @@ if(!class_exists('AIO_Just_Icon'))
 				$icon_align_style .= 'text-align:center;';
 			elseif($icon_align == 'left')
 				$icon_align_style .= 'text-align:left;';
-			
+
 			if($icon_type == 'custom'){
 
 				$img = apply_filters('ult_get_img_single', $icon_img, 'url');
+				$alt = apply_filters('ult_get_img_single', $icon_img, 'alt');
+				//$title = apply_filters('ult_get_img_single', $icon_img, 'title');
+				//$description = apply_filters('ult_get_img_single', $icon_img, 'description');
+				//$caption = apply_filters('ult_get_img_single', $icon_img, 'caption');
 
-				if( isset( $icon_img ) ) {
-					$icon_img_arr = explode( '|', $icon_img );
-					$icon_img_id = ( isset( $icon_img_arr[0] ) && $icon_img_arr[0] != '' ) ? $icon_img_arr[0] : $icon_img;
-					$alt = get_post_meta($icon_img_id, '_wp_attachment_image_alt', true);	
-				}
-				else {
-					$alt = '';	
-				}
-				
 				if($icon_style !== 'none'){
 					if($icon_color_bg !== '')
 						$style .= 'background:'.$icon_color_bg.';';
@@ -344,6 +360,10 @@ if(!class_exists('AIO_Just_Icon'))
 				}
 				if($icon_style == 'square'){
 					$elx_class.= ' uavc-square ';
+				}
+				if($icon_style == 'hexagon'){
+					$elx_class.= ' uavc-hexagon ';
+					$style .= 'border-color:'.$icon_color_bg.';';
 				}
 				if($icon_style == 'advanced' && $icon_border_style !== '' ){
 					$style .= 'border-style:'.$icon_border_style.';';
@@ -357,8 +377,8 @@ if(!class_exists('AIO_Just_Icon'))
 					if($icon_link == '' || $icon_align == 'center') {
 						$style .= 'display:inline-block;';
 					}
-					$output .= "\n".$link_prefix.'<div class="aio-icon-img '.$elx_class.'" style="font-size:'.$img_width.'px;'.$style.'" '.$css_trans.'>';
-					$output .= "\n\t".'<img class="img-icon" alt="'.$alt.'" src="'.$img.'"/>';	
+					$output .= "\n".$link_prefix.'<div class="aio-icon-img '.esc_attr($elx_class).'" style="font-size:'.esc_attr($img_width).'px;'.esc_attr($style).'" '.$css_trans.'>';
+					$output .= "\n\t".'<img class="img-icon" alt="'.esc_attr($alt).'" src="'.esc_url(apply_filters('ultimate_images', $img)).'"/>';
 					$output .= "\n".'</div>'.$link_sufix;
 				}
 				$output = $output;
@@ -368,6 +388,9 @@ if(!class_exists('AIO_Just_Icon'))
 				if($icon_style !== 'none'){
 					if($icon_color_bg !== '')
 						$style .= 'background:'.$icon_color_bg.';';
+				}
+				if($icon_style == 'hexagon'){
+					$style .= 'border-color:'.$icon_color_bg.';';
 				}
 				if($icon_style == 'advanced'){
 					$style .= 'border-style:'.$icon_border_style.';';
@@ -384,26 +407,40 @@ if(!class_exists('AIO_Just_Icon'))
 					$style .= 'display:inline-block;';
 				}
 				if($icon !== ""){
-					$output .= "\n".$link_prefix.'<div class="aio-icon '.$icon_style.' '.$elx_class.'" '.$css_trans.' style="'.$style.'">';				
-					$output .= "\n\t".'<i class="'.$icon.'"></i>';	
+					$output .= "\n".$link_prefix.'<div class="aio-icon '.esc_attr($icon_style).' '.esc_attr($elx_class).'" '.$css_trans.' style="'.esc_attr($style).'">';
+					$output .= "\n\t".'<i class="'.esc_attr($icon).'"></i>';
 					$output .= "\n".'</div>'.$link_sufix;
 				}
 				$output = $output;
 			}
-			if($tooltip_disp !== ""){
+			if($tooltip_disp !== "" && $tooltip_text !== "" ){
 				$output .= '<script>
 					jQuery(function () {
-						jQuery(".'.$uniqid.'").bsf_tooltip("hide");
+						jQuery(".'.esc_attr($uniqid).'").bsf_tooltip("hide");
 					})
 				</script>';
 			}
 			/* alignment fix */
 			if($icon_align_style !== ''){
-				$output = '<div class="align-icon" style="'.$icon_align_style.'">'.$output.'</div>';
+				$output = '<div class="align-icon" style="'.esc_attr($icon_align_style).'">'.$output.'</div>';
 			}
-			
-			$output = '<div class="ult-just-icon-wrapper '.$el_class.'">'.$output.'</div>';
-			
+
+			$output = '<div class="ult-just-icon-wrapper '.esc_attr($el_class).' '.esc_attr($css_just_icon).'">'.$output.'</div>';
+
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$output .= '<pre>';
+				$output .= $text;
+				$output .= '</pre>';
+			}
+
 			return $output;
 		}
 	}
@@ -412,7 +449,7 @@ if(class_exists('AIO_Just_Icon'))
 {
 	$AIO_Just_Icon = new AIO_Just_Icon;
 }
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_just_icon' ) ) {
     class WPBakeryShortCode_just_icon extends WPBakeryShortCode {
     }
 }

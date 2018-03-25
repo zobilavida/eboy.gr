@@ -6,23 +6,14 @@
 if(!class_exists("Ultimate_Pricing_Table")){
 	class Ultimate_Pricing_Table{
 		function __construct(){
-			add_action("init",array($this,"ultimate_pricing_init"));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action("init",array($this,"ultimate_pricing_init"));
+			}
 			add_shortcode("ultimate_pricing",array($this,"ultimate_pricing_shortcode"));
 			add_action( 'wp_enqueue_scripts', array( $this, 'price_table_assets' ), 1 );
 		}
 		function price_table_assets() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style('ultimate-pricing', plugins_url($css_path.'pricing'.$ext.'.css',__FILE__) , array(), ULTIMATE_VERSION, false);
+			Ultimate_VC_Addons::ultimate_register_style( 'ultimate-pricing', 'pricing' );
 		}
 		function ultimate_pricing_init(){
 			if(function_exists("vc_map")){
@@ -196,7 +187,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "ultimate_vc"),
 							"param_name" => "package_name_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -205,30 +196,60 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"package_name_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "package_name_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "package_name_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "package_name_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "package_name_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "package_name_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
 							"heading" => __("Font Color", "ultimate_vc"),
 							"param_name" => "package_name_font_color",
 							"value" => "",
-							"group" => "Typography"
-						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "package_name_line_height",
-							"value" => "",
-							"suffix" => "px",
 							"group" => "Typography"
 						),
 						/* typoraphy - sub heading */
@@ -244,7 +265,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "ultimate_vc"),
 							"param_name" => "subheading_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -253,30 +274,60 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"subheading_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "subheading_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "subheading_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "subheading_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "subheading_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "subheading_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
 							"heading" => __("Font Color", "ultimate_vc"),
 							"param_name" => "subheading_font_color",
 							"value" => "",
-							"group" => "Typography"
-						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "subheading_line_height",
-							"value" => "",
-							"suffix" => "px",
 							"group" => "Typography"
 						),
 						/* typoraphy - price */
@@ -292,7 +343,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "ultimate_vc"),
 							"param_name" => "price_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -301,30 +352,60 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"price_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "price_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "price_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "price_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "price_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "price_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
 							"heading" => __("Font Color", "ultimate_vc"),
 							"param_name" => "price_font_color",
 							"value" => "",
-							"group" => "Typography"
-						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "price_line_height",
-							"value" => "",
-							"suffix" => "px",
 							"group" => "Typography"
 						),
 						/* typoraphy - price unit*/
@@ -340,7 +421,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "smile"),
 							"param_name" => "price_unit_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -349,30 +430,60 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"price_unit_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "price_unit_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "price_unit_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "price_unit_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "price_unit_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "price_unit_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
 							"heading" => __("Font Color", "ultimate_vc"),
 							"param_name" => "price_unit_font_color",
 							"value" => "",
-							"group" => "Typography"
-						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "price_unit_line_height",
-							"value" => "",
-							"suffix" => "px",
 							"group" => "Typography"
 						),
 						/* typoraphy - feature*/
@@ -388,7 +499,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "ultimate_vc"),
 							"param_name" => "features_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -397,30 +508,60 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"features_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "features_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "features_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "features_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "features_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "features_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
 							"heading" => __("Font Color", "ultimate_vc"),
 							"param_name" => "features_font_color",
 							"value" => "",
-							"group" => "Typography"
-						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "features_line_height",
-							"value" => "",
-							"suffix" => "px",
 							"group" => "Typography"
 						),
 						/* typoraphy - button */
@@ -436,7 +577,7 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"type" => "ultimate_google_fonts",
 							"heading" => __("Font Family", "ultimate_vc"),
 							"param_name" => "button_font_family",
-							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+							"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 							"group" => "Typography"
 						),
 						array(
@@ -445,15 +586,54 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"param_name"	=>	"button_font_style",
 							"group" => "Typography"
 						),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "font-size",
+						// 	"heading" => __("Font Size", "ultimate_vc"),
+						// 	"param_name" => "button_font_size",
+						// 	"min" => 10,
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
+						// array(
+						// 	"type" => "number",
+						// 	"class" => "",
+						// 	"heading" => __("Line Height", "ultimate_vc"),
+						// 	"param_name" => "button_line_height",
+						// 	"value" => "",
+						// 	"suffix" => "px",
+						// 	"group" => "Typography"
+						// ),
 						array(
-							"type" => "number",
-							"class" => "font-size",
-							"heading" => __("Font Size", "ultimate_vc"),
-							"param_name" => "button_font_size",
-							"min" => 10,
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "font-size",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "button_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "button_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 						array(
 							"type" => "colorpicker",
 							"class" => "",
@@ -462,15 +642,13 @@ if(!class_exists("Ultimate_Pricing_Table")){
 							"value" => "",
 							"group" => "Typography"
 						),
-						array(
-							"type" => "number",
-							"class" => "",
-							"heading" => __("Line Height", "ultimate_vc"),
-							"param_name" => "button_line_height",
-							"value" => "",
-							"suffix" => "px",
-							"group" => "Typography"
-						),
+							array(
+							'type' => 'css_editor',
+				            'heading' => __( 'Css', 'ultimate_vc' ),
+				            'param_name' => 'css_price_box',
+				            'group' => __( 'Design ', 'ultimate_vc' ),
+				            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+			        	),
 					)// params
 				));// vc_map
 			}
@@ -484,11 +662,28 @@ if(!class_exists("Ultimate_Pricing_Table")){
 			require_once(__ULTIMATE_ROOT__.'/templates/pricing/pricing-'.$design_style.'.php');
 			$design_func = 'ult_price_generate_'.$design_style;
 			$output .= $design_func($atts,$content);
+			$is_preset = false; //Display settings for Preset
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$output .= '<pre>';
+				$output .= $text;
+				$output .= '</pre>';
+			}
 			return $output;
 		}
 	} // class Ultimate_Pricing_Table
 	new Ultimate_Pricing_Table;
-	if ( class_exists( 'WPBakeryShortCode' ) ) {
+	if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ultimate_pricing' ) ) {
 	    class WPBakeryShortCode_ultimate_pricing extends WPBakeryShortCode {
 	    }
 	}

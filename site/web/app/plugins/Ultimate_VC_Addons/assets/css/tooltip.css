@@ -35,6 +35,7 @@
     text-align: center;
     text-decoration: none;
     background-color: #3b3b3b;
+    -webkit-border-radius: 0;
     border-radius: 0
 }
 .bsf_tooltip-arrow {
@@ -99,14 +100,10 @@
 .bsf_tooltip.fade {
     opacity: 0;
     -webkit-transition: opacity 300ms linear;
-    -moz-transition: opacity 300ms linear;
-    -o-transition: opacity 300ms linear;
     transition: opacity 300ms linear
 }
 .bsf_tooltip.fade.in {
     opacity: 1;
     -webkit-transition: opacity 300ms linear;
-    -moz-transition: opacity 300ms linear;
-    -o-transition: opacity 300ms linear;
     transition: opacity 300ms linear
 }

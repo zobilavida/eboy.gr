@@ -1,0 +1,174 @@
+[01-Feb-2018 23:42:49 UTC] PHP Warning:  include(SSF_WP_PAGES_PATH/manage-region.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/region.php on line 3
+[01-Feb-2018 23:42:49 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_PAGES_PATH/manage-region.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/region.php on line 3
+[01-Feb-2018 23:43:36 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[01-Feb-2018 23:43:36 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[01-Feb-2018 23:43:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3
+[01-Feb-2018 23:43:58 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 2
+[01-Feb-2018 23:43:58 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 2
+[01-Feb-2018 23:43:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 9
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(../../../../wp-load.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 4
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(): Failed opening '../../../../wp-load.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 4
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(../ssf-wp-define.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 5
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-define.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 5
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 6
+[01-Feb-2018 23:44:11 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 6
+[01-Feb-2018 23:44:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 13
+[01-Feb-2018 23:45:58 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 2
+[01-Feb-2018 23:45:58 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 2
+[01-Feb-2018 23:45:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 9
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(../../../../wp-load.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 4
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(): Failed opening '../../../../wp-load.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 4
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(../ssf-wp-define.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 5
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-define.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 5
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 6
+[02-Feb-2018 01:46:28 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 6
+[02-Feb-2018 01:46:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 12
+[02-Feb-2018 01:46:37 UTC] PHP Notice:  Use of undefined constant SSF_WP_INCLUDES_PATH - assumed 'SSF_WP_INCLUDES_PATH' in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 01:46:37 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 01:46:37 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 01:46:37 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 5
+[02-Feb-2018 01:46:37 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 5
+[02-Feb-2018 01:46:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 50
+[02-Feb-2018 01:46:51 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 01:46:51 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 01:46:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3
+[02-Feb-2018 01:47:04 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 2
+[02-Feb-2018 01:47:04 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 2
+[02-Feb-2018 01:47:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 7
+[02-Feb-2018 01:47:19 UTC] PHP Warning:  include(SSF_WP_PAGES_PATH/quickstart-content.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart.php on line 3
+[02-Feb-2018 01:47:19 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_PAGES_PATH/quickstart-content.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart.php on line 3
+[02-Feb-2018 01:48:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php on line 4
+[02-Feb-2018 03:43:29 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 03:43:29 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 03:43:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3
+[02-Feb-2018 03:44:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php on line 4
+[02-Feb-2018 03:44:48 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 2
+[02-Feb-2018 03:44:48 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 2
+[02-Feb-2018 03:44:48 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 4
+[02-Feb-2018 03:44:48 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 4
+[02-Feb-2018 03:44:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 9
+[02-Feb-2018 15:01:15 UTC] PHP Warning:  include(SSF_WP_PAGES_PATH/manage-region.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/region.php on line 3
+[02-Feb-2018 15:01:15 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_PAGES_PATH/manage-region.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/region.php on line 3
+[02-Feb-2018 15:16:23 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 15:16:23 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[02-Feb-2018 15:16:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3
+[02-Feb-2018 15:39:06 UTC] PHP Warning:  include(SSF_WP_PAGES_PATH/quickstart-content.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart.php on line 3
+[02-Feb-2018 15:39:06 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_PAGES_PATH/quickstart-content.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart.php on line 3
+[02-Feb-2018 15:42:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php on line 4
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(../../../../wp-load.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 4
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(): Failed opening '../../../../wp-load.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 4
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(../ssf-wp-define.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 5
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-define.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 5
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 6
+[02-Feb-2018 15:50:26 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 6
+[02-Feb-2018 15:50:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-region.php on line 12
+[02-Feb-2018 16:05:34 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 2
+[02-Feb-2018 16:05:34 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 2
+[02-Feb-2018 16:05:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-region.php on line 9
+[02-Feb-2018 16:13:08 UTC] PHP Notice:  Use of undefined constant SSF_WP_INCLUDES_PATH - assumed 'SSF_WP_INCLUDES_PATH' in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 16:13:08 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 16:13:08 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 3
+[02-Feb-2018 16:13:08 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 5
+[02-Feb-2018 16:13:08 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 5
+[02-Feb-2018 16:13:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php:50
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/import.php on line 50
+[02-Feb-2018 16:16:56 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 2
+[02-Feb-2018 16:16:56 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 2
+[02-Feb-2018 16:16:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/manage-stores.php on line 9
+[02-Feb-2018 16:20:42 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 2
+[02-Feb-2018 16:20:42 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 2
+[02-Feb-2018 16:20:42 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 4
+[02-Feb-2018 16:20:42 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 4
+[02-Feb-2018 16:20:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/Add-ons.php on line 9
+[02-Feb-2018 16:28:17 UTC] PHP Warning:  include_once(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 2
+[02-Feb-2018 16:28:17 UTC] PHP Warning:  include_once(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 2
+[02-Feb-2018 16:28:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/settings.php on line 7
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(../../../../wp-load.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 4
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(): Failed opening '../../../../wp-load.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 4
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(../ssf-wp-define.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 5
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-define.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 5
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(../ssf-wp-functions.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 6
+[02-Feb-2018 16:32:03 UTC] PHP Warning:  include(): Failed opening '../ssf-wp-functions.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 6
+[02-Feb-2018 16:32:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_initialize_variables() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/add-store.php on line 13
+[03-Feb-2018 05:56:16 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[03-Feb-2018 05:56:16 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[03-Feb-2018 05:56:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3
+[03-Feb-2018 06:01:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php on line 4
+[03-Feb-2018 12:58:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/stores.php on line 4
+[03-Feb-2018 12:59:04 UTC] PHP Warning:  include(SSF_WP_INCLUDES_PATH/top-nav.php): failed to open stream: No such file or directory in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[03-Feb-2018 12:59:04 UTC] PHP Warning:  include(): Failed opening 'SSF_WP_INCLUDES_PATH/top-nav.php' for inclusion (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 2
+[03-Feb-2018 12:59:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ssf_wp_move_upload_directories() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-admin/pages/quickstart-content.php on line 3

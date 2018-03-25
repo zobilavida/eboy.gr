@@ -25,23 +25,23 @@ if(!class_exists('Ultimate_Button_Param'))
 			$class = isset($settings['class']) ? $settings['class'] : '';
 			$json = isset($settings['json']) ? $settings['json'] : '';
 			$jsonIterator = json_decode($json,true);
-			$selector = '<select name="'.$param_name.'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '">';
+			$selector = '<select name="'. esc_attr( $param_name ) .'" class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr( $type ) . ' ' . esc_attr( $class ) . '">';
 			foreach ($jsonIterator as $key => $val) {
 				if(is_array($val)) {
 					$labels = str_replace('_',' ', $key);
-					$selector .= '<optgroup label="'.ucwords($labels).'">';
+					$selector .= '<optgroup label="'.ucwords( esc_attr( $labels ) ).'">';
 					foreach($val as $label => $style){
 						$label = str_replace('_',' ', $label);
 						if($style == $value)
-							$selector .= '<option selected value="'.$style.'">'.__($label,'ultimate_vc').'</option>';
+							$selector .= '<option selected value="'.esc_attr( $style ).'">'.esc_html__($label,'ultimate_vc').'</option>';
 						else
-							$selector .= '<option value="'.$style.'">'.__($label,'ultimate_vc').'</option>';
+							$selector .= '<option value="'.esc_attr( $style ).'">'.esc_html__($label,'ultimate_vc').'</option>';
 					}
 				} else {
 					if($val == $value)
-						$selector .= "<option selected value=".$val.">".__($key,'ultimate_vc')."</option>";
+						$selector .= "<option selected value=".esc_attr($val).">".esc_html__($key,'ultimate_vc')."</option>";
 					else
-						$selector .= "<option value=".$val.">".__($key,'ultimate_vc')."</option>";
+						$selector .= "<option value=".esc_attr($val).">".esc_html__($key,'ultimate_vc')."</option>";
 				}
 			}
 			$selector .= '<select>';
@@ -55,7 +55,7 @@ if(!class_exists('Ultimate_Button_Param'))
 			$output .= '</div>';
 			$output .= '<script type="text/javascript">
 					jQuery(document).ready(function(){
-						var animator = jQuery(".'.$param_name.'");
+						var animator = jQuery(".'. esc_attr( $param_name ) .'");
 						var anim_target = jQuery(".ubtn");
 						animator.on("change",function(){
 							var anim = jQuery(this).val();

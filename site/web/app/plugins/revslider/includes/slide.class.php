@@ -979,14 +979,16 @@ class RevSliderSlide extends RevSliderElementsBase{
 			break;
 			case 'instagram':
 				$caption = RevSliderFunctions::getVal($this->postData, 'caption');
-				$user = RevSliderFunctions::getVal($this->postData, 'user');
-				
+				$user = RevSliderFunctions::getVal($this->postData, 'owner');
+
 				$attr['title'] = RevSliderFunctions::getVal($caption, 'text');
 				$attr['content'] = RevSliderFunctions::getVal($caption, 'text');
-				$attr['link'] = RevSliderFunctions::getVal($this->postData, 'link');
-				$attr['date'] = RevSliderFunctionsWP::convertPostDate(RevSliderFunctions::getVal($this->postData, 'created_time'), true);
-				$attr['author_name'] = RevSliderFunctions::getVal($user, 'username');
-				$attr['author_name'] = empty($attr['author_name']) ? "alskjdf" : $attr['author_name'];
+				$attr['link'] = 'https://www.instagram.com/p/' . RevSliderFunctions::getVal($this->postData, 'code');
+				$attr['date'] = RevSliderFunctions::getVal($this->postData, 'date');
+				$attr['date'] = date_i18n(get_option('date_format').' '.get_option('time_format'), $attr['date']);
+
+				$attr['author_name'] = RevSliderFunctions::getVal($user, 'id');
+				$attr['author_name'] = empty($attr['author_name']) ? "" : $attr['author_name'];
 				
 				$likes_raw = RevSliderFunctions::getVal($this->postData, 'likes');
 				$attr['likes'] = RevSliderFunctions::getVal($likes_raw, 'count');

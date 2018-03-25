@@ -7,26 +7,20 @@ if(!class_exists('Ultimate_FancyText')){
 	class Ultimate_FancyText{
 
 		function __construct(){
-			add_action('init',array($this,'ultimate_fancytext_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ultimate_fancytext_init'));
+			}
 			add_shortcode('ultimate_fancytext',array($this,'ultimate_fancytext_shortcode'));
 			add_action('wp_enqueue_scripts', array($this, 'register_fancytext_assets'),1);
 		}
 		function register_fancytext_assets()
 		{
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style('ultimate-fancytext-style',plugins_url($css_path.'fancytext'.$ext.'.css',__FILE__),array(),ULTIMATE_VERSION);
-			wp_register_script('ultimate-typed-js',plugins_url($js_path.'typed'.$ext.'.js',__FILE__),array('jquery'),ULTIMATE_VERSION);
-			wp_register_script('ultimate-vticker-js',plugins_url($js_path.'vticker'.$ext.'.js',__FILE__),array('jquery'),ULTIMATE_VERSION);
+			
+			Ultimate_VC_Addons::ultimate_register_style( 'ultimate-fancytext-style', 'fancytext' );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ultimate-typed-js', 'typed', false, array( 'jquery' ), ULTIMATE_VERSION, false );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ultimate-easy-ticker-js', 'easy-ticker', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 		}
 
 		function ultimate_fancytext_init(){
@@ -66,7 +60,7 @@ if(!class_exists('Ultimate_FancyText')){
 								"value" => array(
 									__("Type", "ultimate_vc") => "typewriter",
 									__("Slide Up", "ultimate_vc") => "ticker",
-									__("Slide Down", "ultimate_vc") => "ticker-down"
+									//__("Slide Down", "ultimate_vc") => "ticker-down"
 								),
 							),
 							array(
@@ -218,10 +212,19 @@ if(!class_exists('Ultimate_FancyText')){
 								"param_name" => "ex_class"
 							),
 							array(
+								"type" => "ult_param_heading",
+								"param_name" => "fancy_text_typography",
+								"text" => __("Fancy Text Settings","ultimate_vc"),
+								"value" => "",
+								"group" => "Typography",
+								"class" => "ult-param-heading",
+								'edit_field_class' => 'ult-param-heading-wrapper no-top-margin vc_column vc_col-sm-12',
+							),
+							array(
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "ultimate_vc"),
 								"param_name" => "strings_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography"
 							),
 							array(
@@ -230,24 +233,56 @@ if(!class_exists('Ultimate_FancyText')){
 								"param_name"	=>	"strings_font_style",
 								"group" => "Typography"
 							),
+							// array(
+							// 	"type" => "number",
+							// 	"class" => "font-size",
+							// 	"heading" => __("Font Size", "ultimate_vc"),
+							// 	"param_name" => "strings_font_size",
+							// 	"min" => 10,
+							// 	"suffix" => "px",
+							// 	"group" => "Typography"
+							// ),
 							array(
-								"type" => "number",
-								"class" => "font-size",
-								"heading" => __("Font Size", "ultimate_vc"),
-								"param_name" => "strings_font_size",
-								"min" => 10,
-								"suffix" => "px",
-								"group" => "Typography"
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Font Size", 'ultimate_vc'),
+                                "param_name" => "strings_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography"
+                            ),
+							// array(
+							// 	"type" => "number",
+							// 	"class" => "",
+							// 	"heading" => __("Line Height", "ultimate_vc"),
+							// 	"param_name" => "strings_line_height",
+							// 	"value" => "",
+							// 	"suffix" => "px",
+							// 	"group" => "Typography"
+							// ),
 							array(
-								"type" => "number",
-								"class" => "",
-								"heading" => __("Line Height", "ultimate_vc"),
-								"param_name" => "strings_line_height",
-								"value" => "",
-								"suffix" => "px",
-								"group" => "Typography"
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Line Height", 'ultimate_vc'),
+                                "param_name" => "strings_line_height",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography"
+                            ),
 							array(
 								"type" => "colorpicker",
 								"heading" => __("Fancy Text Color","ultimate_vc"),
@@ -265,10 +300,72 @@ if(!class_exists('Ultimate_FancyText')){
 								"dependency" => array("element" => "fancytext_effect", "value" => array("typewriter","ticker","ticker-down"))
 							),
 							array(
+								"type" => "ult_param_heading",
+								"param_name" => "fancy_prefsuf_text_typography",
+								"text" => __("Prefix Suffix Text Settings","ultimate_vc"),
+								"value" => "",
+								"group" => "Typography",
+								"class" => "ult-param-heading",
+								'edit_field_class' => 'ult-param-heading-wrapper no-top-margin vc_column vc_col-sm-12',
+							),
+							array(
+								"type" => "ultimate_google_fonts",
+								"heading" => __("Font Family", "ultimate_vc"),
+								"param_name" => "prefsuf_font_family",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"group" => "Typography"
+							),
+							array(
+								"type" => "ultimate_google_fonts_style",
+								"heading" 		=>	__("Font Style", "ultimate_vc"),
+								"param_name"	=>	"prefsuf_font_style",
+								"group" => "Typography"
+							),
+							array(
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Font Size", 'ultimate_vc'),
+                                "param_name" => "prefix_suffix_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography"
+                            ),
+							array(
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Line Height", 'ultimate_vc'),
+                                "param_name" => "prefix_suffix_line_height",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography"
+                            ),
+							array(
 								"type" => "colorpicker",
 								"class" => "",
 								"heading" => __("Prefix & Suffix Text Color", "ultimate_vc"),
-								"param_name" => "strings_color",
+								"param_name" => "sufpref_color",
+								"value" => "",
+								"group" => "Typography"
+							),
+							array(
+								"type" => "colorpicker",
+								"class" => "",
+								"heading" => __("Prefix & Suffix Background Color", "ultimate_vc"),
+								"param_name" => "sufpref_bg_color",
 								"value" => "",
 								"group" => "Typography"
 							),
@@ -285,30 +382,40 @@ if(!class_exists('Ultimate_FancyText')){
 								"heading" => __("Markup","ultimate_vc"),
 								"param_name" => "fancytext_tag",
 								"value" => array(
-									__("div","ultimate_vc") => "div",
+									__("Default","ultimate_vc") => "div",
 									__("H1","ultimate_vc") => "h1",
 									__("H2","ultimate_vc") => "h2",
 									__("H3","ultimate_vc") => "h3",
 									__("H4","ultimate_vc") => "h4",
 									__("H5","ultimate_vc") => "h5",
 									__("H6","ultimate_vc") => "h6",
+									__("p","ultimate_vc") => "p",
+									__("span","ultimate_vc") => "span",
 								),
+								"description" => __("Default is Div", "ultimate_vc"),
 								"group" => "Typography",
 							),
 							array(
 								"type" => "ult_param_heading",
-								"text" => "<span style='display: block;'><a href='http://bsf.io/t5ir4' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+								"text" => "<span style='display: block;'><a href='http://bsf.io/t5ir4' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 								"param_name" => "notification",
 								'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 							),
+							array(
+					            'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_fancy_design',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						)
 					)
 				);
 			}
 		}
 		function ultimate_fancytext_shortcode($atts, $content = null){
-			$output = $fancytext_strings = $fancytext_prefix = $fancytext_suffix = $fancytext_effect = $strings_textspeed = $strings_tickerspeed = $typewriter_cursor = $typewriter_cursor_text = $typewriter_loop = $fancytext_align = $strings_font_family = $strings_font_style = $strings_font_size = $strings_color = $strings_line_height = $strings_startdelay = $strings_backspeed = $strings_backdelay = $ticker_wait_time = $ticker_show_items = $ticker_hover_pause = $ex_class = '';
-
+			$output = $fancytext_strings = $fancytext_prefix = $fancytext_suffix = $fancytext_effect = $strings_textspeed = $strings_tickerspeed = $typewriter_cursor = $typewriter_cursor_text = $typewriter_loop = $fancytext_align = $strings_font_family = $strings_font_style = $strings_font_size = $sufpref_color = $strings_line_height = $strings_startdelay = $strings_backspeed = $strings_backdelay = $ticker_wait_time = $ticker_show_items = $ticker_hover_pause = $ex_class = '';
+			$prefsuf_font_family = $prefsuf_font_style = $prefix_suffix_font_size = $prefix_suffix_line_height = $sufpref_bg_color ='';
 			$id = uniqid(rand());
 
 			extract(shortcode_atts(array(
@@ -325,7 +432,7 @@ if(!class_exists('Ultimate_FancyText')){
 				'strings_font_family' => '',
 				'strings_font_style' => '',
 				'strings_font_size' => '',
-				'strings_color' => '',
+				'sufpref_color' => '',
 				'strings_line_height' => '',
 				'strings_startdelay' => '200',
 				'strings_backspeed' => '0',
@@ -334,13 +441,26 @@ if(!class_exists('Ultimate_FancyText')){
 				'typewriter_cursor_text' => '|',
 				'ticker_wait_time' => '3000',
 				'ticker_show_items' => '1',
-				'ticker_hover_pause' => 'true',
+				'ticker_hover_pause' => '',
 				'ticker_background' => '',
 				'fancytext_color' => '',
-				'ex_class' => ''
+				'prefsuf_font_family' => '',
+				'prefsuf_font_style' => '',
+				'prefix_suffix_font_size' =>'',
+				'prefix_suffix_line_height' =>'',
+				'sufpref_bg_color' => '',
+				'ex_class' => '',
+				'css_fancy_design' =>'',
 			),$atts));
 
-			$string_inline_style = $vticker_inline = $valign = '';
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
+
+			$string_inline_style = $vticker_inline = $valign = $prefsuf_style = $css_design_style = '';
+
+			$css_design_style = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_fancy_design, ' ' ), "ultimate_fancytext", $atts );
+
+			$css_design_style = esc_attr( $css_design_style );
 
 			if($strings_font_family != '')
 			{
@@ -351,14 +471,57 @@ if(!class_exists('Ultimate_FancyText')){
 
 			$string_inline_style .= get_ultimate_font_style($strings_font_style);
 
-			if($strings_font_size != '')
-				$string_inline_style .= 'font-size:'.$strings_font_size.'px;';
+			if($prefsuf_font_family != ''){
+				$font_family = get_ultimate_font_family($prefsuf_font_family);
+				if($font_family !== '')
+					$prefsuf_style .= 'font-family:\''.$font_family.'\';';
+			}
+			$prefsuf_style .= get_ultimate_font_style($prefsuf_font_style);
+			// if($strings_font_size != '')
+			// 	$string_inline_style .= 'font-size:'.$strings_font_size.'px;';
+			// if($strings_line_height != '')
+			// 	$string_inline_style .= 'line-height:'.$strings_line_height.'px;';
 
-			if($strings_color != '')
-				$string_inline_style .= 'color:'.$strings_color.';';
+			$fancy_text_id = 'uvc-type-wrap-'.rand(1000, 9999);
 
-			if($strings_line_height != '')
-				$string_inline_style .= 'line-height:'.$strings_line_height.'px;';
+			if (is_numeric($strings_font_size)) {
+                $strings_font_size = 'desktop:'.$strings_font_size.'px;';
+            }
+			if (is_numeric($strings_line_height)) {
+                $strings_line_height = 'desktop:'.$strings_line_height.'px;';
+            }
+
+            $fancy_args = array(
+                'target' => '#'.$fancy_text_id.
+                '', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $strings_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $strings_line_height
+                ),
+            );
+            $data_list = get_ultimate_vc_responsive_media_css($fancy_args);
+
+            if (is_numeric($prefix_suffix_font_size)) {
+                $prefix_suffix_font_size = 'desktop:'.$prefix_suffix_font_size.'px !important;';
+            }
+			if (is_numeric($prefix_suffix_line_height)) {
+                $prefix_suffix_line_height = 'desktop:'.$prefix_suffix_line_height.'px !important;';
+            }
+
+            $fancy_prefsuf_args = array(
+                'target' => '#'.$fancy_text_id.
+                ' .mycustfancy', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $prefix_suffix_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $prefix_suffix_line_height
+                ),
+            );
+            $prefsuf_data_list = get_ultimate_vc_responsive_media_css($fancy_prefsuf_args);
+
+			if($sufpref_color != '')
+				$prefsuf_style .= 'color:'.$sufpref_color.';';
+			if($sufpref_bg_color != '')
+				$prefsuf_style .= 'background :'.$sufpref_bg_color.';';
 
 			if($fancytext_align != '')
 				$string_inline_style .= 'text-align:'.$fancytext_align.';';
@@ -391,26 +554,29 @@ if(!class_exists('Ultimate_FancyText')){
 
 			$ultimate_js = get_option('ultimate_js');
 
-			$output = '<'.$fancytext_tag.' class="uvc-type-wrap '.$ex_class.' uvc-wrap-'.$id.'" style="'.$string_inline_style.'">';
+			$output = '<'.$fancytext_tag.' id="'.esc_attr( $fancy_text_id ).'" '.$data_list.' class="uvc-type-wrap '.esc_attr($css_design_style).' '.esc_attr($is_vc_49_plus).' ult-responsive '.esc_attr($ex_class).' uvc-wrap-'.esc_attr($id).'" style="'.esc_attr($string_inline_style).'">';
+
 				if(trim($fancytext_prefix) != '')
 				{
-					$output .= '<span class="ultimate-'.$fancytext_effect.'-prefix">'.ltrim($fancytext_prefix).'</span>';
+					$output .= '<span '.$prefsuf_data_list.' class="ultimate-'.esc_attr($fancytext_effect).'-prefix mycustfancy ult-responsive" style="'.esc_attr($prefsuf_style).'">'.esc_html(ltrim($fancytext_prefix)).'</span>';
 				}
 				if($fancytext_effect == 'ticker' || $fancytext_effect == 'ticker-down')
 				{
 					if($ultimate_js != 'enable')
-						wp_enqueue_script('ultimate-vticker-js');
+						wp_enqueue_script('ultimate-easy-ticker-js');
 					if($strings_font_size != '')
 						$inherit_font_size = 'ultimate-fancy-text-inherit';
 					else
 						$inherit_font_size = '';
 					if($ticker_hover_pause != 'true')
-						$ticker_hover_pause = 'false';
+						$ticker_hover_pause = 0;
+					else
+						$ticker_hover_pause = 1;
 					if($fancytext_effect == 'ticker-down')
 						$direction = "down";
 					else
 						$direction = "up";
-					$output .= '<div id="vticker-'.$id.'" class="ultimate-vticker '.$fancytext_effect.' '.$valign.' '.$inherit_font_size.'" style="'.$vticker_inline.'"><ul>';
+					$output .= '<div id="vticker-'.esc_attr($id).'" '.$data_list.' class="ultimate-vticker '.esc_attr($fancytext_effect).' '.esc_attr($valign).' '.esc_attr($inherit_font_size).'" style="'.esc_attr($vticker_inline).'"><ul>';
 						foreach($lines as $key => $line)
 						{
 							if($key == 0) {
@@ -439,51 +605,68 @@ if(!class_exists('Ultimate_FancyText')){
 								$strings .= ',';
 						}
 					$strings .= ']';
-					$output .= '<span id="typed-'.$id.'" class="ultimate-typed-main '.$valign.'" style="'.$vticker_inline.'"></span>';
+					$output .= '<span id="typed-'.esc_attr($id).'" class="ultimate-typed-main '.esc_attr($valign).'" style="'.esc_attr($vticker_inline).'"></span>';
 				}
 				if(trim($fancytext_suffix) != '')
 				{
-					$output .= '<span class="ultimate-'.$fancytext_effect.'-suffix">'.rtrim($fancytext_suffix).'</span>';
+					$output .= '<span '.$prefsuf_data_list.' class="ultimate-'.esc_attr($fancytext_effect).'-suffix mycustfancy ult-responsive" style="'.esc_attr($prefsuf_style).'">'.esc_html(rtrim($fancytext_suffix)).'</span>';
 				}
 				if($fancytext_effect == 'ticker' || $fancytext_effect == 'ticker-down')
 				{
 					$output .= '<script type="text/javascript">
 						jQuery(function($){
-								$("#vticker-'.$id.'").find("li").css("opacity","1");
-								$("#vticker-'.$id.'")
-									.vTicker(
-									{
-										speed: '.$strings_tickerspeed.',
-										showItems: '.$ticker_show_items.',
-										pause: '.$ticker_wait_time.',
-										mousePause : '.$ticker_hover_pause.',
-										direction: "'.$direction.'",
-									}
-								);
+							$(document).ready(function(){
+								if( typeof jQuery("#vticker-'.esc_attr( $id ).'").easyTicker == "function"){
+									$("#vticker-'.esc_attr( $id ).'").find("li").css("opacity","1");
+									
+									$("#vticker-'.esc_attr( $id ).'").easyTicker({
+										direction: "up",
+										easing: "swing",
+										speed: '. esc_attr($strings_tickerspeed) .',
+										interval: '. esc_attr($ticker_wait_time) .',
+										height: "auto",
+										visible: '. esc_attr($ticker_show_items) .',
+										mousePause: '. esc_attr($ticker_hover_pause) .',
+										controls: {
+											up: "",
+											down: "",
+											toggle: "",
+											playText: "Play",
+											stopText: "Stop"
+										}
+									});
+								}
+							});
 						});
 					</script>';
 				}
 				else
 				{
-					$output .= '<script type="text/javascript"> jQuery(function($){ $("#typed-'.$id.'").typed({
-								strings: '.$strings.',
-								typeSpeed: '.$strings_textspeed.',
-								backSpeed: '.$strings_backspeed.',
-								startDelay: '.$strings_startdelay.',
-								backDelay: '.$strings_backdelay.',
-								loop: '.$typewriter_loop.',
-								loopCount: false,
-								showCursor: '.$typewriter_cursor.',
-								cursorChar: "'.$typewriter_cursor_text.'",
-								attr: null
+					$output .= '<script type="text/javascript"> 
+						jQuery(function($){ 
+							$(document).ready(function(){
+								if( typeof jQuery("#typed-'.esc_attr($id).'").typed == "function"){
+									$("#typed-'.esc_attr($id).'").typed({
+										strings: '.$strings.',
+										typeSpeed: '.esc_attr($strings_textspeed).',
+										backSpeed: '.esc_attr($strings_backspeed).',
+										startDelay: '.esc_attr($strings_startdelay).',
+										backDelay: '.esc_attr($strings_backdelay).',
+										loop: '.esc_attr($typewriter_loop).',
+										loopCount: false,
+										showCursor: '.esc_attr($typewriter_cursor).',
+										cursorChar: "'.esc_attr($typewriter_cursor_text).'",
+										attr: null
+									});
+								}
 							});
 						});
 					</script>';
 					if($typewriter_cursor_color != '')
 					{
 						$output .= '<style>
-							.uvc-wrap-'.$id.' .typed-cursor {
-								color:'.$typewriter_cursor_color.';
+							.uvc-wrap-'.esc_attr($id).' .typed-cursor {
+								color:'.esc_attr($typewriter_cursor_color).';
 							}
 						</style>';
 					}
@@ -499,7 +682,7 @@ if(!class_exists('Ultimate_FancyText')){
 		}
 	} // end class
 	new Ultimate_FancyText;
-	if(class_exists('WPBakeryShortCode'))
+	if(class_exists('WPBakeryShortCode') && !class_exists('WPBakeryShortCode_ultimate_fancytext'))
 	{
 		class WPBakeryShortCode_ultimate_fancytext extends WPBakeryShortCode {
 		}

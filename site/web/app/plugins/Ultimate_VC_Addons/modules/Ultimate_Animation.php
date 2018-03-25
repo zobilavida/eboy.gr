@@ -5,8 +5,10 @@
 if(!class_exists('Ultimate_Animation')){
 	class Ultimate_Animation{
 		function __construct(){
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'animate_shortcode_mapper'));
+			}
 			add_shortcode('ult_animation_block',array($this,'animate_shortcode'));
-			add_action('init',array($this,'animate_shortcode_mapper'));
 		}/* end constructor*/
 		function animate_shortcode($atts, $content=null){
 			//wp_enqueue_script('ultimate-appear');
@@ -15,16 +17,19 @@ if(!class_exists('Ultimate_Animation')){
 			$output = $animation = $opacity = $opacity_start_effect = $animation_duration = $animation_delay = $animation_iteration_count = $inline_disp = $el_class = '';
 			$opacity_start_effect_data = '';
 			extract(shortcode_atts(array(
-				"animation" => "none",
-				"opacity" => "set",
-				"opacity_start_effect" => "",
-				"animation_duration" => "3",
-				"animation_delay" => "0",
+				"animation"                 => "none",
+				"opacity"                   => "set",
+				"opacity_start_effect"      => "",
+				"animation_duration"        => "3",
+				"animation_delay"           => "0",
 				"animation_iteration_count" => "1",
-				"inline_disp" => "",
-				"el_class" => "",
+				"inline_disp"               => "",
+				"css"                       => "",
+				"el_class"                  => "",
 			),$atts));
-			$style = $infi = $mobile_opt = '';
+			$style = $infi = $mobile_opt = $css_class = '';
+			$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), "ult_createlink", $atts );
+			$css_class = esc_attr( $css_class );
 			$ultimate_animation = get_option('ultimate_animation');
 			if($ultimate_animation == "disable"){
 				$mobile_opt = 'ult-no-mobile';
@@ -35,14 +40,14 @@ if(!class_exists('Ultimate_Animation')){
 			if($opacity == "set"){
 				$style .= 'opacity:0;';
 				$el_class .= ' ult-animate-viewport ';
-				$opacity_start_effect_data = 'data-opacity_start_effect="'.$opacity_start_effect.'"';
+				$opacity_start_effect_data = 'data-opacity_start_effect="'.esc_attr( $opacity_start_effect ).'"';
 			}
 			$inifinite_arr = array("InfiniteRotate", "InfiniteDangle","InfiniteSwing","InfinitePulse","InfiniteHorizontalShake","InfiniteBounce","InfiniteFlash","InfiniteTADA");
 			if($animation_iteration_count == 0 || in_array($animation,$inifinite_arr)){
 				$animation_iteration_count = 'infinite';
 				$animation = 'infinite '.$animation;
 			}
-			$output .= '<div class="ult-animation '.$el_class.' '.$mobile_opt.'" data-animate="'.$animation.'" data-animation-delay="'.$animation_delay.'" data-animation-duration="'.$animation_duration.'" data-animation-iteration="'.$animation_iteration_count.'" style="'.$style.'" '.$opacity_start_effect_data.'>';
+			$output .= '<div class="ult-animation '.esc_attr( $el_class ).' '.esc_attr( $mobile_opt ).' '. esc_attr( $css_class ) .'" data-animate="'. esc_attr( $animation ) .'" data-animation-delay="'. esc_attr( $animation_delay ) .'" data-animation-duration="'. esc_attr( $animation_duration ) .'" data-animation-iteration="'. esc_attr( $animation_iteration_count ) .'" style="'.esc_attr( $style ).'" '.$opacity_start_effect_data.'>';
 			$output .= do_shortcode($content);
 			$output .= '</div>';
 			return $output;
@@ -140,10 +145,17 @@ if(!class_exists('Ultimate_Animation')){
 							),
 							array(
 								"type" => "ult_param_heading",
-								"text" => "<span style='display: block;'><a href='http://bsf.io/pd-ct' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+								"text" => "<span style='display: block;'><a href='http://bsf.io/pd-ct' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 								"param_name" => "notification",
 								'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 							),
+							array(
+					            'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						),
 						"js_view" => 'VcColumnView'
 					)
@@ -153,7 +165,7 @@ if(!class_exists('Ultimate_Animation')){
 	} /* end class Ultimate_Animation*/
 	// Instantiate the class
 	new Ultimate_Animation;
-	if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+	if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_ult_animation_block' ) ) {
 		class WPBakeryShortCode_ult_animation_block extends WPBakeryShortCodesContainer {
 		}
 	}

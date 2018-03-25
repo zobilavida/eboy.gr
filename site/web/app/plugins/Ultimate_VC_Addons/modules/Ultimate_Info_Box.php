@@ -9,28 +9,30 @@ if(!class_exists('AIO_Icons_Box'))
 	{
 		function __construct()
 		{
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				// Initialize the icon box component for Visual Composer
+				add_action('init', array( &$this, 'icon_box_init' ) );
+			}
 			// Add shortcode for icon box
 			add_shortcode('bsf-info-box', array(&$this, 'icon_boxes' ) );
-			// Initialize the icon box component for Visual Composer
-			add_action('init', array( &$this, 'icon_box_init' ) );
-
 			add_action( 'wp_enqueue_scripts', array( $this, 'icon_box_scripts' ), 1 );
+
 		}
 		// Add shortcode for icon-box
 		function icon_boxes($atts, $content = null)
 		{
-			$icon_type = $icon_img = $img_width = $icon = $icon_color = $icon_color_bg = $icon_size = $icon_style = $icon_border_style = $icon_border_radius = $icon_color_border = $icon_border_size = $icon_border_spacing = $el_class = $icon_animation = $title = $link = $hover_effect = $pos = $read_more= $read_text = $box_border_style = $box_border_width =$box_border_color = $box_bg_color = $pos = $css_class = $desc_font_line_height = $title_font_line_height = '';
-			$title_font = $title_font_style = $title_font_size = $title_font_color = $desc_font = $desc_font_style = $desc_font_size = $desc_font_color = $box_min_height = '';
+			$icon_type = $icon_img = $img_width = $icon = $icon_color = $icon_color_bg = $icon_size = $icon_style = $icon_border_style = $icon_border_radius = $icon_color_border = $icon_border_size = $icon_border_spacing = $el_class = $icon_animation = $title = $link = $hover_effect = $pos = $read_more= $read_text = $box_border_style = $box_border_width =$box_border_color = $box_bg_color = $pos = $css_class = $desc_font_line_height = $title_font_line_height = $heading_tag = '';
+			$title_font = $title_font_style = $title_font_size = $title_font_color = $desc_font = $desc_font_style = $desc_font_size = $desc_font_color = $box_min_height = $target = $link_title  = $rel = '';
 			extract(shortcode_atts(array(
 				'icon_type' => 'selector',
 				'icon' => 'none',
 				'icon_img' => '',
 				'img_width' => '48',
-				'icon_size' => '32',				
+				'icon_size' => '32',
 				'icon_color' => '#333',
 				'icon_style' => 'none',
 				'icon_color_bg' => '#ffffff',
-				'icon_color_border' => '#333333',			
+				'icon_color_border' => '#333333',
 				'icon_border_style' => '',
 				'icon_border_size' => '1',
 				'icon_border_radius' => '500',
@@ -47,6 +49,7 @@ if(!class_exists('AIO_Icons_Box'))
 				'box_bg_color'=>"",
 				'read_more'  => 'none',
 				'read_text'  => 'Read More',
+				'heading_tag' => 'h3',
 				'title_font' => '',
 				'title_font_style' => '',
 				'title_font_size' => '',
@@ -58,58 +61,86 @@ if(!class_exists('AIO_Icons_Box'))
 				'desc_font_color' => '',
 				'desc_font_line_height'=> '',
 				'el_class'	  => '',
+				'css_info_box' => '',
 				),$atts,'bsf-info-box'));
-			$html = $target = $suffix = $prefix = $title_style = $desc_style = '';
-			//$font_args = array();
-			//echo $pos; die();
-			$box_icon = do_shortcode('[just_icon icon_type="'.$icon_type.'" icon="'.$icon.'" icon_img="'.$icon_img.'" img_width="'.$img_width.'" icon_size="'.$icon_size.'" icon_color="'.$icon_color.'" icon_style="'.$icon_style.'" icon_color_bg="'.$icon_color_bg.'" icon_color_border="'.$icon_color_border.'"  icon_border_style="'.$icon_border_style.'" icon_border_size="'.$icon_border_size.'" icon_border_radius="'.$icon_border_radius.'" icon_border_spacing="'.$icon_border_spacing.'" icon_animation="'.$icon_animation.'"]');
-			$prefix .= '<div class="aio-icon-component '.$css_class.' '.$el_class.' '.$hover_effect.'">';
+			$html = $target = $suffix = $prefix = $title_style = $desc_style = $inf_design_style = '';
+			$inf_design_style = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_info_box, ' ' ), "bsf-info-box", $atts );
+ 			$inf_design_style = esc_attr( $inf_design_style );
+			$box_icon = do_shortcode('[just_icon icon_type="'.esc_attr($icon_type).'" icon="'.esc_attr($icon).'" icon_img="'.esc_attr($icon_img).'" img_width="'.esc_attr($img_width).'" icon_size="'.esc_attr($icon_size).'" icon_color="'.esc_attr($icon_color).'" icon_style="'.esc_attr($icon_style).'" icon_color_bg="'.esc_attr($icon_color_bg).'" icon_color_border="'.esc_attr($icon_color_border).'"  icon_border_style="'.esc_attr($icon_border_style).'" icon_border_size="'.esc_attr($icon_border_size).'" icon_border_radius="'.esc_attr($icon_border_radius).'" icon_border_spacing="'.esc_attr($icon_border_spacing).'" icon_animation="'.esc_attr($icon_animation).'"]');
+			$prefix .= '<div class="aio-icon-component '.esc_attr($inf_design_style).' '.esc_attr($css_class).' '.esc_attr($el_class).' '.esc_attr($hover_effect).'">';
 			$suffix .= '</div> <!-- aio-icon-component -->';
+
 			$ex_class = $ic_class = '';
 			if($pos != ''){
 				$ex_class .= $pos.'-icon';
 				$ic_class = 'aio-icon-'.$pos;
 			}
-			
+
 			/* title */
 			if($title_font != '')
 			{
 				$font_family = get_ultimate_font_family($title_font);
 				if($font_family != '')
 					$title_style .= 'font-family:\''.$font_family.'\';';
-				//array_push($font_args, $title_font);
 			}
-			if($title_font_style != '')
+			if($title_font_style != '') {
 				$title_style .= get_ultimate_font_style($title_font_style);
-			if($title_font_size != '')
-				$title_style .= 'font-size:'.$title_font_size.'px;';
-			if($title_font_line_height != '')
-				$title_style .= 'line-height:'.$title_font_line_height.'px;';
+			}
+
+
+			if(is_numeric($title_font_size)){
+				$title_font_size = 'desktop:'.$title_font_size.'px;';
+			}
+			if(is_numeric($title_font_line_height)){
+				$title_font_line_height = 'desktop:'.$title_font_line_height.'px;';
+			}
+			$info_box_id = 'Info-box-wrap-'.rand(1000, 9999);
+			$info_box_args = array(
+                'target' => '#'.$info_box_id.' .aio-icon-title', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $title_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $title_font_line_height
+                ),
+            );
+            $info_box_data_list = get_ultimate_vc_responsive_media_css($info_box_args);
+
 			if($title_font_color != '')
 				$title_style .= 'color:'.$title_font_color.';';
-				
+
 			/* description */
 			if($desc_font != '')
 			{
 				$font_family = get_ultimate_font_family($desc_font);
 				if($font_family !== '')
 					$desc_style .= 'font-family:\''.$font_family.'\';';
-				//array_push($font_args, $desc_font);
 			}
-			if($desc_font_style != '')
+			if($desc_font_style != '') {
 				$desc_style .= get_ultimate_font_style($desc_font_style);
-			if($desc_font_size != '')
-				$desc_style .= 'font-size:'.$desc_font_size.'px;';
-			if($desc_font_line_height != '')
-				$desc_style .= 'line-height:'.$desc_font_line_height.'px;';
+			}
+
+			if(is_numeric($desc_font_size)){
+				$desc_font_size = 'desktop:'.$desc_font_size.'px;';
+			}
+			if(is_numeric($desc_font_line_height)){
+				$desc_font_line_height = 'desktop:'.$desc_font_line_height.'px;';
+			}
+
+			$info_box_desc_args = array(
+                'target' => '#'.$info_box_id.' .aio-icon-description', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $desc_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $desc_font_line_height
+                ),
+            );
+            $info_box_desc_data_list = get_ultimate_vc_responsive_media_css($info_box_desc_args);
 			if($desc_font_color != '')
 				$desc_style .= 'color:'.$desc_font_color.';';
 			//enquque_ultimate_google_fonts($font_args);
-			
+
 			$box_style = $box_style_data = '';
 			if($pos=='square_box'){
 				if($box_min_height!='') {
-					$box_style_data .="data-min-height='".$box_min_height."px'";
+					$box_style_data .="data-min-height='".esc_attr($box_min_height)."px'";
 				}
 				if($box_border_color!=''){
 					$box_style .="border-color:".$box_border_color.";";
@@ -124,44 +155,49 @@ if(!class_exists('AIO_Icons_Box'))
 					$box_style .="background-color:".$box_bg_color.";";
 				}
 			}
-			$html .= '<div class="aio-icon-box '.$ex_class.'" style="'.$box_style.'" '.$box_style_data.' >';
-			
+			$html .= '<div id="'.esc_attr($info_box_id).'" class="aio-icon-box '.esc_attr($ex_class).'" style="'.esc_attr($box_style).'" '.$box_style_data.' >';
+
 			if($pos == "heading-right" || $pos == "right"){
 					if($pos == "right"){
-						$html .= '<div class="aio-ibd-block">';
+						$html .= '<div class="aio-ibd-block" >';
 					}
 					if($title !== ''){
-						$html .= '<div class="aio-icon-header">';
+						$html .= '<div class="aio-icon-header" >';
 						$link_prefix = $link_sufix = '';
 						if($link !== 'none'){
 							if($read_more == 'title')
 							{
-								$href = vc_build_link($link);
-								if(isset($href['target'])){
-									$target = 'target="'.$href['target'].'"';
-								}
-								$link_prefix = '<a class="aio-icon-box-link" href="'.$href['url'].'" '.$target.'>';
+								$href 			= vc_build_link($link);
+
+								$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+								$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+								$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+								$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+								$link_prefix = '<a class="aio-icon-box-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>';
 								$link_sufix = '</a>';
 							}
 						}
-						$html .= $link_prefix.'<h3 class="aio-icon-title" style="'.$title_style.'">'.$title.'</h3>'.$link_sufix;
+						$html .= $link_prefix.'<'. $heading_tag .' class="aio-icon-title ult-responsive" '.$info_box_data_list.' style="'.esc_attr($title_style).'">'.$title.'</'. $heading_tag .'>'.$link_sufix;
 						$html .= '</div> <!-- header -->';
 					}
 					if($pos !== "right"){
 						if($icon !== 'none' || $icon_img !== '')
-							$html .= '<div class="'.$ic_class.'">'.$box_icon.'</div>';
+							$html .= '<div class="'.esc_attr($ic_class).'" >'.$box_icon.'</div>';
 					}
 					if($content !== ''){
-						$html .= '<div class="aio-icon-description" style="'.$desc_style.'">';
+						$html .= '<div class="aio-icon-description ult-responsive" '.$info_box_desc_data_list.' style="'.esc_attr($desc_style).'">';
 						$html .= do_shortcode($content);
 						if($link !== 'none'){
 							if($read_more == 'more')
 							{
-								$href = vc_build_link($link);
-								if(isset($href['target'])){
-									$target = 'target="'.$href['target'].'"';
-								}
-								$more_link = '<a class="aio-icon-read" href="'.$href['url'].'" '.$target.'>';
+								$href 			= vc_build_link($link);
+
+								$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+								$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+								$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+								$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+
+								$more_link = '<a class="aio-icon-read x" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>';
 								$more_link .= $read_text;
 								$more_link .= '&nbsp;&raquo;';
 								$more_link .= '</a>';
@@ -173,44 +209,49 @@ if(!class_exists('AIO_Icons_Box'))
 					if($pos == "right"){
 						$html .= '</div> <!-- aio-ibd-block -->';
 						if($icon !== 'none' || $icon_img !== '')
-							$html .= '<div class="'.$ic_class.'">'.$box_icon.'</div>';
+							$html .= '<div class="'.esc_attr($ic_class).'">'.$box_icon.'</div>';
 					}
 
-				} 
+				}
 				else {
-					//echo $icon_img; die();
 					if($icon !== 'none' || $icon_img != '')
-						$html .= '<div class="'.$ic_class.'">'.$box_icon.'</div>';
+						$html .= '<div class="'.esc_attr($ic_class).'">'.$box_icon.'</div>';
 					if($pos == "left")
 						$html .= '<div class="aio-ibd-block">';
 					if($title !== ''){
-						$html .= '<div class="aio-icon-header">';
+						$html .= '<div class="aio-icon-header" >';
 						$link_prefix = $link_sufix = '';
 						if($link !== 'none'){
 							if($read_more == 'title')
 							{
 								$href = vc_build_link($link);
-								if(isset($href['target'])){
-									$target = 'target="'.$href['target'].'"';
-								}
-								$link_prefix = '<a class="aio-icon-box-link" href="'.$href['url'].'" '.$target.'>';
+
+								$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+								$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+								$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+								$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+
+								$link_prefix = '<a class="aio-icon-box-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>';
 								$link_sufix = '</a>';
 							}
 						}
-						$html .= $link_prefix.'<h3 class="aio-icon-title" style="'.$title_style.'">'.$title.'</h3>'.$link_sufix;
+						$html .= $link_prefix.'<'. $heading_tag .' class="aio-icon-title ult-responsive" '.$info_box_data_list.' style="'.esc_attr($title_style).'">'.$title.'</'. $heading_tag .'>'.$link_sufix;
 						$html .= '</div> <!-- header -->';
 					}
 					if($content !== ''){
-						$html .= '<div class="aio-icon-description" style="'.$desc_style.'">';
+						$html .= '<div class="aio-icon-description ult-responsive" '.$info_box_desc_data_list.' style="'.esc_attr($desc_style).'">';
 						$html .= do_shortcode($content);
 						if($link !== 'none'){
 							if($read_more == 'more')
 							{
 								$href = vc_build_link($link);
-								if(isset($href['target'])){
-									$target = 'target="'.$href['target'].'"';
-								}
-								$more_link = '<a class="aio-icon-read" href="'.$href['url'].'" '.$target.'>';
+
+								$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+								$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+								$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+								$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+
+								$more_link = '<a class="aio-icon-read xx" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>';
 								$more_link .= $read_text;
 								$more_link .= '&nbsp;&raquo;';
 								$more_link .= '</a>';
@@ -223,22 +264,42 @@ if(!class_exists('AIO_Icons_Box'))
 						$html .= '</div> <!-- aio-ibd-block -->';
 
 				}
-			
-			
+
+
 			$html .= '</div> <!-- aio-icon-box -->';
 			if($link !== 'none'){
 				if($read_more == 'box')
 				{
 					$href = vc_build_link($link);
-					if(isset($href['target'])){
-						$target = 'target="'.$href['target'].'"';
-					}
-					$output = $prefix.'<a class="aio-icon-box-link" href="'.$href['url'].'" '.$target.'>'.$html.'</a>'.$suffix;
+
+					$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+					$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+					$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+					$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
+
+					$output = $prefix.'<a class="aio-icon-box-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'>'.$html.'</a>'.$suffix;
 				} else {
 					$output = $prefix.$html.$suffix;
 				}
 			} else {
 				$output = $prefix.$html.$suffix;
+			}
+			$is_preset = false; //Display settings for Preset
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$output .= '<pre>';
+				$output .= $text;
+				$output .= '</pre>';
 			}
 			return $output;
 		}
@@ -247,7 +308,7 @@ if(!class_exists('AIO_Icons_Box'))
 		{
 			if ( function_exists('vc_map'))
 			{
-				vc_map( 
+				vc_map(
 					array(
 						"name"		=> __("Info Box", "ultimate_vc"),
 						"base"		=> "bsf-info-box",
@@ -275,7 +336,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
@@ -318,7 +379,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"param_name" => "icon_color",
 								"value" => "#333333",
 								"description" => __("Give it a nice paint!", "ultimate_vc"),
-								"dependency" => Array("element" => "icon_type","value" => array("selector")),						
+								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 							),
 							array(
 								"type" => "dropdown",
@@ -339,7 +400,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"heading" => __("Background Color", "ultimate_vc"),
 								"param_name" => "icon_color_bg",
 								"value" => "#ffffff",
-								"description" => __("Select background color for icon.", "ultimate_vc"),	
+								"description" => __("Select background color for icon.", "ultimate_vc"),
 								"dependency" => Array("element" => "icon_style", "value" => array("circle","square","advanced")),
 							),
 							array(
@@ -365,7 +426,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"heading" => __("Border Color", "ultimate_vc"),
 								"param_name" => "icon_color_border",
 								"value" => "#333333",
-								"description" => __("Select border color for icon.", "ultimate_vc"),	
+								"description" => __("Select border color for icon.", "ultimate_vc"),
 								"dependency" => Array("element" => "icon_border_style", "not_empty" => true),
 							),
 							array(
@@ -564,7 +625,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"value" => "",
 								"dependency" => Array("element" => "pos","value" => array("square_box")),
 								"description" => __("Select Border color for border box.", "ultimate_vc")
-							),	
+							),
 							array(
 								"type" => "colorpicker",
 								"class" => "",
@@ -573,7 +634,7 @@ if(!class_exists('AIO_Icons_Box'))
 								"value" => "",
 								"dependency" => Array("element" => "pos","value" => array("square_box")),
 								"description" => __("Select Box background color.", "ultimate_vc")
-							),							
+							),
 							// Customize everything
 							array(
 								"type" => "textfield",
@@ -592,6 +653,24 @@ if(!class_exists('AIO_Icons_Box'))
 								'edit_field_class' => 'ult-param-heading-wrapper no-top-margin vc_column vc_col-sm-12',
 							),
 							array(
+								"type" => "dropdown",
+								"heading" => __("Tag","ultimate_vc"),
+								"param_name" => "heading_tag",
+								"value" => array(
+									__("Default","ultimate_vc") => "h3",
+									__("H1","ultimate_vc") => "h1",
+									__("H2","ultimate_vc") => "h2",
+									__("H4","ultimate_vc") => "h4",
+									__("H5","ultimate_vc") => "h5",
+									__("H6","ultimate_vc") => "h6",
+									__("Div","ultimate_vc") => "div",
+									__("p","ultimate_vc") => "p",
+									__("span","ultimate_vc") => "span",
+								),
+								"description" => __("Default is H3", "ultimate_vc"),
+								"group" => "Typography"
+							),
+							array(
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family","ultimate_vc"),
 								"param_name" => "title_font",
@@ -606,40 +685,41 @@ if(!class_exists('AIO_Icons_Box'))
 								"group" => "Typography"
 							),
 							array(
-								"type" => "number",
-								"param_name" => "title_font_size",
-								"heading" => __("Font size","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"min" => 10,
-								"group" => "Typography"
-							),
+			                    "type" => "ultimate_responsive",
+			                    "class" => "",
+			                    "heading" => __("Font size", 'ultimate_vc'),
+			                    "param_name" => "title_font_size",
+			                    "unit" => "px",
+			                    "media" => array(
+			                        "Desktop" => '',
+			                        "Tablet" => '',
+			                        "Tablet Portrait" => '',
+			                        "Mobile Landscape" => '',
+			                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 							array(
-								"type" => "number",
-								"param_name" => "title_font_line_height",
-								"heading" => __("Font Line Height","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"min" => 10,
-								"group" => "Typography"
-							),
+			                    "type" => "ultimate_responsive",
+			                    "class" => "",
+			                    "heading" => __("Line Height", 'ultimate_vc'),
+			                    "param_name" => "title_font_line_height",
+			                    "unit" => "px",
+			                    "media" => array(
+			                        "Desktop" => '',
+			                        "Tablet" => '',
+			                        "Tablet Portrait" => '',
+			                        "Mobile Landscape" => '',
+			                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+				            ),
 							array(
 								"type" => "colorpicker",
 								"param_name" => "title_font_color",
 								"heading" => __("Color","ultimate_vc"),
 								"group" => "Typography"
 							),
-							/*
-							array(
-								"type" => "textarea_html",
-								"class" => "",
-								"heading" => __("Description", "smile"),
-								"param_name" => "content",
-								"admin_label" => true,
-								"value" => "",
-								"description" => __("Provide some description.", "smile"),
-							),
-							*/
 							array(
 								"type" => "ult_param_heading",
 								"param_name" => "desc_text_typography",
@@ -663,23 +743,35 @@ if(!class_exists('AIO_Icons_Box'))
 								"group" => "Typography"
 							),
 							array(
-								"type" => "number",
-								"param_name" => "desc_font_size",
-								"heading" => __("Font size","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"min" => 10,
-								"group" => "Typography"
-							),
-							array(
-								"type" => "number",
-								"param_name" => "desc_font_line_height",
-								"heading" => __("Font Line Height","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								"min" => 10,
-								"group" => "Typography"
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Font size", 'ultimate_vc'),
+                                "param_name" => "desc_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography",
+                            ),
+                            array(
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Line Height", 'ultimate_vc'),
+                                "param_name" => "desc_font_line_height",
+                                "unit" => "px",
+                                "media" => array(
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography",
+                            ),
 							array(
 								"type" => "colorpicker",
 								"param_name" => "desc_font_color",
@@ -688,29 +780,26 @@ if(!class_exists('AIO_Icons_Box'))
 							),
 							array(
 								"type" => "ult_param_heading",
-								"text" => "<span style='display: block;'><a href='http://bsf.io/kqzzi' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+								"text" => "<span style='display: block;'><a href='http://bsf.io/kqzzi' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 								"param_name" => "notification",
 								'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 							),
+							array(
+					            'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_info_box',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						) // end params array
 					) // end vc_map array
 				); // end vc_map
 			} // end function check 'vc_map'
 		}// end function icon_box_init
 		function icon_box_scripts() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_script('info_box_js', plugins_url($js_path.'info-box'.$ext.'.js',__FILE__) , array('jquery'), ULTIMATE_VERSION, true);
-			wp_register_style('info-box-style', plugins_url($css_path.'info-box'.$ext.'.css',__FILE__) , array(), ULTIMATE_VERSION, false);
+			Ultimate_VC_Addons::ultimate_register_style( 'info-box-style', 'info-box' );
+			
+			Ultimate_VC_Addons::ultimate_register_script( 'info_box_js', 'info-box' );
 		}
 	}//Class end
 }
@@ -718,8 +807,3 @@ if(class_exists('AIO_Icons_Box'))
 {
 	$AIO_Icons_Box = new AIO_Icons_Box;
 }
-
-/*if ( class_exists( 'WPBakeryShortCode' ) ) {
-    class WPBakeryShortCode_bsf-info-box extends WPBakeryShortCode {
-    }
-}*/

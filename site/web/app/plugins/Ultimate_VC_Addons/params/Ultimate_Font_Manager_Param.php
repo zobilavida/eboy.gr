@@ -23,10 +23,10 @@ if(!class_exists('Ultimate_Font_Manager_Param'))
 
 		function ultimate_google_fonts_settings($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$fonts = get_option('ultimate_selected_google_fonts');
 			$html = '<div class="ultimate_google_font_param_block">';
-				$html .= '<input type="hidden" name="'.$settings['param_name'].'" class="wpb_vc_param_value vc-ultimate-google-font '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.'/>';
+				$html .= '<input type="hidden" name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value vc-ultimate-google-font '.esc_attr( $settings['param_name'] ).' '.esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.'/>';
 				//$html .= '<form class="google-fonts-form">';
 				$html .= '<select name="font_family" class="google-font-list">';
 				$html .= '<option value="">'.__('Default','ultimate_vc').'</option>';
@@ -36,7 +36,7 @@ if(!class_exists('Ultimate_Font_Manager_Param'))
 						$selected = '';
 						if($font['font_name'] == $value)
 							$selected = 'selected';
-						$html .= '<option value="'.$font['font_name'].'" '.$selected.'>'.__($font['font_name'],'ultimate_vc').'</option>';
+						$html .= '<option value="'.esc_attr( $font['font_name'] ).'" '.$selected.'>'.esc_html__($font['font_name'],'ultimate_vc').'</option>';
 					}
 				endif;
 				$html .= '</select>';
@@ -47,8 +47,8 @@ if(!class_exists('Ultimate_Font_Manager_Param'))
 
 		function ultimate_google_fonts_style_settings($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
-			$html = '<input type="hidden" name="'.$settings['param_name'].'" class="wpb_vc_param_value ugfont-style-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.'/>';
+			$dependency = '';
+			$html = '<input type="hidden" name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ugfont-style-value '.esc_attr( $settings['param_name'] ).' '. esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.'/>';
 			$html .= '<div class="ultimate_fstyle"></div>';
 			return $html;
 		}

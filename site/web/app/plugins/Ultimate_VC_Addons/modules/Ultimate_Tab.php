@@ -14,8 +14,10 @@ if(!class_exists('ULT_TAB_ELEMENT'))
 	{
 		function __construct()
 		{
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ult_tab_init'));
+			}
 			add_action( 'wp_enqueue_scripts', 'ultimate_tabs',1 );
-			add_action('init',array($this,'ult_tab_init'));
 			//add_action('admin_init', 'ult_tab_init');
 			add_action( 'admin_print_scripts', 'ultimate_tabs_admin',999 );
 			add_shortcode('ult_tab_element',array($this,'ultimate_main_tab'));
@@ -40,7 +42,6 @@ function ultimate_single_tab($atts ,$content = null)
 			    'icon_margin'=>' ',
 			    'ul_sub_class'=>'',
 			    ), $atts ) );
-
 			//wp_enqueue_script('jquery_ui_tabs_rotate');
 			//wp_enqueue_script('imd_ui_tabs_rotate');
  //echo $content = wpb_js_remove_wpautop($content, true);
@@ -114,6 +115,7 @@ extract( shortcode_atts( array(
 	'container_color_border'	=>'',
 	'cont_border_size'			=>'',
 	'tabs_border_radius'		=>'8',
+	'tabs_active_index'			=>'1',
 	'tab_animation'				=>'Slide',
 	'tab_describe_color'		=>'#74777b',
 	'title_font_style'			=>'',
@@ -134,8 +136,9 @@ extract( shortcode_atts( array(
 	'font_icons_position'		=>'Right',
 	'main_title_typograpy'		=>'',
 	'tab_max' 			  		=>'off',
+	'wrapper_margin'			=>'',
+	'smooth_scroll' 			=>'on',
 ), $atts ) );
-
 global $tabarr;
 	$tabarr = array();
     do_shortcode($content);
@@ -175,10 +178,30 @@ $border_Style=$mhfont_family=$border_style ='';
 
 $tabs_nav_style='';
 
-if($title_font_size!='')
-$tabs_nav_style .= 'font-size:'.$title_font_size.'px;';
-if($title_line_ht!='')
-$tabs_nav_style .='line-height:'.$title_line_ht.'px;';
+// if($title_font_size!='')
+// $tabs_nav_style .= 'font-size:'.$title_font_size.'px;';
+// if($title_line_ht!='')
+// $tabs_nav_style .='line-height:'.$title_line_ht.'px;';
+
+if(is_numeric($title_font_size)){
+			$title_font_size = 'desktop:'.$title_font_size.'px;';
+		}
+
+		if(is_numeric($title_line_ht)){
+			$title_line_ht = 'desktop:'.$title_line_ht.'px;';
+		}
+
+		$advanced_tabs_id = 'advanced-tabs-wrap-'.rand(1000, 9999);
+
+		$advanced_tabs_args = array(
+            'target' => '#'.$advanced_tabs_id.' .ult-span-text', // set targeted element e.g. unique class/id etc.
+            'media_sizes' => array(
+                'font-size' => $title_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+               	'line-height' => $title_line_ht
+            ),
+        );
+
+        $advanced_tabs_data_list = get_ultimate_vc_responsive_media_css($advanced_tabs_args);
 
 if (function_exists('get_ultimate_font_family')) {
 
@@ -272,10 +295,33 @@ $tab_border .='border-bottom-width:0px;';
 $contain_bg='';
 
 /*---------------- description font family-----------*/
-if($desc_font_size!='')
-$contain_bg .= 'font-size:'.$desc_font_size.'px;';
-if($title_line_ht!='')
-$contain_bg .='line-height:'.$desc_line_ht.'px;';
+// if($desc_font_size!='')
+// $contain_bg .= 'font-size:'.$desc_font_size.'px;';
+// if($title_line_ht!='')
+// $contain_bg .='line-height:'.$desc_line_ht.'px;';
+
+//responsive param
+
+if(is_numeric($desc_font_size)){
+			$desc_font_size = 'desktop:'.$desc_font_size.'px;';
+		}
+
+		if(is_numeric($desc_line_ht)){
+			$desc_line_ht = 'desktop:'.$desc_line_ht.'px;';
+		}
+
+		$advanced_tabs_desc_id = 'advanced-tabs-desc-wrap-'.rand(1000, 9999);
+
+		$advanced_tabs_desc_args = array(
+            'target' => '#'.$advanced_tabs_desc_id.' .ult_tabcontent .ult_tab_min_contain  p', // set targeted element e.g. unique class/id etc.
+            'media_sizes' => array(
+                'font-size' => $desc_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+               	'line-height' => $desc_line_ht
+            ),
+        );
+
+        $advanced_tabs_desc_data_list = get_ultimate_vc_responsive_media_css($advanced_tabs_desc_args);
+
 
 if (function_exists('get_ultimate_font_family')) {
 
@@ -342,7 +388,7 @@ $acord ='';
 $array_count='';
 $array_count=sizeof($tabarr);
 $newtab='';
-$newtab .='<ul class="ult_tabmenu '.$style.' '.$tab_style_no.'" style="'.$tab_border.'">';
+$newtab .='<ul id='.esc_attr($advanced_tabs_id).' class="ult_tabmenu '.esc_attr($style).' '.esc_attr($tab_style_no).'" style="'.esc_attr($tab_border).'">';
 $cnt=0;
 //print_r($tabarr );
 
@@ -441,13 +487,13 @@ else{
 			if($icon_position=='Right')
 				{
 				$icon_position='right';
-				$newtab .='<li class="ult_tab_li '.$ult_style.' '.$ul_sub_class.' " data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'" style="'.$link_li_style.'">
-					<a href="#'.$tab_id.'" id="'.$tab_id.'" style="color:'.$tab_title_color.';'.$bgcolor.';'.$style5bgcolor.' '.$tab_css.'" class="ult_a '.$css_class .'">
-					   <span class="ult_tab_main  '.$resp_style.' ">
+				$newtab .='<li class="ult_tab_li '.esc_attr($ult_style).' '.esc_attr($ul_sub_class).' " data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'" style="'.esc_attr($link_li_style).'">
+					<a href="#'.esc_attr($tab_id).'" id="'.esc_attr($tab_id).'" style="color:'.esc_attr($tab_title_color).';'.esc_attr($bgcolor).';'.esc_attr($style5bgcolor).' '.esc_attr($tab_css).'" class="ult_a '.esc_attr($css_class) .'">
+					   <span class="ult_tab_main  '.esc_attr($resp_style).' ">
 					    <span class="ult_tab_section">
-					  		<span class="ult-span-text" style="'.$tabs_nav_style.'">'.$value['title'].'</span>
-						   	<span class="aio-icon none ult_tab_icon'.$icon_position.'" style="'.$tab_icon_style.'">
-						   	<i class=" '.$tabicon.' ult_tab_icon"  ></i>
+					  		<span '.$advanced_tabs_data_list.' class="ult-span-text ult-responsive" style="'.esc_attr($tabs_nav_style).'">'.$value['title'].'</span>
+						   	<span class="aio-icon none ult_tab_icon'.esc_attr($icon_position).'" style="'.esc_attr($tab_icon_style).'">
+						   	<i class=" '.esc_attr($tabicon).' ult_tab_icon"  ></i>
 						   </span>
 						</span>
 					   </span>
@@ -457,18 +503,18 @@ else{
 
 	/*-------------------accordion right icon------------------*/
 
-				$acord.='<dt class="'.$ul_sub_class.'">
-        	<a class="ult-tabto-actitle withBorder ult_a" id="'.$tab_id.'" style="color:'.$tab_title_color.';'.$style5bgcolor.';background-color:'.$tab_background_color.';'.$ult_ac_border.'" href="#'.$tab_id.'">
-        		<i class="accordion-icon">+</i>
-        			<span class="ult_tab_main ult_ac_main'.$resp_style.'">
-					   <span class="ult-span-text ult_acordian-text" style="'.$tabs_nav_style.';color:inherit " >'.$value['title'].'</span>
+				$acord.='<dt class="'.esc_attr($ul_sub_class).'">
+        	<a class="ult-tabto-actitle withBorder ult_a" id="'.esc_attr($tab_id).'" style="color:'.esc_attr($tab_title_color).';'.esc_attr($style5bgcolor).';background-color:'.esc_attr($tab_background_color).';'.esc_attr($ult_ac_border).'" href="#'.esc_attr($tab_id).'">
+        		<i class="accordion-icon"></i>
+        			<span class="ult_tab_main ult_ac_main'.esc_attr($resp_style).'">
+					   <span '.$advanced_tabs_data_list.' class="ult-span-text ult_acordian-text ult-responsive" style="'.esc_attr($tabs_nav_style).';color:inherit " >'.$value['title'].'</span>
 					</span>
-					   <div class="aio-icon none " style="'.$tab_icon_style.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'">
-					   <i class="  '.$tabicon.' ult_tab_icon"  ></i>
+					   <div class="aio-icon none " style="'.esc_attr($tab_icon_style).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'">
+					   <i class="  '.esc_attr($tabicon).' ult_tab_icon"  ></i>
 					   </div>
 					</a></dt>
             		<dd class="ult-tabto-accordionItem ult-tabto-accolapsed">
-			            <div class="ult-tabto-acontent" style="'.$contain_bg.'">
+			            <div class="ult-tabto-acontent" style="'.esc_attr($contain_bg).'">
 			               '.$accontaint .'
 			            </div>
         	</dd>';
@@ -476,14 +522,14 @@ else{
 				}
 				else if($icon_position=='Left'){
 				$icon_position='left';
-					$newtab .='<li class="ult_tab_li '.$ult_style.' '.$ul_sub_class.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'" style="'.$link_li_style.'">
-					<a href="#'.$tab_id.'" id="'.$tab_id.'" style="color:'.$tab_title_color.';'.$bgcolor.';'.$style5bgcolor.' '.$tab_css.'" class="ult_a  '.$css_class .'">
-					     <span class="ult_tab_main '.$resp_style.'">
+					$newtab .='<li class="ult_tab_li '.esc_attr($ult_style).' '.esc_attr($ul_sub_class).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'" style="'.esc_attr($link_li_style).'">
+					<a href="#'.esc_attr($tab_id).'" id="'.esc_attr($tab_id).'" style="color:'.esc_attr($tab_title_color).';'.esc_attr($bgcolor).';'.esc_attr($style5bgcolor).' '.esc_attr($tab_css).'" class="ult_a  '.esc_attr($css_class) .'">
+					     <span class="ult_tab_main '.esc_attr($resp_style).'">
 					      <span class="ult_tab_section">
-						   <span class="aio-icon none ult_tab_icon'.$icon_position.'" style="'.$tab_icon_style.'">
-						   <i class="  '.$tabicon.' ult_tab_icon"  ></i>
+						   <span class="aio-icon none ult_tab_icon'.esc_attr($icon_position).'" style="'.esc_attr($tab_icon_style).'">
+						   <i class="  '.esc_attr($tabicon).' ult_tab_icon"  ></i>
 						   </span>
-						   <span class="ult-span-text " style="'.$tabs_nav_style.'">'.$value['title'].'</span>
+						   <span '.$advanced_tabs_data_list.' class="ult-span-text ult-responsive" style="'.esc_attr($tabs_nav_style).'">'.$value['title'].'</span>
 						    </span >
 						</span>
 					</a>
@@ -491,31 +537,31 @@ else{
 
 /*-------------------accordion left icon------------------*/
 
-				$acord.='<dt class="'.$ul_sub_class.'">
-        	<a class="ult-tabto-actitle withBorder ult_a"  id="'.$tab_id.'" style="color:'.$tab_title_color.';'.$style5bgcolor.';background-color:'.$tab_background_color.';'.$ult_ac_border.'" href="#'.$tab_id.'">
-        		<i class="accordion-icon">+</i>
-        			<span class="ult_tab_main ult_ac_main'.$resp_style.'">
-					   <div class="aio-icon none " style="'.$tab_icon_style.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'">
-					   <i class="  '.$tabicon.' ult_tab_icon"  ></i>
+				$acord.='<dt class="'.esc_attr($ul_sub_class).'">
+        	<a class="ult-tabto-actitle withBorder ult_a"  id="'.esc_attr($tab_id).'" style="color:'.esc_attr($tab_title_color).';'.esc_attr($style5bgcolor).';background-color:'.esc_attr($tab_background_color).';'.esc_attr($ult_ac_border).'" href="#'.esc_attr($tab_id).'">
+        		<i class="accordion-icon"></i>
+        			<span class="ult_tab_main ult_ac_main'.esc_attr($resp_style).'">
+					   <div class="aio-icon none " style="'.esc_attr($tab_icon_style).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'">
+					   <i class="  '.esc_attr($tabicon).' ult_tab_icon"  ></i>
 					   </div>
-					<span class="ult-span-text ult_acordian-text" style="'.$tabs_nav_style.';color:inherit " >'.$value['title'].'</span>
+					<span '.$advanced_tabs_data_list.' class="ult-span-text ult_acordian-text ult-responsive" style="'.esc_attr($tabs_nav_style).';color:inherit " >'.$value['title'].'</span>
 					</span></a></dt>
             		<dd class="ult-tabto-accordionItem ult-tabto-accolapsed">
-			            <div class="ult-tabto-acontent" style="'.$contain_bg.'">
+			            <div class="ult-tabto-acontent" style="'.esc_attr($contain_bg).'">
 			               '.$accontaint .'
 			            </div>
         	</dd>';
 				}
 		     	else if($icon_position=='Top')
 				{
-					$newtab .='<li class="ult_tab_li '.$ult_style.' '.$ul_sub_class.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'" style="'.$link_li_style.'">
-					<a href="#'.$tab_id.'" id="'.$tab_id.'"  style="color:'.$tab_title_color.';'.$bgcolor.';'.$style5bgcolor.' '.$tab_css.'" class="ult_a '.$icon_top_link.' '.$css_class .'">
-					    <span class="ult_tab_main '.$ult_top.' '.$resp_style.' ">
+					$newtab .='<li class="ult_tab_li '.esc_attr($ult_style).' '.esc_attr($ul_sub_class).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'" style="'.esc_attr($link_li_style).'">
+					<a href="#'.esc_attr($tab_id).'" id="'.esc_attr($tab_id).'"  style="color:'.$tab_title_color.';'.esc_attr($bgcolor).';'.esc_attr($style5bgcolor).' '.esc_attr($tab_css).'" class="ult_a '.esc_attr($icon_top_link).' '.esc_attr($css_class) .'">
+					    <span class="ult_tab_main '.esc_attr($ult_top).' '.esc_attr($resp_style).' ">
 					    <span class="ult_tab_section">
-					   <span class="aio-icon none icon-top ult_tab_icon'.$icon_position.'"  style="'.$tab_icon_style.'">
-					   <i class="  '.$tabicon.' ult_tab_icon" ></i>
+					   <span class="aio-icon none icon-top ult_tab_icon'.esc_attr($icon_position).'"  style="'.esc_attr($tab_icon_style).'">
+					   <i class="  '.esc_attr($tabicon).' ult_tab_icon" ></i>
 					   </span>
-					   <span class="ult-span-text" style="'.$tabs_nav_style.'">'.$value['title'].'</span>
+					   <span '.$advanced_tabs_data_list.' class="ult-span-text ult-responsive" style="'.esc_attr($tabs_nav_style).'">'.$value['title'].'</span>
 					   </span>
 						</span>
 					</a>
@@ -523,17 +569,17 @@ else{
 
 /*-------------------accordion top icon------------------*/
 
-				$acord.='<dt class="'.$ul_sub_class.'">
-	        	<a class="ult-tabto-actitle withBorder ult_a" id="'.$tab_id.'"  style="color:'.$tab_title_color.';'.$style5bgcolor.';background-color:'.$tab_background_color.';'.$ult_ac_border.'" href="#'.$tab_id.'">
-	        		<i class="accordion-icon">+</i>
-	        			<span class="ult_tab_main ult_ac_main ult_top ' .$resp_style.'">
-						   <span class="aio-icon none icon-top" style="'.$tab_icon_style.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'">
-						   <i class="  '.$tabicon.' ult_tab_icon"  ></i>
+				$acord.='<dt class="'.esc_attr($ul_sub_class).'">
+	        	<a class="ult-tabto-actitle withBorder ult_a" id="'.esc_attr($tab_id).'"  style="color:'.esc_attr($tab_title_color).';'.esc_attr($style5bgcolor).';background-color:'.esc_attr($tab_background_color).';'.esc_attr($ult_ac_border).'" href="#'.esc_attr($tab_id).'">
+	        		<i class="accordion-icon"></i>
+	        			<span class="ult_tab_main ult_ac_main ult_top ' .esc_attr($resp_style).'">
+						   <span class="aio-icon none icon-top" style="'.esc_attr($tab_icon_style).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'">
+						   <i class="  '.esc_attr($tabicon).' ult_tab_icon"  ></i>
 						   </span>
-						<span class="ult-span-text ult_acordian-text" style="'.$tabs_nav_style.';color:inherit " >'.$value['title'].'</span>
+						<span '.$advanced_tabs_data_list.' class="ult-span-text ult_acordian-text ult-responsive" style="'.esc_attr($tabs_nav_style).';color:inherit " >'.$value['title'].'</span>
 						</span></a></dt>
 	            		<dd class="ult-tabto-accordionItem ult-tabto-accolapsed">
-				            <div class="ult-tabto-acontent" style="'.$contain_bg.'">
+				            <div class="ult-tabto-acontent" style="'.esc_attr($contain_bg).'">
 				               '.$accontaint .'
 				            </div>
 	        	</dd>';
@@ -541,11 +587,11 @@ else{
 				}
 			  	 else {
 					$icon_position='none';
-					$newtab .='<li class="ult_tab_li '.$ult_style.' '.$ul_sub_class.'" data-iconcolor="'.$icon_color.'" data-iconhover="'.$icon_hover_color.'" style="'.$link_li_style.'">
-					<a href="#'.$tab_id.'"  id="'.$tab_id.'"  style="color:'.$tab_title_color.';'.$bgcolor.';'.$style5bgcolor.' '.$tab_css.' " class="ult_a '.$ult_style.' '.$css_class .'">
-					     <span class="ult_tab_main '.$resp_style.' ">
+					$newtab .='<li class="ult_tab_li '.esc_attr($ult_style).' '.esc_attr($ul_sub_class).'" data-iconcolor="'.esc_attr($icon_color).'" data-iconhover="'.esc_attr($icon_hover_color).'" style="'.esc_attr($link_li_style).'">
+					<a href="#'.esc_attr($tab_id).'"  id="'.esc_attr($tab_id).'"  style="color:'.esc_attr($tab_title_color).';'.esc_attr($bgcolor).';'.esc_attr($style5bgcolor).' '.esc_attr($tab_css).' " class="ult_a '.esc_attr($ult_style).' '.esc_attr($css_class) .'">
+					     <span class="ult_tab_main '.esc_attr($resp_style).' ">
 					 		 <span class="ult_tab_section">
-					   			<span class="ult-span-text no_icon ult_tab_display_text" style="'.$tabs_nav_style.';">'.$value['title'].'</span>
+					   			<span '.$advanced_tabs_data_list.' class="ult-span-text no_icon ult_tab_display_text ult-responsive" style="'.esc_attr($tabs_nav_style).';">'.$value['title'].'</span>
 					   		</span>
 						</span>
 					</a>
@@ -553,15 +599,15 @@ else{
 
 /*-------------------accordion without icon------------------*/
 
-				$acord.='<dt class="'.$ul_sub_class.'">
-	        	<a class="ult-tabto-actitle withBorder ult_a " id="'.$tab_id.'" style="color:'.$tab_title_color.';'.$style5bgcolor.';background-color:'.$tab_background_color.';'.$ult_ac_border.'" href="#'.$tab_id.'">
-	        		<i class="accordion-icon">+</i>
-	        			<span class="ult_tab_main ult_ac_main ult_noacordicn' .$resp_style.'">
+				$acord.='<dt class="'.esc_attr($ul_sub_class).'">
+	        	<a class="ult-tabto-actitle withBorder ult_a " id="'.esc_attr($tab_id).'" style="color:'.esc_attr($tab_title_color).';'.esc_attr($style5bgcolor).';background-color:'.esc_attr($tab_background_color).';'.esc_attr($ult_ac_border).'" href="#'.esc_attr($tab_id).'">
+	        		<i class="accordion-icon"></i>
+	        			<span class="ult_tab_main ult_ac_main ult_noacordicn' .esc_attr($resp_style).'">
 
-						<span class="ult-span-text no_icon ult_acordian-text" style="'.$tabs_nav_style.';color:inherit " >'.$value['title'].'</span>
+						<span '.$advanced_tabs_data_list.' class="ult-span-text no_icon ult_acordian-text ult-responsive" style="'.esc_attr($tabs_nav_style).';color:inherit " >'.$value['title'].'</span>
 						</span></a></dt>
 	            		<dd class="ult-tabto-accordionItem ult-tabto-accolapsed">
-				            <div class="ult-tabto-acontent" style="'.$contain_bg.'">
+				            <div class="ult-tabto-acontent" style="'.esc_attr($contain_bg).'">
 				               '.$accontaint .'
 				            </div>
 	        			</dd>';
@@ -578,42 +624,42 @@ $newtabcontain .='<div class="ult_tabitemname" style="color:inherit">';
 $newtabcontain .=wpb_js_remove_wpautop( $content );
 $newtabcontain .='</div>';
 $newtabcontain .='</div>';
-
 $op='';
-$op .='<div class="ult_tabs '.$el_class.' " style="'.$container_style.'" data-tabsstyle="'.$style.'"
- data-titlebg="'.$tab_background_color.'" data-titlecolor="'.$tab_title_color.'" data-fullheight="'.$tab_max.'"
- data-titlehoverbg="'.$tab_hover_background_color.'" data-titlehovercolor="'.$tab_hover_title_color.'"
- data-rotatetabs="'.$interval.'" data-responsivemode="'.$resp_style.'" data-animation="'.$tab_animation.'"
-data-activetitle="'.$acttab_title.'" data-activeicon="'.$act_icon_color.'" data-activebg="'.$acttab_background.'"  data-respmode="'.$resp_type.'" data-respwidth="'.$resp_width.'">';
+$op .='<div id="'.esc_attr($advanced_tabs_desc_id).'" class="ult_tabs '.esc_attr($el_class).'" style="'.esc_attr($container_style).' '.esc_attr($wrapper_margin).'" data-tabsstyle="'.esc_attr($style).'"
+ data-titlebg="'.esc_attr($tab_background_color).'" data-titlecolor="'.esc_attr($tab_title_color).'" data-fullheight="'.esc_attr($tab_max).'"
+ data-titlehoverbg="'.esc_attr($tab_hover_background_color).'" data-titlehovercolor="'.esc_attr($tab_hover_title_color).'"
+ data-rotatetabs="'.esc_attr($interval).'" data-responsivemode="'.esc_attr($resp_style).'" data-animation="'.esc_attr($tab_animation).'"
+data-activetitle="'.esc_attr($acttab_title).'" data-activeicon="'.esc_attr($act_icon_color).'" data-activebg="'.esc_attr($acttab_background).'"  data-respmode="'.esc_attr($resp_type).'" data-respwidth="'.esc_attr($resp_width).'" data-scroll = "'.esc_attr($smooth_scroll).'" data-activeindex="'.esc_attr($tabs_active_index).'">';
 $op .=$newtab;
-$op .='<div class="ult_tabcontent '.$style.'" style="'.$contain_bg.'">';
+$op .='<div '.$advanced_tabs_desc_data_list.'class="ult_tabcontent ult-responsive '.esc_attr($style).'" style="'.esc_attr($contain_bg).'">';
 $tabanimatclass="";
 if($tab_animation=='Slide-Zoom'){
 
 	$tabanimatclass="tabanimate";
 }
-$op .='<div class="ult_tab_min_contain '.$tabanimatclass.'" >';
+$op .='<div class="ult_tab_min_contain '.esc_attr($tabanimatclass).'" >';
 $op .=wpb_js_remove_wpautop( $content );
 $op .='</div>';
 $op .='</div>';
 $op .='</div>';
+//$op .='</div>';
 ob_start();
 //return $op;
 echo $op;
 
 /*---------------- for acordian -----------------*/
 $actab='';
-$actab .='<div class="ult_acord">
+$actab .='<div class="ult_acord '.esc_attr($advanced_tabs_desc_id).'">
    <div class="ult-tabto-accordion " style="width:;"
-    data-titlecolor="'.$tab_title_color.'"  data-titlebg="'.$tab_background_color.'"
-     data-titlehoverbg="'.$tab_hover_background_color.'" data-titlehovercolor="'.$tab_hover_title_color.'" data-animation="'.$tab_animation.'"
-     data-activetitle="'.$acttab_title.'" data-activeicon="'.$act_icon_color.'" data-activebg="'.$acttab_background.'">
+    data-titlecolor="'.esc_attr($tab_title_color).'"  data-titlebg="'.esc_attr($tab_background_color).'"
+     data-titlehoverbg="'.esc_attr($tab_hover_background_color).'" data-titlehovercolor="'.esc_attr($tab_hover_title_color).'" data-animation="'.esc_attr($tab_animation).'"
+     data-activetitle="'.esc_attr($acttab_title).'" data-activeicon="'.esc_attr($act_icon_color).'" data-activebg="'.esc_attr($acttab_background).'" data-scroll = "'.esc_attr($smooth_scroll).'" data-activeindex="'.esc_attr($tabs_active_index).'" >
      <dl>';
 
 $actab .=$acord;
 $actab .='
     	</dl>
-    <!--<div class="extraborder" style="background-color:'.$tab_hover_background_color.'"></div>-->
+    <!--<div class="extraborder" style="background-color:'.esc_attr($tab_hover_background_color).'"></div>-->
 </div>
 
 </div>';
@@ -635,7 +681,7 @@ function ult_tab_init() {
 		'name'    => __('Advanced Tabs') ,
 		'base'    => 'ult_tab_element',
 		"category" => __("Ultimate VC Addons","ultimate_vc"),
-		"description" => __("Create nice looking tabs .","ultimate_vc"),
+		"description" => __("Create nice looking tabs.","ultimate_vc"),
 		 "class" => "ult_tab_eleicon",
 		//'show_settings_on_create' => false,
 		'is_container' => true,
@@ -847,6 +893,19 @@ function ult_tab_init() {
 			"edit_field_class" => "vc_col-sm-12 vc_column ult_space_border",
 		),
 		array(
+			"type" => "number",
+			"class" => "",
+			"heading" => __("Initial Active Tab", "ultimate_vc"),
+			"param_name" => "tabs_active_index",
+			"value" => "1",
+			"min" => 1,
+			"max" => 100,
+			"suffix" => "",
+			"description" => __("This no will open active tab", "ultimate_vc"),
+			"group" => "Tab",
+			"edit_field_class" => "vc_col-sm-12 vc_column ult_space_border",
+		),
+		array(
 			"type" => "colorpicker",
 			"heading" => __("Tab Shaddow Color"),
 			"param_name" => "shadow_color",
@@ -1013,6 +1072,25 @@ function ult_tab_init() {
 
 		),
 		array(
+			"type" => "ult_switch",
+			"class" => "",
+			//"heading" => __("Want To show button in responsive mode", "ultimate_vc"),
+			"param_name" => "smooth_scroll",
+			// "admin_label" => true,
+			"value" => "on",
+			"default_set" => true,
+			"options" => array(
+				"on" => array(
+					"label" => __("Scroll to Top of Container","ultimate_vc"),
+					"off" => __("No","ultimate_vc"),
+					"on" => __("Yes","ultimate_vc"),
+				  ),
+			  ),
+			"description" => __("If enable, tab will adjust on viewport on click.", "ultimate_vc"),
+			"dependency" => Array("element" => "resp_type","value" => array("Accordion")),
+			"group" => "Responsive",
+		),
+		array(
 			"type" => "dropdown",
 			"class" => "",
 			"heading" => __("Responsive Mode Visibility "),
@@ -1043,7 +1121,7 @@ function ult_tab_init() {
 			"type" => "ultimate_google_fonts",
 			"heading" => __("Title Font Family", "imedica"),
 			"param_name" => "main_heading_font_family",
-			"description" => __("Select the font of your choice. You can <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>add new in the collection here</a>.", "imedica"),
+			"description" => __("Select the font of your choice. You can <a target='_blank' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>add new in the collection here</a>.", "imedica"),
 			"group" => "Typography",
 			),
 
@@ -1055,23 +1133,54 @@ function ult_tab_init() {
 			),
 
 
+		// array(
+		// 	"type" => "number",
+		// 	"param_name" => "title_font_size",
+		// 	"heading" => " Font size",
+		// 	"value" => "",
+		// 	"suffix" => "px",
+		// 	"group" => "Typography"
+		// 	),
+		// array(
+		// 	"type" => "number",
+		// 	"param_name" => "title_line_ht",
+		// 	"heading" => " Line Height",
+		// 	"value" => "",
+		// 	"suffix" => "px",
+		// 	"group" => "Typography",
+		// 	"edit_field_class" => "vc_col-sm-12 vc_column ult_space_border",
+		// 	),
+
 		array(
-			"type" => "number",
-			"param_name" => "title_font_size",
-			"heading" => " Font size",
-			"value" => "",
-			"suffix" => "px",
-			"group" => "Typography"
-			),
-		array(
-			"type" => "number",
-			"param_name" => "title_line_ht",
-			"heading" => " Line Height",
-			"value" => "",
-			"suffix" => "px",
-			"group" => "Typography",
-			"edit_field_class" => "vc_col-sm-12 vc_column ult_space_border",
-			),
+            "type" => "ultimate_responsive",
+            "class" => "",
+            "heading" => __("Font size", 'ultimate_vc'),
+            "param_name" => "title_font_size",
+            "unit" => "px",
+            "media" => array(
+                "Desktop" => '',
+                "Tablet" => '',
+                "Tablet Portrait" => '',
+                "Mobile Landscape" => '',
+                "Mobile" => '',
+                ),
+                "group" => "Typography",
+            ),
+            array(
+            "type" => "ultimate_responsive",
+            "class" => "",
+            "heading" => __("Line Height", 'ultimate_vc'),
+            "param_name" => "title_line_ht",
+            "unit" => "px",
+            "media" => array(
+                "Desktop" => '',
+                "Tablet" => '',
+                "Tablet Portrait" => '',
+                "Mobile Landscape" => '',
+                "Mobile" => '',
+                ),
+                "group" => "Typography",
+            ),
 
 		array(
 			"type" => "text",
@@ -1084,7 +1193,7 @@ function ult_tab_init() {
 			"type" => "ultimate_google_fonts",
 			"heading" => __(" Font Family", "smile"),
 			"param_name" => "desc_font_family",
-			"description" => __("Select the font of your choice. You can <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>add new in the collection here</a>.", "smile"),
+			"description" => __("Select the font of your choice. You can <a target='_blank' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>add new in the collection here</a>.", "smile"),
 			"group" => "Typography",
 			),
 
@@ -1094,23 +1203,68 @@ function ult_tab_init() {
 			"param_name"	=>	"desc_font_style",
 			"group" => "Typography",
 			),
-		array(
-			"type" => "number",
-			"param_name" => "desc_font_size",
-			"heading" => " Font size",
-			"value" => "",
-			"suffix" => "px",
-			"group" => "Typography"
-			),
+		// array(
+		// 	"type" => "number",
+		// 	"param_name" => "desc_font_size",
+		// 	"heading" => " Font size",
+		// 	"value" => "",
+		// 	"suffix" => "px",
+		// 	"group" => "Typography"
+		// 	),
 
+		// array(
+		// 	"type" => "number",
+		// 	"param_name" => "desc_line_ht",
+		// 	"heading" => " Line Height",
+		// 	"value" => "",
+		// 	"suffix" => "px",
+		// 	"group" => "Typography",
+		// 	),
 		array(
-			"type" => "number",
-			"param_name" => "desc_line_ht",
-			"heading" => " Line Height",
-			"value" => "",
-			"suffix" => "px",
-			"group" => "Typography",
-			),
+            "type" => "ultimate_responsive",
+            "class" => "",
+            "heading" => __("Font size", 'ultimate_vc'),
+            "param_name" => "desc_font_size",
+            "unit" => "px",
+            "media" => array(
+                "Desktop" => '',
+                "Tablet" => '',
+                "Tablet Portrait" => '',
+                "Mobile Landscape" => '',
+                "Mobile" => '',
+                ),
+                "group" => "Typography",
+            ),
+            array(
+            "type" => "ultimate_responsive",
+            "class" => "",
+            "heading" => __("Line Height", 'ultimate_vc'),
+            "param_name" => "desc_line_ht",
+            "unit" => "px",
+            "media" => array(
+                "Desktop" => '',
+                "Tablet" => '',
+                "Tablet Portrait" => '',
+                "Mobile Landscape" => '',
+                "Mobile" => '',
+                ),
+                "group" => "Typography",
+            ),
+            array(
+                "type" => "ultimate_spacing",
+                "heading" => " Wrapper Margin ",
+                "param_name" => "wrapper_margin",
+                "mode"  => "margin",                    //  margin/padding
+                "unit"  => "px",                        //  [required] px,em,%,all     Default all
+                "positions" => array(                   //  Also set 'defaults'
+                      "Top" => "",
+                      "Right" => "",
+                      "Bottom" => "",
+                      "Left" => "",
+                ),
+                 'group' => __( 'Design ', 'ultimate_vc' ),
+                 "description" => __("Add or remove margin for wrapper.", "ultimate_vc"),
+            ),
 
 		/*----------end----------*/
 		),
@@ -1153,10 +1307,11 @@ vc_map( array(
 		),
 
 		array(
-			'type' => 'tab_id',
+			'type' => 'textfield',
 			"edit_field_class" => " vc_col-sm-12 vc_column wpb_el_type_textfield vc_shortcode-param",
 			'heading' => __( 'Tab ID', 'ultimate_vc' ),
-			'param_name' => "tab_id"
+			'param_name' => "tab_id",
+			"description" => __('Enter Tab ID (Note: make sure it is unique and valid according to <a href="%s" target="_blank">w3c specification</a>).', "ultimate_vc"),
 		),
 
 
@@ -1169,7 +1324,7 @@ vc_map( array(
 			"param_name" => "icon",
 			"value" => "",
 			"group" =>"Icon",
-			"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose, you can <a href='admin.php?page=font-icon-Manager' target='_blank'>add new here</a>.", "smile"),
+			"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose, you can <a href='admin.php?page=bsf-font-icon-manager' target='_blank'>add new here</a>.", "smile"),
 			//"dependency" => Array("element" => "font_icons_position","value" => array("Right","Left","Top","Bottom")),
 		),
 
@@ -1190,22 +1345,21 @@ vc_map( array(
 }
 
 
+
+
+
+}//end of vcmap function
+
+
+	}
 function ultimate_tabs() {
-	$bsf_dev_mode = bsf_get_option('dev_mode');
-	if($bsf_dev_mode === 'enable') {
-		$js_path = '../assets/js/';
-		$css_path = '../assets/css/';
-		$ext = '';
-	}
-	else {
-		$js_path = '../assets/min-js/';
-		$css_path = '../assets/min-css/';
-		$ext = '.min';
-	}
-	wp_register_script('ult_tabs_rotate',plugins_url( $js_path.'tabs'.$ext.'.js', __FILE__ ),array( 'jquery'),ULTIMATE_VERSION,true);
-	wp_register_style('ult_tabs',plugins_url( $css_path.'tabs'.$ext.'.css', __FILE__ ));
-	wp_register_script('ult_tabs_acordian_js',plugins_url( $js_path.'tabs-accordion'.$ext.'.js', __FILE__ ),array( 'jquery'),ULTIMATE_VERSION,true);
-	wp_register_style('ult_tabs_acordian',plugins_url( $css_path.'tabs-accordion'.$ext.'.css', __FILE__ ));
+	
+	Ultimate_VC_Addons::ultimate_register_style( 'ult_tabs', 'tabs' );
+	Ultimate_VC_Addons::ultimate_register_style( 'ult_tabs_acordian', 'tabs-accordion' );
+
+	Ultimate_VC_Addons::ultimate_register_script( 'ult_tabs_acordian_js', 'tabs-accordion', false, array( 'jquery' ), ULTIMATE_VERSION, true );
+	
+	Ultimate_VC_Addons::ultimate_register_script( 'ult_tabs_rotate', 'tabs', false, array( 'jquery' ), ULTIMATE_VERSION, true );
 }
 
 function ultimate_tabs_admin() {
@@ -1220,13 +1374,6 @@ function ultimate_tabs_admin() {
 	wp_enqueue_script('tab-js-2');
 	//wp_enqueue_style('css-1',plugins_url( '../admin/vc_extend/css/sub-tab.css', __FILE__ ));
 }
-
-
-
-}//end of vcmap function
-
-
-	}
 }
 
 if(class_exists('ULT_TAB_ELEMENT'))
@@ -1303,7 +1450,7 @@ if ( class_exists( "WPBakeryShortCode" ) ) {
 					$iner = '';
 					foreach ( $this->settings['params'] as $param ) {
 						$custom_markup = '';
-						$param_value = isset( $$param['param_name'] ) ? $$param['param_name'] : '';
+						$param_value = isset( $param['param_name'] ) ? $param['param_name'] : '';
 						if ( is_array( $param_value ) ) {
 							// Get first element from the array
 							reset( $param_value );
@@ -1377,11 +1524,11 @@ class WPBakeryShortCode_SINGLE_TAB extends WPBakeryShortCode_VC_Column {
 
 					}
 					public function customAdminBlockParams() {
-						return ' id="tab-' . $this->atts['tab_id'] . '"';
+						return ' id="tab-' . esc_attr($this->atts['tab_id']) . '"';
 					}
 
 					public function mainHtmlBlockParams( $width, $i ) {
-						return 'data-element_type="' . $this->settings["base"] . '" class="wpb_' . $this->settings['base'] . ' wpb_sortable wpb_content_holder"' . $this->customAdminBlockParams();
+						return 'data-element_type="' . esc_attr($this->settings["base"]) . '" class="wpb_' . esc_attr($this->settings['base']) . ' wpb_sortable wpb_content_holder"' . $this->customAdminBlockParams();
 					}
 
 					public function containerHtmlBlockParams( $width, $i ) {

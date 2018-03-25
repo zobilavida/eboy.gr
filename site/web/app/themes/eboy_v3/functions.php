@@ -251,21 +251,6 @@ add_filter( 'wp_list_categories', 'tax_cat_active', 10, 2 );
 
 
 
-function wpb_screenshots($atts, $content = NULL) {
-extract(shortcode_atts(array(
-"snap" => 'http://s.wordpress.com/mshots/v1/',
-"url" => 'https://eboy.gr/coolcars/',
-"alt" => 'screenshot',
-"w" => '600', // width
-"h" => '450' // height
-), $atts));
-
-$img = '<img alt="' . $alt . '" src="' . $snap . '' . urlencode($url) . '?w=' . $w . '&h=' . $h . '" />';
-
-return $img;
-}
-add_shortcode("screen", "wpb_screenshots");
-
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );

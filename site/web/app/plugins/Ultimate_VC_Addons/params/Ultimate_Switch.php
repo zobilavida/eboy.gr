@@ -20,7 +20,7 @@ if(!class_exists('Ultimate_Switch_Param'))
 		}
 
 		function checkbox_param($settings, $value){
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$type = isset($settings['type']) ? $settings['type'] : '';
 			$options = isset($settings['options']) ? $settings['options'] : '';
@@ -37,14 +37,14 @@ if(!class_exists('Ultimate_Switch_Param'))
 					}
 					$uid = uniqid('ultswitchparam-'.rand());
 					$output .= '<div class="onoffswitch">
-							<input type="checkbox" name="'.$param_name.'" value="'.$value.'" '.$dependency.' class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . ' '.$dependency.' onoffswitch-checkbox chk-switch-'.$un.'" id="switch'.$uid.'" '.$checked.'>
-							<label class="onoffswitch-label" for="switch'.$uid.'">
+							<input type="checkbox" name="'.esc_attr( $param_name ).'" value="'.esc_attr( $value ).'" '.$dependency.' class="wpb_vc_param_value ' . esc_attr( $param_name ) . ' ' . esc_attr( $type ) . ' ' . esc_attr( $class ) . ' '.esc_attr( $dependency ).' onoffswitch-checkbox chk-switch-'.esc_attr( $un ).'" id="switch'.esc_attr( $uid ).'" '.$checked.'>
+							<label class="onoffswitch-label" for="switch'.esc_attr( $uid ).'">
 								<div class="onoffswitch-inner">
 									<div class="onoffswitch-active">
-										<div class="onoffswitch-switch">'.$opts['on'].'</div>
+										<div class="onoffswitch-switch">'.esc_html( $opts['on'] ).'</div>
 									</div>
 									<div class="onoffswitch-inactive">
-										<div class="onoffswitch-switch">'.$opts['off'].'</div>
+										<div class="onoffswitch-switch">'.esc_html( $opts['off'] ).'</div>
 									</div>
 								</div>
 							</label>
@@ -64,14 +64,14 @@ if(!class_exists('Ultimate_Switch_Param'))
 
 			//$output .= '<input type="hidden" id="chk-switch-'.$un.'" class="wpb_vc_param_value ' . $param_name . ' ' . $type . ' ' . $class . '" name="' . $param_name . '" value="'.$value.'" />';
 			$output .= '<script type="text/javascript">
-				jQuery("#switch'.$uid.'").change(function(){
+				jQuery("#switch'.esc_attr( $uid ).'").change(function(){
 
-					 if(jQuery("#switch'.$uid.'").is(":checked")){
-						jQuery("#switch'.$uid.'").val("'.$key.'");
-						jQuery("#switch'.$uid.'").attr("checked","checked");
+					 if(jQuery("#switch'.esc_attr( $uid ).'").is(":checked")){
+						jQuery("#switch'.esc_attr( $uid ).'").val("'.esc_attr( $key ).'");
+						jQuery("#switch'.esc_attr( $uid ).'").attr("checked","checked");
 					 } else {
-						jQuery("#switch'.$uid.'").val("'.$set_value.'");
-						jQuery("#switch'.$uid.'").removeAttr("checked");
+						jQuery("#switch'.esc_attr( $uid ).'").val("'.esc_attr( $set_value ).'");
+						jQuery("#switch'.esc_attr( $uid ).'").removeAttr("checked");
 					 }
 
 				});

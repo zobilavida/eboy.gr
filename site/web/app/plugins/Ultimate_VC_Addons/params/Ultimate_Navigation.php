@@ -33,7 +33,7 @@ if(!class_exists('Ultimate_Navigation'))
 
 		function icon_settings_field($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$uid = uniqid();
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$type = isset($settings['type']) ? $settings['type'] : '';
@@ -54,27 +54,27 @@ if(!class_exists('Ultimate_Navigation'))
 			}*/
 
 
-			$output = '<input type="hidden" name="'.$param_name.'" class="wpb_vc_param_value '.$param_name.' '.$type.' '.$class.'" value="'.$value.'" id="trace-'.$uid.'"/>';
+			$output = '<input type="hidden" name="'.esc_attr( $param_name ).'" class="wpb_vc_param_value '.esc_attr( $param_name ).' '.esc_attr( $type ).' '.esc_attr( $class ).'" value="'.esc_attr( $value ).'" id="trace-'.esc_attr( $uid ).'"/>';
 			//$output .= '<div class="ult-icon-preview icon-preview-'.$uid.'"><i class="'.$value.'"></i></div>';
 			//$output .='<input class="search" type="text" placeholder="Search" />';
-			$output .='<div id="icon-dropdown-'.$uid.'" >';
+			$output .='<div id="icon-dropdown-'.esc_attr( $uid ).'" >';
 			$output .= '<ul class="icon-list">';
 			$n = 1;
 			foreach($icons as $icon)
 			{
 				$selected = ($icon == $value) ? 'class="selected"' : '';
 				$id = 'icon-'.$n;
-				$output .= '<li '.$selected.' data-ac-icon="'.$icon.'"><i class="ult-icon '.$icon.'"></i><label class="ult-icon">'.$icon.'</label></li>';
+				$output .= '<li '.$selected.' data-ac-icon="'.esc_attr( $icon ).'"><i class="ult-icon '.esc_attr( $icon ).'"></i><label class="ult-icon">'.esc_html( $icon ).'</label></li>';
 				$n++;
 			}
 			$output .='</ul>';
 			$output .='</div>';
 			$output .= '<script type="text/javascript">
-					jQuery("#icon-dropdown-'.$uid.' li").click(function() {
+					jQuery("#icon-dropdown-'.esc_attr( $uid ).' li").click(function() {
 						jQuery(this).attr("class","selected").siblings().removeAttr("class");
 						var icon = jQuery(this).attr("data-ac-icon");
-						jQuery("#trace-'.$uid.'").val(icon);
-						jQuery(".icon-preview-'.$uid.'").html("<i class=\'ult-icon "+icon+"\'></i>");
+						jQuery("#trace-'.esc_attr( $uid ).'").val(icon);
+						jQuery(".icon-preview-'.esc_attr( $uid ).'").html("<i class=\'ult-icon "+icon+"\'></i>");
 					});
 			</script>';
 			$output .= '<style type="text/css">';

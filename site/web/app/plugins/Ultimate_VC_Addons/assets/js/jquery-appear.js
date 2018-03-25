@@ -90,12 +90,21 @@
 		//process the queue
 		checkAll: function() {
 			var length = $.fn.bsf_appear.checks.length;
-			if (length > 0) while (length--) ($.fn.bsf_appear.checks[length])();
+			
+			if (length > 0){
+				while (length--) {
+					($.fn.bsf_appear.checks[length])();
+				}
+			}
 		},
 		//check the queue asynchronously
 		run: function() {
-			if ($.fn.bsf_appear.timeout) clearTimeout($.fn.bsf_appear.timeout);
-			$.fn.bsf_appear.timeout = setTimeout($.fn.bsf_appear.checkAll, 20);
+			if ($.fn.bsf_appear.timeout) {
+				clearTimeout($.fn.bsf_appear.timeout);
+				$.fn.bsf_appear.timeout = setTimeout($.fn.bsf_appear.checkAll, 20);
+			} else {
+				$.fn.bsf_appear.timeout = setTimeout($.fn.bsf_appear.checkAll, 20);
+			}
 		}
 	});
 	//run checks when these methods are called

@@ -26,7 +26,6 @@
     text-decoration: none;
     color: #666;
     -webkit-transition: background-color .5s ease-in-out;
-    -moz-transition: background-color .5s ease-in-out;
     transition: background-color .5s ease-in-out
 }
 .ult-tabto-accordion dt>a:visited {
@@ -64,17 +63,20 @@ i.accordion-icon {
     line-height: 1.5em;
     height: 1.5em;
     display: inline-block;
-    margin-top: -6px;
+    margin-top: -4px;
     float: left;
-    -moz-transition: -moz-transform .75s ease-in-out;
-    -o-transition: -o-transform .75s ease-in-out;
     -webkit-transition: -webkit-transform .75s ease-in-out;
-    transition: transform .75s ease-in-out
+    transition: -webkit-transform .75s ease-in-out;
+    transition: transform .75s ease-in-out;
+    transition: transform .75s ease-in-out, -webkit-transform .75s ease-in-out
 }
-.ult-tabto-actitleActive i.accordion-icon {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg)
+.ult-tabto-actitle.ult-tabto-actitleActive i.accordion-icon:before {
+    content: '-';
+    padding-left: 0.20em;
+    padding-right: 0.10em;
+}
+.ult-tabto-actitle i.accordion-icon:before {
+    content: '+';
 }
 .ult-tabto-actitleActive {
     color: #fff;
@@ -98,14 +100,10 @@ span.ult_tab_main.ult_ac_main.ult_top.Icon {
 span.ult_tab_main.ult_ac_main.ult_noacordicnIcon {
     display: inline-table
 }
-@media screen and (min-width: 48em) {
-    .ult-tabto-accordion .ult-tabto-accordionItem {
-        max-height: 80em;
-        -moz-transition: max-height .5s;
-        -o-transition: max-height .5s;
-        -webkit-transition: max-height .5s;
-        transition: max-height .5s
-    }
+.ult-tabto-accordion .ult-tabto-accordionItem {
+    max-height: 80em;
+    -webkit-transition: max-height .5s;
+    transition: max-height .5s
 }
 .ult-tabto-accordion .ult-tabto-accolapsed {
     max-height: 0
@@ -164,14 +162,6 @@ span.ult_tab_main.ult_ac_main.ult_noacordicnIcon {
         opacity: 1
     }
 }
-@-moz-keyframes accordionIn {
-    0% {
-        opacity: 0
-    }
-    100% {
-        opacity: 1
-    }
-}
 @keyframes accordionIn {
     0% {
         opacity: 0
@@ -181,14 +171,6 @@ span.ult_tab_main.ult_ac_main.ult_noacordicnIcon {
     }
 }
 @-webkit-keyframes accordionOut {
-    0% {
-        opacity: 1
-    }
-    100% {
-        opacity: 0
-    }
-}
-@-moz-keyframes accordionOut {
     0% {
         opacity: 1
     }
@@ -208,18 +190,14 @@ span.ult_tab_main.ult_ac_main.ult_noacordicnIcon {
     max-height: 0;
     overflow: hidden;
     -webkit-transition: max-height 1s;
-    -moz-transition: max-height 1s;
     transition: max-height 1s;
 }
 .ult-ac-slidedown {
     -webkit-transition: max-height 1s;
-    -moz-transition: max-height 1s;
     transition: max-height 1s;
     max-height: 100%
 }
 .fadeout {
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
     -webkit-transition: opacity 1s ease-in-out;
     transition: opacity 1s ease-in-out;
     opacity: 0

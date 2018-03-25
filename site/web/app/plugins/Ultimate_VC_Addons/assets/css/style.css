@@ -2,7 +2,7 @@
  * Plugin Name: Ultimate Addons for Visual Composer
  * Plugin URI: http://codecanyon.net/item/ultimate-addons-for-visual-composer/6892199
  * Description: All in one plugin for your Visual Composer needs!
- * Version: 3.13.7
+ * Version: 3.16.6
  * Author: BrainstormForce
  * Author URI: http://codecanyon.net/user/BrainstormForce
  */
@@ -104,10 +104,76 @@
     line-height: 1em
 }
 .aio-icon.circle {
+    -webkit-border-radius: 50%;
     border-radius: 50%
 }
+.aio-icon.hexagon:before {
+    content: "";
+    position: absolute;
+    top: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-bottom: 1em solid;
+    border-bottom-color: inherit;
+}
+.aio-icon.hexagon {
+    position: relative;
+    width: 3em;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin: 1.2em 0;
+}
+.aio-icon.hexagon:after {
+    content: "";
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-top: 1em solid;
+    border-top-color: inherit;
+}
+.aio-icon-img.uavc-hexagon img {
+    display: inline-block;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.aio-icon-img.uavc-hexagon {
+    position: relative;
+    width: 3em;
+    height: 1.5em;
+    line-height: 1.5em;
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+}
+.aio-icon-img.uavc-hexagon:after {
+    content: "";
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-top: 1em solid;
+    border-top-color: inherit;
+}
+.aio-icon-img.uavc-hexagon:before {
+    content: "";
+    position: absolute;
+    top: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-bottom: 1em solid;
+    border-bottom-color: inherit;
+}
 .aio-icon-img {
-    display: block;
+    display: inline-block;
     font-size: 48px;
     width: 1em;
     max-width: 100%;
@@ -119,6 +185,7 @@
     width: 1em;
     min-height: 1em;
     background: rgba(214, 214, 214, 0.44);
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     padding: .5em
 }
@@ -126,13 +193,16 @@
     width: 1em;
     min-height: 1em;
     background: rgba(214, 214, 214, 0.44);
+    -webkit-border-radius: 0;
     border-radius: 0;
     padding: .5em
 }
 .aio-icon-img .img-icon {
     width: 1em;
     max-width: 100% !important;
+    -webkit-border-radius: 0 !important;
     border-radius: 0 !important;
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
     display: block;
     font-size: inherit
@@ -143,15 +213,12 @@
     width: auto;
     max-width: 100%
 }
-.smile_icon_list_wrap,
-.wpb_row .wpb_column .wpb_wrapper .smile_icon_list_wrap {
-    margin-bottom: 30px
-}
 .smile_icon_list {
     list-style: none !important;
     padding: 0 !important;
     margin-left: 0 !important;
-    margin-right: 0 !important
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
 }
 .smile_icon_list li.icon_list_item {
     padding: 0 !important;
@@ -194,8 +261,16 @@ a.ulimate-info-list-link {
     margin: 0 auto;
     max-height: 100% !important;
     max-width: 100% !important;
+    -webkit-border-radius: 0 !important;
     border-radius: 0 !important;
-    box-shadow: none !important
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }
 .smile_icon_list li .icon_description h3 {
     font-size: 17px;
@@ -209,17 +284,21 @@ a.ulimate-info-list-link {
     text-decoration: none
 }
 .smile_icon_list li .icon_description p {
-    font-size: inherit !important;
-    font-weight: inherit !important;
+    font-size: inherit ;
+    font-weight: inherit;
     font-style: inherit !important;
-    line-height: inherit !important;
+    line-height: inherit ;
     color: inherit !important
+}
+.smile_icon_list li .icon_description p:last-child {
+    margin-bottom: 0
 }
 .smile_icon_list li .icon_description div.icon_description_text {
     font-family: inherit;
-    font-size: inherit;
     font-weight: inherit;
-    color: inherit
+    color: inherit;
+    font-size: 13px;
+    line-height: 18px;
 }
 .smile_icon_list li .icon_description span.icon_description_text {
     margin: 0;
@@ -236,6 +315,9 @@ a.ulimate-info-list-link {
     top: .5em;
     z-index: 1
 }
+.info-circle-wrapper.info-circle-responsive .smile_icon_list li .icon_list_connector {
+    top:1em;
+}
 .smile_icon_list li:last-child .icon_list_connector {
     display: none
 }
@@ -247,6 +329,7 @@ a.ulimate-info-list-link {
     border-color: inherit
 }
 .smile_icon_list.circle .icon_list_icon {
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     border-color: inherit;
     overflow: hidden
@@ -265,8 +348,11 @@ a.ulimate-info-list-link {
     top: 0.5em;
 }
 .smile_icon_list.left li .icon_description {
-    margin-left: 1em;
-    padding-left: 25px
+    margin-left: 3em;
+    padding-left: 25px;
+    height: 3em;
+    vertical-align: middle;
+    display: table-cell;
 }
 .smile_icon_list.right {
     text-align: right
@@ -281,7 +367,13 @@ a.ulimate-info-list-link {
     border-left-style: dashed
 }
 .smile_icon_list.right li .icon_description {
-    margin-right: 1em;
+    margin-left: 3em;
+    height: 3em;
+    vertical-align: middle;
+    display: table-cell;
+}
+.smile_icon_list.right li .icon_description {
+    margin-right: 3em;
     padding-right: 25px
 }
 .smile_icon_list.top,
@@ -324,15 +416,10 @@ a.ulimate-info-list-link {
     border-top-style: dashed;
     margin-left: 0
 }
-.rtl .smile_icon_list.top li .icon_list_connector {
-    right: 50%;
-    left: auto
-}
-.info-wrapper .smile_icon_list li .icon_description p {
-    font-size: 13px !important;
-    font-weight: normal !important;
-    line-height: 1.64em !important;
-    color: inherit !important
+.info-wrapper .smile_icon_list li .icon_description .responsive-font-class * {
+    font-size: 13px;
+    line-height: 1.64em;
+    color: inherit;
 }
 @media only screen and (max-width: 768px) {
     .smile_icon_list_wrap .smile_icon_list.top {
@@ -365,7 +452,7 @@ a.ulimate-info-list-link {
     background: #0183cc;
     border-color: #0183cc;
     color: #FFF;
-    position: absolute;
+    position: relative;
     top: 1em;
     overflow: inherit
 }
@@ -397,11 +484,10 @@ a.ulimate-info-list-link {
     cursor: inherit
 }
 .ult-animation * {
-	-webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 .ult-animation.ult-animate-viewport {
     -webkit-transition: opacity 900ms linear;
-    -moz-transition: opacity 900ms linear;
     transition: opacity 900ms linear
 }
 .uavc-list-icon ul {
@@ -441,12 +527,8 @@ a.ulimate-info-list-link {
 .uavc-icons,
 .wpb_column .wpb_wrapper .uavc-icons {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
     line-height: 1
-}
-.uavc-icons:last-child,
-.wpb_column .wpb_wrapper .uavc-icons:last-child {
-    margin-bottom: 0
 }
 .uavc-icons-left.uavc-icons {
     text-align: left
@@ -524,8 +606,6 @@ a.ulimate-info-list-link {
 .uvc-ctaction-data div,
 .uvc-sub-heading p,
 .uvc-sub-heading div,
-.ultimate-ticker-prefix,
-.ultimate-ticker-suffix,
 .ultimate-vticker p,
 .ultimate-vticker div,
 .ult_modal-body p,
@@ -536,6 +616,11 @@ a.ulimate-info-list-link {
     font-style: inherit !important;
     color: inherit !important;
     line-height: inherit !important;
+}
+.ultimate-ticker-prefix,
+.ultimate-ticker-suffix{
+    font-size: inherit;
+    line-height: inherit;
 }
 .ubtn-text,
 span.middle-text p,
@@ -565,4 +650,66 @@ a.ult_colorlink div {
 /* Advanced Tab */
 li.ult_tab_li > a.ult_a span {
     color: inherit;
+}
+
+/** = Theme Compatibilities
+ *-----------------------------------------------------------*/
+
+/* Theme - X */
+[data-x-icon],
+[class*="x-icon-"] {
+    line-height: inherit;
+}
+/* vc 4.9 compatible */
+.ubtn-img-container,
+.ubtn-ctn-center,
+.ubtn-ctn-left,
+.ubtn-ctn-right,
+.ult_dual_button.ult-adjust-bottom-margin,
+html .ult_exp_section_layer.ult-adjust-bottom-margin,
+.uvc-type-wrap.ult-adjust-bottom-margin,
+.ultimate-map-wrapper.ult-adjust-bottom-margin,
+.ultimate-google-trends.ult-adjust-bottom-margin,
+.ultimate-call-to-action.ult-adjust-bottom-margin,
+.ultb3-box.ult-adjust-bottom-margin,
+.info-wrapper.ult-adjust-bottom-margin,
+.smile_icon_list_wrap.ult-adjust-bottom-margin,
+.ult-banner-block.ult-adjust-bottom-margin,
+.uavc-list-icon-wrapper.ult-adjust-bottom-margin,
+.ult-modal-input-wrapper.ult-adjust-bottom-margin,
+html .ult-ih-container.ult-adjust-bottom-margin,
+html .ult_main_cl.ult-adjust-bottom-margin,
+html .ult_hotspot_container.ult-adjust-bottom-margin {
+    margin-bottom: 35px;
+}
+.ultimate-map-wrapper{
+    -webkit-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box;
+}
+/*html .vc_col-has-fill a.ubtn-link.ult-adjust-bottom-margin {
+    margin-bottom: 50px;
+}
+*/
+html .vc_col-has-fill a.ubtn-link.ult-adjust-bottom-margin .ubtn.ult-adjust-bottom-margin {
+    margin-bottom: 0;
+}
+
+ .smile_icon_list.right > li {
+    text-align: right;
+    text-align: -webkit-right;
+    text-align: -moz-right;
+}
+.smile_icon_list.right .icon_list_item {
+   display:block;
+}
+
+/*Advanced carousel*/
+
+.vc_row-no-padding .ult-carousel-wrapper .slick-next {
+    right: 0
+}
+
+.vc_row-no-padding .ult-carousel-wrapper .slick-prev {
+    left: 0
 }

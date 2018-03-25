@@ -6,7 +6,9 @@
 if(!class_exists("Ultimate_Spacer")){
 	class Ultimate_Spacer{
 		function __construct(){
-			add_action("init",array($this,"ultimate_spacer_init"));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action("init",array($this,"ultimate_spacer_init"));
+			}
 			add_shortcode("ultimate_spacer",array($this,"ultimate_spacer_shortcode"));
 		}
 		function ultimate_spacer_init(){
@@ -105,12 +107,12 @@ if(!class_exists("Ultimate_Spacer")){
 			$style = 'clear:both;';
 			$style .= 'display:block;';
 			$uid = uniqid();
-			$output .= '<div class="ult-spacer spacer-'.$uid.'" data-id="'.$uid.'" data-height="'.$height.'" data-height-mobile="'.$height_on_mob.'" data-height-tab="'.$height_on_tabs.'" data-height-tab-portrait="'.$height_on_tabs_portrait.'" data-height-mobile-landscape="'.$height_on_mob_landscape.'" style="'.$style.'"></div>';
+			$output .= '<div class="ult-spacer spacer-'.esc_attr($uid).'" data-id="'.esc_attr($uid).'" data-height="'.esc_attr($height).'" data-height-mobile="'.esc_attr($height_on_mob).'" data-height-tab="'.esc_attr($height_on_tabs).'" data-height-tab-portrait="'.esc_attr($height_on_tabs_portrait).'" data-height-mobile-landscape="'.esc_attr($height_on_mob_landscape).'" style="'.esc_attr($style).'"></div>';
 			return $output;
 		}
 	} // end class
 	new Ultimate_Spacer;
-	if ( class_exists( 'WPBakeryShortCode' ) ) {
+	if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ultimate_spacer' ) ) {
 	    class WPBakeryShortCode_ultimate_spacer extends WPBakeryShortCode {
 	    }
 	}

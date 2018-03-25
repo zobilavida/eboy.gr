@@ -2,27 +2,18 @@
 /*
 * Add-on Name: Interactive Banner - 2
 */
-if(!class_exists('Ultimate_Interactive_Banner')) 
+if(!class_exists('Ultimate_Interactive_Banner'))
 {
 	class Ultimate_Interactive_Banner{
 		function __construct(){
-			add_action('init',array($this,'banner_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'banner_init'));
+			}
 			add_shortcode('interactive_banner_2',array($this,'banner_shortcode'));
 			add_action('wp_enqueue_scripts', array($this, 'register_ib2_banner_assets'),1);
 		}
 		function register_ib2_banner_assets() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style('ult-ib2-style',plugins_url($css_path.'ib2-style'.$ext.'.css',__FILE__),array(), ULTIMATE_VERSION, false);
+			Ultimate_VC_Addons::ultimate_register_style( 'ult-ib2-style', 'ib2-style' );
 		}
 		function banner_init(){
 			if(function_exists('vc_map'))
@@ -54,6 +45,23 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 								"value" => "",
 								"description" => __("Text that comes on mouse hover.","ultimate_vc")
 							),
+							array(
+								"type" => "dropdown",
+								"heading" => __("Tag","ultimate_vc"),
+								"param_name" => "heading_tag",
+								"value" => array(
+									__("Default","ultimate_vc") => "h2",
+									__("H1","ultimate_vc") => "h1",
+									__("H3","ultimate_vc") => "h3",
+									__("H4","ultimate_vc") => "h4",
+									__("H5","ultimate_vc") => "h5",
+									__("H6","ultimate_vc") => "h6",
+									__("Div","ultimate_vc") => "div",
+									__("p","ultimate_vc") => "p",
+									__("span","ultimate_vc") => "span",
+								),
+								"description" => __("Default is H2", "ultimate_vc"),
+								),
 							array(
 								"type" => "ult_img_single",
 								"class" => "",
@@ -120,7 +128,7 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 								"type" => "ult_param_heading",
 								"heading" => __("Title Settings","ultimate_vc"),
 								"param_name" => "banner_title_typograpy",
-								"dependency" => Array("element" => "banner_title", "not_empty" => true),
+								//"dependency" => Array("element" => "banner_title", "not_empty" => true),
 								"group" => "Typography",
 								"class" => "ult-param-heading",
 								'edit_field_class' => 'ult-param-heading-wrapper no-top-margin vc_column vc_col-sm-12',
@@ -129,27 +137,58 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "smile"),
 								"param_name" => "banner_title_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
-								"dependency" => Array("element" => "banner_title", "not_empty" => true),
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								//"dependency" => Array("element" => "banner_title", "not_empty" => true),
 								"group" => "Typography"
 							),
 							array(
 								"type" => "ultimate_google_fonts_style",
 								"heading" 		=>__("Font Style", "ultimate_vc"),
 								"param_name"	=>	"banner_title_style",
-								"dependency" => Array("element" => "banner_title", "not_empty" => true),
+								//"dependency" => Array("element" => "banner_title", "not_empty" => true),
 								"group" => "Typography"
 							),
+							// array(
+							// 	"type" => "number",
+							// 	"class" => "",
+							// 	"heading" => __("Font Size", "ultimate_vc"),
+							// 	"param_name" => "banner_title_font_size",
+							// 	"min" => 12,
+							// 	"suffix" => "px",
+							// 	"dependency" => Array("element" => "banner_title", "not_empty" => true),
+							// 	"group" => "Typography",
+							// ),
 							array(
-								"type" => "number",
-								"class" => "",
-								"heading" => __("Font Size", "ultimate_vc"),
-								"param_name" => "banner_title_font_size",
-								"min" => 12,
-								"suffix" => "px",
-								"dependency" => Array("element" => "banner_title", "not_empty" => true),
-								"group" => "Typography",
-							),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "banner_title_font_size",
+		                    "unit" => "px",
+		                    //"dependency" => Array("element" => "banner_title", "not_empty" => true),
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "banner_title_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 							array(
 								"type" => "ult_param_heading",
 								"heading" => __("Description Settings","ultimate_vc"),
@@ -162,27 +201,57 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "smile"),
 								"param_name" => "banner_desc_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
-								"dependency" => Array("element" => "banner_desc", "not_empty" => true),
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								//"dependency" => Array("element" => "banner_desc", "not_empty" => true),
 								"group" => "Typography"
 							),
 							array(
 								"type" => "ultimate_google_fonts_style",
 								"heading" 		=>	__("Font Style", "ultimate_vc"),
 								"param_name"	=>	"banner_desc_style",
-								"dependency" => Array("element" => "banner_desc", "not_empty" => true),
+								//"dependency" => Array("element" => "banner_desc", "not_empty" => true),
 								"group" => "Typography"
 							),
+							// array(
+							// 	"type" => "number",
+							// 	"class" => "",
+							// 	"heading" => __("Font Size", "ultimate_vc"),
+							// 	"param_name" => "banner_desc_font_size",
+							// 	"min" => 12,
+							// 	"suffix" => "px",
+							// 	"dependency" => Array("element" => "banner_desc", "not_empty" => true),
+							// 	"group" => "Typography",
+							// ),
 							array(
-								"type" => "number",
-								"class" => "",
-								"heading" => __("Font Size", "ultimate_vc"),
-								"param_name" => "banner_desc_font_size",
-								"min" => 12,
-								"suffix" => "px",
-								"dependency" => Array("element" => "banner_desc", "not_empty" => true),
-								"group" => "Typography",
-							),
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Font size", 'ultimate_vc'),
+		                    "param_name" => "banner_desc_font_size",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
+			                array(
+		                    "type" => "ultimate_responsive",
+		                    "class" => "",
+		                    "heading" => __("Line Height", 'ultimate_vc'),
+		                    "param_name" => "banner_desc_line_height",
+		                    "unit" => "px",
+		                    "media" => array(
+		                        "Desktop" => '',
+		                        "Tablet" => '',
+		                        "Tablet Portrait" => '',
+		                        "Mobile Landscape" => '',
+		                        "Mobile" => '',
+			                    ),
+			                    "group" => "Typography",
+			                ),
 							array(
 								"type" => "colorpicker",
 								"class" => "",
@@ -268,15 +337,22 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 								"max" => 1000,
 								"suffix" => "px",
 								"dependency" => Array("element" => "enable_responsive", "value" => "yes"),
-								"description" => __("Provide the range of screen size where you would like to hide the description text.","ultimate_vc"),	
+								"description" => __("Provide the range of screen size where you would like to hide the description text.","ultimate_vc"),
 								"group" => "Responsive",
 							),
 							array(
 								"type" => "ult_param_heading",
-								"text" => "<span style='display: block;'><a href='http://bsf.io/n8o33' target='_blank'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
+								"text" => "<span style='display: block;'><a href='http://bsf.io/n8o33' target='_blank' rel='noopener'>".__("Watch Video Tutorial","ultimate_vc")." &nbsp; <span class='dashicons dashicons-video-alt3' style='font-size:30px;vertical-align: middle;color: #e52d27;'></span></a></span>",
 								"param_name" => "notification",
 								'edit_field_class' => 'ult-param-important-wrapper ult-dashicon ult-align-right ult-bold-font ult-blue-font vc_column vc_col-sm-12',
 							),
+							array(
+								'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_ib2',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						),
 					)
 				);
@@ -285,10 +361,10 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 		// Shortcode handler function for stats banner
 		function banner_shortcode($atts)
 		{
-			$banner_title = $banner_desc = $banner_image = $banner_link = $banner_style = $el_class = '';
-			$banner_title_font_family=$banner_title_style = $banner_title_font_size = $banner_desc_font_family = $banner_desc_style = $banner_desc_font_size = '';
+			$banner_title = $banner_desc = $banner_image = $banner_link = $banner_style = $el_class = $heading_tag = '';
+			$banner_title_font_family=$banner_title_style = $banner_title_font_size = $banner_title_line_height = $banner_desc_font_family = $banner_desc_style = $banner_desc_font_size = $banner_desc_line_height = '';
 			$banner_title_style_inline = $banner_desc_style_inline = $banner_color_bg = $banner_color_title = $banner_color_desc = $banner_title_bg = '';
-			$image_opacity = $image_opacity_on_hover = $enable_responsive = $responsive_min = $banner_min = $banner_min_height_op = $responsive_max = '';
+			$image_opacity = $image_opacity_on_hover = $enable_responsive = $responsive_min = $banner_min = $banner_min_height_op = $responsive_max = $target = $link_title  = $rel = '';
 			extract(shortcode_atts( array(
 				'banner_title' => '',
 				'banner_desc' => '',
@@ -304,9 +380,11 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 				'banner_title_font_family' => '',
 				'banner_title_style' => '',
 				'banner_title_font_size' => '',
+				'banner_title_line_height' => '',
 				'banner_desc_font_family' => '',
 				'banner_desc_style' => '',
 				'banner_desc_font_size' => '',
+				'banner_desc_line_height' => '',
 				'banner_color_bg' => '',
 				'banner_color_title' => '',
 				'banner_color_desc' => '',
@@ -317,29 +395,39 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 				'banner_min' => '',
 				'banner_min_height_op' => 'default',
 				'el_class' =>'',
+				'heading_tag' => '',
+				'css_ib2' => '',
 			),$atts));
-			$output = $style = $target = $link = $banner_style_inline = $title_bg = $img_style = $responsive = $target ='';
+
+			$css_ib2_styles = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_ib2, ' ' ), "interactive_banner_2", $atts );
+			$css_ib2_styles = esc_attr( $css_ib2_styles );
+
+			$output = $style = $target = $link = $url = $banner_style_inline = $title_bg = $img_style = $responsive = $target ='';
 			//$banner_style = 'style01';
-			
+
 			if($enable_responsive == "yes"){
-				$responsive .= 'data-min-width="'.$responsive_min.'" data-max-width="'.$responsive_max.'"';
-				$el_class .= "ult-ib-resp";
+				$responsive .= 'data-min-width="'.esc_attr( $responsive_min ).'" data-max-width="'.esc_attr( $responsive_max ).'"';
+				$el_class .= " ult-ib-resp";
 			}
-			
+
 			if($banner_title_bg !== '' && $banner_style == "style5"){
 				$title_bg .= 'background:'.$banner_title_bg.';';
 			}
-			
+
 			//$img = wp_get_attachment_image_src( $banner_image, 'full');
 			$img = apply_filters('ult_get_img_single', $banner_image, 'url');
+			$alt = apply_filters('ult_get_img_single', $banner_image, 'alt');
 			if($banner_link !== ''){
 				$href = vc_build_link($banner_link);
-				$link = $href['url'];
-				$target = (isset($href['target'])) ? $href['target'] : '';
+
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
 			} else {
 				$link = "#";
 			}
-			
+
 			if($banner_title_font_family != '')
 			{
 				$bfamily = get_ultimate_font_family($banner_title_font_family);
@@ -347,9 +435,30 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 					$banner_title_style_inline = 'font-family:\''.$bfamily.'\';';
 			}
 			$banner_title_style_inline .= get_ultimate_font_style($banner_title_style);
-			if($banner_title_font_size != '')
-				$banner_title_style_inline .= 'font-size:'.$banner_title_font_size.'px;';
-				
+			
+			// if($banner_title_font_size != '')
+			// 	$banner_title_style_inline .= 'font-size:'.$banner_title_font_size.'px;';
+
+			if(is_numeric($banner_title_font_size)){
+				$banner_title_font_size = 'desktop:'.$banner_title_font_size.'px;';
+			}
+
+			if(is_numeric($banner_title_line_height)){
+				$banner_title_line_height = 'desktop:'.$banner_title_line_height.'px;';
+			}
+
+			$interactive_banner_id = 'interactive-banner-wrap-'.rand(1000, 9999);
+
+			$interactive_banner_args = array(
+                'target' => '#'.$interactive_banner_id.' .ult-new-ib-title', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $banner_title_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $banner_title_line_height
+                ),
+            );
+
+            $interactive_banner_data_list = get_ultimate_vc_responsive_media_css($interactive_banner_args);
+
 			if($banner_desc_font_family != '')
 			{
 				$bdfamily = get_ultimate_font_family($banner_desc_font_family);
@@ -357,53 +466,96 @@ if(!class_exists('Ultimate_Interactive_Banner'))
 					$banner_desc_style_inline = 'font-family:\''.$bdfamily.'\';';
 			}
 			$banner_desc_style_inline .= get_ultimate_font_style($banner_desc_style);
-			if($banner_desc_font_size != '')
-				$banner_desc_style_inline .= 'font-size:'.$banner_desc_font_size.'px;';
-			
+
+			// if($banner_desc_font_size != '')
+			// 	$banner_desc_style_inline .= 'font-size:'.$banner_desc_font_size.'px;';
+			if(is_numeric($banner_desc_font_size)){
+				$banner_desc_font_size = 'desktop:'.$banner_desc_font_size.'px;';
+			}
+
+			if(is_numeric($banner_desc_line_height)){
+				$banner_desc_line_height = 'desktop:'.$banner_desc_line_height.'px;';
+			}
+			$interactive_banner_desc_args = array(
+                'target' => '#'.$interactive_banner_id.' .ult-new-ib-content', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $banner_desc_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $banner_desc_line_height
+                ),
+            );
+
+            $interactive_banner_desc_data_list = get_ultimate_vc_responsive_media_css($interactive_banner_desc_args);
+
 			if($banner_color_bg != '')
 				$banner_style_inline .= 'background:'.$banner_color_bg.';';
 
 			$banner_min_height = $img_min_height = $img_max_height = $min_height_class = '';
 			if($banner_min_height_op != '' && $banner_min_height_op == 'custom' ) {
 				if($banner_min != '') {
-					$banner_min_height = ' data-min-height="'.$banner_min.'" ';
-					$img_min_height = ' data-min-height="'.$banner_min.'" ';
+					$banner_min_height = ' data-min-height="'.esc_attr($banner_min).'" ';
+					$img_min_height = ' data-min-height="'.esc_attr($banner_min).'" ';
 					//$img_max_height = ' data-max-width="none" ';
 					$min_height_class = 'ult-ib2-min-height';
+					$banner_style_inline .= ' opacity:0; ';
 				}
 			}
 
 			if($banner_color_title != '')
 				$banner_title_style_inline .= 'color:'.$banner_color_title.';';
 
+			if($heading_tag == 'span')
+				$banner_title_style_inline .= 'display: block';
+
 			if($banner_color_desc != '')
 				$banner_desc_style_inline .= 'color:'.$banner_color_desc.';';
 
-			//enqueue google font
-			/*$args = array(
-				$banner_title_font_family, $banner_desc_font_family
-			);
-			enquque_ultimate_google_fonts($args);*/
-			
 			if($image_opacity !== ''){
 				$img_style .= 'opacity:'.$image_opacity.';';
 			}
 			if($link !== "#")
-				$href = 'href="'.$link.'"';
-			else 
+				$href = 'href="'.esc_url($link).'"';
+			else
 				$href = '';
 
-			$output .= '<div class="ult-new-ib ult-ib-effect-'.$banner_style.' '.$el_class.' '.$min_height_class.'" '.$responsive.' style="'.$banner_style_inline.'" data-opacity="'.$image_opacity.'" data-hover-opacity="'.$image_opacity_on_hover.'" '.$banner_min_height.'>';
-			$output .= '<img class="ult-new-ib-img" style="'.$img_style.'" alt="'.$banner_title.'" src="'.$img.'" '.$img_min_height.' '.$img_max_height.' />';
-			$output .= '<div class="ult-new-ib-desc" style="'.$title_bg.'">';
-			$output .= '<h2 class="ult-new-ib-title" style="'.$banner_title_style_inline.'">'.$banner_title.'</h2>';
-			$output .= '<div class="ult-new-ib-content" style="'.$banner_desc_style_inline.'"><p>'.$banner_desc.'</p></div>';
-			$output .= '</div>';
-			if($target != '')
-				$target = 'target="'.$target.'"';
-			$output .= '<a class="ult-new-ib-link" '.$href.' '.$target.'></a>';
-			$output .= '</div>';
+			$heading_tag = ( isset($heading_tag) && trim($heading_tag) != "" ) ? $heading_tag : 'h2';
 
+			$output .= '<div class="ult-new-ib ult-ib-effect-'.esc_attr($banner_style).' '.esc_attr($el_class).' '.esc_attr($min_height_class).' '.esc_attr($css_ib2_styles).'" '.$responsive.' style="'.esc_attr($banner_style_inline).'" data-opacity="'.esc_attr($image_opacity).'" data-hover-opacity="'.esc_attr($image_opacity_on_hover).'" '.$banner_min_height.'>';
+			if($img !== '')
+				$output .= '<img class="ult-new-ib-img" style="'.esc_attr($img_style).'" alt="'.esc_attr($alt).'" src="'.esc_url(apply_filters('ultimate_images', $img)).'" '.$img_min_height.' '.$img_max_height.' />';
+			$output .= '<div id="'.esc_attr($interactive_banner_id).'" class="ult-new-ib-desc" style="'.esc_attr($title_bg).'">';
+			$output .= '<'.$heading_tag.' class="ult-new-ib-title ult-responsive" '.$interactive_banner_data_list.' style="'.esc_attr($banner_title_style_inline).'">'.$banner_title.'</'.$heading_tag.'>';
+			if($banner_desc != ''){
+			$output .= '<div class="ult-new-ib-content ult-responsive" '.$interactive_banner_desc_data_list.' style="'.esc_attr($banner_desc_style_inline).'"><p>'.$banner_desc.'</p></div>';
+			}
+			$output .= '</div>';
+			if($href != ''){
+			$output .= '<a class="ult-new-ib-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'></a>';
+			}
+			$output .= '</div>';
+			$is_preset = false; //Display settings for Preset
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$output .= '<pre>';
+				$output .= $text;
+				$output .= '</pre>';
+			}
+			$output .= '<script type="text/javascript">
+			(function($){
+				$(document).ready(function(){
+					$(".ult-new-ib").css("opacity","1");
+				});
+			})(jQuery);
+			</script>';
 			return $output;
 		}
 	}
@@ -412,7 +564,7 @@ if(class_exists('Ultimate_Interactive_Banner'))
 {
 	$Ultimate_Interactive_Banner = new Ultimate_Interactive_Banner;
 }
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_interactive_banner_2' ) ) {
     class WPBakeryShortCode_interactive_banner_2 extends WPBakeryShortCode {
     }
 }

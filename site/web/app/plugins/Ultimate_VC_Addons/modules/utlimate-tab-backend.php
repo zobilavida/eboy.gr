@@ -1,4 +1,4 @@
-<div class="vc_controls<?php echo !empty($extended_css) ? ' '.$extended_css : '' ?>">
+<div class="vc_controls<?php echo !empty($extended_css) ? ' '.esc_attr($extended_css) : '' ?>">
 	<div class="vc_controls-<?php echo $position ?>">
 		<a class="vc_element-name">
 				<span class="vc_btn-content"><?php echo __( $name, 'js_composer' ); ?></span>

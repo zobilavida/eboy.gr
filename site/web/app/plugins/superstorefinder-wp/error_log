@@ -1,0 +1,189 @@
+[30-Jan-2018 13:08:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[30-Jan-2018 13:08:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[30-Jan-2018 13:09:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[30-Jan-2018 20:41:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[30-Jan-2018 20:41:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[30-Jan-2018 20:41:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[31-Jan-2018 02:19:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[31-Jan-2018 02:20:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[31-Jan-2018 02:20:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[01-Feb-2018 10:35:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 10:38:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[01-Feb-2018 10:41:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 18:50:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 18:50:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 18:54:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[01-Feb-2018 21:17:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 21:23:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[01-Feb-2018 23:43:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Feb-2018 23:47:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[05-Feb-2018 04:55:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[05-Feb-2018 04:55:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[05-Feb-2018 04:55:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[05-Feb-2018 10:36:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[21-Feb-2018 10:07:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[21-Feb-2018 10:08:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[21-Feb-2018 10:09:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Mar-2018 07:14:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Mar-2018 07:37:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[01-Mar-2018 09:51:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Mar-2018 14:39:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[01-Mar-2018 17:03:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[03-Mar-2018 04:33:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[12-Mar-2018 11:33:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/super-store-finder.php(14): include_once()
+#1 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[12-Mar-2018 11:34:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[12-Mar-2018 11:36:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[12-Mar-2018 17:59:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[12-Mar-2018 18:00:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[13-Mar-2018 00:18:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[13-Mar-2018 00:18:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[13-Mar-2018 06:00:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[13-Mar-2018 06:00:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[13-Mar-2018 09:13:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[13-Mar-2018 09:13:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541
+[13-Mar-2018 12:12:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_option() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-define.php on line 2
+[13-Mar-2018 12:12:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php:541
+Stack trace:
+#0 {main}
+  thrown in /home/demetrios18/public_html/wp-content/plugins/superstorefinder-wp/ssf-wp-functions.php on line 541

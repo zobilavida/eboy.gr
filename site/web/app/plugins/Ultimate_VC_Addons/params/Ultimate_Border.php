@@ -24,7 +24,7 @@ if(!class_exists('Ultimate_Border'))
 
     function ultimate_border_callback($settings, $value)
     {
-        $dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+        $dependency = '';
         $positions = $settings['positions'];
         $enable_radius = isset($settings['enable_radius']) ? $settings['enable_radius'] : true ;
         $label = isset($settings['label_border']) ? $settings['label_border'] : 'Border Style';
@@ -32,7 +32,7 @@ if(!class_exists('Ultimate_Border'))
 
         $uid = 'ultimate-border-'. rand(1000, 9999); //$settings['param_name'];
         //$uid = uniqid('ultimate-border-'. $settings['param_name'] .'-'. rand());
-          $html  = '<div class="ultimate-border" id="'.$uid.'" data-unit="'.$unit.'" >';
+          $html  = '<div class="ultimate-border" id="'. esc_attr( $uid ) .'" data-unit="'. esc_attr( $unit ) .'" >';
 
 
           /**    BORDER - {STYLE}
@@ -43,18 +43,18 @@ if(!class_exists('Ultimate_Border'))
           //$html .= '    </div>';
           $html .= '    <div class="ultimate-border-select-block">';
           $html .= '        <select data-placeholder="Border Style" class="ultimate-border-style-selector" >';
-          $html .= '            <option value="none">'.__('None', 'ultimate_vc').'</option>';
-          $html .= '            <option value="solid">'.__('Solid', 'ultimate_vc').'</option>';
-          $html .= '            <option value="dotted">'.__('Dotted', 'ultimate_vc').'</option>';
-          $html .= '            <option value="dashed">'.__('Dashed', 'ultimate_vc').'</option>';
-          $html .= '            <option value="hidden">'.__('Hidden', 'ultimate_vc').'</option>';
-          $html .= '            <option value="double">'.__('Double', 'ultimate_vc').'</option>';
-          $html .= '            <option value="groove">'.__('Groove', 'ultimate_vc').'</option>';
-          $html .= '            <option value="ridge">'.__('Ridge', 'ultimate_vc').'</option>';
-          $html .= '            <option value="inset">'.__('Inset', 'ultimate_vc').'</option>';
-          $html .= '            <option value="outset">'.__('Outset', 'ultimate_vc').'</option>';
-          $html .= '            <option value="initial">'.__('Initial', 'ultimate_vc').'</option>';
-          $html .= '            <option value="inherit">'.__('Inherit', 'ultimate_vc').'</option>';
+          $html .= '            <option value="none">'. __('None', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="solid">'. __('Solid', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="dotted">'. __('Dotted', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="dashed">'. __('Dashed', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="hidden">'. __('Hidden', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="double">'. __('Double', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="groove">'. __('Groove', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="ridge">'. __('Ridge', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="inset">'. __('Inset', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="outset">'. __('Outset', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="initial">'. __('Initial', 'ultimate_vc') .'</option>';
+          $html .= '            <option value="inherit">'. __('Inherit', 'ultimate_vc') .'</option>';
           $html .= '        </select>';
           $html .= '    </div>';
           $html .= '</div>';
@@ -66,7 +66,7 @@ if(!class_exists('Ultimate_Border'))
           if(isset($settings['label_width']) && $settings['label_width']!='' ) { $label = $settings['label_width']; }
           $html .= '<div class="ultimate-four-input-section ultb-width-section" >';
           $html .= '    <div class="label">';
-          $html .=        $label;
+          $html .=        esc_html( $label );
           $html .= '    </div>';
           $html .= '<div class="ult-expand ">  <span class="ult-tooltip">Expand / Collapse</span>  <i class="dashicons dashicons-minus"></i></div>';
             foreach($positions as $key => $default_value) {
@@ -99,7 +99,7 @@ if(!class_exists('Ultimate_Border'))
           $html .= '    <span class="ultimate-border-icon">';
           $html .= '      <i class="dashicons dashicons-editor-expand"></i>';
           $html .= '    </span>';
-          $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'.$unit.'" data-default="'.$default_value.'" data-id="border-width" placeholder="all" />';
+          $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'. esc_attr( $unit ) .'" data-default="'. esc_attr( $default_value ) .'" data-id="border-width" placeholder="all" />';
           $html .= '  </div>';
 
           //  set units - px, em, %
@@ -126,7 +126,7 @@ if(!class_exists('Ultimate_Border'))
           if(isset($settings['label_radius']) && $settings['label_radius']!='' ) { $label = $settings['label_radius']; }
           $html .= '<div class="ultimate-border-radius-block ultb-radius-section" >';
           $html .= '    <div class="label">';
-          $html .=        $label;
+          $html .=        esc_html( $label );
           $html .= '    </div>';
           $html .= '  <div class="ult-expand ">  <span class="ult-tooltip">Expand / Collapse</span>  <i class="dashicons dashicons-minus"></i></div>';
 
@@ -163,7 +163,7 @@ if(!class_exists('Ultimate_Border'))
             $html .= '    <span class="ultimate-border-icon">';
             $html .= '      <i class="dashicons dashicons-editor-expand"></i>';
             $html .= '    </span>';
-            $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'.$unit.'" data-default="'.$default_value.'" data-id="border-radius" placeholder="all" />';
+            $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'. esc_attr( $unit ) .'" data-default="'. esc_attr( $default_value ) .'" data-id="border-radius" placeholder="all" />';
             $html .= '  </div>';
 
             //  set units - px, em, %
@@ -195,14 +195,14 @@ if(!class_exists('Ultimate_Border'))
         if(isset($settings['label_color']) && $settings['label_color']!='' ) { $label = $settings['label_color']; }
         $html .= '  <div class="ultimate-colorpicker-section">';
         $html .= '    <div class="label">';
-        $html .=        $label;
+        $html .=        esc_html( $label );
         $html .= '    </div>';
         $html .= '    <div class="ultimate-colorpicker-block">';
         $html .= '      <input name="" class="ultimate-colorpicker cs-wp-color-picker" data-id="border-color" type="text" value="" />';
         $html .= '    </div>';
         $html .= '  </div>';
 
-        $html .= '  <input type="hidden" data-unit="'.$unit.'" name="'.$settings['param_name'].'" class="wpb_vc_param_value ultimate-border-value '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.' />';
+        $html .= '  <input type="hidden" data-unit="'. esc_attr( $unit ) .'" name="'. esc_attr( $settings['param_name'] ) .'" class="wpb_vc_param_value ultimate-border-value '. esc_attr( $settings['param_name'] ).' '. esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.' />';
         $html .= '</div>';
       return $html;
     }
@@ -211,16 +211,16 @@ if(!class_exists('Ultimate_Border'))
         $html .= '    <span class="ultimate-border-icon">';
         $html .= '      <i class="'.$dashicon.'"></i>';
         $html .= '    </span>';
-        $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'.$unit.'" data-default="'.$default_value.'" data-id="border-'.strtolower($key).'" placeholder="'.$placeholder.'" />';
+        $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'. esc_attr( $unit ) .'" data-default="'. esc_attr( $default_value ) .'" data-id="border-'.strtolower( esc_attr( $key ) ).'" placeholder="'. esc_attr( $placeholder ) .'" />';
         $html .= '  </div>';
         return $html;
     }
     function ultimate_border_param_item($dashicon, /*$mode,*/ $unit,/* $default_value,*/$default_value, $key, $id) {
         $html  = '  <div class="ultimate-border-input-block ultb-width-single">';
         $html .= '    <span class="ultimate-border-icon">';
-        $html .= '      <i class="'.$dashicon.'"></i>';
+        $html .= '      <i class="'.esc_attr($dashicon).'"></i>';
         $html .= '    </span>';
-        $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'.$unit.'" data-default="'.$default_value.'" data-id="' .$id. '" placeholder="'.$key.'" />';
+        $html .= '    <input type="text" class="ultimate-border-inputs ultimate-border-input" data-unit="'. esc_attr( $unit ) .'" data-default="'. esc_attr( $default_value ) .'" data-id="' . esc_attr( $id ) . '" placeholder="'. esc_attr( $key ) .'" />';
         $html .= '  </div>';
         return $html;
     }
@@ -230,7 +230,7 @@ if(!class_exists('Ultimate_Border'))
 
         if($hook == "post.php" || $hook == "post-new.php"){
           $bsf_dev_mode = bsf_get_option('dev_mode');
-          if($bsf_dev_mode === 'enable') {
+          if( $bsf_dev_mode === 'enable' ) {
             wp_enqueue_style( 'wp-color-picker' );
             wp_enqueue_style( 'ultimate-border-style');
             wp_enqueue_style( 'ultimate-chosen-style');

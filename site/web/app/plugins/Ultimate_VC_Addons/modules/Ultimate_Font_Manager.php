@@ -12,7 +12,7 @@
 				"param_name" => "heading_font"
 			),
 		2) ultimate_google_fonts_style - for respective google font style or default style
-			For Ex - 
+			For Ex -
 			array(
 				"type" => "ultimate_google_fonts_style",
 				"heading" 		=>	__("Font Style", "smile"),
@@ -20,14 +20,14 @@
 			),
 	# In respective comoponent shortcode process function
 		1) Get font family -
-			For Ex - 
+			For Ex -
 			$font_family = get_ultimate_font_family($heading_font);
-		2) Get font style - 
-			For Ex - 
+		2) Get font style -
+			For Ex -
 			$font_style = get_ultimate_font_style($heading_style);
 			// deprecated since 3.7.0 - automatically detected font and enqueue accordingly
 		3) Enqueue the respective fonts - Note send number of font param as a parameter in array
-			For Ex - 
+			For Ex -
 			$args = array(
 				$heading_font
 			);
@@ -49,7 +49,7 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 			add_action('wp_ajax_delete_google_font', array($this, 'delete_selected_google_font'));
 			add_action('wp_ajax_update_google_font', array($this, 'update_selected_google_font'));
 			add_action('wp_ajax_get_font_variants', array($this, 'get_font_variants_callback'));
-			add_action('admin_enqueue_scripts', array($this, 'enqueue_ultimate_google_fonts'));
+			add_action('admin_enqueue_scripts', array($this, 'enqueue_selected_ultimate_google_fonts'));
 		}
 		function google_font_manager_menu()
 		{
@@ -78,17 +78,29 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 		{
 			wp_register_script('ultimate-google-fonts-script',plugins_url("../admin/js/google-fonts-admin.js",__FILE__),array('jquery'));
 			wp_enqueue_script('ultimate-google-fonts-script');
-			wp_register_style('ultimate-google-fonts-style',plugins_url("../admin/css/google-fonts-admin.css",__FILE__));
+			wp_localize_script( 'jquery', 'uavc', array(
+				'google_font_nonce'   => wp_create_nonce( 'uavc-google-font-nonce' ),
+				'get_google_fonts'    => wp_create_nonce( 'uavc-get-google-fonts-nonce' ),
+				'add_google_fonts'    => wp_create_nonce( 'uavc-add-google-fonts-nonce' ),
+				'delete_google_fonts' => wp_create_nonce( 'uavc-delete-google-fonts-nonce' ),
+				'update_google_fonts' => wp_create_nonce( 'uavc-update-google-fonts-nonce' ),
+			) );
+
+			Ultimate_VC_Addons::ultimate_register_style( 'ultimate-google-fonts-style', plugins_url( "../admin/css/google-fonts-admin.css", __FILE__ ), true );
+
 			wp_enqueue_style('ultimate-google-fonts-style');
 		}
-		function enqueue_ultimate_google_fonts() {
+		function enqueue_selected_ultimate_google_fonts() {
 			$selected_fonts = get_option('ultimate_selected_google_fonts');
 			//delete_option('ultimate_selected_google_fonts'); exit;
+			$subset_main_array = array();
 			if(!empty($selected_fonts)) {
+
 				$count = count($selected_fonts);
 				$font_call = '';
 				foreach($selected_fonts as $key => $sfont)
 				{
+					$variants_array = array();
 					if($key != 0) {
 						$font_call .= '|';
 					}
@@ -96,23 +108,66 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 					if(isset($sfont['variants'])) :
 						$variants = $sfont['variants'];
 						if(!empty($variants)) {
-							$variants_count = count($variants);
 							$font_call .= ':';
-							foreach($variants as $vkey => $variant)
+							foreach($variants as  $variant)
 							{
 								$variant_selected = $variant['variant_selected'];
 								if($variant_selected == 'true' || is_admin()) {
-									$font_call .= $variant['variant_value'];
-									if(($variants_count-1) != $vkey && $variants_count > 0) {
-										$font_call .= ',';
-									}
+									array_push($variants_array, $variant['variant_value']);
+								}
+							}
+							$variants_count = count($variants_array);
+							if($variants_count != 0) {
+								$font_call .= 'normal,';
+							}
+							foreach ($variants_array as $vkey => $variant) {
+								$font_call .= $variant;
+								if(($variants_count-1) != $vkey && $variants_count > 0) {
+									$font_call .= ',';
 								}
 							}
 						}
 					endif;
+
+					if(!empty($sfont['subsets']))
+					{
+						$subset_array = array();
+						foreach($sfont['subsets'] as $tsubset)
+						{
+							if($tsubset['subset_selected'] == 'true' || $tsubset['subset_selected'] == true )
+								array_push($subset_main_array, $tsubset['subset_value']);
+						}
+					}
 				}
+
+				$subset_string = '';
+
+				if(!empty($subset_main_array))
+				{
+					$subset_main_array = array_unique($subset_main_array);
+
+					$subset_string = '&subset=';
+					$subset_count = count($subset_main_array);
+					$subset_main_array = array_values($subset_main_array);
+
+					foreach($subset_main_array as $skey => $subset)
+					{
+						if($subset !== '')
+						{
+							$subset_string .= $subset;
+							if(($subset_count-1) != $skey)
+								$subset_string .= ',';
+						}
+					}
+				}
+
+				$font_call = str_replace( '||', '|', $font_call );
+
 				$link = 'https://fonts.googleapis.com/css?family='.$font_call;
-				wp_register_style('ultimate-selected-google-fonts-style',$link);
+
+				$font_api_call = $link.$subset_string;
+
+				wp_register_style('ultimate-selected-google-fonts-style',$font_api_call, array(), null);
 				wp_enqueue_style('ultimate-selected-google-fonts-style');
 			}
 		}
@@ -145,13 +200,13 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 									?>
 										<div class="selected-font">
 											<div class="selected-font-top <?php echo (!empty($sfont['variants']) || !empty($sfont['subsets'])) ? 'have-variants' : ''; ?>">
-												<div class="font-header" style="font-family:'<?php echo $sfont['font_name'] ?>'"><?php echo $sfont['font_name'] ?></div>
+												<div class="font-header" style="font-family:'<?php esc_attr_e($sfont['font_name']); ?>'"><?php esc_html_e($sfont['font_name']); ?></div>
                                                 <?php if(!empty($sfont['variants']) || !empty($sfont['subsets'])) : ?>
                                                 	<i class="dashicons dashicons-arrow-down"></i>
                                               	<?php endif; ?>
 												<div class="clear"></div>
 											</div>
-                                            <span class="font-delete" data-font_name="<?php echo $sfont['font_name'] ?>"><i class="dashicons dashicons-no-alt"></i></span>
+                                            <span class="font-delete" data-font_name="<?php esc_attr_e( $sfont['font_name'] ) ?>"><i class="dashicons dashicons-no-alt"></i></span>
 											<?php
 												$is_varients = false;
 												if(!empty($sfont['variants']) || !empty($sfont['subsets'])) :
@@ -176,8 +231,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
                                                                     $tlid = $lid.'-'.$svkey;
                                                                     ?>
                                                                         <span class="font-variant">
-                                                                            <input type="checkbox" id="<?php echo $tlid ?>" value="<?php echo $svariants['variant_value'] ?>" class="selected-variant-checkbox" <?php echo ($svariants['variant_selected'] == 'true') ? 'checked' : ''; ?> />
-                                                                            <label style="<?php echo $variant_style; ?>" for="<?php echo $tlid ?>"><?php echo $svariants['variant_value'] ?></label>
+                                                                            <input type="checkbox" id="<?php esc_attr_e( $tlid ); ?>" value="<?php esc_attr_e( $svariants['variant_value'] ); ?>" class="selected-variant-checkbox" <?php echo ($svariants['variant_selected'] == 'true') ? 'checked' : ''; ?> />
+                                                                            <label style="<?php esc_attr_e( $variant_style ); ?>" for="<?php esc_attr_e( $tlid ) ?>"><?php echo $svariants['variant_value'] ?></label>
                                                                         </span>
                                                                     <?php
                                                                 }
@@ -194,8 +249,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
                                                                     $slid = $lid.'-subset-'.$sbkey;
                                                                     ?>
                                                                         <span class="font-subset">
-                                                                            <input type="checkbox" id="<?php echo $slid ?>" value="<?php echo $ssubset['subset_value'] ?>" class="selected-subset-checkbox" <?php echo ($ssubset['subset_selected'] == 'true') ? 'checked' : '' ?> />
-                                                                            <label style="" for="<?php echo $slid ?>"><?php echo $ssubset['subset_value'] ?></label>
+                                                                            <input type="checkbox" id="<?php esc_attr_e( $slid ) ?>" value="<?php esc_attr_e( $ssubset['subset_value'] ); ?>" class="selected-subset-checkbox" <?php echo ($ssubset['subset_selected'] == 'true') ? 'checked' : '' ?> />
+                                                                            <label style="" for="<?php esc_attr_e( $slid ) ?>"><?php echo $ssubset['subset_value'] ?></label>
                                                                         </span>
                                                                     <?php
                                                                 }
@@ -204,7 +259,7 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
                                                             <?php
 														endif;
                                                     ?>
-													<input type="button" class="button alignleft update-google-font-button" value="<?php echo __('Update font','ultimate_vc') ?>" data-font_name="<?php echo $sfont['font_name'] ?>" />
+													<input type="button" class="button alignleft update-google-font-button" value="<?php echo __('Update font','ultimate_vc') ?>" data-font_name="<?php esc_attr_e($sfont['font_name']); ?>" />
 													<span class="spinner fspinner"></span>
 													<div class="clear"></div>
 												</div>
@@ -225,6 +280,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 		}
 		function refresh_google_fonts_list()
 		{
+			check_ajax_referer( 'uavc-google-font-nonce', 'security' );
+
 			$fonts = array();
 			$temp_count = 0;
 			$temp = get_option('ultimate_google_fonts');
@@ -293,6 +350,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 		}*/
 		function get_google_fonts_list()
 		{
+			check_ajax_referer( 'uavc-get-google-fonts-nonce', 'security' );
+
 			$google_fonts = get_option('ultimate_google_fonts');
 			$response = $fonts = array();
                         $search = '';
@@ -352,6 +411,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 		}
 		function add_selected_google_font()
 		{
+			check_ajax_referer( 'uavc-add-google-fonts-nonce', 'security' );
+
 			$font_family = $_POST['font_family'];
 			$font_name = $_POST['font_name'];
 			$variants = $_POST['variants'];
@@ -372,6 +433,8 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 		}
 		function delete_selected_google_font()
 		{
+			check_ajax_referer( 'uavc-delete-google-fonts-nonce', 'security' );
+
 			$font_name = $_POST['font_name'];
 			$fonts = get_option('ultimate_selected_google_fonts');
 			foreach($fonts as $key => $font)
@@ -387,6 +450,9 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 			die();
 		}
 		function update_selected_google_font() {
+
+			check_ajax_referer( 'uavc-update-google-fonts-nonce', 'security' );
+
 			$font_name = $_POST['font_name'];
 			$variants = $_POST['variants'];
 			$subsets = $_POST['subsets'];
@@ -405,7 +471,9 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 			die();
 		}
 		function get_font_variants_callback()
-		{			
+		{
+			check_ajax_referer( 'uavc-get-font-variants-nonce', 'security' );
+
 			$font_name = $_POST['font_name'];
 			$fonts = get_option('ultimate_selected_google_fonts');
 			$font_variants = $json_variants = array();
@@ -484,7 +552,7 @@ if(!class_exists('Ultimate_Google_Font_Manager'))
 			echo json_encode($json_variants);
 			die();
 		}
-		
+
 	}
 	// Instantiate the Google Font Manager
 	new Ultimate_Google_Font_Manager;
@@ -493,11 +561,18 @@ if(!function_exists('enquque_ultimate_google_fonts'))
 {
 	function enquque_ultimate_google_fonts($enqueue_fonts)
 	{
-		$selected_fonts = get_option('ultimate_selected_google_fonts');
-		
+
+		$selected_fonts = apply_filters( 'enquque_selected_ultimate_google_fonts_optimzed', get_option('ultimate_selected_google_fonts') );
+
+		$skip_font_enqueue = apply_filters( 'enquque_ultimate_google_fonts_skip', false );
+
+		if ( true == $skip_font_enqueue ) {
+			return '';
+		}
+
 		$fonts = array();
 		$subset_call = '';
-		if(!empty($enqueue_fonts)) 
+		if(!empty($enqueue_fonts))
 		{
 			foreach($enqueue_fonts as $key => $efont)
 			{
@@ -513,7 +588,7 @@ if(!function_exists('enquque_ultimate_google_fonts'))
 					{
 						$font_call = $font_call_arr[1];
 						$font_name = $font_call_arr[1];
-						
+
 						foreach($selected_fonts as $sfont)
 						{
 							if($sfont['font_family'] == $font_name)
@@ -539,7 +614,7 @@ if(!function_exists('enquque_ultimate_google_fonts'))
 								}
 							}
 						}
-						
+
 						if(isset($font_weight_arr[1]) && $font_weight_arr[1] != '')
 						{
 							$font_variant = $font_weight_arr[1];
@@ -551,7 +626,7 @@ if(!function_exists('enquque_ultimate_google_fonts'))
 							$eq_name.= '-'.$font_variant;
 						}
 						$link = 'https://fonts.googleapis.com/css?family='.$font_call.$subset_call;
-						
+
 						if (!wp_script_is( 'ultimate-'.$eq_name, 'registered' ))
 						{
 							wp_register_style('ultimate-'.$eq_name,$link);
@@ -567,9 +642,9 @@ if(!function_exists('enquque_ultimate_google_fonts'))
 				{
 					$eq_name = $font_arr[0];
 					$link = 'https://fonts.googleapis.com/css?family='.$eq_name;
-					
+
 					if($eq_name != '')
-					{	
+					{
 						if (!wp_script_is( 'ultimate-'.$eq_name, 'registered' ))
 						{
 							wp_register_style('ultimate-'.$eq_name,$link);
@@ -634,12 +709,19 @@ if(!function_exists('enquque_ultimate_google_fonts_optimzed'))
 {
 	function enquque_ultimate_google_fonts_optimzed($enqueue_fonts)
 	{
-		$selected_fonts = get_option('ultimate_selected_google_fonts');
-		
+
+		$selected_fonts = apply_filters( 'enquque_selected_ultimate_google_fonts', get_option('ultimate_selected_google_fonts') );
+
+		$skip_font_enqueue = apply_filters( 'enquque_ultimate_google_fonts_skip', false );
+
+		if ( true == $skip_font_enqueue ) {
+			return '';
+		}
+
 		$main = $subset_main_array = $fonts = array();
 		$subset_call = '';
-		
-		if(!empty($enqueue_fonts)) 
+
+		if(!empty($enqueue_fonts))
 		{
 			$font_count = 0;
 			foreach($enqueue_fonts as $key => $efont)
@@ -647,39 +729,39 @@ if(!function_exists('enquque_ultimate_google_fonts_optimzed'))
 				$font_name = $font_call = $font_variant = '';
 				$font_arr = $font_call_arr = $font_weight_arr = array();
 				$font_arr = explode('|', $efont);
-				
+
 				$font_name = trim($font_arr[0]);
-				
+
 				if(!isset($main[$font_name]))
 					$main[$font_name] = array();
-				
+
 				if(!empty($font_name)):
-				
+
 					$font_count++;
 					if(isset($font_arr[1]))
 					{
 						$font_call_arr = explode(':',$font_arr[1]);
-						
+
 						if(isset($font_arr[2]))
 							$font_weight_arr = explode(':', $font_arr[2]);
-							
+
 						if(isset($font_call_arr[1]) && $font_call_arr[1] != '')
 						{
 							$font_variant = $font_call_arr[1];
 							$pre_font_call = $font_name;
-							
+
 							if($font_variant != '' && $font_variant !== 'regular')
 							{
 								$main[$font_name]['varients'][] = $font_variant;
 								array_push($main[$font_name]['varients'],$font_variant);
 								if(!empty($main[$font_name]['varients']))
 									$main[$font_name]['varients'] = array_values(array_unique($main[$font_name]['varients']));
-									
-								
+
+
 							}
 						}
 					}
-					
+
 					foreach($selected_fonts as $sfont)
 					{
 						if($sfont['font_family'] == $font_name)
@@ -708,11 +790,11 @@ if(!function_exists('enquque_ultimate_google_fonts_optimzed'))
 					}
 				endif;
 			}
-			
+
 			$link = 'https://fonts.googleapis.com/css?family=';
 			$main_count = count($main);
 			$mcount = 0;
-			
+
 			foreach($main as $font => $font_data)
 			{
 				if($font !== '')
@@ -731,26 +813,26 @@ if(!function_exists('enquque_ultimate_google_fonts_optimzed'))
 								$link .= ',';
 						}
 					}
-					
+
 					if(!empty($font_data['subset']))
 						$subset_string .= '&subset='.$font_data['subset'];
-					
+
 					if($mcount != ($main_count-1))
 						$link .= '|';
 					$mcount++;
 				}
 			}
-			
+
 			$subset_string = '';
-			
+
 			if(!empty($subset_array))
 			{
 				$subset_main_array = array_unique($subset_main_array);
-				
+
 				$subset_string = '&subset=';
 				$subset_count = count($subset_main_array);
 				$subset_main_array = array_values($subset_main_array);
-				
+
 				foreach($subset_main_array as $skey => $subset)
 				{
 					if($subset !== '')
@@ -761,11 +843,11 @@ if(!function_exists('enquque_ultimate_google_fonts_optimzed'))
 					}
 				}
 			}
-			
+
 			$font_api_call = $link.$subset_string;
-			
+
 			if($font_count > 0)
-				wp_enqueue_style('ultimate-google-fonts', $font_api_call, array(), ULTIMATE_VERSION);
+				wp_enqueue_style('ultimate-google-fonts', $font_api_call, array(), null);
 		}
 	}
 }

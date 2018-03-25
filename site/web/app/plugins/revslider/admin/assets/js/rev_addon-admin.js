@@ -33,6 +33,10 @@
 				$this = $(this);
 			    $this.removeClass('rs-status-green').addClass('rs-status-red').html($this.data("original"));
 			});*/
+
+			$('.rs-reload-shop,#rev_check_version').click(function(){
+				showWaitAMinute({fadeIn:300,text:rev_slider_addon.please_wait_a_moment});
+			});
 		
 		//click event to install plugin
 			$(".rs-addon-not-installed").click(function(){

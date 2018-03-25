@@ -6,7 +6,7 @@
 .ult-new-ib {
     z-index: 1;
     overflow: hidden;
-    margin: 0 0 30px;
+    margin: 0 0 35px;
     background: #3085a3;
     text-align: center;
     cursor: pointer;
@@ -16,9 +16,11 @@
 }
 .ult-new-ib,
 .wpb_column>.wpb_wrapper .ult-new-ib {
-    margin-bottom: 30px
+    margin-bottom: 35px
 }
 .ult-new-ib * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 .ult-new-ib *,
@@ -38,6 +40,8 @@
     font-size: 1em;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 .ult-new-ib .ult-new-ib-desc::after,
@@ -63,7 +67,7 @@
     font-weight: inherit;
     line-height: inherit;
 }
-.ult-new-ib h2,
+.ult-new-ib .ult-new-ib-title,
 .ult-new-ib p {
     letter-spacing: normal;
     padding: 0;
@@ -96,16 +100,14 @@
 }
 .ult-ib-effect-style1 img {
     width: -webkit-calc(100% + 50px)!important;
-    width: -moz-calc(100% + 50px)!important;
     width: calc(100% + 50px)!important;
     max-width: -webkit-calc(100% + 50px)!important;
-    max-width: -moz-calc(100% + 50px)!important;
     max-width: calc(100% + 50px)!important;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    -moz-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-40px, 0, 0);
-    -moz-transform: translate3d(-40px, 0, 0);
     transform: translate3d(-40px, 0, 0)
 }
 .ult-ib-effect-style1 .ult-new-ib-desc {
@@ -117,37 +119,44 @@
     text-align: left
 }
 .ult-ib-effect-style1 .ult-new-ib-content,
-.ult-ib-effect-style1 h2 {
+.ult-ib-effect-style1 .ult-new-ib-title, .ult-ib-effect-style1 .ult-new-ib-title {
     -webkit-transform: translate3d(0, 40px, 0);
-    -moz-transform: translate3d(0, 40px, 0);
-    transform: translate3d(0, 40px, 0)
+    transform: translate3d(0, 40px, 0);
+    -webkit-transition-delay: .05s;
+    transition-delay: .05s;
+    -webkit-transition-duration: .35s;
+    transition-duration: .35s
 }
-.ult-ib-effect-style1 h2 {
+.ult-ib-effect-style1 .ult-new-ib-title {
     -webkit-transition: -webkit-transform .35s;
-    -moz-transition: -moz-transform .35s;
-    transition: transform .35s
+    transition: -webkit-transform .35s;
+    transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style1 .ult-new-ib-content {
     margin-top: 10px;
     opacity: 0;
     -webkit-transition: opacity .2s, -webkit-transform .35s;
-    -moz-transition: opacity .2s, -moz-transform .35s;
-    transition: opacity .2s, transform .35s
+    transition: opacity .2s, -webkit-transform .35s;
+    transition: opacity .2s, transform .35s;
+    transition: opacity .2s, transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style1:hover .ult-new-ib-content {
     opacity: 1;
     -webkit-transition-delay: .05s;
-    -moz-transition-delay: .05s;
     transition-delay: .05s;
     -webkit-transition-duration: .35s;
-    -moz-transition-duration: .35s;
     transition-duration: .35s
 }
 .ult-ib-effect-style1:hover .ult-new-ib-content,
-.ult-ib-effect-style1:hover h2,
+.ult-ib-effect-style1:hover .ult-new-ib-title,.ult-ib-effect-style1:hover .ult-new-ib-title,
 .ult-ib-effect-style1:hover img {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
+    -webkit-transition-delay: .05s;
+    transition-delay: .05s;
+    -webkit-transition-duration: .35s;
+    transition-duration: .35s
 }
 .ult-ib-effect-style1.ult-ib2-min-height img {
     width: auto!important;
@@ -166,26 +175,27 @@
     height: 100%;
     opacity: 0;
     -webkit-transform: translate3d(0, 50%, 0);
-    -moz-transform: translate3d(0, 50%, 0);
     transform: translate3d(0, 50%, 0)
 }
-.ult-ib-effect-style2 h2 {
+.ult-ib-effect-style2 .ult-new-ib-title {
     position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
     -webkit-transition: -webkit-transform .35s, color .35s;
-    -moz-transition: -moz-transform .35s, color .35s;
+    -webkit-transition: color .35s, -webkit-transform .35s;
+    transition: color .35s, -webkit-transform .35s;
     transition: transform .35s, color .35s;
+    transition: transform .35s, color .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, -50%, 0);
-    -moz-transform: translate3d(0, -50%, 0);
     transform: translate3d(0, -50%, 0)
 }
 .ult-ib-effect-style2 .ult-new-ib-content,
 .ult-ib-effect-style2 .ult-new-ib-desc::before {
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    -moz-transition: opacity .35s, -moz-transform .35s;
-    transition: opacity .35s, transform .35s
+    transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style2 .ult-new-ib-content {
     position: absolute;
@@ -196,20 +206,17 @@
     max-height: 50%;
     opacity: 0;
     -webkit-transform: translate3d(0, 10px, 0);
-    -moz-transform: translate3d(0, 10px, 0);
     transform: translate3d(0, 10px, 0)
 }
-.ult-ib-effect-style2:hover h2 {
+.ult-ib-effect-style2:hover .ult-new-ib-title {
     color: #fff;
     -webkit-transform: translate3d(0, -40px, 0);
-    -moz-transform: translate3d(0, -40px, 0);
     transform: translate3d(0, -40px, 0)
 }
 .ult-ib-effect-style2:hover .ult-new-ib-content,
 .ult-ib-effect-style2:hover .ult-new-ib-desc::before {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 .ult-ib-effect-style2.ult-ib2-min-height img {
@@ -217,7 +224,7 @@
     max-width: none;
     height: 100%
 }
-.ult-ib-effect-style3 h2 {
+.ult-ib-effect-style3 .ult-new-ib-title {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -225,31 +232,30 @@
     width: 100%;
     text-align: left;
     -webkit-transform: translate3d(0, -30px, 0);
-    -moz-transform: translate3d(0, -30px, 0);
     transform: translate3d(0, -30px, 0)
 }
 .ult-ib-effect-style3 .ult-new-ib-desc::before,
-.ult-ib-effect-style3 h2 {
+.ult-ib-effect-style3 .ult-new-ib-title {
     -webkit-transition: -webkit-transform .35s;
-    -moz-transition: -moz-transform .35s;
-    transition: transform .35s
+    transition: -webkit-transform .35s;
+    transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style3:hover .ult-new-ib-desc::before,
-.ult-ib-effect-style3:hover h2 {
+.ult-ib-effect-style3:hover .ult-new-ib-title {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 .ult-ib-effect-style3 .ult-new-ib-content {
+    max-height: -webkit-calc(100% - 60px - 1.5em);
     max-height: calc(100% - 60px - 1.5em);
     overflow: hidden
 }
 .ult-ib-effect-style4 img {
     width: -webkit-calc(100% + 40px)!important;
-    width: -moz-calc(100% + 40px)!important;
     width: calc(100% + 40px)!important;
     max-width: -webkit-calc(100% + 40px)!important;
-    max-width: -moz-calc(100% + 40px)!important;
     max-width: calc(100% + 40px)!important
 }
 .ult-ib-effect-style4 .ult-new-ib-desc {
@@ -269,10 +275,10 @@
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
     -webkit-transform: scale(0, 1);
-    -moz-transform: scale(0, 1);
+    -ms-transform: scale(0, 1);
     transform: scale(0, 1);
     -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
     transform-origin: 0 0
 }
 .ult-ib-effect-style4 .ult-new-ib-desc::after {
@@ -283,30 +289,29 @@
     border-right: 1px solid #fff;
     border-left: 1px solid #fff;
     -webkit-transform: scale(1, 0);
-    -moz-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
     transform: scale(1, 0);
     -webkit-transform-origin: 100% 0;
-    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
     transform-origin: 100% 0
 }
-.ult-ib-effect-style4 h2 {
+.ult-ib-effect-style4 .ult-new-ib-title {
     padding-top: 50px;
     -webkit-transition: -webkit-transform .35s;
-    -moz-transition: -moz-transform .35s;
-    transition: transform .35s
+    transition: -webkit-transform .35s;
+    transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style4 .ult-new-ib-content {
     padding: 10px 30px;
     opacity: 0;
     overflow: hidden;
     -webkit-transform: translate3d(0, -10px, 0);
-    -moz-transform: translate3d(0, -10px, 0);
     transform: translate3d(0, -10px, 0)
 }
-.ult-ib-effect-style4 h2,
+.ult-ib-effect-style4 .ult-new-ib-title,
 .ult-ib-effect-style4 img {
     -webkit-transform: translate3d(-30px, 0, 0);
-    -moz-transform: translate3d(-30px, 0, 0);
     transform: translate3d(-30px, 0, 0)
 }
 .ult-ib-effect-style4 .ult-new-ib-content,
@@ -314,8 +319,9 @@
 .ult-ib-effect-style4 .ult-new-ib-desc::before,
 .ult-ib-effect-style4 img {
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    -moz-transition: opacity .35s, -moz-transform .35s;
-    transition: opacity .35s, transform .35s
+    transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style4.ult-ib2-min-height img {
     height: 100%;
@@ -324,29 +330,26 @@
 }
 .ult-ib-effect-style4:hover img {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 .ult-ib-effect-style4:hover .ult-new-ib-desc::after,
 .ult-ib-effect-style4:hover .ult-new-ib-desc::before {
     opacity: 1;
     -webkit-transform: scale(1);
-    -moz-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
 .ult-ib-effect-style4:hover .ult-new-ib-content,
-.ult-ib-effect-style4:hover h2 {
+.ult-ib-effect-style4:hover .ult-new-ib-title {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 .ult-ib-effect-style4:hover .ult-new-ib-content,
 .ult-ib-effect-style4:hover .ult-new-ib-desc::after,
-.ult-ib-effect-style4:hover h2,
+.ult-ib-effect-style4:hover .ult-new-ib-title,
 .ult-ib-effect-style4:hover img {
     -webkit-transition-delay: .15s;
-    -moz-transition-delay: .15s;
     transition-delay: .15s
 }
 .ult-ib-effect-style5 .ult-new-ib-desc {
@@ -357,10 +360,10 @@
     background: #F2F2F2;
     color: #3c4a50;
     -webkit-transition: -webkit-transform .35s;
-    -moz-transition: -moz-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0)
 }
 .ult-ib-effect-style5 .ult-new-ib-content {
@@ -376,9 +379,11 @@
     -webkit-transition: opacity .35s;
     transition: opacity .35s
 }
-.ult-ib-effect-style5 h2 {
+.ult-ib-effect-style5 .ult-new-ib-title {
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 200%, 0);
     transform: translate3d(0, 200%, 0);
     text-align: center
@@ -388,20 +393,42 @@
     opacity: 1!important;
     z-index: 99!important;
     -webkit-backface-visibility: hidden!important;
-    -moz-backface-visibility: hidden!important;
     backface-visibility: hidden!important
 }
 .ult-ib-effect-style5:hover .ult-new-ib-desc,
-.ult-ib-effect-style5:hover h2 {
+.ult-ib-effect-style5:hover .ult-new-ib-title {
     -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
     transform: translateY(0)
 }
-.ult-ib-effect-style5:hover h2 {
+.ult-ib-effect-style5:hover .ult-new-ib-title {
     -webkit-transition-delay: .05s;
     transition-delay: .05s
 }
 .ult-ib-effect-style6 .ult-new-ib-desc {
-    padding: 45px
+    padding: 45px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 .ult-ib-effect-style6 .ult-new-ib-desc::before {
     position: absolute;
@@ -412,22 +439,28 @@
     left: 30px;
     border: 1px solid #fff
 }
-.ult-ib-effect-style6 h2 {
-    margin: 20px 0 10px;
+.ult-ib-effect-style6 .ult-new-ib-title {
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0)
+    transition: transform .35s, -webkit-transform .35s;
+    webkit-transform: translate3d(0,50%,0);
+    -webkit-transform: translate3d(0,50%,0);
+    transform: translate3d(0,50%,0);
 }
 .ult-ib-effect-style6 .ult-new-ib-content,
 .ult-ib-effect-style6 .ult-new-ib-desc::before {
     opacity: 0;
+    max-width: 100%;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: scale(0);
+    -ms-transform: scale(0);
     transform: scale(0)
 }
-.ult-ib-effect-style6:hover h2 {
+.ult-ib-effect-style6:hover .ult-new-ib-title {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
@@ -435,6 +468,7 @@
 .ult-ib-effect-style6:hover .ult-new-ib-desc::before {
     opacity: 1;
     -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
 .ult-ib-effect-style6.ult-ib2-min-height img {
@@ -446,24 +480,26 @@
     text-align: right
 }
 .ult-ib-effect-style7 .ult-new-ib-content,
-.ult-ib-effect-style7 h2 {
+.ult-ib-effect-style7 .ult-new-ib-title {
     position: absolute;
     right: 30px;
     left: 30px;
-    padding: 10px 0
+    padding: 10px 0;
 }
-.ult-ib-effect-style7 h2 {
+.ult-ib-effect-style7 .ult-new-ib-title {
     top: 30px;
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0)
 }
-.ult-ib-effect-style7:hover h2 {
+.ult-ib-effect-style7:hover .ult-new-ib-title {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
-.ult-ib-effect-style7 h2::after {
+.ult-ib-effect-style7 .ult-new-ib-title::after {
     position: absolute;
     top: 100%;
     left: 0;
@@ -475,10 +511,12 @@
     transform: translate3d(0, 40px, 0)
 }
 .ult-ib-effect-style7 .ult-new-ib-content,
-.ult-ib-effect-style7 h2::after {
+.ult-ib-effect-style7 .ult-new-ib-title::after {
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    transition: opacity .35s, transform .35s
+    transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style7 .ult-new-ib-content {
     bottom: 30px;
@@ -486,7 +524,7 @@
     transform: translate3d(0, 100%, 0)
 }
 .ult-ib-effect-style7:hover .ult-new-ib-content,
-.ult-ib-effect-style7:hover h2::after {
+.ult-ib-effect-style7:hover .ult-new-ib-title::after {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
@@ -498,22 +536,28 @@
 }
 .ult-ib-effect-style8 img {
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
     transform: scale(1.15)
 }
 .ult-ib-effect-style8:hover img {
     -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
-.ult-ib-effect-style8 h2 {
+.ult-ib-effect-style8 .ult-new-ib-title {
     margin-top: 20%;
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0)
 }
-.ult-ib-effect-style8:hover h2 {
+.ult-ib-effect-style8:hover .ult-new-ib-title {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
@@ -523,7 +567,9 @@
     border: 1px solid #fff;
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 20px, 0)scale(1.1);
     transform: translate3d(0, 20px, 0)scale(1.1)
 }
@@ -534,13 +580,13 @@
 }
 .ult-ib-effect-style9 img {
     width: -webkit-calc(100% + 60px)!important;
-    width: -moz-calc(100% + 60px)!important;
     width: calc(100% + 60px)!important;
     max-width: -webkit-calc(100% + 60px)!important;
-    max-width: -moz-calc(100% + 60px)!important;
     max-width: calc(100% + 60px)!important;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-50px, 0, 0);
     transform: translate3d(-50px, 0, 0)
 }
@@ -558,7 +604,9 @@
     content: '';
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-20px, 0, 0);
     transform: translate3d(-20px, 0, 0)
 }
@@ -566,13 +614,15 @@
     padding: 45px;
     text-align: left
 }
-.ult-ib-effect-style9 h2 {
+.ult-ib-effect-style9 .ult-new-ib-title {
     padding: 30% 0 10px
 }
 .ult-ib-effect-style9 .ult-new-ib-content {
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0)
 }
@@ -597,30 +647,37 @@
     content: '';
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    transition: opacity .35s, transform .35s
+    transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s
 }
 .ult-ib-effect-style10 .ult-new-ib-desc::before {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
     -webkit-transform: scale(0, 1);
+    -ms-transform: scale(0, 1);
     transform: scale(0, 1)
 }
 .ult-ib-effect-style10 .ult-new-ib-desc::after {
     border-right: 1px solid #fff;
     border-left: 1px solid #fff;
     -webkit-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
     transform: scale(1, 0)
 }
 .ult-ib-effect-style10:hover .ult-new-ib-desc::after,
 .ult-ib-effect-style10:hover .ult-new-ib-desc::before {
     opacity: 1;
     -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
-.ult-ib-effect-style10 h2 {
+.ult-ib-effect-style10 .ult-new-ib-title {
     padding: 45px 35px 0;
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0)
 }
@@ -628,12 +685,14 @@
     padding: 20px 45px;
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0)
 }
 .ult-ib-effect-style10:hover .ult-new-ib-content,
-.ult-ib-effect-style10:hover h2 {
+.ult-ib-effect-style10:hover .ult-new-ib-title {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
@@ -649,9 +708,12 @@
 }
 .ult-ib-effect-style11 img {
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
-    -webkit-transform: translate3d(0, 0, 200px);
-    transform: translate3d(0, 0, 200px)
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2)
 }
 .ult-new-ib.ult-ib-effect-style11.ult-ib2-min-height img {
     height: 100%;
@@ -659,8 +721,9 @@
     max-width: none!important
 }
 .ult-ib-effect-style11:hover img {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0)
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
 }
 .ult-ib-effect-style11 .ult-new-ib-desc::after,
 .ult-ib-effect-style11 .ult-new-ib-desc::before {
@@ -672,7 +735,9 @@
     background: #fff;
     content: '';
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0)
 }
@@ -687,19 +752,21 @@
     transform: translate3d(-50%, -50%, 0)rotate(-45deg)
 }
 .ult-ib-effect-style11 .ult-new-ib-content,
-.ult-ib-effect-style11 h2 {
+.ult-ib-effect-style11 .ult-new-ib-title {
     position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
     -webkit-transition: -webkit-transform .35s;
-    transition: transform .35s
+    transition: -webkit-transform .35s;
+    transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s
 }
-.ult-ib-effect-style11 h2 {
+.ult-ib-effect-style11 .ult-new-ib-title {
     -webkit-transform: translate3d(0, -50px, 0);
     transform: translate3d(0, -50px, 0)
 }
-.ult-ib-effect-style11:hover h2 {
+.ult-ib-effect-style11:hover .ult-new-ib-title {
     -webkit-transform: translate3d(0, -60px, 0);
     transform: translate3d(0, -60px, 0)
 }
@@ -722,7 +789,9 @@
     height: calc(50% - 30px);
     border: 7px solid #fff;
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0)
 }
@@ -741,7 +810,9 @@
     left: 60px;
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(0, -100px, 0);
     transform: translate3d(0, -100px, 0)
 }
@@ -752,13 +823,13 @@
 }
 .ult-ib-effect-style13 img {
     width: -webkit-calc(100% + 20px)!important;
-    width: -moz-calc(100% + 20px)!important;
     width: calc(100% + 20px)!important;
     max-width: -webkit-calc(100% + 20px)!important;
-    max-width: -moz-calc(100% + 20px)!important;
     max-width: calc(100% + 20px)!important;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0);
     -webkit-backface-visibility: hidden;
@@ -771,12 +842,12 @@
 .ult-ib-effect-style13 .ult-new-ib-desc {
     text-align: left
 }
-.ult-ib-effect-style13 h2 {
+.ult-ib-effect-style13 .ult-new-ib-title {
     position: relative;
     overflow: hidden;
     padding: 5px 0 10px
 }
-.ult-ib-effect-style13 h2::after {
+.ult-ib-effect-style13 .ult-new-ib-title::after {
     position: absolute;
     content: "";
     bottom: 0;
@@ -785,11 +856,13 @@
     height: 2px;
     background: #fff;
     -webkit-transition: -webkit-transform .35s;
+    transition: -webkit-transform .35s;
     transition: transform .35s;
+    transition: transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0)
 }
-.ult-ib-effect-style13:hover h2::after {
+.ult-ib-effect-style13:hover .ult-new-ib-title::after {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
@@ -797,7 +870,9 @@
     padding: 15px 0;
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0)
 }
@@ -813,8 +888,11 @@
 }
 .ult-ib-effect-style14 img {
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: scale(1.12);
+    -ms-transform: scale(1.12);
     transform: scale(1.12)
 }
 .ult-ib-effect-style14.ult-ib2-min-height img {
@@ -824,6 +902,7 @@
 }
 .ult-ib-effect-style14:hover img {
     -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
 .ult-ib-effect-style14 .ult-new-ib-desc {
@@ -838,38 +917,43 @@
     left: 30px;
     border: 1px solid #fff;
     -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
     transform: scale(1.1)
 }
 .ult-ib-effect-style14 .ult-new-ib-content,
 .ult-ib-effect-style14 .ult-new-ib-desc::before {
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
-    transition: opacity .35s, transform .35s
+    transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s
 }
-.ult-ib-effect-style14 h2 {
+.ult-ib-effect-style14 .ult-new-ib-title {
     padding: 10px 0 15px
 }
 .ult-ib-effect-style14 .ult-new-ib-content {
     margin: 0 auto;
     max-width: 90%;
     -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
     transform: scale(1.5)
 }
 .ult-ib-effect-style14:hover .ult-new-ib-content,
 .ult-ib-effect-style14:hover .ult-new-ib-desc::before {
     opacity: 1;
     -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1)
 }
 .ult-ib-effect-style15 img {
     width: -webkit-calc(100% + 60px)!important;
-    width: -moz-calc(100% + 60px)!important;
     width: calc(100% + 60px)!important;
     max-width: -webkit-calc(100% + 60px)!important;
-    max-width: -moz-calc(100% + 60px)!important;
     max-width: calc(100% + 60px)!important;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-30px, 0, 0)scale(1.12);
     transform: translate3d(-30px, 0, 0)scale(1.12);
     -webkit-backface-visibility: hidden;
@@ -879,11 +963,12 @@
     -webkit-transform: translate3d(0, 0, 0)scale(1);
     transform: translate3d(0, 0, 0)scale(1)
 }
-.ult-ib-effect-style15 h2 {
+.ult-ib-effect-style15 .ult-new-ib-title {
     position: absolute;
     right: 0;
     bottom: 0;
-    padding: 15px 20px
+    padding: 15px 20px;
+    width: auto;
 }
 .ult-ib-effect-style15 .ult-new-ib-content {
     padding: 0 10px 0 0;
@@ -892,7 +977,9 @@
     text-align: right;
     opacity: 0;
     -webkit-transition: opacity .35s, -webkit-transform .35s;
+    transition: opacity .35s, -webkit-transform .35s;
     transition: opacity .35s, transform .35s;
+    transition: opacity .35s, transform .35s, -webkit-transform .35s;
     -webkit-transform: translate3d(-40px, 0, 0);
     transform: translate3d(-40px, 0, 0)
 }

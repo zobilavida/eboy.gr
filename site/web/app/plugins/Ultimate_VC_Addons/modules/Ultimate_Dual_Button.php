@@ -10,8 +10,10 @@ if(!class_exists('AIO_Dual_Button'))
 	{
 		function __construct()
 		{
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ultimate_dual_button'));
+			}
 			add_shortcode('ult_dualbutton',array($this,'ultimate_dualbtn_shortcode'));
-			add_action('init',array($this,'ultimate_dual_button'));
 			add_action( 'wp_enqueue_scripts', array( $this, 'dualbutton_scripts') );
 			add_action( 'admin_enqueue_scripts', array( $this, 'dualbutton_backend_scripts') );
 		}
@@ -19,7 +21,7 @@ if(!class_exists('AIO_Dual_Button'))
 			if($hook == "post.php" || $hook == "post-new.php"){
 				$bsf_dev_mode = bsf_get_option('dev_mode');
 				if($bsf_dev_mode === 'enable') {
-					wp_register_script("jquery_dualbtn_new",plugins_url("../admin/js/dualbtnbackend.js ",__FILE__),array('jquery'),ULTIMATE_VERSION);
+					wp_register_script("jquery_dualbtn_new",plugins_url("../admin/js/dualbtnbackend.js",__FILE__),array('jquery'),ULTIMATE_VERSION);
 					wp_enqueue_script('jquery_dualbtn_new');
 				}
 			}
@@ -27,38 +29,29 @@ if(!class_exists('AIO_Dual_Button'))
 
 		//enque script
 		function dualbutton_scripts(){
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style( 'ult-dualbutton', plugins_url($css_path.'dual-button'.$ext.'.css', __FILE__) );
-			wp_register_script("jquery.dualbtn",plugins_url($js_path."dual-button".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION);
+			
+			Ultimate_VC_Addons::ultimate_register_style( 'ult-dualbutton', 'dual-button' );
+			
+			Ultimate_VC_Addons::ultimate_register_script( 'jquery.dualbtn', 'dual-button', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 
 			if(isset($_SERVER['HTTP_REFERER'])){
 				$params = parse_url($_SERVER['HTTP_REFERER']);
-			$vc_is_inline = false;
-			if(isset($params['query'])){
-				parse_str($params['query'],$params);
-				$vc_is_inline = isset($params['vc_action']) ? true : false;
-			}
+				
+				$vc_is_inline = false;
+				if(isset($params['query'])){
+					parse_str($params['query'],$params);
+					$vc_is_inline = isset($params['vc_action']) ? true : false;
+				}
 
-			if($vc_is_inline){
-				//echo $vc_is_inline;
-					wp_enqueue_style( 'ult-dualbutton', plugins_url($css_path.'dual-button'.$ext.'.css', __FILE__) );
-					wp_enqueue_script("jquery.dualbtn",plugins_url($js_path."dual-button".$ext.".js",__FILE__),array('jquery'),ULTIMATE_VERSION);
+				if($vc_is_inline){
+					//echo $vc_is_inline;
+					Ultimate_VC_Addons::ultimate_register_style( 'ult-dualbutton', 'dual-button' );
+					wp_enqueue_style( 'ult-dualbutton' );
+					Ultimate_VC_Addons::ultimate_register_script( 'jquery.dualbtn', 'dual-button', false, array( 'jquery' ), ULTIMATE_VERSION, false );
+					wp_enqueue_script( 'jquery.dualbtn' );
 				}
 			}
-
-
-
-			}
+		}
 
 
 
@@ -72,8 +65,8 @@ $button2_text = $btn_icon_type = $btn_icon = $btn_icon_img = $btn_img_width = $b
 $btn_icon_color = $btn_icon_style = $btn_icon_color_bg = $btn_icon_border_style = $btn_icon_color_border =
 $btn_icon_border_size = $btn_icon_border_radius = $btn_icon_border_spacing =  $btn_icon_link = $btn2_icon_align =
 $btn2_background_color = $btn2_bghovercolor = $btn2_font_family = $btn2_heading_style = $btn2_text_color =
-$btn2_text_hovercolor='';
-$divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divider_icon = $divider_icon_img = $btn_border_style = $btn_color_border = $btn_border_size = $btn_border_radius = $btn_hover_style = $title_font_size = $title_line_ht = $el_class = '';
+$btn2_text_hovercolor = '';
+$divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divider_icon = $divider_icon_img = $btn_border_style = $btn_color_border = $btn_border_size = $btn_border_radius = $btn_hover_style = $title_font_size = $title_line_ht = $el_class = $target1 = $link_title1  = $rel1 = $target2 = $link_title2  = $rel2 = '';
 
 	extract(shortcode_atts( array(
 
@@ -88,7 +81,7 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 				'icon_hover_color' =>'#333333',
 				'icon_style' => 'none',
 				'icon_color_bg' => '#ffffff',
-				'icon_border_style' => '',
+				'icon_border_style' => 'solid',
 				'icon_color_border' => '#333333',
 				'icon_border_size' => '1',
 				'icon_border_radius' => '0',
@@ -160,23 +153,35 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 				'btn_alignment'=>'center',
 				'btn_width'=>'',
 				'dual_resp' =>'on',
-
+				'css_dualbtn_design' => '',
 				//'btn_resp_width'=>'',
 				//'btn_color_hoverborder'=>' ',
 
 			),$atts));
 
-			$extraclass=$el_class;
-			$el_class1=$css_trans=$button2_bstyle=$button1_bstyle=$target1=$url1=$btn_color_hoverborder='';
-			$iconoutput= $style = $link_sufix = $link_prefix = $target = $href = $icon_align_style = '';
-			$secicon=$style1='';
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
 
-			if($icon_link !== ''){
-				 $href = vc_build_link($icon_link);
-				$target =(isset($href['target'])) ? "target='".$href['target']."'" :'';
-				$target = str_replace(' ', '', $target);
-				 $url1=$href['url'];
-				if($url1==''){
+			$extraclass=$el_class;
+			$el_class1=$css_trans=$button2_bstyle=$button1_bstyle=$btn_color_hoverborder='';
+			$iconoutput= $style = $link_sufix = $link_prefix = $target = $href = $icon_align_style = '';
+			$secicon=$style1= $dual_design_style_css ='';
+
+			$url1 = $target1 = $link_title1 = $rel1 = $url2 = $link_title2 = $rel2 = $target2 = '';
+
+
+			 $dual_design_style_css = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css_dualbtn_design, ' ' ), "ult_dualbutton", $atts );
+			 $dual_design_style_css = esc_attr( $dual_design_style_css );
+
+			if( $icon_link !== '' ){
+				$href2 = vc_build_link($icon_link);
+
+				$url1 			= ( isset( $href2['url'] ) && $href2['url'] !== '' ) ? $href2['url']  : '';
+				$target1 		= ( isset( $href2['target'] ) && $href2['target'] !== '' ) ? esc_attr( trim( $href2['target'] ) ) : '';
+				$link_title1	= ( isset( $href2['title'] ) && $href2['title'] !== '' ) ? esc_attr($href2['title']) : '';
+				$rel1 			= ( isset( $href2['rel'] ) && $href2['rel'] !== '' ) ? esc_attr($href2['rel']) : '';
+
+				if( $url1 == '' ){
 					$url1="javascript:void(0);";
 				}
 				//echo $url1;
@@ -188,7 +193,7 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 			if($icon_type == 'custom'){
 				if($icon_img!==''){
 				$img = apply_filters('ult_get_img_single', $icon_img, 'url');
-				$alt = get_post_meta($icon_img, '_wp_attachment_image_alt', true);
+				$alt = apply_filters('ult_get_img_single', $icon_img, 'alt');
 				if($icon_style !== 'none'){
 					if($icon_color_bg !== '')
 						$style .= 'background:'.$icon_color_bg.';';
@@ -211,8 +216,8 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 					if($icon_link == '' || $icon_align == 'center') {
 						//$style .= 'display:inline-block;';
 					}
-					$iconoutput .= "\n".'<span class="aio-icon-img '.$el_class.' '.'btn1icon " style="font-size:'.$img_width.'px;'.$style.'" '.$css_trans.'>';
-					$iconoutput .= "\n\t".'<img class="img-icon dual_img" alt="'.$alt.'" src="'.$img.'" />';
+					$iconoutput .= "\n".'<span class="aio-icon-img '.esc_attr($el_class).' '.'btn1icon " style="font-size:'.esc_attr($img_width).'px;'.esc_attr($style).'" '.$css_trans.'>';
+					$iconoutput .= "\n\t".'<img class="img-icon dual_img" alt="'.esc_attr($alt).'" src="'.esc_url(apply_filters('ultimate_images', $img)).'" />';
 					$iconoutput .= "\n".'</span>';
 				}
 				if(!empty($img)){
@@ -247,8 +252,8 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 					$style .= 'display:inline-block;';
 				}
 				if($icon !== ""){
-					$iconoutput .= "\n".'<span class="aio-icon btn1icon '.$icon_style.' '.$el_class.'" '.$css_trans.' style="'.$style.'">';
-					$iconoutput .= "\n\t".'<i class="'.$icon.'" ></i>';
+					$iconoutput .= "\n".'<span class="aio-icon btn1icon '.esc_attr($icon_style).' '.esc_attr($el_class).'" '.$css_trans.' style="'.esc_attr($style).'">';
+					$iconoutput .= "\n\t".'<i class="'.esc_attr($icon).'" ></i>';
 					$iconoutput .= "\n".'</span>';
 				}
 				if($icon !== "" && $icon!=="none"){
@@ -268,24 +273,25 @@ $divider_style = $divider_text = $divider_text_color = $divider_bg_color = $divi
 
 $style2=$href1 =$target2=$img2=$alt1 =$iconoutput2=$url2='';
 /*---- for icon 2--------------*/
-		if($btn_icon_link !== ''){
-						 $href1 = vc_build_link($btn_icon_link);
-						$target1 =(isset($href1['target'])) ? "target='".$href1['target']."'" :'';
-						// $link_prefix .= '<a class="aio-tooltip " href = "'.$href1['url'].'" '.$target1.' data-toggle="tooltip" data-placement="'.$tooltip_disp.'" title="'.$tooltip_text.'">';
-						// $link_sufix .= '</a>';
-						$target1 = str_replace(' ', '', $target1);
-						$url2=$href1['url'];
-						if($url2==''){
-							$url2="javascript:void(0);";
-						}
-					}
-					else{
-				$url2="javascript:void(0);";
-			}
+if($btn_icon_link !== ''){
+	$href1 = vc_build_link($btn_icon_link);
+
+	$url2 			= ( isset( $href1['url'] ) && $href1['url'] !== '' ) ? $href1['url']  : '';
+	$target2 		= ( isset( $href1['target'] ) && $href1['target'] !== '' ) ? esc_attr( trim( $href1['target'] ) ) : '';
+	$link_title2 	= ( isset( $href1['title'] ) && $href1['title'] !== '' ) ? esc_attr($href1['title']) : '';
+	$rel2 			= ( isset( $href1['rel'] ) && $href1['rel'] !== '' ) ? esc_attr($href1['rel']) : '';
+
+	if($url2==''){
+		$url2="javascript:void(0);";
+	}
+}
+else{
+	$url2="javascript:void(0);";
+}
 
 if($btn_icon_type == 'custom'){
 				$img2 = apply_filters('ult_get_img_single', $btn_icon_img, 'url');
-				$alt2 = get_post_meta($btn_icon_img, '_wp_attachment_image_alt', true);
+				$alt2 = apply_filters('ult_get_img_single', $btn_icon_img, 'alt');
 				if($btn_icon_style !== 'none'){
 					if($btn_icon_color_bg !== '')
 						$style2 .= 'background:'.$btn_icon_color_bg.';';
@@ -309,8 +315,8 @@ if($btn_icon_type == 'custom'){
 					if($btn_icon_link == '' || $btn2_icon_align == 'center') {
 						//$style .= 'display:inline-block;';
 					}
-					$iconoutput2 .= "\n".'<span class="aio-icon-img '.$el_class1.' btn1icon" style="font-size:'.$btn_img_width.'px;'.$style2.'" '.$css_trans.'>';
-					$iconoutput2 .= "\n\t".'<img class="img-icon dual_img" alt="'.$alt2.'" src="'.$img2.'" />';
+					$iconoutput2 .= "\n".'<span class="aio-icon-img '.esc_attr($el_class1).' btn1icon" style="font-size:'.esc_attr($btn_img_width).'px;'.esc_attr($style2).'" '.$css_trans.'>';
+					$iconoutput2 .= "\n\t".'<img class="img-icon dual_img" alt="'.esc_attr($alt2).'" src="'.esc_url(apply_filters('ultimate_images', $img2)).'" />';
 					$iconoutput2 .= "\n".'</span>';
 				}
 				if(!empty($img2)){
@@ -344,8 +350,8 @@ if($btn_icon_type == 'custom'){
 					$style2 .= 'display:inline-block;';
 				}
 				if($btn_icon !== ""){
-					$iconoutput2 .= "\n".'<span class="aio-icon btn1icon '.$btn_icon_style.' '.$el_class1.'" '.$css_trans.' style="'.$style2.'">';
-					$iconoutput2 .= "\n\t".'<i class="'.$btn_icon.'" ></i>';
+					$iconoutput2 .= "\n".'<span class="aio-icon btn1icon '.esc_attr($btn_icon_style).' '.esc_attr($el_class1).'" '.$css_trans.' style="'.esc_attr($style2).'">';
+					$iconoutput2 .= "\n\t".'<i class="'.esc_attr($btn_icon).'" ></i>';
 					$iconoutput2 .= "\n".'</span>';
 				}
 				if($btn_icon !== "" && $btn_icon!=="none"){
@@ -381,34 +387,51 @@ if($btn_hover_style=='Style 3'){
 
 /*--------css for title1------------*/
  $btn1_padding;
+ $dual_btn_id = 'dualbtn-'.rand(1000, 9999);
 $title1_style='';
 if (function_exists('get_ultimate_font_family')) {
 		$mhfont_family = get_ultimate_font_family($btn1_font_family);
-		$title1_style .= 'font-family:'.$mhfont_family.';';
+		if($mhfont_family !== '')
+			$title1_style .= 'font-family:'.$mhfont_family.';';
 	}
 	if (function_exists('get_ultimate_font_style')) {
 		$title1_style .= get_ultimate_font_style($btn1_heading_style);
 	}
-	$title1_style .= 'font-size:'.$title_font_size.'px;';//style
+	if (is_numeric($title_font_size)) {
+        $title_font_size = 'desktop:'.$title_font_size.'px;';
+    }
+    if (is_numeric($title_line_ht)) {
+        $title_line_ht = 'desktop:'.$title_line_ht.'px;';
+    }
+	// $title1_style .= 'font-size:'.$title_font_size.'px;';//style
 	$title1_style .= 'color:'.$btn1_text_color.';';//color
-	if($title_line_ht!=''){
-	$title1_style .= 'line-height:'.$title_line_ht.'px;';//line-height
-	}
+	// if($title_line_ht!=''){
+	// $title1_style .= 'line-height:'.$title_line_ht.'px;';//line-height
+	// }
+	$dualbtn_args = array(
+                'target' => '#'.$dual_btn_id . ' .ult-dual-button-title', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $title_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $title_line_ht
+                ),
+            );
+	$data_list1 = get_ultimate_vc_responsive_media_css($dualbtn_args);
 /*--------css for title2------------*/
 
 $title2_style='';
 if (function_exists('get_ultimate_font_family')) {
 		$mhfont_family1 = get_ultimate_font_family($btn2_font_family);
-		$title2_style .= 'font-family:'.$mhfont_family1.';';
+		if($mhfont_family1 !== '')
+			$title2_style .= 'font-family:'.$mhfont_family1.';';
 	}
 	if (function_exists('get_ultimate_font_style')) {
 		$title2_style .= get_ultimate_font_style($btn2_heading_style);
 	}
-	$title2_style .= 'font-size:'.$title_font_size.'px;';//style
+	// $title2_style .= 'font-size:'.$title_font_size.'px;';//style
 	$title2_style .= 'color:'.$btn2_text_color.';';//color
-	if($title_line_ht!=''){
-	$title2_style .= 'line-height:'.$title_line_ht.'px;';//line-height
-    }
+	// if($title_line_ht!=''){
+	// $title2_style .= 'line-height:'.$title_line_ht.'px;';//line-height
+ //    }
 /*--------css for button1------------*/
 
 $btncolor_style='';
@@ -472,8 +495,8 @@ border-radius: 50%;
 background-color:'.$divider_bg_color.';';
 
 $img3 = apply_filters('ult_get_img_single', $divider_icon_img, 'url');
-				$alt3 = get_post_meta($divider_icon_img, '_wp_attachment_image_alt', true);
-$text='<img class="img-icon" alt="'.$alt3.'" src="'.$img3.'" style="'.$text_style.'" />';
+$alt3 = apply_filters('ult_get_img_single', $divider_icon_img, 'alt');
+$text='<img class="img-icon" alt="'.esc_attr($alt3).'" src="'.esc_url(apply_filters('ultimate_images', $img3)).'" style="'.esc_attr($text_style).'" />';
 
 }
 
@@ -503,19 +526,19 @@ foreach ($subarr as $key => $value) {
 }*/
 /*--- generate random no------------*/
 $dual_resp;
-$resp_data='data-response="'.$dual_resp.'"';
+$resp_data='data-response="'.esc_attr($dual_resp).'"';
 $id='';
 $id="ult_btn_".mt_rand();
 
 
 /*----------for btn1 hover------------*/
 $btn_hover='';
-$btn_hover .='data-bgcolor="'.$btn1_background_color.'" ';
-$btn_hover .='data-bghovercolor="'.$btn1_bghovercolor.'" ';
-$btn_hover .='data-icon_color="'.$icon_color.'" ';
-$btn_hover .='data-icon_hover_color="'.$icon_hover_color.'" ';
-$btn_hover .='data-textcolor="'.$btn1_text_color.'" ';
-$btn_hover .='data-texthovercolor="'.$btn1_text_hovercolor.'" ';
+$btn_hover .='data-bgcolor="'.esc_attr($btn1_background_color).'" ';
+$btn_hover .='data-bghovercolor="'.esc_attr($btn1_bghovercolor).'" ';
+$btn_hover .='data-icon_color="'.esc_attr($icon_color).'" ';
+$btn_hover .='data-icon_hover_color="'.esc_attr($icon_hover_color).'" ';
+$btn_hover .='data-textcolor="'.esc_attr($btn1_text_color).'" ';
+$btn_hover .='data-texthovercolor="'.esc_attr($btn1_text_hovercolor).'" ';
 if($icon_style == 'none'){
 $btn_hover .='data-iconbgcolor="transperent" ';
 $btn_hover .='data-iconbghovercolor="transperent" ';
@@ -524,21 +547,21 @@ $btn_hover .='data-iconhoverborder="transperent" ';
 }
 else{
 
-$btn_hover .='data-iconbgcolor="'.$icon_color_bg.'" ';
-$btn_hover .='data-iconbghovercolor="'.$icon_color_hoverbg.'" ';
-$btn_hover .='data-iconborder="'.$icon_color_border.'" ';
-$btn_hover .='data-iconhoverborder="'.$icon_color_hoverborder.'" ';
+$btn_hover .='data-iconbgcolor="'.esc_attr($icon_color_bg).'" ';
+$btn_hover .='data-iconbghovercolor="'.esc_attr($icon_color_hoverbg).'" ';
+$btn_hover .='data-iconborder="'.esc_attr($icon_color_border).'" ';
+$btn_hover .='data-iconhoverborder="'.esc_attr($icon_color_hoverborder).'" ';
 }
 
 
 /*----------for btn2 hover------------*/
 $btn2_hover='';
-$btn2_hover .='data-bgcolor="'.$btn2_background_color.'" ';
-$btn2_hover .='data-bghovercolor="'.$btn2_bghovercolor.'" ';
-$btn2_hover .='data-icon_color="'.$btn_icon_color.'" ';
-$btn2_hover .='data-icon_hover_color="'.$btn_iconhover_color.'" ';
-$btn2_hover .='data-textcolor="'.$btn2_text_color.'" ';
-$btn2_hover .='data-texthovercolor="'.$btn2_text_hovercolor.'" ';
+$btn2_hover .='data-bgcolor="'.esc_attr($btn2_background_color).'" ';
+$btn2_hover .='data-bghovercolor="'.esc_attr($btn2_bghovercolor).'" ';
+$btn2_hover .='data-icon_color="'.esc_attr($btn_icon_color).'" ';
+$btn2_hover .='data-icon_hover_color="'.esc_attr($btn_iconhover_color).'" ';
+$btn2_hover .='data-textcolor="'.esc_attr($btn2_text_color).'" ';
+$btn2_hover .='data-texthovercolor="'.esc_attr($btn2_text_hovercolor).'" ';
 if($btn_icon_style == 'none'){
 $btn2_hover .='data-iconbgcolor="transperent" ';
 $btn2_hover .='data-iconbghovercolor="transperent" ';
@@ -546,10 +569,10 @@ $btn2_hover .='data-iconborder="transperent" ';
 $btn2_hover .='data-iconhoverborder="transperent" ';
 }
 else{
-$btn2_hover .='data-iconbgcolor="'.$btn_icon_color_bg.'" ';
-$btn2_hover .='data-iconbghovercolor="'.$btn_icon_color_hoverbg.'" ';
-$btn2_hover .='data-iconborder="'.$btn_icon_color_border.'" ';
-$btn2_hover .='data-iconhoverborder="'.$btn_icon_color_hoverborder.'" ';
+$btn2_hover .='data-iconbgcolor="'.esc_attr($btn_icon_color_bg).'" ';
+$btn2_hover .='data-iconbghovercolor="'.esc_attr($btn_icon_color_hoverbg).'" ';
+$btn2_hover .='data-iconborder="'.esc_attr($btn_icon_color_border).'" ';
+$btn2_hover .='data-iconhoverborder="'.esc_attr($btn_icon_color_hoverborder).'" ';
 }
 
 //echo $btn_hover_style;
@@ -557,12 +580,12 @@ $btn2_hover .='data-iconhoverborder="'.$btn_icon_color_hoverborder.'" ';
 /*--- main button border-----*/
 $mainbtn='';
 if($btn_hover_style == ''){
-$mainbtn .= 'data-bcolor="'.$btn_color_border.'"';
-$mainbtn .= 'data-bhcolor="'.$btn_color_border.'"';
+$mainbtn .= 'data-bcolor="'.esc_attr($btn_color_border).'"';
+$mainbtn .= 'data-bhcolor="'.esc_attr($btn_color_border).'"';
 }
 else{
-$mainbtn .= 'data-bcolor="'.$btn_color_border.'"';
-$mainbtn .= 'data-bhcolor="'.$btn_color_hoverborder.'"';
+$mainbtn .= 'data-bcolor="'.esc_attr($btn_color_border).'"';
+$mainbtn .= 'data-bhcolor="'.esc_attr($btn_color_hoverborder).'"';
 }
 
  $icon_align;
@@ -588,35 +611,35 @@ if($iconoutput2==''){
 //echo $btn_width;
 		$subop='';
 		$subop .='
-			<div class="ult_dual_button to-'.$btn_alignment.'  '.$extraclass.'"  '.$resp_data.' id="'.$id.'">
+			<div class="ult_dual_button '.esc_attr($dual_design_style_css).' '.esc_attr($is_vc_49_plus).' to-'.esc_attr($btn_alignment).'  '.esc_attr($extraclass).'"  '.$resp_data.' id="'.esc_attr($id).'">
 
-			<div class="ulitmate_dual_buttons '.$hoverstyle.' ult_main_dualbtn " '.$mainbtn.'>
+			<div id="'.esc_attr($dual_btn_id).'" class="ulitmate_dual_buttons '.esc_attr($hoverstyle).' ult_main_dualbtn " '.$mainbtn.'>
 
 			<div class="ult_dualbutton-wrapper btn-inline place-template bt1 ">';
 			$is_no_icon_first = (trim($iconoutput) === '') ? 'ult-dual-btn-no-icon' : '';
 			if($icon_align=='right')
 			{
-			$subop .='<a href = "'.$url1.'" '.$target.' class="ult_ivan_button   round-square  with-icon icon-after with-text place-template ult_dual1" style=" '.$icon1_lineht2.';margin-right:px;'.$size.';'.$btncolor_style.$button1_bstyle.'; '.$btnmain_style.';">
-			<span class="ult-dual-btn-1 ' .$btn_hover_style. '" style=""  '.$btn_hover.'>
+			$subop .='<a '. Ultimate_VC_Addons::uavc_link_init($url1, $target1, $link_title1, $rel1 ).' class="ult_ivan_button round-square with-icon icon-after with-text place-template ult_dual1" style="'.esc_attr($icon1_lineht2).';margin-right:px;'.esc_attr($size).';'.esc_attr($btncolor_style).esc_attr($button1_bstyle).'; '.esc_attr($btnmain_style).';">
+			<span class="ult-dual-btn-1 ' .esc_attr($btn_hover_style). '" style=""  '.$btn_hover.'>
 
-			<span class="text-btn ult-dual-button-title title_left" style="'.$title1_style.'">'.$button1_text.'</span>
-			<span class="icon-simple icon-right1 ult_btn1span '.$is_no_icon_first.'"  style="'.$icnsize1.';'.$emptyicon.' ">'.$iconoutput.'</span
+			<span class="text-btn ult-dual-button-title title_left ult-responsive " '.$data_list1.'  style="'.esc_attr($title1_style).'">'.esc_html($button1_text).'</span>
+			<span class="icon-simple icon-right1 ult_btn1span '.esc_attr($is_no_icon_first).'"  style="'.esc_attr($icnsize1).';'.esc_attr($emptyicon).' ">'.$iconoutput.'</span
 			</span>
 			</a>';
 			}
 			else{
 
-			$subop .='<a href = "'.$url1.'" '.$target.'class="ult_ivan_button   round-square  with-icon icon-before with-text place-template ult_dual1" style="'.$icon1_lineht2.';margin-right:px;'.$size.';'.$btncolor_style.$button1_bstyle.'; '.$btnmain_style.';">
-			<span class="ult-dual-btn-1 ' .$btn_hover_style. '" style=""  '.$btn_hover.'>
-			<span class="icon-simple icon-left1 ult_btn1span '.$is_no_icon_first.'"  style="'.$icnsize1.';'.$emptyicon.' ">'.$iconoutput.'</span>
-			<span class="text-btn ult-dual-button-title" style="'.$title1_style.'">'.$button1_text.'</span>
+			$subop .='<a '. Ultimate_VC_Addons::uavc_link_init($url1, $target1, $link_title1, $rel1 ).' class="ult_ivan_button round-square with-icon icon-before with-text place-template ult_dual1" style="'.esc_attr($icon1_lineht2).';margin-right:px;'.esc_attr($size).';'.esc_attr($btncolor_style).esc_attr($button1_bstyle).'; '.esc_attr($btnmain_style).';">
+			<span class="ult-dual-btn-1 ' .esc_attr($btn_hover_style). '" style=""  '.$btn_hover.'>
+			<span class="icon-simple icon-left1 ult_btn1span '.esc_attr($is_no_icon_first).'"  style="'.esc_attr($icnsize1).';'.esc_attr($emptyicon).' ">'.$iconoutput.'</span>
+			<span class="text-btn ult-dual-button-title ult-responsive" '.$data_list1.' style="'.esc_attr($title1_style).'">'.esc_html($button1_text).'</span>
 
 			</span>
 			</a>';
 			}
 
 
-		$subop .='<span class="middle-text" style="'.$text_style.'">
+		$subop .='<span class="middle-text" style="'.esc_attr($text_style).'">
 			<span class="middle-inner"  >'.$text.'</span>
 			</span>
 
@@ -626,23 +649,21 @@ if($iconoutput2==''){
 			$is_no_icon = (trim($iconoutput2) === '') ? 'ult-dual-btn-no-icon' : '';
 			if($btn2_icon_align=='right')
 			{
-			$subop .='<a href = "'.$url2.'" '.$target1.' class="ult_ivan_button   round-square  with-icon icon-after with-text place-template ult_dual2"  style="'.$icon2_lineht2.';'.$btncolor1_style.$button2_bstyle.';margin-left:px;'.$size.';'.$btnmain_style.'">
-			<span class="ult-dual-btn-2 ' .$btn_hover_style. '"  '.$btn2_hover.'>
-			<span class="text-btn ult-dual-button-title" style="'.$title2_style.'">'.$button2_text.'</span>
+			$subop .='<a '. Ultimate_VC_Addons::uavc_link_init($url2, $target2, $link_title2, $rel2 ).' class="ult_ivan_button round-square with-icon icon-after with-text place-template ult_dual2"  style="'.esc_attr($icon2_lineht2).';'.esc_attr($btncolor1_style).esc_attr($button2_bstyle).';margin-left:px;'.esc_attr($size).';'.esc_attr($btnmain_style).'">
+			<span class="ult-dual-btn-2 ' .esc_attr($btn_hover_style). '"  '.$btn2_hover.'>
+			<span class="text-btn ult-dual-button-title" style="'.esc_attr($title2_style).'">'.esc_html($button2_text).'</span>
 
-			<span class="icon-simple icon-right2 ult_btn1span '.$is_no_icon.'"  style="'.$icnsize2.';'.$emptyicon1.' ">'.$iconoutput2.'</span>
+			<span class="icon-simple icon-right2 ult_btn1span '.esc_attr($is_no_icon).'"  style="'.esc_attr($icnsize2).';'.esc_attr($emptyicon1).' ">'.$iconoutput2.'</span>
 			</span>
 			</a>';
 		  }
 		  else{
 
-		  	$subop .='<a href = "'.$url2.'" '.$target1.' class="ult_ivan_button   round-square  with-icon icon-before with-text place-template ult_dual2"  style="'.$icon2_lineht2.';'.$btncolor1_style.$button2_bstyle.';margin-left:-0px;'.$size.'; '.$btnmain_style.'">
-			<span class="ult-dual-btn-2 ' .$btn_hover_style. '"  '.$btn2_hover.'>
+		  	$subop .='<a '. Ultimate_VC_Addons::uavc_link_init($url2, $target2, $link_title2, $rel2 ).' class="ult_ivan_button   round-square  with-icon icon-before with-text place-template ult_dual2"  style="'.esc_attr($icon2_lineht2).';'.esc_attr($btncolor1_style).esc_attr($button2_bstyle).';margin-left:-0px;'.esc_attr($size).'; '.esc_attr($btnmain_style).'">
+			<span class="ult-dual-btn-2 ' .esc_attr($btn_hover_style). '"  '.$btn2_hover.'>
 
-			<span class="icon-simple icon-left2 ult_btn1span '.$is_no_icon.'"  style="'.$icnsize2.';'.$emptyicon1.' ">'.$iconoutput2.'</span>
-			<span class="text-btn ult-dual-button-title title_right" style="'.$title2_style.'">'.$button2_text.'</span>
-
-
+			<span class="icon-simple icon-left2 ult_btn1span '.esc_attr($is_no_icon).'"  style="'.esc_attr($icnsize2).';'.esc_attr($emptyicon1).' ">'.$iconoutput2.'</span>
+			<span class="text-btn ult-dual-button-title title_right" style="'.esc_attr($title2_style).'">'.esc_html($button2_text).'</span>
 			</span>
 			</a>';
 
@@ -651,9 +672,25 @@ if($iconoutput2==''){
 			</div>
 			</div>';
 
-		return 	$subop ;
+			$is_preset = false; //Retrieve preset Code
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$subop .= '<pre>';
+				$subop .= $text;
+				$subop .= '</pre>'; // remove backslash once copied
+			}
 
-
+		return 	$subop;
 
 		}
 
@@ -689,24 +726,54 @@ if($iconoutput2==''){
 								"description" => __("Select the Hover style for Button.","ultimate_vc"),
 
 							),
+							// array(
+							// 	"type" => "number",
+							// 	"param_name" => "title_font_size",
+							// 	"heading" => __("Text Font size","ultimate_vc"),
+							// 	"value" => "",
+							// 	"suffix" => "px",
+							// 	'edit_field_class' => 'vc_column vc_col-sm-4',
+							// ),
 							array(
-								"type" => "number",
-								"param_name" => "title_font_size",
-								"heading" => __("Text Font size","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								'edit_field_class' => 'vc_column vc_col-sm-4',
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Text Font size", 'ultimate_vc'),
+                                "param_name" => "title_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                            ),
 
+							// array(
+							// 	"type" => "number",
+							// 	"param_name" => "title_line_ht",
+							// 	"heading" => __("Text Line Height","ultimate_vc"),
+							// 	"value" => "",
+							// 	"suffix" => "px",
+							// 	'edit_field_class' => 'vc_column vc_col-sm-4',
+
+							// ),
 							array(
-								"type" => "number",
-								"param_name" => "title_line_ht",
-								"heading" => __("Text Line Height","ultimate_vc"),
-								"value" => "",
-								"suffix" => "px",
-								'edit_field_class' => 'vc_column vc_col-sm-4',
-
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Text Line Height", 'ultimate_vc'),
+                                "param_name" => "title_line_ht",
+                                "unit" => "px",
+                                "media" => array(
+                                    /*"Large Screen"      => '',*/
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                            ),
 							array(
 								"type" => "number",
 								"class" => "",
@@ -899,7 +966,7 @@ if($iconoutput2==''){
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 								"group" => "Button1",
 							),
@@ -1003,7 +1070,7 @@ if($iconoutput2==''){
 								"param_name" => "icon_border_style",
 								"value" => array(
 									"Solid"=> "solid",
-									/*"None"=> "",*/
+									"None"=> "",
 									"Dashed" => "dashed",
 									"Dotted" => "dotted",
 									"Double" => "double",
@@ -1188,7 +1255,7 @@ if($iconoutput2==''){
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "btn_icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "btn_icon_type","value" => array("selector")),
 								"group" => "Button2",
 							),
@@ -1442,7 +1509,7 @@ if($iconoutput2==''){
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "divider_icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "divider_style","value" => array("icon")),
 								"group" => "Divider",
 							),
@@ -1535,7 +1602,7 @@ if($iconoutput2==''){
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Title Font Family", "ultimate_vc"),
 								"param_name" => "btn1_font_family",
-								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=ultimate-font-manager' target='_blank'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-google-font-manager' target='_blank' rel='noopener'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography",
 								),
 
@@ -1583,7 +1650,7 @@ if($iconoutput2==''){
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Title Font Family", "ultimate_vc"),
 								"param_name" => "btn2_font_family",
-								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=ultimate-font-manager' target='_blank'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice. ","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-google-font-manager' target='_blank' rel='noopener'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography",
 								),
 
@@ -1616,8 +1683,13 @@ if($iconoutput2==''){
 								"group" => "Typography",
 
 							),
-
-
+							array(
+					            'type' => 'css_editor',
+					            'heading' => __( 'Css', 'ultimate_vc' ),
+					            'param_name' => 'css_dualbtn_design',
+					            'group' => __( 'Design ', 'ultimate_vc' ),
+					            'edit_field_class' => 'vc_col-sm-12 vc_column no-vc-background no-vc-border creative_link_css_editor',
+					        ),
 						),
 					)
 				);
@@ -1632,7 +1704,7 @@ if(class_exists('AIO_Dual_Button'))
 
 
 }
-if(class_exists('WPBakeryShortCode'))
+if(class_exists('WPBakeryShortCode') && !class_exists('WPBakeryShortCode_ult_dualbutton'))
 {
 	class WPBakeryShortCode_ult_dualbutton extends WPBakeryShortCode {
 	}

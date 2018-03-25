@@ -6,27 +6,20 @@
 if(!class_exists('Ultimate_Video_Banner')) {
 	class Ultimate_Video_Banner {
 		function __construct() {
-			add_action('init',array($this,'ultimate_video_banner_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ultimate_video_banner_init'));
+			}
 			add_shortcode('ultimate_video_banner',array($this,'ultimate_video_banner_shortcode'));
 			add_action("wp_enqueue_scripts", array($this, "register_video_banner_assets"),1);
 		}
-		
+
 		function register_video_banner_assets() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style('ultimate-video-banner-style',plugins_url($css_path.'video-banner'.$ext.'.css',__FILE__),array(),ULTIMATE_VERSION);
-			wp_register_script('ultimate-video-banner-script',plugins_url($js_path.'video-banner'.$ext.'.js',__FILE__),array('jquery'),ULTIMATE_VERSION);
+			
+			Ultimate_VC_Addons::ultimate_register_style( 'ultimate-video-banner-style', 'video-banner' );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ultimate-video-banner-script', 'video-banner', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 		}
-		
+
 		function ultimate_video_banner_init() {
 			if(function_exists('vc_map')) {
 				vc_map(
@@ -47,7 +40,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 								'type' => 'textfield',
 								'heading' => __('Link to the video in WebM / Ogg Format','ultimate_vc'),
 								'param_name' => 'video_banner_webm_ogg_link',
-								'description' => __('IE, Chrome & Safari','ultimate_vc').' <a href="http://www.w3schools.com/html/html5_video.asp" target="_blank">'.__('support','ultimate_vc').'</a> '.__('MP4 format, while Firefox & Opera prefer WebM / Ogg formats.','ultimate_vc').' '.__('You can upload the video through','ultimate_vc').' <a href="'.home_url().'/wp-admin/media-new.php" target="_blank">'.__('WordPress Media Library','ultimate_vc').'</a>.',
+								'description' => __('IE, Chrome & Safari','ultimate_vc').' <a href="http://www.w3schools.com/html/html5_video.asp" target="_blank" rel="noopener">'.__('support','ultimate_vc').'</a> '.__('MP4 format, while Firefox & Opera prefer WebM / Ogg formats.','ultimate_vc').' '.__('You can upload the video through','ultimate_vc').' <a href="'.home_url().'/wp-admin/media-new.php" target="_blank" rel="noopener">'.__('WordPress Media Library','ultimate_vc').'</a>.',
 							),
 							array(
 								'type' => 'ult_img_single',
@@ -95,7 +88,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "ultimate_vc"),
 								"param_name" => "title_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography"
 							),
 							array(
@@ -142,7 +135,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "ultimate_vc"),
 								"param_name" => "desc_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography"
 							),
 							array(
@@ -231,7 +224,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 				);
 			}
 		}
-		
+
 		function ultimate_video_banner_shortcode($atts, $content = null) {
 			extract(
 				shortcode_atts(
@@ -262,11 +255,11 @@ if(!class_exists('Ultimate_Video_Banner')) {
 				)
 			);
 			$output = $placeholder = $placeholder_css = $vc_css_class = '';
-			
+
 			$vc_css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $video_banner_vc_css, ' ' ), 'ultimate_video_banner', $atts );
-			
+
 			$video_id = 'ult-video-banner-'.uniqid(rand());
-			
+
 			$args = array(
 		  		'target'		=>	'#'.$video_id,
 		  		'media_sizes' 	=> array(
@@ -274,7 +267,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 				),
 		  	);
 			$banner_height_responsive_data = get_ultimate_vc_responsive_media_css($args);
-			
+
 			if(preg_match('/^#[a-f0-9]{6}$/i', $video_banner_overlay_color)) //hex color is valid
 			{
 				$video_banner_overlay_color = hex2rgbUltParallax($video_banner_overlay_color, $opacity = 0.8);
@@ -283,7 +276,7 @@ if(!class_exists('Ultimate_Video_Banner')) {
 			{
 				$video_banner_overlay_hover_color = hex2rgbUltParallax($video_banner_overlay_hover_color, $opacity = 0.4);
 			}
-			
+
 			/* ---- main heading styles ---- */
 			$title_style_inline = '';
 			if($title_font_family != '')
@@ -297,13 +290,13 @@ if(!class_exists('Ultimate_Video_Banner')) {
 			//attach font size if set
 			if($title_font_size != '')
 				$title_style_inline .= 'font-size:'.$title_font_size.'px;';
-			//attach font color if set	
+			//attach font color if set
 			if($title_color != '')
 				$title_style_inline .= 'color:'.$title_color.';';
 			//line height
 			if($title_line_height != '')
 				$title_style_inline .= 'line-height:'.$title_line_height.'px;';
-				
+
 			/* ---- description styles ---- */
 			$desc_style_inline = '';
 			if($desc_font_family != '')
@@ -317,34 +310,34 @@ if(!class_exists('Ultimate_Video_Banner')) {
 			//attach font size if set
 			if($desc_font_size != '')
 				$desc_style_inline .= 'font-size:'.$desc_font_size.'px;';
-			//attach font color if set	
+			//attach font color if set
 			if($desc_color != '')
 				$desc_style_inline .= 'color:'.$desc_color.';';
 			//line height
 			if($desc_line_height != '')
 				$desc_style_inline .= 'line-height:'.$desc_line_height.'px;';
-				
+
 			if($video_banner_placeholder != '')
 
 			{
 				$img_info = apply_filters('ult_get_img_single', $video_banner_placeholder, 'url', 'full');
 
 				$placeholder = $img_info;
-				$placeholder_css = 'background-image:url('.$placeholder.');';
+				$placeholder_css = 'background-image:url('.esc_url( $placeholder ).');';
 			}
-			
-			$output = '<div id="'.$video_id.'" class="'.$vc_css_class.' ult-video-banner ult-vdo-effect '.$video_banner_effect.' utl-video-banner-item ult-responsive" '.$banner_height_responsive_data.' data-current-time="'.$video_banner_start_time.'" data-placeholder="'.$placeholder.'" style="'.$placeholder_css.'">';
+
+			$output = '<div id="'.esc_attr($video_id).'" class="'.esc_attr($vc_css_class).' ult-video-banner ult-vdo-effect '.esc_attr($video_banner_effect).' utl-video-banner-item ult-responsive" '.$banner_height_responsive_data.' data-current-time="'.esc_attr($video_banner_start_time).'" data-placeholder="'.esc_attr($placeholder).'" style="'.esc_attr($placeholder_css).'">';
 				if($video_banner_mp4_link != '' || $video_banner_webm_ogg_link != '') :
-					$output .= '<video autoplay loop '.$video_banner_mute.' poster="'.$placeholder.'">';
+					$output .= '<video autoplay loop '.$video_banner_mute.' poster="'.esc_attr($placeholder).'">';
 						if($video_banner_mp4_link != '')
-							$output .= '<source src="'.$video_banner_mp4_link.'" type="video/mp4">';
+							$output .= '<source src="'.esc_attr($video_banner_mp4_link).'" type="video/mp4">';
 						if($video_banner_webm_ogg_link != '') :
 							$ext = pathinfo($video_banner_webm_ogg_link);
 							if($ext['extension'] == 'webm')
 								$type = 'webm';
 							else
 								$type = 'ogg';
-							$output .= '<source src="'.$video_banner_webm_ogg_link.'" type="video/'.$type.'">';
+							$output .= '<source src="'.esc_url($video_banner_webm_ogg_link).'" type="video/'.esc_attr($type).'">';
 						endif;
 						$output.= __('Your browser does not support the video tag.','ultimate_vc');
 					$output .= '</video>';
@@ -352,21 +345,21 @@ if(!class_exists('Ultimate_Video_Banner')) {
 				if($video_banner_title != '' || $content != '') :
 					$output .= '<div class="ult-video-banner-desc">';
 						if($video_banner_title != '') :
-							$output .= '<h2 class="ult-video-banner-title" style="'.$title_style_inline.'">'.__($video_banner_title, 'ultimate_vc').'</h2>';
+							$output .= '<h2 class="ult-video-banner-title" style="'.esc_attr($title_style_inline).'">'.__($video_banner_title, 'ultimate_vc').'</h2>';
 						endif;
 						if($video_banner_content != '') :
-							$output .= '<div class="ult-video-banner-content" style="'.$desc_style_inline.'">'.__($video_banner_content, 'ultimate_vc').'</div>';
+							$output .= '<div class="ult-video-banner-content" style="'.esc_attr($desc_style_inline).'">'.__($video_banner_content, 'ultimate_vc').'</div>';
 						endif;
 					$output .= '</div>';
 				endif;
-				$output .= '<div class="ult-video-banner-overlay" data-overlay="'.$video_banner_overlay_color.'" data-overlay-hover="'.$video_banner_overlay_hover_color.'"></div>';
+				$output .= '<div class="ult-video-banner-overlay" data-overlay="'.esc_attr($video_banner_overlay_color).'" data-overlay-hover="'.esc_attr($video_banner_overlay_hover_color).'"></div>';
 			$output .= '</div>';
 			return $output;
 		}
 	}
 }
 $Ultimate_Video_Banner = new Ultimate_Video_Banner;
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ultimate_video_banner' ) ) {
     class WPBakeryShortCode_ultimate_video_banner extends WPBakeryShortCode {
     }
 }

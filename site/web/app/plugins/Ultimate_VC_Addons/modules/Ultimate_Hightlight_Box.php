@@ -6,25 +6,17 @@ if(!class_exists('Ultimate_Highlight_Box'))
 {
 	class Ultimate_Highlight_Box{
 		function __construct(){
-			add_action('init',array($this,'ctaction_init'));
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action('init',array($this,'ctaction_init'));
+			}
 			add_shortcode('ultimate_ctation',array($this,'call_to_action_shortcode'));
 			add_action('wp_enqueue_scripts', array($this, 'register_cta_assets'),1);
 		}
 		function register_cta_assets()
 		{
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-			wp_register_style('utl-ctaction-style',plugins_url($css_path.'highlight-box'.$ext.'.css',__FILE__),array(), ULTIMATE_VERSION);
-			wp_register_script('utl-ctaction-script',plugins_url($js_path.'highlight-box'.$ext.'.js',__FILE__),array('jquery'), ULTIMATE_VERSION);
+			Ultimate_VC_Addons::ultimate_register_style( 'utl-ctaction-style', 'highlight-box' );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'utl-ctaction-script', 'highlight-box', false, array( 'jquery' ), ULTIMATE_VERSION, false );
 		}
 		function ctaction_init(){
 			if(function_exists('vc_map'))
@@ -102,7 +94,7 @@ if(!class_exists('Ultimate_Highlight_Box'))
 									__("Slide Top","ultimate_vc") => "bottom-push",
 									__("Slide Bottom","ultimate_vc") => "top-push",
 								),
-								"description" => __("Use an existing font icon or upload a custom image.", "ultimate_vc"),
+								"description" => __("Select an effect for highlight box.", "ultimate_vc"),
 								"dependency" => Array("element" => "enable_icon", "value" => array("enable_icon_value")),
 								"group" => "Icon"
 							),
@@ -125,7 +117,7 @@ if(!class_exists('Ultimate_Highlight_Box'))
 								"heading" => __("Select Icon ","ultimate_vc"),
 								"param_name" => "icon",
 								"value" => "",
-								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=font-icon-Manager' target='_blank'>".__("add new here","ultimate_vc")."</a>.",
+								"description" => __("Click and select icon of your choice. If you can't find the one that suits for your purpose","ultimate_vc").", ".__("you can","ultimate_vc")." <a href='admin.php?page=bsf-font-icon-manager' target='_blank' rel='noopener'>".__("add new here","ultimate_vc")."</a>.",
 								"dependency" => Array("element" => "icon_type","value" => array("selector")),
 								"group" => "Icon"
 							),
@@ -273,7 +265,7 @@ if(!class_exists('Ultimate_Highlight_Box'))
 								"type" => "ultimate_google_fonts",
 								"heading" => __("Font Family", "ultimate_vc"),
 								"param_name" => "text_font_family",
-								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' href='".admin_url('admin.php?page=ultimate-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
+								"description" => __("Select the font of your choice.","ultimate_vc")." ".__("You can","ultimate_vc")." <a target='_blank' rel='noopener' href='".admin_url('admin.php?page=bsf-google-font-manager')."'>".__("add new in the collection here","ultimate_vc")."</a>.",
 								"group" => "Typography"
 							),
 							array(
@@ -283,15 +275,20 @@ if(!class_exists('Ultimate_Highlight_Box'))
 								"group" => "Typography"
 							),
 							array(
-								"type" => "number",
-								"class" => "font-size",
-								"heading" => __("Font Size", "ultimate_vc"),
-								"param_name" => "text_font_size",
-								"value" => 32,
-								"min" => 10,
-								"suffix" => "px",
-								"group" => "Typography"
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Font size", 'ultimate_vc'),
+                                "param_name" => "text_font_size",
+                                "unit" => "px",
+                                "media" => array(
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography",
+                            ),
 							array(
 								"type" => "colorpicker",
 								"class" => "",
@@ -301,14 +298,20 @@ if(!class_exists('Ultimate_Highlight_Box'))
 								"group" => "Typography"
 							),
 							array(
-								"type" => "number",
-								"class" => "",
-								"heading" => __("Line Height", "ultimate_vc"),
-								"param_name" => "text_line_height",
-								"value" => "",
-								"suffix" => "px",
-								"group" => "Typography"
-							),
+                                "type" => "ultimate_responsive",
+                                "class" => "",
+                                "heading" => __("Line Height", 'ultimate_vc'),
+                                "param_name" => "text_line_height",
+                                "unit" => "px",
+                                "media" => array(
+                                    "Desktop" => '',
+                                    "Tablet" => '',
+                                    "Tablet Portrait" => '',
+                                    "Mobile Landscape" => '',
+                                    "Mobile" => '',
+                                ),
+                                "group" => "Typography",
+                            ),
 							array(
 								"type" => "dropdown",
 								"class" => "",
@@ -371,7 +374,22 @@ if(!class_exists('Ultimate_Highlight_Box'))
 								"heading" => __("Extra class name", "ultimate_vc"),
 								"param_name" => "el_class",
 								"description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "ultimate_vc")
-							)
+							),
+							array(
+						            "type" => "ultimate_spacing",
+						            "heading" => "Margin ",
+						            "param_name" => "highlight_margin",
+						            "mode"  => "margin",                    //  margin/padding
+						            "unit"  => "px",                        //  [required] px,em,%,all     Default all
+						            "positions" => array(                   //  Also set 'defaults'
+						              	"Top" => "",
+						              	"Right" => "",
+						              	"Bottom" => "",
+						              	"Left" => "",
+						            ),
+									 'group' => __( 'Design ', 'ultimate_vc' ),
+									 "description" => __("Add spacing to FlipBox.", "ultimate_vc"),
+						        ),
 						),
 					)
 				);
@@ -381,7 +399,7 @@ if(!class_exists('Ultimate_Highlight_Box'))
 		function call_to_action_shortcode($atts, $content)
 		{
 			//wp_enqueue_script('utl-ctaction-script');
-			$output = $el_class = $style = $data = $text_style_inline = $ctaction_link_html = $icon_inline = $effect = '';
+			$output = $el_class = $style = $data = $text_style_inline = $ctaction_link_html = $icon_inline = $effect = $highlight_margin = $target = $link_title  = $rel = '';
 
 			extract(shortcode_atts( array(
 				'content_alignment' 		=> 'ctaction-text-center',
@@ -414,7 +432,11 @@ if(!class_exists('Ultimate_Highlight_Box'))
 				"icon_size"					=> "32",
 				'effect' 					=> 'right-push',
 				'el_class' 					=> '',
+				'highlight_margin'			=> ''
 			),$atts));
+
+			$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
 
 			$el_class .= ' '.$content_alignment;
 
@@ -428,30 +450,36 @@ if(!class_exists('Ultimate_Highlight_Box'))
 
 			$text_style_inline .= get_ultimate_font_style($text_font_style);
 
-			if($text_font_size != '')
-				$text_style_inline .= 'font-size:'.$text_font_size.'px;';
+			// responsive param
+			if (is_numeric($text_font_size)) {
+                $text_font_size = 'desktop:'.$text_font_size.'px;';
+            }
+            if (is_numeric($text_line_height)) {
+                $text_line_height = 'desktop:'.$text_line_height.'px;';
+            }
+            $highlight_box_id = 'highlight-box-wrap-'.rand(1000, 9999);
+            $highlight_box_args = array(
+                'target' => '#'.$highlight_box_id.
+                '', // set targeted element e.g. unique class/id etc.
+                'media_sizes' => array(
+                    'font-size' => $text_font_size, // set 'css property' & 'ultimate_responsive' sizes. Here $title_responsive_font_size holds responsive font sizes from user input.
+                   	'line-height' => $text_line_height
+                ),
+            );
+            $data_list = get_ultimate_vc_responsive_media_css($highlight_box_args);
 
 			if($text_color != '')
 				$text_style_inline .= 'color:'.$text_color.';';
 
-			if($text_line_height != '')
-				$text_style_inline .= 'line-height:'.$text_line_height.'px;';
-
-			/*$args = array(
-				$text_font_family
-			);
-			enquque_ultimate_google_fonts($args);*/
-			/*end typography */
-
 			if($ctaction_background != '')
 			{
-				$data .= ' data-background="'.$ctaction_background.'" ';
+				$data .= ' data-background="'.esc_attr($ctaction_background).'" ';
 				$text_style_inline .= 'background:'.$ctaction_background.';';
 			}
 			if($ctaction_background_hover != '')
-				$data .= ' data-background-hover="'.$ctaction_background_hover.'" ';
+				$data .= ' data-background-hover="'.esc_attr($ctaction_background_hover).'" ';
 
-			$data .= ' data-override="'.$ctaction_override.'" ';
+			$data .= ' data-override="'.esc_attr($ctaction_override).'" ';
 
 			if($ctaction_padding_top != '')
 				$text_style_inline .= 'padding-top:'.$ctaction_padding_top.'px;';
@@ -462,33 +490,52 @@ if(!class_exists('Ultimate_Highlight_Box'))
 			if($ctaction_padding_right != '')
 				$text_style_inline .= 'padding-right:'.$ctaction_padding_right.'px;';
 
+			$text_style_inline .= $highlight_margin;
+
 			if($ctaction_link != '')
 			{
-				$ctaction_link = vc_build_link($ctaction_link);
-				$url = $ctaction_link['url'];
-				$title = $ctaction_link['title'];
-				$target = $ctaction_link['target'];
+				$href = vc_build_link($ctaction_link);
+
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
 				if($url != '')
 				{
-					if($target != '')
-						$target = 'target="'.$target.'"';
-					$ctaction_link_html = '<a href="'.$url.'" class="ulimate-call-to-action-link" '.$target.'></a>';
+					$ctaction_link_html = '<a class="ulimate-call-to-action-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).'></a>';
 				}
 			}
 
 			if($enable_icon == 'enable_icon_value')
 			{
-				$icon_inline = do_shortcode('[just_icon icon_align="center" icon_type="'.$icon_type.'" icon="'.$icon.'" icon_img="'.$icon_img.'" img_width="'.$img_width.'" icon_size="'.$icon_size.'" icon_color="'.$icon_color.'" icon_style="'.$icon_style.'" icon_color_bg="'.$icon_color_bg.'" icon_color_border="'.$icon_color_border.'"  icon_border_style="'.$icon_border_style.'" icon_border_size="'.$icon_border_size.'" icon_border_radius="'.$icon_border_radius.'" icon_border_spacing="'.$icon_border_spacing.'"]');
+				$icon_inline = do_shortcode('[just_icon icon_align="center" icon_type="'.esc_attr($icon_type).'" icon="'.esc_attr($icon).'" icon_img="'.esc_attr($icon_img).'" img_width="'.esc_attr($img_width).'" icon_size="'.esc_attr($icon_size).'" icon_color="'.esc_attr($icon_color).'" icon_style="'.esc_attr($icon_style).'" icon_color_bg="'.esc_attr($icon_color_bg).'" icon_color_border="'.esc_attr($icon_color_border).'"  icon_border_style="'.esc_attr($icon_border_style).'" icon_border_size="'.esc_attr($icon_border_size).'" icon_border_radius="'.esc_attr($icon_border_radius).'" icon_border_spacing="'.esc_attr($icon_border_spacing).'"]');
 			}
 			else
 				$effect = 'no-effect';
 
-			$output .= '<div class="ultimate-call-to-action '.$el_class.'" style="'.$text_style_inline.'" '.$data.'>';
-				if($icon_inline != '')
-					$output .= '<div class="ultimate-ctaction-icon ctaction-icon-'.$effect.'">'.$icon_inline.'</div>';
-				$output .= '<div class="uvc-ctaction-data uvc-ctaction-data-'.$effect.'">'.$content.'</div>';
-			$output .= $ctaction_link_html.'</div>';
+			$output .= '<div id="'.esc_attr($highlight_box_id).'" '.$data_list.' class="ultimate-call-to-action '.esc_attr($is_vc_49_plus).' '.esc_attr($el_class).' ult-responsive" style="'.esc_attr($text_style_inline).'" '.$data.'>';
 
+				if($icon_inline != '')
+					$output .= '<div class="ultimate-ctaction-icon ctaction-icon-'.esc_attr($effect).'">'.$icon_inline.'</div>';
+				$output .= '<div class="uvc-ctaction-data uvc-ctaction-data-'.esc_attr($effect).' ult-responsive">'.do_shortcode($content).'</div>';
+			$output .= $ctaction_link_html.'</div>';
+			$is_preset = false; //Display settings for Preset
+			if(isset($_GET['preset'])) {
+				$is_preset = true;
+			}
+			if($is_preset) {
+				$text = 'array ( ';
+				foreach ($atts as $key => $att) {
+					$text .= '<br/>	\''.$key.'\' => \''.$att.'\',';
+				}
+				if($content != '') {
+					$text .= '<br/>	\'content\' => \''.$content.'\',';
+				}
+				$text .= '<br/>)';
+				$output .= '<pre>';
+				$output .= $text;
+				$output .= '</pre>';
+			}
 			return $output;
 		}
 	}
@@ -498,7 +545,7 @@ if(class_exists('Ultimate_Highlight_Box'))
 	$Ultimate_Highlight_Box = new Ultimate_Highlight_Box;
 }
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ultimate_ctation' ) ) {
     class WPBakeryShortCode_ultimate_ctation extends WPBakeryShortCode {
     }
 }

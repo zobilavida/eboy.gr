@@ -10,7 +10,7 @@
     position: relative;
     width: 100%;
     padding: 0;
-    margin: 0 auto 30px
+    margin: auto auto 35px auto
 }
 a.ult_a {
     text-align: center;
@@ -39,6 +39,8 @@ a.ult_a {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
     display: flex;
     margin: 0 auto;
     padding: 0;
@@ -53,6 +55,9 @@ a.ult_a {
     -webkit-justify-content: left;
     -moz-justify-content: center;
     -ms-justify-content: center;
+    -webkit-box-pack: left;
+    -moz-box-pack: left;
+    -ms-flex-pack: left;
     justify-content: left
 }
 span.ult_tab_section {
@@ -81,9 +86,6 @@ span.ult_tab_section {
     padding: 10px;
     text-decoration: none;
     -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
     transition: background-color .3s;
 }
 /*---------------style 2---------------*/
@@ -105,14 +107,13 @@ span.ult_tab_section {
     color: inherit;
     background: inherit;
     -webkit-box-shadow: 4px 8px 16px 2px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 4px 8px 16px 2px rgba(0, 0, 0, .2);
     box-shadow: 4px 8px 16px 2px rgba(0, 0, 0, .2);
     border: 0 solid #000;
     -webkit-transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s;
-    -moz-transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s;
-    -o-transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s;
-    -ms-transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s;
+    -webkit-transition: padding .3s ease, margin .3s ease, background-color .3s, -webkit-box-shadow 3s;
+    transition: padding .3s ease, margin .3s ease, background-color .3s, -webkit-box-shadow 3s;
     transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s;
+    transition: padding .3s ease, margin .3s ease, background-color .3s, box-shadow 3s, -webkit-box-shadow 3s;
     -webkit-box-sizing: content-box!important;
     -moz-box-sizing: content-box!important;
     box-sizing: content-box!important
@@ -120,7 +121,6 @@ span.ult_tab_section {
 .ult_tabmenu.style2 li.ult_tab_li:first-child a {
     z-index: 3;
     -webkit-border-top-left-radius: inherit;
-    -moz-border-radius-topleft: inherit;
     border-top-left-radius: inherit
 }
 .ult_tabmenu.style2 li.ult_tab_li:nth-child(2) a {
@@ -132,10 +132,8 @@ ul.ult_tabmenu.style2 span.ult-span-text {
 .ult_tabmenu.style2 liult_tab_li:last-child a {
     z-index: 1;
     -webkit-box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, .2);
     box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, .2);
     -webkit-border-top-right-radius: inherit;
-    -moz-border-radius-topright: inherit;
     border-top-right-radius: inherit
 }
 .ult_tabmenu.style2 li.ult_tab_li a:hover {
@@ -166,6 +164,8 @@ ul.ult_tabmenu.style2 span.ult-span-text {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
     display: flex;
     margin: 0 auto;
     padding: 0;
@@ -180,6 +180,9 @@ ul.ult_tabmenu.style2 span.ult-span-text {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     -ms-justify-content: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center
 }
 .ult_tabmenu.style3>li.ult_tab_li {
@@ -197,9 +200,6 @@ ul.ult_tabmenu.style2 span.ult-span-text {
     text-decoration: none;
     padding: 10px;
     -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
     transition: background-color .3s
 }
 .ult_tabmenu.style3>li.current {
@@ -207,12 +207,10 @@ ul.ult_tabmenu.style2 span.ult-span-text {
 }
 .ult_tabmenu.style3 li.ult_tab_li:first-child {
     -webkit-border-top-left-radius: inherit;
-    -moz-border-radius-topleft: inherit;
     border-top-left-radius: inherit
 }
 .ult_tabmenu.style3 li.ult_tab_li:last-child {
     -webkit-border-top-right-radius: inherit;
-    -moz-border-radius-topright: inherit;
     border-top-right-radius: inherit
 }
 .ult_tabmenu.style3>li.current:after,
@@ -223,11 +221,13 @@ ul.ult_tabmenu.style2 span.ult-span-text {
     content: "";
     position: absolute;
     z-index: -1;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
     box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
     top: 50%;
     bottom: 0;
     left: 5px;
     right: 5px;
+    -webkit-border-radius: 100px/10px;
     border-radius: 100px/10px
 }
 .ult_tabmenu.style3>li.ult_tab_li a:focus,
@@ -256,7 +256,6 @@ span.ult-span-text {
 .ult_tabmenu>li.ult_tab_li .ult_tab_icon,
 .ult_tabmenu>li.ult_tab_li span.ult-span-text {
     -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out
 }
 .ult_tabmenu.style3 li.ult_tab_li:not(:first-child) {
@@ -269,6 +268,8 @@ ul.ult_tabmenu.style1.Style_4 {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
     display: flex;
     margin: 0 auto;
     padding: 0;
@@ -283,15 +284,15 @@ ul.ult_tabmenu.style1.Style_4 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     -ms-justify-content: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center
 }
 ul.ult_tabmenu.style1.Style_4 a.ult_a {
     width: 100%;
     display: inline-block;
     -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
     transition: background-color .3s
 }
 li.ult_tab_li.ult_tab_style_4 {
@@ -299,8 +300,11 @@ li.ult_tab_li.ult_tab_style_4 {
     -webkit-flex: 1;
     -moz-flex: 1;
     -ms-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     flex: 1;
     -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
     flex-basis: auto
 }
 li.ult_tab_style_4 {
@@ -326,6 +330,8 @@ ul.ult_tabmenu.style1.Style_5 {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
     display: flex;
     margin: 0 auto;
     padding: 0;
@@ -340,6 +346,9 @@ ul.ult_tabmenu.style1.Style_5 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     -ms-justify-content: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center
 }
 ul.ult_tabmenu.style1.Style_5 a.ult_a {
@@ -348,15 +357,15 @@ ul.ult_tabmenu.style1.Style_5 a.ult_a {
     position: relative;
     border-left: 1px solid rgba(188, 188, 188, .33)!important;
     -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
     transition: background-color .3s
 }
 li.ult_tab_li.ult_tab_style_5 .ult-span-text,
 ul.ult_tabmenu.style1.Style_5 .ult_tab_icon {
     -webkit-transition: -webkit-transform .3s, all .3s ease-in-out;
-    transition: transform .3s, all .3s ease-in-out
+    -webkit-transition: all .3s ease-in-out, -webkit-transform .3s;
+    transition: all .3s ease-in-out, -webkit-transform .3s;
+    transition: transform .3s, all .3s ease-in-out;
+    transition: transform .3s, all .3s ease-in-out, -webkit-transform .3s
 }
 li.ult_tab_li.ult_tab_style_5:last-child {
     border-right: 1px solid rgba(188, 188, 188, .33)
@@ -366,8 +375,11 @@ li.ult_tab_li.ult_tab_style_5 {
     -webkit-flex: 1;
     -moz-flex: 1;
     -ms-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     flex: 1;
     -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
     flex-basis: auto
 }
 ul.ult_tabmenu.style1.Style_5 span.ult_tab_main {
@@ -391,7 +403,9 @@ li.ult_tab_style_5 a.ult_a:after {
     border-width: 3px;
     border-style: solid;
     -webkit-transition: -webkit-transform .5s;
+    transition: -webkit-transform .5s;
     transition: transform .5s;
+    transition: transform .5s, -webkit-transform .5s;
     -webkit-transform: translate3d(0, 150%, 0);
     transform: translate3d(0, 150%, 0)
 }
@@ -407,6 +421,8 @@ ul.ult_tabmenu.style1.Style_6 {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
     display: flex;
     margin: 0 auto;
     padding: 0;
@@ -421,6 +437,9 @@ ul.ult_tabmenu.style1.Style_6 {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     -ms-justify-content: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center
 }
 ul.ult_tabmenu.style1.Style_6 a.ult_a {
@@ -429,15 +448,15 @@ ul.ult_tabmenu.style1.Style_6 a.ult_a {
     position: relative;
     border-left: 1px solid rgba(188, 188, 188, .33)!important;
     -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
     transition: background-color .3s
 }
 li.ult_tab_li.ult_tab_style_6 .ult-span-text,
 ul.ult_tabmenu.style1.Style_6 .ult_tab_icon {
     -webkit-transition: -webkit-transform .3s, all .3s ease-in-out;
-    transition: transform .3s, all .3s ease-in-out
+    -webkit-transition: all .3s ease-in-out, -webkit-transform .3s;
+    transition: all .3s ease-in-out, -webkit-transform .3s;
+    transition: transform .3s, all .3s ease-in-out;
+    transition: transform .3s, all .3s ease-in-out, -webkit-transform .3s
 }
 li.ult_tab_li.ult_tab_style_6:last-child {
     border-right: 1px solid rgba(188, 188, 188, .33)
@@ -447,8 +466,11 @@ li.ult_tab_li.ult_tab_style_6 {
     -webkit-flex: 1;
     -moz-flex: 1;
     -ms-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     flex: 1;
     -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
     flex-basis: auto
 }
 ul.ult_tabmenu.style1.Style_6 span.ult_tab_main {
@@ -472,7 +494,9 @@ li.ult_tab_style_6 a.ult_a:after {
     border-width: 3px;
     border-style: solid;
     -webkit-transition: -webkit-transform .5s;
+    transition: -webkit-transform .5s;
     transition: transform .5s;
+    transition: transform .5s, -webkit-transform .5s;
     -webkit-transform: translate3d(0, 150%, 0);
     transform: translate3d(0, 150%, 0);
     display: none;
@@ -570,7 +594,7 @@ span.aio-icon.none.icon-top.ult_tab_iconTop {
 @media screen and (min-width: 450px) and (max-width: 650px) {
     span.ult-span-text {
         line-height: 2.5em;
-        font-size: 1em!important
+        font-size: 1em ;
     }
     .ult_tabmenu .aio-icon {
         padding-left: 5px;
@@ -670,29 +694,19 @@ a.ult_a:focus {
 
 .scaleTabname {
     -webkit-transition: all 300ms linear;
-    -moz-transition: all 300ms linear;
-    -ms-transition: all 300ms linear;
-    -o-transition: all 300ms linear;
     transition: all 300ms linear;
     -moz-opacity: 0;
     opacity: 0;
-    -moz-transform: scale(0.05);
     -webkit-transform: scale(0.05);
-    -o-transform: scale(0.05);
     -ms-transform: scale(0.05);
     transform: scale(0.05);
 }
 .scaleTabname2 {
     -webkit-transition: all 300ms linear;
-    -moz-transition: all 300ms linear;
-    -ms-transition: all 300ms linear;
-    -o-transition: all 300ms linear;
     transition: all 300ms linear;
     -moz-opacity: 1;
     opacity: 1;
-    -moz-transform: scale(1.00);
     -webkit-transform: scale(1.00);
-    -o-transform: scale(1.00);
     -ms-transform: scale(1.00);
     transform: scale(1.00);
 }
@@ -713,6 +727,7 @@ a.ult_a:focus {
     -webkit-transition: all 0ms ease;
     transform: translate3d(0, 0, 0);
     -webkit-transform-origin: 590px 50% 0;
+    -webkit-perspective-origin: 590px 50%;
     perspective-origin: 590px 50%;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -732,30 +747,21 @@ a.ult_a:focus {
  }
  .ult_owl-backSlide-out {
      -webkit-animation: backSlideOut 1s both ease;
-     -moz-animation: backSlideOut 1s both ease;
      animation: backSlideOut 1s both ease
  }
  .ult_owl-backSlide-in {
      -webkit-animation: backSlideIn 1s both ease;
-     -moz-animation: backSlideIn 1s both ease;
      animation: backSlideIn 1s both ease
  }
  .ult_owl-backSlideright-out {
      -webkit-animation: backSlideOutRight 1s both ease;
-     -moz-animation: backSlideOutRight 1s both ease;
      animation: backSlideOutRight 1s both ease
  }
  .ult_owl-backSlideright-in {
      -webkit-animation: backSlideInRight 1s both ease;
-     -moz-animation: backSlideInRight 1s both ease;
      animation: backSlideInRight 1s both ease
  }
  @-webkit-keyframes empty {
-     0% {
-         opacity: 1
-     }
- }
- @-moz-keyframes empty {
      0% {
          opacity: 1
      }
@@ -776,25 +782,16 @@ a.ult_a:focus {
          -webkit-transform: translateZ(-500px) translateX(-200%)
      }
  }
- @-moz-keyframes backSlideOut {
-     25% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px)
-     }
-     100%,
-     75% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px) translateX(-200%)
-     }
- }
  @keyframes backSlideOut {
      25% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px);
          transform: translateZ(-500px)
      }
      100%,
      75% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px) translateX(-200%);
          transform: translateZ(-500px) translateX(-200%)
      }
  }
@@ -812,31 +809,20 @@ a.ult_a:focus {
          -webkit-transform: translateZ(0) translateX(0)
      }
  }
- @-moz-keyframes backSlideIn {
-     0%, 25% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px) translateX(200%)
-     }
-     75% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px)
-     }
-     100% {
-         opacity: 1;
-         -moz-transform: translateZ(0) translateX(0)
-     }
- }
  @keyframes backSlideIn {
      0%, 25% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px) translateX(200%);
          transform: translateZ(-500px) translateX(200%)
      }
      75% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px);
          transform: translateZ(-500px)
      }
      100% {
          opacity: 1;
+         -webkit-transform: translateZ(0) translateX(0);
          transform: translateZ(0) translateX(0)
      }
  }
@@ -851,25 +837,16 @@ a.ult_a:focus {
          -webkit-transform: translateZ(-500px) translateX(200%)
      }
  }
- @-moz-keyframes backSlideOutRight {
-     25% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px)
-     }
-     100%,
-     75% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px) translateX(200%)
-     }
- }
  @keyframes backSlideOutRight {
      25% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px);
          transform: translateZ(-500px)
      }
      100%,
      75% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px) translateX(200%);
          transform: translateZ(-500px) translateX(200%)
      }
  }
@@ -887,31 +864,20 @@ a.ult_a:focus {
          -webkit-transform: translateZ(0) translateX(0)
      }
  }
- @-moz-keyframes backSlideInRight {
-     0%, 25% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px) translateX(-200%)
-     }
-     75% {
-         opacity: .5;
-         -moz-transform: translateZ(-500px)
-     }
-     100% {
-         opacity: 1;
-         -moz-transform: translateZ(0) translateX(0)
-     }
- }
  @keyframes backSlideInRight {
      0%, 25% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px) translateX(-200%);
          transform: translateZ(-500px) translateX(-200%)
      }
      75% {
          opacity: .5;
+         -webkit-transform: translateZ(-500px);
          transform: translateZ(-500px)
      }
      100% {
          opacity: 1;
+         -webkit-transform: translateZ(0) translateX(0);
          transform: translateZ(0) translateX(0)
      }
  }

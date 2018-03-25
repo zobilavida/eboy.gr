@@ -1,6 +1,6 @@
 .smile-icon-timeline-wrap {
-    margin-bottom: 50px !important;
-    margin-top: 20px !important;
+    margin-bottom: 35px;
+    margin-top: 20px;
     display: block;
     position: relative;
     z-index: 9;
@@ -22,19 +22,21 @@
     border-right: 1px solid #d0d0d0;
     z-index: -1
 }
-.timeline-line o {
+.timeline-line span:first-child {
     content: "";
     width: 10px;
     height: 10px;
+    -webkit-border-radius: 100%;
     border-radius: 100%;
     background-color: #de5034;
     position: absolute;
     left: -4px
 }
-.timeline-line z {
+.timeline-line span:last-child {
     content: "";
     width: 10px;
     height: 10px;
+    -webkit-border-radius: 100%;
     border-radius: 100%;
     background-color: #de5034;
     position: absolute;
@@ -52,6 +54,7 @@
     line-height: 1.5em;
     z-index: 99;
     position: relative;
+    -webkit-border-radius: 3px;
     border-radius: 3px;
     background-color: #de5034;
     color: #fff
@@ -62,6 +65,7 @@
     margin-bottom: 30px;
     position: relative;
     border: 1px solid #d0d0d0;
+    -webkit-border-radius: 4px;
     border-radius: 4px;
     background: #fcfcfc
 }
@@ -72,18 +76,27 @@
     margin-bottom: 40px
 }
 .timeline-wrapper .timeline-block {
+    width: -webkit-calc(50% - 19px);
     width: calc(50% - 19px);
     margin-bottom: 20px;
     position: relative;
     display: block;
     table-layout: fixed;
     border: 1px solid #d0d0d0;
+    -webkit-border-radius: 4px;
     border-radius: 4px;
     background: #fcfcfc
 }
 .jstime .timeline-block.timeline-post-right {
     margin-left: 40px !important
 }
+.timeline-wrapper .timeline-block.timeline-post-right:not(:first-child) {
+    margin-top: 20px;
+}
+.timeline-wrapper .timeline-block.timeline-post-right:last-child {
+    margin-top: 20px;
+}
+
 .wpb_column .wpb_wrapper .smile-icon-timeline-wrap .timeline-wrapper .timeline-block {
     margin-bottom: 20px
 }
@@ -131,8 +144,10 @@
     line-height: 0;
     display: inline-block;
     vertical-align: top;
+    -webkit-box-shadow: none;
     box-shadow: none;
     border: 0;
+    -webkit-border-radius: 0;
     border-radius: 0;
     max-width: 100%
 }
@@ -145,6 +160,7 @@
     height: 1px;
     background-color: #de5034;
     border: 4px solid #fff;
+    -webkit-border-radius: 500px;
     border-radius: 500px;
     position: absolute;
     top: 32px;
@@ -304,63 +320,72 @@
 .tl-animation-slide-out .timeline-post-left,
 .tl-animation-slide-out .timeline-dot {
     -webkit-transition: -webkit-transform 150ms linear;
-    -moz-transition: -moz-transform 150ms linear;
-    -o-transition: -o-transform 150ms linear;
-    transition: transform 150ms linear
+    transition: -webkit-transform 150ms linear;
+    transition: transform 150ms linear;
+    transition: transform 150ms linear, -webkit-transform 150ms linear
 }
 .tl-animation-slide-out .timeline-post-right:hover {
     -webkit-transform: translateX(3px);
+    -ms-transform: translateX(3px);
     transform: translateX(3px)
 }
 .tl-animation-slide-out .timeline-post-right:hover .timeline-dot {
     -webkit-transform: translateX(-3px);
+    -ms-transform: translateX(-3px);
     transform: translateX(-3px)
 }
 .tl-animation-slide-out .timeline-post-left:hover {
     -webkit-transform: translateX(-3px);
+    -ms-transform: translateX(-3px);
     transform: translateX(-3px)
 }
 .tl-animation-slide-out .timeline-post-left:hover .timeline-dot {
     -webkit-transform: translateX(3px);
+    -ms-transform: translateX(3px);
     transform: translateX(3px)
 }
 .tl-animation-slide-up .timeline-block,
 .tl-animation-slide-up .feat-item {
     -webkit-transition: -webkit-transform 150ms linear;
-    -moz-transition: -moz-transform 150ms linear;
-    -o-transition: -o-transform 150ms linear;
-    transition: transform 150ms linear
+    transition: -webkit-transform 150ms linear;
+    transition: transform 150ms linear;
+    transition: transform 150ms linear, -webkit-transform 150ms linear
 }
 .tl-animation-slide-up .timeline-block:hover,
 .tl-animation-slide-up .feat-item:hover {
     -webkit-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
     transform: translateY(-3px)
 }
 .tl-animation-slide-down .timeline-block,
 .tl-animation-slide-down .feat-item {
     -webkit-transition: -webkit-transform 150ms linear;
-    -moz-transition: -moz-transform 150ms linear;
-    -o-transition: -o-transform 150ms linear;
-    transition: transform 150ms linear
+    transition: -webkit-transform 150ms linear;
+    transition: transform 150ms linear;
+    transition: transform 150ms linear, -webkit-transform 150ms linear
 }
 .tl-animation-slide-down .timeline-block:hover,
 .tl-animation-slide-down .feat-item:hover {
     -webkit-transform: translateY(3px);
+    -ms-transform: translateY(3px);
     transform: translateY(3px)
 }
 .tl-animation-shadow .timeline-block,
 .tl-animation-shadow .feat-item {
     -webkit-transition: box-shadow 300ms linear;
-    -moz-transition: box-shadow 300ms linear;
-    -o-transition: box-shadow 300ms linear;
-    transition: box-shadow 300ms linear
+    -webkit-transition: -webkit-box-shadow 300ms linear;
+    transition: -webkit-box-shadow 300ms linear;
+    transition: box-shadow 300ms linear;
+    transition: box-shadow 300ms linear, -webkit-box-shadow 300ms linear
 }
 .tl-animation-shadow .timeline-block,
 .tl-animation-shadow .feat-item {
+    -webkit-box-shadow: none;
     box-shadow: none
 }
 .tl-animation-shadow .timeline-block:hover,
 .tl-animation-shadow .feat-item:hover {
+    -webkit-box-shadow: 0 0 3px #626262;
     box-shadow: 0 0 3px #626262
 }
 .timeline-block a,
@@ -438,6 +463,7 @@ a .timeline-block {
     }
 }
 .smile-icon-timeline-wrap.csstime .timeline-wrapper .timeline-block {
+    width: -webkit-calc(50% - 19px);
     width: calc(50% - 19px)
 }
 .csstime .timeline-line {

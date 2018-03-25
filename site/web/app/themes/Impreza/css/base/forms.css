@@ -1,0 +1,295 @@
+/* 
+ * Forms
+ */
+
+.w-form-row {
+	margin-bottom: 1rem;
+	}
+.w-form-row.for_submit {
+	margin-bottom: 0;
+	}
+	.w-form-row-label {
+		display: none;
+		margin-bottom: 0.3rem;
+		}
+	.w-form-row.for_captcha .w-form-row-label {
+		display: block;
+		}
+		.w-form-row.for_captcha .w-form-row-label span {
+			display: inline-block;
+			direction: ltr;
+			}
+	.w-form-row-field {
+		position: relative;
+		}
+		.w-form-row-field > input[type="text"],
+		.w-form-row-field > input[type="password"],
+		.w-form-row-field > input[type="email"],
+		.w-form-row-field > textarea,
+		.w-form-row-field > select {
+			padding-left: 2.8rem;
+			}
+		.w-form-row-field:before {
+			display: block;
+			position: absolute;
+			top: 1.4rem;
+			left: 0;
+			font-size: 1.3rem;
+			font-family: fontawesome;
+			text-align: center;
+			width: 2.8rem;
+			opacity: 0.33;
+			pointer-events: none;
+			transform: translateY(-50%);
+			transition: opacity 0.3s, color 0.3s;
+			}
+		.w-form-row.for_log .w-form-row-field:before,
+		.w-form-row.for_name .w-form-row-field:before,
+		.w-form-row.for_author .w-form-row-field:before {
+			content: '\f007';
+			}
+		.w-form-row.for_email .w-form-row-field:before {
+			content: '\f0e0';
+			}
+		.w-form-row.for_phone .w-form-row-field:before {
+			content: '\f095';
+			}
+		.w-form-row.for_comment .w-form-row-field:before,
+		.w-form-row.for_message .w-form-row-field:before {
+			content: '\f040';
+			}
+		.w-form-row.for_url .w-form-row-field:before {
+			content: '\f0c1';
+			}
+		.w-form-row.for_captcha .w-form-row-field:before {
+			content: '\f059';
+			}
+		.w-form-row.for_pwd .w-form-row-field:before {
+			content: '\f023';
+			}
+		.w-form-row.focused .w-form-row-field:before {
+			opacity: 1;
+			}
+		.w-form-row-field-bar {
+			display: none;
+			}
+		.w-form .w-btn {
+			margin: 0;
+			}
+			.w-form .w-btn-label {
+				display: block;
+				transform: translateY(0);
+				transition: transform 0.3s, opacity 0.3s;
+				}
+			.w-form .w-btn.loading .w-btn-label {
+				opacity: 0;
+				transform: translateY(100%);
+				}
+			.w-form .w-btn .g-preloader {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 1.5rem;
+				width: 1.5rem;
+				opacity: 0;
+				transform: translate(-50%,-150%);
+				transition: transform 0.3s, opacity 0.3s;
+				color: inherit;
+				}
+			.w-form .w-btn.loading .g-preloader {
+				opacity: 1;
+				transform: translate(-50%,-50%);
+				}
+	.w-form-row-state {
+		font-size: 0.9rem;
+		line-height: 1.5rem;
+		height: 0;
+		opacity: 0;
+		transition-property: height, padding, opacity;
+		transition-duration: 0.3s;
+		}
+	.w-form-message {
+		font-size: 1.2rem;
+		line-height: 1.5rem;
+		opacity: 0;
+		transition-property: padding, opacity;
+		transition-duration: 0.3s;
+		}
+	.w-form-message.type_success {
+		padding: 0.6rem 0;
+		opacity: 1;
+		color: #4c0;
+		}
+	.w-form-message.type_error {
+		padding: 0.6rem 0;
+		opacity: 1;
+		color: red;
+		}
+		
+/* ALIGN left */
+.w-form.align_left .w-form-row.for_submit {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1rem;
+	}
+.w-form.align_left .w-form-message.type_success {
+	display: inline-block;
+	vertical-align: middle;
+	}
+	
+/* ALIGN right */
+.w-form.align_right {
+	text-align: left;
+	}
+.w-form.align_right .w-form-row.for_submit {
+	float: right;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 1rem;
+	}
+.w-form.align_right .w-form-message.type_success {
+	display: inline-block;
+	vertical-align: middle;
+	}
+
+/* CHECK wrong */
+.w-form-row.check_wrong input,
+.w-form-row.check_wrong textarea,
+.w-form-row.check_wrong select {
+	box-shadow: 0 0 0 2px red;
+	}
+.w-form-row.check_wrong .w-form-row-state {
+	height: 1.5rem;
+	padding-top: 0.3rem;
+	opacity: 1;
+	color: red;
+	}
+	
+/* FOR comments */
+.w-form.for_comments .form-submit input {
+	margin: 0;
+	}
+
+/* FOR protected post */
+.post-password-form p label {
+	font-size: 0;
+	}
+.post-password-form p input[type="password"] {
+	font-size: 1rem;
+	max-width: 20rem;
+	margin-right: 0.5rem;
+	}
+
+/* FOR login */
+.w-form.for_login:after {
+	content: '';
+	display: block;
+	clear: both;
+	}
+.w-form.for_login .w-form-row.for_submit {
+	float: left;
+	margin-right: 1rem;
+	}
+.w-form.for_login .w-form-row.for_submit ~ label {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.9rem;
+	margin-top: 0.6rem;
+	white-space: nowrap;
+	}
+	.w-form.for_login .w-form-row.for_submit ~ label input[type="checkbox"] {
+		vertical-align: middle;
+		}
+.w-form-row.for_links {
+	clear: both;
+	margin: 0;
+	padding-top: 0.6rem;
+	}
+	.w-form-row-link {
+		font-size: 0.9rem;
+		margin-right: 0.6rem;
+		}
+		
+/* Login Widget
+   ========================================================================== */
+.w-profile {
+	padding: 2rem 2rem 1.5rem;
+	text-align: center;
+	border-radius: 0.3rem;
+	border-style: solid;
+	border-width: 2px; /* fixed value */
+	}
+	.w-profile-avatar img {
+		display: block;
+		max-width: 6rem;
+		border-radius: 50%;
+		margin: 0 auto 0.3rem;
+		}
+	.w-profile-name {
+		font-size: 1.2rem;
+		}
+	.w-profile-link.for_user {
+		display: block;
+		margin-bottom: 0.3rem;
+		}
+	.w-profile-link.for_logout {
+		font-size: 0.9rem;
+		line-height: 1.4;
+		vertical-align: top;
+		}
+
+/* Contact Form 7
+   ========================================================================== */
+span.wpcf7-form-control-wrap {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	}
+	.wpcf7-form input[type="text"],
+	.wpcf7-form input[type="password"],
+	.wpcf7-form input[type="email"],
+	.wpcf7-form input[type="url"],
+	.wpcf7-form input[type="tel"],
+	.wpcf7-form input[type="number"],
+	.wpcf7-form input[type="date"],
+	.wpcf7-form textarea,
+	.wpcf7-form select {
+		margin-top: 0.4rem;
+		}
+	.wpcf7-form-control.wpcf7-radio,
+	.wpcf7-form-control.wpcf7-checkbox {
+		display: inline-block;
+		vertical-align: top;
+		padding: 0.6rem 0;
+		}
+	span.wpcf7-list-item {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 1.5rem 0 0;
+		}
+div.wpcf7 img.ajax-loader {
+	margin-left: 1rem;
+	}
+div.wpcf7-response-output {
+	text-align: center;
+	margin: 0;
+	padding: 0.6rem 1rem;
+	border-radius: 0.3rem;
+	}
+span.wpcf7-not-valid-tip {
+	font-size: 0.9rem;
+	}
+
+/* Rounded Corners
+   ========================================================================== */
+.rounded_none .wpcf7-response-output {
+	border-radius: 0 !important;
+	}
+	
+/* Links Hover Underline 
+   ========================================================================== */
+.no-touch .links_underline .w-form-row-link:hover,
+.no-touch .links_underline .w-profile-link.for_user:hover .w-profile-name,
+.no-touch .links_underline .w-profile-link.for_logout:hover {
+	border-bottom: 1px solid;
+	}

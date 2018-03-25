@@ -1,0 +1,233 @@
+/*
+ * Animation
+ */
+
+.animate_start {
+	-webkit-animation-duration: 0.7s;
+			animation-duration: 0.7s;
+	-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+	-webkit-transition-timing-function: cubic-bezier(.78,.13,.15,.86);
+			transition-timing-function: cubic-bezier(.78,.13,.15,.86);
+	}
+	
+/* Fade */
+@keyframes fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+	}
+@-webkit-keyframes fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+	}
+.animate_fade {
+	opacity: 0;
+	}
+.animate_fade.animate_start {
+	-webkit-animation-name: fade;
+			animation-name: fade;
+	opacity: 1;
+	}
+
+/* Appear From Center */
+@keyframes afc {
+	from { opacity: 0; transform: scale(0.2); }
+	to { opacity: 1; transform: scale(1); }
+	}
+@-webkit-keyframes afc {
+	from { opacity: 0; -webkit-transform: scale(0.2); }
+	to { opacity: 1; -webkit-transform: scale(1); }
+	}
+.animate_afc {
+	opacity: 0;
+	}
+.animate_afc.animate_start {
+	-webkit-animation-name: afc;
+			animation-name: afc;
+	opacity: 1;
+	}
+
+/* Appear From Left */
+@keyframes afl {
+	from { opacity: 0; transform: translateX(-3rem); }
+	to { opacity: 1; transform: translateX(0); }
+	}
+@-webkit-keyframes afl {
+	from { opacity: 0; -webkit-transform: translateX(-3rem); }
+	to { opacity: 1; -webkit-transform: translateX(0); }
+	}
+.animate_afl {
+	opacity: 0;
+	}
+.animate_afl.animate_start {
+	-webkit-animation-name: afl;
+			animation-name: afl;
+	opacity: 1;
+	}
+
+/* Appear From Right */
+@keyframes afr {
+	from { opacity: 0; transform: translateX(3rem); }
+	to { opacity: 1; transform: translateX(0); }
+	}
+@-webkit-keyframes afr {
+	from { opacity: 0; -webkit-transform: translateX(3rem); }
+	to { opacity: 1; -webkit-transform: translateX(0); }
+	}
+.animate_afr {
+	opacity: 0;
+	}
+.animate_afr.animate_start {
+	-webkit-animation-name: afr;
+			animation-name: afr;
+	opacity: 1;
+	}
+
+/* Appear From Top */
+@keyframes aft {
+	from { opacity: 0; transform: translateY(-3rem); }
+	to { opacity: 1; transform: translateY(0); }
+	}
+@-webkit-keyframes aft {
+	from { opacity: 0; -webkit-transform: translateY(-3rem); }
+	to { opacity: 1; -webkit-transform: translateY(0); }
+	}
+.animate_aft {
+	opacity: 0;
+	}
+.animate_aft.animate_start {
+	-webkit-animation-name: aft;
+			animation-name: aft;
+	opacity: 1;
+	}
+
+/* Appear From Bottom */
+@keyframes afb {
+	from { opacity: 0; transform: translateY(3rem); }
+	to { opacity: 1; transform: translateY(0); }
+	}
+@-webkit-keyframes afb {
+	from { opacity: 0; -webkit-transform: translateY(3rem); }
+	to { opacity: 1; -webkit-transform: translateY(0); }
+	}
+.animate_afb {
+	opacity: 0;
+	}
+.animate_afb.animate_start {
+	-webkit-animation-name: afb;
+			animation-name: afb;
+	opacity: 1;
+	}
+
+/* Width From Center */
+@keyframes wfc {
+	from { opacity: 0; transform: scaleX(0.01); }
+	to { opacity: 1; transform: scaleX(1); }
+	}
+@-webkit-keyframes wfc {
+	from { opacity: 0; -webkit-transform: scaleX(0.01); }
+	to { opacity: 1; -webkit-transform: scaleX(1); }
+	}
+.animate_wfc {
+	opacity: 0;
+	}
+.animate_wfc.animate_start {
+	-webkit-animation-name: wfc;
+			animation-name: wfc;
+	opacity: 1;
+	}
+
+/* Height From Center */
+@keyframes hfc {
+	from { opacity: 0; transform: scaleY(0.01); }
+	to { opacity: 1; transform: scaleY(1); }
+	}
+@-webkit-keyframes hfc {
+	from { opacity: 0; -webkit-transform: scaleY(0.01); }
+	to { opacity: 1; -webkit-transform: scaleY(1); }
+	}
+.animate_hfc {
+	opacity: 0;
+	}
+.animate_hfc.animate_start {
+	-webkit-animation-name: hfc;
+			animation-name: hfc;
+	opacity: 1;
+	}
+
+/* Animation Delays */
+.d1.animate_start {
+	-webkit-animation-delay: 0.2s;
+			animation-delay: 0.2s;
+	}
+.d2.animate_start {
+	-webkit-animation-delay: 0.4s;
+			animation-delay: 0.4s;
+	}
+.d3.animate_start {
+	-webkit-animation-delay: 0.6s;
+			animation-delay: 0.6s;
+	}
+.d4.animate_start {
+	-webkit-animation-delay: 0.8s;
+			animation-delay: 0.8s;
+	}
+.d5.animate_start {
+	-webkit-animation-delay: 1s;
+			animation-delay: 1s;
+	}
+
+/* Animation Speed */
+.s1.animate_start {
+	-webkit-animation-duration: 0.6s;
+			animation-duration: 0.6s;
+	}
+.s2.animate_start {
+	-webkit-animation-duration: 0.8s;
+			animation-duration: 0.8s;
+	}
+.s3.animate_start {
+	-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+	}
+.s4.animate_start {
+	-webkit-animation-duration: 1.2s;
+			animation-duration: 1.2s;
+	}
+.s5.animate_start {
+	-webkit-animation-duration: 1.4s;
+			animation-duration: 1.4s;
+	}
+
+/* Grid material design reveal */
+.animate_revealgrid .animate_reveal {
+	opacity: 0;
+	}
+
+/* Disable effects */
+.disable_effects .animate_afc,
+.disable_effects .animate_aft,
+.disable_effects .animate_afb,
+.disable_effects .animate_afl,
+.disable_effects .animate_afr,
+.disable_effects .animate_wfc,
+.disable_effects .animate_hfc,
+.disable_effects .animate_rfl,
+.disable_effects .animate_rfr,
+.disable_effects .animate_rfc,
+.disable_effects .animate_revealgrid .animate_reveal,
+.vc_editor.compose-mode .animate_afc,
+.vc_editor.compose-mode .animate_aft,
+.vc_editor.compose-mode .animate_afb,
+.vc_editor.compose-mode .animate_afl,
+.vc_editor.compose-mode .animate_afr,
+.vc_editor.compose-mode .animate_wfc,
+.vc_editor.compose-mode .animate_hfc,
+.vc_editor.compose-mode .animate_rfl,
+.vc_editor.compose-mode .animate_rfr,
+.vc_editor.compose-mode .animate_rfc,
+.vc_editor.compose-mode .animate_revealgrid .animate_reveal {
+	opacity: 1;
+	-webkit-animation: none !important;
+	animation: none !important;
+	}

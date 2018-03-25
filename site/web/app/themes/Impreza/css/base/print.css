@@ -1,0 +1,119 @@
+/*
+ * Print Styles
+ */
+
+@media print {
+*,
+*:before,
+*:after {
+	box-shadow: none !important;
+	text-shadow: none !important;
+	background: transparent !important;
+	color: #000 !important;
+	-webkit-animation: none !important;
+	animation: none !important;
+	}
+a[href^="http"] {
+	text-decoration: underline !important;
+	}
+.l-header,
+.l-sidebar,
+.vc_empty_space,
+.l-footer,
+.l-section.for_blognav,
+.l-section.for_sharing,
+.comment-respond {
+	display: none !important;
+	}
+.l-content {
+	width: 100% !important;
+	}
+.l-titlebar,
+.l-main,
+.l-section {
+	padding: 0 !important;
+	min-height: 0 !important;
+	}
+.l-titlebar-h,
+.l-section-h,
+.l-section.width_full .vc_col-sm-12 .w-tabs-section-content-h {
+	padding: 10mm 0 !important;
+	}
+.w-blog {
+	padding: 0 !important;
+	}
+.w-separator {
+	margin: 2mm 0 !important;
+	}
+.w-portfolio-item-anchor:before {
+	display: none !important;
+	}
+.w-portfolio-item-image {
+	position: static !important;
+	opacity: 1 !important;
+	transform: none !important;
+	}
+.w-portfolio-item-image img {
+	display: block;
+	}
+.w-portfolio-item-meta {
+	padding: 5mm !important;
+	}
+.w-portfolio-item-meta,
+.w-portfolio-item-meta-h,
+.w-portfolio-item-title,
+.w-portfolio-item-text {
+	position: static !important;
+	opacity: 1 !important;
+	transform: none !important;
+	}
+.w-pricing-item-h {
+	border-width: 1px !important;
+	}
+.w-tabs-list {
+	display: none !important;
+	}
+.w-tabs-sections,
+.w-tabs-sections-h,
+.w-tabs-section {
+	position: static !important;
+	height: auto !important;
+	width: auto !important;
+	}
+.w-tabs-section {
+	display: block !important;
+	float: none !important;
+	padding: 0 !important;
+	margin-bottom: 10mm !important;
+	border-top: 1px solid #000 !important;
+	}
+.w-tabs-section-header {
+	display: block !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	}
+.w-tabs-section-control {
+	display: none !important;
+	}
+.w-tabs-section-content {
+	display: block !important;
+	}
+.w-tabs-section-content-h {
+	padding: 0 !important;
+	}
+.woocommerce-Tabs-panel {
+	display: block !important;
+	margin-bottom: 10mm !important;
+	}
+.animate_fade,
+.animate_afc,
+.animate_aft,
+.animate_afb,
+.animate_afl,
+.animate_afr,
+.animate_wfc,
+.animate_hfc,
+.animate_revealgrid .animate_reveal {
+	opacity: 1 !important;
+	}
+}

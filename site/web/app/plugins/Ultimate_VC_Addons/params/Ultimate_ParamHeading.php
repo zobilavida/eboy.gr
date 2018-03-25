@@ -21,12 +21,12 @@ if(!class_exists('Ultimate_ParamHeading_Param'))
 
 		function ult_param_heading_callback($settings, $value)
 		{
-			$dependency = (function_exists('vc_generate_dependencies_attributes')) ? vc_generate_dependencies_attributes($settings) : '';
+			$dependency = '';
 			$param_name = isset($settings['param_name']) ? $settings['param_name'] : '';
 			$class = isset($settings['class']) ? $settings['class'] : '';
 			$text = isset($settings['text']) ? $settings['text'] : '';
-			$output = '<h4 '.$dependency.' class="wpb_vc_param_value '.$class.'">'.$text.'</h4>';
-			$output .= '<input type="hidden" name="'.$settings['param_name'].'" class="wpb_vc_param_value ultimate-param-heading '.$settings['param_name'].' '.$settings['type'].'_field" value="'.$value.'" '.$dependency.'/>';
+			$output = '<h4 '.$dependency.' class="wpb_vc_param_value '.esc_attr( $class ).'">'.$text.'</h4>';
+			$output .= '<input type="hidden" name="'.esc_attr( $settings['param_name'] ).'" class="wpb_vc_param_value ultimate-param-heading '.esc_attr( $settings['param_name'] ).' '. esc_attr( $settings['type'] ).'_field" value="'.esc_attr( $value ).'" '.$dependency.'/>';
 			return $output;
 		}
 

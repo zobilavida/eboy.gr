@@ -1,0 +1,11 @@
+Name,Categories / Tags,Address,City,State,Country,Zip,Phone,Fax,email,website,External URL,description,Operating Hours
+Sample Store 1,"music, video, songs",5300 Sunset Boulevard,Lexington,SC,USA,29072,111111,222222,test@email.com,www.google.com,www.facebook.com,Test Description,9am - 10pm
+Sample Store 2,"software, hardware",205 Buffalo Horn Creek,Gallatin Gateway,MT,USA,59730,44444,55555,test@email.com,www.yahoo.com,www.facebook.com,testing discription,10am - 10pm
+Sample Store 3,,76 SE 3rd Street,Boca Raton,FL,USA,33432,55555,55555,test@email.com,www.yahoo.com,www.facebook.com,testing discription,10am - 10pm
+Sample Store 4,,5300 Lee Street,Skokie,IL,USA,60077,1111,1111,test@email.com,www.google.com,www.facebook.com,discription test,08:00-17:00
+Sample Store 5,,205 Suburban Rd. #6,San Luis Obispo,CA,USA,93401,,,,,,,08:00-24:00
+Sample Store 6,,130 Greenfield Ave.#2,San Anselmo,CA,USA,94960,,,,,,,08:00-14:00
+Sample Store 7,,11161 W. Pico Blvd.,West Los Angeles,CA,USA,90064,,,,,,,10:00-17:00
+Sample Store 8,,4620 Alvarado Canyon Rd,San Diego,CA,USA,92120,,,,,,,08:00-17:00
+Sample Store 9,,143 S. Cedros Ave.,Solana Beach,CA,USA,92075,,,,,,,08:00-17:00
+Sample Store 10,,8910 100St,BC V1J 3X1,Fort St John,Canada,12345,250-785-8135,333-333-333,test@test.com,google.com,www.facebook.com,Store Description Here,9am - 10pm

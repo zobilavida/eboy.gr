@@ -7,18 +7,18 @@
  *
  * @since 0.1.0
  */
- 
+
 ;(function ( $, window, undefined ) {
 
 	/* 	= Image Up loader
-	 *-------------------------------------------------*/ 
+	 *-------------------------------------------------*/
   	var pn = 'ULT_Image_Single',
   	    document = window.document,
   	    defaults = {
   	      add: ".ult_add_image",
   	      remove: "#remove-thumbnail",
   	    };
-	
+
   	function ult( element, options ) {
   	  this.element = element;
 	  this.options = $.extend( {}, defaults, options) ;
@@ -26,8 +26,8 @@
   	  this._name = pn;
 	  this.init();
   	}
-	
-	ult.prototype.save_and_show_image = function(id, url, caption) {
+
+	ult.prototype.save_and_show_image = function(id, url, caption, alt, title, description) {
   		var $t = $(this.element);
 
 		$t.find( '.ult_selected_image_list .inner' )
@@ -37,38 +37,49 @@
 	            .show()
 		        .parent()
 		        .removeClass( 'hidden' );
+		var string = '';
+		string += (id != '') ? 'id^'+id+'|' : '';
+		string += (url != '') ? 'url^'+url+'|' : '';
+		string += (caption != '') ? 'caption^'+caption+'|' : '';
+		string += (alt != '') ? 'alt^'+alt+'|' : '';
+		string += (title != '') ? 'title^'+title+'|' : '';
+		string += (description != '') ? 'description^'+description+'|' : '';
 
-		$t.find('.ult-image_single-value').val( id + '|' + url);
+		if(string.substr(-1) === '|') {
+	        string = string.substr(0, string.length - 1);
+	    }
+
+		$t.find('.ult-image_single-value').val(string);
 		//	show image
 		$t.find( '.ult_selected_image' ).show();
 	};
 
 	/* = {start} wp media uploader
-	 *------------------------------------------------------------------------*/ 
+	 *------------------------------------------------------------------------*/
 	ult.prototype.renderMediaUploader = function() {
 	    'use strict';
-	 
+
 	    var fn, image_data, json;
 	    var self = this;
 	    if ( undefined !== fn ) {
 	        fn.open();
-	        return;	 
+	        return;
 	    }
 
-		fn = wp.media.frames.fn = wp.media({
-			frame:    'post',
-			state:    'insert',
-			library: { type: 'image' },
-			editing:   false,
-			multiple: false,
-		});
-	 	
+		fn = wp.media({
+	      title: 'Select or Upload Image',
+	      button: {
+	        text: 'Use this image'
+	      },
+	      library: { type : 'image' },
+	      multiple: false  // Set to true to allow multiple files to be selected
+	    });
+
 		//	Insert from {SELECT}
-		fn.on( 'insert', function() {
-	
+		fn.on( 'select', function() {
+
 			// console.log(wp.media.string);
-			console.log( wp.media.string );			
-			
+
 	        // Read the JSON data returned from the Media Uploader
 			json = fn.state().get( 'selection' ).first().toJSON();
 
@@ -80,7 +91,10 @@
 			var id 		= json.id || null;
 			var url 	= json.url || null;
 			var caption = json.caption || null;
-			self.save_and_show_image(id, url, caption);
+			var alt		= json.alt || null;
+			var title		= json.title || null;
+			var description	= json.description || null;
+			self.save_and_show_image(id, url, caption, alt, title, description);
 	    });
 
 	 	//	Insert from {URL}
@@ -93,7 +107,10 @@
 			var id 		= null;
 			var caption = embed.caption || null;
 			var url 	= embed.url || null;
-			self.save_and_show_image(id, url, caption);
+			var alt		= embed.alt || null;
+			var title		= embed.title || null;
+			var description	= embed.description || null;
+			self.save_and_show_image(id, url, caption, alt, title, description);
 		});
 
 	    // Now display the actual fn
@@ -116,15 +133,46 @@
 
 			var tm = v.split('|');
 
-			//	Saved Image - ID
-			if( tm[0] != 'undefined' && tm[0] != 'null' ) {
+			var id, url, title, alt, description, caption, old_id, old_url;
+			old_id = tm[0];
+			old_url = tm[1];
 
-				if( !tm[1] ) {
+			jQuery.each(tm, function(i,tmv){
+				if(stripos(tmv, '^') !== false) {
+					var tmva = tmv.split('|');
+					if( Object.prototype.toString.call( tmva ) == '[object Array]' ) {
+						jQuery.each(tmva, function(j,tmvav){
+							var tmvav_array = tmvav.split('^');
+							eval(tmvav_array[0]+' = "'+tmvav_array[1]+'"');
+						});
+					}
+				}
+				else {
+					id = old_id;
+					url = old_url;
+				}
+			});
+
+			// var url = url.split('|');
+			if(typeof url != 'undefined' ) {
+				if( url.indexOf('url:') != -1 ) {
+					url = url.split("url:").pop();
+				}
+				if( url.indexOf('url^') != -1 ) {
+					url = url.split("url^").pop();
+				}
+			}
+
+			//	Saved Image - ID
+			if( typeof id != 'undefined' && id != 'null' ) {
+
+				if( !url ) {
 					// set process
 					$t.find( '.spinner.ult_img_single_spinner').css('visibility', 'visible');
 					var data = {
 						action : 'ult_get_attachment_url',
-						attach_id : parseInt(tm[0]),
+						attach_id : parseInt(id),
+						security: uavc.ult_get_attachment_url
 					}
 					$.post(ajaxurl, data, function(img_url) {
 						$t.find( '.spinner.ult_img_single_spinner').css('visibility', 'hidden');
@@ -134,8 +182,8 @@
 			}
 
 			//	Saved Image - SRC
-			if( tm[1] != 'undefined' && tm[1] != 'null' ) {
-				$t.find( '.ult_selected_image_list .inner' ).children( 'img' ).attr('src', tm[1] );
+			if( typeof url != 'undefined' && url != 'null' ) {
+				$t.find( '.ult_selected_image_list .inner' ).children( 'img' ).attr('src', url );
 				$t.find( '.ult_selected_image' ).show();
 			} else {
 				$t.find( '.ult_selected_image' ).hide();
@@ -149,13 +197,13 @@
 		}
 	};
 	/* = {end} wp media uploader
-	 *------------------------------------------------------------------------*/ 
+	 *------------------------------------------------------------------------*/
 
   	ult.prototype.init = function () {
   		var self = this;
   		var i = self._defaults;
   		var $t = $(self.element);
-  		
+
   		self.renderFeaturedImage( );
   		//	add image
   		$t.find(i.add).click(function(event) {
@@ -171,7 +219,7 @@
   		});
 
   	};
-	
+
   	$.fn[pn] = function ( options ) {
   	  return this.each(function () {
   	    if (!$.data(this, 'plugin_' + pn)) {

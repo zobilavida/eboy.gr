@@ -1,0 +1,100 @@
+/*Button Styles*/
+
+a.btn {
+  position: relative;
+//  padding: 1em 2em;
+  border: none;
+///  text-transform: uppercase;
+  cursor: pointer;
+  color: #fff;
+  font-family: 'Proxima Nova Lt';
+  font-style: normal;
+  font-weight: 300;
+}
+
+a.red {
+  background: rgba(255, 0, 0, .7);
+}
+
+button.blue {
+  background: rgba(0, 102, 255, .7);
+}
+
+
+/*Button Icons*/
+
+button .fa {
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  right: 0.5em;
+  top: 0.8em;
+  font-size: 1.2em;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.btn.active, .btn:active {
+    background-color: $black;
+    background-image: none;
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,.1), 0 1px 7px 1px rgba(0,0,0,.05), 0 2px 7px 0 rgba(0,0,0,.05);
+}
+
+/* Custom */
+.buttonicon_text {
+  font-family: 'Proxima Nova Rg', sans-serif;
+  color: $text_white;
+  font-size: 1.1em;
+    margin-bottom: .5rem;
+}
+
+
+.single-content img {
+	width: 290px;
+	height: 100%;
+	margin: 10px;
+}
+
+
+.filters {
+	width: 100%;
+	text-align: center;
+  position: relative;
+  z-index: 1050;
+  background: transparent;
+}
+
+ul {
+	list-style: none;
+	padding: 20px 0;
+}
+
+li {
+  font-family: 'Proxima Nova Lt', sans-serif;
+	display: inline;
+	padding: 10px 25px;
+
+  font-size: .92em;
+	color: $gray-900;
+  font-weight: 300;
+	font-style: normal;
+	cursor: pointer;
+  	text-transform: uppercase;
+  	letter-spacing: .2em;
+}
+
+li:hover {
+	color: $gray-900;
+}
+
+li.active {
+	color: $black;
+
+	//border: 1px solid #ccc;
+	//border-radius: 15px;
+}
+
+.ico_filter {
+  padding: 1rem;
+}

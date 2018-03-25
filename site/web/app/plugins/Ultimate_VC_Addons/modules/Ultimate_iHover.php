@@ -2,12 +2,13 @@
   if(!class_exists('ULT_iHover')) {
 	class ULT_iHover {
 		function __construct() {
-			
+
+			if ( Ultimate_VC_Addons::$uavc_editor_enable ) {
+				add_action( 'init', array( $this, 'ult_ihover_init' ) );
+			}
 			add_shortcode("ult_ihover",array($this,"ult_ihover_callback"));
 			add_shortcode("ult_ihover_item",array($this,"ult_ihover_item_callback"));
-			
-			add_action( 'init', array( $this, 'ult_ihover_init' ) );
-			
+
 			add_action( 'wp_enqueue_scripts', array( $this, 'ult_ihover_scripts' ), 1 );
 		}
 		function ult_ihover_callback($atts, $content = null){
@@ -16,7 +17,7 @@
 
 		  $glob_gutter_width = $glob_thumb_height_width = $glob_ihover_shape = /* $glob_ihover_effect = $glob_ihover_effectdirection = $glob_ihover_effectscale */  '';
 		  $thumb_height_width = $res_thumb_height_width = $thumb_shape = $el_class = $output = '';
-		  
+
 		  extract( shortcode_atts( array(
 				  'thumb_shape' 			=>	'circle',
 				  'el_class' 				=>	'',
@@ -26,7 +27,8 @@
 				  'align'					=>	'center',
 				  'gutter_width'			=> 	'30',
 			  ), $atts ) );
-		  		  
+		  	$vc_version = (defined('WPB_VC_VERSION')) ? WPB_VC_VERSION : 0;
+			$is_vc_49_plus = (version_compare(4.9, $vc_version, '<=')) ? 'ult-adjust-bottom-margin' : '';
 			  /* 		Shape
 			   *--------------------------------------*/
 			  $shape = '';
@@ -39,30 +41,30 @@
 			  $width = $height = '';
 			  if($thumb_height_width!='') :
 			  		$glob_thumb_height_width = $thumb_height_width;
-					$width = ' data-width="' .$thumb_height_width. '" ';
-					$height = ' data-height="' .$thumb_height_width. '" ';
+					$width = ' data-width="' .esc_attr($thumb_height_width). '" ';
+					$height = ' data-height="' .esc_attr($thumb_height_width). '" ';
 			  endif;
 
 			  /*		Responsive Height/Width
 			   *--------------------------------------*/
 			  $res_width = $res_height = '';
 			  if($responsive_size == 'on' && $res_thumb_height_width!='') {
-			  		$res_width = ' data-res_width="' .$res_thumb_height_width. '" ';
-					$res_height = ' data-res_height="' .$res_thumb_height_width. '" ';
+			  		$res_width = ' data-res_width="' .esc_attr($res_thumb_height_width). '" ';
+					$res_height = ' data-res_height="' .esc_attr($res_thumb_height_width). '" ';
 			  } /*else {
 			  		// 	Set default values for responsive
 					if($thumb_height_width!=''){
-						$res_width = ' data-res_width="' .thumb_height_width. " ';
-						$res_height = ' data-res_height="' .thumb_height_width. " ';
+						$res_width = ' data-res_width="' .esc_attr(thumb_height_width.) " ';
+						$res_height = ' data-res_height="' .esc_attr(thumb_height_width.) " ';
 					}
 			  }*/
-			  
-		  
+
+
 			  /*		Gutter Width
 			   *--------------------------------------*/
 			  if($gutter_width!='') : 	$glob_gutter_width = $gutter_width;
 			  endif;
-		  		  
+
 			  /* 		Extra Class
 			   *--------------------------------------*/
 			  $exClass = '';
@@ -76,12 +78,12 @@
 		  //	If effect-5
 		  //$output 	.= 	'			<div class="ult-ih-spinner"></div>';
 
-		  $output 	.= 	'<div class="ult-ih-container ' .$exClass. ' " >';
-		  $output 	.= 	'	<ul class="ult-ih-list " ' .$shape. '' .$width. '' .$height. '' .$res_width. '' .$res_height. ' style="'.$containerStyle.'">';
-		  $output 	.= 			do_shortcode($content); 
+		  $output 	.= 	'<div class="ult-ih-container '.esc_attr($is_vc_49_plus).' ' .esc_attr($exClass). ' " >';
+		  $output 	.= 	'	<ul class="ult-ih-list " ' .$shape. '' .$width. '' .$height. '' .$res_width. '' .$res_height. ' style="'.esc_attr($containerStyle).'">';
+		  $output 	.= 			do_shortcode($content);
 		  $output 	.= 	'	</ul>';
 		  $output 	.= 	'</div>';
-		  
+
 		  return $output;
 		}
 		function ult_ihover_item_callback($atts, $content = null){
@@ -89,12 +91,13 @@
 		  global $glob_gutter_width;
 		  global $glob_thumb_height_width;
 		  global $glob_ihover_effectdirection;
-		  
+
 		  //	Item
-		  $title_margin = $divider_margin = $description_margin = $spacer_border = $spacer_border_color = $spacer_width = $spacer_border_width = $thumbnail_border_styling = $block_border_color	= $block_border_size = $block_link = $info_color_bg = $effect_direction = $title_text_typography = $title_font = $title_font_style = $title_responsive_font_size = $title_responsive_font_line_height = $title_font_color = $desc_text_typography = $desc_font = $desc_font_style = $desc_font_size = $desc_font_line_height = $desc_font_color = $itemOutput = $title = $itemOutput = '';
+		  $title_margin = $divider_margin = $description_margin = $spacer_border = $spacer_border_color = $spacer_width = $spacer_border_width = $thumbnail_border_styling = $block_border_color = $spinner_top_left_border_color = $spinner_bottom_right_border_color	= $block_border_size = $block_link = $info_color_bg = $effect_direction = $title_text_typography = $title_font = $title_font_style = $title_responsive_font_size = $title_responsive_font_line_height = $title_font_color = $desc_text_typography = $desc_font = $desc_font_style = $desc_font_size = $desc_font_line_height = $desc_font_color = $itemOutput = $title = $itemOutput = $target = $link_title  = $rel = $url  = '';
 		  extract( shortcode_atts( array(
 				  'thumb_img'					=> 	'',
 				  'title'	  					=> 	'',
+				  'heading_tag'					=>	'',
 				  'title_text_typography'		=>	'',
 				  'title_font'					=>	'',
 				  'title_font_style'			=>	'',
@@ -118,6 +121,8 @@
 				  'block_link'					=> 	'',
 				  'thumbnail_border_styling'	=>	'solid',
 				  'block_border_color'			=>	'rgba(255,255,255,0.2)',
+				  'spinner_top_left_border_color'	=>	'#ecab18',
+				  'spinner_bottom_right_border_color'	=>	'#1ad280',
 				  'block_border_size'			=>	'20',
 				  'effect_scale'				=> 	'scale_up',
 				  'effect_top_bottom'			=> 	'top_to_bottom',
@@ -127,7 +132,7 @@
 				  'divider_margin'				=> 	'',
 				  'description_margin'			=> 	'',
 			  ), $atts ) );
-				
+
 			  $content = wpb_js_remove_wpautop($content, true); // fix unclosed/unwanted paragraph tags in $content
 
 			  $info_style 				= '';
@@ -135,9 +140,9 @@
 			  $desc_style 				= '';
 			  $thumbnail_border_style	= '';
 			 // $font_args = array();
-		  
+
 			  if($info_color_bg != '') :		$info_style .= 'background-color: ' .$info_color_bg. '; ';		endif;
-		  
+
 			  if($title_font != '') {
 				  $font_family = get_ultimate_font_family($title_font);
 				  $title_style .= 'font-family:\''.$font_family.'\';';
@@ -145,7 +150,7 @@
 			  }
 			  if($title_font_style != '') { $title_style .= get_ultimate_font_style($title_font_style); }
 			  if($title_font_color != '') { $title_style .= 'color:'.$title_font_color.';'; }
-						  
+
 			  if($desc_font != '') {
 				  $font_family = get_ultimate_font_family($desc_font);
 				  $desc_style .= 'font-family:\''.$font_family.'\';';
@@ -154,7 +159,7 @@
 			  if($desc_font_style != '') { $desc_style .= get_ultimate_font_style($desc_font_style); }
 			  if($desc_font_color != '') { $desc_style .= 'color:'.$desc_font_color.';'; }
 			  //enquque_ultimate_google_fonts($font_args);
-		  
+
 			  $spacer_line_style = $spacer_style = '';
 			  if($spacer_border!=''){
 				  $spacer_line_style .="border-style:".$spacer_border.";";
@@ -170,11 +175,14 @@
 					  $spacer_style .="height:".$spacer_border_width."px;";
 				  }
 			  }
-		  
-			  $thumb_url = '';
+
+			  $thumb_url = $thumb_alt = '';
 			  if($thumb_img != '') {
 
-				  $img 		= apply_filters('ult_get_img_single', $thumb_img, 'url');				
+				  $img 		= apply_filters('ult_get_img_single', $thumb_img, 'url');
+				  $thumb_alt = apply_filters('ult_get_img_single', $thumb_img, 'alt');
+				  if($thumb_alt == '')
+				  	$thumb_alt = 'image';
 				  $thumb_url  = $img;
 			  }
 
@@ -189,18 +197,24 @@
 				  $HeightWidth .= "height: " .$glob_thumb_height_width. "px; ";
 				  $HeightWidth .= "width: " .$glob_thumb_height_width. "px; ";
 			  }
-			  
+
 			  $effect = '';
 			  if($hover_effect!='') :
 				  $effect 			= $hover_effect;
 			  endif;
-
+			  $spinner_border_color = null;
+			  if( $effect =='effect20') {
+			  	if($spinner_top_left_border_color != '') 	: $spinner_border_color.= 'border-top-color: '. $spinner_top_left_border_color.'; border-left-color : '. $spinner_top_left_border_color.'; '; 
+			  	endif;
+			  	if($spinner_bottom_right_border_color != '') 	: $spinner_border_color.= 'border-bottom-color: '. $spinner_bottom_right_border_color.'; border-right-color : '. $spinner_bottom_right_border_color.'; '; 
+			  	endif;
+			  }
 			  $Scale = '';
 			  switch ($effect) {
 				  case 'effect6':	if($effect_scale!='') :  	$Scale = 'ult-ih-' .$effect_scale; 	endif;
 								  break;
 			  }
-		  
+
 			  //	Directions: [left, right, top, bottom]
 			  $Direction = '';
 			  switch ($effect) {
@@ -217,44 +231,46 @@
 				  case 'effect18':	if($effect_direction!='') : $Direction = 'ult-ih-' .$effect_direction;	endif;
 									  break;
 			  }
-		  
+
 			  $TopBottom = '';
 			  switch ($effect) {
 				  case 'effect10':
-		  
+
 				  case 'effect1':
+				  case 'effect20':
 									  if($effect_top_bottom!='') :	$TopBottom = 'ult-ih-' .$effect_top_bottom;		endif;
 									  break;
 			  }
-		  
+
 			  $LeftRight = '';
 			  switch ($effect) {
 				  case 'effect16':
 									  if($effect_left_right!='') :	$LeftRight = 'ult-ih-' .$effect_left_right;		endif;
 									  break;
 			  }
-		  	
+
 			  $GutterMargin = '';
 			  if($glob_gutter_width != '') {
 				  $GutterMargin = 'margin: '.($glob_gutter_width / 2). 'px';
 			  }
-		  
+
 			  $heading_block = $description_block = '';
 			  if($title_margin!='') 		{ 	$heading_block 		.= $title_margin;	}
 			  if($description_margin!='') 	{	$description_block 	.= $description_margin;	}
 			  if($divider_margin!='') 		{	$spacer_style		.= $divider_margin;	}
-		  
-			  $url = '#';
-			  $link_title = $target = '';
+
+
 			  if($block_link !=''){
-				  $href 		= 	vc_build_link($block_link);
-				  $url 			= 	$href['url'];
-				  $link_title	=	'title="'.$href['title'].'" ';
-				  $target		=	'target="'.trim($href['target']).'" ';
+				$href 		= 	vc_build_link($block_link);
+
+				$url 			= ( isset( $href['url'] ) && $href['url'] !== '' ) ? $href['url']  : '';
+				$target 		= ( isset( $href['target'] ) && $href['target'] !== '' ) ? esc_attr( trim( $href['target'] ) ) : '';
+				$link_title 	= ( isset( $href['title'] ) && $href['title'] !== '' ) ? esc_attr($href['title']) : '';
+				$rel 			= ( isset( $href['rel'] ) && $href['rel'] !== '' ) ? esc_attr($href['rel']) : '';
 			  }
-			  
+
 			$item_id = 'ult-ih-list-item-'. rand(1000,9999);
-		  
+
 		  	//responsive font size and line height for title
 		  	$args = array(
 		  		'target'		=>	'#'.$item_id.' .ult-ih-heading',
@@ -264,7 +280,10 @@
 				),
 		  	);
 			$title_responsive = get_ultimate_vc_responsive_media_css($args);
-			
+
+			//Assigning tag to title
+			$heading_tag = ( isset($heading_tag) && trim($heading_tag) != "" ) ? $heading_tag : 'h3';
+
 			//resposnive font size and line height for description
 			$args = array(
 		  		'target'		=>	'#'.$item_id.' .ult-ih-description, #'.$item_id.' .ult-ih-description p',
@@ -274,61 +293,84 @@
 				),
 		  	);
 			$desc_responsive = get_ultimate_vc_responsive_media_css($args);
-		  
-			$itemOutput			.=	'<li id="'.$item_id.'" class="ult-ih-list-item" style="' .$HeightWidth. ' ' .$GutterMargin. '">';
+
+			$itemOutput			.=	'<li id="'.esc_attr($item_id).'" class="ult-ih-list-item" style="' .esc_attr($HeightWidth). ' ' .esc_attr($GutterMargin). '">';
 			if($block_click!='') {
-				$itemOutput 	.= 	'<a class="ult-ih-link" href="' .$url. '" ' .$target. ' ' .$link_title. '><div style="' .$HeightWidth. '" class="ult-ih-item ult-ih-' .$effect. ' ' .$LeftRight.' ' .$Direction. ' ' .$Scale. ' ' .$TopBottom. '">';
+				$itemOutput 	.= 	'<a class="ult-ih-link" '. Ultimate_VC_Addons::uavc_link_init($url, $target, $link_title, $rel ).' ><div style="' .esc_attr($HeightWidth). '" class="ult-ih-item ult-ih-' .esc_attr($effect). ' ' .esc_attr($LeftRight).' ' .esc_attr($Direction). ' ' .esc_attr($Scale). ' ' .esc_attr($TopBottom). '">';
 			} else {
-				$itemOutput 	.= 	'<div style="' .$HeightWidth. '" class="ult-ih-item ult-ih-' .$effect. ' ' .$LeftRight.' ' .$Direction. ' ' .$Scale. ' ' .$TopBottom. /*' ' .$elClass.*/ ' ">';
+				$itemOutput 	.= 	'<div style="' .esc_attr($HeightWidth). '" class="ult-ih-item ult-ih-' .esc_attr($effect). ' ' .esc_attr($LeftRight).' ' .esc_attr($Direction). ' ' .esc_attr($Scale). ' ' .esc_attr($TopBottom).' ">';
+			  }
+
+			  $HeightWidthe20 = /*$elClass =*/ $imgHeight = $imgWidth = '';
+			  if($glob_thumb_height_width != '' && $effect == 'effect20') {
+			  	  $glob_thumb_height_width = $glob_thumb_height_width;	
+				  $HeightWidthe20 .= "height: " .$glob_thumb_height_width. "px; ";
+				  $HeightWidthe20 .= "width: " .$glob_thumb_height_width. "px; ";
 			  }
 
 			  switch ($effect) {
-		  
+
 				  case 'effect8':
 								  $itemOutput 	.= 	'<div class="ult-ih-image-block-container">';
-								  $itemOutput 	.= 	'	<div class="ult-ih-image-block" style="' .$HeightWidth. '">';
-								  $itemOutput 	.= 	'		<div class="ult-ih-wrapper" style="' .$thumbnail_border_style. '"></div>';
-								  $itemOutput	.=	'		<img class="ult-ih-image" src="' .$thumb_url. '" alt="">';
+								  $itemOutput 	.= 	'	<div class="ult-ih-image-block" style="' .esc_attr($HeightWidth). '">';
+								  $itemOutput 	.= 	'		<div class="ult-ih-wrapper" style="' .esc_attr($thumbnail_border_style). '"></div>';
+								  $itemOutput	.=	'		<img class="ult-ih-image" src="' .esc_url(apply_filters('ultimate_images', $thumb_url)). '" alt="'.esc_attr($thumb_alt).'">';
 								  $itemOutput 	.= 	'	</div> ';
 								  $itemOutput 	.= 	'</div>';
 
 								  $itemOutput 	.= 	'<div class="info-container">';
-								  $itemOutput 	.= 	'	<div class="ult-ih-info" style="' .$info_style. '">';
-								  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
+								  $itemOutput 	.= 	'	<div class="ult-ih-info" style="' .esc_attr($info_style). '">';
+								  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $heading_tag, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
 								  $itemOutput 	.= 	'	</div>';
 					  			  $itemOutput 	.= 	'</div>';
 
 					  break;
-		  
+
 				  case 'effect1':
 				  case 'effect5':
 				  case 'effect18':
-		  
-					  $itemOutput 	.= 	'<div class="ult-ih-image-block" style="' .$HeightWidth. '">';
-					  $itemOutput 	.= 	'	<div class="ult-ih-wrapper" style="' .$thumbnail_border_style. '"></div>';
-					  $itemOutput 	.= 	'	<img class="ult-ih-image" src="' .$thumb_url. '" alt="">';
+
+					  $itemOutput 	.= 	'<div class="ult-ih-image-block" style="' .esc_attr($HeightWidth). '">';
+					  $itemOutput 	.= 	'	<div class="ult-ih-wrapper" style="' .esc_attr($thumbnail_border_style). '"></div>';
+					  $itemOutput 	.= 	'	<img class="ult-ih-image" src="' .esc_attr(apply_filters('ultimate_images', $thumb_url)). '" alt="'.esc_attr($thumb_alt).'">';
 					  $itemOutput 	.= 	'</div>';
 
 					  $itemOutput 	.= 	'<div class="ult-ih-info" >';
-					  $itemOutput 	.= 	'	<div class="ult-ih-info-back" style="' .$info_style. '">';
-					  
-					  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
-					  
+					  $itemOutput 	.= 	'	<div class="ult-ih-info-back" style="' .esc_attr($info_style). '">';
+
+					  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $heading_tag, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
+
 					  $itemOutput 	.= 	'	</div>';
 					  $itemOutput 	.= 	'</div>';
 					  break;
-		  
-				  default:
-		  
-					  $itemOutput 	.= 	'<div class="ult-ih-image-block" style="' .$HeightWidth. '">';
-					  $itemOutput 	.= 	'	<div class="ult-ih-wrapper" style="' .$thumbnail_border_style. '"></div>';
-					  $itemOutput 	.= 	'	<img class="ult-ih-image" src="' .$thumb_url. '" alt="">';
+
+				  case 'effect20':
+				  	  $itemOutput 	.= 	'<div class="spinner" style="' .esc_attr($HeightWidthe20). ' ' .esc_attr($spinner_border_color). ' "></div>';
+					  $itemOutput 	.= 	'<div class="ult-ih-image-block">';
+	
+					  $itemOutput 	.= 	'	<img class="ult-ih-image" src="' .esc_attr(apply_filters('ultimate_images', $thumb_url)). '" alt="'.esc_attr($thumb_alt).'">';
 					  $itemOutput 	.= 	'</div>';
 
-					  $itemOutput 	.= 	'<div class="ult-ih-info" style="' .$info_style. '">';
+					  $itemOutput 	.= 	'<div class="ult-ih-info" >';
+					  $itemOutput 	.= 	'	<div class="ult-ih-info-back" style="' .esc_attr($info_style). '">';
+
+					  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $heading_tag, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
+
+					  $itemOutput 	.= 	'	</div>';
+					  $itemOutput 	.= 	'</div>';
+					  break;
+
+				  default:
+
+					  $itemOutput 	.= 	'<div class="ult-ih-image-block" style="' .esc_attr($HeightWidth). '">';
+					  $itemOutput 	.= 	'	<div class="ult-ih-wrapper" style="' .esc_attr($thumbnail_border_style). '"></div>';
+					  $itemOutput 	.= 	'	<img class="ult-ih-image" src="' .esc_url(apply_filters('ultimate_images', $thumb_url)). '" alt="'.esc_attr($thumb_alt).'">';
+					  $itemOutput 	.= 	'</div>';
+
+					  $itemOutput 	.= 	'<div class="ult-ih-info" style="' .esc_attr($info_style). '">';
 					  $itemOutput 	.= 	'	<div class="ult-ih-info-back">';
 
-					  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
+					  $itemOutput 	.= 	$this->commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $heading_tag, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content);
 					  $itemOutput 	.= 	'	</div>';
 					  $itemOutput 	.= 	'</div>';
 					  break;
@@ -341,25 +383,25 @@
 			  	$itemOutput 	.= 	'</div>';
 			  }
 			  $itemOutput 	.= 	'</li>';
-			
+
 		   	return $itemOutput;
 		}
 
-		function commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content) {
+		function commonStructure($desc_responsive, $title_responsive, $heading_block, $title_style, $title, $heading_tag, $spacer_style, $spacer_line_style, $description_block, $desc_style, $content) {
 			$itemOutput = '';
-			
+
 			$itemOutput .='	<div class="ult-ih-content">';
 
-			$itemOutput .='			<div class="ult-ih-heading-block" style="' .$heading_block. '">';
-			$itemOutput .='				<h3 class="ult-ih-heading ult-responsive" style="' .$title_style. '" ' .$title_responsive. '>' .$title. '</h3>';
+			$itemOutput .='			<div class="ult-ih-heading-block" style="' .esc_attr($heading_block). '">';
+			$itemOutput .='				<'.$heading_tag.' class="ult-ih-heading ult-responsive" style="' .esc_attr($title_style). '" ' .$title_responsive. '>' .$title. '</'.$heading_tag.'>';
 			$itemOutput .='			</div>';
 
-			$itemOutput .='			<div class="ult-ih-divider-block" style="' .$spacer_style. '">';
-			$itemOutput .='				<span class="ult-ih-line" style="' .$spacer_line_style. '"></span>';
+			$itemOutput .='			<div class="ult-ih-divider-block" style="' .esc_attr($spacer_style). '">';
+			$itemOutput .='				<span class="ult-ih-line" style="' .esc_attr($spacer_line_style). '"></span>';
 			$itemOutput .='			</div>';
 
-			$itemOutput .='			<div class="ult-ih-description-block" style="' .$description_block. '">';
-			$itemOutput .='				<div class="ult-ih-description ult-responsive" style="' .$desc_style. '" '.$desc_responsive.'>';
+			$itemOutput .='			<div class="ult-ih-description-block" style="' .esc_attr($description_block). '">';
+			$itemOutput .='				<div class="ult-ih-description ult-responsive" style="' .esc_attr($desc_style). '" '.$desc_responsive.'>';
 										if($content!='') {
 			$itemOutput .=					$content;
 										}
@@ -369,7 +411,7 @@
 
 			return $itemOutput; 	//ob_get_clean();
 		}
-		
+
 		function ult_ihover_init() {
 			  //Register "container" content element. It will hold all your inner (child) content elements
 			  if(function_exists("vc_map")){
@@ -418,7 +460,7 @@
 						  	"value" => "",
 						  	"options" => array(
 						  			"on" => array(
-						  					"label" => __("Add responsive size blow 768px.","ultimate_vc"),
+						  					"label" => __("Add responsive size below 768px.","ultimate_vc"),
 						  					"on" => "Yes",
 						  					"off" => "No",
 						  				),
@@ -463,7 +505,7 @@
 					  ),
 					  "js_view" => 'VcColumnView'
 				  ) );
-	  
+
 				  vc_map( array(
 					  "name" => __("iHover Item", "ultimate_vc"),
 					  "base" => "ult_ihover_item",
@@ -484,6 +526,23 @@
 							  "value" => "",
 							  /*"description" => __("Provide the title for the iHover.", 'ultimate')*/
 						  ),
+						  array(
+								"type" => "dropdown",
+								"heading" => __("Tag","ultimate_vc"),
+								"param_name" => "heading_tag",
+								"value" => array(
+									__("Default","ultimate_vc") => "h3",
+									__("H1","ultimate_vc") => "h1",
+									__("H2","ultimate_vc") => "h2",
+									__("H4","ultimate_vc") => "h4",
+									__("H5","ultimate_vc") => "h5",
+									__("H6","ultimate_vc") => "h6",
+									__("Div","ultimate_vc") => "div",
+									__("p","ultimate_vc") => "p",
+									__("span","ultimate_vc") => "span",
+								),
+								"description" => __("Default is H3", "ultimate_vc"),
+								),
 						  array(
 							  "type" => "ult_img_single",
 							  "class" => "",
@@ -530,6 +589,7 @@
 								  __("Effect 17","ultimate_vc") => "effect17",
 								  __("Effect 18","ultimate_vc") => "effect18",
 								  __("Effect 19","ultimate_vc") => "effect19",
+								  __("Effect 20","ultimate_vc") => "effect20",
 								  /*"Effect 20" => "effect20",*/
 							),
 							"description" => __("Select the Hover Effect for iHover.","ultimate_vc"),
@@ -574,7 +634,7 @@
 								__("Bottom to Top","ultimate_vc") => "bottom_to_top",
 							  ),
 							  "description" => __("Select the Hover Effect Direction for iHover.","ultimate_vc"),
-							  "dependency" => Array("element" => "hover_effect", "value" => array("effect10", "effect20")),
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect10")),
 							  /*"group" => "Effects",*/
 						  ),
 						  array(
@@ -601,7 +661,7 @@
 								/*"Image Lightbox" 	=> "image_lightbox",*/
 							  ),
 							 /* "description" => __("Add .", 'ultimate')*/
-						  ),	  
+						  ),
 						  array(
 							  "type" => "vc_link",
 							  "class" => "",
@@ -640,6 +700,16 @@
 							  "value" => "",
 							  "group" => "Design",
 							  'edit_field_class' => 'ult-param-heading-wrapper vc_column vc_col-sm-12',
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect1", "effect2", "effect3", "effect4", "effect5", "effect6", "effect7", "effect8", "effect9", "effect10", "effect11", "effect12", "effect13", "effect14", "effect15", "effect16", "effect17", "effect18", "effect19")),
+						  ),
+						  array(
+							  "type" => "ult_param_heading",
+							  "param_name" => "spinner_border_styling_text",
+							  "text" => __("Spinner Border Styling", "ultimate_vc"),
+							  "value" => "",
+							  "group" => "Design",
+							  'edit_field_class' => 'ult-param-heading-wrapper vc_column vc_col-sm-12',
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect20")),
 						  ),
 						  array(
 							  "type" => "dropdown",
@@ -656,6 +726,7 @@
 								"Outset" => "outset",*/
 							  ),
 							  "description" => __("Select Thumbnail Border Style for iHover.","ultimate_vc"),
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect1", "effect2", "effect3", "effect4", "effect5", "effect6", "effect7", "effect8", "effect9", "effect10", "effect11", "effect12", "effect13", "effect14", "effect15", "effect16", "effect17", "effect18", "effect19")),
 							  "group" => "Design"
 						  ),
 						  array(
@@ -669,6 +740,26 @@
 							  "group" => "Design",
 						  ),
 						  array(
+							  "type" => "colorpicker",
+							  "class" => "",
+							  "heading" => __("Spinner - Top-Left", "ultimate_vc"),
+							  "param_name" => "spinner_top_left_border_color",
+							  "value" => "#ecab18",
+							  "description" => __("Select Spinner - Top-Left Border Color.", "ultimate"),
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect20")),
+							  "group" => "Design",
+						  ),
+						  array(
+							  "type" => "colorpicker",
+							  "class" => "",
+							  "heading" => __("Spinner - Bottom-Right", "ultimate_vc"),
+							  "param_name" => "spinner_bottom_right_border_color",
+							  "value" => "#1ad280",
+							  "description" => __("Select Spinner - Bottom Right Border Color.", "ultimate"),
+							  "dependency" => Array("element" => "hover_effect", "value" => array("effect20")),
+							  "group" => "Design",
+						  ),
+						  array(
 							  "type" => "number",
 							  "class" => "",
 							  "heading" => __("Border Thickness", "ultimate_vc"),
@@ -678,8 +769,8 @@
 							  /*"description" => __("Thickness of the Thumbnail Border.", "ultimate"),*/
 							  "dependency" => array("element" => "thumbnail_border_styling", "value" => "solid" ),
 							  "group" => "Design",
-						  ),	                
-	  
+						  ),
+
 						  //	Divider
 						  array(
 							  "type" => "ult_param_heading",
@@ -703,7 +794,7 @@
 								__("Outset","ultimate_vc") => "outset",
 								__("None","ultimate_vc") => "none",
 							  ),
-							  "description" => __("Select Heading & Description's Divider Border Style.", "ultimate_vc"),  
+							  "description" => __("Select Heading & Description's Divider Border Style.", "ultimate_vc"),
 							  "group" => "Design"
 						  ),
  						  array(
@@ -712,7 +803,7 @@
 							  "heading" => __("Divider - Border Color", "ultimate_vc"),
 							  "param_name" => "spacer_border_color",
 							  "value" => "rgba(255,255,255,0.75)",
-							  "description" => __("Select Divider Border Color.", "ultimate_vc"),  
+							  "description" => __("Select Divider Border Color.", "ultimate_vc"),
 							  "dependency" => array("element" => "spacer_border", "value" => array("solid", "dashed", "dotted", "double", "inset", "outset") ),
 							  "group" => "Design"
 						  ),
@@ -740,7 +831,7 @@
 							  "dependency" => array("element" => "spacer_border", "value" => array("solid", "dashed", "dotted", "double", "inset", "outset") ),
 							  "group" => "Design"
 						  ),
-	  
+
 	  					  array(
 							  "type" => "ult_param_heading",
 							  "param_name" => "thumbnail_spacing_styling_text",
@@ -900,29 +991,20 @@
 		}
 		//     Load plugin css and javascript files which you may need on front end of your site
 		function ult_ihover_scripts() {
-			$bsf_dev_mode = bsf_get_option('dev_mode');
-			if($bsf_dev_mode === 'enable') {
-				$js_path = '../assets/js/';
-				$css_path = '../assets/css/';
-				$ext = '';
-			}
-			else {
-				$js_path = '../assets/min-js/';
-				$css_path = '../assets/min-css/';
-				$ext = '.min';
-			}
-		  	wp_register_style( 'ult_ihover_css', plugins_url($css_path.'ihover'.$ext.'.css',__FILE__) );
-		  	wp_register_script('ult_ihover_js', plugins_url($js_path.'ihover'.$ext.'.js',__FILE__) , array('jquery'), ULTIMATE_VERSION, true);
+			
+			Ultimate_VC_Addons::ultimate_register_style( 'ult_ihover_css', 'ihover' );
+
+			Ultimate_VC_Addons::ultimate_register_script( 'ult_ihover_js', 'ihover', false, array( 'jquery' ), ULTIMATE_VERSION, true );
 		}
 	}
 	// Finally initialize code
 	new ULT_iHover;
-	
-	  if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+
+	  if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_ult_ihover' ) ) {
 			  class WPBakeryShortCode_ult_ihover extends WPBakeryShortCodesContainer {
 		  }
 	  }
-	  if ( class_exists( 'WPBakeryShortCode' ) ) {
+	  if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_ult_ihover_item' ) ) {
 			  class WPBakeryShortCode_ult_ihover_item extends WPBakeryShortCode {
 		  }
 	  }

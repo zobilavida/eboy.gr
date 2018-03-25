@@ -347,16 +347,21 @@ if($slide->isStaticSlide()){
 								</ul>
 								<div style="width:100%;height:1px;display:block"></div>
 
-								<!-- FILTERS IN -->							
+								<!-- FILTERS IDLE -->							
 								<span id="style-sub-filters" class="rs-layer-toolbar-box" style="display:none;border:none;">
-									<!-- BLUR START -->
+									<!-- BLUR IDLE -->
 									<i class="rs-mini-layer-icon fa-icon-spinner rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																	
 									<input data-suffix="px" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  id="blurfilter_idle" name="blurfilter_idle" value="0" data-selects="0||Custom||3||10" data-svalues ="0||5||3||10" data-icons="minus||shuffle||wrench||filter||filter">
 									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 
-									<!-- grayscale START -->
+									<!-- grayscale IDLE -->
 									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
 									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  id="grayscalefilter_idle" name="grayscalefilter_idle" value="0"  data-selects="0||Custom||25%||100%" data-svalues ="0||50||25||100" data-icons="minus||wrench||filter||filter">
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+									<!-- brightness IDLE -->
+									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Brightness",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
+									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("brightness",'revslider'); ?>"  id="brightnessfilter_idle" name="brightnessfilter_idle" value="100"  data-selects="100%||Custom||50%||150%" data-svalues ="100||125||50||150" data-icons="minus||wrench||filter||filter">
 									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 
 									<!-- BLEND MODE -->
@@ -818,14 +823,19 @@ if($slide->isStaticSlide()){
 
 									<!-- FILTERS IN -->							
 								<span id="hover-sub-filters" class="rs-layer-toolbar-box" style="display:none;border:none;">
-									<!-- BLUR START -->
+									<!-- BLUR HOVER -->
 									<i class="rs-mini-layer-icon fa-icon-spinner rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																	
 									<input data-suffix="px" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  id="blurfilter_hover" name="blurfilter_hover" value="0" data-selects="0||Custom||3||10" data-svalues ="0||5||3||10" data-icons="minus||shuffle||wrench||filter||filter">
 									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 
-									<!-- grayscale START -->
+									<!-- grayscale HOVER -->
 									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
 									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  id="grayscalefilter_hover" name="grayscalefilter_hover" value="0"  data-selects="0||Custom||25%||100%" data-svalues ="0||50||25||100" data-icons="minus||wrench||filter||filter">
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+									<!-- brightness HOVER -->
+									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Brightness",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
+									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("brightness",'revslider'); ?>"  id="brightnessfilter_hover" name="brightnessfilter_hover" value="100"  data-selects="100%||Custom||50%||150%" data-svalues ="100||125||50||150" data-icons="minus||wrench||filter||filter">
 									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 									
 								</span>
@@ -1135,6 +1145,7 @@ if($slide->isStaticSlide()){
 									<li data-content="#anim-sub-s-skew"><?php _e("Skew",'revslider'); ?></li>
 									<li data-content="#anim-sub-s-mask"><?php _e("Masking",'revslider'); ?></li>
 									<li data-content="#anim-sub-s-filters"><?php _e("Filters",'revslider'); ?></li>
+									<li data-content="#anim-sub-s-colors"><?php _e("Colors",'revslider'); ?></li>
 									<!--<li data-content="#anim-sub-s-typo"><?php _e("Typo",'revslider'); ?></li>-->
 									<!--<li data-content="#anim-sub-s-shadow"><?php _e("Shadow",'revslider'); ?></li>-->
 									<!--li data-content="#anim-sub-s-origin"><?php _e("Origin",'revslider'); ?></li-->
@@ -1149,6 +1160,31 @@ if($slide->isStaticSlide()){
 								</span>
 								-->
 
+								<!-- COLORS IN -->							
+								<span id="anim-sub-s-colors" class="rs-layer-toolbar-box" style="padding-top:0px;display:none;border:none;">
+									<i class="rs-mini-layer-icon rs-icon-color rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Use Font Color Start",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+									<input type="checkbox" id="use_text_color_start" name="use_text_color_start" class="rs-inoutanimationfield tp-moderncheckbox"/>
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+									<i class="rs-mini-layer-icon rs-icon-bg rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Use BG Color Start",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+									<input type="checkbox" id="use_bg_color_start" name="use_bg_color_start" class="rs-inoutanimationfield tp-moderncheckbox"/>
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+									
+									<span class="use_text_color_wrap_start" style="display:none">
+										<!-- TEXT COLOR START -->																		
+										<i class="rs-mini-layer-icon rs-icon-color rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Font Color Start",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+										<input type="text" class="rs-staticcustomstylechange rs-layer-input-field tipsy_enabled_top my-color-field" title="<?php _e("Text Color From",'revslider'); ?>" style="width:150px" id="text_color_start" name="text_color_start" data-mode="single" value="transparent" />
+										<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+									</span>
+
+									<span class="use_bg_color_wrap_start" style="display:none">
+										<!-- BG COLOR START -->
+										<i class="rs-mini-layer-icon rs-icon-bg rs-toolbar-icon tipsy_enabled_top" title="<?php _e("BG Color Start",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>									
+										<input type="text" class="rs-staticcustomstylechange rs-layer-input-field tipsy_enabled_top my-color-field" title="<?php _e("Text Color From",'revslider'); ?>" style="width:150px" id="bg_color_start" name="bg_color_start" data-mode="single" value="transparent" />
+										<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+									</span>
+								</span>
+
 								<!-- FILTERS IN -->							
 								<span id="anim-sub-s-filters" class="rs-layer-toolbar-box" style="padding-top:0px;display:none;border:none;">
 									<!-- BLUR START -->
@@ -1159,6 +1195,11 @@ if($slide->isStaticSlide()){
 									<!-- grayscale START -->
 									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
 									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  id="grayscalefilter_start" name="grayscalefilter_start" value="0"  data-selects="0||Custom||25%||100%" data-svalues ="0||50||25||100" data-icons="minus||wrench||filter||filter">
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+									<!-- brightness START -->
+									<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Brightness",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
+									<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("brightness",'revslider'); ?>"  id="brightnessfilter_start" name="brightnessfilter_start" value="100"  data-selects="100%||Custom||50%||150%" data-svalues ="100||125||50||150" data-icons="minus||wrench||filter||filter">
 									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 								</span>
 
@@ -1384,6 +1425,7 @@ if($slide->isStaticSlide()){
 								<li data-content="#anim-sub-e-skew"><?php _e("Skew",'revslider'); ?></li>
 								<li data-content="#anim-sub-e-mask"><?php _e("Masking",'revslider'); ?></li>
 								<li data-content="#anim-sub-e-filters"><?php _e("Filters",'revslider'); ?></li>
+								<li data-content="#anim-sub-e-colors"><?php _e("Colors",'revslider'); ?></li>
 								<!--<li data-content="#anim-sub-e-typo"><?php _e("Typo",'revslider'); ?></li>-->
 								<!--<li data-content="#anim-sub-e-shadow"><?php _e("Shadow",'revslider'); ?></li>-->
 								<!--li data-content="#anim-sub-e-origin"><?php _e("Origin",'revslider'); ?></li-->
@@ -1398,17 +1440,46 @@ if($slide->isStaticSlide()){
 								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>									
 							</span>-->
 
+							<!-- COLORS IN -->							
+							<span id="anim-sub-e-colors" class="rs-layer-toolbar-box" style="padding-top:0px;display:none;border:none;">
+								<i class="rs-mini-layer-icon rs-icon-color rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Use Font Color End",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+								<input type="checkbox" id="use_text_color_end" name="use_text_color_end" class="rs-inoutanimationfield tp-moderncheckbox"/>
+								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+								<i class="rs-mini-layer-icon rs-icon-bg rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Use BG Color End",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+								<input type="checkbox" id="use_bg_color_end" name="use_bg_color_end" class="rs-inoutanimationfield tp-moderncheckbox"/>
+								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+								
+								<span class="use_text_color_wrap_end" style="display:none">
+									<!-- TEXT COLOR end -->																		
+									<i class="rs-mini-layer-icon rs-icon-color rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Font Color End",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>
+									<input type="text" class="rs-staticcustomstylechange rs-layer-input-field tipsy_enabled_top my-color-field" title="<?php _e("Text Color From",'revslider'); ?>" style="width:150px" id="text_color_end" name="text_color_end" data-mode="single" value="transparent" />
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+								</span>
+
+								<span class="use_bg_color_wrap_end" style="display:none">
+									<!-- BG COLOR end -->
+									<i class="rs-mini-layer-icon rs-icon-bg rs-toolbar-icon tipsy_enabled_top" title="<?php _e("BG Color End",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>									
+									<input type="text" class="rs-staticcustomstylechange rs-layer-input-field tipsy_enabled_top my-color-field" title="<?php _e("Text Color From",'revslider'); ?>" style="width:150px" id="bg_color_end" name="bg_color_end" data-mode="single" value="transparent" />
+									<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+								</span>
+							</span>
 
 							<!-- FILTERS OUT -->							
 							<span id="anim-sub-e-filters" class="rs-layer-toolbar-box" style="padding-top:0px;display:none;border:none;">
-								<!-- BLUR START -->
+								<!-- BLUR End -->
 								<i class="rs-mini-layer-icon fa-icon-spinner rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																	
 								<input data-suffix="px" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Blur",'revslider'); ?>"  id="blurfilter_end" name="blurfilter_end" value="0" data-selects="0||Custom||3||10||0" data-svalues ="0||5||3||10" data-icons="minus||shuffle||wrench||filter||filter">
 								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 
-								<!-- grayscale START -->
+								<!-- grayscale End -->
 								<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
 								<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Grayscale",'revslider'); ?>"  id="grayscalefilter_end" name="grayscalefilter_end" value="0"  data-selects="0||Custom||25||100" data-svalues ="0||50||25||100" data-icons="minus||wrench||filter||filter">
+								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
+
+								<!-- brightness END -->
+								<i class="rs-mini-layer-icon fa-icon-adjust rs-toolbar-icon tipsy_enabled_top" title="<?php _e("Brightness",'revslider'); ?>"  style="margin-right:8px;font-size:20px;line-height:26px"></i>																
+								<input data-suffix="%" type="text" style="width:105px;" class="input-deepselects rs-inoutanimationfield textbox-caption rs-layer-input-field tipsy_enabled_top" title="<?php _e("Brightness",'revslider'); ?>"  id="brightnessfilter_end" name="brightnessfilter_end" value="100"  data-selects="100%||Custom||50%||150%" data-svalues ="100||125||50||150" data-icons="minus||wrench||filter||filter">
 								<span class="rs-layer-toolbar-space" style="margin-right:15px"></span>
 							</span>
 
