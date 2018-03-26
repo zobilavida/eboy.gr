@@ -91,12 +91,13 @@ class eboywp_Indexer
         global $wpdb;
 
         $term = get_term( $term_id, $taxonomy );
+        $slug = EWP()->helper->safe_value( $term->slug );
 
         $wpdb->query( $wpdb->prepare( "
             UPDATE {$wpdb->prefix}eboywp_index
             SET facet_value = %s, facet_display_value = %s
             WHERE facet_source = %s AND term_id = %d",
-            $term->slug, $term->name, "tax/$taxonomy", $term_id
+            $slug, $term->name, "tax/$taxonomy", $term_id
         ) );
     }
 
@@ -146,6 +147,9 @@ class eboywp_Indexer
 
         // Index everything
         if ( false === $post_id ) {
+
+            // Store the pre-index settings (see eboywp_Diff)
+            update_option( 'eboywp_settings_last_index', get_option( 'eboywp_settings' ) );
 
             // Index all flag
             $this->index_all = true;

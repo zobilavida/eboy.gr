@@ -15,6 +15,7 @@ class eboywp_Facet_Radio_Core extends eboywp_Facet
         global $wpdb;
 
         $facet = $params['facet'];
+        $from_clause = $wpdb->prefix . 'eboywp_index f';
 
         // Apply filtering (ignore the facet's current selection)
         if ( isset( EWP()->or_values ) && ( 1 < count( EWP()->or_values ) || ! isset( EWP()->or_values[ $facet['name'] ] ) ) ) {
@@ -37,7 +38,6 @@ class eboywp_Facet_Radio_Core extends eboywp_Facet
 
         $post_ids = empty( $post_ids ) ? array( 0 ) : $post_ids;
         $where_clause = ' AND post_id IN (' . implode( ',', $post_ids ) . ')';
-        $from_clause = $wpdb->prefix . 'eboywp_index f';
 
         // Orderby
         $orderby = $this->get_orderby( $facet );
@@ -60,7 +60,11 @@ class eboywp_Facet_Radio_Core extends eboywp_Facet
         $output = $wpdb->get_results( $sql, ARRAY_A );
 
         // Show "ghost" facet choices
-        if ( EWP()->helper->facet_is( $facet, 'ghosts', 'yes' ) && ! empty( EWP()->unfiltered_post_ids ) ) {
+        // For performance gains, only run if facets are in use
+        $show_ghosts = EWP()->helper->facet_is( $facet, 'ghosts', 'yes' );
+        $is_filtered = EWP()->unfiltered_post_ids !== EWP()->facet->query_args['post__in'];
+
+        if ( $show_ghosts && $is_filtered ) {
             $raw_post_ids = implode( ',', EWP()->unfiltered_post_ids );
 
             $sql = "

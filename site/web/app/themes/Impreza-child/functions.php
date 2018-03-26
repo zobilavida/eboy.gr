@@ -1,4 +1,11 @@
 <?php
+add_action( 'wp_enqueue_scripts', 'demetrioschildload', 90 );
+function demetrioschildload() {
+	    wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' );
+//wp_enqueue_script('listgo-child', get_stylesheet_directory_uri() . '/script_22.js', array('jquery'), null, true);
+}
+
+
 if ( ! function_exists('custom_stores_post_type') ) {
 
 // Register Custom Post Type
@@ -151,3 +158,13 @@ function stores_columns_fields($column)
 
 add_action("manage_stores_posts_custom_column", "stores_columns_fields");
 add_filter("manage_stores_posts_columns", "stores_columns");
+
+function my_acf_google_map_api( $api ){
+
+	$api['key'] = 'AIzaSyAY55sLjGdZyuE5fX9gIH0NegqSeB24LEU';
+
+	return $api;
+
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');

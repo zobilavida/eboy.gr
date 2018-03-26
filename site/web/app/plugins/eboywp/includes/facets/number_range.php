@@ -35,8 +35,8 @@ class eboywp_Facet_Number_Range extends eboywp_Facet
         $values = $params['selected_values'];
         $where = '';
 
-        $start = ( '' == $values[0] ) ? false : $values[0];
-        $end = ( '' == $values[1] ) ? false : $values[1];
+        $start = ( '' == $values[0] ) ? false : EWP()->helper->format_number( $values[0] );
+        $end = ( '' == $values[1] ) ? false : EWP()->helper->format_number( $values[1] );
 
         $is_dual = ! empty( $facet['source_other'] );
         $is_intersect = EWP()->helper->facet_is( $facet, 'compare_type', 'intersect' );

@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: eboywp
+Plugin Name: eboywp |  VestaThemes.com
 Description: Advanced Filtering for WordPress
-Version: 3.0.8
+Version: 3.1.5
 Author: eboywp, LLC
 Author URI: https://eboywp.com/
 
-Copyright 2017 eboywp, LLC
+Copyright 2018 eboywp, LLC
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -44,7 +44,7 @@ class eboywp
         }
 
         // setup variables
-        define( 'eboywp_VERSION', '3.0.8' );
+        define( 'eboywp_VERSION', '3.1.5' );
         define( 'eboywp_DIR', dirname( __FILE__ ) );
         define( 'eboywp_URL', plugins_url( '', __FILE__ ) );
         define( 'eboywp_BASENAME', plugin_basename( __FILE__ ) );

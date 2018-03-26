@@ -9,9 +9,23 @@ class eboywp_Facet_Autocomplete extends eboywp_Facet
         // ajax
         add_action( 'eboywp_autocomplete_load', array( $this, 'ajax_load' ) );
 
+        // css-based template
+        add_action( 'eboywp_found_main_query', array( $this, 'template_handler' ) );
+
         // deprecated
         add_action( 'wp_ajax_eboywp_autocomplete_load', array( $this, 'ajax_load' ) );
         add_action( 'wp_ajax_nopriv_eboywp_autocomplete_load', array( $this, 'ajax_load' ) );
+    }
+
+
+    /**
+     * For CSS-based templates, the "eboywp_autocomplete_load" action isn't fired
+     * so we need to manually check the action
+     */
+    function template_handler() {
+        if ( isset( $_POST['action'] ) && 'eboywp_autocomplete_load' == $_POST['action'] ) {
+            $this->ajax_load();
+        }
     }
 
 
@@ -83,8 +97,8 @@ class eboywp_Facet_Autocomplete extends eboywp_Facet
      */
     function front_scripts() {
         EWP()->display->json['no_results'] = __( 'No results', 'EWP' );
-        EWP()->display->assets['jquery.autocomplete.js'] = eboywp_URL . '/assets/js/jquery-autocomplete/jquery.autocomplete.min.js';
-        EWP()->display->assets['jquery.autocomplete.css'] = eboywp_URL . '/assets/js/jquery-autocomplete/jquery.autocomplete.css';
+        EWP()->display->assets['jquery.autocomplete.js'] = eboywp_URL . '/assets/vendor/jquery-autocomplete/jquery.autocomplete.min.js';
+        EWP()->display->assets['jquery.autocomplete.css'] = eboywp_URL . '/assets/vendor/jquery-autocomplete/jquery.autocomplete.css';
     }
 
 
@@ -94,15 +108,31 @@ class eboywp_Facet_Autocomplete extends eboywp_Facet
     function ajax_load() {
         global $wpdb;
 
+        // optimizations
+        $_POST['data']['soft_refresh'] = 1;
+        $_POST['data']['extras'] = array();
+
+        // simulate a refresh
+        EWP()->facet->render(
+            EWP()->ajax->process_post_data()
+        );
+
+        // then grab the matching post IDs
+        $post_ids = EWP()->facet->query_args['post__in'];
+        $post_ids = implode( ',', $post_ids );
+
         $query = EWP()->helper->sanitize( $wpdb->esc_like( $_POST['query'] ) );
         $facet_name = EWP()->helper->sanitize( $_POST['facet_name'] );
         $output = array();
 
-        if ( ! empty( $query ) && ! empty( $facet_name ) ) {
+        if ( ! empty( $query ) && ! empty( $facet_name ) && ! empty( $post_ids ) ) {
             $sql = "
             SELECT DISTINCT facet_display_value
             FROM {$wpdb->prefix}eboywp_index
-            WHERE facet_name = '$facet_name' AND facet_display_value LIKE '%$query%'
+            WHERE
+                facet_name = '$facet_name' AND
+                facet_display_value LIKE '%$query%' AND
+                post_id IN ($post_ids)
             ORDER BY facet_display_value ASC
             LIMIT 10";
 
@@ -116,8 +146,7 @@ class eboywp_Facet_Autocomplete extends eboywp_Facet
             }
         }
 
-        echo json_encode( array( 'suggestions' => $output ) );
-        exit;
+        wp_send_json( array( 'suggestions' => $output ) );
     }
 
 

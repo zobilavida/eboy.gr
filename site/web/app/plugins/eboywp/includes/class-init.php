@@ -34,6 +34,7 @@ class eboywp_Init
         include( eboywp_DIR . '/includes/class-helper.php' );
         include( eboywp_DIR . '/includes/class-ajax.php' );
         include( eboywp_DIR . '/includes/class-renderer.php' );
+        include( eboywp_DIR . '/includes/class-diff.php' );
         include( eboywp_DIR . '/includes/class-indexer.php' );
         include( eboywp_DIR . '/includes/class-display.php' );
         include( eboywp_DIR . '/includes/class-overrides.php' );
@@ -47,6 +48,7 @@ class eboywp_Init
 
         EWP()->helper       = new eboywp_Helper();
         EWP()->facet        = new eboywp_Renderer();
+        EWP()->diff         = new eboywp_Diff();
         EWP()->indexer      = new eboywp_Indexer();
         EWP()->display      = new eboywp_Display();
         EWP()->ajax         = new eboywp_Ajax();
@@ -105,7 +107,7 @@ class eboywp_Init
         if ( 'settings_page_eboywp' == $hook ) {
             wp_enqueue_style( 'media-views' );
             wp_enqueue_script( 'jquery-ui-sortable' );
-            wp_enqueue_script( 'jquery-powertip', eboywp_URL . '/assets/js/jquery-powertip/jquery.powertip.min.js', array( 'jquery' ), '1.2.0' );
+            wp_enqueue_script( 'jquery-powertip', eboywp_URL . '/assets/vendor/jquery-powertip/jquery.powertip.min.js', array( 'jquery' ), '1.2.0' );
         }
     }
 

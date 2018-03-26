@@ -9,7 +9,6 @@ class eboywp_Overrides
     function __construct() {
         add_filter( 'eboywp_index_row', array( $this, 'index_row' ), 5, 2 );
         add_filter( 'eboywp_index_row', array( $this, 'format_numbers' ), 15, 2 );
-        add_filter( 'eboywp_store_unfiltered_post_ids', array( $this, 'store_unfiltered_post_ids' ) );
     }
 
 
@@ -64,33 +63,5 @@ class eboywp_Overrides
         $this->raw = null;
 
         return $params;
-    }
-
-
-    /**
-     * Store unfiltered post IDs if needed
-     */
-    function store_unfiltered_post_ids( $boolean ) {
-        if ( EWP()->helper->facet_setting_exists( 'type', 'dropdown' ) ) {
-            return true;
-        }
-
-        if ( EWP()->helper->facet_setting_exists( 'type', 'fselect' ) ) {
-            return true;
-        }
-
-        if ( EWP()->helper->facet_setting_exists( 'type', 'radio' ) ) {
-            return true;
-        }
-
-        if ( EWP()->helper->facet_setting_exists( 'ghosts', 'yes' ) ) {
-            return true;
-        }
-
-        if ( EWP()->helper->facet_setting_exists( 'operator', 'or' ) ) {
-            return true;
-        }
-
-        return $boolean;
     }
 }

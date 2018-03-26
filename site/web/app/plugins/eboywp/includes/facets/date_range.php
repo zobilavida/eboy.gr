@@ -153,11 +153,11 @@ class eboywp_Facet_Date_Range extends eboywp_Facet
             'locale'    => $locale,
             'clearText' => __( 'Clear', 'EWP' ),
         );
-        EWP()->display->assets['flatpickr.css'] = eboywp_URL . '/assets/js/flatpickr/flatpickr.css';
-        EWP()->display->assets['flatpickr.js'] = eboywp_URL . '/assets/js/flatpickr/flatpickr.min.js';
+        EWP()->display->assets['flatpickr.css'] = eboywp_URL . '/assets/vendor/flatpickr/flatpickr.css';
+        EWP()->display->assets['flatpickr.js'] = eboywp_URL . '/assets/vendor/flatpickr/flatpickr.min.js';
 
         if ( 'en' != $locale ) {
-            EWP()->display->assets['flatpickr-l10n.js'] = eboywp_URL . "/assets/js/flatpickr/l10n/$locale.js";
+            EWP()->display->assets['flatpickr-l10n.js'] = eboywp_URL . "/assets/vendor/flatpickr/l10n/$locale.js";
         }
     }
 

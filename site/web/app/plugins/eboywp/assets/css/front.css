@@ -96,6 +96,11 @@
     width: 220px;
 }
 
+.eboywp-type-fselect .fs-wrap.fs-disabled .fs-option {
+    opacity: 0.4;
+    cursor: default;
+}
+
 /* Hierarchy */
 
 .eboywp-depth {
@@ -173,7 +178,7 @@
 
 /* Proximity */
 
-#eboywp-location {
+.eboywp-location {
     padding-right: 28px;
 }
 

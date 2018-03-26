@@ -61,6 +61,22 @@ body.settings_page_eboywp {
     margin-right: 20px;
 }
 
+.button.eboywp-rebuild {
+    margin-right: 4px;
+    opacity: 0.4;
+}
+
+.eboywp-rebuild.flux {
+    animation: glowing 2s infinite;
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0; }
+    25% { box-shadow: 0 0 15px #FF5722; }
+    50% { box-shadow: 0; }
+}
+
 /* Loading animation */
 
 .eboywp-loading {
@@ -132,7 +148,7 @@ body.settings_page_eboywp {
     grid-gap: 5px;
 }
 
-.eboywp-add {
+.eboywp-btn {
     display: inline-block;
     cursor: pointer;
     padding: 3px 6px;
@@ -144,7 +160,7 @@ body.settings_page_eboywp {
     color: #e91e63;
 }
 
-.eboywp-add:hover {
+.eboywp-btn:hover {
     background: #e91e63;
     color: #fff;
 }
@@ -198,6 +214,10 @@ body.settings_page_eboywp {
 .table-row .row-label {
     font-size: 16px;
     margin-bottom: 15px;
+}
+
+.eboywp-region input.slim {
+    width: 50px;
 }
 
 .eboywp-region input.facet-count,
@@ -277,7 +297,7 @@ body.settings_page_eboywp {
 /* Data Source dropdown */
 
 .name-source .fs-dropdown {
-    width: 280px;
+    width: 300px;
 }
 
 /* Code-based facets */

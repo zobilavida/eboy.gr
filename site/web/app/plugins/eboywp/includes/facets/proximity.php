@@ -3,15 +3,10 @@
 class eboywp_Facet_Proximity_Core extends eboywp_Facet
 {
 
-    /**
-     * The ordered array of post IDs
-     */
+    /* (array) Ordered array of post IDs */
     public $ordered_posts = array();
 
-
-    /**
-     * An array containing each post ID and its distance
-     */
+    /* (array) Associative array containing each post ID and its distance */
     public $distance = array();
 
 
@@ -41,6 +36,19 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 
         $radius_options = array( 10, 25, 50, 100, 250 );
 
+        // Grab the radius UI
+        $radius_ui = empty( $facet['radius_ui'] ) ? 'dropdown' : $facet['radius_ui'];
+
+        // Grab radius options from the UI
+        if ( ! empty( $facet['radius_options'] ) ) {
+            $radius_options = explode( ',', preg_replace( '/\s+/', '', $facet['radius_options'] ) );
+        }
+
+        // Grab default radius from the UI
+        if ( empty( $chosen_radius ) && ! empty( $facet['radius_default'] ) ) {
+            $chosen_radius = (float) $facet['radius_default'];
+        }
+
         // Support dynamic radius
         if ( ! empty( $chosen_radius ) && 0 < $chosen_radius ) {
             if ( ! in_array( $chosen_radius, $radius_options ) ) {
@@ -52,16 +60,38 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 
         ob_start();
 ?>
-        <input type="text" id="eboywp-location" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
+        <input type="text" class="eboywp-location" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
 
-        <select id="eboywp-radius">
+        <?php if ( 'dropdown' == $radius_ui ) : ?>
+
+        <select class="eboywp-radius eboywp-radius-dropdown">
             <?php foreach ( $radius_options as $radius ) : ?>
             <?php $selected = ( $chosen_radius == $radius ) ? ' selected' : ''; ?>
             <option value="<?php echo $radius; ?>"<?php echo $selected; ?>><?php echo "$radius $unit"; ?></option>
             <?php endforeach; ?>
         </select>
 
-        <div style="display:none">
+        <?php elseif ( 'slider' == $radius_ui ) : ?>
+
+        <div class="eboywp-radius-wrap">
+            <input class="eboywp-radius eboywp-radius-slider" type="range"
+                min="<?php echo $facet['radius_min']; ?>"
+                max="<?php echo $facet['radius_max']; ?>"
+                value="<?php echo $chosen_radius; ?>"
+            />
+            <div class="eboywp-radius-label">
+                <span class="eboywp-radius-dist"><?php echo $chosen_radius; ?></span>
+                <span class="eboywp-radius-unit"><?php echo $facet['unit']; ?></span>
+            </div>
+        </div>
+
+        <?php elseif ( 'none' == $radius_ui ) : ?>
+
+        <input class="eboywp-radius eboywp-hidden" value="<?php echo $chosen_radius; ?>" />
+
+        <?php endif; ?>
+
+        <div class="eboywp-hidden">
             <input type="text" class="eboywp-lat" value="<?php echo esc_attr( $lat ); ?>" />
             <input type="text" class="eboywp-lng" value="<?php echo esc_attr( $lng ); ?>" />
         </div>
@@ -133,17 +163,38 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
         $this.find('.facet-source').val(obj.source);
         $this.find('.facet-source-other').val(obj.source_other);
         $this.find('.facet-unit').val(obj.unit);
+        $this.find('.facet-radius-ui').val(obj.radius_ui);
+        $this.find('.facet-radius-options').val(obj.radius_options);
+        $this.find('.facet-radius-default').val(obj.radius_default);
+        $this.find('.facet-radius-min').val(obj.radius_min);
+        $this.find('.facet-radius-max').val(obj.radius_max);
     });
 
     wp.hooks.addFilter('eboywp/save/proximity', function(obj, $this) {
         obj['source'] = $this.find('.facet-source').val();
         obj['source_other'] = $this.find('.facet-source-other').val();
         obj['unit'] = $this.find('.facet-unit').val();
+        obj['radius_ui'] = $this.find('.facet-radius-ui').val();
+        obj['radius_options'] = $this.find('.facet-radius-options').val();
+        obj['radius_default'] = $this.find('.facet-radius-default').val();
+        obj['radius_min'] = $this.find('.facet-radius-min').val();
+        obj['radius_max'] = $this.find('.facet-radius-max').val();
         return obj;
     });
 
     wp.hooks.addAction('eboywp/change/proximity', function($this) {
-        $this.closest('.eboywp-row').find('.facet-source-other').trigger('change');
+        $this.closest('.eboywp-row').find('.facet-radius-ui').trigger('change');
+    });
+
+    $(document).on('change', '.facet-radius-ui', function() {
+        var $facet = $(this).closest('.eboywp-row');
+        var ui = $(this).val();
+
+        var radius_options = ('dropdown' == ui) ? 'table-row' : 'none';
+        var range = ('slider' == ui) ? 'table-row' : 'none';
+
+        $facet.find('.facet-radius-options').closest('tr').css({ 'display' : radius_options });
+        $facet.find('.facet-radius-min').closest('tr').css({ 'display' : range });
     });
 })(jQuery);
 </script>
@@ -185,10 +236,10 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 ?>
         <tr>
             <td>
-                <?php _e('Other data source', 'EWP'); ?>:
+                <?php _e('Longitude', 'EWP'); ?>:
                 <div class="eboywp-tooltip">
                     <span class="icon-question">?</span>
-                    <div class="eboywp-tooltip-content"><?php _e( 'Use a separate value for the longitude?', 'EWP' ); ?></div>
+                    <div class="eboywp-tooltip-content"><?php _e( '(Optional) use a separate longitude field', 'EWP' ); ?></div>
                 </div>
             </td>
             <td>
@@ -213,6 +264,55 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
                     <option value="mi"><?php _e( 'Miles', 'EWP' ); ?></option>
                     <option value="km"><?php _e( 'Kilometers', 'EWP' ); ?></option>
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e( 'Radius UI', 'EWP' ); ?>:
+            </td>
+            <td>
+                <select class="facet-radius-ui">
+                    <option value="dropdown"><?php _e( 'Dropdown', 'EWP' ); ?></option>
+                    <option value="slider"><?php _e( 'Slider', 'EWP' ); ?></option>
+                    <option value="none"><?php echo _e( 'None', 'EWP' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e( 'Radius options', 'EWP' ); ?>:
+                <div class="eboywp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="eboywp-tooltip-content">
+                        A comma-separated list of radius choices
+                    </div>
+                </div>
+            </td>
+            <td>
+                <input type="text" class="facet-radius-options" value="10, 25, 50, 100, 250" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e( 'Slider range', 'EWP' ); ?>:
+                <div class="eboywp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="eboywp-tooltip-content">
+                        Set the lower and upper limits
+                    </div>
+                </div>
+            </td>
+            <td>
+                <input type="number" class="facet-radius-min slim" value="1" />
+                <input type="number" class="facet-radius-max slim" value="50" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e( 'Default radius', 'EWP' ); ?>:
+            </td>
+            <td>
+                <input type="number" class="facet-radius-default slim" value="25" />
             </td>
         </tr>
 <?php

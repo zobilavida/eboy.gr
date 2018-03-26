@@ -149,8 +149,8 @@ class eboywp_Facet_Slider extends eboywp_Facet
      * Output any front-end scripts
      */
     function front_scripts() {
-        EWP()->display->assets['nouislider.css'] = eboywp_URL . '/assets/js/noUiSlider/nouislider.min.css';
-        EWP()->display->assets['nouislider.js'] = eboywp_URL . '/assets/js/noUiSlider/nouislider.min.js';
+        EWP()->display->assets['nouislider.css'] = eboywp_URL . '/assets/vendor/noUiSlider/nouislider.min.css';
+        EWP()->display->assets['nouislider.js'] = eboywp_URL . '/assets/vendor/noUiSlider/nouislider.min.js';
         EWP()->display->assets['nummy.js'] = eboywp_URL . '/assets/js/src/nummy.js';
     }
 

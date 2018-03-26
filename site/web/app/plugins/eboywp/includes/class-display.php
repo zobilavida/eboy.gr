@@ -33,7 +33,7 @@ class eboywp_Display
      */
     function add_template_tag( $wp_query ) {
         if ( true === $wp_query->get( 'eboywp' ) && did_action( 'wp_head' ) ) {
-            echo '<!--EWP-loop-->';
+            echo "<!--EWP-loop-->\n";
         }
     }
 
@@ -110,9 +110,7 @@ class eboywp_Display
                 $this->assets['front.css'] = eboywp_URL . '/assets/css/front.css';
             }
 
-            $this->assets['event-manager.js'] = eboywp_URL . '/assets/js/src/event-manager.js';
-            $this->assets['front.js'] = eboywp_URL . '/assets/js/front.js';
-            $this->assets['front-facets.js'] = eboywp_URL . '/assets/js/front-facets.js';
+            $this->assets['front.js'] = eboywp_URL . '/assets/js/dist/front.min.js';
 
             // Use the REST API?
             $ajaxurl = admin_url( 'admin-ajax.php' );
@@ -137,6 +135,7 @@ class eboywp_Display
             $this->json['prefix'] = EWP()->helper->get_setting( 'prefix' );
             $this->json['no_results_text'] = __( 'No results found', 'EWP' );
             $this->json['ajaxurl'] = $ajaxurl;
+            $this->json['nonce'] = wp_create_nonce( 'wp_rest' );
 
             if ( apply_filters( 'eboywp_use_preloader', true ) ) {
                 $this->json['preload_data'] = $this->prepare_preload_data();
@@ -171,8 +170,8 @@ class eboywp_Display
             echo $inline_scripts;
 ?>
 <script>
-var EWP_JSON = <?php echo json_encode( $this->json ); ?>;
-var EWP_HTTP = <?php echo json_encode( $http_params ); ?>;
+window.EWP_JSON = <?php echo json_encode( $this->json ); ?>;
+window.EWP_HTTP = <?php echo json_encode( $http_params ); ?>;
 </script>
 <?php
         }

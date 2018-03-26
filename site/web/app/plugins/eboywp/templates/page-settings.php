@@ -37,13 +37,13 @@ $sources = EWP()->helper->get_data_sources();
 
 <script src="<?php echo eboywp_URL; ?>/assets/js/src/event-manager.js?ver=<?php echo eboywp_VERSION; ?>"></script>
 <script src="<?php echo eboywp_URL; ?>/assets/js/src/query-builder.js?ver=<?php echo eboywp_VERSION; ?>"></script>
-<script src="<?php echo eboywp_URL; ?>/assets/js/fSelect/fSelect.js?ver=<?php echo eboywp_VERSION; ?>"></script>
+<script src="<?php echo eboywp_URL; ?>/assets/vendor/fSelect/fSelect.js?ver=<?php echo eboywp_VERSION; ?>"></script>
 <?php
 foreach ( $facet_types as $class ) {
     $class->admin_scripts();
 }
 ?>
-<script src="<?php echo eboywp_URL; ?>/assets/js/admin.js?ver=<?php echo eboywp_VERSION; ?>"></script>
+<script src="<?php echo eboywp_URL; ?>/assets/js/src/admin.js?ver=<?php echo eboywp_VERSION; ?>"></script>
 <script>
 EWP.i18n = <?php echo json_encode( $i18n ); ?>;
 EWP.nonce = '<?php echo wp_create_nonce( 'EWP_admin_nonce' ); ?>';
@@ -52,7 +52,7 @@ EWP.clone = <?php echo json_encode( $facet_clone ); ?>;
 EWP.builder = <?php echo json_encode( $builder ); ?>;
 </script>
 <link href="<?php echo eboywp_URL; ?>/assets/css/admin.css?ver=<?php echo eboywp_VERSION; ?>" rel="stylesheet">
-<link href="<?php echo eboywp_URL; ?>/assets/js/fSelect/fSelect.css?ver=<?php echo eboywp_VERSION; ?>" rel="stylesheet">
+<link href="<?php echo eboywp_URL; ?>/assets/vendor/fSelect/fSelect.css?ver=<?php echo eboywp_VERSION; ?>" rel="stylesheet">
 
 <div class="eboywp-header">
     <span class="eboywp-logo" title="eboywp">&nbsp;</span>
@@ -91,7 +91,7 @@ EWP.builder = <?php echo json_encode( $builder ); ?>;
             <div class="eboywp-col content-facets">
                 <h3>
                     Facets
-                    <span class="eboywp-add">Add new</span>
+                    <span class="eboywp-btn eboywp-add">Add new</span>
                     <a class="icon-question" href="https://eboywp.com/documentation/facet-configuration/" target="_blank">?</a>
                 </h3>
                 <ul class="eboywp-cards"></ul>
@@ -100,7 +100,7 @@ EWP.builder = <?php echo json_encode( $builder ); ?>;
             <div class="eboywp-col content-templates">
                 <h3>
                     Templates
-                    <span class="eboywp-add">Add new</span>
+                    <span class="eboywp-btn eboywp-add">Add new</span>
                     <a class="icon-question" href="https://eboywp.com/documentation/template-configuration/" target="_blank">?</a>
                 </h3>
                 <ul class="eboywp-cards"></ul>
@@ -171,6 +171,8 @@ EWP.builder = <?php echo json_encode( $builder ); ?>;
                             <option value="<?php echo $name; ?>"><?php echo $class->label; ?></option>
                             <?php endforeach; ?>
                         </select>
+                        &nbsp; &nbsp;
+                        <span class="eboywp-btn copy-shortcode">Copy shortcode</span>
                     </td>
                 </tr>
                 <tr class="eboywp-show name-source">
@@ -217,6 +219,10 @@ EWP.builder = <?php echo json_encode( $builder ); ?>;
             </div>
         </div>
     </div>
+
+    <!-- Copy to clipboard -->
+
+    <input class="hidden eboywp-clipboard" value="" />
 </div>
 
 <!-- Modal window -->

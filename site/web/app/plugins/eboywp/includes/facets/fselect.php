@@ -65,7 +65,60 @@ class eboywp_Facet_fSelect extends eboywp_Facet
         ORDER BY $orderby
         LIMIT $limit";
 
-        return $wpdb->get_results( $sql, ARRAY_A );
+        $output = $wpdb->get_results( $sql, ARRAY_A );
+
+        // Show "ghost" facet choices
+        // For performance gains, only run if facets are in use
+        $show_ghosts = EWP()->helper->facet_is( $facet, 'ghosts', 'yes' );
+        $is_filtered = EWP()->unfiltered_post_ids !== EWP()->facet->query_args['post__in'];
+
+        if ( $show_ghosts && $is_filtered && ! empty( EWP()->unfiltered_post_ids ) ) {
+            $raw_post_ids = implode( ',', EWP()->unfiltered_post_ids );
+
+            $sql = "
+            SELECT f.facet_value, f.facet_display_value, f.term_id, f.parent_id, f.depth, 0 AS counter
+            FROM $from_clause
+            WHERE f.facet_name = '{$facet['name']}' AND post_id IN ($raw_post_ids)
+            GROUP BY f.facet_value
+            ORDER BY $orderby
+            LIMIT $limit";
+
+            $ghost_output = $wpdb->get_results( $sql, ARRAY_A );
+
+            // Keep the facet placement intact
+            if ( EWP()->helper->facet_is( $facet, 'preserve_ghosts', 'yes' ) ) {
+                $tmp = array();
+                foreach ( $ghost_output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row;
+                }
+
+                foreach ( $output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row;
+                }
+
+                $output = $tmp;
+            }
+            else {
+                // Make the array key equal to the facet_value (for easy lookup)
+                $tmp = array();
+                foreach ( $output as $row ) {
+                    $tmp[ $row['facet_value'] . ' ' ] = $row; // Force a string array key
+                }
+                $output = $tmp;
+
+                foreach ( $ghost_output as $row ) {
+                    $facet_value = $row['facet_value'];
+                    if ( ! isset( $output[ "$facet_value " ] ) ) {
+                        $output[ "$facet_value " ] = $row;
+                    }
+                }
+            }
+
+            $output = array_splice( $output, 0, $limit );
+            $output = array_values( $output );
+        }
+
+        return $output;
     }
 
 
@@ -92,6 +145,7 @@ class eboywp_Facet_fSelect extends eboywp_Facet
 
         foreach ( $values as $result ) {
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
+            $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
 
             $display_value = '';
             for ( $i = 0; $i < (int) $result['depth']; $i++ ) {
@@ -163,7 +217,8 @@ class eboywp_Facet_fSelect extends eboywp_Facet
         return array(
             'placeholder'   => $label_any,
             'overflowText'  => __( '{n} selected', 'EWP' ),
-            'searchText'    => __( 'Search', 'EWP' )
+            'searchText'    => __( 'Search', 'EWP' ),
+            'operator'      => $facet['operator']
         );
     }
 
@@ -183,6 +238,8 @@ class eboywp_Facet_fSelect extends eboywp_Facet
         $this.find('.facet-orderby').val(obj.orderby);
         $this.find('.facet-hierarchical').val(obj.hierarchical);
         $this.find('.facet-operator').val(obj.operator);
+        $this.find('.facet-ghosts').val(obj.ghosts);
+        $this.find('.facet-preserve-ghosts').val(obj.preserve_ghosts);
         $this.find('.facet-count').val(obj.count);
     });
 
@@ -194,6 +251,8 @@ class eboywp_Facet_fSelect extends eboywp_Facet
         obj['orderby'] = $this.find('.facet-orderby').val();
         obj['hierarchical'] = $this.find('.facet-hierarchical').val();
         obj['operator'] = $this.find('.facet-operator').val();
+        obj['ghosts'] = $this.find('.facet-ghosts').val();
+        obj['preserve_ghosts'] = $this.find('.facet-preserve-ghosts').val();
         obj['count'] = $this.find('.facet-count').val();
         return obj;
     });
@@ -217,8 +276,8 @@ class eboywp_Facet_fSelect extends eboywp_Facet
      * Output any front-end scripts
      */
     function front_scripts() {
-        EWP()->display->assets['fSelect.css'] = eboywp_URL . '/assets/js/fSelect/fSelect.css';
-        EWP()->display->assets['fSelect.js'] = eboywp_URL . '/assets/js/fSelect/fSelect.js';
+        EWP()->display->assets['fSelect.css'] = eboywp_URL . '/assets/vendor/fSelect/fSelect.css';
+        EWP()->display->assets['fSelect.js'] = eboywp_URL . '/assets/vendor/fSelect/fSelect.js';
     }
 
 
@@ -297,6 +356,36 @@ class eboywp_Facet_fSelect extends eboywp_Facet
                 <select class="facet-operator">
                     <option value="and"><?php _e( 'Narrow the result set', 'EWP' ); ?></option>
                     <option value="or"><?php _e( 'Widen the result set', 'EWP' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e('Show ghosts', 'EWP'); ?>:
+                <div class="eboywp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="eboywp-tooltip-content"><?php _e( 'Show choices that would return zero results?', 'EWP' ); ?></div>
+                </div>
+            </td>
+            <td>
+                <select class="facet-ghosts">
+                    <option value="no"><?php _e( 'No', 'EWP' ); ?></option>
+                    <option value="yes"><?php _e( 'Yes', 'EWP' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php _e('Preserve ghost order', 'EWP'); ?>:
+                <div class="eboywp-tooltip">
+                    <span class="icon-question">?</span>
+                    <div class="eboywp-tooltip-content"><?php _e( 'Keep ghost choices in the same order?', 'EWP' ); ?></div>
+                </div>
+            </td>
+            <td>
+                <select class="facet-preserve-ghosts">
+                    <option value="no"><?php _e( 'No', 'EWP' ); ?></option>
+                    <option value="yes"><?php _e( 'Yes', 'EWP' ); ?></option>
                 </select>
             </td>
         </tr>

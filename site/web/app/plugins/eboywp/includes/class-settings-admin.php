@@ -28,7 +28,7 @@ class eboywp_Settings_Admin
                     'loading_animation' => array(
                         'label' => __( 'Loading Animation', 'EWP' ),
                         'html' => $this->get_field_html( 'loading_animation', 'dropdown', array(
-                            'choices' => array( '' => __( 'Spin', 'EWP' ), 'fade' => __( 'Fade', 'EWP' ), 'none' => __( 'None', 'EWP' ) )
+                            'choices' => array( 'fade' => __( 'Fade', 'EWP' ), '' => __( 'Spin', 'EWP' ), 'none' => __( 'None', 'EWP' ) )
                         ) )
                     ),
                     'prefix' => array(

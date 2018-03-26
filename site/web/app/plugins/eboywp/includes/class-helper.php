@@ -13,46 +13,9 @@ final class eboywp_Helper
     public $data_sources;
 
 
-    /**
-     * Backwards-compatibility
-     */
-    public static function instance() {
-        return EWP()->helper;
-    }
-
-
     function __construct() {
         $this->settings = $this->load_settings();
-
-        // custom facet types
-        include( eboywp_DIR . '/includes/facets/base.php' );
-        include( eboywp_DIR . '/includes/facets/autocomplete.php' );
-        include( eboywp_DIR . '/includes/facets/checkboxes.php' );
-        include( eboywp_DIR . '/includes/facets/date_range.php' );
-        include( eboywp_DIR . '/includes/facets/dropdown.php' );
-        include( eboywp_DIR . '/includes/facets/fselect.php' );
-        include( eboywp_DIR . '/includes/facets/hierarchy.php' );
-        include( eboywp_DIR . '/includes/facets/number_range.php' );
-        include( eboywp_DIR . '/includes/facets/search.php' );
-        include( eboywp_DIR . '/includes/facets/slider.php' );
-        include( eboywp_DIR . '/includes/facets/proximity.php' );
-        include( eboywp_DIR . '/includes/facets/radio.php' );
-        include( eboywp_DIR . '/includes/facets/iconboxes.php' );
-
-        $this->facet_types = apply_filters( 'eboywp_facet_types', array(
-            'checkboxes'        => new eboywp_Facet_Checkboxes(),
-            'dropdown'          => new eboywp_Facet_Dropdown(),
-            'fselect'           => new eboywp_Facet_fSelect(),
-            'hierarchy'         => new eboywp_Facet_Hierarchy(),
-            'search'            => new eboywp_Facet_Search(),
-            'autocomplete'      => new eboywp_Facet_Autocomplete(),
-            'slider'            => new eboywp_Facet_Slider(),
-            'date_range'        => new eboywp_Facet_Date_Range(),
-            'number_range'      => new eboywp_Facet_Number_Range(),
-            'proximity'         => new eboywp_Facet_Proximity_Core(),
-            'radio'             => new eboywp_Facet_Radio_Core(),
-            'iconbox'             => new eboywp_Facet_Iconboxes(),
-        ) );
+        $this->facet_types = $this->get_facet_types();
     }
 
 
@@ -77,10 +40,47 @@ final class eboywp_Helper
 
 
     /**
+     * Get available facet types
+     */
+    function get_facet_types() {
+        if ( ! empty( $this->facet_types ) ) {
+            return $this->facet_types;
+        }
+
+        include( eboywp_DIR . '/includes/facets/base.php' );
+
+        $types = array(
+            'checkboxes'    => 'eboywp_Facet_Checkboxes',
+            'dropdown'      => 'eboywp_Facet_Dropdown',
+            'fselect'       => 'eboywp_Facet_fSelect',
+            'hierarchy'     => 'eboywp_Facet_Hierarchy',
+            'search'        => 'eboywp_Facet_Search',
+            'autocomplete'  => 'eboywp_Facet_Autocomplete',
+            'slider'        => 'eboywp_Facet_Slider',
+            'date_range'    => 'eboywp_Facet_Date_Range',
+            'number_range'  => 'eboywp_Facet_Number_Range',
+            'proximity'     => 'eboywp_Facet_Proximity_Core',
+            'radio'         => 'eboywp_Facet_Radio_Core'
+        );
+
+        $facet_types = array();
+
+        foreach ( $types as $slug => $class_name ) {
+            include( eboywp_DIR . "/includes/facets/$slug.php" );
+            $facet_types[ $slug ] = new $class_name();
+        }
+
+        return apply_filters( 'eboywp_facet_types', $facet_types );
+    }
+
+
+    /**
      * Get settings and allow for developer hooks
      */
-    function load_settings() {
-        $settings = json_decode( get_option( 'eboywp_settings' ), true );
+    function load_settings( $last_index = false ) {
+        $name = $last_index ? 'eboywp_settings_last_index' : 'eboywp_settings';
+        $option = get_option( $name );
+        $settings = ( false !== $option ) ? json_decode( $option, true ) : array();
 
         if ( empty( $settings['facets'] ) ) {
             $settings['facets'] = array();
@@ -379,7 +379,9 @@ final class eboywp_Helper
         }
 
         $value = str_replace( ' ', '-', strtolower( $value ) );
-        return preg_replace( '/[-]{2,}/', '-', $value );
+        $value = preg_replace( '/[-]{2,}/', '-', $value );
+        $value = ( 50 < strlen( $value ) ) ? md5( $value ) : $value;
+        return $value;
     }
 
 
