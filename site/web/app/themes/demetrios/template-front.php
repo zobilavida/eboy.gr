@@ -4,4 +4,4 @@
  */
 ?>
 <?php get_template_part('templates/unit', 'header'); ?>
-<?php get_template_part('templates/unit', 'contact'); ?>
+<?php // get_template_part('templates/unit', 'contact'); ?>
