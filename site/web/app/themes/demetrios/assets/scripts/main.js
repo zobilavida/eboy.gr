@@ -28,15 +28,7 @@
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
-        $('.owl-carousel').owlCarousel({
-          items:1,
-          lazyLoad:true,
-           autoplay: true,
-           smartSpeed: 1500,
-           nav:true,
-           dots: true,
-           loop : true,
-        });
+
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
