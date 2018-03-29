@@ -20,7 +20,7 @@
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 @mixin body-font {
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'museosansregular100', sans-serif;
 }
 @mixin heading-font {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -140,4 +140,17 @@ img::-moz-selection {
 
 .carousel-caption {
     bottom: 50%;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.masthead {
+  height: 90vh;
+  min-height: 300px;
+}
+.masthead h1 {
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }

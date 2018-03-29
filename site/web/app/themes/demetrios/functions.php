@@ -27,7 +27,20 @@ foreach ($sage_includes as $file) {
 }
 unset($file, $filepath);
 
+// Include custom navwalker
+require_once('bs4navwalker.php');
 
+// Register WordPress nav menu
+register_nav_menu('top', 'Top menu');
+
+// Add svg & swf support
+function cc_mime_types( $mimes ){
+    $mimes['svg'] = 'image/svg+xml';
+    $mimes['swf']  = 'application/x-shockwave-flash';
+
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'cc_mime_types' );
 //enable logo uploading via the customize theme page
 
 function themeslug_theme_customizer( $wp_customize ) {

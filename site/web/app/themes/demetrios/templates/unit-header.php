@@ -17,11 +17,21 @@
 
     <div class="carousel-inner" role="listbox">
        <?php $i = 0; while($slider->have_posts()): $slider->the_post(); ?>
-           <div class="carousel-item <?php echo ($i == 0) ? 'active' : ''?>" style="background-image: url('<?php
-echo get_the_post_thumbnail_url( $post_id, 'full' ); ?>')">
+           <div class="carousel-item <?php echo ($i == 0) ? 'active' : ''?>" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url( <?php the_post_thumbnail_url(); ?> )">
 
                  <div class="carousel-caption d-none d-md-block">
                      <h1 class="text-uppercase"><?php echo get_the_title(); ?></h1>
+                     <?php $value = get_field( "sub_head" );
+
+if( $value ) {
+    echo '<h2>';
+    echo $value;
+    echo '</h2>';
+
+} else {
+
+}
+?>
                  </div>
            </div><!--.carousel-item-->
         <?php $i++; endwhile; ?>
