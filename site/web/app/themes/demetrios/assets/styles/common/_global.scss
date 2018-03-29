@@ -23,7 +23,10 @@
   font-family: 'museosansregular300', sans-serif;
 }
 @mixin heading-font {
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'museosansregular300', sans-serif;
+}
+@mixin heading-font-light {
+  font-family: 'museosansregular100', sans-serif;
 }
 
 body {
@@ -47,13 +50,15 @@ a {
 }
 
 h1,
-h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
   @include heading-font;
+}
+
+h2 {
+  @include heading-font-light;
 }
 
 section {
