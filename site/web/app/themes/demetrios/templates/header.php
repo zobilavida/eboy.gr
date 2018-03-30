@@ -1,7 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+
   <div class="container">
     <a class="navbar-brand js-scroll-trigger" href="<?= esc_url(home_url('/')); ?>">
-      <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+      <img class="logo" src='<?php $image = get_field('home_logo');
+      if (is_page_template('template-front.php')) {
+          the_field('home_logo');
+      }
+      else {
+           echo esc_url( get_theme_mod( 'themeslug_logo' ) );
+      }?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       Menu
@@ -22,7 +29,7 @@
           'walker'          => new bs4navwalker()
         ]);
         ?>
-    
+
     </div>
   </div>
 </nav>

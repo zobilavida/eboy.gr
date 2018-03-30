@@ -264,3 +264,50 @@ function my_acf_google_map_api( $api ){
 }
 
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+function product_cats() {
+  $args_t = array(
+          'taxonomy'     => 'product_cat',
+          //'include'      => array( 16, 15, 17 ),
+          'orderby' => 'meta_value',
+      );
+      $thirds_categories = get_categories( $args_t );
+      foreach ( $thirds_categories as $cat ) {
+          if( $cat->category == 0 ) {
+              $cat_class = mb_strtolower($cat->name);
+              $image = wp_get_attachment_url( $thumbnail_id );
+              $cat_thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+              $cat_thumb_url = wp_get_attachment_thumb_url( $cat_thumb_id );
+              $term_link = get_term_link( $cat, 'product_cat' );
+              $thmb = wp_get_attachment_image_src($cat_thumb_id, 'large');
+
+              ?>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                      <a href="<?php echo $term_link; ?>">
+                          <img src="<?php echo $thmb[0]; ?>" alt="<?php echo $cat->name; ?>" />
+                      </a>
+                    </div>
+                    <div class="col-6">
+                      <h4> <?php echo $cat->name; ?> </h4>
+                      <p><?php echo $cat->description; ?> </p>
+                      <button>View Products</button>
+                      </div>
+                      </div>
+              </div>
+         <?php }
+      } wp_reset_query();
+}
+
+add_action("woocommerce_product_cats", "product_cats");
+
+
+function page_content() {
+  echo '<div class="container">';
+  echo the_content();
+  echo '</div>';
+}
+
+add_action("custom_functions", "page_content");
