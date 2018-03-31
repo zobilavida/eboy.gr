@@ -1,4 +1,4 @@
-<section class="home-section bg-dark-30" id="home" data-background="<?= get_template_directory_uri(); ?>/assets/images/section-5.jpg">
+<section class="home-section bg-dark-30" id="home" data-background="<?= get_template_directory_uri(); ?>/dist/images/section-5.jpg">
   <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=yOSL9L0efhQ', containment:'.home-section', startAt:0, mute:false, autoPlay:true, loop:true, opacity:0.15, showControls:false, showYTLogo:false, vol:25}"></div>
 
 <div class="container h-100">
