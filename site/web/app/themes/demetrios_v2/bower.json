@@ -8,7 +8,14 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "gsap": "^1.20.4"
+    "gsap": "^1.20.4",
+    "wow": "wowjs#^1.1.2",
+    "jquery.mb.ytplayer": "^3.1.13",
+    "isotope-layout": "^3.0.5",
+    "imagesloaded": "^4.1.4",
+    "flexslider": "woothemes-flexslider#^2.7.0",
+    "owl.carousel": "^2.3.3",
+    "jquery.simple-text-rotator": "*"
   },
   "overrides": {
     "bootstrap": {
@@ -22,6 +29,12 @@
         "./src/uncompressed/TweenMax.js",
         "./src/uncompressed/plugins/ScrollToPlugin.js"
       ]
+    },
+    "isotope-layout": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
     }
   }
 }
