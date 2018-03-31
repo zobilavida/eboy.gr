@@ -142,21 +142,26 @@ function child_manage_woocommerce_styles() {
 }
 
 function video_background(){
-  $value = get_field( "video_background" );
+  $video_background = get_field( "video_background" );
 
-  if( $value ) {
+  if( $video_background ) {
 
-      echo '<a href="'.$value.'" title="Demo" class="btn red btn1">';
-      echo '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/button_icon_2.svg">';
-      echo 'View Demo';
-      echo '</a>';
-      //echo $value;
-
-  } else {
-
-      echo 'Test';
-
-  }
+?>
+<section class="home-section bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
+  <div class="video-player" data-property="{videoURL:'<?php echo $video_background; ?>', containment:'.home-section', startAt:30, mute:false, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div>
+  <div class="video-controls-box">
+    <div class="container">
+      <div class="video-controls"><a class="fa fa-volume-up" id="video-volume" href="#">&nbsp;</a><a class="fa fa-pause" id="video-play" href="#">&nbsp;</a></div>
+    </div>
+  </div>
+  <div class="titan-caption">
+    <div class="caption-content">
+      <div class="font-alt mb-30 titan-title-size-1">Hello &amp; welcome</div>
+      <div class="font-alt mb-40 titan-title-size-4">We are Titan</div><a class="section-scroll btn btn-border-w btn-round" href="#about">Learn More</a>
+    </div>
+  </div>
+</section><?php
+} else { echo "Niente";}
 
 }
 add_action( 'demetrios', 'video_background' );
