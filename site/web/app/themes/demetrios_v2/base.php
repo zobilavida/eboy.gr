@@ -18,11 +18,16 @@ use Roots\Sage\Wrapper;
       do_action('get_header');
       get_template_part('templates/header');
     ?>
-    <div class="wrap container" role="document">
+    <div class="wrap container-fluid p-0" role="document">
       <div class="content row">
         <main class="main">
+          <div class="page-loader">
+            <div class="loader">Loading...</div>
+          </div>
           <?php include Wrapper\template_path(); ?>
-        </main><!-- /.main -->
+        </main>
+
+        <!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
           <aside class="sidebar">
             <?php include Wrapper\sidebar_path(); ?>
