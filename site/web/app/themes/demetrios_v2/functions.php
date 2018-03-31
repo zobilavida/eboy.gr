@@ -147,8 +147,8 @@ function video_background(){
   if( $video_background ) {
 
 ?>
-<section class="home-section bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
-  <div class="video-player" data-property="{videoURL:'<?php echo $video_background; ?>', containment:'.home-section', startAt:30, mute:false, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div>
+<section class="home-section home-parallax bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
+  <div class="video-player" data-property="{videoURL:'<?php echo $video_background; ?>', containment:'.home-section', startAt:30, mute:false, autoPlay:true, loop:true, opacity:.5, showControls:false, showYTLogo:false, vol:25}"></div>
   <div class="video-controls-box">
     <div class="container">
       <div class="video-controls"><a class="fa fa-volume-up" id="video-volume" href="#">&nbsp;</a><a class="fa fa-pause" id="video-play" href="#">&nbsp;</a></div>
@@ -164,4 +164,31 @@ function video_background(){
 } else { echo "Niente";}
 
 }
-add_action( 'demetrios', 'video_background' );
+add_action( 'demetrios', 'video_background', 10 );
+
+function fasa_1(){
+  $fasa_1 = get_field( "fasa_1" );
+  $button_1_text = get_field( "button_1_text" );
+
+  if( $fasa_1 ) {
+
+?>
+<section class="module-extra-small bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+        <div class="callout-text font-alt">
+          <h4 style="margin-top: 0px; font-;"><?php echo $fasa_1; ?></h4>
+          <p style="margin-bottom: 0px;">We are always here for you</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-2">
+        <div class="callout-btn-box"><a class="btn btn-w btn-round" href="#"><?php echo $button_1_text; ?></a></div>
+      </div>
+    </div>
+  </div>
+</section><?php
+} else { echo "Niente fasa";}
+
+}
+add_action( 'custom_fasa_1', 'fasa_1', 15 );
