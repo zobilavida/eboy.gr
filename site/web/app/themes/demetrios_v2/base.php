@@ -21,9 +21,7 @@ use Roots\Sage\Wrapper;
     <div class="wrap container-fluid p-0" role="document">
       <div class="content row">
         <main class="main">
-          <div class="page-loader">
-            <div class="loader">Loading...</div>
-          </div>
+
           <?php include Wrapper\template_path(); ?>
         </main>
 

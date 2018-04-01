@@ -147,7 +147,7 @@ function video_background(){
   if( $video_background ) {
 
 ?>
-<section class="home-section home-parallax bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
+<section class="home-section bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
   <div class="video-player" data-property="{videoURL:'<?php echo $video_background; ?>', containment:'.home-section', startAt:30, mute:false, autoPlay:true, loop:true, opacity:.5, showControls:false, showYTLogo:false, vol:25}"></div>
   <div class="video-controls-box">
     <div class="container">
@@ -176,15 +176,13 @@ function fasa_1(){
 <section class="module-extra-small bg-dark">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+      <div class="col-lg-6 col-sm-12">
         <div class="callout-text font-alt">
           <h4 style="margin-top: 0px; font-;"><?php echo $fasa_1; ?></h4>
           <p style="margin-bottom: 0px;">We are always here for you</p>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4 col-lg-2">
-        <div class="callout-btn-box"><a class="btn btn-w btn-round" href="#"><?php echo $button_1_text; ?></a></div>
-      </div>
+    
     </div>
   </div>
 </section><?php
@@ -192,3 +190,21 @@ function fasa_1(){
 
 }
 add_action( 'custom_fasa_1', 'fasa_1', 15 );
+
+function parallax_1(){
+  $parallax_1 = get_field( "parallax_1" );
+
+
+  if( $parallax_1 ) {
+
+?>
+<section class="module bg-dark-60 parallax-bg" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
+  <div class="container">
+
+  </div>
+</section>
+<?php
+} else { echo "Niente parallax_1";}
+
+}
+add_action( 'custom_parallax_1', 'parallax_1', 15 );
