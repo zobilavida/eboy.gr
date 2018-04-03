@@ -236,12 +236,14 @@ gulp.task('images', function() {
 // `gulp jshint` - Lints configuration JSON and project JS.
 gulp.task('jshint', function() {
   return gulp.src([
-    'bower.json', 'gulpfile.js'
+    'bower.json', 'gulpfile.js', '!assets/scripts/plugins/**'
   ].concat(project.js))
+
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
 });
+
 
 // ### Clean
 // `gulp clean` - Deletes the build folder entirely.
@@ -263,7 +265,7 @@ gulp.task('watch', function() {
     }
   });
   gulp.watch([path.source + 'styles/**/*'], ['styles']);
-  gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
+  gulp.watch([path.source + 'scripts/*'], ['jshint', 'scripts']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
