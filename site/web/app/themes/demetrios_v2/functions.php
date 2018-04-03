@@ -603,8 +603,8 @@ function book(){
                 </div>
               <?php echo eboywp_display( 'template', 'stores_radios' ); ?>
 
-              <?php gravity_form_enqueue_scripts( 2, false ); ?>
-              <?php gravity_form( 2, false, false, false, '', false ); ?>
+              <?php gravity_form_enqueue_scripts( 1, false ); ?>
+              <?php gravity_form( 1, false, false, false, '', false ); ?>
 
               </div>
 
