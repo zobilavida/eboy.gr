@@ -88,7 +88,7 @@ class eboywp_Facet_Map_Addon
         }
 
         $output = '<div id="eboywp-map" style="width:' . $width . '; height:' . $height . '"></div>';
-        $output .= '<div><button class="eboywp-map-filtering' . $class . '">' . esc_html( $btn_label ) . '</button></div>';
+      //  $output .= '<div><button class="eboywp-map-filtering' . $class . '">' . esc_html( $btn_label ) . '</button></div>';
         return $output;
     }
 

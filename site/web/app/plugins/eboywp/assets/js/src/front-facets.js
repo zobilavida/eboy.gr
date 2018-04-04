@@ -376,7 +376,7 @@
         $locations.each(function(idx, el) {
             var $input = $(this);
 
-            if ($input.closest('.location-wrap').length < 1) {
+            if ($input.closest('.input-group').length < 1) {
 
                 // Select the first choice
                 (function pacSelectFirst(input) {
@@ -418,8 +418,8 @@
                 }
 
                 // Add the "Locate me" icon
-                $input.wrap('<span class="location-wrap"></span>');
-                $input.before('<i class="locate-me"></i>');
+                $input.wrap(' <div class="eboywp-location input-group"></div>');
+                $input.after('<i class="locate-me"></i>');
             }
 
             $input.trigger('keyup');

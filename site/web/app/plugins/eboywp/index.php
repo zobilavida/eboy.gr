@@ -3,10 +3,10 @@
 Plugin Name: eboywp
 Description: WordPress Filtering
 Version: 1
-Author: eboywp
+Author: Giannis Sergentakis
 Author URI: https://eboy.gr/
 
-Copyright 2018 eboywp
+Copyright 2018 eboy
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License

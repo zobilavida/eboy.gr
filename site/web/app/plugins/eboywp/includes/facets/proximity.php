@@ -60,7 +60,8 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 
         ob_start();
 ?>
-        <input type="text" class="eboywp-location" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
+    
+        <input type="text" class="eboywp-location form-control" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
 
         <?php if ( 'dropdown' == $radius_ui ) : ?>
 
