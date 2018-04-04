@@ -525,29 +525,20 @@ function store_finder(){
 
 
         ?>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <?php echo eboywp_display( 'facet', 'country' ); ?>
-              </div>
-              <div class="col-lg-4">
-                <?php echo eboywp_display( 'facet', 'country' ); ?>
-                </div>
-                <div class="col-lg-4">
-                  <?php echo eboywp_display( 'facet', 'country' ); ?>
-                  </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
 
-                </div>
-                <div class="col-lg-6">
-
-                  </div>
-              </div>
-        </div>
 
               <div class="container-fluid p-0" id="wrapper">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
+                    </div>
+                    <div class="col-lg-4">
+                      <?php echo eboywp_display( 'facet', 'state_dropdown' ); ?>
+                      </div>
+                      <div class="col-lg-4">
+                        <?php echo eboywp_display( 'facet', 'city_dropdown' ); ?>
+                        </div>
+                  </div>
                 <div class="row">
                   <div class="col-12">
    <div class="container-fluid p-0" id="google_map">
@@ -556,8 +547,14 @@ function store_finder(){
 
    <div class="container" id="over_map">
      <div class="row">
-       <div class="col-4 div-w">
-<?php echo eboywp_display( 'facet', 'store_category' ); ?>
+       <div class="col-4">
+
+<div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+<?php echo eboywp_display( 'facet', 'store_category' ); ?>  </div>
+
+</div>
 </div>
  <div class="col-8">
     <?php echo eboywp_display( 'facet', 'proximity' ); ?>
@@ -615,4 +612,19 @@ add_action( 'custom_book', 'book', 15 );
 add_filter("gform_init_scripts_footer", "init_scripts");
 function init_scripts() {
 return true;
+}
+
+
+add_filter( 'facetwp_map_init_args', 'prefix_prevent_scroll_zoom_on_facet_map' );
+/**
+ * Filter the Google Map options to prevent scrollwheel zoom.
+ * @link https://craigsimpson.scot/filter-facetwp-google-map-options
+ *
+ * @param array $args Array of init settings for Google map.
+ *
+ * @return array $args Modified array.
+ */
+function prefix_prevent_scroll_zoom_on_facet_map( $args ) {
+ $args['scrollwheel'] = false;
+ return $args;
 }
