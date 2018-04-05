@@ -522,69 +522,39 @@ add_action( 'custom_external', 'external_1', 15 );
 
 
 function store_finder(){
-
-
         ?>
-
-
               <div class="container-fluid p-0" id="wrapper">
                 <div class="row">
-
-
-
-
-
                   </div>
                 <div class="row">
                   <div class="col-12">
-
    <div class="container-fluid p-0" id="google_map">
-
-  <?php echo eboywp_display( 'facet', 'location' ); ?>
+  <?php //echo eboywp_display( 'facet', 'location' ); ?>
    </div>
-
    <div class="container" id="over_map">
-
-
      <div class="row">
        <div class="col-4">
-
 <div class="card" style="width: 20rem;">
-
   <div class="card-body">
 <?php echo eboywp_display( 'facet', 'store_category' ); ?>  </div>
-
 </div>
 </div>
  <div class="col-8">
     <?php echo eboywp_display( 'facet', 'proximity' ); ?>
     </div>
    </div>
-
    <div class="row pt-10">
      <div class="col-12">
-
    <?php echo eboywp_display( 'template', 'stores' ); ?>
  </div>
  </div>
-
-
 </div>
 </div>
 </div>
 </div>
-
-
-
-        <?php
+<?php
 }
 add_action( 'custom_store_finder', 'store_finder', 15 );
-
-
-
-
-
-
 
 function book(){
         ?>
