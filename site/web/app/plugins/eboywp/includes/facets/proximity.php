@@ -60,9 +60,12 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 
         ob_start();
 ?>
-    
-        <input type="text" class="eboywp-location form-control" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
 
+        <input type="text" class="eboywp-location form-control  form-control-lg" value="<?php echo esc_attr( $location_name ); ?>" placeholder="<?php _e( 'Enter location', 'EWP' ); ?>" />
+        <div class="eboywp-radius-label text-center pt-2">
+            <span class="eboywp-radius-dist"><?php echo $chosen_radius; ?></span>
+            <span class="eboywp-radius-unit"><?php echo $facet['unit']; ?></span>
+        </div>
         <?php if ( 'dropdown' == $radius_ui ) : ?>
 
         <select class="eboywp-radius eboywp-radius-dropdown">
@@ -76,14 +79,13 @@ class eboywp_Facet_Proximity_Core extends eboywp_Facet
 
         <div class="eboywp-radius-wrap">
             <input class="eboywp-radius eboywp-radius-slider" type="range"
-                min="<?php echo $facet['radius_min']; ?>"
-                max="<?php echo $facet['radius_max']; ?>"
-                value="<?php echo $chosen_radius; ?>"
+                data-slider-min="<?php echo $facet['radius_min']; ?>"
+                data-slider-max="<?php echo $facet['radius_max']; ?>"
+                data-slider-value="<?php echo $chosen_radius; ?>"
+                data-slider-id="ex1Slider"
+                id="ex1"
             />
-            <div class="eboywp-radius-label">
-                <span class="eboywp-radius-dist"><?php echo $chosen_radius; ?></span>
-                <span class="eboywp-radius-unit"><?php echo $facet['unit']; ?></span>
-            </div>
+
         </div>
 
         <?php elseif ( 'none' == $radius_ui ) : ?>

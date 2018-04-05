@@ -88,6 +88,7 @@ function display_sidebar() {
     is_front_page(),
     is_page_template('template-custom.php'),
     is_page_template('template-store_finder.php'),
+    is_page_template('template-store_finder_2.php'),
     is_page_template('template-book.php'),
   ]);
 
@@ -105,6 +106,7 @@ function assets() {
   }
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+  wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAY55sLjGdZyuE5fX9gIH0NegqSeB24LEU', ['sage/js'], null, true);
   //wp_enqueue_script('sage/youtube_js', get_template_directory('dist/scripts/youtube.js'), ['sage/js'], null, true);
 }
 
