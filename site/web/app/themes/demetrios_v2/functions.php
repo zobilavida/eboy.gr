@@ -540,7 +540,7 @@ function store_finder(){
 </div>
 </div>
  <div class="col-8">
-    <?php echo eboywp_display( 'facet', 'proximity' ); ?>
+    <?php //echo eboywp_display( 'facet', 'proximity' ); ?>
     </div>
    </div>
    <div class="row pt-10">
