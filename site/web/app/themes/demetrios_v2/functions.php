@@ -621,20 +621,3 @@ add_filter("gform_init_scripts_footer", "init_scripts");
 function init_scripts() {
 return true;
 }
-
-
-add_filter( 'facetwp_map_init_args', 'prefix_prevent_scroll_zoom_on_facet_map' );
-/**
- * Filter the Google Map options to prevent scrollwheel zoom.
- * @link https://craigsimpson.scot/filter-facetwp-google-map-options
- *
- * @param array $args Array of init settings for Google map.
- *
- * @return array $args Modified array.
- */
-function prefix_prevent_scroll_zoom_on_facet_map( $args ) {
- $args['scrollwheel'] = false;
- return $args;
-}
-
-add_filter( 'eboywp_proximity_store_distance', '__return_true' );
