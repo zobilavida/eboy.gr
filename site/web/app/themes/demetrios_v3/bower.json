@@ -1,0 +1,21 @@
+{
+  "name": "demetrios_3",
+  "homepage": "https://eboy.io/demetrios_3/",
+  "authors": [
+    "Ben Word <ben@benword.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "picturefill": "^3.0.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./scss/bootstrap.scss",
+        "./dist/js/bootstrap.bundle.js"
+      ]
+    }
+  }
+}
