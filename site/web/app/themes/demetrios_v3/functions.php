@@ -407,7 +407,7 @@ function demetrios_front_carousel(){
 
               <!-- the loop -->
               <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
-                <div class="carousel-item active">
+                <div class="carousel-item active h-100">
                   <picture>
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
@@ -445,7 +445,7 @@ function demetrios_front_carousel(){
 
       <!-- the loop -->
       <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
-        <div class="carousel-item">
+        <div class="carousel-item h-100">
           <picture>
  <source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
  <source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
@@ -480,17 +480,23 @@ add_action( 'demetrios', 'demetrios_front_carousel', 10 );
 
 
 function demetrios_front_fasa_book(){
+    $fasa_1 = get_field( "fasa_1" );
+    $fasa_2 = get_field( "fasa_2" );
+    $button_1_text = get_field( "button_1_text" );
   ?>
   <section class="fasa_book p-5">
 <div class="container-fluid fasa_book">
   <div class="row">
     <div class="container">
       <div class="row">
-        <div class="col-7">
-        test 7
+        <div class="col-lg-7">
+          <h4><?php echo $fasa_1; ?></h4>
+          <h5><?php echo $fasa_2; ?></h5>
           </div>
-          <div class="col-5">
-          tes 5
+          <div class="col-lg-5">
+            <div class="btn btn-border-w btn-round">
+            <a href="#">  <?php echo $button_1_text; ?></a>
+            </div>
             </div>
           </div>
       </div>
@@ -503,3 +509,31 @@ function demetrios_front_fasa_book(){
 
 }
 add_action( 'demetrios_fasa', 'demetrios_front_fasa_book', 10 );
+
+function parallax_1(){
+  $parallax_1 = get_field( "parallax_1" );
+  $parallax_1_text_1 = get_field( "parallax_1_text_1" );
+  $parallax_1_text_2 = get_field( "parallax_1_text_2" );
+  $parallax_1_button = get_field( "parallax_1_button" );
+  $parallax_1_button_url = get_field( "parallax_1_button_url" );
+
+
+  if( $parallax_1 ) {
+
+?>
+<section class="module bg-dark-60 h-50">
+<div class="parallax-bg h-100"  style="background-image: url(<?php echo $parallax_1; ?>)">
+    <div class="parallax-content">
+
+        <div class="font-alt mb-30"><h2><?php echo $parallax_1_text_1; ?></h2></div>
+        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_1_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_1_button_url; ?>"><?php echo $parallax_1_button; ?></a>
+
+    </div>
+    </div>
+
+</section>
+<?php
+} else { echo "Niente parallax_1";}
+
+}
+add_action( 'custom_parallax_1', 'parallax_1', 15 );
