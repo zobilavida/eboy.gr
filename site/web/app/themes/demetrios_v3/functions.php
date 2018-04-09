@@ -522,7 +522,7 @@ function parallax_1(){
   if( $parallax_1 ) {
 
 ?>
-<section class="module bg-dark-90 parallax-bg h-50" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
+<section class="module bg-dark-90 parallax-bg h-25" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
 
     <div class="titan-caption">
       <div class="caption-content">
@@ -624,16 +624,19 @@ add_action( 'custom_parallax_2', 'parallax_2', 15 );
 function external_1(){
   $section_external_header = get_field( "section_external_header" );
   $external_img_1 = get_field( "external_img_1" );
+  $external_1_button = get_field( "external_butt_1" );
+  $external_1_button_url = get_field( "external_butt_1_url" );
   $external_img_2 = get_field( "external_img_2" );
+  $external_2_button = get_field( "external_butt_2" );
+  $external_2_button_url = get_field( "external_butt_2_url" );
   $external_img_3 = get_field( "external_img_3" );
-  $external_text_1 = get_field( "external_text_1" );
-  $external_text_2 = get_field( "external_text_2" );
-  $external_text_3 = get_field( "external_text_3" );
+  $external_3_button = get_field( "external_butt_3" );
+  $external_3_button_url = get_field( "external_butt_3_url" );
 
-  if( $external_img_1 ) {
+  if( $section_external_header ) {
 
 ?>
-<section class="module pt-5 pb-5 h-50">
+<section class="module pt-5 pb-5">
   <div class="container-fluid h-100">
     <div class="row justify-content-center pb-5">
       <div class="col-12 text-center">
@@ -641,14 +644,23 @@ function external_1(){
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-4 text-center">
+        <a href="<?php echo $external_1_button_url; ?>">
         <img src="<?php echo $external_img_1; ?>" class="img-fluid">
+        </a>
+        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
       </div>
-      <div class="col-4">
+      <div class="col-4 text-center">
+        <a href="<?php echo $external_2_button_url; ?>">
         <img src="<?php echo $external_img_2; ?>" class="img-fluid">
+        </a>
+        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
       </div>
-      <div class="col-4">
+      <div class="col-4 text-center">
+        <a href="<?php echo $external_3_button_url; ?>">
         <img src="<?php echo $external_img_3; ?>" class="img-fluid">
+        </a>
+        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_3_button_url; ?>"><?php echo $external_3_button; ?></a>
       </div>
     </div>
   </div>
@@ -659,3 +671,38 @@ function external_1(){
 
 }
 add_action( 'custom_external', 'external_1', 15 );
+
+function parallax_3(){
+  $section_parallax_3_header = get_field( "section_parallax_3_header" );
+  $parallax_3 = get_field( "parallax_3" );
+  $parallax_3_text_1 = get_field( "parallax_3_text_1" );
+  $parallax_3_text_2 = get_field( "parallax_3_text_2" );
+  $parallax_3_button = get_field( "parallax_3_button" );
+  $parallax_3_button_url = get_field( "parallax_3_button_url" );
+
+
+  if( $section_parallax_3_header ) {
+
+?>
+<div class="container">
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 text-center">
+      <h3><?php echo $section_parallax_3_header; ?></h3>
+    </div>
+  </div>
+</div>
+<section class="module bg-dark-60 parallax-bg h-25" data-background="<?php echo $parallax_3; ?>" style="background-position: 50% 15%;">
+
+    <div class="titan-caption">
+      <div class="caption-content">
+        <div class="font-alt mb-30"><h2><?php echo $parallax_3_text_1; ?></h2></div>
+        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_3_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_3_button_url; ?>"><?php echo $parallax_3_button; ?></a>
+      </div>
+    </div>
+
+</section>
+<?php
+} else { echo "Niente parallax_3";}
+
+}
+add_action( 'custom_parallax_3', 'parallax_3', 15 );

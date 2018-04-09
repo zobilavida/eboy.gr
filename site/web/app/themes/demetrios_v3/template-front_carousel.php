@@ -10,3 +10,4 @@
   <?php get_template_part('templates/unit', 'half_1'); ?>
 <?php get_template_part('templates/unit', 'parallax_2'); ?>
 <?php get_template_part('templates/unit', 'external_1'); ?>
+<?php get_template_part('templates/unit', 'parallax_3'); ?>
