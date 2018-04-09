@@ -459,6 +459,7 @@ function demetrios_front_carousel(){
  <span class="btn btn-sm btn-outline-secondary">Learn More</span>
 </div>
 </div>
+
         </div>
 
       <?php endwhile; ?>
@@ -521,19 +522,64 @@ function parallax_1(){
   if( $parallax_1 ) {
 
 ?>
-<section class="module bg-dark-60 h-50">
-<div class="parallax-bg h-100"  style="background-image: url(<?php echo $parallax_1; ?>)">
-    <div class="parallax-content">
+<section class="module bg-dark-90 parallax-bg h-100" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
 
+    <div class="titan-caption">
+      <div class="caption-content">
         <div class="font-alt mb-30"><h2><?php echo $parallax_1_text_1; ?></h2></div>
         <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_1_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_1_button_url; ?>"><?php echo $parallax_1_button; ?></a>
-
-    </div>
+      </div>
     </div>
 
 </section>
+
 <?php
 } else { echo "Niente parallax_1";}
 
 }
 add_action( 'custom_parallax_1', 'parallax_1', 15 );
+
+
+
+function half_1(){
+  $half_1 = get_field( "half_1" );
+  $section_half_1_header = get_field( "section_half_1_header" );
+  $half_1_text_1 = get_field( "half_text_1" );
+  $half_1_text_2 = get_field( "half_text_2" );
+  $half_1_button = get_field( "half_1_button" );
+  $half_1_button_url = get_field( "half_1_button_url" );
+
+  if( $half_1 ) {
+
+?>
+<section class="module pt-5 pb-5 h-50">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center pb-5">
+      <div class="col-12 text-center">
+        <h3><?php echo $section_half_1_header; ?></h3>
+      </div>
+    </div>
+  <div class="row position-relative m-0">
+    <div class="col-xs-12 col-md-6 side-image" >
+      <img src="<?php echo $half_1; ?>" class="img-fluid">
+    </div>
+    <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
+      <div class="row h-100">
+        <div class="col-sm-12 align-self-center pl-5">
+<span class="align-middle">
+  <h2><?php echo $half_1_text_1; ?></h2>
+  <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $half_1_text_2; ?></div><a class="section-scroll btn btn-border-d btn-round" href="<?php echo $half_1_button_url; ?>"><?php echo $half_1_button; ?></a>
+
+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<?php
+} else { echo "Niente half_1";}
+
+}
+add_action( 'custom_half_1', 'half_1', 15 );
