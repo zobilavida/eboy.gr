@@ -522,7 +522,7 @@ function parallax_1(){
   if( $parallax_1 ) {
 
 ?>
-<section class="module bg-dark-90 parallax-bg h-100" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
+<section class="module bg-dark-90 parallax-bg h-50" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
 
     <div class="titan-caption">
       <div class="caption-content">
@@ -552,7 +552,7 @@ function half_1(){
   if( $half_1 ) {
 
 ?>
-<section class="module pt-5 pb-5 h-50">
+<section class="module pt-5 pb-5">
   <div class="container-fluid h-100">
     <div class="row justify-content-center pb-5">
       <div class="col-12 text-center">
@@ -583,3 +583,79 @@ function half_1(){
 
 }
 add_action( 'custom_half_1', 'half_1', 15 );
+
+
+function parallax_2(){
+  $section_parallax_2_header = get_field( "section_parallax_2_header" );
+  $parallax_2 = get_field( "parallax_2" );
+  $parallax_2_text_1 = get_field( "parallax_2_text_1" );
+  $parallax_2_text_2 = get_field( "parallax_2_text_2" );
+  $parallax_2_button = get_field( "parallax_2_button" );
+  $parallax_2_button_url = get_field( "parallax_2_button_url" );
+
+
+  if( $parallax_2 ) {
+
+?>
+<div class="container">
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 text-center">
+      <h3><?php echo $section_parallax_2_header; ?></h3>
+    </div>
+  </div>
+</div>
+<section class="module bg-dark-60 parallax-bg h-25" data-background="<?php echo $parallax_2; ?>" style="background-position: 50% 15%;">
+
+    <div class="titan-caption">
+      <div class="caption-content">
+        <div class="font-alt mb-30"><h2><?php echo $parallax_2_text_1; ?></h2></div>
+        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_2_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_2_button_url; ?>"><?php echo $parallax_2_button; ?></a>
+      </div>
+    </div>
+
+</section>
+<?php
+} else { echo "Niente parallax_2";}
+
+}
+add_action( 'custom_parallax_2', 'parallax_2', 15 );
+
+
+function external_1(){
+  $section_external_header = get_field( "section_external_header" );
+  $external_img_1 = get_field( "external_img_1" );
+  $external_img_2 = get_field( "external_img_2" );
+  $external_img_3 = get_field( "external_img_3" );
+  $external_text_1 = get_field( "external_text_1" );
+  $external_text_2 = get_field( "external_text_2" );
+  $external_text_3 = get_field( "external_text_3" );
+
+  if( $external_img_1 ) {
+
+?>
+<section class="module pt-5 pb-5 h-50">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center pb-5">
+      <div class="col-12 text-center">
+        <h3><?php echo $section_external_header; ?></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <img src="<?php echo $external_img_1; ?>" class="img-fluid">
+      </div>
+      <div class="col-4">
+        <img src="<?php echo $external_img_2; ?>" class="img-fluid">
+      </div>
+      <div class="col-4">
+        <img src="<?php echo $external_img_3; ?>" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<?php
+} else { echo "Niente half_1";}
+
+}
+add_action( 'custom_external', 'external_1', 15 );
