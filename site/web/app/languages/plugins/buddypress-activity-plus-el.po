@@ -1,0 +1,203 @@
+# Translation of Plugins - BuddyPress Activity Plus - Stable (latest release) in Greek
+# This file is distributed under the same license as the Plugins - BuddyPress Activity Plus - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-01-24 09:39:58+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: el_GR\n"
+"Project-Id-Version: Plugins - BuddyPress Activity Plus - Stable (latest release)\n"
+
+#. Author URI of the plugin/theme
+msgid "http://premium.wpmudev.org"
+msgstr "http://premium.wpmudev.org"
+
+#. Author of the plugin/theme
+msgid "WPMU DEV"
+msgstr "WPMU DEV"
+
+#. Plugin URI of the plugin/theme
+msgid "http://premium.wpmudev.org/project/media-embeds-for-buddypress-activity"
+msgstr "http://premium.wpmudev.org/project/media-embeds-for-buddypress-activity"
+
+#: lib/class_bpfb_binder.php:211 lib/class_bpfb_binder.php:228
+msgid "Processing..."
+msgstr "Επεξεργασία..."
+
+#: lib/class_bpfb_binder.php:210 lib/class_bpfb_binder.php:227
+msgid "There has been an error processing your request"
+msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος σας"
+
+#: lib/class_bpfb_binder.php:184
+msgid "You tried to add too many images, only %d will be posted."
+msgstr "Προσπαθήσατε να προσθέσετε πολλές εικόνες, μόνο %d θα δημοσιευτούν."
+
+#: lib/class_bpfb_binder.php:183
+msgid "Paste link here"
+msgstr "Επικολλήστε εδώ τον σύνδεσμο"
+
+#: lib/class_bpfb_binder.php:182
+msgid "Paste video URL here"
+msgstr "Επικολλήστε εδώ τo URL του video"
+
+#: lib/class_bpfb_binder.php:181
+msgid "No thumbnail"
+msgstr "Δίχως μικρογραφία"
+
+#: lib/class_bpfb_binder.php:180
+msgid "Choose thumbnail"
+msgstr "Επιλογή μικρογραφίας"
+
+#: lib/class_bpfb_binder.php:179
+msgid "Upload a file"
+msgstr "Μεταφόρτωση ενός αρχείου"
+
+#: lib/class_bpfb_binder.php:178
+msgid "Drop files here to upload"
+msgstr "Σύρτε εδώ και αποθέστε τα αρχεία που θέλετε να ανεβάσετε"
+
+#: lib/class_bpfb_binder.php:177
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+#: lib/class_bpfb_binder.php:176
+msgid "Cancel"
+msgstr "Άκυρο"
+
+#: lib/class_bpfb_binder.php:175
+msgid "Add"
+msgstr "Προσθήκη"
+
+#: lib/class_bpfb_binder.php:174
+msgid "Add link"
+msgstr "Προσθήκη συνδέσμου"
+
+#: lib/class_bpfb_binder.php:173
+msgid "Add links"
+msgstr "Προσθήκη συνδέσμων"
+
+#: lib/class_bpfb_binder.php:172
+msgid "Add video"
+msgstr "Προσθήκη video"
+
+#: lib/class_bpfb_binder.php:171
+msgid "Add videos"
+msgstr "Προσθήκη videos"
+
+#: lib/class_bpfb_binder.php:170
+msgid "Add another image URL"
+msgstr "Προσθήκη και άλλου URL εικόνας"
+
+#: lib/class_bpfb_binder.php:169
+msgid "Add image URL"
+msgstr "Δώστε URL εικόνας"
+
+#: lib/class_bpfb_binder.php:168
+msgid "Add photos"
+msgstr "Προσθήκη εικόνων"
+
+#: lib/class_bpfb_admin_pages.php:174
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: lib/class_bpfb_admin_pages.php:167
+msgid "Clean up images?"
+msgstr "Εκκαθάριση εικόνων;"
+
+#: lib/class_bpfb_admin_pages.php:164
+msgid "Misc"
+msgstr "Διάφορα"
+
+#: lib/class_bpfb_admin_pages.php:159
+msgid "Height"
+msgstr "Ύψος"
+
+#: lib/class_bpfb_admin_pages.php:151
+msgid "Your thumbnail dimensions will be dictated by the <code>BPFB_THUMBNAIL_IMAGE_SIZE</code> define value (%s). Remove this define to enable these options."
+msgstr "Οι διαστάσεις των μικρογραφιών υπαγορεύονται από την τιμή της μεταβλητής <code>BPFB_THUMBNAIL_IMAGE_SIZE</code> (%s). Αφαιρέστε την δήλωση της μεταβλητής για να ενεργοποιήσετε αυτή την επιλογή."
+
+#: lib/class_bpfb_admin_pages.php:148
+msgid "Image thumbnails"
+msgstr "Μικρογραφίες"
+
+#: lib/class_bpfb_admin_pages.php:143 lib/class_bpfb_admin_pages.php:155
+msgid "Width"
+msgstr "Πλάτος"
+
+#: lib/class_bpfb_admin_pages.php:139
+msgid "Your oEmbed dimensions will be dictated by the <code>BPFB_OEMBED_WIDTH</code> define value (%s). Remove this define to enable this option."
+msgstr "Οι διαστάσεις των ενσωματωμένων oeEmbed υπαγορεύονται από την τιμή της μεταβλητής <code>BPFB_OEMBED_WIDTH</code> (%s). Αφαιρέστε την δήλωση της μεταβλητής για να ενεργοποιήσετε αυτή την επιλογή."
+
+#: lib/class_bpfb_admin_pages.php:136
+msgid "oEmbed"
+msgstr "oEmbed"
+
+#: lib/class_bpfb_admin_pages.php:133
+msgid "Functional"
+msgstr "Λειτουργικότητα"
+
+#: lib/class_bpfb_admin_pages.php:126
+msgid "Right"
+msgstr "Δεξιά"
+
+#: lib/class_bpfb_admin_pages.php:122
+msgid "Left"
+msgstr "Αριστερά"
+
+#: lib/class_bpfb_admin_pages.php:119
+msgid "Alignment"
+msgstr "Στοίχιση"
+
+#: lib/class_bpfb_admin_pages.php:115
+msgid "Round"
+msgstr "Κυκλικά"
+
+#: lib/class_bpfb_admin_pages.php:110
+msgid "New"
+msgstr "Νέο"
+
+#: lib/class_bpfb_admin_pages.php:105
+msgid "Default (legacy)"
+msgstr "Προεπιλεγμένο"
+
+#: lib/class_bpfb_admin_pages.php:101
+msgid "Theme"
+msgstr "Θέμα"
+
+#: lib/class_bpfb_admin_pages.php:96
+msgid "Your BuddyPress theme incorporates Activity Plus style overrides. Respecting the selection you make in the &quot;Appearance&quot; section is entirely up to your theme."
+msgstr "Το θέμα εμφάνισης που χρησιμοποιείτε περιέχει αρχεία παράκαμψης του στυλ για το πρόσθετο Buddypress Acticity Plus. Το αν οι ρυθμίσεις που θα κάνετε στην ενότητα &quot;Εμφάνιση&quot; γίνουν σεβαστές από αυτό, εξαρτάται εξ ολοκλήρου από το θέμα εμφάνισης."
+
+#: lib/class_bpfb_admin_pages.php:92
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: lib/class_bpfb_admin_pages.php:33
+msgid "Activity Plus"
+msgstr "Activity Plus"
+
+#. #-#-#-#-#  tmp-buddypress-activity-plus.pot (BuddyPress Activity Plus 1.6.3)
+#.  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: lib/class_bpfb_admin_pages.php:32
+msgid "BuddyPress Activity Plus"
+msgstr "BuddyPress Activity Plus"
+
+#: lib/bpfb_group_documents.php:201
+msgid "%s uploaded new file(s): %s to %s"
+msgstr "%s ανέβασε νέο(α) αρχείο(α0: %s στην ομάδα %s"
+
+#: lib/bpfb_group_documents.php:49
+msgid "Please select a group to upload to"
+msgstr "Επιλέξτε σε ποια ομάδα θα ανεβάσετε"
+
+#: lib/bpfb_group_documents.php:48
+msgid "Add documents"
+msgstr "Προσθήκη αρχείων"
+
+#: bpfb.php:50
+msgid "There was an issue determining where BuddyPress Activity Plus plugin is installed. Please reinstall."
+msgstr "Δεν μπορέσαμε να εντοπίσουμε που είναι εγκατεστημένο το πρόσθετο BuddyPress Activity Plus. Παρακαλώ εγκαταστήστε το ξανά."

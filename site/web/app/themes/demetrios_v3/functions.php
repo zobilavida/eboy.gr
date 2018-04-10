@@ -706,3 +706,167 @@ function parallax_3(){
 
 }
 add_action( 'custom_parallax_3', 'parallax_3', 15 );
+
+function button_book(){
+  $button_book = get_field( "button_book" );
+  $button_book_url = get_field( "button_book_url" );
+
+  if( $button_book ) {
+
+?>
+<div id="mybutton">
+<button class="feedback"><?php echo $button_book; ?></button>
+</div>
+<?php
+} else { echo "Niente button"; }
+
+}
+add_action( 'demetrios_butt_book', 'button_book', 0 );
+
+
+function my_eboywp_is_main_query( $is_main_query, $query ) {
+    if ( isset( $query->query_vars['eboywp'] ) ) {
+        $is_main_query = true;
+    }
+    return $is_main_query;
+}
+add_filter( 'eboywp_is_main_query', 'my_eboywp_is_main_query', 10, 2 );
+
+function store_finder(){
+        ?>
+              <div class="container-fluid p-0" id="wrapper">
+
+                <div class="row">
+                  <div class="col-12">
+   <div class="container-fluid p-0" id="google_map">
+  <?php echo eboywp_display( 'facet', 'location' ); ?>
+   </div>
+   <div class="container" id="over_map">
+     <div class="row">
+       <div class="col-4">
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+<?php echo eboywp_display( 'facet', 'store_category' ); ?>  </div>
+</div>
+</div>
+ <div class="col-8">
+    <?php echo eboywp_display( 'facet', 'proximity' ); ?>
+    </div>
+   </div>
+
+</div>
+
+</div>
+</div>
+</div>
+<?php
+}
+add_action( 'custom_store_finder', 'store_finder', 15 );
+
+function book(){
+        ?>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 widget">
+
+                <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
+
+            </div>
+            <div class="col-lg-2 widget">
+
+              <?php echo eboywp_display( 'facet', 'state_dropdown' ); ?>
+
+            </div>
+            <div class="col-lg-5 widget">
+
+                <?php echo eboywp_display( 'facet', 'citydropdown' ); ?>
+
+            </div>
+                </div>
+              <?php echo eboywp_display( 'template', 'stores_radios' ); ?>
+
+              <?php gravity_form_enqueue_scripts( 1, false ); ?>
+              <?php gravity_form('Book an appointment', false, false, false, '', false); ?>
+
+              </div>
+
+        <?php
+}
+add_action( 'custom_book', 'book', 15 );
+
+
+function woo_cat_thumb() {
+
+  if ( is_product_category() ){
+
+      global $wp_query;
+
+      // get the query object
+      $cat = $wp_query->get_queried_object();
+
+      // get the thumbnail id using the queried category term_id
+      $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+
+      // get the image URL
+      $image = wp_get_attachment_url( $thumbnail_id );
+      ?>
+
+
+      <section class="module bg-dark-60 parallax-bg h-100" data-background="<?php echo $image ?>" style="background-position: 50% 15%;">
+
+          <div class="titan-caption">
+            <div class="caption-content">
+              <div class="font-alt mb-30 p-5 mt-5 mb-5"><h2><?php single_term_title(); ?></h2></div>
+            </div>
+          </div>
+
+      </section>
+
+<?php
+}
+
+
+}
+add_action( 'demetrios_woo_cat_thumb', 'woo_cat_thumb', 10);
+
+add_action( 'init', 'woo_remove_wc_breadcrumbs' );
+function woo_remove_wc_breadcrumbs() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+}
+
+remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+
+function new_loop_shop_per_page( $cols ) {
+  // $cols contains the current number of products per page based on the value stored on Options -> Reading
+  // Return the number of products you wanna show per page.
+  $cols = 20;
+  return $cols;
+}
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 45 );
+
+add_filter("gform_init_scripts_footer", "init_scripts");
+function init_scripts() {
+return true;
+}
+
+// Auto-populate end date if it is empty.
+function update_end_date_cf( $value, $post_id, $field ) {
+
+   //don't use get_field() because it retrieves the value
+   //in a preformatted way different as it is saved in database
+   $end_date = get_post_meta( $post_id, 'email_2', true );
+   $start_date = get_post_meta( $post_id, 'email_1', true );
+
+   if ($end_date == '' && $start_date != '') {
+      $value = $start_date;
+   }
+
+   return $value;
+
+}
+add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
