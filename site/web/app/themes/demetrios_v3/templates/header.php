@@ -12,7 +12,7 @@
     </div>
     <!--container-->
 </div>
-<nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
+<nav class="navbar navbar-expand-sm sticky-top navbar-light">
     <div class="container">
         <a class="navbar-brand" href="#"><img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
 </a>
@@ -20,14 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar1">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
+          
             <?php
             wp_nav_menu([
               'menu'            => 'top',
