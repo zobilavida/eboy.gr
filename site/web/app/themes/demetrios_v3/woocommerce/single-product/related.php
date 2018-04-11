@@ -25,7 +25,7 @@ if ( $related_products ) : ?>
 <div class="container-fluid pt-5">
 	<div class="row p-5">
 		<div class="col-12 text-center">
-			<h1>You may also like</h1>
+			<h1>You may also like 2</h1>
 		</div>
 		</div>
 
