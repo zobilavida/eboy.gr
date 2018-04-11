@@ -16,6 +16,9 @@ function setup() {
   add_theme_support('soil-jquery-cdn');
   add_theme_support('soil-relative-urls');
   add_theme_support('woocommerce');
+  add_theme_support( 'wc-product-gallery-zoom' );
+add_theme_support( 'wc-product-gallery-lightbox' );
+add_theme_support( 'wc-product-gallery-slider' );
 
   // Make theme available for translation
   // Community translations can be found at https://github.com/eboy/demetrios_3-translations
@@ -70,6 +73,22 @@ function widgets_init() {
   register_sidebar([
     'name'          => __('Footer', 'demetrios_3'),
     'id'            => 'sidebar-footer',
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ]);
+  register_sidebar([
+    'name'          => __('Header Left', 'demetrios_3'),
+    'id'            => 'sidebar-header-left',
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ]);
+  register_sidebar([
+    'name'          => __('Header Right', 'demetrios_3'),
+    'id'            => 'sidebar-header-right',
     'before_widget' => '<section class="widget %1$s %2$s">',
     'after_widget'  => '</section>',
     'before_title'  => '<h3>',

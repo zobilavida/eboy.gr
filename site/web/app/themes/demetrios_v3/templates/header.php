@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                Header
+                <?php dynamic_sidebar('sidebar-header-left'); ?>
             </div>
             <div class="col-6 text-right">
-                000 000 0000
+                <?php dynamic_sidebar('sidebar-header-right'); ?>
             </div>
         </div>
         <!--/row-->
@@ -20,7 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar1">
-          
+
             <?php
             wp_nav_menu([
               'menu'            => 'top',

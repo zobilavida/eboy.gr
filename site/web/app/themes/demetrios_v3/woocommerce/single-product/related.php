@@ -23,6 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 <div class="container-fluid pt-5">
+	<div class="row p-5">
+		<div class="col-12 text-center">
+			<h1>You may also like</h1>
+		</div>
+		</div>
 
 		<?php woocommerce_product_loop_start(); ?>
 			<?php foreach ( $related_products as $related_product ) : ?>
