@@ -12,7 +12,7 @@
     </div>
     <!--container-->
 </div>
-<nav class="navbar navbar-expand-sm sticky-top navbar-light">
+<nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
     <div class="container">
         <a class="navbar-brand" href="#"><img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
 </a>
