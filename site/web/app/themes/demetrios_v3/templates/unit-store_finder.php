@@ -15,17 +15,17 @@
 				?>
 				<div class="eboywp-template container">
           <div class="row">
-        	<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); ?>
-
-
-
-
+        	<?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+					$email_2 = get_field( "email_2" );
+					$street_address = get_field( "street_address" );
+					$phone = get_field( "phone" );
+					?>
   <div class="col-lg-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><?php the_title(); ?></h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p class="card-text"><?php echo $street_address; ?></p>
+				<a class="btn btn-primary" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php $location = get_field('location'); echo $location['lat'] . ',' . $location['lng']; ?>"><?php _e('Get Directions','roots'); ?></a>
       </div>
     </div>
   </div>

@@ -985,3 +985,37 @@ add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
 } // end the_breadcrumb()
 
 //// BREADCRUMB END ////
+add_filter( 'eboywp_pager_html', function( $output, $params ) {
+    $output = '<nav aria-label="Resources Pagination"><ul class="pagination mt-1 justify-content-center">';
+    $page = $params['page'];
+    $i = 1;
+    $total_pages = $params['total_pages'];
+    $limit = ($total_pages >= 5) ? 3 : $total_pages;
+    $prev_disabled = ($params['page'] <= 1) ? 'disabled' : '';
+    $output .= '<li class="page-item ' . $prev_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page - 1) . '">Prev</a></li>';
+    $loop = ($limit) ? $limit : $total_pages;
+    while($i <= $loop) {
+      $active = ($i == $page) ? 'active' : '';
+      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . $i . '">' . $i . '</a></li>';
+      $i++;
+    }
+    if($limit && $total_pages > '3') {
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page <= ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page > ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page != ($total_pages - 2) && $page > ($limit + 1)) ? '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>' : '';
+      $active = ($page == ($total_pages - 1)) ? 'active' : '';
+      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . ($total_pages - 1) .'">' . ($total_pages - 1) .'</a></li>';
+    }
+    $next_disabled = ($page >= $total_pages) ? 'disabled' : '';
+    $output .= '<li class="page-item ' . $next_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page + 1) . '">Next</a></li>';
+    $output .= '</ul></nav>';
+    return $output;
+}, 10, 2 );
+
+add_filter( 'gform_field_container', 'add_bootstrap_container_class', 10, 6 );
+function add_bootstrap_container_class( $field_container, $field, $form, $css_class, $style, $field_content ) {
+  $id = $field->id;
+  $field_id = is_admin() || empty( $form ) ? "field_{$id}" : 'field_' . $form['id'] . "_$id";
+  return '<li id="' . $field_id . '" class="' . $css_class . ' form-group">{FIELD_CONTENT}</li>';
+}

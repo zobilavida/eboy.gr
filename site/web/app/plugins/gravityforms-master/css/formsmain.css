@@ -638,12 +638,12 @@ body .gform_wrapper ul li.field_description_below div.ginput_container_checkbox 
 
 .gform_wrapper li.gfield.gfield_error,
 .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning {
-    background-color: rgba(255,223,224,.25);
+    background-color: transparent;
     margin-bottom: 6px !important;
-    border-top: 1px solid #C89797;
+    border-top: 0px solid #C89797;
     border-bottom: 1px solid #C89797;
     padding-bottom: 6px;
-    padding-top: 8px;
+    padding-top: 0px;
     box-sizing: border-box;
 }
 
@@ -730,7 +730,7 @@ li.gfield + li.gfield.gfield_creditcard_warning {
 
 .gform_wrapper li.gfield.gfield_error.gfield_contains_required label.gfield_label,
 .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.ginput_container {
-    margin-top: 12px
+    margin-top: 5px
 }
 
 .gform_wrapper li.gfield.gfield_error.gfield_contains_required fieldset legend.gfield_label {
@@ -2284,7 +2284,7 @@ body .gform_wrapper div.gform_body ul.gform_fields li.gfield.gfield_html {
 
 body .gform_wrapper div.gform_body ul.gform_fields li.gfield.gfield_html ul li,
 body .gform_wrapper form div.gform_body ul.gform_fields li.gfield.gfield_html ul li {
-    list-style-type: disc !important;
+    list-style-type: none !important;
     margin: 0 0 8px 0;
     overflow: visible;
     padding-left: 0;
@@ -2676,7 +2676,7 @@ body .gform_wrapper div.gform_body ul.gform_fields li.gfield.gfield_html dl dd {
     .gform_wrapper .top_label input.small.datepicker,
     .gform_wrapper .top_label input.medium.datepicker,
     .gform_wrapper .top_label input.large.datepicker {
-        width: auto;
+        width: 90%;
     }
 
     .gform_wrapper textarea.small {
