@@ -11,7 +11,7 @@ class WC_Booking_Order_Manager {
 	/**
 	 * ID being synced.
 	 *
-	 * @var array
+	 * @var boolean
 	 */
 	private static $syncing_ids = array();
 
@@ -44,9 +44,7 @@ class WC_Booking_Order_Manager {
 		add_action( 'before_delete_post', array( $this, 'delete_post' ) );
 		add_action( 'wp_trash_post', array( $this, 'trash_post' ) );
 		add_action( 'untrash_post', array( $this, 'untrash_post' ) );
-		add_action( 'woocommerce_booking_cancelled', array( $this, 'maybe_cancel_order' ) );
-		add_action( 'woocommerce_booking_paid', array( $this, 'maybe_process_order' ) );
-		add_action( 'woocommerce_booking_unpaid', array( $this, 'maybe_pending_order' ) );
+		add_action( 'woocommerce_booking_cancelled', array( $this, 'cancel_order' ) );
 
 		// Prevent pending being cancelled
 		add_filter( 'woocommerce_cancel_unpaid_order', array( $this, 'prevent_cancel' ), 10, 2 );
@@ -72,10 +70,27 @@ class WC_Booking_Order_Manager {
 	public function booking_display( $item_id, $item, $order ) {
 		$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $item_id );
 
-		wc_get_template( 'order/booking-display.php', array(
-			'booking_ids' => $booking_ids,
-			'endpoint'    => $this->get_endpoint(),
-		), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+		if ( $booking_ids ) {
+			foreach ( $booking_ids as $booking_id ) {
+				$booking = new WC_Booking( $booking_id );
+				?>
+				<div class="wc-booking-summary">
+					<strong class="wc-booking-summary-number">
+						<?php printf( __( 'Booking #%s', 'woocommerce-bookings' ), esc_html( $booking->get_id() ) ); ?>
+						<span class="status-<?php echo esc_attr( $booking->get_status() ); ?>">
+							<?php echo esc_html( wc_bookings_get_status_label( $booking->get_status() ) ) ?>
+						</span>
+					</strong>
+					<?php wc_bookings_get_summary_list( $booking ); ?>
+					<div class="wc-booking-summary-actions">
+						<?php if ( $booking_id && function_exists( 'wc_get_endpoint_url' ) && wc_get_page_id( 'myaccount' ) ) : ?>
+							<a href="<?php echo esc_url( wc_get_endpoint_url( $this->get_endpoint(), '', wc_get_page_permalink( 'myaccount' ) ) ); ?>"><?php _e( 'View my bookings &rarr;', 'woocommerce-bookings' ); ?></a>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php
+			}
+		}
 	}
 
 	/**
@@ -116,7 +131,7 @@ class WC_Booking_Order_Manager {
 	 * @see https://developer.wordpress.org/reference/functions/add_rewrite_endpoint/
 	 */
 	public function add_endpoint() {
-		add_rewrite_endpoint( $this->get_endpoint(), EP_PAGES );
+		add_rewrite_endpoint( $this->get_endpoint(), EP_ROOT | EP_PAGES );
 	}
 
 	/**
@@ -178,14 +193,10 @@ class WC_Booking_Order_Manager {
 	/**
 	 * Endpoint HTML content.
 	 *
-	 * @param int $current_page
-	 *
-	 * @since    1.9.11
-	 * @version  1.10.8
+	 * @since 1.9.11
 	 */
-	public function endpoint_content( $current_page ) {
-		$current_page = empty( $current_page ) ? 1 : absint( $current_page );
-		$this->my_bookings( $current_page );
+	public function endpoint_content() {
+		$this->my_bookings();
 	}
 
 	/**
@@ -200,35 +211,23 @@ class WC_Booking_Order_Manager {
 	}
 
 	/**
-	 * Show a users bookings in My Account > Bookings.
-	 *
-	 * @param int $current_page
-	 *
-	 * @since    1.8.0
-	 * @version  1.10.8
+	 * Show a users bookings.
 	 */
-	public function my_bookings( $current_page = 0 ) {
+	public function my_bookings() {
 		$user_id      = get_current_user_id();
-		$current_page = empty( $current_page ) ? 1 : absint( $current_page );
 
 		if ( version_compare( WC()->version, '2.6.0', '>=' ) ) {
-			$bookings_per_page = apply_filters( 'woocommerce_bookings_my_bookings_per_page', 10 );
+			$past_bookings = WC_Bookings_Controller::get_bookings_for_user( $user_id, array(
+				'orderby'     => 'start_date',
+				'order'       => 'ASC',
+				'date_before' => current_time( 'timestamp' ),
+			) );
 
-			$past_bookings = WC_Bookings_Controller::get_bookings_for_user( $user_id, apply_filters( 'woocommerce_bookings_my_bookings_past_query_args', array(
-				'order_by'       => apply_filters( 'woocommerce_bookings_my_bookings_past_order_by', 'start_date' ),
-				'order'          => 'ASC',
-				'date_before'    => current_time( 'timestamp' ),
-				'offset'         => ( $current_page - 1 ) * $bookings_per_page,
-				'limit'          => $bookings_per_page,
-			) ) );
-
-			$upcoming_bookings = WC_Bookings_Controller::get_bookings_for_user( $user_id, apply_filters( 'woocommerce_bookings_my_bookings_upcoming_query_args', array(
-				'order_by'       => apply_filters( 'woocommerce_bookings_my_bookings_upcoming_order_by', 'start_date' ),
-				'order'          => 'ASC',
-				'date_after'     => current_time( 'timestamp' ),
-				'offset'         => ( $current_page - 1 ) * $bookings_per_page,
-				'limit'          => $bookings_per_page,
-			) ) );
+			$upcoming_bookings = WC_Bookings_Controller::get_bookings_for_user( $user_id, array(
+				'orderby'    => 'start_date',
+				'order'      => 'ASC',
+				'date_after' => current_time( 'timestamp' ),
+			) );
 
 			$tables = array();
 			if ( ! empty( $upcoming_bookings ) ) {
@@ -244,14 +243,7 @@ class WC_Booking_Order_Manager {
 				);
 			}
 
-			wc_get_template(
-				'myaccount/bookings.php',
-				apply_filters( 'woocommerce_bookings_my_bookings_template_args', array(
-					'tables'            => apply_filters( 'woocommerce_bookings_account_tables', $tables ),
-					'page'              => $current_page,
-					'bookings_per_page' => $bookings_per_page,
-				) ),
-			'woocommerce-bookings/', WC_BOOKINGS_TEMPLATE_PATH );
+			wc_get_template( 'myaccount/bookings.php', array( 'tables' => apply_filters( 'woocommerce_bookings_account_tables', $tables ) ), 'woocommerce-bookings/', WC_BOOKINGS_TEMPLATE_PATH );
 		} else {
 			$all_bookings = WC_Bookings_Controller::get_bookings_for_user( $user_id );
 
@@ -271,6 +263,11 @@ class WC_Booking_Order_Manager {
 		$order          = wc_get_order( $order_id );
 		$payment_method = is_callable( array( $order, 'get_payment_method' ) ) ? $order->get_payment_method() : $order->payment_method;
 
+		// Don't publish bookings for COD orders.
+		if ( $order->has_status( 'processing' ) && 'cod' === $payment_method ) {
+			return;
+		}
+
 		if ( class_exists( 'WC_Deposits' ) ) {
 			// is this a final payment?
 			$parent_id = wp_get_post_parent_id( $order_id );
@@ -281,18 +278,9 @@ class WC_Booking_Order_Manager {
 
 		$bookings = WC_Booking_Data_Store::get_booking_ids_from_order_id( $order_id );
 
-		// Don't publish bookings for COD orders, but still schedule their events
-		$no_publish = $order->has_status( 'processing' ) && 'cod' === $payment_method;
-
 		foreach ( $bookings as $booking_id ) {
 			$booking = get_wc_booking( $booking_id );
-
-			if ( $no_publish ) {
-				$booking->maybe_schedule_event( 'reminder' );
-				$booking->maybe_schedule_event( 'complete' );
-			} else {
-				$booking->paid();
-			}
+			$booking->paid();
 		}
 	}
 
@@ -337,7 +325,7 @@ class WC_Booking_Order_Manager {
 
 		// deposits order status support
 		if ( class_exists( 'WC_Deposits' ) && 'partial-payment' === $order_status ) {
-			$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_id( $order_id );
+			$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $order_item_id );
 
 			foreach ( $booking_ids as $booking_id ) {
 				$booking = new WC_Booking( $booking_id );
@@ -435,14 +423,10 @@ class WC_Booking_Order_Manager {
 			self::syncing_start( $post_id );
 
 			$order_id = WC_Booking_Data_Store::get_booking_order_id( $post_id );
-			$order = wc_get_order( $order_id );
-			$item_count = is_a( $order, 'WC_Order' ) ? count( $order->get_items() ) : 0;
 
-			if ( 1 === $item_count && $order_id && ! self::is_syncing( $order_id ) ) {
+			if ( $order_id && ! self::is_syncing( $order_id ) ) {
 				wp_delete_post( $order_id, true );
 			}
-
-			$this->clear_cron_hooks( (int) $post_id );
 
 			self::syncing_stop( $post_id );
 		}
@@ -477,11 +461,8 @@ class WC_Booking_Order_Manager {
 			self::syncing_start( $post_id );
 
 			$order_id = WC_Booking_Data_Store::get_booking_order_id( $post_id );
-			$order = wc_get_order( $order_id );
-			$item_count = is_a( $order, 'WC_Order' ) ? count( $order->get_items() ) : 0;
 
-			// only delete this order if this booking is the only item in it
-			if ( 1 === $item_count && $order_id && ! self::is_syncing( $order_id ) ) {
+			if ( $order_id && ! self::is_syncing( $order_id ) ) {
 				wp_trash_post( $order_id );
 			}
 
@@ -543,18 +524,6 @@ class WC_Booking_Order_Manager {
 	}
 
 	/**
-	 * Clear cron hooks for booking
-	 *
-	 * @param mixed $post_id
-	 */
-	function clear_cron_hooks( $post_id ) {
-		wp_clear_scheduled_hook( 'wc-booking-reminder', array( $post_id ) );
-		wp_clear_scheduled_hook( 'wc-booking-complete', array( $post_id ) );
-		wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $post_id ) );
-	}
-
-
-	/**
 	 * Stops WC cancelling unpaid bookings orders.
 	 *
 	 * @param  bool $return
@@ -562,7 +531,7 @@ class WC_Booking_Order_Manager {
 	 * @return bool
 	 */
 	public function prevent_cancel( $return, $order ) {
-		$created_via    = is_callable( array( $order, 'get_created_via' ) ) ? $order->get_created_via() : $order->created_via;
+		$created_via    = is_callable( array( $order, 'get_created_via' ) ) ? $order->get_created_via()       : $order->created_via;
 		$payment_method = is_callable( array( $order, 'get_payment_method' ) ) ? $order->get_payment_method() : $order->payment_method;
 
 		if ( 'bookings' === $created_via || 'wc-booking-gateway' === $payment_method ) {
@@ -590,8 +559,7 @@ class WC_Booking_Order_Manager {
 			$status = array();
 
 			foreach ( $order->get_items() as $order_item_id => $item ) {
-				$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $order_item_id );
-				if ( $booking_ids ) {
+				if ( $booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $order_item_id ) ) {
 					foreach ( $booking_ids as $booking_id ) {
 						$booking  = new WC_Booking( $booking_id );
 						$status[] = $booking->get_status();
@@ -665,64 +633,19 @@ class WC_Booking_Order_Manager {
 	 *
 	 * @param  int $booking_id
 	 */
-	public function maybe_cancel_order( $booking_id ) {
-		$this->maybe_update_order( $booking_id, 'cancelled' );
-	}
+	public function cancel_order( $booking_id ) {
+		global $wpdb;
 
-	/**
-	 * Sync order with bookings (paid) only in case where the booking is the only item in the order.
-	 *
-	 * @param  int $booking_id
-	 */
-	public function maybe_process_order( $booking_id ) {
-		$this->maybe_update_order( $booking_id, 'processing' );
-	}
-
-	/**
-	 * Sync order with bookings (unpaid) only in case where the booking is the only item in the order.
-	 *
-	 * @param  int $booking_id
-	 */
-	public function maybe_pending_order( $booking_id ) {
-		$this->maybe_update_order( $booking_id, 'pending' );
-	}
-
-	/**
-	 * Update booking's related order status only if that order has only the booking as an item.
-	 *
-	 * @param  int $booking_id
-	 * @param  string $status
-	 */
-	private function maybe_update_order( $booking_id, $status ) {
 		// Prevents infinite loop during synchronization
 		self::syncing_start( $booking_id );
 
-		$order_id  = WC_Booking_Data_Store::get_booking_order_id( $booking_id );
-		$order     = wc_get_order( $order_id );
+		$order_id = WC_Booking_Data_Store::get_booking_order_id( $booking_id );
+		$order    = wc_get_order( $order_id );
 
-		if ( is_a( $order, 'WC_Order' ) ) {
-			$completed = 'processing' === $status && 'completed' === $order->get_status();
-			$refunded  = 'cancelled' === $status && 'refunded' === $order->get_status();
-
-			// Do not update status of completed or refunded orders.
-			if ( ! self::is_syncing( $order_id ) && ! $completed && ! $refunded ) {
-				// Only update status if the order has 1 booking
-				if ( 1 === count( $order->get_items() ) ) {
-					$order->update_status( $status );
-				} elseif ( 'cancelled' === $status ) {
-					$booking_ids = WC_Booking_Data_Store::get_order_contains_only_bookings( $order );
-
-					if ( $booking_ids ) {
-						$booking_statuses = array_map( function( $booking_id ) {
-							return get_wc_booking( $booking_id )->get_status();
-						}, $booking_ids );
-
-						// Cancel the order only if all Bookings are cancelled
-						if ( array( $status ) === array_unique( $booking_statuses ) ) {
-							$order->update_status( $status );
-						}
-					}
-				}
+		if ( $order && ! self::is_syncing( $order_id ) ) {
+			// Only cancel if the order has 1 booking
+			if ( 1 === count( $order->get_items() ) ) {
+				$order->update_status( 'cancelled' );
 			}
 		}
 

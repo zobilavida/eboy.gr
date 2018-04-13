@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="woocommerce_booking_person wc-metabox closed">
 	<h3>
-		<button type="button" class="unlink_booking_person button" rel="<?php echo esc_attr( $person_type->get_id() ); ?>"><?php _e( 'Unlink', 'woocommerce-bookings' ); ?></button>
+		<button type="button" class="remove_booking_person button" rel="<?php echo esc_attr( $person_type->get_id() ); ?>"><?php _e( 'Remove', 'woocommerce-bookings' ); ?></button>
 		<div class="handlediv" title="<?php _e( 'Click to toggle', 'woocommerce-bookings' ); ?>"></div>
 
 		<strong>#<?php echo esc_html( $person_type->get_id() ); ?> &mdash; <span class="person_name"><?php echo esc_html( $person_type->get_name() ); ?></span></strong>

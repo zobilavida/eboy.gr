@@ -95,11 +95,9 @@ class WC_Booking_Cart_Manager {
 	 *
 	 * @param mixed $cart_item
 	 * @return array cart item
-	 *
-	 * @version  1.10.5
 	 */
 	public function add_cart_item( $cart_item ) {
-		if ( ! empty( $cart_item['booking'] ) && isset( $cart_item['booking']['_cost'] ) && '' !== $cart_item['booking']['_cost'] ) {
+		if ( ! empty( $cart_item['booking'] ) && ! empty( $cart_item['booking']['_cost'] ) ) {
 			$cart_item['data']->set_price( $cart_item['booking']['_cost'] );
 		}
 		return $cart_item;
@@ -230,7 +228,6 @@ class WC_Booking_Cart_Manager {
 
 					WC()->cart->calculate_totals();
 
-					/* translators: 1: a href to bookable product id */
 					wc_add_notice( sprintf( __( 'A booking for %s has been removed from your cart due to inactivity.', 'woocommerce-bookings' ), '<a href="' . get_permalink( $cart_item['product_id'] ) . '">' . get_the_title( $cart_item['product_id'] ) . '</a>' ), 'notice' );
 				}
 			}
@@ -337,7 +334,7 @@ class WC_Booking_Cart_Manager {
 			$booking_id     = $values['booking']['_booking_id'];
 		}
 
-		if ( ! isset( $booking_id ) && ! empty( $values->legacy_values ) && is_array( $values->legacy_values ) && ! empty( $values->legacy_values['booking'] ) ) {
+		if ( ! isset( $booking_id ) && ! empty( $values->legacy_values['booking'] ) ) {
 			$product        = $values->legacy_values['data'];
 			$booking_id     = $values->legacy_values['booking']['_booking_id'];
 		}
@@ -355,7 +352,7 @@ class WC_Booking_Cart_Manager {
 					$item_id
 				) );
 			}
-
+			
 			// Set as pending when the booking requires confirmation
 			if ( wc_booking_requires_confirmation( $values['product_id'] ) ) {
 				$booking_status = 'pending-confirmation';
@@ -369,20 +366,17 @@ class WC_Booking_Cart_Manager {
 	}
 
 	/**
-	 * Redirects directly to the cart the products they need confirmation.
+	 * Redirects directly to the cart the products they need confirmation
 	 *
-	 * @since 1.0.0
-	 * @version 1.10.8
-	 *
-	 * @param string $url URL.
+	 * @param string $url
 	 */
 	public function add_to_cart_redirect( $url ) {
 		if ( isset( $_REQUEST['add-to-cart'] ) && is_numeric( $_REQUEST['add-to-cart'] ) && wc_booking_requires_confirmation( intval( $_REQUEST['add-to-cart'] ) ) ) {
-			// Remove add to cart messages.
+			// Remove add to cart messages
 			wc_clear_notices();
 
-			// Go to checkout.
-			return wc_get_cart_url();
+			// Go to checkout
+			return WC()->cart->get_cart_url();
 		}
 
 		return $url;

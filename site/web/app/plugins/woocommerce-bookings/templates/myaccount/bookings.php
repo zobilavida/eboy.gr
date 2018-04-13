@@ -2,7 +2,7 @@
 /**
  * My Bookings
  *
- * Shows customer bookings on the My Account > Bookings page
+ * Shows bookings on the account page
  *
  * This template can be overridden by copying it to yourtheme/woocommerce-bookings/myaccount/bookings.php.
  *
@@ -12,23 +12,20 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/bookings-templates/
- * @author  Automattic
+ * @see 	https://docs.woocommerce.com/document/template-structure/
+ * @author  WooThemes
  * @version 1.10.0
- * @since   1.9.11
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$count = 0;
-
 if ( ! empty( $tables ) ) : ?>
 
 	<?php foreach ( $tables as $table ) : ?>
 
-		<h2><?php echo esc_html( $table['header'] ); ?></h2>
+		<h2><?php echo esc_html( $table['header'] ) ?></h2>
 
 		<table class="shop_table my_account_bookings">
 			<thead>
@@ -44,7 +41,6 @@ if ( ! empty( $tables ) ) : ?>
 			</thead>
 			<tbody>
 				<?php foreach ( $table['bookings'] as $booking ) : ?>
-					<?php $count++; ?>
 					<tr>
 						<td class="booking-id"><?php echo esc_html( $booking->get_id() ); ?></td>
 						<td class="booked-product">
@@ -74,26 +70,12 @@ if ( ! empty( $tables ) ) : ?>
 			</tbody>
 		</table>
 
-		<?php do_action( 'woocommerce_before_account_bookings_pagination' ); ?>
-
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-			<?php if ( 1 !== $page ) : ?>
-				<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'bookings', $page - 1 ) ); ?>"><?php _e( 'Previous', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-
-			<?php if ( $count >= $bookings_per_page ) : ?>
-				<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url( wc_get_endpoint_url( 'bookings', $page + 1 ) ); ?>"><?php _e( 'Next', 'woocommerce' ); ?></a>
-			<?php endif; ?>
-		</div>
-
-		<?php do_action( 'woocommerce_after_account_bookings_pagination' ); ?>
-
 	<?php endforeach; ?>
 
 <?php else : ?>
 	<div class="woocommerce-Message woocommerce-Message--info woocommerce-info">
 		<a class="woocommerce-Button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php esc_html_e( 'Go Shop', 'woocommerce-bookings' ); ?>
+			<?php esc_html_e( 'Go Shop', 'woocommerce-bookings' ) ?>
 		</a>
 		<?php esc_html_e( 'No bookings available yet.', 'woocommerce-bookings' ); ?>
 	</div>

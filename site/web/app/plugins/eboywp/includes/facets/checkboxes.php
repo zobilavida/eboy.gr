@@ -170,6 +170,10 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
         $init_depth = -1;
         $last_depth = -1;
 
+        $output .= '<div class="row">';
+        $output .= '<div class="col-12">';
+        $output .= '<div class="row">';
+
         foreach ( $values as $result ) {
             $depth = (int) $result['depth'];
 
@@ -187,7 +191,11 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
 
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
             $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
-            $output .= '<div class="eboywp-checkbox' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
+
+
+
+
+            $output .= '<div class="eboywp-checkbox 2 col-4' . $selected . '" data-value="' . esc_attr( $result['facet_value'] ) . '">';
             $output .= esc_html( $result['facet_display_value'] ) . ' <span class="eboywp-counter">(' . $result['counter'] . ')</span>';
             $output .= '</div>';
 
@@ -197,7 +205,9 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
         for ( $i = $last_depth; $i > $init_depth; $i-- ) {
             $output .= '</div>';
         }
-
+        $output .= '</div>';
+        $output .= '</div>';
+        $output .= '</div>';
         return $output;
     }
 

@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * An email sent to the user when a booking is cancelled or not approved.
  *
- * @class   WC_Email_Admin_Booking_Cancelled
- * @extends WC_Email
+ * @class 		WC_Email_Admin_Booking_Cancelled
+ * @extends 	WC_Email
  */
 class WC_Email_Admin_Booking_Cancelled extends WC_Email {
 
@@ -18,7 +18,7 @@ class WC_Email_Admin_Booking_Cancelled extends WC_Email {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->id             = 'admin_booking_cancelled';
+		$this->id             = 'booking_cancelled';
 		$this->title          = __( 'Admin Booking Cancelled', 'woocommerce-bookings' );
 		$this->description    = __( 'Booking cancelled emails are sent when the status of a booking goes to cancelled.', 'woocommerce-bookings' );
 		$this->heading        = __( 'Booking Cancelled', 'woocommerce-bookings' );
@@ -116,7 +116,7 @@ class WC_Email_Admin_Booking_Cancelled extends WC_Email {
 	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
-			'booking'       => $this->object,
+			'booking' 		=> $this->object,
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
 			'plain_text'    => false,
@@ -133,7 +133,7 @@ class WC_Email_Admin_Booking_Cancelled extends WC_Email {
 	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
-			'booking'       => $this->object,
+			'booking' 		=> $this->object,
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
 			'plain_text'    => true,
@@ -151,45 +151,42 @@ class WC_Email_Admin_Booking_Cancelled extends WC_Email {
 	public function init_form_fields() {
 		$this->form_fields = array(
 			'enabled' => array(
-				'title'   => __( 'Enable/Disable', 'woocommerce-bookings' ),
-				'type'    => 'checkbox',
-				'label'   => __( 'Enable this email notification', 'woocommerce-bookings' ),
-				'default' => 'yes',
+				'title' 		=> __( 'Enable/Disable', 'woocommerce-bookings' ),
+				'type' 			=> 'checkbox',
+				'label' 		=> __( 'Enable this email notification', 'woocommerce-bookings' ),
+				'default' 		=> 'yes',
 			),
 			'recipient' => array(
-				'title'       => __( 'Recipient(s)', 'woocommerce-bookings' ),
-				'type'        => 'text',
-				/* translators: 1: admin email */
-				'description' => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'woocommerce-bookings' ), esc_attr( get_option( 'admin_email' ) ) ),
-				'placeholder' => '',
-				'default'     => '',
+				'title'         => __( 'Recipient(s)', 'woocommerce-bookings' ),
+				'type'          => 'text',
+				'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'woocommerce-bookings' ), esc_attr( get_option( 'admin_email' ) ) ),
+				'placeholder'   => '',
+				'default'       => '',
 			),
 			'subject' => array(
-				'title'       => __( 'Subject', 'woocommerce-bookings' ),
-				'type'        => 'text',
-				/* translators: 1: subject */
-				'description' => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject ),
-				'placeholder' => '',
-				'default'     => '',
+				'title' 		=> __( 'Subject', 'woocommerce-bookings' ),
+				'type' 			=> 'text',
+				'description' 	=> sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'woocommerce-bookings' ), $this->subject ),
+				'placeholder' 	=> '',
+				'default' 		=> '',
 			),
 			'heading' => array(
-				'title'       => __( 'Email Heading', 'woocommerce-bookings' ),
-				'type'        => 'text',
-				/* translators: 1: heading */
-				'description' => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading ),
-				'placeholder' => '',
-				'default'     => '',
+				'title' 		=> __( 'Email Heading', 'woocommerce-bookings' ),
+				'type' 			=> 'text',
+				'description' 	=> sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'woocommerce-bookings' ), $this->heading ),
+				'placeholder' 	=> '',
+				'default' 		=> '',
 			),
 			'email_type' => array(
-				'title'       => __( 'Email type', 'woocommerce-bookings' ),
-				'type'        => 'select',
-				'description' => __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
-				'default'     => 'html',
-				'class'       => 'email_type',
-				'options'     => array(
-					'plain'     => __( 'Plain text', 'woocommerce-bookings' ),
-					'html'      => __( 'HTML', 'woocommerce-bookings' ),
-					'multipart' => __( 'Multipart', 'woocommerce-bookings' ),
+				'title' 		=> __( 'Email type', 'woocommerce-bookings' ),
+				'type' 			=> 'select',
+				'description' 	=> __( 'Choose which format of email to send.', 'woocommerce-bookings' ),
+				'default' 		=> 'html',
+				'class'			=> 'email_type',
+				'options'		=> array(
+					'plain'		 	=> __( 'Plain text', 'woocommerce-bookings' ),
+					'html' 			=> __( 'HTML', 'woocommerce-bookings' ),
+					'multipart' 	=> __( 'Multipart', 'woocommerce-bookings' ),
 				),
 			),
 		);

@@ -14,8 +14,9 @@
 </div>
 <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
     <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-</a>
+        <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
+          <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+        </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
             <span class="navbar-toggler-icon"></span>
         </button>

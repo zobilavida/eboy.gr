@@ -26,75 +26,35 @@ function wc_booking_calculated_base_cost( $product ) {
 	}
 
 	// Otherwise calculate it.
-	$min_duration  = $product->get_min_duration();
-	$display_cost  = ( $product->get_block_cost() * $min_duration ) + $product->get_cost();
-	$resource_cost = 0;
+	$display_cost = ( $product->get_base_cost() * $product->get_min_duration() ) + $product->get_cost();
 
 	if ( $product->has_resources() ) {
 		$resources = $product->get_resources();
 		$cheapest  = null;
 
 		foreach ( $resources as $resource ) {
-			$maybe_cheapest = ( $resource->get_block_cost() * $min_duration ) + $resource->get_base_cost();
-			if ( is_null( $cheapest ) || ( $maybe_cheapest < $cheapest ) ) {
-				$cheapest = $maybe_cheapest;
+			if ( is_null( $cheapest ) || ( $resource->get_base_cost() + $resource->get_block_cost() ) < $cheapest ) {
+				$cheapest = $resource->get_base_cost() + $resource->get_block_cost();
 			}
 		}
-
-		$resource_cost = $cheapest;
+		$display_cost += $cheapest;
 	}
-
 	if ( $product->has_persons() && $product->has_person_types() ) {
-		$persons       = $product->get_person_types();
-		$cheapest      = null;
-		$persons_costs = array();
-
+		$persons   = $product->get_person_types();
+		$cheapest  = null;
 		foreach ( $persons as $person ) {
-			$min = $person->get_min();
-
-			if ( empty( $min ) ) {
-				$min = $product->get_min_persons();
-			} else {
-				$persons_costs[ $person->get_id() ]['min'] = $min;
-			}
-
-			$cost = ( ( $person->get_block_cost() * $min_duration ) + $person->get_cost() ) * (float) $min;
-			$persons_costs[ $person->get_id() ]['cost'] = $cost;
-
-			if ( ! is_null( $cost ) && ( is_null( $cheapest ) || $cost < $cheapest ) ) {
-				$cheapest = $cost;
+			$cost = $person->get_cost() * (float) $person->get_min();
+			if ( is_null( $cheapest ) || $cost < $cheapest ) {
+				if ( $cost ) {
+					$cheapest = $cost;
+				}
 			}
 		}
-
-		if ( ! $product->get_has_person_cost_multiplier() ) {
-			$display_cost += $cheapest ? $cheapest : 0;
-		}
+		$display_cost += $cheapest ? $cheapest : 0;
 	}
-
-	if ( $product->has_persons() && $product->has_person_types() && $product->get_has_person_cost_multiplier() ) {
-		$persons_total = 0;
-		$persons_count = 0;
-
-		foreach ( $persons_costs as $person ) {
-			if ( isset( $person['min'] ) ) {
-				$persons_total += $person['cost'];
-				$persons_count += $person['min'];
-			}
-		}
-
-		// if count is 0, we use the product setting
-		$persons_count = ( 0 !== $persons_count ) ? $persons_count : $product->get_min_persons();
-		// if total is 0, we use the cheapest from previous loop
-		$persons_total = ( 0 !== $persons_total ) ? $persons_total : $cheapest;
-
-		// don't think about this too hard, your brain will cease to function
-		$display_cost = ( ( $display_cost + $persons_total ) * $persons_count ) + ( $resource_cost * $persons_count );
-	} elseif ( $product->has_persons() && $product->get_min_persons() > 1 && $product->get_has_person_cost_multiplier() ) {
-		$display_cost = ( $display_cost + $resource_cost ) * $product->get_min_persons();
-	} else {
-		$display_cost = $display_cost + $resource_cost;
+	if ( $product->has_persons() && $product->get_min_persons() > 1 && $product->get_has_person_cost_multiplier() ) {
+		$display_cost = $display_cost * $product->get_min_persons();
 	}
-
 	return $display_cost;
 }
 
@@ -124,11 +84,11 @@ function is_wc_booking_product( $product ) {
  */
 function get_wc_booking_data_label( $key, $product ) {
 	$labels = apply_filters( 'woocommerce_bookings_data_labels', array(
-		'type'     => ( $product->get_resource_label() ? $product->get_resource_label() : __( 'Booking Type', 'woocommerce-bookings' ) ),
-		'date'     => __( 'Booking Date', 'woocommerce-bookings' ),
-		'time'     => __( 'Booking Time', 'woocommerce-bookings' ),
-		'duration' => __( 'Duration', 'woocommerce-bookings' ),
-		'persons'  => __( 'Person(s)', 'woocommerce-bookings' ),
+			'type'     => ( $product->get_resource_label() ? $product->get_resource_label() : __( 'Booking Type', 'woocommerce-bookings' ) ),
+			'date'     => __( 'Booking Date', 'woocommerce-bookings' ),
+			'time'     => __( 'Booking Time', 'woocommerce-bookings' ),
+			'duration' => __( 'Duration', 'woocommerce-bookings' ),
+			'persons'  => __( 'Person(s)', 'woocommerce-bookings' ),
 	) );
 
 	if ( ! array_key_exists( $key, $labels ) ) {
@@ -154,11 +114,6 @@ function wc_bookings_get_status_label( $status ) {
 		'cancelled'            => __( 'Cancelled','woocommerce-bookings' ),
 		'complete'             => __( 'Complete','woocommerce-bookings' ),
 	);
-
-	if ( class_exists( 'WC_Deposits' ) ) {
-		$statuses['wc-partial-payment'] = __( 'Partially Paid', 'woocommerce-deposits' );
-	}
-
 	return array_key_exists( $status, $statuses ) ? $statuses[ $status ] : $status;
 }
 
@@ -189,7 +144,6 @@ function get_wc_booking_statuses( $context = 'fully_booked', $include_translatio
 		) );
 	} elseif ( 'scheduled' === $context ) {
 		$statuses = apply_filters( 'woocommerce_bookings_scheduled_statuses', array(
-			'confirmed'            => __( 'Confirmed','woocommerce-bookings' ),
 			'paid'                 => __( 'Paid','woocommerce-bookings' ),
 		) );
 	} else {
@@ -214,13 +168,12 @@ function get_wc_booking_statuses( $context = 'fully_booked', $include_translatio
 /**
  * Validate and create a new booking manually.
  *
- * @version  1.10.7
- * @see      WC_Booking::new_booking() for available $new_booking_data args
- * @param    int    $product_id you are booking
- * @param    array  $new_booking_data
- * @param    string $status
- * @param    bool   $exact If false, the function will look for the next available block after your start date if the date is unavailable.
- * @return   mixed  WC_Booking object on success or false on fail
+ * @see WC_Booking::new_booking() for available $new_booking_data args
+ * @param  int $product_id you are booking
+ * @param  array $new_booking_data
+ * @param  string $status
+ * @param  boolean $exact If false, the function will look for the next available block after your start date if the date is unavailable.
+ * @return mixed WC_Booking object on success or false on fail
  */
 function create_wc_booking( $product_id, $new_booking_data = array(), $status = 'confirmed', $exact = false ) {
 	// Merge booking data
@@ -236,7 +189,6 @@ function create_wc_booking( $product_id, $new_booking_data = array(), $status = 
 	$start_date       = $new_booking_data['start_date'];
 	$end_date         = $new_booking_data['end_date'];
 	$max_date         = $product->get_max_date();
-	$all_day          = isset( $new_booking_data['all_day'] ) && $new_booking_data['all_day'] ? true : false;
 	$qty = 1;
 
 	if ( $product->has_person_qty_multiplier() && ! empty( $new_booking_data['persons'] ) ) {
@@ -256,11 +208,11 @@ function create_wc_booking( $product_id, $new_booking_data = array(), $status = 
 
 	// If not set, use next available + block duration
 	if ( ! $end_date ) {
-		$end_date = strtotime( '+' . $product->get_duration() . ' ' . $product->get_duration_unit(), $start_date );
+		$end_date = strtotime( "+" . $product->get_duration() . " " . $product->get_duration_unit(), $start_date );
 	}
 
 	$searching = true;
-	$date_diff = $all_day ? DAY_IN_SECONDS : $end_date - $start_date;
+	$date_diff = $end_date - $start_date;
 
 	while ( $searching ) {
 
@@ -275,16 +227,14 @@ function create_wc_booking( $product_id, $new_booking_data = array(), $status = 
 			$searching = false;
 
 		} else {
-			if ( $exact ) {
+			if ( $exact )
 				return false;
-			}
 
 			$start_date += $date_diff;
 			$end_date   += $date_diff;
 
-			if ( $end_date > strtotime( "+{$max_date['value']} {$max_date['unit']}" ) ) {
+			if ( $end_date > strtotime( "+{$max_date['value']} {$max_date['unit']}" ) )
 				return false;
-			}
 		}
 	}
 
@@ -294,7 +244,7 @@ function create_wc_booking( $product_id, $new_booking_data = array(), $status = 
 
 	// Create it
 	$new_booking = get_wc_booking( $new_booking_data );
-	$new_booking->create( $status );
+	$new_booking ->create( $status );
 
 	return $new_booking;
 }
@@ -328,7 +278,7 @@ function wc_booking_requires_confirmation( $id ) {
 function wc_booking_cart_requires_confirmation() {
 	$requires = false;
 
-	if ( ! empty( WC()->cart->cart_contents ) ) {
+	if ( ! empty ( WC()->cart->cart_contents ) ) {
 		foreach ( WC()->cart->cart_contents as $item ) {
 			if ( wc_booking_requires_confirmation( $item['product_id'] ) ) {
 				$requires = true;
@@ -463,7 +413,8 @@ function wc_booking_get_product_resource( $product_id, $resource_id ) {
 	$found = false;
 	foreach ( $posts as $resource ) {
 		if ( $resource->ID == $resource_id ) {
-			return new WC_Product_Booking_Resource( $resource, $product_id );
+			$found = $resource;
+			$found = new WC_Product_Booking_Resource( $found, $product_id );
 		}
 	}
 
@@ -576,98 +527,6 @@ function wc_bookings_get_total_available_bookings_for_range( $bookable_product, 
 }
 
 /**
- * Find available and booked blocks for specific resources (if any) and return them as array.
- *
- * @param \WC_Product_Booking $bookable_product
- * @param  array  $blocks
- * @param  array  $intervals
- * @param  integer $resource_id
- * @param  integer $from The starting date for the set of blocks
- * @param  integer $to
- * @return array
- *
- * @version  1.10.5
- */
-function wc_bookings_get_time_slots( $bookable_product, $blocks, $intervals = array(), $resource_id = 0, $from = 0, $to = 0 ) {
-	if ( empty( $intervals ) ) {
-		$default_interval = 'hour' === $bookable_product->get_duration_unit() ? $bookable_product->get_duration() * 60 : $bookable_product->get_duration();
-		$intervals        = array( $default_interval, $default_interval );
-	}
-
-	list( $interval, $base_interval ) = $intervals;
-	$interval = $bookable_product->get_check_start_block_only() ? $base_interval : $interval;
-
-	$blocks            = $bookable_product->get_available_blocks( $blocks, $intervals, $resource_id, $from, $to );
-	$existing_bookings = WC_Bookings_Controller::get_all_existing_bookings( $bookable_product, $from, $to );
-
-	$booking_resource  = $resource_id ? $bookable_product->get_resource( $resource_id ) : null;
-	$available_slots   = array();
-
-	foreach ( $blocks as $block ) {
-		$resources = array();
-
-		// Figure out how much qty have, either based on combined resource quantity,
-		// single resource, or just product.
-		if ( $bookable_product->has_resources() && ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) ) {
-			$available_qty = 0;
-
-			foreach ( $bookable_product->get_resources() as $resource ) {
-
-				// Only include if it is available for this selection.
-				if ( ! WC_Product_Booking_Rule_Manager::check_availability_rules_against_date( $bookable_product, $resource->get_id(), $block ) ) {
-					continue;
-				}
-
-				$available_qty += $resource->get_qty();
-				$resources[ $resource->get_id() ] = $resource->get_qty();
-			}
-		} elseif ( $bookable_product->has_resources() && $booking_resource && $booking_resource->has_qty() ) {
-			// Only include if it is available for this selection. We set this block to be bookable by default, unless some of the rules apply.
-			if ( ! $bookable_product->check_availability_rules_against_time( $block, strtotime( "+{$interval} minutes", $block ), $booking_resource->get_id() ) ) {
-				continue;
-			}
-
-			$available_qty = $booking_resource->get_qty();
-			$resources[ $booking_resource->get_id() ] = $booking_resource->get_qty();
-		} else {
-			$available_qty = $bookable_product->get_qty();
-			$resources[0] = $bookable_product->get_qty();
-		}
-
-		$qty_booked_in_block = 0;
-
-		foreach ( $existing_bookings as $existing_booking ) {
-			if ( $existing_booking->is_within_block( $block, strtotime( "+{$interval} minutes", $block ) ) ) {
-				$qty_to_add = $bookable_product->has_person_qty_multiplier() ? max( 1, array_sum( $existing_booking->get_persons() ) ) : 1;
-				if ( $bookable_product->has_resources() ) {
-					if ( $existing_booking->get_resource_id() === absint( $resource_id ) ) {
-						// Include the quantity to subtract if an existing booking matches the selected resource id
-						$qty_booked_in_block += $qty_to_add;
-						$resources[ $resource_id ] = ( isset( $resources[ $resource_id ] ) ? $resources[ $resource_id ] : 0 ) - $qty_to_add;
-					} elseif ( ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) && $existing_booking->get_resource() ) {
-						// Include the quantity to subtract if the resource is auto selected (null/resource id empty)
-						// but the existing booking includes a resource
-						$qty_booked_in_block += $qty_to_add;
-						$resources[ $existing_booking->get_resource_id() ] = ( isset( $resources[ $existing_booking->get_resource_id() ] ) ? $resources[ $existing_booking->get_resource_id() ] : 0 ) - $qty_to_add;
-					}
-				} else {
-					$qty_booked_in_block += $qty_to_add;
-					$resources[0] = ( isset( $resources[0] ) ? $resources[0] : 0 ) - $qty_to_add;
-				}
-			}
-		}
-
-		$available_slots[ $block ] = array(
-			'booked'    => $qty_booked_in_block,
-			'available' => $available_qty - $qty_booked_in_block,
-			'resources' => $resources,
-		);
-	}
-
-	return $available_slots;
-}
-
-/**
  * Find available blocks and return HTML for the user to choose a block. Used in class-wc-bookings-ajax.php.
  *
  * @param \WC_Product_Booking $bookable_product
@@ -677,25 +536,72 @@ function wc_bookings_get_time_slots( $bookable_product, $blocks, $intervals = ar
  * @param  integer $from The starting date for the set of blocks
  * @param  integer $to
  * @return string
- *
- * @version  1.10.7
  */
 function wc_bookings_get_time_slots_html( $bookable_product, $blocks, $intervals = array(), $resource_id = 0, $from = 0, $to = 0 ) {
-	$available_blocks = wc_bookings_get_time_slots( $bookable_product, $blocks, $intervals, $resource_id, $from, $to );
-	$block_html       = '';
+	if ( empty( $intervals ) ) {
+		$default_interval = 'hour' === $bookable_product->get_duration_unit() ? $bookable_product->get_duration() * 60 : $bookable_product->get_duration();
+		$intervals        = array( $default_interval, $default_interval );
+	}
 
-	foreach ( $available_blocks as $block => $quantity ) {
-		if ( $quantity['available'] > 0 ) {
-			if ( $quantity['booked'] ) {
-				/* translators: 1: quantity available */
-				$block_html .= '<li class="block" data-block="' . esc_attr( date( 'Hi', $block ) ) . '"><a href="#" data-value="' . date( 'G:i', $block ) . '">' . date_i18n( get_option( 'time_format' ), $block ) . ' <small class="booking-spaces-left">(' . sprintf( _n( '%d left', '%d left', $quantity['available'], 'woocommerce-bookings' ), absint( $quantity['available'] ) ) . ')</small></a></li>';
+	list( $interval, $base_interval ) = $intervals;
+
+	$blocks            = $bookable_product->get_available_blocks( $blocks, $intervals, $resource_id, $from, $to );
+	$existing_bookings = $bookable_product->get_bookings_in_date_range( current( $blocks ), ( end( $blocks ) + ( $base_interval * 60 ) ), $resource_id );
+	$booking_resource  = $resource_id ? $bookable_product->get_resource( $resource_id ) : null;
+	$block_html        = '';
+
+	foreach ( $blocks as $block ) {
+		// Figure out how much qty have, either based on combined resource quantity,
+		// single resource, or just product.
+		if ( $bookable_product->has_resources() && ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) ) {
+			$available_qty = 0;
+
+			foreach ( $bookable_product->get_resources() as $resource ) {
+
+				// Only include if it is available for this selection.
+				if ( ! WC_Product_Booking_Rule_Manager::check_availability_rules_against_date( $bookable_product, $resource->get_id(), $from ) ) {
+					continue;
+				}
+
+				$available_qty += $resource->get_qty();
+			}
+		} elseif ( $bookable_product->has_resources() && $booking_resource && $booking_resource->has_qty() ) {
+			$available_qty = $booking_resource->get_qty();
+		} else {
+			$available_qty = $bookable_product->get_qty();
+		}
+
+		$qty_booked_in_block = 0;
+		foreach ( $existing_bookings as $existing_booking ) {
+			if ( $existing_booking->is_within_block( $block, strtotime( "+{$interval} minutes", $block ) ) ) {
+				$qty_to_add = $bookable_product->has_person_qty_multiplier() ? max( 1, array_sum( $existing_booking->get_persons() ) ) : 1;
+				if ( $bookable_product->has_resources() ) {
+					if ( $existing_booking->get_resource_id() === absint( $resource_id ) ) {
+						// Include the quantity to subtract if an existing booking matches the selected resource id
+						$qty_booked_in_block += $qty_to_add;
+					} elseif ( ( is_null( $booking_resource ) || ! $booking_resource->has_qty() ) && $existing_booking->get_resource() ) {
+						// Include the quantity to subtract if the resource is auto selected (null/resource id empty)
+						// but the existing booking includes a resource
+						$qty_booked_in_block += $qty_to_add;
+					}
+				} else {
+					$qty_booked_in_block += $qty_to_add;
+				}
+			}
+		}
+
+		$available_qty = $available_qty - $qty_booked_in_block;
+
+		if ( $available_qty > 0 ) {
+			if ( $qty_booked_in_block ) {
+				$block_html .= '<li class="block" data-block="' . esc_attr( date( 'Hi', $block ) ) . '"><a href="#" data-value="' . date( 'G:i', $block ) . '">' . date_i18n( get_option( 'time_format' ), $block ) . ' <small class="booking-spaces-left">(' . sprintf( _n( '%d left', '%d left', $available_qty, 'woocommerce-bookings' ), absint( $available_qty ) ) . ')</small></a></li>';
 			} else {
 				$block_html .= '<li class="block" data-block="' . esc_attr( date( 'Hi', $block ) ) . '"><a href="#" data-value="' . date( 'G:i', $block ) . '">' . date_i18n( get_option( 'time_format' ), $block ) . '</a></li>';
 			}
 		}
 	}
 
-	return apply_filters( 'wc_bookings_get_time_slots_html', $block_html, $available_blocks, $blocks );
+	return $block_html;
 }
 /**
  * Find available blocks and return HTML for the user to choose a block. Used in class-wc-bookings-ajax.php.
@@ -715,33 +621,40 @@ function wc_bookings_available_blocks_html( $bookable_product, $blocks, $interva
 
 /**
  * Summary of booking data for admin and checkout.
- *
- * @version 1.10.7
- *
  * @param  WC_Booking $booking
- * @param  bool       $is_admin To determine if this is being called in admin or not.
  */
-function wc_bookings_get_summary_list( $booking, $is_admin = false ) {
+function wc_bookings_get_summary_list( $booking ) {
 	$product  = $booking->get_product();
 	$resource = $booking->get_resource();
 	$label    = $product && is_callable( array( $product, 'get_resource_label' ) ) && $product->get_resource_label() ? $product->get_resource_label() : __( 'Type', 'woocommerce-bookings' );
+	?>
+	<ul class="wc-booking-summary-list">
+		<li><?php echo esc_html( sprintf( '%1$s / %2$s', $booking->get_start_date(), $booking->get_end_date() ) ); ?></li>
 
-	if ( strtotime( 'midnight', $booking->get_start() ) === strtotime( 'midnight', $booking->get_end() ) ) {
-		$booking_date = sprintf( '%1$s', $booking->get_start_date() );
-	} else {
-		$booking_date = sprintf( '%1$s / %2$s', $booking->get_start_date(), $booking->get_end_date() );
-	}
+		<?php if ( $resource ) : ?>
+			<li><?php echo esc_html( sprintf( __( '%s: %s', 'woocommerce-bookings' ), $label, $resource->get_name() ) ); ?></li>
+		<?php endif; ?>
 
-	$template_args = array(
-		'booking'      => $booking,
-		'product'      => $product,
-		'resource'     => $resource,
-		'label'        => $label,
-		'booking_date' => $booking_date,
-		'is_admin'     => $is_admin,
-	);
+		<?php
+			if ( $product->has_persons() ) {
+				$person_types  = $product->get_person_types();
+				$person_counts = $booking->get_person_counts();
 
-	wc_get_template( 'order/booking-summary-list.php', $template_args, 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+				if ( ! empty( $person_types ) && is_array( $person_types ) ) {
+					foreach ( $person_types as $person_type ) {
+						?>
+						<li><?php echo esc_html( sprintf( '%s: %d', $person_type->get_name(), isset( $person_counts[ $person_type->get_id() ] ) ? $person_counts[ $person_type->get_id() ] : 0 ) ); ?></li>
+						<?php
+					}
+				} else {
+					?>
+					<li><?php echo esc_html( sprintf( __( '%d Persons', 'woocommerce-bookings' ), array_sum( $booking->get_person_counts() ) ) ); ?></li>
+					<?php
+				}
+			}
+		?>
+	</ul>
+	<?php
 }
 
 /**
@@ -778,20 +691,4 @@ function wc_booking_time_stamp_to_minutes_after_midnight( $timestamp ) {
 	$hour    = absint( date( 'H', $timestamp ) );
 	$min     = absint( date( 'i', $timestamp ) );
 	return  $min + ( $hour * 60 );
-}
-
-/**
- * Get timezone offset in seconds.
- *
- * @since  1.10.3
- * @return float
- */
-function wc_booking_timezone_offset() {
-	$timezone = get_option( 'timezone_string' );
-	if ( $timezone ) {
-		$timezone_object = new DateTimeZone( $timezone );
-		return $timezone_object->getOffset( new DateTime( 'now' ) );
-	} else {
-		return floatval( get_option( 'gmt_offset', 0 ) ) * HOUR_IN_SECONDS;
-	}
 }

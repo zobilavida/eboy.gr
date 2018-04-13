@@ -1,21 +1,7 @@
 <?php
 /**
- * Booking product add to cart.
- *
- * This template can be overridden by copying it to yourtheme/woocommerce-bookings/single-product/add-to-cart.php
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see     https://docs.woocommerce.com/document/bookings-templates/
- * @author  Automattic
- * @version 1.10.0
- * @since   1.0.0
+ * Booking product add to cart
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -38,9 +24,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 		<?php $booking_form->output(); ?>
 
-		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+		<div class="wc-bookings-booking-cost" style=""></div>
 
-		<div class="wc-bookings-booking-cost" style="display:none"></div>
+		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 	</div>
 

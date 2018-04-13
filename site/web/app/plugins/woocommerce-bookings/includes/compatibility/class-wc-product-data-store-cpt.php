@@ -78,7 +78,7 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 			'post_type'      => 'product',
 			'post_status'    => $product->get_status() ? $product->get_status() : 'publish',
 			'post_author'    => get_current_user_id(),
-			'post_title'     => $product->get_name() ? $product->get_name() : __( 'Product', 'woocommerce-bookings' ),
+			'post_title'     => $product->get_name() ? $product->get_name() : __( 'Product', 'woocommerce' ),
 			'post_content'   => $product->get_description(),
 			'post_excerpt'   => $product->get_short_description(),
 			'post_parent'    => $product->get_parent_id(),
@@ -113,10 +113,8 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 	public function read( &$product ) {
 		$product->set_defaults();
 
-		$post_object = get_post( $product->get_id() );
-
-		if ( ! $product->get_id() || ! $post_object || 'product' !== $post_object->post_type ) {
-			throw new Exception( __( 'Invalid product.', 'woocommerce-bookings' ) );
+		if ( ! $product->get_id() || ! ( $post_object = get_post( $product->get_id() ) ) || 'product' !== $post_object->post_type ) {
+			throw new Exception( __( 'Invalid product.', 'woocommerce' ) );
 		}
 
 		$id = $product->get_id();
@@ -212,25 +210,19 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 	protected function read_product_data( &$product ) {
 		$id = $product->get_id();
 
-		$review_count = get_post_meta( $id, '_wc_review_count', true );
-
-		if ( '' === $review_count ) {
+		if ( '' === ( $review_count = get_post_meta( $id, '_wc_review_count', true ) ) ) {
 			WC_Comments::get_review_count_for_product( $product );
 		} else {
 			$product->set_review_count( $review_count );
 		}
 
-		$rating_counts = get_post_meta( $id, '_wc_rating_count', true );
-
-		if ( '' === $rating_counts ) {
+		if ( '' === ( $rating_counts = get_post_meta( $id, '_wc_rating_count', true ) ) ) {
 			WC_Comments::get_rating_counts_for_product( $product );
 		} else {
 			$product->set_rating_counts( $rating_counts );
 		}
 
-		$average_rating = get_post_meta( $id, '_wc_average_rating', true );
-
-		if ( '' === $average_rating ) {
+		if ( '' === ( $average_rating = get_post_meta( $id, '_wc_average_rating', true ) ) ) {
 			WC_Comments::get_average_rating_for_product( $product );
 		} else {
 			$product->set_average_rating( $average_rating );
@@ -422,16 +414,16 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 		foreach ( $props_to_update as $meta_key => $prop ) {
 			$value = $product->{"get_$prop"}( 'edit' );
 			switch ( $prop ) {
-				case 'virtual':
-				case 'downloadable':
-				case 'manage_stock':
-				case 'sold_individually':
+				case 'virtual' :
+				case 'downloadable' :
+				case 'manage_stock' :
+				case 'sold_individually' :
 					$updated = update_post_meta( $product->get_id(), $meta_key, wc_bool_to_string( $value ) );
 					break;
-				case 'gallery_image_ids':
+				case 'gallery_image_ids' :
 					$updated = update_post_meta( $product->get_id(), $meta_key, implode( ',', $value ) );
 					break;
-				case 'image_id':
+				case 'image_id' :
 					if ( ! empty( $value ) ) {
 						set_post_thumbnail( $product->get_id(), $value );
 					} else {
@@ -439,7 +431,7 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 					}
 					$updated = true;
 					break;
-				default:
+				default :
 					$updated = update_post_meta( $product->get_id(), $meta_key, $value );
 					break;
 			}
@@ -517,14 +509,14 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 		$terms[] = 'rated-' . $rating;
 
 		switch ( $product->get_catalog_visibility() ) {
-			case 'hidden':
+			case 'hidden' :
 				$terms[] = 'exclude-from-search';
 				$terms[] = 'exclude-from-catalog';
 				break;
-			case 'catalog':
+			case 'catalog' :
 				$terms[] = 'exclude-from-search';
 				break;
-			case 'search':
+			case 'search' :
 				$terms[] = 'exclude-from-catalog';
 				break;
 		}
@@ -845,7 +837,7 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 				array(
 					'key'     => $attribute_field_name,
 					'compare' => 'NOT EXISTS',
-				),
+				)
 			);
 		}
 
@@ -867,7 +859,7 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 	/**
 	 * Make sure all variations have a sort order set so they can be reordered correctly.
 	 *
-	 * @param int $parent_id
+	 * 	@param int $parent_id
 	 */
 	public function sort_all_product_variations( $parent_id ) {
 		global $wpdb;
@@ -927,11 +919,11 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 		$product_visibility_term_ids = wc_get_product_visibility_term_ids();
 
 		if ( $product_visibility_term_ids['exclude-from-catalog'] ) {
-			$query['where'] .= ' AND t.term_id !=' . $product_visibility_term_ids['exclude-from-catalog'];
+			$query['where'] .= " AND t.term_id !=" . $product_visibility_term_ids['exclude-from-catalog'];
 		}
 
 		if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) && $product_visibility_term_ids['outofstock'] ) {
-			$query['where'] .= ' AND t.term_id !=' . $product_visibility_term_ids['outofstock'];
+			$query['where'] .= " AND t.term_id !=" . $product_visibility_term_ids['outofstock'];
 		}
 
 		if ( $cats_array || $tags_array ) {
@@ -972,13 +964,13 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP {
 
 		// Update stock in DB directly
 		switch ( $operation ) {
-			case 'increase':
+			case 'increase' :
 				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_value = meta_value + %f WHERE post_id = %d AND meta_key='_stock'", $stock_quantity, $product_id_with_stock ) );
 				break;
-			case 'decrease':
+			case 'decrease' :
 				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_value = meta_value - %f WHERE post_id = %d AND meta_key='_stock'", $stock_quantity, $product_id_with_stock ) );
 				break;
-			default:
+			default :
 				$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->postmeta} SET meta_value = %f WHERE post_id = %d AND meta_key='_stock'", $stock_quantity, $product_id_with_stock ) );
 				break;
 		}

@@ -12,11 +12,10 @@ class WC_Bookings_Ajax {
 	 * Constructor.
 	 */
 	public function __construct() {
-		// TODO: Switch from `wp_ajax` to `wc_ajax`
 		add_action( 'wp_ajax_woocommerce_add_bookable_resource', array( $this, 'add_bookable_resource' ) );
 		add_action( 'wp_ajax_woocommerce_remove_bookable_resource', array( $this, 'remove_bookable_resource' ) );
 		add_action( 'wp_ajax_woocommerce_add_bookable_person', array( $this, 'add_bookable_person' ) );
-		add_action( 'wp_ajax_woocommerce_unlink_bookable_person', array( $this, 'unlink_bookable_person' ) );
+		add_action( 'wp_ajax_woocommerce_remove_bookable_person', array( $this, 'remove_bookable_person' ) );
 		add_action( 'wp_ajax_wc-booking-confirm', array( $this, 'mark_booking_confirmed' ) );
 		add_action( 'wp_ajax_wc_bookings_calculate_costs', array( $this, 'calculate_costs' ) );
 		add_action( 'wp_ajax_nopriv_wc_bookings_calculate_costs', array( $this, 'calculate_costs' ) );
@@ -95,9 +94,8 @@ class WC_Bookings_Ajax {
 		$person_type = new WC_Product_Booking_Person_Type();
 		$person_type->set_parent_id( $post_id );
 		$person_type->set_sort_order( $loop );
-		$person_type_id = $person_type->save();
 
-		if ( $person_type_id ) {
+		if ( $person_type_id = $person_type->save() ) {
 			include( 'views/html-booking-person.php' );
 		}
 		die();
@@ -106,13 +104,12 @@ class WC_Bookings_Ajax {
 	/**
 	 * Remove person type.
 	 */
-	public function unlink_bookable_person() {
-		check_ajax_referer( 'unlink-bookable-person', 'security' );
+	public function remove_bookable_person() {
+		check_ajax_referer( 'delete-bookable-person', 'security' );
 
 		$person_type_id = intval( $_POST['person_id'] );
 		$person_type    = new WC_Product_Booking_Person_Type( $person_type_id );
-		$person_type->set_parent_id( 0 );
-		$person_type->save();
+		$person_type->delete();
 		die();
 	}
 
@@ -195,7 +192,7 @@ class WC_Bookings_Ajax {
 
 		wp_send_json( array(
 			'result' => 'SUCCESS',
-			'html'   => apply_filters( 'woocommerce_bookings_booking_cost_string', __( 'Costs', 'woocommerce-bookings' ), $product ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>',
+			'html'   => apply_filters( 'woocommerce_bookings_booking_cost_string', __( 'Booking cost', 'woocommerce-bookings' ), $product ) . ': <strong>' . wc_price( $display_price ) . $price_suffix . '</strong>',
 		) );
 	}
 
@@ -243,19 +240,14 @@ class WC_Bookings_Ajax {
 		}
 
 		$first_block_time     = $product->get_first_block_time();
-		$from                 = strtotime( $first_block_time ? $first_block_time : 'midnight', $timestamp );
+		$from                 = $time_from = strtotime( $first_block_time ? $first_block_time : 'midnight', $timestamp );
 		$to                   = strtotime( '+ 1 day', $from ) + $interval;
 
-		// cap the upper range
-		$to                   = strtotime( 'midnight', $to ) - 1;
-
 		$resource_id_to_check = ( ! empty( $posted['wc_bookings_field_resource'] ) ? $posted['wc_bookings_field_resource'] : 0 );
-		$resource             = $product->get_resource( absint( $resource_id_to_check ) );
-		$resources            = $product->get_resources();
 
-		if ( $resource_id_to_check && $resource ) {
+		if ( $resource_id_to_check && $resource = $product->get_resource( absint( $resource_id_to_check ) ) ) {
 			$resource_id_to_check = $resource->ID;
-		} elseif ( $product->has_resources() && $resources && sizeof( $resources ) === 1 ) {
+		} elseif ( $product->has_resources() && ( $resources = $product->get_resources() ) && sizeof( $resources ) === 1 ) {
 			$resource_id_to_check = current( $resources )->ID;
 		} else {
 			$resource_id_to_check = 0;

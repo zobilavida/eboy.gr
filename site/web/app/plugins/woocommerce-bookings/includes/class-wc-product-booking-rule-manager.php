@@ -166,7 +166,7 @@ class WC_Product_Booking_Rule_Manager {
 			'from' => $from,
 			'to'   => $to,
 			'rule' => $value,
-		);
+			);
 	}
 
 	/**
@@ -181,7 +181,7 @@ class WC_Product_Booking_Rule_Manager {
 			'from' => $from,
 			'to'   => $to,
 			'rule' => $value,
-		);
+			);
 	}
 
 	/**
@@ -196,7 +196,7 @@ class WC_Product_Booking_Rule_Manager {
 			'from' => $from,
 			'to'   => $to,
 			'rule' => $value,
-		);
+			);
 	}
 
 	/**
@@ -261,11 +261,9 @@ class WC_Product_Booking_Rule_Manager {
 
 	/** 
 	 * Process and return formatted availability rules 
-	 *
-	 * @version  1.10.7
-	 * @param    $rules array 
-	 * @param    string $level. Resource, Product or Globally 
-	 * @return   array 
+	 * @param  $rules array 
+	 * @param string $level. Resource, Product or Globally 
+	 * @return array 
 	 */
 	public static function process_availability_rules( $rules, $level ) {
 		$processed_rules = array();
@@ -274,18 +272,20 @@ class WC_Product_Booking_Rule_Manager {
 			return $processed_rules;
 		}
 
+		// See what types of rules we have before getting the rules themselves
+		$rule_types = array();
+
+		foreach ( $rules as $fields ) {
+			if ( empty( $fields['bookable'] ) ) {
+				continue;
+			}
+			$rule_types[] = $fields['type'];
+		}
+
 		// Go through rules
 		foreach ( $rules as $order_on_product => $fields ) {
 			if ( empty( $fields['bookable'] ) ) {
 				continue;
-			}
-
-			// Do not include dates that are in the past.
-			if ( in_array( $fields['type'], array( 'custom', 'time:range' ) ) ) {
-				$to_date = ! empty( $fields['to_date'] ) ? $fields['to_date'] : $fields['to'];
-			 	if ( strtotime( $to_date ) < strtotime( 'midnight -1 day' ) ) {
-					continue;
-				}
 			}
 
 			$type_function = self::get_type_function( $fields['type'] );
@@ -313,7 +313,7 @@ class WC_Product_Booking_Rule_Manager {
 					'order'    => $order_on_product,
 				);
 
-				if ( 'resource' === $level && ! empty( $fields['resource_id'] ) ) {
+				if ( 'resource' === $level ) {
 					$processed_rule['resource_id'] = $fields['resource_id'];
 				}
 				$processed_rules[] = $processed_rule;
@@ -375,7 +375,7 @@ class WC_Product_Booking_Rule_Manager {
 			}
 		}
 
-		// One resource should not override the other, when automatically assigned: as long as one is available.
+//		 one resource should not override the other, when automatically assigned: as long as one is available.
 		foreach ( $resource_minutes as $resource_id => $minutes_for_rule_order ) {
 			$resource_minutes     = array();
 
@@ -390,6 +390,9 @@ class WC_Product_Booking_Rule_Manager {
 			// @todo this may be a problem as resource minutes may now affect product and global availability at this point.
 			$bookable_minutes = array_merge( $resource_minutes, $bookable_minutes );
 		}
+
+
+
 
 		$bookable_minutes = array_unique( array_values( $bookable_minutes ) );
 
@@ -408,10 +411,7 @@ class WC_Product_Booking_Rule_Manager {
 	 */
 	public static function get_rule_minutes_for_time( $rule, $check_date ) {
 
-		$minutes = array(
-			'is_bookable' => false,
-			'minutes' => array(),
-		);
+		$minutes = array( 'is_bookable' => false, 'minutes' => array() );
 		$type    = $rule['type'];
 		$range   = $rule['range'];
 
@@ -436,7 +436,7 @@ class WC_Product_Booking_Rule_Manager {
 
 		} elseif ( strpos( $rule['type'], 'time:' ) > -1 ) { // type: single week day with time
 
-			if ( $day_of_week != $range['day'] ) {
+			if (  $day_of_week != $range['day'] ) {
 				return  $minutes;
 			}
 
@@ -504,10 +504,7 @@ class WC_Product_Booking_Rule_Manager {
 			$is_bookable = $_rules[ $day_of_week ];
 		}
 
-		return array(
-			'is_bookable' => $is_bookable,
-			'minutes' => $minutes,
-		);
+		return array( 'is_bookable' => $is_bookable, 'minutes' => $minutes );
 	}
 
 	/**
@@ -531,10 +528,7 @@ class WC_Product_Booking_Rule_Manager {
 			$is_bookable = $range[ $week_number ];
 		}
 
-		return array(
-			'is_bookable' => $is_bookable,
-			'minutes' => $minutes,
-		);
+		return array( 'is_bookable' => $is_bookable, 'minutes' => $minutes );
 	}
 
 	/**
@@ -557,10 +551,7 @@ class WC_Product_Booking_Rule_Manager {
 			$is_bookable = $range[ $month ];
 		}
 
-		return array(
-			'is_bookable' => $is_bookable,
-			'minutes' => $minutes,
-		);
+		return array( 'is_bookable' => $is_bookable, 'minutes' => $minutes );
 	}
 
 	/**
@@ -586,10 +577,7 @@ class WC_Product_Booking_Rule_Manager {
 			$is_bookable = $range[ $year ][ $month ][ $day ];
 		}
 
-		return array(
-			'is_bookable' => $is_bookable,
-			'minutes' => $minutes,
-		);
+		return array( 'is_bookable' => $is_bookable, 'minutes' => $minutes );
 	}
 
 	/**
@@ -684,19 +672,15 @@ class WC_Product_Booking_Rule_Manager {
 	 * @param integer $slot_end_time
 	 * @param integer $resource_id
 	 * @param WC_Product_Booking $bookable_product
-	 * @param bool|null If not null, it will default to the boolean value. If null, it will use product default availability.
 	 *
 	 * @return bool available or not
 	 */
-	public static function check_availability_rules_against_time( $slot_start_time, $slot_end_time, $resource_id, $bookable_product, $bookable = null ) {
+	public static function check_availability_rules_against_time( $slot_start_time, $slot_end_time, $resource_id, $bookable_product ) {
+		$bookable        = $bookable_product->get_default_availability();
 		$slot_start_time = is_numeric( $slot_start_time ) ? $slot_start_time : strtotime( $slot_start_time );
 		$slot_end_time   = is_numeric( $slot_end_time ) ? $slot_end_time : strtotime( $slot_end_time );
 
 		$rules           = $bookable_product->get_availability_rules( $resource_id );
-
-		if ( is_null( $bookable ) ) {
-			$bookable = $bookable_product->get_default_availability();
-		}
 
 		// Get the date values for the slots being checked
 		$slot_year   = intval( date( 'Y', $slot_start_time ) );
@@ -736,7 +720,6 @@ class WC_Product_Booking_Rule_Manager {
 			}
 
 			// Handling all time specific rules
-			$apply_rule_times = false;
 			if ( 'time:range' === $type ) {
 				if ( ! isset( $range[ $slot_year ][ $slot_month ][ $slot_date ] ) ) {
 					continue;
@@ -745,13 +728,13 @@ class WC_Product_Booking_Rule_Manager {
 				$rule_val = $time_range_rule['rule'];
 				$from     = $time_range_rule['from'];
 				$to       = $time_range_rule['to'];
-				$apply_rule_times = true;
 			} elseif ( false !== strpos( $type, 'time' ) ) {
 				// if the day doesn't match and the day is not zero skip the rule
 				// zero means all days. SO rule only apply for zero or a matching day.
 				if ( ! empty( $range['day'] ) && $slot_day_no != $range['day'] ) {
 					continue;
 				}
+
 
 				// check that the rule should be applied to the current slot
 				// if not time it must be time:day_number
@@ -764,11 +747,10 @@ class WC_Product_Booking_Rule_Manager {
 				$rule_val = $range['rule'];
 				$from     = $range['from'];
 				$to       = $range['to'];
-				$apply_rule_times = true;
 			}
 
-			$rule_start_time = $apply_rule_times ? strtotime( $from, $slot_start_time ) : $slot_start_time;
-			$rule_end_time   = $apply_rule_times ? strtotime( $to, $slot_start_time ) : $slot_start_time;
+			$rule_start_time = strtotime( $from, $slot_start_time );
+			$rule_end_time   = strtotime( $to, $slot_start_time );
 
 			// Reverse time rule - The end time is tomorrow e.g. 16:00 today - 12:00 tomorrow
 			if ( $rule_end_time <= $rule_start_time ) {
@@ -788,7 +770,7 @@ class WC_Product_Booking_Rule_Manager {
 				}
 			} else {
 				// Normal rule.
-				if ( $slot_start_time < $rule_end_time && $slot_end_time > $rule_start_time ) {
+				if ( $slot_start_time >= $rule_start_time && $slot_end_time <= $rule_end_time ) {
 					$bookable = $rule_val;
 					continue;
 				}
@@ -796,8 +778,8 @@ class WC_Product_Booking_Rule_Manager {
 				// specific to hour duration types. If start time is in between
 				// rule start and end times the rule should be applied.
 				if ( 'hour' == $bookable_product->get_duration_unit()
-					&& $slot_start_time > $rule_start_time
-					&& $slot_start_time < $rule_end_time ) {
+				     && $slot_start_time > $rule_start_time
+				     && $slot_start_time < $rule_end_time ) {
 
 					$bookable = $rule_val;
 					continue;
@@ -853,7 +835,7 @@ class WC_Product_Booking_Rule_Manager {
 		$range = $rule['range'];
 
 		switch ( $rule['type'] ) {
-			case 'months':
+			case 'months' :
 				if ( isset( $range[ $month ] ) ) {
 					return true;
 				}
@@ -863,12 +845,12 @@ class WC_Product_Booking_Rule_Manager {
 					return true;
 				}
 				break;
-			case 'days':
+			case 'days' :
 				if ( isset( $range[ $day_of_week ] ) ) {
 					return true;
 				}
 				break;
-			case 'custom':
+			case 'custom' :
 				if ( isset( $range[ $year ][ $month ][ $day ] ) ) {
 					return true;
 				}
@@ -917,7 +899,7 @@ class WC_Product_Booking_Rule_Manager {
 		$bookable = $default;
 
 		switch ( $type ) {
-			case 'months':
+			case 'months' :
 				if ( isset( $range[ $month ] ) ) {
 					$bookable = $range[ $month ];
 				}
@@ -927,12 +909,12 @@ class WC_Product_Booking_Rule_Manager {
 					$bookable = $range[ $week ];
 				}
 				break;
-			case 'days':
+			case 'days' :
 				if ( isset( $range[ $day_of_week ] ) ) {
 					$bookable = $range[ $day_of_week ];
 				}
 				break;
-			case 'custom':
+			case 'custom' :
 				if ( isset( $range[ $year ][ $month ][ $day ] ) ) {
 					$bookable = $range[ $year ][ $month ][ $day ];
 				}

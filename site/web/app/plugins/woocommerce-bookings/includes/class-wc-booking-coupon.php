@@ -54,14 +54,14 @@ class WC_Booking_Coupon {
 	 * @return bool Returns true if coupon is valid
 	 */
 	public function is_coupon_valid( $is_valid, $wc_coupon ) {
-		if ( 'booking_person' !== self::get_coupon_prop( $wc_coupon, 'discount_type' ) ) {
+		if ( 'booking_person' !== $wc_coupon->discount_type ) {
 			return $is_valid;
 		}
 
 		if ( ! WC()->cart->is_empty() ) {
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$product = wc_get_product( $cart_item['product_id'] );
-				if ( is_a( $product, 'WC_Product_Booking' ) && $product->has_persons() ) {
+				if ( $product->has_persons() ) {
 					return true;
 				}
 			}
@@ -97,11 +97,11 @@ class WC_Booking_Coupon {
 						continue;
 					}
 
-					if ( 'booking_person' !== self::get_coupon_prop( $coupon, 'discount_type' ) ) {
+					if ( 'booking_person' !== $coupon->discount_type ) {
 						continue;
 					}
 
-					$discount_amount = ( $price < self::get_coupon_prop( $coupon, 'amount' ) ) ? $price : self::get_coupon_prop( $coupon, 'amount' );
+					$discount_amount = ( $price < $coupon->amount ) ? $price : $coupon->amount;
 					$total_persons   = array_sum( $cart_item['booking']['_persons'] );
 					$discount_amount = $discount_amount * $total_persons;
 
@@ -133,28 +133,12 @@ class WC_Booking_Coupon {
 	 * @return string Discount HTML
 	 */
 	public function discount_amount_html( $discount_html, $coupon ) {
-		if ( 'booking_person' !== self::get_coupon_prop( $coupon, 'discount_type' ) ) {
+		if ( 'booking_person' !== $coupon->discount_type ) {
 			return $discount_html;
 		}
 
-		$discount_html = '-' . wc_price( $this->amounts[ self::get_coupon_prop( $coupon, 'code' ) ] );
+		$discount_html = '-' . wc_price( $this->amounts[ $coupon->code ] );
 		return $discount_html;
-	}
-
-	/**
-	 * Get coupon property with compatibility check on order getter introduced
-	 * in WC 3.0.
-	 *
-	 * @since 1.10.3
-	 *
-	 * @param WC_Coupon $coupon Coupon object.
-	 * @param string    $prop   Property name.
-	 *
-	 * @return mixed Property value
-	 */
-	public static function get_coupon_prop( $coupon, $prop ) {
-		$getter = array( $coupon, 'get_' . $prop );
-		return is_callable( $getter ) ? call_user_func( $getter ) : $coupon->{ $prop };
 	}
 
 }

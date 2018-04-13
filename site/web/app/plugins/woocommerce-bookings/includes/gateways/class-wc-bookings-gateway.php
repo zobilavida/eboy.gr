@@ -73,7 +73,7 @@ class WC_Bookings_Gateway extends WC_Payment_Gateway {
 		// Return thankyou redirect.
 		return array(
 			'result'   => 'success',
-			'redirect' => $this->get_return_url( $order ),
+			'redirect' => $this->get_return_url( $order )
 		);
 	}
 

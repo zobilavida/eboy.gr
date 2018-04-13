@@ -19,7 +19,7 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 		'_has_additional_costs'                  => 'has_additional_costs',
 		'_wc_booking_apply_adjacent_buffer'      => 'apply_adjacent_buffer',
 		'_wc_booking_availability'               => 'availability',
-		'_wc_booking_block_cost'                 => 'block_cost',
+		'_wc_booking_base_cost'                  => 'base_cost',
 		'_wc_booking_buffer_period'              => 'buffer_period',
 		'_wc_booking_calendar_display_mode'      => 'calendar_display_mode',
 		'_wc_booking_cancel_limit_unit'          => 'cancel_limit_unit',
@@ -35,7 +35,6 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 		'_wc_booking_has_person_types'           => 'has_person_types',
 		'_wc_booking_has_persons'                => 'has_persons',
 		'_wc_booking_has_resources'              => 'has_resources',
-		'_wc_booking_has_restricted_days'        => 'has_restricted_days',
 		'_wc_booking_max_date_unit'              => 'max_date_unit',
 		'_wc_booking_max_date'                   => 'max_date_value',
 		'_wc_booking_max_duration'               => 'max_duration',
@@ -50,20 +49,10 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 		'_wc_booking_qty'                        => 'qty',
 		'_wc_booking_requires_confirmation'      => 'requires_confirmation',
 		'_wc_booking_resources_assignment'       => 'resources_assignment',
-		'_wc_booking_restricted_days'            => 'restricted_days',
 		'_wc_booking_user_can_cancel'            => 'user_can_cancel',
 		'_wc_display_cost'                       => 'display_cost',
 		'wc_booking_resource_label'              => 'resource_label',
-		'_price'                                 => 'price',
 	);
-
-	public function __construct() {
-		if ( is_callable( 'parent::__construct' ) ) {
-			parent::__construct();
-		}
-
-		$this->internal_meta_keys = array_merge( $this->internal_meta_keys, array_keys( $this->booking_meta_key_to_props ) );
-	}
 
 	/**
 	 * Force meta values on save.
@@ -100,7 +89,7 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 				'post_type'      => 'product',
 				'post_status'    => 'publish',
 				'post_author'    => get_current_user_id(),
-				'post_title'     => $product->get_name() ? $product->get_name() : __( 'Product', 'woocommerce-bookings' ),
+				'post_title'     => $product->get_name() ? $product->get_name() : __( 'Product', 'woocommerce' ),
 				'post_content'   => $product->get_description(),
 				'post_excerpt'   => $product->get_short_description(),
 				'post_parent'    => $product->get_parent_id(),
@@ -201,10 +190,10 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 			$value = get_post_meta( $product->get_id(), $key, true );
 
 			switch ( $prop ) {
-				case 'check_start_block_only':
+				case 'check_start_block_only' :
 					$set_props[ $prop ] = ( 'start' === $value || '1' === $value );
 					break;
-				default:
+				default :
 					$set_props[ $prop ] = $value;
 					break;
 			}
@@ -294,10 +283,10 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 		foreach ( $product->get_resource_ids( 'edit' ) as $resource_id ) {
 
 			$replace = array(
-				'sort_order'  => ( $index ++ ),
-				'product_id'  => $product->get_id(),
-				'resource_id' => $resource_id,
-			);
+					'sort_order'  => ( $index ++ ),
+					'product_id'  => $product->get_id(),
+					'resource_id' => $resource_id,
+				);
 
 			if ( isset( $current_resource_ids[ $resource_id ] ) ) {
 				$replace['ID'] = $current_resource_ids[ $resource_id ]['ID'];
@@ -348,9 +337,7 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 
 		foreach ( $remove_person_types as $person_type_id ) {
 			$remove_person_type = new WC_Product_Booking_Person_Type( $person_type_id );
-
-			$remove_person_type->set_parent_id( 0 );
-			$remove_person_type->save();
+			$remove_person_type->delete();
 		}
 	}
 
@@ -374,21 +361,6 @@ class WC_Product_Booking_Data_Store_CPT extends WC_Product_Data_Store_CPT {
 			'suppress_filters' => true,
 			'fields'           => 'ids',
 		) ) );
-		return wp_parse_id_list( $ids );
-	}
-
-	/**
-	 * Read all persons from the database.
-	 */
-	public static function get_person_types_ids() {
-		$ids = get_posts( apply_filters( 'woocommerce_bookings_get_person_types_ids', array(
-			'post_type'      => 'bookable_person',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'suppress_filters' => true,
-			'fields'           => 'ids',
-		) ) );
-
 		return wp_parse_id_list( $ids );
 	}
 }

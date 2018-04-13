@@ -10,7 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Product_Accommodation_Booking extends WC_Product_Skeleton_Booking {
 	public function __construct( $product ) {
 		$this->product_type = 'accommodation-booking';
-		$this->supports[]   = 'ajax_add_to_cart';
 		parent::__construct( $product );
 	}
 

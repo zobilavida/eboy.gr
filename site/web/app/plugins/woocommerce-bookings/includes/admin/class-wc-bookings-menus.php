@@ -26,7 +26,7 @@ class WC_Bookings_Menus {
 	public function buffer() {
 		$screen = get_current_screen();
 
-		if ( 'wc_booking_page_create_booking' === $screen->id ) {
+		if ( $screen->id === 'wc_booking_page_create_booking' ) {
 			ob_start();
 		}
 	}
@@ -70,7 +70,7 @@ class WC_Bookings_Menus {
 	 * Add a submenu for managing bookings pages.
 	 */
 	public function admin_menu() {
-		$create_booking_page = add_submenu_page( 'edit.php?post_type=wc_booking', __( 'Add Booking', 'woocommerce-bookings' ), __( 'Add Booking', 'woocommerce-bookings' ), 'manage_bookings', 'create_booking', array( $this, 'create_booking_page' ) );
+		$create_booking_page = add_submenu_page( 'edit.php?post_type=wc_booking', __( 'Create Booking', 'woocommerce-bookings' ), __( 'Create Booking', 'woocommerce-bookings' ), 'manage_bookings', 'create_booking', array( $this, 'create_booking_page' ) );
 		$calendar_page       = add_submenu_page( 'edit.php?post_type=wc_booking', __( 'Calendar', 'woocommerce-bookings' ), __( 'Calendar', 'woocommerce-bookings' ), 'manage_bookings', 'booking_calendar', array( $this, 'calendar_page' ) );
 		$notification_page   = add_submenu_page( 'edit.php?post_type=wc_booking', __( 'Send Notification', 'woocommerce-bookings' ), __( 'Send Notification', 'woocommerce-bookings' ), 'manage_bookings', 'booking_notification', array( $this, 'notifications_page' ) );
 		$settings_page       = add_submenu_page( 'edit.php?post_type=wc_booking', __( 'Global Availability', 'woocommerce-bookings' ), __( 'Global Availability', 'woocommerce-bookings' ), 'manage_bookings', 'wc_bookings_global_availability', array( $this, 'global_availability_page' ) );
@@ -123,17 +123,14 @@ class WC_Bookings_Menus {
 			$notification_message    = wp_kses_post( stripslashes( $_POST['notification_message'] ) );
 
 			try {
-				if ( ! $notification_product_id ) {
+				if ( ! $notification_product_id )
 					throw new Exception( __( 'Please choose a product', 'woocommerce-bookings' ) );
-				}
 
-				if ( ! $notification_message ) {
+				if ( ! $notification_message )
 					throw new Exception( __( 'Please enter a message', 'woocommerce-bookings' ) );
-				}
 
-				if ( ! $notification_subject ) {
+				if ( ! $notification_subject )
 					throw new Exception( __( 'Please enter a subject', 'woocommerce-bookings' ) );
-				}
 
 				$bookings     = WC_Bookings_Controller::get_bookings_for_product( $notification_product_id );
 				$mailer       = WC()->mailer();
@@ -154,7 +151,7 @@ class WC_Bookings_Menus {
 
 				echo '<div class="updated fade"><p>' . __( 'Notification sent successfully', 'woocommerce-bookings' ) . '</p></div>';
 
-			} catch ( Exception $e ) {
+			} catch( Exception $e ) {
 				echo '<div class="error"><p>' . $e->getMessage() . '</p></div>';
 			}
 		}

@@ -1,5 +1,5 @@
 <div class="wrap woocommerce">
-	<h2><?php _e( 'Calendar', 'woocommerce-bookings' ); ?></h2>
+	<h2><?php _e( 'Bookings by day', 'woocommerce-bookings' ); ?></h2>
 
 	<form method="get" id="mainform" enctype="multipart/form-data" class="wc_bookings_calendar_form">
 		<input type="hidden" name="post_type" value="wc_booking" />
@@ -10,20 +10,14 @@
 			<div class="filters">
 				<select id="calendar-bookings-filter" name="filter_bookings" class="wc-enhanced-select" style="width:200px">
 					<option value=""><?php _e( 'Filter Bookings', 'woocommerce-bookings' ); ?></option>
-					<?php
-					$product_filters = $this->product_filters();
-					if ( $product_filters ) :
-					?>
+					<?php if ( $product_filters = $this->product_filters() ) : ?>
 						<optgroup label="<?php _e( 'By bookable product', 'woocommerce-bookings' ); ?>">
 							<?php foreach ( $product_filters as $filter_id => $filter_name ) : ?>
 								<option value="<?php echo $filter_id; ?>" <?php selected( $product_filter, $filter_id ); ?>><?php echo $filter_name; ?></option>
 							<?php endforeach; ?>
 						</optgroup>
 					<?php endif; ?>
-					<?php
-					$resources_filters = $this->resources_filters();
-					if ( $resources_filters ) :
-					?>
+					<?php if ( $resources_filters = $this->resources_filters() ) : ?>
 						<optgroup label="<?php _e( 'By resource', 'woocommerce-bookings' ); ?>">
 							<?php foreach ( $resources_filters as $filter_id => $filter_name ) : ?>
 								<option value="<?php echo $filter_id; ?>" <?php selected( $product_filter, $filter_id ); ?>><?php echo $filter_name; ?></option>
@@ -45,9 +39,9 @@
 			<script type="text/javascript">
 				jQuery(function() {
 					jQuery(".tablenav select, .tablenav input").change(function() {
-						jQuery("#mainform").submit();
-					});
-					jQuery( '.calendar_day' ).datepicker({
+						 jQuery("#mainform").submit();
+					   });
+					   jQuery( '.calendar_day' ).datepicker({
 						dateFormat: 'yy-mm-dd',
 						numberOfMonths: 1,
 					});
@@ -58,20 +52,14 @@
 						'fadeOut' : 50,
 						'delay' : 200
 					});
-				});
+				   });
 			</script>
 		</div>
 
 		<div class="calendar_days">
 			<ul class="hours">
 				<?php for ( $i = 0; $i < 24; $i ++ ) : ?>
-					<li><label>
-					<?php
-					if ( 0 != $i && 24 != $i ) {
-						echo date_i18n( wc_time_format(), strtotime( "midnight +{$i} hour" ) );
-					}
-					?>
-					</label></li>
+					<li><label><?php if ( $i != 0 && $i != 24 ) echo date_i18n( 'g:ia', strtotime( "midnight +{$i} hour" ) ); ?></label></li>
 				<?php endfor; ?>
 			</ul>
 			<ul class="bookings">

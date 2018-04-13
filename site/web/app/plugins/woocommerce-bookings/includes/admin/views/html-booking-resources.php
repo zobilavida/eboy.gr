@@ -2,19 +2,16 @@
 
 	<div class="options_group" id="resource_options">
 
-		<?php
-		woocommerce_wp_text_input( array(
+		<?php woocommerce_wp_text_input( array(
 			'id'          => '_wc_booking_resource_label',
 			'placeholder' => __( 'Type', 'woocommerce-bookings' ),
 			'label'       => __( 'Label', 'woocommerce-bookings' ),
 			'value'       => $bookable_product->get_resource_label( 'edit' ),
 			'desc_tip'    => true,
 			'description' => __( 'The label shown on the frontend if the resource is customer defined.', 'woocommerce-bookings' ),
-		) );
-		?>
+		) ); ?>
 
-		<?php
-		woocommerce_wp_select( array(
+		<?php woocommerce_wp_select( array(
 			'id'            => '_wc_booking_resources_assignment',
 			'label'         => __( 'Resources are...', 'woocommerce-bookings' ),
 			'description'   => '',
@@ -25,8 +22,7 @@
 				'automatic' => __( 'Automatically assigned', 'woocommerce-bookings' ),
 			),
 			'description'   => __( 'Customer selected resources allow customers to choose one from the booking form.', 'woocommerce-bookings' ),
-		) );
-		?>
+		) ); ?>
 
 	</div>
 
@@ -70,14 +66,11 @@
 			<select name="add_resource_id" class="add_resource_id">
 				<option value=""><?php _e( 'New resource', 'woocommerce-bookings' ); ?></option>
 				<?php
-				if ( $all_resources ) {
-					foreach ( $all_resources as $resource ) {
-						if ( in_array( $resource->ID, $product_resources ) ) {
-							continue; // ignore resources that's already on the product
+					if ( $all_resources ) {
+						foreach ( $all_resources as $resource ) {
+							echo '<option value="' . esc_attr( $resource->ID ) . '">#' . absint( $resource->ID ) . ' - ' . esc_html( $resource->post_title ) . '</option>';
 						}
-						echo '<option value="' . esc_attr( $resource->ID ) . '">#' . absint( $resource->ID ) . ' - ' . esc_html( $resource->post_title ) . '</option>';
 					}
-				}
 				?>
 			</select>
 			<a href="<?php echo admin_url( 'edit.php?post_type=bookable_resource' ); ?>" target="_blank"><?php _e( 'Manage Resources', 'woocommerce-bookings' ); ?></a>

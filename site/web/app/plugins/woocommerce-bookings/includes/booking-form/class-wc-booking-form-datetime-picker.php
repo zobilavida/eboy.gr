@@ -36,7 +36,12 @@ class WC_Booking_Form_Datetime_Picker extends WC_Booking_Form_Date_Picker {
 		$this->args['display']                 = $this->booking_form->product->get_calendar_display_mode();
 		$this->args['availability_rules']      = array();
 		$this->args['availability_rules'][0]   = $this->booking_form->product->get_availability_rules();
-		$this->args['restricted_days']         = $this->booking_form->product->has_restricted_days() ? $this->booking_form->product->get_restricted_days() : false;
+
+		// Try to guess the first available day -- temporarily switch to 'day' when calculating the blocks since we just want to pull out a close date,
+		// and not try to filter by tiny minute|hour blocks
+		add_filter( 'woocommerce_bookings_get_duration_unit', array( __CLASS__, 'set_duration_to_day' ) );
+		$this->args['default_date'] = date( 'Y-m-d', $this->get_default_date() );
+		remove_filter( 'woocommerce_bookings_get_duration_unit', array( __CLASS__, 'set_duration_to_day' ) );
 
 		if ( $this->booking_form->product->has_resources() ) {
 			foreach ( $this->booking_form->product->get_resources() as $resource ) {
@@ -48,15 +53,7 @@ class WC_Booking_Form_Datetime_Picker extends WC_Booking_Form_Date_Picker {
 			$this->args['interval'] = $this->args['interval'] * 60;
 		}
 
-		$fully_booked_blocks = $this->find_fully_booked_blocks();
-
-		$this->args = array_merge( $this->args, $fully_booked_blocks );
-
-		// Try to guess the first available day -- temporarily switch to 'day' when calculating the blocks since we just want to pull out a close date,
-		// and not try to filter by tiny minute|hour blocks
-		add_filter( 'woocommerce_bookings_get_duration_unit', array( __CLASS__, 'set_duration_to_day' ) );
-		$this->args['default_date'] = date( 'Y-m-d', $this->get_default_date( $fully_booked_blocks ) );
-		remove_filter( 'woocommerce_bookings_get_duration_unit', array( __CLASS__, 'set_duration_to_day' ) );
+		$this->find_fully_booked_blocks();
 	}
 
 	public static function set_duration_to_day() {

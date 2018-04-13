@@ -44,21 +44,19 @@ class WC_Booking_Form_Month_Picker extends WC_Booking_Form_Picker {
 	 * @return array Array of blocks
 	 */
 	public function get_booking_blocks() {
-		$min_date = $this->args['min_date'];
-		$max_date = $this->args['max_date'];
+		extract( $this->args );
 
 		// Generate a range of blocks for months
 		if ( $min_date ) {
-			if ( 0 === $min_date['value'] ) {
+			if ( $min_date['value'] === 0 ) {
 				$min_date['value'] = 1;
 			}
 			$from = strtotime( date( 'Y-m-01', strtotime( "+{$min_date['value']} {$min_date['unit']}" ) ) );
 		} else {
-			$from = strtotime( date( 'Y-m-01', strtotime( '+28 days' ) ) );
+			$from = strtotime( date( 'Y-m-01', strtotime( "+28 days" ) ) );
 		}
 		$to = strtotime( date( 'Y-m-t', strtotime( "+{$max_date['value']} {$max_date['unit']}" ) ) );
 
 		return $this->booking_form->product->get_blocks_in_range( $from, $to );
 	}
 }
-

@@ -15,7 +15,6 @@ abstract class WC_Booking_Form_Picker {
 	protected function get_field_label( $text ) {
 		// If the duration is > 1, dates and times are 'start' times and should thus have different labels
 		if ( $this->booking_form->product->get_duration_type() === 'customer' && $this->booking_form->product->get_max_duration() > 1 && ! in_array( $this->booking_form->product->get_duration_unit(), array( 'hour', 'minute' ) ) ) {
-			/* translators: 1: Text to insert into label string */
 			$date_label = __( 'Start %s', 'woocommerce-bookings' );
 		} else {
 			$date_label = '%s';

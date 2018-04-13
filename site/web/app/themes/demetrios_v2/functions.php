@@ -106,6 +106,47 @@ add_action( 'publish_page', 'itsg_create_sitemap' );
 add_action( 'save_post_my_post_type', 'itsg_create_sitemap' );
 
 
+/**
+ * Optimize WooCommerce Scripts
+ * Remove WooCommerce Generator tag, styles, and scripts from non WooCommerce pages.
+ */
+add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
+
+function child_manage_woocommerce_styles() {
+	//remove generator meta tag
+	remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
+
+	//first check that woo exists to prevent fatal errors
+	if ( function_exists( 'is_woocommerce' ) ) {
+		//dequeue scripts and styles
+		if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+			wp_dequeue_style( 'woocommerce_frontend_styles' );
+			wp_dequeue_style( 'woocommerce_fancybox_styles' );
+			wp_dequeue_style( 'woocommerce_chosen_styles' );
+			wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+      wp_dequeue_style('woocommerce-smallscreen');
+      wp_dequeue_style('woocommerce-layout');
+      wp_dequeue_style('woocommerce-general');
+			wp_dequeue_script( 'wc_price_slider' );
+			wp_dequeue_script( 'wc-single-product' );
+			wp_dequeue_script( 'wc-add-to-cart' );
+			wp_dequeue_script( 'wc-cart-fragments' );
+			wp_dequeue_script( 'wc-checkout' );
+			wp_dequeue_script( 'wc-add-to-cart-variation' );
+			wp_dequeue_script( 'wc-single-product' );
+			wp_dequeue_script( 'wc-cart' );
+			wp_dequeue_script( 'wc-chosen' );
+			wp_dequeue_script( 'woocommerce' );
+			wp_dequeue_script( 'prettyPhoto' );
+			wp_dequeue_script( 'prettyPhoto-init' );
+			wp_dequeue_script( 'jquery-blockui' );
+			wp_dequeue_script( 'jquery-placeholder' );
+			wp_dequeue_script( 'fancybox' );
+			wp_dequeue_script( 'jqueryui' );
+		}
+	}
+
+}
 
 if ( ! function_exists('custom_stores_post_type') ) {
 
@@ -276,48 +317,6 @@ add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 
 
-/**
- * Optimize WooCommerce Scripts
- * Remove WooCommerce Generator tag, styles, and scripts from non WooCommerce pages.
- */
-add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
-
-function child_manage_woocommerce_styles() {
-	//remove generator meta tag
-	remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
-
-	//first check that woo exists to prevent fatal errors
-	if ( function_exists( 'is_woocommerce' ) ) {
-		//dequeue scripts and styles
-		if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
-			wp_dequeue_style( 'woocommerce_frontend_styles' );
-			wp_dequeue_style( 'woocommerce_fancybox_styles' );
-			wp_dequeue_style( 'woocommerce_chosen_styles' );
-			wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
-      wp_dequeue_style('woocommerce-smallscreen');
-      wp_dequeue_style('woocommerce-layout');
-      wp_dequeue_style('woocommerce-general');
-			wp_dequeue_script( 'wc_price_slider' );
-			wp_dequeue_script( 'wc-single-product' );
-			wp_dequeue_script( 'wc-add-to-cart' );
-			wp_dequeue_script( 'wc-cart-fragments' );
-			wp_dequeue_script( 'wc-checkout' );
-			wp_dequeue_script( 'wc-add-to-cart-variation' );
-			wp_dequeue_script( 'wc-single-product' );
-			wp_dequeue_script( 'wc-cart' );
-			wp_dequeue_script( 'wc-chosen' );
-			wp_dequeue_script( 'woocommerce' );
-			wp_dequeue_script( 'prettyPhoto' );
-			wp_dequeue_script( 'prettyPhoto-init' );
-			wp_dequeue_script( 'jquery-blockui' );
-			wp_dequeue_script( 'jquery-placeholder' );
-			wp_dequeue_script( 'fancybox' );
-			wp_dequeue_script( 'jqueryui' );
-		}
-	}
-
-}
-
 function video_background(){
   $video_background = get_field( "video_background" );
   $video_background_text_1 = get_field( "video_background_text_1" );
@@ -330,92 +329,7 @@ function video_background(){
 ?>
 <section class="home-section bg-dark-30" id="home" data-background="assets/images/finance/finance_header_bg.png">
   <!--Carousel Wrapper-->
-  <div id="video-carousel-example2" class="carousel slide carousel-fade" data-ride="carousel">
-      <!--Indicators-->
-      <ol class="carousel-indicators">
-          <li data-target="#video-carousel-example2" data-slide-to="0" class="active"></li>
-          <li data-target="#video-carousel-example2" data-slide-to="1"></li>
-          <li data-target="#video-carousel-example2" data-slide-to="2"></li>
-      </ol>
-      <!--/.Indicators-->
-      <!--Slides-->
-      <div class="carousel-inner" role="listbox">
-          <!-- First slide -->
-          <div class="carousel-item active">
-              <!--Mask color-->
-              <div class="view">
-                  <!--Video source-->
-                  <video class="video-fluid" autoplay loop>
-                      <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
-                  </video>
-                  <div class="mask rgba-indigo-light"></div>
-              </div>
 
-              <!--Caption-->
-              <div class="carousel-caption">
-                  <div class="animated fadeInDown">
-                      <h3 class="h3-responsive">Light mask</h3>
-                  </div>
-              </div>
-              <!--Caption-->
-          </div>
-          <!-- /.First slide -->
-
-          <!-- Second slide -->
-          <div class="carousel-item">
-              <!--Mask color-->
-              <div class="view">
-                  <!--Video source-->
-                  <video class="video-fluid" autoplay loop>
-                      <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
-                  </video>
-                  <div class="mask rgba-purple-slight"></div>
-              </div>
-
-              <!--Caption-->
-              <div class="carousel-caption">
-                  <div class="animated fadeInDown">
-                      <h3 class="h3-responsive">Super light mask</h3>
-                  </div>
-              </div>
-              <!--Caption-->
-          </div>
-          <!-- /.Second slide -->
-
-          <!-- Third slide -->
-          <div class="carousel-item">
-              <!--Mask color-->
-              <div class="view">
-                  <!--Video source-->
-                  <video class="video-fluid" autoplay loop>
-                      <source src="https://mdbootstrap.com/img/video/cube.mp4" type="video/mp4" />
-                  </video>
-                  <div class="mask rgba-black-strong"></div>
-              </div>
-
-              <!--Caption-->
-              <div class="carousel-caption">
-                  <div class="animated fadeInDown">
-                      <h3 class="h3-responsive">Strong mask</h3>
-                  </div>
-              </div>
-              <!--Caption-->
-          </div>
-          <!-- /.Third slide -->
-      </div>
-      <!--/.Slides-->
-      <!--Controls-->
-      <a class="carousel-control-prev" href="#video-carousel-example2" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#video-carousel-example2" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-      </a>
-      <!--/.Controls-->
-  </div>
-  <!--Carousel Wrapper-->
 </section><?php
 } else { echo "Niente";}
 

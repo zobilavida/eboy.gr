@@ -16,8 +16,7 @@ class WC_Bookings_Admin {
 	public function __construct() {
 		self::$_this = $this;
 
-		add_action( 'init', array( $this, 'init' ) );
-
+		add_action( 'woocommerce_duplicate_product', array( $this, 'woocommerce_duplicate_product' ), 10, 2 );
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 		add_action( 'admin_init', array( $this, 'init_tabs' ) );
 		add_action( 'admin_init', array( $this, 'include_post_type_handlers' ) );
@@ -30,39 +29,12 @@ class WC_Bookings_Admin {
 		add_filter( 'product_type_options', array( $this, 'booking_product_type_options' ) );
 		add_action( 'load-options-general.php', array( $this, 'reset_ics_exporter_timezone_cache' ) );
 		add_action( 'woocommerce_after_order_itemmeta', array( $this, 'booking_display' ), 10, 3 );
-		add_action( 'woocommerce_debug_tools', array( $this, 'bookings_debug_tools' ) );
 
 		// Saving data.
 		add_action( 'woocommerce_process_product_meta', array( $this, 'save_product_data' ), 20 );
 		add_action( 'woocommerce_admin_process_product_object', array( $this, 'set_props' ), 20 );
 
 		include( 'class-wc-bookings-menus.php' );
-	}
-
-	public function init() {
-		if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
-			add_action( 'woocommerce_duplicate_product', array( $this, 'woocommerce_duplicate_product_pre_wc30' ), 10, 2 );
-		} else {
-			add_action( 'woocommerce_product_duplicate', array( $this, 'woocommerce_duplicate_product' ), 10, 2 );
-		}
-	}
-
-	/**
-	 * Bookings debug tools in WooCommerce > Status > Tools.
-	 *
-	 * @param array $tools
-	 */
-	public function bookings_debug_tools( $tools ) {
-		$bookings_tools = array(
-			'clean_person_types' => array(
-				'name'     => __( 'Clean unused Person Types from DB', 'woocommerce-bookings' ),
-				'button'   => __( 'Clean Person Types', 'woocommerce-bookings' ),
-				'desc'     => __( 'This tool will clean the person types that are not used by any booking or a product.', 'woocommerce-bookings' ),
-				'callback' => array( 'WC_Bookings_Tools', 'clean_person_types' ),
-			),
-		);
-
-		return array_merge( $tools, $bookings_tools );
 	}
 
 	/**
@@ -93,40 +65,40 @@ class WC_Bookings_Admin {
 			$availability[ $i ]['priority'] = intval( $_POST['wc_booking_availability_priority'][ $i ] );
 
 			switch ( $availability[ $i ]['type'] ) {
-				case 'custom':
+				case 'custom' :
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_date'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_date'][ $i ] );
-					break;
-				case 'months':
+				break;
+				case 'months' :
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_month'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_month'][ $i ] );
-					break;
-				case 'weeks':
+				break;
+				case 'weeks' :
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_week'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_week'][ $i ] );
-					break;
-				case 'days':
+				break;
+				case 'days' :
 					$availability[ $i ]['from'] = wc_clean( $_POST['wc_booking_availability_from_day_of_week'][ $i ] );
 					$availability[ $i ]['to']   = wc_clean( $_POST['wc_booking_availability_to_day_of_week'][ $i ] );
-					break;
-				case 'time':
-				case 'time:1':
-				case 'time:2':
-				case 'time:3':
-				case 'time:4':
-				case 'time:5':
-				case 'time:6':
-				case 'time:7':
+				break;
+				case 'time' :
+				case 'time:1' :
+				case 'time:2' :
+				case 'time:3' :
+				case 'time:4' :
+				case 'time:5' :
+				case 'time:6' :
+				case 'time:7' :
 					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_availability_from_time'][ $i ] );
 					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_availability_to_time'][ $i ] );
-					break;
-				case 'time:range':
+				break;
+				case 'time:range' :
 					$availability[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_availability_from_time'][ $i ] );
 					$availability[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_availability_to_time'][ $i ] );
 
 					$availability[ $i ]['from_date'] = wc_clean( $_POST['wc_booking_availability_from_date'][ $i ] );
 					$availability[ $i ]['to_date']   = wc_clean( $_POST['wc_booking_availability_to_date'][ $i ] );
-					break;
+				break;
 			}
 		}
 		return $availability;
@@ -148,44 +120,44 @@ class WC_Bookings_Admin {
 			$pricing[ $i ]['base_modifier'] = wc_clean( $_POST['wc_booking_pricing_base_cost_modifier'][ $i ] );
 
 			switch ( $pricing[ $i ]['type'] ) {
-				case 'custom':
+				case 'custom' :
 					$pricing[ $i ]['from'] = wc_clean( $_POST['wc_booking_pricing_from_date'][ $i ] );
 					$pricing[ $i ]['to']   = wc_clean( $_POST['wc_booking_pricing_to_date'][ $i ] );
-					break;
-				case 'months':
+				break;
+				case 'months' :
 					$pricing[ $i ]['from'] = wc_clean( $_POST['wc_booking_pricing_from_month'][ $i ] );
 					$pricing[ $i ]['to']   = wc_clean( $_POST['wc_booking_pricing_to_month'][ $i ] );
-					break;
-				case 'weeks':
+				break;
+				case 'weeks' :
 					$pricing[ $i ]['from'] = wc_clean( $_POST['wc_booking_pricing_from_week'][ $i ] );
 					$pricing[ $i ]['to']   = wc_clean( $_POST['wc_booking_pricing_to_week'][ $i ] );
-					break;
-				case 'days':
+				break;
+				case 'days' :
 					$pricing[ $i ]['from'] = wc_clean( $_POST['wc_booking_pricing_from_day_of_week'][ $i ] );
 					$pricing[ $i ]['to']   = wc_clean( $_POST['wc_booking_pricing_to_day_of_week'][ $i ] );
-					break;
-				case 'time':
-				case 'time:1':
-				case 'time:2':
-				case 'time:3':
-				case 'time:4':
-				case 'time:5':
-				case 'time:6':
-				case 'time:7':
+				break;
+				case 'time' :
+				case 'time:1' :
+				case 'time:2' :
+				case 'time:3' :
+				case 'time:4' :
+				case 'time:5' :
+				case 'time:6' :
+				case 'time:7' :
 					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_pricing_from_time'][ $i ] );
 					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_pricing_to_time'][ $i ] );
-					break;
-				case 'time:range':
+				break;
+				case 'time:range' :
 					$pricing[ $i ]['from'] = wc_booking_sanitize_time( $_POST['wc_booking_pricing_from_time'][ $i ] );
 					$pricing[ $i ]['to']   = wc_booking_sanitize_time( $_POST['wc_booking_pricing_to_time'][ $i ] );
 
 					$pricing[ $i ]['from_date'] = wc_clean( $_POST['wc_booking_pricing_from_date'][ $i ] );
 					$pricing[ $i ]['to_date']   = wc_clean( $_POST['wc_booking_pricing_to_date'][ $i ] );
-					break;
-				default:
+				break;
+				default :
 					$pricing[ $i ]['from'] = wc_clean( $_POST['wc_booking_pricing_from'][ $i ] );
 					$pricing[ $i ]['to']   = wc_clean( $_POST['wc_booking_pricing_to'][ $i ] );
-					break;
+				break;
 			}
 		}
 		return $pricing;
@@ -263,8 +235,7 @@ class WC_Bookings_Admin {
 	/**
 	 * Set data in 3.0.x
 	 *
-	 * @version  1.10.7
-	 * @param    WC_Product $product
+	 * @param WC_Product $product
 	 */
 	public function set_props( $product ) {
 		// Only set props if the product is a bookable product.
@@ -276,7 +247,7 @@ class WC_Bookings_Admin {
 		$product->set_props( array(
 			'apply_adjacent_buffer'      => isset( $_POST['_wc_booking_apply_adjacent_buffer'] ),
 			'availability'               => $this->get_posted_availability(),
-			'block_cost'                 => wc_clean( $_POST['_wc_booking_block_cost'] ),
+			'base_cost'                  => wc_clean( $_POST['_wc_booking_base_cost'] ),
 			'buffer_period'              => wc_clean( $_POST['_wc_booking_buffer_period'] ),
 			'calendar_display_mode'      => wc_clean( $_POST['_wc_booking_calendar_display_mode'] ),
 			'cancel_limit_unit'          => wc_clean( $_POST['_wc_booking_cancel_limit_unit'] ),
@@ -295,7 +266,6 @@ class WC_Bookings_Admin {
 			'has_person_types'           => isset( $_POST['_wc_booking_has_person_types'] ),
 			'has_persons'                => isset( $_POST['_wc_booking_has_persons'] ),
 			'has_resources'              => isset( $_POST['_wc_booking_has_resources'] ),
-			'has_restricted_days'        => isset( $_POST['_wc_booking_has_restricted_days'] ),
 			'max_date_unit'              => wc_clean( $_POST['_wc_booking_max_date_unit'] ),
 			'max_date_value'             => wc_clean( $_POST['_wc_booking_max_date'] ),
 			'max_duration'               => wc_clean( $_POST['_wc_booking_max_duration'] ),
@@ -313,7 +283,6 @@ class WC_Bookings_Admin {
 			'resource_block_costs'       => wp_list_pluck( $resources, 'block_cost' ),
 			'resource_ids'               => array_keys( $resources ),
 			'resources_assignment'       => wc_clean( $_POST['_wc_booking_resources_assignment'] ),
-			'restricted_days'            => isset( $_POST['_wc_booking_restricted_days'] ) ? wc_clean( $_POST['_wc_booking_restricted_days'] ) : '',
 			'user_can_cancel'            => isset( $_POST['_wc_booking_user_can_cancel'] ),
 		) );
 	}
@@ -342,28 +311,28 @@ class WC_Bookings_Admin {
 			'label'  => __( 'Resources', 'woocommerce-bookings' ),
 			'target' => 'bookings_resources',
 			'class'  => array(
-				'show_if_booking',
+				'show_if_booking'
 			),
 		);
 		$tabs['bookings_availability'] = array(
 			'label'  => __( 'Availability', 'woocommerce-bookings' ),
 			'target' => 'bookings_availability',
 			'class'  => array(
-				'show_if_booking',
+				'show_if_booking'
 			),
 		);
 		$tabs['bookings_pricing'] = array(
 			'label'  => __( 'Costs', 'woocommerce-bookings' ),
 			'target' => 'bookings_pricing',
 			'class'  => array(
-				'show_if_booking',
+				'show_if_booking'
 			),
 		);
 		$tabs['bookings_persons'] = array(
 			'label'  => __( 'Persons', 'woocommerce-bookings' ),
 			'target' => 'bookings_persons',
 			'class'  => array(
-				'show_if_booking',
+				'show_if_booking'
 			),
 		);
 		return $tabs;
@@ -380,21 +349,20 @@ class WC_Bookings_Admin {
 
 	/**
 	 * Duplicate a post.
-	 *
-	 * @param  int     $new_post_id Duplicated product ID.
-	 * @param  WP_Post $post        Original product post.
 	 */
-	public function woocommerce_duplicate_product_pre_wc_30( $new_post_id, $post ) {
+	public function woocommerce_duplicate_product( $new_post_id, $post ) {
 		$product = wc_get_product( $post->ID );
 
 		if ( $product->is_type( 'booking' ) ) {
-			global $wpdb;
-			// Duplicate relationships
-			$relationships = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = %d;", $post->ID ), ARRAY_A );
-			foreach ( $relationships as $relationship ) {
-				$relationship['product_id'] = $new_post_id;
-				unset( $relationship['ID'] );
-				$wpdb->insert( "{$wpdb->prefix}wc_booking_relationships", $relationship );
+			if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+				global $wpdb;
+				// Duplicate relationships
+				$relationships = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}wc_booking_relationships WHERE product_id = %d;", $post->ID ), ARRAY_A );
+				foreach ( $relationships as $relationship ) {
+					$relationship['product_id'] = $new_post_id;
+					unset( $relationship['ID'] );
+					$wpdb->insert( "{$wpdb->prefix}wc_booking_relationships", $relationship );
+				}
 			}
 
 			// Clone and re-save person types.
@@ -402,24 +370,6 @@ class WC_Bookings_Admin {
 				$dupe_person_type = clone $person_type;
 				$dupe_person_type->set_id( 0 );
 				$dupe_person_type->set_parent_id( $new_post_id );
-				$dupe_person_type->save();
-			}
-		}
-	}
-
-	/**
-	 * Duplicate a post.
-	 *
-	 * @param  WC_Product $new_product Duplicated product.
-	 * @param  WC_Product $product     Original product.
-	 */
-	public function woocommerce_duplicate_product( $new_product, $product ) {
-		if ( $product->is_type( 'booking' ) ) {
-			// Clone and re-save person types.
-			foreach ( $product->get_person_types() as $person_type ) {
-				$dupe_person_type = clone $person_type;
-				$dupe_person_type->set_id( 0 );
-				$dupe_person_type->set_parent_id( $new_product->get_id() );
 				$dupe_person_type->save();
 			}
 		}
@@ -454,7 +404,31 @@ class WC_Bookings_Admin {
 	public function booking_display( $item_id, $item, $product ) {
 		$booking_ids = WC_Booking_Data_Store::get_booking_ids_from_order_item_id( $item_id );
 
-		wc_get_template( 'order/admin/booking-display.php', array( 'booking_ids' => $booking_ids ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+		if ( $booking_ids ) {
+			foreach ( $booking_ids as $booking_id ) {
+				$booking = new WC_Booking( $booking_id );
+				?>
+				<div class="wc-booking-summary">
+					<strong class="wc-booking-summary-number">
+						<?php printf( __( 'Booking #%s', 'woocommerce-bookings' ), esc_html( $booking->get_id() ) ); ?>
+						<span class="status-<?php echo esc_attr( $booking->get_status() ); ?>">
+							<?php echo esc_html( wc_bookings_get_status_label( $booking->get_status() ) ) ?>
+						</span>
+					</strong>
+					<?php wc_bookings_get_summary_list( $booking ); ?>
+					<div class="wc-booking-summary-actions">
+						<?php if ( in_array( $booking->get_status(), array( 'pending-confirmation' ) ) ) : ?>
+							<a href="<?php echo wp_nonce_url( admin_url( 'admin-ajax.php?action=wc-booking-confirm&booking_id=' . $booking_id ), 'wc-booking-confirm' ); ?>"><?php _e( 'Confirm booking', 'woocommerce-bookings' ); ?></a>
+						<?php endif; ?>
+
+						<?php if ( $booking_id ) : ?>
+							<a href="<?php echo admin_url( 'post.php?post=' . absint( $booking_id ) . '&action=edit' ); ?>"><?php _e( 'View booking &rarr;', 'woocommerce-bookings' ); ?></a>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php
+			}
+		}
 	}
 
 	/**
@@ -561,17 +535,6 @@ class WC_Bookings_Admin {
 			$bookable_product = new WC_Product_Booking( $post->ID );
 		}
 
-		$restricted_meta = $bookable_product->get_restricted_days();
-
-		for ( $i = 0; $i < 7; $i++ ) {
-
-			if ( $restricted_meta && in_array( $i, $restricted_meta ) ) {
-				$restricted_days[ $i ] = $i;
-			} else {
-				$restricted_days[ $i ] = false;
-			}
-		}
-
 		wp_enqueue_script( 'wc_bookings_writepanel_js' );
 
 		include( 'views/html-booking-resources.php' );
@@ -594,7 +557,7 @@ class WC_Bookings_Admin {
 
 		$params = array(
 			'i18n_remove_person'     => esc_js( __( 'Are you sure you want to remove this person type?', 'woocommerce-bookings' ) ),
-			'nonce_unlink_person'    => wp_create_nonce( 'unlink-bookable-person' ),
+			'nonce_delete_person'    => wp_create_nonce( 'delete-bookable-person' ),
 			'nonce_add_person'       => wp_create_nonce( 'add-bookable-person' ),
 			'i18n_remove_resource'   => esc_js( __( 'Are you sure you want to remove this resource?', 'woocommerce-bookings' ) ),
 			'nonce_delete_resource'  => wp_create_nonce( 'delete-bookable-resource' ),

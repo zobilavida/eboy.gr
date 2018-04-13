@@ -13,7 +13,7 @@ class WC_Booking_Form_Handler {
 	 * Hook in methods
 	 */
 	public static function init() {
-		add_action( 'init', array( __CLASS__, 'cancel_booking' ), 20 );
+		add_action( 'init', array( __CLASS__, 'cancel_booking' ) );
 	}
 
 	/**

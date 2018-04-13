@@ -1,12 +1,7 @@
 <div class="wrap woocommerce">
 	<h2><?php _e( 'Send Notification', 'woocommerce-bookings' ); ?></h2>
 
-	<p>
-	<?php
-	/* translators: 1: starting strong tag 2: closing strong tag 3: starting a href tag 4: closing a href tag */
-	echo sprintf( __( 'You may send an email notification to all customers who have a %1$sfuture%2$s booking for a particular product. This will use the default template specified under %3$sWooCommerce > Settings > Emails%4$s.', 'woocommerce-bookings' ), '<strong>', '</strong>', '<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=email' ) ) . '">', '</a>' );
-	?>
-	</p>
+	<p><?php echo sprintf( __( 'You may send an email notification to all customers who have a %sfuture%s booking for a particular product. This will use the default template specified under %sWooCommerce > Settings > Emails%s.', 'woocommerce-bookings' ), '<strong>', '</strong>', '<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=email' ) ) . '">', '</a>' ); ?></p>
 
 	<form method="POST">
 		<table class="form-table">

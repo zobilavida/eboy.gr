@@ -56,6 +56,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
       </div>
     </div>
+		<button class="small-grid">small</button>
+		 <button class="medium-grid">medium</button>
+		 <button class="large-grid">large</button>
 
     <div class="container">
       <div class="row pb-5 pt-5">
@@ -76,9 +79,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
       </div>
     </div>
-
-    <!-- Added by Elvtn -->
-    <div id="mojo-slider"><div class="eboywp-template container">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -136,7 +136,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php endif; ?>
     <!-- Added by Elvtn -->
-    </div></div>
+    </div>
 
 	<?php
 		/**

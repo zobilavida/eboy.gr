@@ -1,10 +1,6 @@
-<?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
-?>
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <div class="wrap woocommerce">
-	<h2><?php _e( 'Add Booking', 'woocommerce-bookings' ); ?></h2>
+	<h2><?php _e( 'Create Booking', 'woocommerce-bookings' ); ?></h2>
 
 	<p><?php _e( 'You can create a new booking for a customer here. This form will create a booking for the user, and optionally an associated order. Created orders will be marked as pending payment.', 'woocommerce-bookings' ); ?></p>
 

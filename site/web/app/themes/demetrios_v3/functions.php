@@ -375,6 +375,149 @@ function stores_columns_fields($column)
 add_action("manage_stores_posts_custom_column", "stores_columns_fields");
 add_filter("manage_stores_posts_columns", "stores_columns");
 
+//// BREADCRUMB START ////
+ function the_breadcrumb() {
+
+  $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
+  $delimiter = '&raquo;'; // delimiter between crumbs
+  $home = 'Home'; // text for the 'Home' link
+  $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
+  $before = '<span class="current">'; // tag before the current crumb
+  $after = '</span>'; // tag after the current crumb
+
+  global $post;
+  $homeLink = get_bloginfo('url');
+
+  if (is_home() || is_front_page()) {
+
+    if ($showOnHome == 1) echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
+
+  } else {
+
+    echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
+
+    if ( is_category() ) {
+      $thisCat = get_category(get_query_var('cat'), false);
+      if ($thisCat->parent != 0) echo get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter . ' ');
+      echo $before . 'Archive by category "' . single_cat_title('', false) . '"' . $after;
+
+    } elseif ( is_search() ) {
+      echo $before . 'Search results for "' . get_search_query() . '"' . $after;
+
+    } elseif ( is_day() ) {
+      echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
+      echo '<a href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $delimiter . ' ';
+      echo $before . get_the_time('d') . $after;
+
+    } elseif ( is_month() ) {
+      echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
+      echo $before . get_the_time('F') . $after;
+
+    } elseif ( is_year() ) {
+      echo $before . get_the_time('Y') . $after;
+
+    } elseif ( is_single() && !is_attachment() ) {
+      if ( get_post_type() != 'post' ) {
+        $post_type = get_post_type_object(get_post_type());
+        $slug = $post_type->rewrite;
+        echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
+        if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
+      } else {
+        $cat = get_the_category(); $cat = $cat[0];
+        $cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+        if ($showCurrent == 0) $cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
+        echo $cats;
+        if ($showCurrent == 1) echo $before . get_the_title() . $after;
+      }
+
+    } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
+      $post_type = get_post_type_object(get_post_type());
+      echo $before . $post_type->labels->singular_name . $after;
+
+    } elseif ( is_attachment() ) {
+      $parent = get_post($post->post_parent);
+      $cat = get_the_category($parent->ID); $cat = $cat[0];
+      echo get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+      echo '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
+      if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
+
+    } elseif ( is_page() && !$post->post_parent ) {
+      if ($showCurrent == 1) echo $before . get_the_title() . $after;
+
+    } elseif ( is_page() && $post->post_parent ) {
+      $parent_id  = $post->post_parent;
+      $breadcrumbs = array();
+      while ($parent_id) {
+        $page = get_page($parent_id);
+        $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+        $parent_id  = $page->post_parent;
+      }
+      $breadcrumbs = array_reverse($breadcrumbs);
+      for ($i = 0; $i < count($breadcrumbs); $i++) {
+        echo $breadcrumbs[$i];
+        if ($i != count($breadcrumbs)-1) echo ' ' . $delimiter . ' ';
+      }
+      if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
+
+    } elseif ( is_tag() ) {
+      echo $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
+
+    } elseif ( is_author() ) {
+       global $author;
+      $userdata = get_userdata($author);
+      echo $before . 'Articles posted by ' . $userdata->display_name . $after;
+
+    } elseif ( is_404() ) {
+      echo $before . 'Error 404' . $after;
+    }
+
+    if ( get_query_var('paged') ) {
+      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
+      echo __('Page') . ' ' . get_query_var('paged');
+      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
+    }
+
+    echo '</div>';
+
+  }
+} // end the_breadcrumb()
+
+//// BREADCRUMB END ////
+add_filter( 'eboywp_pager_html', function( $output, $params ) {
+    $output = '<nav aria-label="Resources Pagination"><ul class="pagination mt-1 justify-content-center">';
+    $page = $params['page'];
+    $i = 1;
+    $total_pages = $params['total_pages'];
+    $limit = ($total_pages >= 5) ? 3 : $total_pages;
+    $prev_disabled = ($params['page'] <= 1) ? 'disabled' : '';
+    $output .= '<li class="page-item ' . $prev_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page - 1) . '">Prev</a></li>';
+    $loop = ($limit) ? $limit : $total_pages;
+    while($i <= $loop) {
+      $active = ($i == $page) ? 'active' : '';
+      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . $i . '">' . $i . '</a></li>';
+      $i++;
+    }
+    if($limit && $total_pages > '3') {
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page <= ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page > ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page != ($total_pages - 2) && $page > ($limit + 1)) ? '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>' : '';
+      $active = ($page == ($total_pages - 1)) ? 'active' : '';
+      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . ($total_pages - 1) .'">' . ($total_pages - 1) .'</a></li>';
+    }
+    $next_disabled = ($page >= $total_pages) ? 'disabled' : '';
+    $output .= '<li class="page-item ' . $next_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page + 1) . '">Next</a></li>';
+    $output .= '</ul></nav>';
+    return $output;
+}, 10, 2 );
+
+add_filter( 'gform_field_container', 'add_bootstrap_container_class', 10, 6 );
+function add_bootstrap_container_class( $field_container, $field, $form, $css_class, $style, $field_content ) {
+  $id = $field->id;
+  $field_id = is_admin() || empty( $form ) ? "field_{$id}" : 'field_' . $form['id'] . "_$id";
+  return '<li id="' . $field_id . '" class="' . $css_class . ' form-group">{FIELD_CONTENT}</li>';
+}
+
 
 // Google API Key
 function my_acf_google_map_api( $api ){
@@ -734,34 +877,98 @@ add_filter( 'eboywp_is_main_query', 'my_eboywp_is_main_query', 10, 2 );
 
 function store_finder(){
         ?>
-              <div class="container-fluid p-0" id="wrapper">
+        <div class="container-fluid p-0" id="wrapper">
 
-                <div class="row">
-                  <div class="col-12">
-   <div class="container-fluid p-0" id="google_map">
-  <?php echo eboywp_display( 'facet', 'location' ); ?>
-   </div>
-   <div class="container" id="over_map">
-     <div class="row">
-       <div class="col-4">
-<div class="card" style="width: 20rem;">
-  <div class="card-body">
-<?php echo eboywp_display( 'facet', 'store_category' ); ?>  </div>
-</div>
-</div>
- <div class="col-8">
-    <?php echo eboywp_display( 'facet', 'proximity' ); ?>
-    </div>
-   </div>
-
-</div>
-
+          <div class="row">
+            <div class="col-12">
+<div class="container-fluid p-0" id="google_map">
+<?php echo eboywp_display( 'facet', 'location' ); ?>
 </div>
 </div>
 </div>
-<?php
+</div>
+      <?php
 }
 add_action( 'custom_store_finder', 'store_finder', 15 );
+
+
+
+
+
+function store_finder_split(){
+        ?>
+        <div class="container">
+        <div class="row">
+          <div class="col-12">
+          <?php echo eboywp_display( 'facet', 'proximity' ); ?>
+          </div>
+         <div class="col-6">
+        <div class="card">
+        <div class="card-body">
+        <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
+        </div>
+        </div>
+        </div>
+        <div class="col-6">
+       <div class="card">
+       <div class="card-body">
+       <?php echo eboywp_display( 'facet', 'city_dropdown' ); ?>
+       </div>
+       </div>
+       </div>
+
+
+        <div class="col-12">
+        <?php echo eboywp_display( 'facet', 'store_category' ); ?>
+        </div>
+        </div>
+
+        </div>
+<?php
+  // WP_Query arguments
+  $args = array(
+    "post_type" => "stores",
+    "post_status" => "publish",
+    "orderby" => "title",
+    "order" => "ASC",
+    "posts_per_page" => 35,
+    'facetwp' => true // Also tried without this and accompanying function in functions.php
+  );
+  // The Query
+  $query = new WP_Query( $args );
+  ?>
+  <div class="eboywp-template container">
+    <div class="row">
+    <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+    $email_2 = get_field( "email_2" );
+    $street_address = get_field( "street_address" );
+    $phone = get_field( "phone" );
+    ?>
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+  <h5 class="card-title"><?php the_title(); ?></h5>
+  <p class="card-text"><?php echo $street_address; ?></p>
+  <a class="btn btn-primary" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php $location = get_field('location'); echo $location['lat'] . ',' . $location['lng']; ?>"><?php _e('Get Directions','roots'); ?></a>
+</div>
+</div>
+</div>
+
+
+  <?php endwhile; ?>
+</div>
+    <?php // joints_page_navi(); ?>
+
+  <?php else : ?>
+            <?php wp_reset_postdata();?>
+    <?php get_template_part( 'parts/content', 'missing' ); ?>
+
+  <?php endif; ?>
+  </div>
+<?php
+}
+add_action( 'custom_store_spilt_finder', 'store_finder_split', 15 );
+
 
 function book(){
         ?>
@@ -870,6 +1077,19 @@ add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_prod
 add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 45 );
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+
+
+function woocommerce_template_loop_product_thumbnail_responsive() {
+
+  echo  woocommerce_get_product_thumbnail();
+
+
+
+}
+
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 15 );
+
 //remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 //add_action( 'woocommerce_after_single_product_c', 'woocommerce_output_related_products', 10 );
 
@@ -894,146 +1114,3 @@ function update_end_date_cf( $value, $post_id, $field ) {
 
 }
 add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
-
-//// BREADCRUMB START ////
- function the_breadcrumb() {
-
-  $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
-  $delimiter = '&raquo;'; // delimiter between crumbs
-  $home = 'Home'; // text for the 'Home' link
-  $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
-  $before = '<span class="current">'; // tag before the current crumb
-  $after = '</span>'; // tag after the current crumb
-
-  global $post;
-  $homeLink = get_bloginfo('url');
-
-  if (is_home() || is_front_page()) {
-
-    if ($showOnHome == 1) echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
-
-  } else {
-
-    echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
-
-    if ( is_category() ) {
-      $thisCat = get_category(get_query_var('cat'), false);
-      if ($thisCat->parent != 0) echo get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter . ' ');
-      echo $before . 'Archive by category "' . single_cat_title('', false) . '"' . $after;
-
-    } elseif ( is_search() ) {
-      echo $before . 'Search results for "' . get_search_query() . '"' . $after;
-
-    } elseif ( is_day() ) {
-      echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
-      echo '<a href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $delimiter . ' ';
-      echo $before . get_the_time('d') . $after;
-
-    } elseif ( is_month() ) {
-      echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
-      echo $before . get_the_time('F') . $after;
-
-    } elseif ( is_year() ) {
-      echo $before . get_the_time('Y') . $after;
-
-    } elseif ( is_single() && !is_attachment() ) {
-      if ( get_post_type() != 'post' ) {
-        $post_type = get_post_type_object(get_post_type());
-        $slug = $post_type->rewrite;
-        echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
-        if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-      } else {
-        $cat = get_the_category(); $cat = $cat[0];
-        $cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-        if ($showCurrent == 0) $cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
-        echo $cats;
-        if ($showCurrent == 1) echo $before . get_the_title() . $after;
-      }
-
-    } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
-      $post_type = get_post_type_object(get_post_type());
-      echo $before . $post_type->labels->singular_name . $after;
-
-    } elseif ( is_attachment() ) {
-      $parent = get_post($post->post_parent);
-      $cat = get_the_category($parent->ID); $cat = $cat[0];
-      echo get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-      echo '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
-      if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-
-    } elseif ( is_page() && !$post->post_parent ) {
-      if ($showCurrent == 1) echo $before . get_the_title() . $after;
-
-    } elseif ( is_page() && $post->post_parent ) {
-      $parent_id  = $post->post_parent;
-      $breadcrumbs = array();
-      while ($parent_id) {
-        $page = get_page($parent_id);
-        $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
-        $parent_id  = $page->post_parent;
-      }
-      $breadcrumbs = array_reverse($breadcrumbs);
-      for ($i = 0; $i < count($breadcrumbs); $i++) {
-        echo $breadcrumbs[$i];
-        if ($i != count($breadcrumbs)-1) echo ' ' . $delimiter . ' ';
-      }
-      if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-
-    } elseif ( is_tag() ) {
-      echo $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
-
-    } elseif ( is_author() ) {
-       global $author;
-      $userdata = get_userdata($author);
-      echo $before . 'Articles posted by ' . $userdata->display_name . $after;
-
-    } elseif ( is_404() ) {
-      echo $before . 'Error 404' . $after;
-    }
-
-    if ( get_query_var('paged') ) {
-      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
-      echo __('Page') . ' ' . get_query_var('paged');
-      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
-    }
-
-    echo '</div>';
-
-  }
-} // end the_breadcrumb()
-
-//// BREADCRUMB END ////
-add_filter( 'eboywp_pager_html', function( $output, $params ) {
-    $output = '<nav aria-label="Resources Pagination"><ul class="pagination mt-1 justify-content-center">';
-    $page = $params['page'];
-    $i = 1;
-    $total_pages = $params['total_pages'];
-    $limit = ($total_pages >= 5) ? 3 : $total_pages;
-    $prev_disabled = ($params['page'] <= 1) ? 'disabled' : '';
-    $output .= '<li class="page-item ' . $prev_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page - 1) . '">Prev</a></li>';
-    $loop = ($limit) ? $limit : $total_pages;
-    while($i <= $loop) {
-      $active = ($i == $page) ? 'active' : '';
-      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . $i . '">' . $i . '</a></li>';
-      $i++;
-    }
-    if($limit && $total_pages > '3') {
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page <= ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
-      $output .= '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>';
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page > ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page != ($total_pages - 2) && $page > ($limit + 1)) ? '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>' : '';
-      $active = ($page == ($total_pages - 1)) ? 'active' : '';
-      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . ($total_pages - 1) .'">' . ($total_pages - 1) .'</a></li>';
-    }
-    $next_disabled = ($page >= $total_pages) ? 'disabled' : '';
-    $output .= '<li class="page-item ' . $next_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page + 1) . '">Next</a></li>';
-    $output .= '</ul></nav>';
-    return $output;
-}, 10, 2 );
-
-add_filter( 'gform_field_container', 'add_bootstrap_container_class', 10, 6 );
-function add_bootstrap_container_class( $field_container, $field, $form, $css_class, $style, $field_content ) {
-  $id = $field->id;
-  $field_id = is_admin() || empty( $form ) ? "field_{$id}" : 'field_' . $form['id'] . "_$id";
-  return '<li id="' . $field_id . '" class="' . $css_class . ' form-group">{FIELD_CONTENT}</li>';
-}

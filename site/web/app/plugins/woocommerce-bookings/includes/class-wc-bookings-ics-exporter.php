@@ -162,7 +162,6 @@ class WC_Bookings_ICS_Exporter {
 		$ics .= 'CALSCALE:GREGORIAN' . $this->eol;
 		$ics .= 'X-WR-CALNAME:' . $this->sanitize_string( $sitename ) . $this->eol;
 		$ics .= 'X-ORIGINAL-URL:' . $this->sanitize_string( home_url( '/' ) ) . $this->eol;
-		/* translators: 1: site name */
 		$ics .= 'X-WR-CALDESC:' . $this->sanitize_string( sprintf( __( 'Bookings from %s', 'woocommerce-bookings' ), $sitename ) ) . $this->eol;
 		$ics .= 'X-WR-TIMEZONE:' . wc_booking_get_timezone_string() . $this->eol;
 
@@ -172,9 +171,8 @@ class WC_Bookings_ICS_Exporter {
 			$summary     = '#' . $booking->get_id() . ' - ' . $product->get_title();
 			$description = '';
 			$date_prefix = ( $booking->is_all_day() ) ? ';VALUE=DATE:' : ':';
-			$resource    = $booking->get_resource();
 
-			if ( $resource ) {
+			if ( $resource = $booking->get_resource() ) {
 				$description .= __( 'Resource #', 'woocommerce-bookings' ) . $resource->ID . ' - ' . $resource->post_title . '\n\n';
 			}
 
@@ -185,7 +183,6 @@ class WC_Bookings_ICS_Exporter {
 					}
 
 					$person_type = ( 0 < $id ) ? get_the_title( $id ) : __( 'Person(s)', 'woocommerce-bookings' );
-					/* translators: 1: person type 2: quantity */
 					$description .= sprintf( __( '%1$s: %2$d', 'woocommerce-bookings' ), $person_type, $qty ) . '\n';
 				}
 

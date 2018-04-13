@@ -2,9 +2,8 @@
 /**
  * Functions used by plugins
  */
-if ( ! class_exists( 'WC_Dependencies' ) ) {
+if ( ! class_exists( 'WC_Dependencies' ) )
 	require_once 'class-wc-dependencies.php';
-}
 
 /**
  * WC Detection
@@ -22,9 +21,8 @@ if ( ! function_exists( 'woothemes_queue_update' ) ) {
 	function woothemes_queue_update( $file, $file_id, $product_id ) {
 		global $woothemes_queued_updates;
 
-		if ( ! isset( $woothemes_queued_updates ) ) {
+		if ( ! isset( $woothemes_queued_updates ) )
 			$woothemes_queued_updates = array();
-		}
 
 		$plugin             = new stdClass();
 		$plugin->file       = $file;
@@ -47,9 +45,7 @@ if ( ! class_exists( 'WooThemes_Updater' ) && ! function_exists( 'woothemes_upda
 			false !== $api ||
 			! isset( $args->slug ) ||
 			'woothemes-updater' != $args->slug
-		) {
-			return $api;
-		}
+		) return $api;
 
 		$api = new stdClass();
 		$api->name = 'WooThemes Updater';
@@ -71,10 +67,8 @@ if ( ! class_exists( 'WooThemes_Updater' ) && ! function_exists( 'woothemes_upda
 	 * @return void
 	 */
 	function woothemes_updater_notice() {
-		$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
-		if ( in_array( 'woothemes-updater/woothemes-updater.php', $active_plugins ) ) {
-			return;
-		}
+		$active_plugins = apply_filters( 'active_plugins', get_option('active_plugins' ) );
+		if ( in_array( 'woothemes-updater/woothemes-updater.php', $active_plugins ) ) return;
 
 		$slug = 'woothemes-updater';
 		$install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $slug ), 'install-plugin_' . $slug );
@@ -99,8 +93,5 @@ if ( ! class_exists( 'WooThemes_Updater' ) && ! function_exists( 'woothemes_upda
  * Prevent conflicts with older versions
  */
 if ( ! class_exists( 'WooThemes_Plugin_Updater' ) ) {
-	class WooThemes_Plugin_Updater {
-		function init() {}
-	}
+	class WooThemes_Plugin_Updater { function init() {} }
 }
-

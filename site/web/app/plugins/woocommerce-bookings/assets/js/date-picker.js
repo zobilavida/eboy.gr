@@ -9,7 +9,6 @@ jQuery( function( $ ) {
 		init: function() {
 			$( 'body' ).on( 'change', '#wc_bookings_field_duration, #wc_bookings_field_resource', this.date_picker_init );
 			$( 'body' ).on( 'click', '.wc-bookings-date-picker legend small.wc-bookings-date-picker-choose-date', this.toggle_calendar );
-			$( 'body' ).on( 'click', '.booking_date_year, .booking_date_month, .booking_date_day', this.open_calendar );
 			$( 'body' ).on( 'input', '.booking_date_year, .booking_date_month, .booking_date_day', this.input_date_trigger );
 			$( 'body' ).on( 'keypress', '.booking_date_year, .booking_date_month, .booking_date_day', this.input_date_keypress );
 			$( 'body' ).on( 'keypress', '.booking_to_date_year, .booking_to_date_month, .booking_to_date_day', this.input_date_keypress );
@@ -62,11 +61,6 @@ jQuery( function( $ ) {
 				form.find( '#wc_bookings_field_duration' ).val( days ).change();
 			} );
 
-		},
-		open_calendar: function() {
-			$picker = $( this ).closest( 'fieldset' ).find( '.picker:eq(0)' );
-			wc_bookings_date_picker.date_picker_init( $picker );
-			$picker.slideDown();
 		},
 		toggle_calendar: function() {
 			$picker = $( this ).closest( 'fieldset' ).find( '.picker:eq(0)' );
@@ -144,7 +138,7 @@ jQuery( function( $ ) {
 				picker.data( 'start_or_end_date', 'start' );
 
 				if ( picker.data( 'is_range_picker_enabled' ) ) {
-					form.find( '.wc_bookings_field_start_date legend span.label' ).text( 'always_visible' !== picker.data( 'display' ) ? booking_form_params.i18n_dates : booking_form_params.i18n_clear_date_selection );
+					form.find( '.wc_bookings_field_start_date legend span.label' ).text( 'always_visible' !== picker.data( 'display' ) ? booking_form_params.i18n_dates : booking_form_params.i18n_start_date );
 				}
 
 				if ( 'always_visible' !== picker.data( 'display' ) ) {
@@ -218,8 +212,7 @@ jQuery( function( $ ) {
 				dayNamesShort: wc_bookings_booking_form.dayNamesShort,
 				dayNamesMin: wc_bookings_booking_form.dayNamesMin,
 				firstDay: wc_bookings_booking_form.firstDay,
-				gotoCurrent: true,
-				isRTL: wc_bookings_booking_form.isRTL
+				gotoCurrent: true
 			});
 
 			$( '.ui-datepicker-current-day' ).removeClass( 'ui-datepicker-current-day' );
@@ -253,8 +246,6 @@ jQuery( function( $ ) {
 				fully_booked_days          = $( this ).data( 'fully-booked-days' ),
 				buffer_days                = $( this ).data( 'buffer-days' ),
 				partially_booked_days      = $( this ).data( 'partially-booked-days' ),
-				restricted_days            = $( this ).data( 'restricted-days' ),
-				unavailable_days           = $( this ).data( 'unavailable-days' ),
 				check_availability_against = wc_bookings_booking_form.check_availability_against,
 				css_classes                = '',
 				title                      = '',
@@ -267,37 +258,24 @@ jQuery( function( $ ) {
 			}
 
 			// Get days needed for block - this affects availability
-			var duration    = wc_bookings_booking_form.booking_duration,
-				the_date    = new Date( date ),
-				year        = the_date.getFullYear(),
-				month       = the_date.getMonth() + 1,
-				day         = the_date.getDate(),
-				day_of_week = the_date.getDay(),
-				ymdIndex    = year + '-' + month + '-' + day;
+			var duration = wc_bookings_booking_form.booking_duration,
+				the_date = new Date( date ),
+				year     = the_date.getFullYear(),
+				month    = the_date.getMonth() + 1,
+				day      = the_date.getDate(),
+				ymdIndex = year + '-' + month + '-' + day;
 
 			// Fully booked?
 			if ( fully_booked_days[ ymdIndex ] ) {
 				if ( fully_booked_days[ ymdIndex ][0] || fully_booked_days[ ymdIndex ][ resource_id ] ) {
 					return [ false, 'fully_booked', booking_form_params.i18n_date_fully_booked ];
-				} else if ( 'automatic' === resources_assignment ) {
-					css_classes = css_classes + 'partial_booked ';
 				}
 			}
 
-			// Unavailable days?
-			if ( unavailable_days && unavailable_days[ ymdIndex ] && unavailable_days[ ymdIndex][ resource_id ] ) {
-				return [ false, 'not_bookable', booking_form_params.i18n_date_unavailable ];
-			}
-
 			// Buffer days?
-			if ( buffer_days && buffer_days[ ymdIndex ] ) {
+			if ( buffer_days && buffer_days && buffer_days[ ymdIndex ] ) {
 				return [ false, 'not_bookable', booking_form_params.i18n_date_unavailable ];
 			}
-
-			// Restricted days?
-			if ( restricted_days && undefined === restricted_days[ day_of_week ] ) {
-  				return [ false, 'not_bookable', booking_form_params.i18n_date_unavailable ];
-  			}
 
 			if ( '' + year + month + day < wc_bookings_booking_form.current_time ) {
 				return [ false, 'not_bookable', booking_form_params.i18n_date_unavailable ];
@@ -305,12 +283,21 @@ jQuery( function( $ ) {
 
 			// Apply partially booked CSS class.
 			if ( partially_booked_days && partially_booked_days[ ymdIndex ] ) {
-				if ( 'automatic' === resources_assignment || partially_booked_days[ ymdIndex ][0] || partially_booked_days[ ymdIndex ][ resource_id ] ) {
+				if ( partially_booked_days[ ymdIndex ][0] || partially_booked_days[ ymdIndex ][ resource_id ] ) {
 					css_classes = css_classes + 'partial_booked ';
 				}
 			}
 
-			var number_of_days = wc_bookings_date_picker.get_number_of_days( duration, $form, $picker, wc_bookings_booking_form );
+			var number_of_days = duration;
+			if ( $form.find('#wc_bookings_field_duration').length > 0 && wc_bookings_booking_form.duration_unit != 'minute' && wc_bookings_booking_form.duration_unit != 'hour' && ! $picker.data( 'is_range_picker_enabled' ) ) {
+				var user_duration = $form.find('#wc_bookings_field_duration').val();
+				number_of_days   = duration * user_duration;
+			}
+
+			if ( number_of_days < 1 || check_availability_against === 'start' ) {
+				number_of_days = 1;
+			}
+
 			var block_args = {
 				start_date          : date,
 				number_of_days      : number_of_days,
@@ -324,7 +311,7 @@ jQuery( function( $ ) {
 			var bookable = wc_bookings_date_picker.is_blocks_bookable( block_args );
 
 			if ( ! bookable ) {
-				return [ bookable, fully_booked_days[ ymdIndex ] ? 'fully_booked' : 'not_bookable', booking_form_params.i18n_date_unavailable ];
+				return [ bookable, 'not_bookable', booking_form_params.i18n_date_unavailable ];
 			} else {
 
 				if ( css_classes.indexOf( 'partial_booked' ) > -1 ) {
@@ -338,43 +325,11 @@ jQuery( function( $ ) {
 						start_date   = $.datepicker.parseDate( $.datepicker.ISO_8601, wc_bookings_date_picker.get_input_date( fieldset, '' ) ),
 						end_date     = $.datepicker.parseDate( $.datepicker.ISO_8601, wc_bookings_date_picker.get_input_date( fieldset, 'to_' ) );
 
-					// Add bookable-range CSS to all days in the range
-					if ( start_date && ( ( date.getTime() === start_date.getTime() ) || ( end_date && date >= start_date && date <= end_date ) ) ) {
-						css_classes += 'bookable-range ';
-
-						// Add either selection-start-date or selection-end-date CSS to the first/last day only
-						if ( date.getTime() === start_date.getTime() ) {
-							css_classes += 'selection-start-date ';
-						} else if ( date.getTime() === end_date.getTime() ) {
-							css_classes += 'selection-end-date ';
-						}
-					} else {
-						css_classes += 'bookable';
-					}
-
-					return [ bookable, css_classes, title ];
+					return [ bookable, start_date && ( ( date.getTime() === start_date.getTime() ) || ( end_date && date >= start_date && date <= end_date ) ) ? css_classes + 'bookable-range' : css_classes + 'bookable', title ];
 				} else {
 					return [ bookable, css_classes + 'bookable', title ];
 				}
 			}
-		},
-
-		get_number_of_days: function( defaultNumberOfDays, $form, $picker, wc_bookings_booking_form ){
-			var number_of_days = defaultNumberOfDays;
-			var wcbf = wc_bookings_booking_form;
-			if ( $form.find('#wc_bookings_field_duration').length > 0
-				&& wcbf.duration_unit != 'minute'
-				&& wcbf.duration_unit != 'hour'
-				&& ! $picker.data( 'is_range_picker_enabled' ) )
-			{
-				var user_duration = $form.find('#wc_bookings_field_duration').val();
-				number_of_days   = number_of_days * user_duration;
-			}
-
-			if ( number_of_days < 1 || wcbf.check_availability_against === 'start' ) {
-					number_of_days = 1;
-				}
-				return number_of_days;
 		},
 
 		is_blocks_bookable: function( args ) {
@@ -558,21 +513,11 @@ jQuery( function( $ ) {
 							}
 							break;
 						case 'time:range':
-							range = range[year][month][day];
-							var fromHour = parseInt( range.from.split(':')[0] );
-							var fromMinute = parseInt( range.from.split(':')[1] );
-							var toHour = parseInt( range.to.split(':')[0] );
-							var toMinute = parseInt( range.to.split(':')[1] );
-
-							// each minute in the day gets a number from 1 to 1440
-							var fromMinuteNumber = fromMinute + ( fromHour * 60 );
-							var toMinuteNumber = toMinute + ( toHour * 60 );
-							var minutesAvailableForTime = _.range(fromMinuteNumber, toMinuteNumber, 1);
-
-							if ( range.rule ) {
-								minutesAvailableForDay = _.union(minutesAvailableForDay, minutesAvailableForTime);
-							} else {
-								minutesAvailableForDay = _.difference(minutesAvailableForDay, minutesAvailableForTime);
+							if ( false === defaultAvailability && ( 'undefined' !== typeof range[ year ][ month ][ day ] ) ) {
+								// This function only checks to see if a date is available and this rule
+								// only covers a few hours in a given date so as far as this rule is concerned a given
+								// date may always be available as there are hours outside of the scope of this rule.
+								minutesAvailableForDay = minutesForADay;
 							}
 							break;
 					}

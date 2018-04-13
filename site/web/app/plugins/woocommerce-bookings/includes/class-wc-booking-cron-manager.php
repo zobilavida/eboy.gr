@@ -1,7 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) )
 	exit;
-}
 
 /**
  * Cron job handler
@@ -23,7 +22,7 @@ class WC_Booking_Cron_Manager {
 	public function send_booking_reminder( $booking_id ) {
 		$mailer   = WC()->mailer();
 		$reminder = $mailer->emails['WC_Email_Booking_Reminder'];
-		$reminder->trigger( $booking_id );
+		$reminder ->trigger( $booking_id );
 	}
 
 	/**
@@ -31,11 +30,6 @@ class WC_Booking_Cron_Manager {
 	 */
 	public function maybe_mark_booking_complete( $booking_id ) {
 		$booking = get_wc_booking( $booking_id );
-
-		//Don't procede if id is not of a valid booking
-		if ( ! is_a( $booking, 'WC_Booking' ) ) {
-			return;
-		}
 
 		if ( 'cancelled' === get_post_status( $booking_id ) ) {
 			$booking->schedule_events();
@@ -55,8 +49,7 @@ class WC_Booking_Cron_Manager {
 	 * Remove inactive booking
 	 */
 	public function remove_inactive_booking_from_cart( $booking_id ) {
-		$booking = $booking_id ? get_wc_booking( $booking_id ) : false;
-		if ( $booking_id && $booking && $booking->has_status( 'in-cart' ) ) {
+		if ( $booking_id && ( $booking = get_wc_booking( $booking_id ) ) && $booking->has_status( 'in-cart' ) ) {
 			wp_delete_post( $booking_id );
 		}
 	}

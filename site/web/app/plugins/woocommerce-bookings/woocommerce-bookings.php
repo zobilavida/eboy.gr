@@ -1,22 +1,18 @@
 <?php
-/**
- * Plugin Name: WooCommerce Bookings
- * Plugin URI: https://woocommerce.com/products/woocommerce-bookings/
- * Description: Setup bookable products such as for reservations, services and hires.
- * Version: 1.10.9
- * Author: Automattic
- * Author URI: https://woocommerce.com
- * Text Domain: woocommerce-bookings
- * Domain Path: /languages
- * WC tested up to: 3.2
- * WC requires at least: 2.6
- *
- * Copyright: © 2009-2017 Automattic.
- * License: GNU General Public License v3.0
- * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- *
- * Woo: 390890:911c438934af094c2b38d5560b9f50f3
- */
+ /**
+  * Plugin Name: WooCommerce Bookings
+  * Plugin URI: https://woocommerce.com/products/woocommerce-bookings/
+  * Description: Setup bookable products such as for reservations, services and hires.
+  * Version: 1.10.1
+  * Author: Automattic
+  * Author URI: https://woocommerce.com
+  * Text Domain: woocommerce-bookings
+  * Domain Path: /languages
+  *
+  * Copyright: © 2009-2013 Automattic.
+  * License: GNU General Public License v3.0
+  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -46,7 +42,7 @@ class WC_Bookings {
 	 * Constructor
 	 */
 	public function __construct() {
-		define( 'WC_BOOKINGS_VERSION', '1.10.9' );
+		define( 'WC_BOOKINGS_VERSION', '1.10.1' );
 		define( 'WC_BOOKINGS_TEMPLATE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/' );
 		define( 'WC_BOOKINGS_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 		define( 'WC_BOOKINGS_MAIN_FILE', __FILE__ );
@@ -77,9 +73,6 @@ class WC_Bookings {
 		// Load integration.
 		add_filter( 'woocommerce_integrations', array( $this, 'include_integration' ) );
 
-		// Init Bookings settings.
-		add_filter( 'woocommerce_general_settings', array( $this, 'init_bookings_settings' ) );
-
 		$this->init_cache_clearing();
 	}
 
@@ -89,14 +82,8 @@ class WC_Bookings {
 	public function install() {
 		add_action( 'shutdown', array( $this, 'delayed_install' ) );
 
-		$notice_html  = '<strong>' . esc_html__( 'Bookings has been activated!', 'woocommerce-bookings' ) . '</strong><br><br>';
-		/* translators: 1: href link to list of bookings */
-		$notice_html .= sprintf( __( 'Add or edit a product to manage bookings in the Product Data section for individual products and then go to the <a href="%s" target="_blank">Bookings page</a> to manage them individually.', 'woocommerce-bookings' ), admin_url( 'edit.php?post_type=wc_booking' ) );
-
-		WC_Admin_Notices::add_custom_notice( 'woocommerce_bookings_activation', $notice_html );
-
 		// Register the rewrite endpoint before permalinks are flushed
-		add_rewrite_endpoint( apply_filters( 'woocommerce_bookings_account_endpoint', 'bookings' ), EP_PAGES );
+		add_rewrite_endpoint( apply_filters( 'woocommerce_bookings_account_endpoint', 'bookings' ), EP_ROOT | EP_PAGES );
 
 		// Flush Permalinks
 		flush_rewrite_rules();
@@ -205,43 +192,6 @@ KEY resource_id (resource_id)
 			);
 		}
 
-		if ( version_compare( get_option( 'wc_bookings_version', WC_BOOKINGS_VERSION ), '1.10.3', '<' ) ) {
-			$this->includes();
-
-			$booking_products = WC_Product_Booking_Data_Store_CPT::get_bookable_product_ids();
-
-			// Update all bookings to match the proper price
-			foreach ( $booking_products as $product_id ) {
-				$price = get_post_meta( $product_id, '_price', true );
-
-				if ( ! empty( $price ) ) {
-					continue;
-				}
-
-				$new_price = wc_booking_calculated_base_cost( new WC_Product_Booking( $product_id ) );
-
-				update_post_meta( $product_id, '_price', $new_price );
-			}
-		}
-
-		if ( version_compare( get_option( 'wc_bookings_version', WC_BOOKINGS_VERSION ), '1.10.9', '<' ) ) {
-			$this->includes();
-
-			$booking_products = WC_Product_Booking_Data_Store_CPT::get_bookable_product_ids();
-
-			// Update all bookings to match the proper base cost
-			foreach ( $booking_products as $product_id ) {
-				$base_cost = get_post_meta( $product_id, '_wc_booking_base_cost', true );
-
-				if ( empty( $base_cost ) ) {
-					continue;
-				}
-
-				update_post_meta( $product_id, '_wc_booking_block_cost', $base_cost );
-				delete_post_meta( $product_id, '_wc_booking_base_cost' );
-			}
-		}
-
 		// Update version
 		update_option( 'wc_bookings_version', WC_BOOKINGS_VERSION );
 	}
@@ -286,9 +236,6 @@ KEY resource_id (resource_id)
 			include_once( WC_BOOKINGS_ABSPATH . 'includes/compatibility/abstract-wc-bookings-data.php' ); // Bookings version of WC_Data.
 		}
 
-		// WC AJAX.
-		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-bookings-wc-ajax.php' );
-
 		// Objects.
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/data-objects/class-wc-product-booking.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/data-objects/class-wc-product-booking-resource.php' );
@@ -304,7 +251,6 @@ KEY resource_id (resource_id)
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/wc-bookings-functions.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-booking-form-handler.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-booking-order-manager.php' );
-		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-product-booking-manager.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-bookings-controller.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-booking-cron-manager.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/class-wc-bookings-ics-exporter.php' );
@@ -333,7 +279,6 @@ KEY resource_id (resource_id)
 	 * Include admin
 	 */
 	public function admin_includes() {
-		include_once( WC_BOOKINGS_ABSPATH . 'includes/admin/class-wc-bookings-tools.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/admin/class-wc-bookings-admin.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/admin/class-wc-bookings-ajax.php' );
 		include_once( WC_BOOKINGS_ABSPATH . 'includes/admin/class-wc-bookings-addons.php' );
@@ -359,37 +304,37 @@ KEY resource_id (resource_id)
 				array(
 					'label'  => __( 'Resources', 'woocommerce-bookings' ),
 					'labels' => array(
-						'name'               => __( 'Bookable resources', 'woocommerce-bookings' ),
-						'singular_name'      => __( 'Bookable resource', 'woocommerce-bookings' ),
-						'add_new'            => __( 'Add Resource', 'woocommerce-bookings' ),
-						'add_new_item'       => __( 'Add New Resource', 'woocommerce-bookings' ),
-						'edit'               => __( 'Edit', 'woocommerce-bookings' ),
-						'edit_item'          => __( 'Edit Resource', 'woocommerce-bookings' ),
-						'new_item'           => __( 'New Resource', 'woocommerce-bookings' ),
-						'view'               => __( 'View Resource', 'woocommerce-bookings' ),
-						'view_item'          => __( 'View Resource', 'woocommerce-bookings' ),
-						'search_items'       => __( 'Search Resource', 'woocommerce-bookings' ),
-						'not_found'          => __( 'No Resource found', 'woocommerce-bookings' ),
-						'not_found_in_trash' => __( 'No Resource found in trash', 'woocommerce-bookings' ),
-						'parent'             => __( 'Parent Resources', 'woocommerce-bookings' ),
-						'menu_name'          => _x( 'Resources', 'Admin menu name', 'woocommerce-bookings' ),
-						'all_items'          => __( 'Resources', 'woocommerce-bookings' ),
-					),
-					'description'                        => __( 'Bookable resources are bookable within a bookings product.', 'woocommerce-bookings' ),
-					'public'                             => false,
-					'show_ui'                            => true,
-					'capability_type'                    => 'product',
-					'map_meta_cap'                       => true,
-					'publicly_queryable'                 => false,
-					'exclude_from_search'                => true,
-					'show_in_menu'                       => true,
-					'hierarchical'                       => false,
-					'show_in_nav_menus'                  => false,
-					'rewrite'                            => false,
-					'query_var'                          => false,
-					'supports'                           => array( 'title' ),
-					'has_archive'                        => false,
-					'show_in_menu'                       => 'edit.php?post_type=wc_booking',
+							'name'               => __( 'Bookable resources', 'woocommerce-bookings' ),
+							'singular_name'      => __( 'Bookable resource', 'woocommerce-bookings' ),
+							'add_new'            => __( 'Add Resource', 'woocommerce-bookings' ),
+							'add_new_item'       => __( 'Add New Resource', 'woocommerce-bookings' ),
+							'edit'               => __( 'Edit', 'woocommerce-bookings' ),
+							'edit_item'          => __( 'Edit Resource', 'woocommerce-bookings' ),
+							'new_item'           => __( 'New Resource', 'woocommerce-bookings' ),
+							'view'               => __( 'View Resource', 'woocommerce-bookings' ),
+							'view_item'          => __( 'View Resource', 'woocommerce-bookings' ),
+							'search_items'       => __( 'Search Resource', 'woocommerce-bookings' ),
+							'not_found'          => __( 'No Resource found', 'woocommerce-bookings' ),
+							'not_found_in_trash' => __( 'No Resource found in trash', 'woocommerce-bookings' ),
+							'parent'             => __( 'Parent Resources', 'woocommerce-bookings' ),
+							'menu_name'          => _x( 'Resources', 'Admin menu name', 'woocommerce-bookings' ),
+							'all_items'          => __( 'Resources', 'woocommerce-bookings' ),
+						),
+					'description' 			=> __( 'Bookable resources are bookable within a bookings product.', 'woocommerce-bookings' ),
+					'public' 				=> false,
+					'show_ui' 				=> true,
+					'capability_type' 		=> 'product',
+					'map_meta_cap'			=> true,
+					'publicly_queryable' 	=> false,
+					'exclude_from_search' 	=> true,
+					'show_in_menu' 			=> true,
+					'hierarchical' 			=> false,
+					'show_in_nav_menus' 	=> false,
+					'rewrite' 				=> false,
+					'query_var' 			=> false,
+					'supports' 				=> array( 'title' ),
+					'has_archive' 			=> false,
+					'show_in_menu' 			=> 'edit.php?post_type=wc_booking',
 				)
 			)
 		);
@@ -399,22 +344,22 @@ KEY resource_id (resource_id)
 				array(
 					'label'                      => __( 'Booking', 'woocommerce-bookings' ),
 					'labels'                     => array(
-						'name'               => __( 'Bookings', 'woocommerce-bookings' ),
-						'singular_name'      => __( 'Booking', 'woocommerce-bookings' ),
-						'add_new'            => __( 'Add Booking', 'woocommerce-bookings' ),
-						'add_new_item'       => __( 'Add New Booking', 'woocommerce-bookings' ),
-						'edit'               => __( 'Edit', 'woocommerce-bookings' ),
-						'edit_item'          => __( 'Edit Booking', 'woocommerce-bookings' ),
-						'new_item'           => __( 'New Booking', 'woocommerce-bookings' ),
-						'view'               => __( 'View Booking', 'woocommerce-bookings' ),
-						'view_item'          => __( 'View Booking', 'woocommerce-bookings' ),
-						'search_items'       => __( 'Search Bookings', 'woocommerce-bookings' ),
-						'not_found'          => __( 'No Bookings found', 'woocommerce-bookings' ),
-						'not_found_in_trash' => __( 'No Bookings found in trash', 'woocommerce-bookings' ),
-						'parent'             => __( 'Parent Bookings', 'woocommerce-bookings' ),
-						'menu_name'          => _x( 'Bookings', 'Admin menu name', 'woocommerce-bookings' ),
-						'all_items'          => __( 'All Bookings', 'woocommerce-bookings' ),
-					),
+							'name'               => __( 'Bookings', 'woocommerce-bookings' ),
+							'singular_name'      => __( 'Booking', 'woocommerce-bookings' ),
+							'add_new'            => __( 'Add Booking', 'woocommerce-bookings' ),
+							'add_new_item'       => __( 'Add New Booking', 'woocommerce-bookings' ),
+							'edit'               => __( 'Edit', 'woocommerce-bookings' ),
+							'edit_item'          => __( 'Edit Booking', 'woocommerce-bookings' ),
+							'new_item'           => __( 'New Booking', 'woocommerce-bookings' ),
+							'view'               => __( 'View Booking', 'woocommerce-bookings' ),
+							'view_item'          => __( 'View Booking', 'woocommerce-bookings' ),
+							'search_items'       => __( 'Search Bookings', 'woocommerce-bookings' ),
+							'not_found'          => __( 'No Bookings found', 'woocommerce-bookings' ),
+							'not_found_in_trash' => __( 'No Bookings found in trash', 'woocommerce-bookings' ),
+							'parent'             => __( 'Parent Bookings', 'woocommerce-bookings' ),
+							'menu_name'          => _x( 'Bookings', 'Admin menu name', 'woocommerce-bookings' ),
+							'all_items'          => __( 'All Bookings', 'woocommerce-bookings' ),
+						),
 					'description'                => __( 'This is where bookings are stored.', 'woocommerce-bookings' ),
 					'public'                     => false,
 					'show_ui'                    => true,
@@ -443,7 +388,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Complete <span class="count">(%s)</span>', 'Complete <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'paid', array(
@@ -452,7 +396,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Paid &amp; Confirmed <span class="count">(%s)</span>', 'Paid &amp; Confirmed <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'confirmed', array(
@@ -461,7 +404,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Confirmed <span class="count">(%s)</span>', 'Confirmed <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'unpaid', array(
@@ -470,7 +412,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => true,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Un-paid <span class="count">(%s)</span>', 'Un-paid <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'pending-confirmation', array(
@@ -479,7 +420,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Pending Confirmation <span class="count">(%s)</span>', 'Pending Confirmation <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'cancelled', array(
@@ -488,7 +428,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'Cancelled <span class="count">(%s)</span>', 'Cancelled <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'in-cart', array(
@@ -497,7 +436,6 @@ KEY resource_id (resource_id)
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => false,
 			'show_in_admin_status_list' => true,
-			/* translators: 1: count, 2: count */
 			'label_count'               => _n_noop( 'In Cart <span class="count">(%s)</span>', 'In Cart <span class="count">(%s)</span>', 'woocommerce-bookings' ),
 		) );
 		register_post_status( 'was-in-cart', array(
@@ -505,20 +443,19 @@ KEY resource_id (resource_id)
 			'public'                    => false,
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => false,
-			'show_in_admin_status_list' => false,
+			'show_in_admin_status_list' => true,
 			'label_count'               => false,
 		) );
 
 		if ( class_exists( 'WC_Deposits' ) && is_admin()
-			&& isset( $_GET['post_type'] ) && 'wc_booking' === $_GET['post_type'] ) {
+			 && isset( $_GET['post_type'] ) && 'wc_booking' === $_GET['post_type'] ) {
 			register_post_status( 'wc-partial-payment', array(
-				'label'                     => '<span class="status-partial-payment tips" data-tip="' . _x( 'Partially Paid', 'woocommerce-bookings', 'woocommerce-bookings' ) . '">' . _x( 'Partially Paid', 'woocommerce-bookings', 'woocommerce-bookings' ) . '</span>',
+				'label'                     => '<span class="status-partial-payment tips" data-tip="' . _x( 'Partially Paid', 'woocommerce-deposits', 'woocommerce-deposits' ) . '">' . _x( 'Partially Paid', 'woocommerce-deposits', 'woocommerce-deposits' ) . '</span>',
 				'public'                    => true,
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
 				'show_in_admin_status_list' => true,
-				/* translators: 1: count, 2: count */
-				'label_count'               => _n_noop( 'Partially Paid <span class="count">(%s)</span>', 'Partially Paid <span class="count">(%s)</span>', 'woocommerce-bookings' ),
+				'label_count'               => _n_noop( 'Partially Paid <span class="count">(%s)</span>', 'Partially Paid <span class="count">(%s)</span>', 'woocommerce-deposits' ),
 			) );
 		}
 	}
@@ -540,15 +477,10 @@ KEY resource_id (resource_id)
 	}
 
 	public function clear_cache() {
-		WC_Cache_Helper::get_transient_version( 'bookings', true );
-
-		// It only makes sense to delete transients from the DB if we're not using an external cache.
-		if ( ! wp_using_ext_object_cache() ) {
-			$this->delete_booking_transients();
-			$this->delete_booking_dr_transients();
-			$this->delete_booking_ress_transients();
-			$this->delete_booking_res_transients();
-		}
+		$this->delete_booking_transients();
+		$this->delete_booking_dr_transients();
+		$this->delete_booking_ress_transients();
+		$this->delete_booking_res_transients();
 	}
 
 	/**
@@ -643,7 +575,7 @@ KEY resource_id (resource_id)
 
 		$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.11.4';
 
-		wp_enqueue_style( 'jquery-ui-style', WC_BOOKINGS_PLUGIN_URL . '/assets/js/jquery-ui.css' );
+		wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.min.css' );
 		wp_enqueue_style( 'wc-bookings-styles', WC_BOOKINGS_PLUGIN_URL . '/assets/css/frontend.css', null, WC_BOOKINGS_VERSION );
 	}
 
@@ -668,44 +600,18 @@ KEY resource_id (resource_id)
 	}
 
 	/**
-	 * Add Bookings settings to the WC Settings screen.
-	 *
-	 * @param  array $settings
-	 * @return array
-	 */
-	public function init_bookings_settings( $settings ) {
-		// Pop the separator.
-		$last_element = array_pop( $settings );
-
-		$bookings_settings = array(
-			array(
-				'title'   => __( 'Enable Bookings Timezone calculation', 'woocommerce-bookings' ),
-				'desc'    => __( 'Schedule Bookings events, such as reminder emails and auto-completions of bookings, using your site’s configured timezone.', 'woocommerce-bookings' ),
-				'id'      => 'woocommerce_bookings_tz_calculation',
-				'default' => 'no',
-				'type'    => 'checkbox',
-			),
-		);
-
-		$settings = array_merge( $settings, $bookings_settings );
-		$settings[] = $last_element;
-
-		return $settings;
-	}
-
-	/**
 	 * Show row meta on the plugin screen.
 	 *
-	 * @access public
-	 * @param  mixed $links Plugin Row Meta
-	 * @param  mixed $file  Plugin Base file
-	 * @return array
+	 * @access	public
+	 * @param	mixed $links Plugin Row Meta
+	 * @param	mixed $file  Plugin Base file
+	 * @return	array
 	 */
 	public function plugin_row_meta( $links, $file ) {
 		if ( plugin_basename( WC_BOOKINGS_MAIN_FILE ) == $file ) {
 			$row_meta = array(
-				'docs'    => '<a href="' . esc_url( apply_filters( 'woocommerce_bookings_docs_url', 'https://docs.woocommerce.com/documentation/plugins/woocommerce/woocommerce-extensions/woocommerce-bookings/' ) ) . '" title="' . esc_attr( __( 'View Documentation', 'woocommerce-bookings' ) ) . '">' . __( 'Docs', 'woocommerce-bookings' ) . '</a>',
-				'support' => '<a href="' . esc_url( apply_filters( 'woocommerce_bookings_support_url', 'https://woocommerce.com/my-account/tickets/' ) ) . '" title="' . esc_attr( __( 'Visit Premium Customer Support', 'woocommerce-bookings' ) ) . '">' . __( 'Premium Support', 'woocommerce-bookings' ) . '</a>',
+				'docs'		=> '<a href="' . esc_url( apply_filters( 'woocommerce_bookings_docs_url', 'http://docs.woothemes.com/documentation/plugins/woocommerce/woocommerce-extensions/bookings/' ) ) . '" title="' . esc_attr( __( 'View Documentation', 'woocommerce-bookings' ) ) . '">' . __( 'Docs', 'woocommerce-bookings' ) . '</a>',
+				'support'	=> '<a href="' . esc_url( apply_filters( 'woocommerce_bookings_support_url', 'http://support.woothemes.com/' ) ) . '" title="' . esc_attr( __( 'Visit Premium Customer Support Forum', 'woocommerce-bookings' ) ) . '">' . __( 'Premium Support', 'woocommerce-bookings' ) . '</a>',
 			);
 
 			return array_merge( $links, $row_meta );

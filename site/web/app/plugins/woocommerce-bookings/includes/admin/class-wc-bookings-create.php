@@ -13,8 +13,6 @@ class WC_Bookings_Create {
 
 	/**
 	 * Output the form.
-	 *
-	 * @version  1.10.7
 	 */
 	public function output() {
 		$this->errors = array();
@@ -54,14 +52,13 @@ class WC_Bookings_Create {
 				$product             = wc_get_product( $bookable_product_id );
 				$booking_form        = new WC_Booking_Form( $product );
 				$booking_data        = $booking_form->get_posted_data( $_POST );
-				$cost                = $booking_form->calculate_booking_cost( $_POST );
-				$booking_cost        = $cost && ! is_wp_error( $cost ) ? number_format( $cost, 2, '.', '' ) : 0;
+				$booking_cost        = ( $cost = $booking_form->calculate_booking_cost( $_POST ) ) && ! is_wp_error( $cost ) ? number_format( $cost, 2, '.', '' ) : 0;
 				$create_order        = false;
 				$order_id            = 0;
 				$item_id             = 0;
 
 				if ( 'yes' === get_option( 'woocommerce_prices_include_tax' ) ) {
-					$base_tax_rates = WC_Tax::get_base_tax_rates( $product->get_tax_class() );
+					$base_tax_rates = WC_Tax::get_base_tax_rates( $product->tax_class );
 					$base_taxes     = WC_Tax::calc_tax( $booking_cost, $base_tax_rates, true );
 					$booking_cost   = round( $booking_cost - array_sum( $base_taxes ), absint( get_option( 'woocommerce_price_num_decimals' ) ) );
 				}
@@ -114,7 +111,7 @@ class WC_Bookings_Create {
 					}
 
 					// set order address
-					$order = wc_get_order( $order_id );
+					$order =  wc_get_order( $order_id );
 					$keys  = array(
 						'first_name',
 						'last_name',
@@ -124,7 +121,7 @@ class WC_Bookings_Create {
 						'city',
 						'state',
 						'postcode',
-						'country',
+						'country'
 					);
 					$types = array( 'shipping', 'billing' );
 
@@ -149,11 +146,6 @@ class WC_Bookings_Create {
 
 					do_action( 'woocommerce_bookings_create_booking_page_add_order_item', $order_id );
 				}
-				// Calculate the order totals with taxes.
-				$order = wc_get_order( $order_id );
-				if ( is_a( $order, 'WC_Order' ) ) {
-					$order->calculate_totals( wc_tax_enabled() );
-				}
 
 				// Create the booking itself
 				$new_booking = new WC_Booking( $props );
@@ -171,14 +163,14 @@ class WC_Bookings_Create {
 		}
 
 		switch ( $step ) {
-			case 1:
+			case 1 :
 				include( 'views/html-create-booking-page.php' );
-				break;
-			case 2:
+			break;
+			case 2 :
 				add_filter( 'wc_get_template', array( $this, 'use_default_form_template' ), 10, 5 );
 				include( 'views/html-create-booking-page-2.php' );
 				remove_filter( 'wc_get_template', array( $this, 'use_default_form_template' ), 10 );
-				break;
+			break;
 		}
 	}
 

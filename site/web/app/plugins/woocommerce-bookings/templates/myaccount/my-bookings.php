@@ -12,15 +12,13 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
+ * @see 	https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @version 1.9.10
  * @deprecated 1.10.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <h2><?php echo apply_filters( 'woocommerce_my_account_bookings_title', __( 'My Bookings', 'woocommerce-bookings' ) ); ?></h2>
 

@@ -8,7 +8,11 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "picturefill": "^3.0.3"
+    "picturefill": "^3.0.3",
+    "imagesloaded": "^4.1.3",
+    "gsap": "^1.19.0",
+    "isotope-layout": "isotope#^3.0.6",
+    "isotope-cells-by-row": "^1.1.4"
   },
   "overrides": {
     "bootstrap": {
@@ -16,6 +20,18 @@
         "./scss/bootstrap.scss",
         "./dist/js/bootstrap.bundle.js"
       ]
+    },
+    "gsap": {
+      "main": [
+        "./src/uncompressed/TweenMax.js",
+        "./src/uncompressed/plugins/ScrollToPlugin.js"
+      ]
+    },
+    "isotope-layout": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
     }
   }
 }
