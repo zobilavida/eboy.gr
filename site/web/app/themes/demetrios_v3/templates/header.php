@@ -13,7 +13,7 @@
     <!--container-->
 </div>
 <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
-    <div class="container">
+    <?php do_action('demetrios_custom_header', 'custom_header'); ?>
         <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
           <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
         </a>

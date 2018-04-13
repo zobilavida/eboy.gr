@@ -530,6 +530,18 @@ function my_acf_google_map_api( $api ){
 
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
+function custom_header(){
+  if (is_page('Store Finder')) {
+      // below content only show when page id is 12
+      echo '<div class="container-fluid">';
+
+  }
+  // if page id is not 12 & 14 then below line will be print
+  else {
+    echo '<div class="container">';
+    }
+}
+add_action('demetrios_custom_header', 'custom_header');
     ####################################################
 #    C A R O U S E L
     ####################################################
@@ -880,7 +892,7 @@ function store_finder(){
         <div class="container-fluid p-0" id="wrapper">
 
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0">
 <div class="container-fluid p-0" id="google_map">
 <?php echo eboywp_display( 'facet', 'location' ); ?>
 <div class="section" id="contact">
@@ -915,11 +927,23 @@ function store_finder_split(){
        <?php echo eboywp_display( 'facet', 'city_dropdown' ); ?>
 
        </div>
-
-
+       <div class="col-12 p-3">
+       <div class="my_hr" >
+             <span class="my_hr_span">
+               Available Collections
+             </span>
+           </div>
+           </div>
         <div class="col-12">
         <?php echo eboywp_display( 'facet', 'store_category' ); ?>
         </div>
+        <div class="col-12 p-3">
+        <div class="my_hr" >
+              <span class="my_hr_span">
+                View Stores
+              </span>
+            </div>
+            </div>
         </div>
 
         </div>
@@ -931,7 +955,7 @@ function store_finder_split(){
     "orderby" => "title",
     "order" => "ASC",
     "posts_per_page" => 35,
-    'facetwp' => true // Also tried without this and accompanying function in functions.php
+    'eboywp' => true // Also tried without this and accompanying function in functions.php
   );
   // The Query
   $query = new WP_Query( $args );
