@@ -883,6 +883,9 @@ function store_finder(){
             <div class="col-12">
 <div class="container-fluid p-0" id="google_map">
 <?php echo eboywp_display( 'facet', 'location' ); ?>
+<div class="section" id="contact">
+    <div style="width:100px; height:200px; background:#ccc;z-index:999999;position:absolute;">test</div>
+</div>
 </div>
 </div>
 </div>
@@ -898,23 +901,19 @@ add_action( 'custom_store_finder', 'store_finder', 15 );
 function store_finder_split(){
         ?>
         <div class="container">
-        <div class="row">
-          <div class="col-12">
-          <?php echo eboywp_display( 'facet', 'proximity' ); ?>
+        <div class="row pt-3">
+          <div class="col-4">
+          <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
           </div>
-         <div class="col-6">
-        <div class="card">
-        <div class="card-body">
-        <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
+         <div class="col-4">
+
+        <?php echo eboywp_display( 'facet', 'state_dropdown' ); ?>
+
         </div>
-        </div>
-        </div>
-        <div class="col-6">
-       <div class="card">
-       <div class="card-body">
+        <div class="col-4">
+
        <?php echo eboywp_display( 'facet', 'city_dropdown' ); ?>
-       </div>
-       </div>
+
        </div>
 
 
@@ -944,7 +943,7 @@ function store_finder_split(){
     $street_address = get_field( "street_address" );
     $phone = get_field( "phone" );
     ?>
-<div class="col-lg-12">
+<div class="col-lg-6 py-3">
 <div class="card">
 <div class="card-body">
   <h5 class="card-title"><?php the_title(); ?></h5>

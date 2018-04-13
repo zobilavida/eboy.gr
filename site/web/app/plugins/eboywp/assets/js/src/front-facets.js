@@ -418,7 +418,7 @@
                 }
 
                 // Add the "Locate me" icon
-                $input.wrap('<div class="card" style="width: 100%;"><div class="eboywp-location input-group"><div class="card-body"></div></div></div>');
+                $input.wrap('<div class="eboywp-location"></div>');
                 $input.after('<i class="locate-me pr-5"></i>');
             }
 

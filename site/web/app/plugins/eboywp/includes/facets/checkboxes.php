@@ -172,9 +172,10 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
 
         $output .= '<div class="row">';
         $output .= '<div class="col-12">';
-        $output .= '<div class="row">';
+        $output .= '<div class="container">';
+        $output .= '<div class="row py-4">';
 
-        foreach ( $values as $result ) {
+      foreach ( $values as $result ) {
             $depth = (int) $result['depth'];
 
             if ( -1 == $last_depth ) {
@@ -205,6 +206,8 @@ class eboywp_Facet_Checkboxes extends eboywp_Facet
         for ( $i = $last_depth; $i > $init_depth; $i-- ) {
             $output .= '</div>';
         }
+
+        $output .= '</div>';
         $output .= '</div>';
         $output .= '</div>';
         $output .= '</div>';
