@@ -542,6 +542,36 @@ function custom_header(){
     }
 }
 add_action('demetrios_custom_header', 'custom_header');
+####################################################
+#    VIDEO
+####################################################
+
+function demetrios_front_video(){
+?>
+<section class="video">
+
+
+
+      <div class="jumbotron">
+        <video id="video-background" preload="" muted="" autoplay="" loop="">
+          <source src="https://dl.dropboxusercontent.com/s/ra7whbddmvvppgi/Demetrios.mp4?dl=0" type="video/mp4">
+        </video>
+        <div class="titan-caption">
+          <div class="caption-content">
+            <div class="font-alt mb-30"><h2><?php echo $parallax_2_text_1; ?></h2></div>
+            <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_2_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_2_button_url; ?>"><?php echo $parallax_2_button; ?></a>
+          </div>
+        </div>
+      </div>
+
+</section>
+
+
+<?php
+}
+
+add_action('demetrios_custom_video', 'demetrios_front_video');
+
     ####################################################
 #    C A R O U S E L
     ####################################################
