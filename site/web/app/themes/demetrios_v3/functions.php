@@ -614,13 +614,13 @@ function demetrios_front_video(){
 
   $video = get_field( "video_url" );
   $text_over_video = get_field( "text_over_video" );
-
+  $video_bg_image = get_field( "video_bg_image" );
 ?>
 <section class="video">
 
 
 
-      <div class="jumbotron" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
+      <div class="jumbotron" data-background="<?php echo $video_bg_image; ?>" style="background-position: 50% 15%;">
         <video id="video-background" preload="" muted="" autoplay="" loop="">
           <source src="<?php echo $video; ?>" type="video/mp4">
         </video>
