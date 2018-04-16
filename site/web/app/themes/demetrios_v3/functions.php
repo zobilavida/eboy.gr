@@ -552,7 +552,7 @@ function demetrios_front_video(){
 
 
 
-      <div class="jumbotron">
+      <div class="jumbotron" data-background="<?php echo $parallax_1; ?>" style="background-position: 50% 15%;">
         <video id="video-background" preload="" muted="" autoplay="" loop="">
           <source src="https://dl.dropboxusercontent.com/s/ra7whbddmvvppgi/Demetrios.mp4?dl=0" type="video/mp4">
         </video>
@@ -737,15 +737,15 @@ function half_1(){
   if( $half_1 ) {
 
 ?>
-<section class="module pt-5 pb-5">
-  <div class="container-fluid h-100">
-    <div class="row justify-content-center pb-5">
+<section class="module pt-1">
+  <div class="container-fluid h-100 pl-0">
+    <div class="row justify-content-center">
       <div class="col-12 text-center">
         <h3><?php echo $section_half_1_header; ?></h3>
       </div>
     </div>
   <div class="row position-relative m-0">
-    <div class="col-xs-12 col-md-6 side-image" >
+    <div class="col-xs-12 col-md-6 side-image  pl-0" >
       <img src="<?php echo $half_1; ?>" class="img-fluid">
     </div>
     <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
@@ -782,8 +782,8 @@ function parallax_2(){
   if( $parallax_2 ) {
 
 ?>
-<div class="container">
-  <div class="row justify-content-center pb-5">
+<div class="container-fluid bg-white">
+  <div class="row justify-content-center pb-1">
     <div class="col-12 text-center">
       <h3><?php echo $section_parallax_2_header; ?></h3>
     </div>
@@ -821,27 +821,27 @@ function external_1(){
   if( $section_external_header ) {
 
 ?>
-<section class="module pt-5 pb-5">
+<section class="module pt-1">
   <div class="container-fluid h-100">
-    <div class="row justify-content-center pb-5">
+    <div class="row justify-content-center">
       <div class="col-12 text-center">
         <h3><?php echo $section_external_header; ?></h3>
       </div>
     </div>
     <div class="row">
-      <div class="col-4 text-center">
+      <div class="col-4 text-center p-0">
         <a href="<?php echo $external_1_button_url; ?>">
         <img src="<?php echo $external_img_1; ?>" class="img-fluid">
         </a>
         <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center p-0">
         <a href="<?php echo $external_2_button_url; ?>">
         <img src="<?php echo $external_img_2; ?>" class="img-fluid">
         </a>
         <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center p-0">
         <a href="<?php echo $external_3_button_url; ?>">
         <img src="<?php echo $external_img_3; ?>" class="img-fluid">
         </a>
@@ -869,8 +869,8 @@ function parallax_3(){
   if( $section_parallax_3_header ) {
 
 ?>
-<div class="container">
-  <div class="row justify-content-center pb-5">
+<div class="container-fluid bg-white">
+  <div class="row justify-content-center pt-1">
     <div class="col-12 text-center">
       <h3><?php echo $section_parallax_3_header; ?></h3>
     </div>

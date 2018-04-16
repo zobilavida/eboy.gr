@@ -9,7 +9,6 @@
 </div>
   <?php get_template_part('templates/unit', 'video_front'); ?>
 
-  <?php //get_template_part('templates/unit', 'parallax_1'); ?>
   <?php get_template_part('templates/unit', 'half_1'); ?>
 <?php get_template_part('templates/unit', 'parallax_2'); ?>
 <?php get_template_part('templates/unit', 'external_1'); ?>
