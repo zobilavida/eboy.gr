@@ -1175,7 +1175,7 @@ add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 function new_loop_shop_per_page( $cols ) {
   // $cols contains the current number of products per page based on the value stored on Options -> Reading
   // Return the number of products you wanna show per page.
-  $cols = 20;
+  $cols = 4;
   return $cols;
 }
 
@@ -1252,4 +1252,4 @@ foreach ( array( 'pre_term_description' ) as $filter ) {
 }
 foreach ( array( 'term_description' ) as $filter ) {
     remove_filter( $filter, 'wp_kses_data' );
-} 
+}
