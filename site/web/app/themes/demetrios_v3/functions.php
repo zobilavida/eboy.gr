@@ -531,14 +531,78 @@ function my_acf_google_map_api( $api ){
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 function custom_header(){
-  if (is_page('Store Finder')) {
+  if (is_page('Home')) {
       // below content only show when page id is 12
-      echo '<div class="container-fluid">';
+      $home_logo = get_field( "home_logo" );
 
+?>
+
+<nav class="navbar navbar-expand-sm sticky-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
+          <img class="logo_2" src='<?php echo $home_logo; ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+          <img class="logo hidden" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1">
+
+            <?php
+            wp_nav_menu([
+              'menu'            => 'top',
+              'theme_location'  => 'top',
+              'container'       => '',
+              'container_id'    => '',
+              'container_class' => '',
+              'menu_id'         => false,
+              'menu_class'      => 'navbar-nav ml-auto',
+              'depth'           => 2,
+              'fallback_cb'     => 'bs4navwalker::fallback',
+              'walker'          => new bs4navwalker()
+            ]);
+            ?>
+        </div>
+    </div>
+</nav>
+
+<?php
   }
   // if page id is not 12 & 14 then below line will be print
   else {
-    echo '<div class="container">';
+  ?>
+  <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
+      <div class="container">
+          <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
+            <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+
+          </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar1">
+
+              <?php
+              wp_nav_menu([
+                'menu'            => 'top',
+                'theme_location'  => 'top',
+                'container'       => '',
+                'container_id'    => '',
+                'container_class' => '',
+                'menu_id'         => false,
+                'menu_class'      => 'navbar-nav ml-auto',
+                'depth'           => 2,
+                'fallback_cb'     => 'bs4navwalker::fallback',
+                'walker'          => new bs4navwalker()
+              ]);
+              ?>
+          </div>
+      </div>
+  </nav>
+
+  <?php
+
     }
 }
 add_action('demetrios_custom_header', 'custom_header');
