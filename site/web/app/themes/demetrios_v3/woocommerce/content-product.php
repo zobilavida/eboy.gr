@@ -28,7 +28,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 
-<div class="w-25 p-3 product">
+<div class="w-24 card m-1 product">
 	<?php
 	/**
 	 * woocommerce_before_shop_loop_item hook.

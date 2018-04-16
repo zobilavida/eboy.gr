@@ -78,7 +78,7 @@ class eboywp_Facet_Dropdown extends eboywp_Facet
         $label_any = empty( $facet['label_any'] ) ? __( 'Any', 'EWP' ) : $facet['label_any'];
         $label_any = eboywp_i18n( $label_any );
 
-        $output .= '<select class="eboywp-dropdown">';
+        $output .= '<select class="eboywp-dropdown form-control">';
         $output .= '<option value="">' . esc_attr( $label_any ) . '</option>';
 
         foreach ( $values as $result ) {

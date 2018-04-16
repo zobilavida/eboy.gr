@@ -17,4 +17,4 @@
  */
 ?>
 <div class="container eboywp-template">
-  <div class="row">
+  <div class="row justify-content-center">

@@ -1234,3 +1234,22 @@ function update_end_date_cf( $value, $post_id, $field ) {
 
 }
 add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
+
+remove_action( 'woocommerce_shop_loop_item_title' , 'woocommerce_template_loop_product_title', 10 );
+
+function woocommerce_template_loop_product_title_custom() {
+  ?>
+<h4 class="woocommerce-loop-product__title text-center p-3"><?php the_title(); ?></h4>
+<?php
+
+
+
+}
+add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title_custom', 10);
+
+foreach ( array( 'pre_term_description' ) as $filter ) {
+    remove_filter( $filter, 'wp_filter_kses' );
+}
+foreach ( array( 'term_description' ) as $filter ) {
+    remove_filter( $filter, 'wp_kses_data' );
+} 

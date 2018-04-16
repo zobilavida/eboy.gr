@@ -56,12 +56,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
       </div>
     </div>
-		<button class="small-grid">small</button>
-		 <button class="medium-grid">medium</button>
-		 <button class="large-grid">large</button>
+
 
     <div class="container">
-      <div class="row pb-5 pt-5">
+      <div class="row pb-3 pt-5">
         <div class="col-12 text-center">
 <?php do_action( 'woocommerce_archive_description' ); ?>
         </div>
@@ -77,6 +75,13 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="col-lg-3">
         <?php echo eboywp_display( 'facet', 'style' ); ?>
         </div>
+				<div class="container pt-3">
+  <div class="row justify-content-center">
+					<button class="small-grid">small</button>
+					 <button class="medium-grid">medium</button>
+					 <button class="large-grid">large</button>
+				</div>
+					</div>
       </div>
     </div>
 
