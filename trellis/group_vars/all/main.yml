@@ -18,3 +18,8 @@ raw_vars:
   - vault_users.*.password
   - vault_users.*.salt
   - vault_wordpress_sites
+php_max_execution_time: 300
+php_max_input_time: 300
+php_memory_limit: 256M
+php_post_max_size: 128M
+php_upload_max_filesize: 128M
