@@ -23,4 +23,4 @@ php_max_input_time: 300
 php_memory_limit: 256M
 php_post_max_size: 128M
 php_upload_max_filesize: 128M
-max_input_vars: 5120
+php_max_input_vars: 5120
