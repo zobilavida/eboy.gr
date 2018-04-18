@@ -1052,9 +1052,9 @@ function store_finder_split(){
     "orderby" => "title",
     "order" => "ASC",
     "posts_per_page" => 35,
-    'eboywp' => true // Also tried without this and accompanying function in functions.php
+    'eboywp' => true 
   );
-  // The Query
+
   $query = new WP_Query( $args );
   ?>
   <div class="eboywp-template container">
@@ -1064,7 +1064,7 @@ function store_finder_split(){
     $street_address = get_field( "street_address" );
     $phone = get_field( "phone" );
     ?>
-<div class="col-lg-6 py-3">
+<div class="col-lg-12 py-3">
 <div class="card">
 <div class="card-body">
   <h5 class="card-title"><?php the_title(); ?></h5>
