@@ -1292,3 +1292,24 @@ add_filter("gform_submit_button", "form_submit_button", 10, 2);
 function form_submit_button($button, $form){
     return "<div class='container'><div class='row p-3'><button class='btn btn-primary btn-lg btn-block form_submit' id='gform_submit_button_{$form["id"]}' disabled><span>Submit</span></button></div></div>";
 }
+
+
+//facetWP dropdown html modification
+add_filter( 'eboywp_facet_html', function( $output, $params ) {
+
+    if ( $params['facet']['type'] == 'dropdown' ) {
+      $output = str_replace('class="eboywp-dropdown"', 'class="eboywp-dropdown selectpicker" data-live-search="true" title="'. $params['facet']['label_any'] .'"', $output);
+    }
+
+    return $output;
+    //return '<pre>'. print_r($params, true) .'</pre>';
+
+}, 10, 2 );
+
+//facetWP sort dropdown html modification
+add_filter( 'eboywp_sort_html', function( $html, $params ) {
+    $html = str_replace('class="eboywp-sort-select', 'class="eboywp-sort-select selectpicker', $html);
+    $html = str_replace('Sort by', 'Default', $html);
+
+    return $html;
+}, 10, 2 );
