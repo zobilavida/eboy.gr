@@ -320,6 +320,47 @@ function custom_store_cats() {
 add_action( 'init', 'custom_store_cats', 0 );
 
 
+
+// Register Custom Taxonomy
+function custom_store_locs() {
+
+	$labels = array(
+		'name'                       => _x( 'Store location', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Stores location', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Stores locations', 'text_domain' ),
+		'all_items'                  => __( 'All Stores locations', 'text_domain' ),
+		'parent_item'                => __( 'Parent Stores locations', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Stores locations Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Store location', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Store location', 'text_domain' ),
+		'update_item'                => __( 'Update Store location', 'text_domain' ),
+		'view_item'                  => __( 'View Store location', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate Stores locations with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove Stores locations', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Stores locations', 'text_domain' ),
+		'search_items'               => __( 'Search Stores locations', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No Stores locations', 'text_domain' ),
+		'items_list'                 => __( 'Stores locations list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Stores locations list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'store_loc', array( 'stores' ), $args );
+
+}
+add_action( 'init', 'custom_store_locs', 0 );
+
+
 // Admin Columns
 function stores_columns($columns)
 {
@@ -1294,22 +1335,24 @@ function form_submit_button($button, $form){
 }
 
 
-//facetWP dropdown html modification
-add_filter( 'eboywp_facet_html', function( $output, $params ) {
-
-    if ( $params['facet']['type'] == 'dropdown' ) {
-      $output = str_replace('class="eboywp-dropdown"', 'class="eboywp-dropdown selectpicker" data-live-search="true" title="'. $params['facet']['label_any'] .'"', $output);
+add_filter( 'gform_pre_render_3', 'populate_posts' );
+add_filter( 'gform_pre_validation_3', 'populate_posts' );
+add_filter( 'gform_pre_submission_filter_3', 'populate_posts' );
+add_filter( 'gform_admin_pre_render_3', 'populate_posts' );
+function populate_posts( $form ) {
+    foreach ( $form['fields'] as &$field ) {
+        if ( strpos( $field->cssClass, 'populate-posts' ) === false ) {
+            continue;
+        }
+        $new_field_choices = array();
+     	 $terms = get_terms( 'store_loc', array('hide_empty' => false));
+     	 foreach ($terms as $term) {
+     	 	$new_field_choices[] = array(
+     	 		'text' => $term->name,
+     	 		'value' => '?EWP_country_dropdown='  . $term->slug
+     	 	);
+     	 }
+     	$field->choices = $new_field_choices;
     }
-
-    return $output;
-    //return '<pre>'. print_r($params, true) .'</pre>';
-
-}, 10, 2 );
-
-//facetWP sort dropdown html modification
-add_filter( 'eboywp_sort_html', function( $html, $params ) {
-    $html = str_replace('class="eboywp-sort-select', 'class="eboywp-sort-select selectpicker', $html);
-    $html = str_replace('Sort by', 'Default', $html);
-
-    return $html;
-}, 10, 2 );
+    return $form;
+}
