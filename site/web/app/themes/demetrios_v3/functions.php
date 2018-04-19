@@ -1349,7 +1349,7 @@ function populate_posts( $form ) {
      	 foreach ($terms as $term) {
      	 	$new_field_choices[] = array(
      	 		'text' => $term->name,
-     	 		'value' => '?EWP_country_dropdown='  . $term->slug
+     	 		'value' => $term->slug
      	 	);
      	 }
      	$field->choices = $new_field_choices;
