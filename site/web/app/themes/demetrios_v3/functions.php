@@ -1155,7 +1155,7 @@ function book(){
             </div>
             </div>
 
-        <div class="container px-1 mt-5 book-appontment">
+        <div class="container mt-5 book-appontment">
           <div class="row">
             <div class="col-12">
       <?php gravity_form_enqueue_scripts( 1, false ); ?>
@@ -1341,7 +1341,7 @@ add_filter( 'gform_pre_submission_filter_3', 'populate_posts' );
 add_filter( 'gform_admin_pre_render_3', 'populate_posts' );
 function populate_posts( $form ) {
     foreach ( $form['fields'] as &$field ) {
-        if ( strpos( $field->cssClass, 'populate-posts' ) === false ) {
+        if ( strpos( $field->cssClass, 'country_selector' ) === false ) {
             continue;
         }
         $new_field_choices = array();
