@@ -1345,11 +1345,11 @@ function populate_posts( $form ) {
             continue;
         }
         $new_field_choices = array();
-     	 $terms = get_terms( 'store_loc', array('hide_empty' => false));
+     	 $terms = get_terms( 'store_loc', array('hide_empty' => true));
      	 foreach ($terms as $term) {
      	 	$new_field_choices[] = array(
      	 		'text' => $term->name,
-     	 		'value' => $term->slug
+     	 		'value' => $term->name
      	 	);
      	 }
      	$field->choices = $new_field_choices;
