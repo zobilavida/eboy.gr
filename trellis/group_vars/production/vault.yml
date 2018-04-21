@@ -12,7 +12,7 @@ vault_users:
 vault_wordpress_sites:
   eboy.gr:
     env:
-      db_password: 'vBVds\rFE!fkWj7+Csv@J_kt'
+      db_password: 'example_dbpassword'
       # Generate your keys here: https://roots.io/salts.html
 auth_key: "9w#A02Wx5ir<=W<ElX-5|wuA2919;I=RpFoU/n;5g[Qkf4[4ZfDSXQmAc^m]bqGP"
 secure_auth_key: "f9&i>TTJ2Q>x8[m`>9PkoK%9E({Xg&R2&-;h;&LjPfhn7:cg[$SqlP0SfJ9y[>ZE"
