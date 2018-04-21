@@ -71,7 +71,7 @@ to no.
 	margin-top: 2.5%;
 }
 
-.ui-datepicker-prev, 
+.ui-datepicker-prev,
 .ui-datepicker-next {
 	display: inline-block;
 	width: 30px;
@@ -135,7 +135,7 @@ to no.
 	border-bottom: 0px;
 }
 
-.ui-datepicker td span, 
+.ui-datepicker td span,
 .ui-datepicker td a {
 	display: inline-block;
 	font-weight: bold;
