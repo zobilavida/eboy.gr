@@ -1,5 +1,5 @@
 <script src="<?php echo EWPCL_URL; ?>/assets/js/admin.js?ver=<?php echo EWPCL_VERSION; ?>"></script>
-<link href="<?php echo FACETWP_URL; ?>/assets/css/admin.css?ver=<?php echo FACETWP_VERSION; ?>" rel="stylesheet">
+<link href="<?php echo eboyWP_URL; ?>/assets/css/admin.css?ver=<?php echo eboyWP_VERSION; ?>" rel="stylesheet">
 <link href="<?php echo EWPCL_URL; ?>/assets/css/admin.css?ver=<?php echo EWPCL_VERSION; ?>" rel="stylesheet">
 <script>
 EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
@@ -8,8 +8,8 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
 <div class="eboywp-header">
     <span class="eboywp-logo" title="EboyWP">&nbsp;</span>
     <span class="eboywp-header-nav">
-        <a class="eboywp-tab" rel="rulesets"><?php _e( 'Rulesets', 'fwp' ); ?></a>
-        <a class="eboywp-tab" rel="settings"><?php _e( 'Settings', 'fwp' ); ?></a>
+        <a class="eboywp-tab" rel="rulesets"><?php _e( 'Rulesets', 'ewp' ); ?></a>
+        <a class="eboywp-tab" rel="settings"><?php _e( 'Settings', 'ewp' ); ?></a>
     </span>
 </div>
 
@@ -20,7 +20,7 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
         <div class="flexbox">
             <a class="button add-ruleset">Add Ruleset</a>
             <a class="button eboywp-save" style="margin-left:10px">Save Changes</a>
-            <span class="fwpcl-response dashicons"></span>
+            <span class="ewpcl-response dashicons"></span>
         </div>
 
         <div class="eboywp-content-wrap"></div>
@@ -33,8 +33,8 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
             <p class="description" style="margin-top:20px">To import, paste code into the field below.</p>
             <textarea class="import-code"></textarea>
             <p class="description" style="color:red"><strong>NOTE:</strong> importing will replace any existing rulesets.</p>
-            <input type="button" class="button fwpcl-import" value="Process Import" />
-            <span class="fwpcl-import-response"></span>
+            <input type="button" class="button ewpcl-import" value="Process Import" />
+            <span class="ewpcl-import-response"></span>
         </div>
     </div>
 
@@ -91,14 +91,14 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
                     <td class="logic">
                         <select class="condition-object">
                             <optgroup label="Basic">
-                                <option value="facets-empty">No facets in use</option>
-                                <option value="facets-not-empty">Some facets in use</option>
+                                <option value="eboys-empty">No eboys in use</option>
+                                <option value="eboys-not-empty">Some eboys in use</option>
                                 <option value="uri">Page URI</option>
                                 <option value="total-rows">Result count</option>
                             </optgroup>
-                            <optgroup label="Facet Value">
-<?php foreach ( $this->facets as $facet ) : ?>
-                                <option value="facet-<?php echo $facet['name']; ?>">Facet: <?php echo $facet['label']; ?></option>
+                            <optgroup label="eboy Value">
+<?php foreach ( $this->eboys as $eboy ) : ?>
+                                <option value="eboy-<?php echo $eboy['name']; ?>">eboy: <?php echo $eboy['label']; ?></option>
 <?php endforeach; ?>
                             </optgroup>
                             <optgroup label="Template">
@@ -134,10 +134,10 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
                         </select>
                         <select class="action-object">
                             <option value="template">Template</option>
-                            <option value="facets">All Facets</option>
-                            <optgroup label="Facets">
-<?php foreach ( $this->facets as $facet ) : ?>
-                                <option value="facet-<?php echo $facet['name']; ?>">Facet: <?php echo $facet['label']; ?></option>
+                            <option value="eboys">All eboys</option>
+                            <optgroup label="eboys">
+<?php foreach ( $this->eboys as $eboy ) : ?>
+                                <option value="eboy-<?php echo $eboy['name']; ?>">eboy: <?php echo $eboy['label']; ?></option>
 <?php endforeach; ?>
                             </optgroup>
                             <optgroup label="Custom">
@@ -163,16 +163,16 @@ EWPCL.rulesets = <?php echo json_encode( $this->rulesets ); ?>;
     <div class="media-modal-content">
         <div class="media-frame">
             <div class="media-frame-title">
-                <h1><?php _e( 'Custom Selectors', 'fwp' ); ?></h1>
+                <h1><?php _e( 'Custom Selectors', 'ewp' ); ?></h1>
             </div>
             <div class="media-frame-router">
                 <div class="media-router">
-                    Add jQuery selectors (one per line). You can also use <strong>$EMPTY</strong> to select empty facets.
+                    Add jQuery selectors (one per line). You can also use <strong>$EMPTY</strong> to select empty eboys.
                 </div>
             </div>
             <div class="media-frame-content">
                 <div class="modal-content-wrap">
-                    <textarea class="action-selector-input" placeholder="$('.eboywp-facet-categories')"></textarea>
+                    <textarea class="action-selector-input" placeholder="$('.eboywp-eboy-categories')"></textarea>
                     <input type="button" class="button selector-save" value="Save Changes" />
                 </div>
             </div>

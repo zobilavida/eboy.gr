@@ -13,26 +13,26 @@ window.EWP = {
             // Settings load hook
             EWP.settings = wp.hooks.applyFilters('eboywp/load_settings', EWP.settings);
 
-            $.each(EWP.settings.facets, function(idx, obj) {
-                var $row = $('.clone-facet .eboywp-row').clone();
+            $.each(EWP.settings.eboys, function(idx, obj) {
+                var $row = $('.clone-eboy .eboywp-row').clone();
                 $row.attr('data-id', row_count);
                 $row.attr('data-type', obj.type);
-                $row.find('.facet-fields').html(EWP.clone[obj.type]);
-                $row.find('.facet-label').val(obj.label);
-                $row.find('.facet-name').text(obj.name);
-                $row.find('.facet-type').val(obj.type);
+                $row.find('.eboy-fields').html(EWP.clone[obj.type]);
+                $row.find('.eboy-label').val(obj.label);
+                $row.find('.eboy-name').text(obj.name);
+                $row.find('.eboy-type').val(obj.type);
 
-                // Facet load hook
+                // Eboy load hook
                 wp.hooks.doAction('eboywp/load/' + obj.type, $row, obj);
 
-                // UI for code-based facets
+                // UI for code-based eboys
                 if ('undefined' !== typeof obj['_code']) {
                     $row.addClass('in-code');
                 }
 
                 $('.eboywp-content').append($row);
-                $('.content-facets .eboywp-cards').append(EWP.build_card({
-                    card: 'facet',
+                $('.content-eboys .eboywp-cards').append(EWP.build_card({
+                    card: 'eboy',
                     id: row_count,
                     label: obj.label,
                     name: obj.name,
@@ -109,7 +109,7 @@ window.EWP = {
             output += '<div class="eboywp-card">';
             output += '<div class="card-delete"></div>';
             output += '<div class="card-label">' + params.label + '</div>';
-            if ('facet' === params.card) {
+            if ('eboy' === params.card) {
                 output += '<div class="card-type">' + params.type + '</div>';
             }
             output += '</div>';
@@ -158,59 +158,59 @@ window.EWP = {
         });
 
 
-        // Conditionals based on facet type
-        $(document).on('change', '.facet-type', function() {
+        // Conditionals based on eboy type
+        $(document).on('change', '.eboy-type', function() {
             var val = $(this).val();
-            var $facet = $(this).closest('.eboywp-row');
-            $facet.find('.eboywp-show').show();
+            var $eboy = $(this).closest('.eboywp-row');
+            $eboy.find('.eboywp-show').show();
 
-            if (val !== $facet.attr('data-type')) {
-                $facet.find('.facet-fields').html(EWP.clone[val]);
-                $facet.attr('data-type', val);
+            if (val !== $eboy.attr('data-type')) {
+                $eboy.find('.eboy-fields').html(EWP.clone[val]);
+                $eboy.attr('data-type', val);
             }
 
             wp.hooks.doAction('eboywp/change/' + val, $(this));
 
             // Update the card
-            var id = $facet.attr('data-id');
+            var id = $eboy.attr('data-id');
             $('.eboywp-cards li[data-id="'+ id +'"] .card-type').text(val);
 
-            // Trigger .facet-source
-            $facet.find('.facet-source').trigger('change');
+            // Trigger .eboy-source
+            $eboy.find('.eboy-source').trigger('change');
         });
 
 
-        // Conditionals based on facet source
-        $(document).on('change', '.facet-source', function() {
+        // Conditionals based on eboy source
+        $(document).on('change', '.eboy-source', function() {
             var val = $(this).val();
-            var $facet = $(this).closest('.eboywp-row');
-            var facet_type = $facet.find('.facet-type').val();
+            var $eboy = $(this).closest('.eboywp-row');
+            var eboy_type = $eboy.find('.eboy-type').val();
             var display = ('string' === typeof val && -1 < val.indexOf('tax/')) ? 'table-row' : 'none';
 
-            if ('checkboxes' === facet_type || 'dropdown' === facet_type) {
-                $facet.find('.facet-parent-term').closest('tr').css({ 'display' : display });
-                $facet.find('.facet-hierarchical').closest('tr').css({ 'display' : display });
+            if ('checkboxes' === eboy_type || 'dropdown' === eboy_type) {
+                $eboy.find('.eboy-parent-term').closest('tr').css({ 'display' : display });
+                $eboy.find('.eboy-hierarchical').closest('tr').css({ 'display' : display });
             }
-            else if ('fselect' === facet_type || 'radio' === facet_type) {
-                $facet.find('.facet-parent-term').closest('tr').css({ 'display' : display });
+            else if ('fselect' === eboy_type || 'radio' === eboy_type) {
+                $eboy.find('.eboy-parent-term').closest('tr').css({ 'display' : display });
             }
         });
 
 
-        // Conditionals based on facet source_other
-        $(document).on('change', '.facet-source-other', function() {
-            var $facet = $(this).closest('.eboywp-row');
+        // Conditionals based on eboy source_other
+        $(document).on('change', '.eboy-source-other', function() {
+            var $eboy = $(this).closest('.eboywp-row');
             var display = ('' !== $(this).val()) ? 'table-row' : 'none';
-            $facet.find('.facet-compare-type').closest('tr').css({ 'display' : display });
+            $eboy.find('.eboy-compare-type').closest('tr').css({ 'display' : display });
         });
 
 
         // Add item
         $(document).on('click', '.eboywp-add', function() {
             var $parent = $(this).closest('.eboywp-col');
-            var type = $parent.hasClass('content-facets') ? 'facet' : 'template';
-            var label = ('facet' === type) ? 'New facet' : 'New template';
-            var name = ('facet' === type) ? 'new_facet' : 'new_template';
+            var type = $parent.hasClass('content-eboys') ? 'eboy' : 'template';
+            var label = ('eboy' === type) ? 'New eboy' : 'New template';
+            var name = ('eboy' === type) ? 'new_eboy' : 'new_template';
 
             var $row = $('.clone-' + type + ' .eboywp-row').clone();
             $row.attr('data-id', row_count);
@@ -253,10 +253,10 @@ window.EWP = {
             $('.eboywp-region-basics .eboywp-subnav .search-wrap').addClass('hidden');
             $el.addClass('visible');
 
-            // Trigger facet conditionals
-            if ($this.closest('.eboywp-col').hasClass('content-facets')) {
-                $el.find('.facet-type').trigger('change');
-                $el.find('.facet-source').fSelect();
+            // Trigger eboy conditionals
+            if ($this.closest('.eboywp-col').hasClass('content-eboys')) {
+                $el.find('.eboy-type').trigger('change');
+                $el.find('.eboy-source').fSelect();
             }
 
             // Scroll to top
@@ -277,17 +277,17 @@ window.EWP = {
 
 
         // Focus on the label
-        $(document).on('focus', '.facet-label, .template-label', function() {
-            var type = $(this).hasClass('facet-label') ? 'facet' : 'template';
+        $(document).on('focus', '.eboy-label, .template-label', function() {
+            var type = $(this).hasClass('eboy-label') ? 'eboy' : 'template';
             var name_val = $(this).siblings('.' + type + '-name').text();
             EWP.is_name_editable = ('' === name_val || ('new_' + type) === name_val);
         });
 
 
         // Change the label
-        $(document).on('keyup', '.facet-label, .template-label', function() {
+        $(document).on('keyup', '.eboy-label, .template-label', function() {
             var label = $(this).val();
-            var type = $(this).hasClass('facet-label') ? 'facet' : 'template';
+            var type = $(this).hasClass('eboy-label') ? 'eboy' : 'template';
             var $row = $(this).closest('.eboywp-row');
             var id = $row.attr('data-id');
 
@@ -333,11 +333,11 @@ window.EWP = {
             var $this = $(this);
             var orig_text = $this.text();
             var $el = $('.eboywp-clipboard');
-            var name = $(this).closest('.eboywp-row').find('.facet-name').text();
+            var name = $(this).closest('.eboywp-row').find('.eboy-name').text();
 
             try {
                 $el.removeClass('hidden');
-                $el.val('[eboywp facet="' + name + '"]');
+                $el.val('[eboywp eboy="' + name + '"]');
                 $el.select();
                 document.execCommand('copy');
                 $el.addClass('hidden');
@@ -375,7 +375,7 @@ window.EWP = {
             $('.eboywp-response').addClass('visible');
 
             var data = {
-                'facets': [],
+                'eboys': [],
                 'templates': [],
                 'settings': {}
             };
@@ -388,12 +388,12 @@ window.EWP = {
                     return;
                 }
 
-                // Facet
+                // Eboy
                 if ($this.is('[data-type]')) {
                     var obj = {
-                        'label': $this.find('.facet-label').val(),
-                        'name': $this.find('.facet-name').text(),
-                        'type': $this.find('.facet-type').val()
+                        'label': $this.find('.eboy-label').val(),
+                        'name': $this.find('.eboy-name').text(),
+                        'type': $this.find('.eboy-type').val()
                     };
 
                     // Argument order changed in 3.0.0
@@ -404,7 +404,7 @@ window.EWP = {
                         obj = wp.hooks.applyFilters('eboywp/save/' + obj.type, $this, obj);
                     }
 
-                    data.facets.push(obj);
+                    data.eboys.push(obj);
                 }
                 // Template
                 else {

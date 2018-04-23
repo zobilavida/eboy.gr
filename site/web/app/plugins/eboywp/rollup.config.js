@@ -5,7 +5,7 @@ export default {
     input: [
         'assets/js/src/event-manager.js',
         'assets/js/src/front.js',
-        'assets/js/src/front-facets.js'
+        'assets/js/src/front-eboys.js'
     ],
     output: {
         file: 'assets/js/dist/front.min.js',

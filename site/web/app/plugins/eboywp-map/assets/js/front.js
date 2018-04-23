@@ -6,21 +6,21 @@ var EWP_MAP = EWP_MAP || {};
     EWP_MAP.activeMarker = null;
     EWP_MAP.is_filtering = false;
 
-    wp.hooks.addAction('eboywp/refresh/map', function($this, facet_name) {
+    wp.hooks.addAction('eboywp/refresh/map', function($this, eboy_name) {
         var selected_values = [];
 
         if (EWP_MAP.is_filtering) {
             selected_values = EWP_MAP.map.getBounds().toUrlValue().split(',');
         }
 
-        EWP.facets[facet_name] = selected_values;
-        EWP.frozen_facets[facet_name] = 'hard';
+        EWP.eboys[eboy_name] = selected_values;
+        EWP.frozen_eboys[eboy_name] = 'hard';
     });
 
     wp.hooks.addAction('eboywp/reset', function() {
-        $.each(EWP.facet_type, function(name, type) {
+        $.each(EWP.eboy_type, function(name, type) {
             if ('map' === type) {
-                EWP.frozen_facets[name] = 'hard';
+                EWP.frozen_eboys[name] = 'hard';
             }
         });
     });

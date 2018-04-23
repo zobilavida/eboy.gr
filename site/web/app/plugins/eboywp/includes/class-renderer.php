@@ -3,8 +3,8 @@
 class eboywp_Renderer
 {
 
-    /* (array) Data for the currently-selected facets */
-    public $facets;
+    /* (array) Data for the currently-selected eboys */
+    public $eboys;
 
     /* (string) Template name */
     public $template;
@@ -12,7 +12,7 @@ class eboywp_Renderer
     /* (array) WP_Query arguments */
     public $query_args;
 
-    /* (string) MySQL WHERE clause passed to each facet */
+    /* (string) MySQL WHERE clause passed to each eboy */
     public $where_clause = '';
 
     /* (array) AJAX parameters passed in */
@@ -30,7 +30,7 @@ class eboywp_Renderer
     /* (array) Data for the sort box dropdown */
     public $sort_options;
 
-    /* (array) Cache preloaded facet values */
+    /* (array) Cache preloaded eboy values */
     public $preloaded_values;
 
     /* (array) The final WP_Query object */
@@ -38,12 +38,12 @@ class eboywp_Renderer
 
 
     function __construct() {
-        $this->facet_types = EWP()->helper->facet_types;
+        $this->eboy_types = EWP()->helper->eboy_types;
     }
 
 
     /**
-     * Generate the facet output
+     * Generate the eboy output
      * @param array $params An array of arrays (see the eboywp->refresh() method)
      * @return array
      */
@@ -51,7 +51,7 @@ class eboywp_Renderer
         global $wpdb;
 
         $output = array(
-            'facets'        => array(),
+            'eboys'        => array(),
             'template'      => '',
             'settings'      => array(),
         );
@@ -70,25 +70,25 @@ class eboywp_Renderer
         $this->ajax_params = $params;
         $this->http_params = $params['http_params'];
 
-        // Validate facets
-        $this->facets = array();
-        foreach ( $params['facets'] as $f ) {
-            $name = $f['facet_name'];
-            $facet = EWP()->helper->get_facet_by_name( $name );
-            if ( $facet ) {
+        // Validate eboys
+        $this->eboys = array();
+        foreach ( $params['eboys'] as $f ) {
+            $name = $f['eboy_name'];
+            $eboy = EWP()->helper->get_eboy_by_name( $name );
+            if ( $eboy ) {
 
                 // Support the "eboywp_preload_url_vars" hook
                 if ( $first_load && empty( $f['selected_values'] ) && ! empty( $this->http_params['url_vars'][ $name ] ) ) {
                     $f['selected_values'] = $this->http_params['url_vars'][ $name ];
                 }
 
-                // Support commas within search / autocomplete facets
-                if ( 'search' == $facet['type'] || 'autocomplete' == $facet['type'] ) {
+                // Support commas within search / autocomplete eboys
+                if ( 'search' == $eboy['type'] || 'autocomplete' == $eboy['type'] ) {
                     $f['selected_values'] = implode( ',', (array) $f['selected_values'] );
                 }
 
-                $facet['selected_values'] = EWP()->helper->sanitize( $f['selected_values'] );
-                $this->facets[ $name ] = $facet;
+                $eboy['selected_values'] = EWP()->helper->sanitize( $f['selected_values'] );
+                $this->eboys[ $name ] = $eboy;
             }
         }
 
@@ -121,7 +121,7 @@ class eboywp_Renderer
             // Pagination
             $this->query_args['paged'] = empty( $params['paged'] ) ? 1 : (int) $params['paged'];
 
-            // Narrow the posts based on the selected facets
+            // Narrow the posts based on the selected eboys
             $post_ids = $this->get_filtered_post_ids();
 
             // Update the SQL query
@@ -167,7 +167,7 @@ class eboywp_Renderer
             $output['settings']['debug'] = array(
                 'query_args'    => $this->query_args,
                 'sql'           => $this->query->request,
-                'facets'        => $this->facets,
+                'eboys'        => $this->eboys,
                 'template'      => $this->template,
             );
         }
@@ -180,8 +180,8 @@ class eboywp_Renderer
             }
         }
 
-        // Don't render these facets
-        $frozen_facets = $params['frozen_facets'];
+        // Don't render these eboys
+        $frozen_eboys = $params['frozen_eboys'];
 
         // Calculate pager args
         $pager_args = array(
@@ -213,7 +213,7 @@ class eboywp_Renderer
             $output['counts'] = $this->get_result_count( $pager_args );
         }
 
-        // Skip facet updates when sorting or paginating
+        // Skip eboy updates when sorting or paginating
         if ( 0 < $params['soft_refresh'] ) {
             return apply_filters( 'eboywp_render_output', $output, $params );
         }
@@ -226,55 +226,55 @@ class eboywp_Renderer
             $output['sort'] = $this->get_sort_html();
         }
 
-        // Get facet data
-        foreach ( $this->facets as $facet_name => $the_facet ) {
-            $facet_type = $the_facet['type'];
+        // Get eboy data
+        foreach ( $this->eboys as $eboy_name => $the_eboy ) {
+            $eboy_type = $the_eboy['type'];
 
-            if ( ! isset( $this->facet_types[ $facet_type ] ) ) {
+            if ( ! isset( $this->eboy_types[ $eboy_type ] ) ) {
                 continue;
             }
 
-            // Get facet labels
-            $output['settings']['labels'][ $facet_name ] = eboywp_i18n( $the_facet['label'] );
+            // Get eboy labels
+            $output['settings']['labels'][ $eboy_name ] = eboywp_i18n( $the_eboy['label'] );
 
-            // Load all facets on back / forward button press (first_load = true)
+            // Load all eboys on back / forward button press (first_load = true)
             if ( ! $first_load ) {
 
-                // Skip frozen facets
-                if ( isset( $frozen_facets[ $facet_name ] ) ) {
+                // Skip frozen eboys
+                if ( isset( $frozen_eboys[ $eboy_name ] ) ) {
                     continue;
                 }
             }
 
             $args = array(
-                'facet' => $the_facet,
+                'eboy' => $the_eboy,
                 'where_clause' => $this->where_clause,
-                'selected_values' => $the_facet['selected_values'],
+                'selected_values' => $the_eboy['selected_values'],
             );
 
-            // Load facet values if needed
-            if ( method_exists( $this->facet_types[ $facet_type ], 'load_values' ) ) {
+            // Load eboy values if needed
+            if ( method_exists( $this->eboy_types[ $eboy_type ], 'load_values' ) ) {
 
                 // Grab preloaded values if available
-                if ( isset( $this->preloaded_values[ $facet_name ] ) ) {
-                    $args['values'] = $this->preloaded_values[ $facet_name ];
+                if ( isset( $this->preloaded_values[ $eboy_name ] ) ) {
+                    $args['values'] = $this->preloaded_values[ $eboy_name ];
                 }
                 else {
-                    $args['values'] = $this->facet_types[ $facet_type ]->load_values( $args );
+                    $args['values'] = $this->eboy_types[ $eboy_type ]->load_values( $args );
 
                     if ( $this->is_preload ) {
-                        $this->preloaded_values[ $facet_name ] = $args['values'];
+                        $this->preloaded_values[ $eboy_name ] = $args['values'];
                     }
                 }
             }
 
             // Filter the render args
-            $args = apply_filters( 'eboywp_facet_render_args', $args );
+            $args = apply_filters( 'eboywp_eboy_render_args', $args );
 
             // Return the number of available choices
             if ( isset( $args['values'] ) ) {
                 $num_choices = 0;
-                $is_ghost = EWP()->helper->facet_is( $the_facet, 'ghosts', 'yes' );
+                $is_ghost = EWP()->helper->eboy_is( $the_eboy, 'ghosts', 'yes' );
 
                 foreach ( $args['values'] as $choice ) {
                     if ( isset( $choice['counter'] ) && ( 0 < $choice['counter'] || $is_ghost ) ) {
@@ -282,23 +282,23 @@ class eboywp_Renderer
                     }
                 }
 
-                $output['settings']['num_choices'][ $facet_name ] = $num_choices;
+                $output['settings']['num_choices'][ $eboy_name ] = $num_choices;
             }
 
-            // Generate the facet HTML
-            $html = $this->facet_types[ $facet_type ]->render( $args );
-            $output['facets'][ $facet_name ] = apply_filters( 'eboywp_facet_html', $html, $args );
+            // Generate the eboy HTML
+            $html = $this->eboy_types[ $eboy_type ]->render( $args );
+            $output['eboys'][ $eboy_name ] = apply_filters( 'eboywp_eboy_html', $html, $args );
 
             // Return any JS settings
-            if ( method_exists( $this->facet_types[ $facet_type ], 'settings_js' ) ) {
-                $output['settings'][ $facet_name ] = $this->facet_types[ $facet_type ]->settings_js( $args );
+            if ( method_exists( $this->eboy_types[ $eboy_type ], 'settings_js' ) ) {
+                $output['settings'][ $eboy_name ] = $this->eboy_types[ $eboy_type ]->settings_js( $args );
             }
 
-            // Grab num_choices for slider facets
-            if ( 'slider' == $the_facet['type'] ) {
-                $min = $output['settings'][ $facet_name ]['range']['min'];
-                $max = $output['settings'][ $facet_name ]['range']['max'];
-                $output['settings']['num_choices'][ $facet_name ] = ( $min == $max ) ? 0 : 1;
+            // Grab num_choices for slider eboys
+            if ( 'slider' == $the_eboy['type'] ) {
+                $min = $output['settings'][ $eboy_name ]['range']['min'];
+                $max = $output['settings'][ $eboy_name ]['range']['max'];
+                $output['settings']['num_choices'][ $eboy_name ] = ( $min == $max ) ? 0 : 1;
             }
         }
 
@@ -379,8 +379,8 @@ class eboywp_Renderer
         // Store the unfiltered post IDs
         EWP()->unfiltered_post_ids = $post_ids;
 
-        foreach ( $this->facets as $facet_name => $the_facet ) {
-            $facet_type = $the_facet['type'];
+        foreach ( $this->eboys as $eboy_name => $the_eboy ) {
+            $eboy_type = $the_eboy['type'];
 
             // Stop looping
             if ( empty( $post_ids ) ) {
@@ -388,29 +388,29 @@ class eboywp_Renderer
             }
 
             $matches = array();
-            $selected_values = $the_facet['selected_values'];
+            $selected_values = $the_eboy['selected_values'];
 
             if ( empty( $selected_values ) ) {
                 continue;
             }
 
-            // Handle each facet
-            if ( isset( $this->facet_types[ $facet_type ] ) ) {
+            // Handle each eboy
+            if ( isset( $this->eboy_types[ $eboy_type ] ) ) {
 
                 $hook_params = array(
-                    'facet' => $the_facet,
+                    'eboy' => $the_eboy,
                     'selected_values' => $selected_values,
                 );
 
                 // Hook to support custom filter_posts() handler
-                $matches = apply_filters( 'eboywp_facet_filter_posts', false, $hook_params );
+                $matches = apply_filters( 'eboywp_eboy_filter_posts', false, $hook_params );
 
                 if ( false === $matches ) {
-                    $matches = $this->facet_types[ $facet_type ]->filter_posts( $hook_params );
+                    $matches = $this->eboy_types[ $eboy_type ]->filter_posts( $hook_params );
                 }
             }
 
-            // Skip this facet
+            // Skip this eboy
             if ( 'continue' == $matches ) {
                 continue;
             }
@@ -418,12 +418,12 @@ class eboywp_Renderer
             // Force array
             $matches = (array) $matches;
 
-            // Store post IDs per facet
+            // Store post IDs per eboy
             // Required for dropdowns and checkboxes in "or" mode
-            EWP()->or_values[ $facet_name ] = $matches;
+            EWP()->or_values[ $eboy_name ] = $matches;
 
-            // Preserve post ID order for search facets
-            if ( 'search' == $facet_type ) {
+            // Preserve post ID order for search eboys
+            if ( 'search' == $eboy_type ) {
                 $this->is_search = true;
                 $intersected_ids = array();
                 foreach ( $matches as $match ) {

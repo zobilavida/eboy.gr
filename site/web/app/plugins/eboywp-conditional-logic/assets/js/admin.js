@@ -147,7 +147,7 @@ var EWPCL = EWPCL || {
         $condition.find('.condition-value').show();
         $condition.find('.condition-compare').show();
         var is_template = ( 'template-' == val.substr(0, 9));
-        if ('facets-empty' == val || 'facets-not-empty' == val || is_template) {
+        if ('eboys-empty' == val || 'eboys-not-empty' == val || is_template) {
             $condition.find('.condition-compare').hide();
             $condition.find('.condition-value').hide();
         }
@@ -165,20 +165,20 @@ var EWPCL = EWPCL || {
 
 
     $(document).on('click', '.eboywp-save', function() {
-        $('.fwpcl-response').removeClass('dashicons-yes');
-        $('.fwpcl-response').addClass('dashicons-image-rotate')
-        $('.fwpcl-response').show();
+        $('.ewpcl-response').removeClass('dashicons-yes');
+        $('.ewpcl-response').addClass('dashicons-image-rotate')
+        $('.ewpcl-response').show();
 
         var data = EWPCL.parse_data();
 
         $.post(ajaxurl, {
-            'action': 'fwpcl_save',
+            'action': 'ewpcl_save',
             'data': JSON.stringify(data)
         }, function(response) {
-            $('.fwpcl-response').removeClass('dashicons-image-rotate');
-            $('.fwpcl-response').addClass('dashicons-yes');
+            $('.ewpcl-response').removeClass('dashicons-image-rotate');
+            $('.ewpcl-response').addClass('dashicons-yes');
             setTimeout(function() {
-                $('.fwpcl-response').stop().fadeOut();
+                $('.ewpcl-response').stop().fadeOut();
             }, 4000);
         });
     });
@@ -296,14 +296,14 @@ var EWPCL = EWPCL || {
     });
 
 
-    $(document).on('click', '.fwpcl-import', function() {
-        $('.fwpcl-import-response').html('Importing...');
+    $(document).on('click', '.ewpcl-import', function() {
+        $('.ewpcl-import-response').html('Importing...');
         $.post(ajaxurl, {
-            action: 'fwpcl_import',
+            action: 'ewpcl_import',
             import_code: $('.import-code').val(),
         },
         function(response) {
-            $('.fwpcl-import-response').html(response);
+            $('.ewpcl-import-response').html(response);
             setTimeout(function() {
                 window.location.reload();
             }, 1500);

@@ -1,9 +1,9 @@
 (function($) {
 
-    var facets_in_use = function() {
+    var eboys_in_use = function() {
         var in_use = false;
 
-        $.each(EWP.facets, function(name, val) {
+        $.each(EWP.eboys, function(name, val) {
             if (0 < val.length && 'paged' !== name) {
                 in_use = true;
                 return false; // exit loop
@@ -17,11 +17,11 @@
         var is_valid = false;
         var compare_field;
 
-        if ('facets-empty' == cond.object) {
-            return false === facets_in_use();
+        if ('eboys-empty' == cond.object) {
+            return false === eboys_in_use();
         }
-        else if ('facets-not-empty' == cond.object) {
-            return true === facets_in_use();
+        else if ('eboys-not-empty' == cond.object) {
+            return true === eboys_in_use();
         }
         else if ('uri' == cond.object) {
             compare_field = EWP_HTTP.uri;
@@ -32,12 +32,12 @@
             }
             compare_field = EWP.settings.pager.total_rows;
         }
-        else if ('facet-' == cond.object.substr(0, 6)) {
-            var facet_name = cond.object.substr(6);
-            if ('undefined' === typeof EWP.facets[facet_name]) {
+        else if ('eboy-' == cond.object.substr(0, 6)) {
+            var eboy_name = cond.object.substr(6);
+            if ('undefined' === typeof EWP.eboys[eboy_name]) {
                 return false;
             }
-            compare_field = EWP.facets[facet_name];
+            compare_field = EWP.eboys[eboy_name];
         }
         else if ('template-' == cond.object.substr(0, 9)) {
             compare_field = EWP.template;
@@ -85,11 +85,11 @@
         if ('template' == action.object) {
             item = $('.eboywp-template');
         }
-        else if ('facets' == action.object) {
-            item = $('.eboywp-facet');
+        else if ('eboys' == action.object) {
+            item = $('.eboywp-eboy');
         }
-        else if ('facet-' == action.object.substr(0, 6)) {
-            item = $('.eboywp-facet-' + action.object.substr(6));
+        else if ('eboy-' == action.object.substr(0, 6)) {
+            item = $('.eboywp-eboy-' + action.object.substr(6));
         }
         else if ('custom' == action.object) {
             is_custom = true;
@@ -119,8 +119,8 @@
                     var tmp = { 'empty': [], 'nonempty': [] };
                     $.each(EWP.settings.num_choices, function(key, val) {
                         (0 === val) ?
-                            tmp['empty'].push('.eboywp-facet-' + key) :
-                            tmp['nonempty'].push('.eboywp-facet-' + key);
+                            tmp['empty'].push('.eboywp-eboy-' + key) :
+                            tmp['nonempty'].push('.eboywp-eboy-' + key);
                     });
 
                     var $EMPTY = $(tmp['empty'].join(', '));

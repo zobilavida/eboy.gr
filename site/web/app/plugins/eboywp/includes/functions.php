@@ -30,11 +30,11 @@ function eboywp_i18n( $string ) {
  * Support SQL modifications
  * @since 2.7
  */
-function eboywp_sql( $sql, $facet ) {
+function eboywp_sql( $sql, $eboy ) {
     global $wpdb;
 
-    $sql = apply_filters( 'eboywp_wpdb_sql', $sql, $facet );
-    return apply_filters( 'eboywp_wpdb_get_col', $wpdb->get_col( $sql ), $sql, $facet );
+    $sql = apply_filters( 'eboywp_wpdb_sql', $sql, $eboy );
+    return apply_filters( 'eboywp_wpdb_get_col', $wpdb->get_col( $sql ), $sql, $eboy );
 }
 
 

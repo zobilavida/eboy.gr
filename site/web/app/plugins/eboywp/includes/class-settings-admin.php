@@ -57,7 +57,7 @@ class eboywp_Settings_Admin
                     ),
                     'wc_index_all' => array(
                         'label' => __( 'Include all products?', 'EWP' ),
-                        'notes' => __( 'Show facet choices for out-of-stock products?', 'EWP' ),
+                        'notes' => __( 'Show eboy choices for out-of-stock products?', 'EWP' ),
                         'html' => $this->get_field_html( 'wc_index_all', 'dropdown', array(
                             'choices' => array( 'no' => __( 'No', 'EWP' ), 'yes' => __( 'Yes', 'EWP' ) )
                         ) )
@@ -143,7 +143,7 @@ class eboywp_Settings_Admin
 
 
     /**
-     * Get an array of all facets and templates
+     * Get an array of all eboys and templates
      * @since 3.0.0
      */
     function get_export_choices() {
@@ -151,8 +151,8 @@ class eboywp_Settings_Admin
 
         $settings = EWP()->helper->settings;
 
-        foreach ( $settings['facets'] as $facet ) {
-            $export['facet-' . $facet['name']] = 'Facet - ' . $facet['label'];
+        foreach ( $settings['eboys'] as $eboy ) {
+            $export['eboy-' . $eboy['name']] = 'Eboy - ' . $eboy['label'];
         }
 
         foreach ( $settings['templates'] as $template ) {

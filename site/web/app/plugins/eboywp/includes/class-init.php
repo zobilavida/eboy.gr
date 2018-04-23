@@ -47,7 +47,7 @@ class eboywp_Init
         new eboywp_API_Fetch();
 
         EWP()->helper       = new eboywp_Helper();
-        EWP()->facet        = new eboywp_Renderer();
+        EWP()->eboy        = new eboywp_Renderer();
         EWP()->diff         = new eboywp_Diff();
         EWP()->indexer      = new eboywp_Indexer();
         EWP()->display      = new eboywp_Display();

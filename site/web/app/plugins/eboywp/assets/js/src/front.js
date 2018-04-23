@@ -7,7 +7,7 @@ window.EWP = window.EWP || {};
     }
 
     var defaults = {
-        'facets': {},
+        'eboys': {},
         'template': null,
         'settings': {},
         'is_reset': false,
@@ -15,8 +15,8 @@ window.EWP = window.EWP || {};
         'is_bfcache': false,
         'auto_refresh': true,
         'soft_refresh': false,
-        'frozen_facets':{},
-        'facet_type': {},
+        'frozen_eboys':{},
+        'eboy_type': {},
         'loaded': false,
         'jqXHR': false,
         'extras': {},
@@ -121,7 +121,7 @@ window.EWP = window.EWP || {};
     }
 
 
-    // Refresh on each facet interaction?
+    // Refresh on each eboy interaction?
     EWP.autoload = function() {
         if (EWP.auto_refresh && ! EWP.is_refresh) {
             EWP.refresh();
@@ -132,9 +132,9 @@ window.EWP = window.EWP || {};
     EWP.refresh = function() {
         EWP.is_refresh = true;
 
-        // Load facet DOM values
+        // Load eboy DOM values
         if (! EWP.is_reset) {
-            EWP.parse_facets();
+            EWP.parse_eboys();
         }
 
         // Check the URL on pageload
@@ -158,10 +158,10 @@ window.EWP = window.EWP || {};
             EWP.fetch_data();
         }
 
-        // Unfreeze any soft-frozen facets
-        $.each(EWP.frozen_facets, function(name, freeze_type) {
+        // Unfreeze any soft-frozen eboys
+        $.each(EWP.frozen_eboys, function(name, freeze_type) {
             if ('hard' !== freeze_type) {
-                delete EWP.frozen_facets[name];
+                delete EWP.frozen_eboys[name];
             }
         });
 
@@ -173,24 +173,24 @@ window.EWP = window.EWP || {};
     }
 
 
-    EWP.parse_facets = function() {
-        EWP.facets = {};
+    EWP.parse_eboys = function() {
+        EWP.eboys = {};
 
-        $('.eboywp-facet').each(function() {
+        $('.eboywp-eboy').each(function() {
             var $this = $(this);
-            var facet_name = $this.attr('data-name');
-            var facet_type = $this.attr('data-type');
+            var eboy_name = $this.attr('data-name');
+            var eboy_type = $this.attr('data-type');
 
-            // Store the facet type
-            EWP.facet_type[facet_name] = facet_type;
+            // Store the eboy type
+            EWP.eboy_type[eboy_name] = eboy_type;
 
             // Plugin hook
-            wp.hooks.doAction('eboywp/refresh/' + facet_type, $this, facet_name);
+            wp.hooks.doAction('eboywp/refresh/' + eboy_type, $this, eboy_name);
 
             // Support custom loader
             var do_loader = true;
             if (EWP.loaded) {
-                if (EWP.soft_refresh || isset(EWP.frozen_facets[facet_name])) {
+                if (EWP.soft_refresh || isset(EWP.frozen_eboys[eboy_name])) {
                     do_loader = false;
                 }
             }
@@ -198,25 +198,25 @@ window.EWP = window.EWP || {};
             if (do_loader) {
                 EWP.loading_handler({
                     'element': $this,
-                    'facet_name': facet_name,
-                    'facet_type': facet_type
+                    'eboy_name': eboy_name,
+                    'eboy_type': eboy_type
                 });
             }
         });
 
         // Add pagination to the URL hash
         if (1 < EWP.paged) {
-            EWP.facets['paged'] = EWP.paged;
+            EWP.eboys['paged'] = EWP.paged;
         }
 
         // Add "per page" to the URL hash
         if (EWP.extras.per_page && 'default' !== EWP.extras.per_page) {
-            EWP.facets['per_page'] = EWP.extras.per_page;
+            EWP.eboys['per_page'] = EWP.extras.per_page;
         }
 
         // Add sorting to the URL hash
         if (EWP.extras.sort && 'default' !== EWP.extras.sort) {
-            EWP.facets['sort'] = EWP.extras.sort;
+            EWP.eboys['sort'] = EWP.extras.sort;
         }
     }
 
@@ -259,7 +259,7 @@ window.EWP = window.EWP || {};
         hash = hash.join('&');
 
         // eboywp URL variables
-        var EWP_vars = EWP.helper.serialize(EWP.facets, EWP_JSON.prefix);
+        var EWP_vars = EWP.helper.serialize(EWP.eboys, EWP_JSON.prefix);
 
         if ('' !== hash) {
             query_string += hash;
@@ -303,9 +303,9 @@ window.EWP = window.EWP || {};
         });
         hash = hash.join('&');
 
-        // Reset facet values
-        $.each(EWP.facets, function(f) {
-            EWP.facets[f] = [];
+        // Reset eboy values
+        $.each(EWP.eboys, function(f) {
+            EWP.eboys[f] = [];
         });
 
         EWP.paged = 1;
@@ -324,12 +324,12 @@ window.EWP = window.EWP || {};
                     EWP.extras[obj] = val;
                 }
                 else if ('' !== val) {
-                    var type = isset(EWP.facet_type[obj]) ? EWP.facet_type[obj] : '';
+                    var type = isset(EWP.eboy_type[obj]) ? EWP.eboy_type[obj] : '';
                     if ('search' === type || 'autocomplete' === type) {
-                        EWP.facets[obj] = decodeURIComponent(val);
+                        EWP.eboys[obj] = decodeURIComponent(val);
                     }
                     else {
-                        EWP.facets[obj] = decodeURIComponent(val).split(',');
+                        EWP.eboys[obj] = decodeURIComponent(val).split(',');
                     }
                 }
             });
@@ -339,8 +339,8 @@ window.EWP = window.EWP || {};
 
     EWP.build_post_data = function() {
         return {
-            'facets': JSON.stringify(EWP.facets),
-            'frozen_facets': EWP.frozen_facets,
+            'eboys': JSON.stringify(EWP.eboys),
+            'frozen_eboys': EWP.frozen_eboys,
             'http_params': EWP_HTTP,
             'template': EWP.template,
             'extras': EWP.extras,
@@ -373,7 +373,7 @@ window.EWP = window.EWP || {};
                     EWP.render(json_object);
                 }
                 catch(e) {
-                    var pos = response.indexOf('{"facets');
+                    var pos = response.indexOf('{"eboys');
                     if (-1 < pos) {
                         var error = response.substr(0, pos);
                         var json_object = $.parseJSON(response.substr(pos));
@@ -436,9 +436,9 @@ window.EWP = window.EWP || {};
             }
         }
 
-        // Populate each facet box
-        $.each(response.facets, function(name, val) {
-            $('.eboywp-facet-' + name).html(val);
+        // Populate each eboy box
+        $.each(response.eboys, function(name, val) {
+            $('.eboywp-eboy-' + name).html(val);
         });
 
         // Populate the counts
@@ -465,7 +465,7 @@ window.EWP = window.EWP || {};
             $('.eboywp-sort-select').val(EWP.extras.sort);
         }
 
-        // Populate the settings object (iterate to preserve static facet settings)
+        // Populate the settings object (iterate to preserve static eboy settings)
         $.each(response.settings, function(key, val) {
             EWP.settings[key] = val;
         });
@@ -491,30 +491,30 @@ window.EWP = window.EWP || {};
     }
 
 
-    EWP.reset = function(facet_name, facet_value) {
-        EWP.parse_facets();
+    EWP.reset = function(eboy_name, eboy_value) {
+        EWP.parse_eboys();
 
-        if (isset(facet_name)) {
-            var values = EWP.facets[facet_name];
-            if (isset(facet_value) && values.length > 1) {
-                var arr_idx = values.indexOf(facet_value);
+        if (isset(eboy_name)) {
+            var values = EWP.eboys[eboy_name];
+            if (isset(eboy_value) && values.length > 1) {
+                var arr_idx = values.indexOf(eboy_value);
                 if (-1 < arr_idx) {
                     values.splice(arr_idx, 1);
-                    EWP.facets[facet_name] = values;
+                    EWP.eboys[eboy_name] = values;
                 }
             }
             else {
-                EWP.facets[facet_name] = [];
-                delete EWP.frozen_facets[facet_name];
+                EWP.eboys[eboy_name] = [];
+                delete EWP.frozen_eboys[eboy_name];
             }
         }
         else {
-            $.each(EWP.facets, function(f) {
-                EWP.facets[f] = [];
+            $.each(EWP.eboys, function(f) {
+                EWP.eboys[f] = [];
             });
 
             EWP.extras.sort = 'default';
-            EWP.frozen_facets = {};
+            EWP.frozen_eboys = {};
         }
 
         wp.hooks.doAction('eboywp/reset');
@@ -562,9 +562,9 @@ window.EWP = window.EWP || {};
         var $div = $('.eboywp-template:first');
         EWP.template = $div.is('[data-name]') ? $div.attr('data-name') : 'wp';
 
-        // Facets inside the template?
-        if (0 < $div.find('.eboywp-facet').length) {
-            console.error('Facets should not be inside the "eboywp-template" container');
+        // Eboys inside the template?
+        if (0 < $div.find('.eboywp-eboy').length) {
+            console.error('Eboys should not be inside the "eboywp-template" container');
         }
 
         wp.hooks.doAction('eboywp/ready');
@@ -573,15 +573,15 @@ window.EWP = window.EWP || {};
         if (EWP.extras.selections) {
             wp.hooks.addAction('eboywp/loaded', function() {
                 var selections = '';
-                $.each(EWP.facets, function(key, val) {
+                $.each(EWP.eboys, function(key, val) {
                     if (val.length < 1 || ! isset(EWP.settings.labels[key])) {
-                        return true; // skip this facet
+                        return true; // skip this eboy
                     }
 
                     var choices = val;
-                    var facet_type = $('.eboywp-facet-' + key).attr('data-type');
-                    choices = wp.hooks.applyFilters('eboywp/selections/' + facet_type, choices, {
-                        'el': $('.eboywp-facet-' + key),
+                    var eboy_type = $('.eboywp-eboy-' + key).attr('data-type');
+                    choices = wp.hooks.applyFilters('eboywp/selections/' + eboy_type, choices, {
+                        'el': $('.eboywp-eboy-' + key),
                         'selected_values': choices
                     });
 
@@ -597,7 +597,7 @@ window.EWP = window.EWP || {};
                         values += '<span class="eboywp-selection-value" data-value="' + choice.value + '">' + EWP.helper.escape_html(choice.label) + '</span>';
                     });
 
-                    selections += '<li data-facet="' + key + '"><span class="eboywp-selection-label">' + EWP.settings.labels[key] + ':</span> ' + values + '</li>';
+                    selections += '<li data-eboy="' + key + '"><span class="eboywp-selection-label">' + EWP.settings.labels[key] + ':</span> ' + values + '</li>';
                 });
 
                 if ('' !== selections) {
@@ -614,14 +614,14 @@ window.EWP = window.EWP || {};
                 return;
             }
 
-            var facet_name = $(this).closest('li').attr('data-facet');
-            var facet_value = $(this).attr('data-value');
+            var eboy_name = $(this).closest('li').attr('data-eboy');
+            var eboy_value = $(this).attr('data-value');
 
-            if ('' != facet_value) {
-                EWP.reset(facet_name, facet_value);
+            if ('' != eboy_value) {
+                EWP.reset(eboy_name, eboy_value);
             }
             else {
-                EWP.reset(facet_name);
+                EWP.reset(eboy_name);
             }
         });
 

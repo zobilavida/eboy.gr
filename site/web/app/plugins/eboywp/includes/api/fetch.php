@@ -36,7 +36,7 @@ class eboywp_API_Fetch
         global $wpdb;
 
         $defaults = array(
-            'facets' => array(
+            'eboys' => array(
                 // 'category' => array( 'acf' )
             ),
             'query_args' => array(
@@ -51,9 +51,9 @@ class eboywp_API_Fetch
         );
 
         $params = array_merge( $defaults, $params );
-        $facet_types = EWP()->helper->facet_types;
-        $valid_facets = array();
-        $facets = array();
+        $eboy_types = EWP()->helper->eboy_types;
+        $valid_eboys = array();
+        $eboys = array();
 
         // Validate input
         $page = (int) $params['query_args']['paged'];
@@ -66,22 +66,22 @@ class eboywp_API_Fetch
         $params['query_args']['paged'] = $page;
         $params['query_args']['posts_per_page'] = $per_page;
 
-        // Generate EWP()->facet->facets
-        // Required by EWP()->helper->facet_setting_exists()
-        foreach ( $params['facets'] as $facet_name => $facet_value ) {
-            $facet = EWP()->helper->get_facet_by_name( $facet_name );
-            if ( false !== $facet ) {
-                $facet['selected_values'] = (array) $facet_value;
-                $valid_facets[ $facet_name ] = $facet;
-                EWP()->facet->facets[] = $facet;
+        // Generate EWP()->eboy->eboys
+        // Required by EWP()->helper->eboy_setting_exists()
+        foreach ( $params['eboys'] as $eboy_name => $eboy_value ) {
+            $eboy = EWP()->helper->get_eboy_by_name( $eboy_name );
+            if ( false !== $eboy ) {
+                $eboy['selected_values'] = (array) $eboy_value;
+                $valid_eboys[ $eboy_name ] = $eboy;
+                EWP()->eboy->eboys[] = $eboy;
             }
         }
 
         // Get bucket of post IDs
-        EWP()->facet->query_args = $params['query_args'];
-        $post_ids = EWP()->facet->get_filtered_post_ids();
+        EWP()->eboy->query_args = $params['query_args'];
+        $post_ids = EWP()->eboy->get_filtered_post_ids();
 
-        // SQL WHERE used by facets
+        // SQL WHERE used by eboys
         $where_clause = empty( $post_ids ) ? '' : "AND post_id IN (" . implode( ',', $post_ids ) . ")";
 
         // Check if empty
@@ -89,41 +89,41 @@ class eboywp_API_Fetch
             $post_ids = array();
         }
 
-        // Get valid facets and their values
-        foreach ( $valid_facets as $facet_name => $facet ) {
+        // Get valid eboys and their values
+        foreach ( $valid_eboys as $eboy_name => $eboy ) {
             $args = array(
-                'facet' => $facet,
+                'eboy' => $eboy,
                 'where_clause' => $where_clause,
-                'selected_values' => $facet['selected_values'],
+                'selected_values' => $eboy['selected_values'],
             );
 
-            $facet_data = array(
-                'name'          => $facet['name'],
-                'label'         => $facet['label'],
-                'type'          => $facet['type'],
-                'selected'      => $facet['selected_values'],
+            $eboy_data = array(
+                'name'          => $eboy['name'],
+                'label'         => $eboy['label'],
+                'type'          => $eboy['type'],
+                'selected'      => $eboy['selected_values'],
             );
 
-            // Load facet choices if available
-            if ( method_exists( $facet_types[ $facet['type'] ], 'load_values' ) ) {
-                $choices = $facet_types[ $facet['type'] ]->load_values( $args );
+            // Load eboy choices if available
+            if ( method_exists( $eboy_types[ $eboy['type'] ], 'load_values' ) ) {
+                $choices = $eboy_types[ $eboy['type'] ]->load_values( $args );
                 foreach ( $choices as $key => $choice ) {
                     $choices[ $key ] = array(
-                        'value'     => $choice['facet_value'],
-                        'label'     => $choice['facet_display_value'],
+                        'value'     => $choice['eboy_value'],
+                        'label'     => $choice['eboy_display_value'],
                         'depth'     => (int) $choice['depth'],
                         'count'     => (int) $choice['counter'],
                     );
                 }
-                $facet_data['choices'] = $choices;
+                $eboy_data['choices'] = $choices;
             }
 
-            // Load facet settings if available
-            if ( method_exists( $facet_types[ $facet['type'] ], 'settings_js' ) ) {
-                $facet_data['settings'] = $facet_types[ $facet['type'] ]->settings_js( $args );
+            // Load eboy settings if available
+            if ( method_exists( $eboy_types[ $eboy['type'] ], 'settings_js' ) ) {
+                $eboy_data['settings'] = $eboy_types[ $eboy['type'] ]->settings_js( $args );
             }
 
-            $facets[ $facet_name ] = $facet_data;
+            $eboys[ $eboy_name ] = $eboy_data;
         }
 
         $total_rows = count( $post_ids );
@@ -147,7 +147,7 @@ class eboywp_API_Fetch
         // Generate the output
         $output = array(
             'results' => $post_ids,
-            'facets' => $facets,
+            'eboys' => $eboys,
             'pager' => array(
                 'page' => $page,
                 'per_page' => $per_page,

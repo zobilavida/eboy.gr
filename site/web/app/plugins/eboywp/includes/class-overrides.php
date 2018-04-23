@@ -20,21 +20,21 @@ class eboywp_Overrides
             return $params;
         }
 
-        $facet = EWP()->helper->get_facet_by_name( $params['facet_name'] );
+        $eboy = EWP()->helper->get_eboy_by_name( $params['eboy_name'] );
 
         // Support "Other data source" values
-        if ( ! empty( $facet['source_other'] ) ) {
+        if ( ! empty( $eboy['source_other'] ) ) {
             $other_params = $params;
-            $other_params['facet_source'] = $facet['source_other'];
+            $other_params['eboy_source'] = $eboy['source_other'];
             $rows = $class->get_row_data( $other_params );
-            $params['facet_display_value'] = $rows[0]['facet_display_value'];
+            $params['eboy_display_value'] = $rows[0]['eboy_display_value'];
         }
 
         // Store raw numbers to format later, if needed
-        if ( in_array( $facet['type'], array( 'number_range', 'slider' ) ) ) {
+        if ( in_array( $eboy['type'], array( 'number_range', 'slider' ) ) ) {
             $this->raw = array(
-                'value' => $params['facet_value'],
-                'label' => $params['facet_display_value']
+                'value' => $params['eboy_value'],
+                'label' => $params['eboy_display_value']
             );
         }
 
@@ -47,8 +47,8 @@ class eboywp_Overrides
      */
     function format_numbers( $params, $class ) {
 
-        $value = $params['facet_value'];
-        $label = $params['facet_display_value'];
+        $value = $params['eboy_value'];
+        $label = $params['eboy_display_value'];
 
         if ( empty( $this->raw ) ) {
             return $params;
@@ -56,8 +56,8 @@ class eboywp_Overrides
 
         // Only format if un-altered
         if ( $this->raw['value'] === $value && $this->raw['label'] === $label ) {
-            $params['facet_value'] = EWP()->helper->format_number( $this->raw['value'] );
-            $params['facet_display_value'] = EWP()->helper->format_number( $this->raw['label'] );
+            $params['eboy_value'] = EWP()->helper->format_number( $this->raw['value'] );
+            $params['eboy_display_value'] = EWP()->helper->format_number( $this->raw['label'] );
         }
 
         $this->raw = null;

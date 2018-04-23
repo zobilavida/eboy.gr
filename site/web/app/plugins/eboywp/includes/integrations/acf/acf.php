@@ -12,9 +12,9 @@ class eboywp_Integration_ACF
     function __construct() {
         $this->acf_version = acf()->settings['version'];
 
-        add_filter( 'eboywp_facet_sources', array( $this, 'facet_sources' ) );
+        add_filter( 'eboywp_eboy_sources', array( $this, 'eboy_sources' ) );
         add_filter( 'eboywp_indexer_query_args', array( $this, 'lookup_acf_fields' ) );
-        add_filter( 'eboywp_indexer_post_facet', array( $this, 'index_acf_values' ), 1, 2 );
+        add_filter( 'eboywp_indexer_post_eboy', array( $this, 'index_acf_values' ), 1, 2 );
         add_filter( 'eboywp_acf_display_value', array( $this, 'index_source_other' ), 1, 2 );
     }
 
@@ -22,7 +22,7 @@ class eboywp_Integration_ACF
     /**
      * Add ACF fields to the Data Sources dropdown
      */
-    function facet_sources( $sources ) {
+    function eboy_sources( $sources ) {
         $fields = $this->get_fields();
 
         $sources['acf'] = array(
@@ -46,10 +46,10 @@ class eboywp_Integration_ACF
      */
     function index_acf_values( $return, $params ) {
         $defaults = $params['defaults'];
-        $facet = $params['facet'];
+        $eboy = $params['eboy'];
 
-        if ( isset( $facet['source'] ) && 'acf/' == substr( $facet['source'], 0, 4 ) ) {
-            $hierarchy = explode( '/', substr( $facet['source'], 4 ) );
+        if ( isset( $eboy['source'] ) && 'acf/' == substr( $eboy['source'], 0, 4 ) ) {
+            $hierarchy = explode( '/', substr( $eboy['source'], 4 ) );
 
             // Support "User Post Type" plugin
             $object_id = apply_filters( 'eboywp_acf_object_id', $defaults['post_id'] );
@@ -187,8 +187,8 @@ class eboywp_Integration_ACF
                         $field['choices'][ $val ] :
                         $val;
 
-                    $params['facet_value'] = $val;
-                    $params['facet_display_value'] = $display_value;
+                    $params['eboy_value'] = $val;
+                    $params['eboy_display_value'] = $display_value;
                     EWP()->indexer->index_row( $params );
                 }
             }
@@ -198,8 +198,8 @@ class eboywp_Integration_ACF
         elseif ( 'relationship' == $field['type'] || 'post_object' == $field['type'] ) {
             if ( false !== $value ) {
                 foreach ( (array) $value as $val ) {
-                    $params['facet_value'] = $val;
-                    $params['facet_display_value'] = get_the_title( $val );
+                    $params['eboy_value'] = $val;
+                    $params['eboy_display_value'] = get_the_title( $val );
                     EWP()->indexer->index_row( $params );
                 }
             }
@@ -211,8 +211,8 @@ class eboywp_Integration_ACF
                 foreach ( (array) $value as $val ) {
                     $user = get_user_by( 'id', $val );
                     if ( false !== $user ) {
-                        $params['facet_value'] = $val;
-                        $params['facet_display_value'] = $user->display_name;
+                        $params['eboy_value'] = $val;
+                        $params['eboy_display_value'] = $user->display_name;
                         EWP()->indexer->index_row( $params );
                     }
                 }
@@ -228,8 +228,8 @@ class eboywp_Integration_ACF
                     $term_id = (int) $val;
                     $term = $wpdb->get_row( "SELECT name, slug FROM {$wpdb->terms} WHERE term_id = '$term_id' LIMIT 1" );
                     if ( null !== $term ) {
-                        $params['facet_value'] = $term->slug;
-                        $params['facet_display_value'] = $term->name;
+                        $params['eboy_value'] = $term->slug;
+                        $params['eboy_display_value'] = $term->name;
                         $params['term_id'] = $term_id;
                         EWP()->indexer->index_row( $params );
                     }
@@ -240,32 +240,32 @@ class eboywp_Integration_ACF
         // date_picker
         elseif ( 'date_picker' == $field['type'] ) {
             $formatted = $this->format_date( $value );
-            $params['facet_value'] = $formatted;
-            $params['facet_display_value'] = apply_filters( 'eboywp_acf_display_value', $formatted, $params );
+            $params['eboy_value'] = $formatted;
+            $params['eboy_display_value'] = apply_filters( 'eboywp_acf_display_value', $formatted, $params );
             EWP()->indexer->index_row( $params );
         }
 
         // true_false
         elseif ( 'true_false' == $field['type'] ) {
             $display_value = ( 0 < (int) $value ) ? __( 'Yes', 'EWP' ) : __( 'No', 'EWP' );
-            $params['facet_value'] = $value;
-            $params['facet_display_value'] = $display_value;
+            $params['eboy_value'] = $value;
+            $params['eboy_display_value'] = $display_value;
             EWP()->indexer->index_row( $params );
         }
 
         // google_map
         elseif ( 'google_map' == $field['type'] ) {
             if ( isset( $value['lat'] ) && isset( $value['lng'] ) ) {
-                $params['facet_value'] = $value['lat'];
-                $params['facet_display_value'] = $value['lng'];
+                $params['eboy_value'] = $value['lat'];
+                $params['eboy_display_value'] = $value['lng'];
                 EWP()->indexer->index_row( $params );
             }
         }
 
         // text
         else {
-            $params['facet_value'] = $value;
-            $params['facet_display_value'] = apply_filters( 'eboywp_acf_display_value', $value, $params );
+            $params['eboy_value'] = $value;
+            $params['eboy_display_value'] = apply_filters( 'eboywp_acf_display_value', $value, $params );
             EWP()->indexer->index_row( $params );
         }
     }
@@ -275,10 +275,10 @@ class eboywp_Integration_ACF
      * Handle "source_other" setting
      */
     function index_source_other( $value, $params ) {
-        $facet = EWP()->helper->get_facet_by_name( $params['facet_name'] );
+        $eboy = EWP()->helper->get_eboy_by_name( $params['eboy_name'] );
 
-        if ( ! empty( $facet['source_other'] ) ) {
-            $hierarchy = explode( '/', substr( $facet['source_other'], 4 ) );
+        if ( ! empty( $eboy['source_other'] ) ) {
+            $hierarchy = explode( '/', substr( $eboy['source_other'], 4 ) );
 
             // Support "User Post Type" plugin
             $object_id = apply_filters( 'eboywp_acf_object_id', $params['post_id'] );
@@ -294,7 +294,7 @@ class eboywp_Integration_ACF
             }
         }
 
-        if ( 'date_range' == $facet['type'] ) {
+        if ( 'date_range' == $eboy['type'] ) {
             $value = $this->format_date( $value );
         }
 

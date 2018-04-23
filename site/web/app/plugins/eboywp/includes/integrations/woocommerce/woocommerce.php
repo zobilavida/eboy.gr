@@ -11,20 +11,20 @@ class eboywp_Integration_WooCommerce
 
     function __construct() {
         add_action( 'wp_enqueue_scripts', array( $this, 'front_scripts' ) );
-        add_filter( 'eboywp_facet_sources', array( $this, 'facet_sources' ) );
-        add_filter( 'eboywp_indexer_post_facet', array( $this, 'index_woo_values' ), 10, 2 );
+        add_filter( 'eboywp_eboy_sources', array( $this, 'eboy_sources' ) );
+        add_filter( 'eboywp_indexer_post_eboy', array( $this, 'index_woo_values' ), 10, 2 );
 
         // Support WooCommerce product variations
         $is_enabled = ( 'yes' === EWP()->helper->get_setting( 'wc_enable_variations', 'no' ) );
 
         if ( apply_filters( 'eboywp_enable_product_variations', $is_enabled ) ) {
-            add_filter( 'eboywp_indexer_post_facet_defaults', array( $this, 'force_taxonomy' ), 10, 2 );
+            add_filter( 'eboywp_indexer_post_eboy_defaults', array( $this, 'force_taxonomy' ), 10, 2 );
             add_filter( 'eboywp_indexer_query_args', array( $this, 'index_variations' ) );
             add_filter( 'eboywp_index_row', array( $this, 'attribute_variations' ), 1 );
             add_filter( 'eboywp_wpdb_sql', array( $this, 'wpdb_sql' ), 10, 2 );
             add_filter( 'eboywp_wpdb_get_col', array( $this, 'wpdb_get_col' ), 10, 3 );
             add_filter( 'eboywp_filtered_post_ids', array( $this, 'process_variations' ) );
-            add_filter( 'eboywp_facet_where', array( $this, 'facet_where' ), 10, 2 );
+            add_filter( 'eboywp_eboy_where', array( $this, 'eboy_where' ), 10, 2 );
         }
     }
 
@@ -43,7 +43,7 @@ class eboywp_Integration_WooCommerce
      * Add WooCommerce-specific data sources
      * @since 2.1.4
      */
-    function facet_sources( $sources ) {
+    function eboy_sources( $sources ) {
         $sources['woocommerce'] = array(
             'label' => __( 'WooCommerce', 'EWP' ),
             'choices' => array(
@@ -75,11 +75,11 @@ class eboywp_Integration_WooCommerce
      * @since 2.7.2
      */
     function force_taxonomy( $defaults, $params ) {
-        if ( 0 === strpos( $defaults['facet_source'], 'tax/pa_' ) ) {
+        if ( 0 === strpos( $defaults['eboy_source'], 'tax/pa_' ) ) {
             $post_id = (int) $defaults['post_id'];
 
             if ( 'product_variation' == get_post_type( $post_id ) ) {
-                $defaults['facet_source'] = str_replace( 'tax/', 'cf/attribute_', $defaults['facet_source'] );
+                $defaults['eboy_source'] = str_replace( 'tax/', 'cf/attribute_', $defaults['eboy_source'] );
             }
         }
 
@@ -137,12 +137,12 @@ class eboywp_Integration_WooCommerce
             $params['variation_id'] = $post_id;
 
             // Lookup the term name for variation values
-            if ( 0 === strpos( $params['facet_source'], 'cf/attribute_pa_' ) ) {
-                $taxonomy = str_replace( 'cf/attribute_', '', $params['facet_source'] );
-                $term = get_term_by( 'slug', $params['facet_value'], $taxonomy );
+            if ( 0 === strpos( $params['eboy_source'], 'cf/attribute_pa_' ) ) {
+                $taxonomy = str_replace( 'cf/attribute_', '', $params['eboy_source'] );
+                $term = get_term_by( 'slug', $params['eboy_value'], $taxonomy );
                 if ( false !== $term ) {
                     $params['term_id'] = $term->term_id;
-                    $params['facet_display_value'] = $term->name;
+                    $params['eboy_display_value'] = $term->name;
                 }
             }
         }
@@ -158,7 +158,7 @@ class eboywp_Integration_WooCommerce
      * Hijack filter_posts() to grab variation IDs
      * @since 2.7
      */
-    function wpdb_sql( $sql, $facet ) {
+    function wpdb_sql( $sql, $eboy ) {
         $sql = str_replace(
             'DISTINCT post_id',
             'DISTINCT post_id, GROUP_CONCAT(variation_id) AS variation_ids',
@@ -172,13 +172,13 @@ class eboywp_Integration_WooCommerce
 
 
     /**
-     * Store a facet's variation IDs
+     * Store a eboy's variation IDs
      * @since 2.7
      */
-    function wpdb_get_col( $result, $sql, $facet ) {
+    function wpdb_get_col( $result, $sql, $eboy ) {
         global $wpdb;
 
-        $facet_name = $facet['name'];
+        $eboy_name = $eboy['name'];
         $post_ids = $wpdb->get_col( $sql, 0 ); // arrays of product IDs
         $variations = $wpdb->get_col( $sql, 1 ); // variation IDs as arrays of comma-separated strings
 
@@ -186,12 +186,12 @@ class eboywp_Integration_WooCommerce
             $variations_array = explode( ',', $variations[ $index ] );
             $type = in_array( $post_id, $variations_array ) ? 'products' : 'variations';
 
-            if ( isset( $this->cache[ $facet_name ][ $type ] ) ) {
-                $temp = $this->cache[ $facet_name ][ $type ];
-                $this->cache[ $facet_name ][ $type ] = array_merge( $temp, $variations_array );
+            if ( isset( $this->cache[ $eboy_name ][ $type ] ) ) {
+                $temp = $this->cache[ $eboy_name ][ $type ];
+                $this->cache[ $eboy_name ][ $type ] = array_merge( $temp, $variations_array );
             }
             else {
-                $this->cache[ $facet_name ][ $type ] = $variations_array;
+                $this->cache[ $eboy_name ][ $type ] = $variations_array;
             }
         }
 
@@ -236,19 +236,19 @@ class eboywp_Integration_WooCommerce
 
         $this->lookup = $this->generate_lookup_array( $post_ids );
 
-        // Loop through each facet's data
-        foreach ( $this->cache as $facet_name => $groups ) {
-            $this->storage[ $facet_name ] = array();
+        // Loop through each eboy's data
+        foreach ( $this->cache as $eboy_name => $groups ) {
+            $this->storage[ $eboy_name ] = array();
 
             // Create an array of variation IDs
             foreach ( $groups as $type => $ids ) { // products or variations
-                $this->storage[ $facet_name ] = array_merge( $this->storage[ $facet_name ], $ids );
+                $this->storage[ $eboy_name ] = array_merge( $this->storage[ $eboy_name ], $ids );
 
                 // Lookup variation IDs for each product
                 if ( 'products' == $type ) {
                     foreach ( $ids as $id ) {
                         if ( ! empty( $this->lookup['get_variations'][ $id ] ) ) {
-                            $this->storage[ $facet_name ] = array_merge( $this->storage[ $facet_name ], $this->lookup['get_variations'][ $id ] );
+                            $this->storage[ $eboy_name ] = array_merge( $this->storage[ $eboy_name ], $this->lookup['get_variations'][ $id ] );
                         }
                     }
                 }
@@ -265,21 +265,21 @@ class eboywp_Integration_WooCommerce
 
     /**
      * Calculate variation IDs
-     * @param mixed $facet_name Facet name to ignore, or FALSE
+     * @param mixed $eboy_name Eboy name to ignore, or FALSE
      * @return array Associative array of product IDs + variation IDs
      * @since 2.8
      */
-    function calculate_variations( $facet_name = false ) {
+    function calculate_variations( $eboy_name = false ) {
 
         $new = true;
         $final_products = array();
         $final_variations = array();
 
-        // Intersect product + variation IDs across facets
+        // Intersect product + variation IDs across eboys
         foreach ( $this->storage as $name => $variation_ids ) {
 
-            // Skip facets in "OR" mode
-            if ( $facet_name === $name ) {
+            // Skip eboys in "OR" mode
+            if ( $eboy_name === $name ) {
                 continue;
             }
 
@@ -309,11 +309,11 @@ class eboywp_Integration_WooCommerce
      * Apply variation IDs to load_values() method
      * @since 2.7
      */
-    function facet_where( $where_clause, $facet ) {
+    function eboy_where( $where_clause, $eboy ) {
 
-        // Support facets in "OR" mode
-        if ( EWP()->helper->facet_is( $facet, 'operator', 'or' ) ) {
-            $result = $this->calculate_variations( $facet['name'] );
+        // Support eboys in "OR" mode
+        if ( EWP()->helper->eboy_is( $eboy, 'operator', 'or' ) ) {
+            $result = $this->calculate_variations( $eboy['name'] );
             $variations = $result['variations'];
         }
         else {
@@ -333,7 +333,7 @@ class eboywp_Integration_WooCommerce
      * @since 2.1.4
      */
     function index_woo_values( $return, $params ) {
-        $facet = $params['facet'];
+        $eboy = $params['eboy'];
         $defaults = $params['defaults'];
         $post_id = (int) $defaults['post_id'];
         $post_type = get_post_type( $post_id );
@@ -349,17 +349,17 @@ class eboywp_Integration_WooCommerce
             }
         }
 
-        if ( 'product' != $post_type || empty( $facet['source'] ) ) {
+        if ( 'product' != $post_type || empty( $eboy['source'] ) ) {
             return $return;
         }
 
         // Ignore product attributes with "Used for variations" ticked
-        if ( 0 === strpos( $facet['source'], 'tax/pa_' ) ) {
+        if ( 0 === strpos( $eboy['source'], 'tax/pa_' ) ) {
             $product = wc_get_product( $post_id );
 
             if ( $product->is_type( 'variable' ) ) {
                 $attrs = $product->get_attributes();
-                $attr_name = str_replace( 'tax/', '', $facet['source'] );
+                $attr_name = str_replace( 'tax/', '', $eboy['source'] );
                 if ( isset( $attrs[ $attr_name ] ) && 1 === $attrs[ $attr_name ]['is_variation'] ) {
                     return true; // skip
                 }
@@ -367,63 +367,63 @@ class eboywp_Integration_WooCommerce
         }
 
         // Custom woo fields
-        if ( 0 === strpos( $facet['source'], 'woo' ) ) {
+        if ( 0 === strpos( $eboy['source'], 'woo' ) ) {
             $product = wc_get_product( $post_id );
 
             // Price
-            if ( 'woo/price' == $facet['source'] ) {
+            if ( 'woo/price' == $eboy['source'] ) {
                 $price = $product->get_price();
-                $defaults['facet_value'] = $price;
-                $defaults['facet_display_value'] = $price;
+                $defaults['eboy_value'] = $price;
+                $defaults['eboy_display_value'] = $price;
                 EWP()->indexer->index_row( $defaults );
             }
 
             // Sale Price
-            elseif ( 'woo/sale_price' == $facet['source'] ) {
+            elseif ( 'woo/sale_price' == $eboy['source'] ) {
                 $price = $product->get_sale_price();
-                $defaults['facet_value'] = $price;
-                $defaults['facet_display_value'] = $price;
+                $defaults['eboy_value'] = $price;
+                $defaults['eboy_display_value'] = $price;
                 EWP()->indexer->index_row( $defaults );
             }
 
             // Regular Price
-            elseif ( 'woo/regular_price' == $facet['source'] ) {
+            elseif ( 'woo/regular_price' == $eboy['source'] ) {
                 $price = $product->get_regular_price();
-                $defaults['facet_value'] = $price;
-                $defaults['facet_display_value'] = $price;
+                $defaults['eboy_value'] = $price;
+                $defaults['eboy_display_value'] = $price;
                 EWP()->indexer->index_row( $defaults );
             }
 
             // Average Rating
-            elseif ( 'woo/average_rating' == $facet['source'] ) {
+            elseif ( 'woo/average_rating' == $eboy['source'] ) {
                 $rating = $product->get_average_rating();
-                $defaults['facet_value'] = $rating;
-                $defaults['facet_display_value'] = $rating;
+                $defaults['eboy_value'] = $rating;
+                $defaults['eboy_display_value'] = $rating;
                 EWP()->indexer->index_row( $defaults );
             }
 
             // Stock Status
-            elseif ( 'woo/stock_status' == $facet['source'] ) {
+            elseif ( 'woo/stock_status' == $eboy['source'] ) {
                 $in_stock = $product->is_in_stock();
-                $defaults['facet_value'] = (int) $in_stock;
-                $defaults['facet_display_value'] = $in_stock ? __( 'In Stock', 'EWP' ) : __( 'Out of Stock', 'EWP' );
+                $defaults['eboy_value'] = (int) $in_stock;
+                $defaults['eboy_display_value'] = $in_stock ? __( 'In Stock', 'EWP' ) : __( 'Out of Stock', 'EWP' );
                 EWP()->indexer->index_row( $defaults );
             }
 
             // On Sale
-            elseif ( 'woo/on_sale' == $facet['source'] ) {
+            elseif ( 'woo/on_sale' == $eboy['source'] ) {
                 if ( $product->is_on_sale() ) {
-                    $defaults['facet_value'] = 1;
-                    $defaults['facet_display_value'] = __( 'On Sale', 'EWP' );
+                    $defaults['eboy_value'] = 1;
+                    $defaults['eboy_display_value'] = __( 'On Sale', 'EWP' );
                     EWP()->indexer->index_row( $defaults );
                 }
             }
 
             // Product Type
-            elseif ( 'woo/product_type' == $facet['source'] ) {
+            elseif ( 'woo/product_type' == $eboy['source'] ) {
                 $type = $product->get_type();
-                $defaults['facet_value'] = $type;
-                $defaults['facet_display_value'] = $type;
+                $defaults['eboy_value'] = $type;
+                $defaults['eboy_display_value'] = $type;
                 EWP()->indexer->index_row( $defaults );
             }
 

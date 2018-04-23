@@ -31,12 +31,12 @@
     white-space: normal;
 }
 
-.eboywp-region-settings .fwpcl-import-response {
+.eboywp-region-settings .ewpcl-import-response {
     display: inline-block;
     padding: 6px 0 0 6px;
 }
 
-.fwpcl-response.dashicons {
+.ewpcl-response.dashicons {
     display: none;
     margin-left: 10px;
     padding: 4px 0 0 0;

@@ -142,13 +142,13 @@ class eboywp_Ajax
                 $this->get_preload_data( 'wp' );
             }
             else {
-                $this->output = EWP()->facet->render(
+                $this->output = EWP()->eboy->render(
                     $this->process_post_data()
                 );
             }
 
             // Set up the updated query_vars
-            $query->query_vars = EWP()->facet->query_args;
+            $query->query_vars = EWP()->eboy->query_args;
         }
     }
 
@@ -169,14 +169,14 @@ class eboywp_Ajax
         $this->is_shortcode = ( 'wp' != $template_name );
 
         $params = array(
-            'facets'            => array(),
+            'eboys'            => array(),
             'template'          => $template_name,
             'http_params'       => array(
                 'get'       => $_GET,
                 'uri'       => EWP()->helper->get_uri(),
                 'url_vars'  => EWP()->ajax->url_vars,
             ),
-            'frozen_facets'     => array(),
+            'frozen_eboys'     => array(),
             'soft_refresh'      => 0,
             'is_preload'        => 1,
             'is_bfcache'        => 0,
@@ -196,8 +196,8 @@ class eboywp_Ajax
                 $params['extras']['sort'] = $val;
             }
             else {
-                $params['facets'][] = array(
-                    'facet_name' => $key,
+                $params['eboys'][] = array(
+                    'eboy_name' => $key,
                     'selected_values' => $val,
                 );
             }
@@ -206,7 +206,7 @@ class eboywp_Ajax
         // Override the defaults
         $params = array_merge( $params, $overrides );
 
-        return EWP()->facet->render( $params );
+        return EWP()->eboy->render( $params );
     }
 
 
@@ -285,18 +285,18 @@ class eboywp_Ajax
 
 
     /**
-     * Generate a $params array that can be passed directly into EWP()->facet->render()
+     * Generate a $params array that can be passed directly into EWP()->eboy->render()
      */
     function process_post_data() {
         $data = stripslashes_deep( $_POST['data'] );
-        $facets = json_decode( $data['facets'], true );
+        $eboys = json_decode( $data['eboys'], true );
         $extras = isset( $data['extras'] ) ? $data['extras'] : array();
-        $frozen_facets = isset( $data['frozen_facets'] ) ? $data['frozen_facets'] : array();
+        $frozen_eboys = isset( $data['frozen_eboys'] ) ? $data['frozen_eboys'] : array();
 
         $params = array(
-            'facets'            => array(),
+            'eboys'            => array(),
             'template'          => $data['template'],
-            'frozen_facets'     => $frozen_facets,
+            'frozen_eboys'     => $frozen_eboys,
             'http_params'       => $data['http_params'],
             'extras'            => $extras,
             'soft_refresh'      => (int) $data['soft_refresh'],
@@ -305,9 +305,9 @@ class eboywp_Ajax
             'paged'             => (int) $data['paged'],
         );
 
-        foreach ( $facets as $facet_name => $selected_values ) {
-            $params['facets'][] = array(
-                'facet_name'        => $facet_name,
+        foreach ( $eboys as $eboy_name => $selected_values ) {
+            $params['eboys'][] = array(
+                'eboy_name'        => $eboy_name,
                 'selected_values'   => $selected_values,
             );
         }
@@ -317,14 +317,14 @@ class eboywp_Ajax
 
 
     /**
-     * The AJAX facet refresh handler
+     * The AJAX eboy refresh handler
      */
     function refresh() {
 
         global $wpdb;
 
         $params = $this->process_post_data();
-        $output = EWP()->facet->render( $params );
+        $output = EWP()->eboy->render( $params );
         $data = stripslashes_deep( $_POST['data'] );
         $output = json_encode( $output );
 
@@ -357,9 +357,9 @@ class eboywp_Ajax
 
             if ( ! empty( $items ) ) {
                 foreach ( $items as $item ) {
-                    if ( 'facet' == substr( $item, 0, 5 ) ) {
+                    if ( 'eboy' == substr( $item, 0, 5 ) ) {
                         $item_name = substr( $item, 6 );
-                        $output['facets'][] = EWP()->helper->get_facet_by_name( $item_name );
+                        $output['eboys'][] = EWP()->helper->get_eboy_by_name( $item_name );
                     }
                     elseif ( 'template' == substr( $item, 0, 8 ) ) {
                         $item_name = substr( $item, 9 );

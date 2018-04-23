@@ -12,8 +12,8 @@ class eboywp_Diff
         $s1 = EWP()->helper->load_settings();
         $s2 = EWP()->helper->load_settings( true );
 
-        // The facet count is different
-        if ( count( $s1['facets'] ) !== count( $s2['facets'] ) ) {
+        // The eboy count is different
+        if ( count( $s1['eboys'] ) !== count( $s2['eboys'] ) ) {
             return true;
         }
 
@@ -28,10 +28,10 @@ class eboywp_Diff
             }
         }
 
-        $f1 = $s1['facets'];
-        $f2 = $s2['facets'];
+        $f1 = $s1['eboys'];
+        $f2 = $s2['eboys'];
 
-        // Sort the facets alphabetically
+        // Sort the eboys alphabetically
         usort( $f1, function( $a, $b ) {
             return strcmp( $a['name'], $b['name'] );
         });
@@ -40,12 +40,12 @@ class eboywp_Diff
             return strcmp( $a['name'], $b['name'] );
         });
 
-        // Compare facet properties
+        // Compare eboy properties
         $to_check = array( 'name', 'type', 'source', 'source_other', 'parent_term', 'hierarchical' );
 
-        foreach ( $f1 as $index => $facet ) {
+        foreach ( $f1 as $index => $eboy ) {
             foreach ( $to_check as $attr ) {
-                $attr1 = $this->get_attr( $attr, $facet );
+                $attr1 = $this->get_attr( $attr, $eboy );
                 $attr2 = $this->get_attr( $attr, $f2[ $index ] );
                 if ( $attr1 !== $attr2 ) {
                     return true;

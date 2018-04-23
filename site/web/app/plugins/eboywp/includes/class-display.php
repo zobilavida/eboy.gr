@@ -3,11 +3,11 @@
 class eboywp_Display
 {
 
-    /* (array) Facet types being used on the page */
+    /* (array) Eboy types being used on the page */
     public $active_types = array();
 
-    /* (array) Facets being used on the page */
-    public $active_facets = array();
+    /* (array) Eboys being used on the page */
+    public $active_eboys = array();
 
     /* (boolean) Whether to enable eboywp for the current page */
     public $load_assets = false;
@@ -43,15 +43,15 @@ class eboywp_Display
      */
     function shortcode( $atts ) {
         $output = '';
-        if ( isset( $atts['facet'] ) ) {
-            $facet = EWP()->helper->get_facet_by_name( $atts['facet'] );
+        if ( isset( $atts['eboy'] ) ) {
+            $eboy = EWP()->helper->get_eboy_by_name( $atts['eboy'] );
 
-            if ( $facet ) {
-                $output = '<div class="eboywp-facet eboywp-facet-' . $facet['name'] . ' eboywp-type-' . $facet['type'] . '" data-name="' . $facet['name'] . '" data-type="' . $facet['type'] . '"></div>';
+            if ( $eboy ) {
+                $output = '<div class="ginput_container ginput_container_select eboywp-eboy eboywp-eboy-' . $eboy['name'] . ' eboywp-type-' . $eboy['type'] . '" data-name="' . $eboy['name'] . '" data-type="' . $eboy['type'] . '"></div>';
 
-                // Build list of active facet types
-                $this->active_types[ $facet['type'] ] = $facet['type'];
-                $this->active_facets[ $facet['name'] ] = $facet['name'];
+                // Build list of active eboy types
+                $this->active_types[ $eboy['type'] ] = $eboy['type'];
+                $this->active_eboys[ $eboy['name'] ] = $eboy['name'];
                 $this->load_assets = true;
             }
         }
@@ -100,15 +100,13 @@ class eboywp_Display
 
 
     /**
-     * Output facet scripts
+     * Output eboy scripts
      */
     function front_scripts() {
 
         // Not enqueued - front.js needs to load before front_scripts()
         if ( true === apply_filters( 'eboywp_load_assets', $this->load_assets ) ) {
-            if ( true === apply_filters( 'eboywp_load_css', true ) ) {
-                $this->assets['front.css'] = eboywp_URL . '/assets/css/front.css';
-            }
+
 
             $this->assets['front.js'] = eboywp_URL . '/assets/js/dist/front.min.js';
 
@@ -125,9 +123,9 @@ class eboywp_Display
                 'url_vars' => EWP()->ajax->url_vars,
             );
 
-            // See EWP()->facet->get_query_args()
-            if ( ! empty( EWP()->facet->archive_args ) ) {
-                $http_params['archive_args'] = EWP()->facet->archive_args;
+            // See EWP()->eboy->get_query_args()
+            if ( ! empty( EWP()->eboy->archive_args ) ) {
+                $http_params['archive_args'] = EWP()->eboy->archive_args;
             }
 
             // Populate the EWP_JSON object
@@ -144,9 +142,9 @@ class eboywp_Display
             ob_start();
 
             foreach ( $this->active_types as $type ) {
-                $facet_class = EWP()->helper->facet_types[ $type ];
-                if ( method_exists( $facet_class, 'front_scripts' ) ) {
-                    $facet_class->front_scripts();
+                $eboy_class = EWP()->helper->eboy_types[ $type ];
+                if ( method_exists( $eboy_class, 'front_scripts' ) ) {
+                    $eboy_class->front_scripts();
                 }
             }
 
@@ -179,18 +177,18 @@ window.EWP_HTTP = <?php echo json_encode( $http_params ); ?>;
 
 
     /**
-     * On initial pageload, preload the facet data
+     * On initial pageload, preload the eboy data
      * and pass it client-side through the EWP_JSON object
      */
     function prepare_preload_data() {
         $overrides = array();
         $url_vars = EWP()->ajax->url_vars;
 
-        foreach ( $this->active_facets as $name ) {
+        foreach ( $this->active_eboys as $name ) {
             $selected_values = isset( $url_vars[ $name ] ) ? $url_vars[ $name ] : array();
 
-            $overrides['facets'][] = array(
-                'facet_name' => $name,
+            $overrides['eboys'][] = array(
+                'eboy_name' => $name,
                 'selected_values' => $selected_values,
             );
         }

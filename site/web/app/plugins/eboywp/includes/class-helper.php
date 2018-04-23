@@ -6,8 +6,8 @@ final class eboywp_Helper
     /* (array) The eboywp_settings option (after hooks) */
     public $settings;
 
-    /* (array) Associative array of facet objects */
-    public $facet_types;
+    /* (array) Associative array of eboy objects */
+    public $eboy_types;
 
     /* (array) Cached data sources */
     public $data_sources;
@@ -15,7 +15,7 @@ final class eboywp_Helper
 
     function __construct() {
         $this->settings = $this->load_settings();
-        $this->facet_types = $this->get_facet_types();
+        $this->eboy_types = $this->get_eboy_types();
     }
 
 
@@ -40,37 +40,37 @@ final class eboywp_Helper
 
 
     /**
-     * Get available facet types
+     * Get available eboy types
      */
-    function get_facet_types() {
-        if ( ! empty( $this->facet_types ) ) {
-            return $this->facet_types;
+    function get_eboy_types() {
+        if ( ! empty( $this->eboy_types ) ) {
+            return $this->eboy_types;
         }
 
-        include( eboywp_DIR . '/includes/facets/base.php' );
+        include( eboywp_DIR . '/includes/eboys/base.php' );
 
         $types = array(
-            'checkboxes'    => 'eboywp_Facet_Checkboxes',
-            'dropdown'      => 'eboywp_Facet_Dropdown',
-            'fselect'       => 'eboywp_Facet_fSelect',
-            'hierarchy'     => 'eboywp_Facet_Hierarchy',
-            'search'        => 'eboywp_Facet_Search',
-            'autocomplete'  => 'eboywp_Facet_Autocomplete',
-            'slider'        => 'eboywp_Facet_Slider',
-            'date_range'    => 'eboywp_Facet_Date_Range',
-            'number_range'  => 'eboywp_Facet_Number_Range',
-            'proximity'     => 'eboywp_Facet_Proximity_Core',
-            'radio'         => 'eboywp_Facet_Radio_Core'
+            'checkboxes'    => 'eboywp_Eboy_Checkboxes',
+            'dropdown'      => 'eboywp_Eboy_Dropdown',
+            'fselect'       => 'eboywp_Eboy_fSelect',
+            'hierarchy'     => 'eboywp_Eboy_Hierarchy',
+            'search'        => 'eboywp_Eboy_Search',
+            'autocomplete'  => 'eboywp_Eboy_Autocomplete',
+            'slider'        => 'eboywp_Eboy_Slider',
+            'date_range'    => 'eboywp_Eboy_Date_Range',
+            'number_range'  => 'eboywp_Eboy_Number_Range',
+            'proximity'     => 'eboywp_Eboy_Proximity_Core',
+            'radio'         => 'eboywp_Eboy_Radio_Core'
         );
 
-        $facet_types = array();
+        $eboy_types = array();
 
         foreach ( $types as $slug => $class_name ) {
-            include( eboywp_DIR . "/includes/facets/$slug.php" );
-            $facet_types[ $slug ] = new $class_name();
+            include( eboywp_DIR . "/includes/eboys/$slug.php" );
+            $eboy_types[ $slug ] = new $class_name();
         }
 
-        return apply_filters( 'eboywp_facet_types', $facet_types );
+        return apply_filters( 'eboywp_eboy_types', $eboy_types );
     }
 
 
@@ -82,8 +82,8 @@ final class eboywp_Helper
         $option = get_option( $name );
         $settings = ( false !== $option ) ? json_decode( $option, true ) : array();
 
-        if ( empty( $settings['facets'] ) ) {
-            $settings['facets'] = array();
+        if ( empty( $settings['eboys'] ) ) {
+            $settings['eboys'] = array();
         }
         if ( empty( $settings['templates'] ) ) {
             $settings['templates'] = array();
@@ -104,11 +104,11 @@ final class eboywp_Helper
             $settings['settings']['prefix'] = 'EWP_';
         }
 
-        // Store raw facet & template names
+        // Store raw eboy & template names
         $raw_names = array();
 
-        foreach ( $settings['facets'] as $facet ) {
-            $raw_names[ 'facet-' . $facet['name'] ] = false;
+        foreach ( $settings['eboys'] as $eboy ) {
+            $raw_names[ 'eboy-' . $eboy['name'] ] = false;
         }
 
         foreach ( $settings['templates'] as $template ) {
@@ -116,21 +116,21 @@ final class eboywp_Helper
         }
 
         // Programmatically registered
-        $facets = apply_filters( 'eboywp_facets', $settings['facets'] );
+        $eboys = apply_filters( 'eboywp_eboys', $settings['eboys'] );
         $templates = apply_filters( 'eboywp_templates', $settings['templates'] );
-        $settings['facets'] = $settings['templates'] = array();
+        $settings['eboys'] = $settings['templates'] = array();
 
         // Distinguish between UI and programmatic
-        foreach ( $facets as $facet ) {
-            $name = 'facet-' . $facet['name'];
+        foreach ( $eboys as $eboy ) {
+            $name = 'eboy-' . $eboy['name'];
 
             if ( ! isset( $raw_names[ $name ] ) ) {
-                $facet['_code'] = true;
-                $settings['facets'][] = $facet;
+                $eboy['_code'] = true;
+                $settings['eboys'][] = $eboy;
             }
             elseif ( false === $raw_names[ $name ] ) {
                 $raw_names[ $name ] = true;
-                $settings['facets'][] = $facet;
+                $settings['eboys'][] = $eboy;
             }
         }
 
@@ -169,11 +169,11 @@ final class eboywp_Helper
 
 
     /**
-     * Get an array of all facets
+     * Get an array of all eboys
      * @return array
      */
-    function get_facets() {
-        return $this->settings['facets'];
+    function get_eboys() {
+        return $this->settings['eboys'];
     }
 
 
@@ -187,14 +187,14 @@ final class eboywp_Helper
 
 
     /**
-     * Get all properties for a single facet
-     * @param string $facet_name
-     * @return mixed An array of facet info, or false
+     * Get all properties for a single eboy
+     * @param string $eboy_name
+     * @return mixed An array of eboy info, or false
      */
-    function get_facet_by_name( $facet_name ) {
-        foreach ( $this->get_facets() as $facet ) {
-            if ( $facet_name == $facet['name'] ) {
-                return $facet;
+    function get_eboy_by_name( $eboy_name ) {
+        foreach ( $this->get_eboys() as $eboy ) {
+            if ( $eboy_name == $eboy['name'] ) {
+                return $eboy;
             }
         }
 
@@ -267,7 +267,7 @@ final class eboywp_Helper
 
 
     /**
-     * Finish sorting the facet values
+     * Finish sorting the eboy values
      * The results are already sorted by depth and (name OR count), we just need
      * to move the children directly below their parents
      */
@@ -331,12 +331,12 @@ final class eboywp_Helper
 
 
     /**
-     * Does an active facet with the specified setting exist?
+     * Does an active eboy with the specified setting exist?
      * @return boolean
      * @since 1.4.0
      */
-    function facet_setting_exists( $setting_name, $setting_value ) {
-        foreach ( EWP()->facet->facets as $f ) {
+    function eboy_setting_exists( $setting_name, $setting_value ) {
+        foreach ( EWP()->eboy->eboys as $f ) {
             if ( isset( $f[ $setting_name ] ) && $f[ $setting_name ] == $setting_value ) {
                 return true;
             }
@@ -347,16 +347,16 @@ final class eboywp_Helper
 
 
     /**
-     * Does this facet have a setting with the specified value?
+     * Does this eboy have a setting with the specified value?
      * @return boolean
      * @since 2.3.4
      */
-    function facet_is( $facet, $setting_name, $setting_value ) {
-        if ( is_string( $facet ) ) {
-            $facet = $this->get_facet_by_name( $facet );
+    function eboy_is( $eboy, $setting_name, $setting_value ) {
+        if ( is_string( $eboy ) ) {
+            $eboy = $this->get_eboy_by_name( $eboy );
         }
 
-        if ( isset( $facet[ $setting_name ] ) && $facet[ $setting_name ] == $setting_value ) {
+        if ( isset( $eboy[ $setting_name ] ) && $eboy[ $setting_name ] == $setting_value ) {
             return true;
         }
 
@@ -365,7 +365,7 @@ final class eboywp_Helper
 
 
     /**
-     * Hash a facet value if needed
+     * Hash a eboy value if needed
      * @return string
      * @since 2.1
      */
@@ -403,7 +403,7 @@ final class eboywp_Helper
 
 
     /**
-     * Get facet data sources
+     * Get eboy data sources
      * @return array
      * @since 2.2.1
      */
@@ -463,7 +463,7 @@ final class eboywp_Helper
             }
         }
 
-        $sources = apply_filters( 'eboywp_facet_sources', $sources );
+        $sources = apply_filters( 'eboywp_eboy_sources', $sources );
 
         uasort( $sources, array( $this, 'sort_by_weight' ) );
 
@@ -474,7 +474,7 @@ final class eboywp_Helper
 
 
     /**
-     * Sort eboywp_facet_sources by weight
+     * Sort eboywp_eboy_sources by weight
      * @since 2.7.5
      */
     function sort_by_weight( $a, $b ) {

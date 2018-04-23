@@ -9,8 +9,8 @@ class eboywp_Integration_SearchWP
     function __construct() {
         add_filter( 'eboywp_query_args', array( $this, 'search_args' ), 10, 2 );
         add_filter( 'eboywp_pre_filtered_post_ids', array( $this, 'search_page' ), 10, 2 );
-        add_filter( 'eboywp_facet_filter_posts', array( $this, 'search_facet' ), 10, 2 );
-        add_filter( 'eboywp_facet_search_engines', array( $this, 'search_engines' ) );
+        add_filter( 'eboywp_eboy_filter_posts', array( $this, 'search_eboy' ), 10, 2 );
+        add_filter( 'eboywp_eboy_search_engines', array( $this, 'search_engines' ) );
     }
 
 
@@ -67,22 +67,22 @@ class eboywp_Integration_SearchWP
 
 
     /**
-     * Intercept search facets using SearchWP engine
+     * Intercept search eboys using SearchWP engine
      * @since 2.1.5
      */
-    function search_facet( $return, $params ) {
-        $facet = $params['facet'];
+    function search_eboy( $return, $params ) {
+        $eboy = $params['eboy'];
         $selected_values = $params['selected_values'];
         $selected_values = is_array( $selected_values ) ? $selected_values[0] : $selected_values;
 
-        if ( ! empty( $facet['search_engine'] ) ) {
+        if ( ! empty( $eboy['search_engine'] ) ) {
             if ( empty( $selected_values ) ) {
                 return 'continue';
             }
 
             $swp_query = new SWP_Query( array(
                 's'                 => $selected_values,
-                'engine'            => $facet['search_engine'],
+                'engine'            => $eboy['search_engine'],
                 'posts_per_page'    => 200,
                 'fields'            => 'ids',
                 'eboywp'           => true,
@@ -96,7 +96,7 @@ class eboywp_Integration_SearchWP
 
 
     /**
-     * Add engines to the search facet
+     * Add engines to the search eboy
      */
     function search_engines( $engines ) {
         $settings = get_option( SEARCHWP_PREFIX . 'settings' );

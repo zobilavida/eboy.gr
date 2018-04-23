@@ -27,18 +27,18 @@ class eboywp_Upgrade
         CREATE TABLE IF NOT EXISTS {$wpdb->prefix}eboywp_index (
             id BIGINT unsigned not null auto_increment,
             post_id INT unsigned,
-            facet_name VARCHAR(50),
-            facet_source VARCHAR(255),
-            facet_value VARCHAR(50),
-            facet_display_value VARCHAR(200),
+            eboy_name VARCHAR(50),
+            eboy_source VARCHAR(255),
+            eboy_value VARCHAR(50),
+            eboy_display_value VARCHAR(200),
             term_id INT unsigned default '0',
             parent_id INT unsigned default '0',
             depth INT unsigned default '0',
             variation_id INT unsigned default '0',
             PRIMARY KEY (id),
-            INDEX facet_name_idx (facet_name),
-            INDEX facet_source_idx (facet_source),
-            INDEX facet_name_value_idx (facet_name, facet_value)
+            INDEX eboy_name_idx (eboy_name),
+            INDEX eboy_source_idx (eboy_source),
+            INDEX eboy_name_value_idx (eboy_name, eboy_value)
         ) DEFAULT CHARSET=utf8";
         dbDelta( $sql );
 
@@ -52,8 +52,8 @@ class eboywp_Upgrade
         global $wpdb;
 
         if ( version_compare( $this->last_version, '1.9', '<' ) ) {
-            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index ADD COLUMN term_id INT unsigned default '0' AFTER facet_display_value" );
-            $wpdb->query( "UPDATE {$wpdb->prefix}eboywp_index SET term_id = facet_value WHERE LEFT(facet_source, 4) = 'tax/'" );
+            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index ADD COLUMN term_id INT unsigned default '0' AFTER eboy_display_value" );
+            $wpdb->query( "UPDATE {$wpdb->prefix}eboywp_index SET term_id = eboy_value WHERE LEFT(eboy_source, 4) = 'tax/'" );
         }
 
         if ( version_compare( $this->last_version, '2.2.3', '<' ) ) {
@@ -66,10 +66,10 @@ class eboywp_Upgrade
         }
 
         if ( version_compare( $this->last_version, '3.1.0', '<' ) ) {
-            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY facet_name VARCHAR(50)" );
-            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY facet_value VARCHAR(50)" );
-            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY facet_display_value VARCHAR(200)" );
-            $wpdb->query( "CREATE INDEX facet_name_value_idx ON {$wpdb->prefix}eboywp_index (facet_name, facet_value)" );
+            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY eboy_name VARCHAR(50)" );
+            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY eboy_value VARCHAR(50)" );
+            $wpdb->query( "ALTER TABLE {$wpdb->prefix}eboywp_index MODIFY eboy_display_value VARCHAR(200)" );
+            $wpdb->query( "CREATE INDEX eboy_name_value_idx ON {$wpdb->prefix}eboywp_index (eboy_name, eboy_value)" );
         }
     }
 }

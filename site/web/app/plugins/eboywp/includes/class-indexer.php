@@ -12,8 +12,8 @@ class eboywp_Indexer
     /* (int) Number of posts to index before updating progress */
     public $chunk_size = 10;
 
-    /* (array) Facet properties for the value being indexed */
-    public $facet;
+    /* (array) Eboy properties for the value being indexed */
+    public $eboy;
 
 
     function __construct() {
@@ -95,8 +95,8 @@ class eboywp_Indexer
 
         $wpdb->query( $wpdb->prepare( "
             UPDATE {$wpdb->prefix}eboywp_index
-            SET facet_value = %s, facet_display_value = %s
-            WHERE facet_source = %s AND term_id = %d",
+            SET eboy_value = %s, eboy_display_value = %s
+            WHERE eboy_source = %s AND term_id = %d",
             $slug, $term->name, "tax/$taxonomy", $term_id
         ) );
     }
@@ -111,7 +111,7 @@ class eboywp_Indexer
 
         $wpdb->query( "
             DELETE FROM {$wpdb->prefix}eboywp_index
-            WHERE facet_source = 'tax/$taxonomy' AND term_id IN ('$term')"
+            WHERE eboy_source = 'tax/$taxonomy' AND term_id IN ('$term')"
         );
     }
 
@@ -139,7 +139,7 @@ class eboywp_Indexer
 
 
     /**
-     * Rebuild the facet index
+     * Rebuild the eboy index
      * @param mixed $post_id The post ID (set to FALSE to re-index everything)
      */
     function index( $post_id = false ) {
@@ -223,8 +223,8 @@ class eboywp_Indexer
         // Count total posts
         $num_total = count( $post_ids );
 
-        // Get all facet sources
-        $facets = EWP()->helper->get_facets();
+        // Get all eboy sources
+        $eboys = EWP()->helper->get_eboys();
 
         foreach ( $post_ids as $counter => $post_id ) {
 
@@ -261,41 +261,41 @@ class eboywp_Indexer
             // Force WPML to change the language
             do_action( 'eboywp_indexer_post', array( 'post_id' => $post_id ) );
 
-            // Loop through all facets
-            foreach ( $facets as $facet ) {
+            // Loop through all eboys
+            foreach ( $eboys as $eboy ) {
 
-                // Do not index search facets
-                if ( 'search' == $facet['type'] ) {
+                // Do not index search eboys
+                if ( 'search' == $eboy['type'] ) {
                     continue;
                 }
 
-                $this->facet = $facet;
-                $source = isset( $facet['source'] ) ? $facet['source'] : '';
+                $this->eboy = $eboy;
+                $source = isset( $eboy['source'] ) ? $eboy['source'] : '';
 
                 // Set default index_row() params
                 $defaults = array(
                     'post_id'               => $post_id,
-                    'facet_name'            => $facet['name'],
-                    'facet_source'          => $source,
-                    'facet_value'           => '',
-                    'facet_display_value'   => '',
+                    'eboy_name'            => $eboy['name'],
+                    'eboy_source'          => $source,
+                    'eboy_value'           => '',
+                    'eboy_display_value'   => '',
                     'term_id'               => 0,
                     'parent_id'             => 0,
                     'depth'                 => 0,
                     'variation_id'          => 0,
                 );
 
-                $defaults = apply_filters( 'eboywp_indexer_post_facet_defaults', $defaults, array(
-                    'facet' => $facet
+                $defaults = apply_filters( 'eboywp_indexer_post_eboy_defaults', $defaults, array(
+                    'eboy' => $eboy
                 ) );
 
-                // Set flag for custom facet indexing
+                // Set flag for custom eboy indexing
                 $this->is_overridden = true;
 
                 // Bypass default indexing
-                $bypass = apply_filters( 'eboywp_indexer_post_facet', false, array(
+                $bypass = apply_filters( 'eboywp_indexer_post_eboy', false, array(
                     'defaults'  => $defaults,
-                    'facet'     => $facet
+                    'eboy'     => $eboy
                 ) );
 
                 if ( $bypass ) {
@@ -308,7 +308,7 @@ class eboywp_Indexer
                 $rows = $this->get_row_data( $defaults );
                 $rows = apply_filters( 'eboywp_indexer_row_data', $rows, array(
                     'defaults'  => $defaults,
-                    'facet'     => $facet
+                    'eboy'     => $eboy
                 ) );
 
                 foreach ( $rows as $row ) {
@@ -332,9 +332,9 @@ class eboywp_Indexer
     function get_row_data( $defaults ) {
         $output = array();
 
-        $facet = $this->facet;
+        $eboy = $this->eboy;
         $post_id = $defaults['post_id'];
-        $source = $defaults['facet_source'];
+        $source = $defaults['eboy_source'];
 
         if ( 'tax/' == substr( $source, 0, 4 ) ) {
             $used_terms = array();
@@ -349,8 +349,8 @@ class eboywp_Indexer
 
             // Only index child terms
             $children = false;
-            if ( ! empty( $facet['parent_term'] ) ) {
-                $children = get_term_children( $facet['parent_term'], $taxonomy );
+            if ( ! empty( $eboy['parent_term'] ) ) {
+                $children = get_term_children( $eboy['parent_term'], $taxonomy );
             }
 
             foreach ( $term_objects as $term ) {
@@ -371,23 +371,23 @@ class eboywp_Indexer
                 $depth = $term_info['depth'];
 
                 // Adjust depth if parent_term is set
-                if ( ! empty( $facet['parent_term'] ) ) {
-                    if ( isset( $hierarchy[ $facet['parent_term'] ] ) ) {
-                        $anchor = (int) $hierarchy[ $facet['parent_term'] ]['depth'] + 1;
+                if ( ! empty( $eboy['parent_term'] ) ) {
+                    if ( isset( $hierarchy[ $eboy['parent_term'] ] ) ) {
+                        $anchor = (int) $hierarchy[ $eboy['parent_term'] ]['depth'] + 1;
                         $depth = ( $depth - $anchor );
                     }
                 }
 
                 $params = $defaults;
-                $params['facet_value'] = $term->slug;
-                $params['facet_display_value'] = $term->name;
+                $params['eboy_value'] = $term->slug;
+                $params['eboy_display_value'] = $term->name;
                 $params['term_id'] = $term->term_id;
                 $params['parent_id'] = $term_info['parent_id'];
                 $params['depth'] = $depth;
                 $output[] = $params;
 
                 // Automatically index implicit parents
-                if ( 'hierarchy' == $facet['type'] || ( ! empty( $facet['hierarchical'] ) && 'yes' == $facet['hierarchical'] ) ) {
+                if ( 'hierarchy' == $eboy['type'] || ( ! empty( $eboy['hierarchical'] ) && 'yes' == $eboy['hierarchical'] ) ) {
                     while ( $depth > 0 ) {
                         $term_id = $term_info['parent_id'];
                         $term_info = $hierarchy[ $term_id ];
@@ -397,8 +397,8 @@ class eboywp_Indexer
                             $used_terms[ $term_id ] = true;
 
                             $params = $defaults;
-                            $params['facet_value'] = $term_info['slug'];
-                            $params['facet_display_value'] = $term_info['name'];
+                            $params['eboy_value'] = $term_info['slug'];
+                            $params['eboy_display_value'] = $term_info['name'];
                             $params['term_id'] = $term_id;
                             $params['parent_id'] = $term_info['parent_id'];
                             $params['depth'] = $depth;
@@ -413,8 +413,8 @@ class eboywp_Indexer
             $values = get_post_meta( $post_id, $source_noprefix, false );
             foreach ( $values as $value ) {
                 $params = $defaults;
-                $params['facet_value'] = $value;
-                $params['facet_display_value'] = $value;
+                $params['eboy_value'] = $value;
+                $params['eboy_display_value'] = $value;
                 $output[] = $params;
             }
         }
@@ -434,8 +434,8 @@ class eboywp_Indexer
             }
 
             $params = $defaults;
-            $params['facet_value'] = $value;
-            $params['facet_display_value'] = $display_value;
+            $params['eboy_value'] = $value;
+            $params['eboy_display_value'] = $display_value;
             $output[] = $params;
         }
 
@@ -444,7 +444,7 @@ class eboywp_Indexer
 
 
     /**
-     * Index a facet value
+     * Index a eboy value
      * @since 0.6.0
      */
     function index_row( $params ) {
@@ -460,7 +460,7 @@ class eboywp_Indexer
 
 
     /**
-     * Save a facet value to DB
+     * Save a eboy value to DB
      * This can be trigged by "eboywp_index_row" to handle multiple values
      * @since 1.2.5
      */
@@ -468,18 +468,18 @@ class eboywp_Indexer
         global $wpdb;
 
         // Only accept scalar values
-        $value = $params['facet_value'];
+        $value = $params['eboy_value'];
         if ( '' === $value || ! is_scalar( $value ) ) {
             return;
         }
 
         $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}eboywp_index
-            (post_id, facet_name, facet_source, facet_value, facet_display_value, term_id, parent_id, depth, variation_id) VALUES (%d, %s, %s, %s, %s, %d, %d, %d, %d)",
+            (post_id, eboy_name, eboy_source, eboy_value, eboy_display_value, term_id, parent_id, depth, variation_id) VALUES (%d, %s, %s, %s, %s, %d, %d, %d, %d)",
             $params['post_id'],
-            $params['facet_name'],
-            $params['facet_source'],
+            $params['eboy_name'],
+            $params['eboy_source'],
             EWP()->helper->safe_value( $value ),
-            $params['facet_display_value'],
+            $params['eboy_display_value'],
             $params['term_id'],
             $params['parent_id'],
             $params['depth'],

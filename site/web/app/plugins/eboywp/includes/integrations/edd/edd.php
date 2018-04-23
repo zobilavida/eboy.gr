@@ -4,7 +4,7 @@ class eboywp_Integration_EDD
 {
 
     function __construct() {
-        add_filter( 'eboywp_facet_sources', array( $this, 'exclude_data_sources' ) );
+        add_filter( 'eboywp_eboy_sources', array( $this, 'exclude_data_sources' ) );
         add_filter( 'edd_downloads_query', array( $this, 'edd_downloads_query' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'front_scripts' ) );
     }
@@ -24,8 +24,8 @@ class eboywp_Integration_EDD
      * @since 2.0.4
      */
     function edd_downloads_query( $query ) {
-        if ( ! empty( EWP()->facet->query_args ) && 'wp' == EWP()->facet->template['name'] ) {
-            $query = array_merge( $query, EWP()->facet->query_args );
+        if ( ! empty( EWP()->eboy->query_args ) && 'wp' == EWP()->eboy->template['name'] ) {
+            $query = array_merge( $query, EWP()->eboy->query_args );
         }
 
         return $query;

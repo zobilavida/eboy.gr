@@ -552,12 +552,6 @@ add_filter( 'eboywp_pager_html', function( $output, $params ) {
     return $output;
 }, 10, 2 );
 
-add_filter( 'gform_field_container', 'add_bootstrap_container_class', 10, 6 );
-function add_bootstrap_container_class( $field_container, $field, $form, $css_class, $style, $field_content ) {
-  $id = $field->id;
-  $field_id = is_admin() || empty( $form ) ? "field_{$id}" : 'field_' . $form['id'] . "_$id";
-  return '<li id="' . $field_id . '" class="' . $css_class . ' form-group">{FIELD_CONTENT}</li>';
-}
 
 
 // Google API Key
@@ -1032,10 +1026,8 @@ function store_finder(){
           <div class="row">
             <div class="col-12 p-0">
 <div class="container-fluid p-0" id="google_map">
-<?php echo eboywp_display( 'facet', 'location' ); ?>
-<div class="section" id="contact">
-    <div style="width:100px; height:200px; background:#ccc;z-index:999999;position:absolute;">test</div>
-</div>
+<?php echo eboywp_display( 'eboy', 'map' ); ?>
+
 </div>
 </div>
 </div>
@@ -1052,35 +1044,10 @@ function store_finder_split(){
         ?>
         <div class="container">
         <div class="row pt-3">
-          <div class="col-4">
-          <?php echo eboywp_display( 'facet', 'country_dropdown' ); ?>
-          </div>
-         <div class="col-4">
-
-        <?php echo eboywp_display( 'facet', 'state_dropdown' ); ?>
-
-        </div>
-        <div class="col-4">
-
-       <?php echo eboywp_display( 'facet', 'city_dropdown' ); ?>
-
-       </div>
-       <div class="col-12 p-3">
-       <div class="my_hr" >
-             <span class="my_hr_span">
-               Available Collections
-             </span>
-           </div>
-           </div>
-        <div class="col-12">
-        <?php echo eboywp_display( 'facet', 'store_category' ); ?>
-        </div>
-        <div class="col-12 p-3">
-        <div class="my_hr" >
-              <span class="my_hr_span">
-                View Stores
-              </span>
-            </div>
+          <div class="col-12">
+            <?php gravity_form_enqueue_scripts(  2, false ); ?>
+                    <?php gravity_form('Store finder', false, false, false, '', false); ?>
+                    <button class="reset" onclick="EWP.reset()">Reset</button>
             </div>
         </div>
 
@@ -1104,15 +1071,35 @@ function store_finder_split(){
     $email_2 = get_field( "email_2" );
     $street_address = get_field( "street_address" );
     $phone = get_field( "phone" );
+    $phone_icon = '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/phone.svg">';
+    $directions_icon = '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/directions.svg">';
+    $city = get_field( "city" );
+    $country = get_field( "country" );
+    $term_list = wp_get_post_terms($post->ID, 'store_cat', array("fields" => "all"));
+    $location = get_field('location');
     ?>
 <div class="col-lg-12 py-3">
-<div class="card">
-<div class="card-body">
-  <h5 class="card-title"><?php the_title(); ?></h5>
-  <p class="card-text"><?php echo $street_address; ?></p>
-  <a class="btn btn-primary" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php $location = get_field('location'); echo $location['lat'] . ',' . $location['lng']; ?>"><?php _e('Get Directions','roots'); ?></a>
-</div>
-</div>
+  <div class="card">
+  <h5 class="card-header"><?php the_title(); ?></h5>
+    <div class="card-body">
+
+      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php the_title(); ?>" ><?php echo $street_address; ?>, <?php echo $country; ?></h6>
+
+       <footer class="blockquote-footer">
+  <?php foreach($term_list as $term_single) {
+
+  echo $term_single->name;
+  echo ' - ';
+  } ?>
+  <span class="float-right">
+    <a class="btn btn-outline-primary btn-sm" href="tel:<?php echo $phone; ?>"><?php echo $phone_icon; ?> <?php echo $phone; ?></a>
+ <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
+</span>
+  </footer>
+
+
+    </div>
+  </div>
 </div>
 
 
@@ -1158,7 +1145,7 @@ function book(){
         <div class="container mt-5 book-appontment">
           <div class="row">
             <div class="col-12">
-      <?php gravity_form_enqueue_scripts( 1, false ); ?>
+              <?php gravity_form_enqueue_scripts( 1, false ); ?>
               <?php gravity_form('Book an appointment', false, false, false, '', false); ?>
               </div>
                 </div>
@@ -1335,11 +1322,34 @@ function form_submit_button($button, $form){
 }
 
 
-add_filter( 'gform_pre_render_3', 'populate_posts' );
-add_filter( 'gform_pre_validation_3', 'populate_posts' );
-add_filter( 'gform_pre_submission_filter_3', 'populate_posts' );
-add_filter( 'gform_admin_pre_render_3', 'populate_posts' );
+add_filter( 'gform_pre_render_1', 'populate_posts' );
+add_filter( 'gform_pre_validation_1', 'populate_posts' );
+add_filter( 'gform_pre_submission_filter_1', 'populate_posts' );
+add_filter( 'gform_admin_pre_render_1', 'populate_posts' );
 function populate_posts( $form ) {
+    foreach ( $form['fields'] as &$field ) {
+        if ( strpos( $field->cssClass, 'country_selector' ) === false ) {
+            continue;
+        }
+        $new_field_choices = array();
+     	 $terms = get_terms( 'store_loc', array('hide_empty' => true));
+     	 foreach ($terms as $term) {
+     	 	$new_field_choices[] = array(
+     	 		'text' => $term->name,
+     	 		'value' => $term->name
+     	 	);
+     	 }
+     	$field->choices = $new_field_choices;
+    }
+    return $form;
+}
+
+
+add_filter( 'gform_pre_render_2', 'populate_posts' );
+add_filter( 'gform_pre_validation_2', 'populate_posts' );
+add_filter( 'gform_pre_submission_filter_2', 'populate_posts' );
+add_filter( 'gform_admin_pre_render_2', 'populate_posts' );
+function populate_posts_store_finder( $form ) {
     foreach ( $form['fields'] as &$field ) {
         if ( strpos( $field->cssClass, 'country_selector' ) === false ) {
             continue;

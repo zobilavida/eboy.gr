@@ -28,7 +28,7 @@ class eboywp
 {
 
     public $ajax;
-    public $facet;
+    public $eboy;
     public $helper;
     public $indexer;
     public $display;

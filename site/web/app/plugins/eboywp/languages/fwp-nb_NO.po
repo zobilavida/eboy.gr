@@ -102,9 +102,9 @@ msgstr "For å bruk eboywp %s, vennligst installere %s, så re-indeksen."
 msgid "of"
 msgstr "av"
 
-#: includes/class-renderer.php:531 includes/facets/checkboxes.php:331
-#: includes/facets/dropdown.php:191 includes/facets/fselect.php:322
-#: includes/facets/hierarchy.php:212 includes/facets/radio.php:210
+#: includes/class-renderer.php:531 includes/eboys/checkboxes.php:331
+#: includes/eboys/dropdown.php:191 includes/eboys/fselect.php:322
+#: includes/eboys/hierarchy.php:212 includes/eboys/radio.php:210
 msgid "Sort by"
 msgstr "Sorter etter"
 
@@ -165,9 +165,9 @@ msgstr "Ton ut"
 msgid "Spin"
 msgstr "Spinn"
 
-#: includes/class-settings-admin.php:31 includes/facets/date_range.php:181
-#: includes/facets/number_range.php:116 includes/facets/proximity.php:247
-#: includes/facets/proximity.php:277 includes/facets/slider.php:176
+#: includes/class-settings-admin.php:31 includes/eboys/date_range.php:181
+#: includes/eboys/number_range.php:116 includes/eboys/proximity.php:247
+#: includes/eboys/proximity.php:277 includes/eboys/slider.php:176
 msgid "None"
 msgstr "Ingen"
 
@@ -207,23 +207,23 @@ msgid "Enable if your store uses variable products."
 msgstr ""
 
 #: includes/class-settings-admin.php:55 includes/class-settings-admin.php:62
-#: includes/facets/checkboxes.php:366 includes/facets/checkboxes.php:381
-#: includes/facets/checkboxes.php:396 includes/facets/checkboxes.php:411
-#: includes/facets/dropdown.php:211 includes/facets/fselect.php:295
-#: includes/facets/fselect.php:342 includes/facets/fselect.php:372
-#: includes/facets/fselect.php:387 includes/facets/radio.php:230
-#: includes/facets/radio.php:245 includes/facets/search.php:117
+#: includes/eboys/checkboxes.php:366 includes/eboys/checkboxes.php:381
+#: includes/eboys/checkboxes.php:396 includes/eboys/checkboxes.php:411
+#: includes/eboys/dropdown.php:211 includes/eboys/fselect.php:295
+#: includes/eboys/fselect.php:342 includes/eboys/fselect.php:372
+#: includes/eboys/fselect.php:387 includes/eboys/radio.php:230
+#: includes/eboys/radio.php:245 includes/eboys/search.php:117
 #: includes/integrations/acf/acf.php:247
 msgid "No"
 msgstr "Nei"
 
 #: includes/class-settings-admin.php:55 includes/class-settings-admin.php:62
-#: includes/facets/checkboxes.php:367 includes/facets/checkboxes.php:382
-#: includes/facets/checkboxes.php:397 includes/facets/checkboxes.php:412
-#: includes/facets/dropdown.php:212 includes/facets/fselect.php:296
-#: includes/facets/fselect.php:343 includes/facets/fselect.php:373
-#: includes/facets/fselect.php:388 includes/facets/radio.php:231
-#: includes/facets/radio.php:246 includes/facets/search.php:118
+#: includes/eboys/checkboxes.php:367 includes/eboys/checkboxes.php:382
+#: includes/eboys/checkboxes.php:397 includes/eboys/checkboxes.php:412
+#: includes/eboys/dropdown.php:212 includes/eboys/fselect.php:296
+#: includes/eboys/fselect.php:343 includes/eboys/fselect.php:373
+#: includes/eboys/fselect.php:388 includes/eboys/radio.php:231
+#: includes/eboys/radio.php:246 includes/eboys/search.php:118
 #: includes/integrations/acf/acf.php:247
 msgid "Yes"
 msgstr "Ja"
@@ -234,7 +234,7 @@ msgid "Include all products?"
 msgstr "Inkludere alle produkter?"
 
 #: includes/class-settings-admin.php:60
-msgid "Show facet choices for out-of-stock products?"
+msgid "Show eboy choices for out-of-stock products?"
 msgstr ""
 
 #: includes/class-settings-admin.php:68
@@ -280,385 +280,385 @@ msgid "Please activate or renew your license for automatic updates."
 msgstr ""
 "Vennligst aktivere eller fornye lisensen for automatiske oppdateringer."
 
-#: includes/facets/autocomplete.php:7
+#: includes/eboys/autocomplete.php:7
 msgid "Autocomplete"
 msgstr "Autofullfør"
 
-#: includes/facets/autocomplete.php:40
+#: includes/eboys/autocomplete.php:40
 msgid "Start typing..."
 msgstr "Begynn å skrive..."
 
-#: includes/facets/autocomplete.php:43
+#: includes/eboys/autocomplete.php:43
 msgid "Update"
 msgstr "Oppdater"
 
-#: includes/facets/autocomplete.php:99
+#: includes/eboys/autocomplete.php:99
 msgid "No results"
 msgstr "Ingen resultatet"
 
-#: includes/facets/autocomplete.php:159 includes/facets/search.php:104
+#: includes/eboys/autocomplete.php:159 includes/eboys/search.php:104
 msgid "Placeholder text"
 msgstr "Plassholdertekst"
 
-#: includes/facets/checkboxes.php:7
+#: includes/eboys/checkboxes.php:7
 msgid "Checkboxes"
 msgstr "Avhukningsbokser"
 
-#: includes/facets/checkboxes.php:152
+#: includes/eboys/checkboxes.php:152
 msgid "See {num} more"
 msgstr "Se {num} mer"
 
-#: includes/facets/checkboxes.php:153 includes/facets/hierarchy.php:152
+#: includes/eboys/checkboxes.php:153 includes/eboys/hierarchy.php:152
 msgid "See less"
 msgstr "Se mindre"
 
-#: includes/facets/checkboxes.php:317 includes/facets/dropdown.php:177
-#: includes/facets/fselect.php:308 includes/facets/radio.php:196
+#: includes/eboys/checkboxes.php:317 includes/eboys/dropdown.php:177
+#: includes/eboys/fselect.php:308 includes/eboys/radio.php:196
 msgid "Parent term"
 msgstr "Overordnet term"
 
-#: includes/facets/checkboxes.php:334 includes/facets/dropdown.php:194
-#: includes/facets/fselect.php:325 includes/facets/hierarchy.php:215
-#: includes/facets/radio.php:213
+#: includes/eboys/checkboxes.php:334 includes/eboys/dropdown.php:194
+#: includes/eboys/fselect.php:325 includes/eboys/hierarchy.php:215
+#: includes/eboys/radio.php:213
 msgid "Highest Count"
 msgstr "Høyeste antall"
 
-#: includes/facets/checkboxes.php:335 includes/facets/dropdown.php:195
-#: includes/facets/fselect.php:326 includes/facets/hierarchy.php:216
-#: includes/facets/radio.php:214
+#: includes/eboys/checkboxes.php:335 includes/eboys/dropdown.php:195
+#: includes/eboys/fselect.php:326 includes/eboys/hierarchy.php:216
+#: includes/eboys/radio.php:214
 msgid "Display Value"
 msgstr "Visningsverdi"
 
-#: includes/facets/checkboxes.php:336 includes/facets/dropdown.php:196
-#: includes/facets/fselect.php:327 includes/facets/hierarchy.php:217
-#: includes/facets/radio.php:215
+#: includes/eboys/checkboxes.php:336 includes/eboys/dropdown.php:196
+#: includes/eboys/fselect.php:327 includes/eboys/hierarchy.php:217
+#: includes/eboys/radio.php:215
 msgid "Raw Value"
 msgstr "Råverdi"
 
-#: includes/facets/checkboxes.php:337 includes/facets/dropdown.php:197
-#: includes/facets/fselect.php:328 includes/facets/hierarchy.php:218
-#: includes/facets/radio.php:216
+#: includes/eboys/checkboxes.php:337 includes/eboys/dropdown.php:197
+#: includes/eboys/fselect.php:328 includes/eboys/hierarchy.php:218
+#: includes/eboys/radio.php:216
 #, fuzzy
 msgid "Term Order"
 msgstr "Bestem rekkefølge etter"
 
-#: includes/facets/checkboxes.php:343 includes/facets/fselect.php:349
+#: includes/eboys/checkboxes.php:343 includes/eboys/fselect.php:349
 msgid "Behavior"
 msgstr "Oppførsel"
 
-#: includes/facets/checkboxes.php:346 includes/facets/fselect.php:352
+#: includes/eboys/checkboxes.php:346 includes/eboys/fselect.php:352
 msgid "How should multiple selections affect the results?"
 msgstr "Hvordan skal flervalg påvirke resultatene?"
 
-#: includes/facets/checkboxes.php:351 includes/facets/fselect.php:357
+#: includes/eboys/checkboxes.php:351 includes/eboys/fselect.php:357
 msgid "Narrow the result set"
 msgstr "Smalne inn resultatsettet"
 
-#: includes/facets/checkboxes.php:352 includes/facets/fselect.php:358
+#: includes/eboys/checkboxes.php:352 includes/eboys/fselect.php:358
 msgid "Widen the result set"
 msgstr "Utvid resultatsettet"
 
-#: includes/facets/checkboxes.php:358 includes/facets/dropdown.php:203
-#: includes/facets/fselect.php:334
+#: includes/eboys/checkboxes.php:358 includes/eboys/dropdown.php:203
+#: includes/eboys/fselect.php:334
 msgid "Hierarchical"
 msgstr "Hierarkisk"
 
-#: includes/facets/checkboxes.php:361 includes/facets/dropdown.php:206
-#: includes/facets/fselect.php:337
+#: includes/eboys/checkboxes.php:361 includes/eboys/dropdown.php:206
+#: includes/eboys/fselect.php:337
 msgid "Is this a hierarchical taxonomy?"
 msgstr "Er dette en hierarkisk taksonomi?"
 
-#: includes/facets/checkboxes.php:373
+#: includes/eboys/checkboxes.php:373
 #, fuzzy
 msgid "Show expanded"
 msgstr "Vis utvidet"
 
-#: includes/facets/checkboxes.php:376
+#: includes/eboys/checkboxes.php:376
 #, fuzzy
 msgid "Should child terms be visible by default?"
 msgstr "Bør barnet vilkår være synlige som standard?"
 
-#: includes/facets/checkboxes.php:388 includes/facets/fselect.php:364
-#: includes/facets/radio.php:222
+#: includes/eboys/checkboxes.php:388 includes/eboys/fselect.php:364
+#: includes/eboys/radio.php:222
 msgid "Show ghosts"
 msgstr "Vis spøkelser"
 
-#: includes/facets/checkboxes.php:391 includes/facets/fselect.php:367
-#: includes/facets/radio.php:225
+#: includes/eboys/checkboxes.php:391 includes/eboys/fselect.php:367
+#: includes/eboys/radio.php:225
 msgid "Show choices that would return zero results?"
 msgstr "Vis valg som returnerer null resultater?"
 
-#: includes/facets/checkboxes.php:403 includes/facets/fselect.php:379
-#: includes/facets/radio.php:237
+#: includes/eboys/checkboxes.php:403 includes/eboys/fselect.php:379
+#: includes/eboys/radio.php:237
 msgid "Preserve ghost order"
 msgstr "Bevar rekkefølge på spøkelser"
 
-#: includes/facets/checkboxes.php:406 includes/facets/fselect.php:382
-#: includes/facets/radio.php:240
+#: includes/eboys/checkboxes.php:406 includes/eboys/fselect.php:382
+#: includes/eboys/radio.php:240
 msgid "Keep ghost choices in the same order?"
 msgstr "Behold spøkelser i samme rekkefølge?"
 
-#: includes/facets/checkboxes.php:418 includes/facets/dropdown.php:218
-#: includes/facets/fselect.php:394 includes/facets/hierarchy.php:224
-#: includes/facets/radio.php:252
+#: includes/eboys/checkboxes.php:418 includes/eboys/dropdown.php:218
+#: includes/eboys/fselect.php:394 includes/eboys/hierarchy.php:224
+#: includes/eboys/radio.php:252
 msgid "Count"
 msgstr "Antall"
 
-#: includes/facets/checkboxes.php:421 includes/facets/dropdown.php:221
-#: includes/facets/fselect.php:397 includes/facets/hierarchy.php:227
-#: includes/facets/radio.php:255
-msgid "The maximum number of facet choices to show"
+#: includes/eboys/checkboxes.php:421 includes/eboys/dropdown.php:221
+#: includes/eboys/fselect.php:397 includes/eboys/hierarchy.php:227
+#: includes/eboys/radio.php:255
+msgid "The maximum number of eboy choices to show"
 msgstr "Maksimalt antall fasettvalg som vises"
 
-#: includes/facets/checkboxes.php:428
+#: includes/eboys/checkboxes.php:428
 msgid "Soft Limit"
 msgstr "Myk grense"
 
-#: includes/facets/checkboxes.php:431
+#: includes/eboys/checkboxes.php:431
 msgid "Show a toggle link after this many choices"
 msgstr "Vise en vessel link better så mange valg"
 
-#: includes/facets/date_range.php:7
+#: includes/eboys/date_range.php:7
 msgid "Date Range"
 msgstr "Datoområde"
 
-#: includes/facets/date_range.php:22
+#: includes/eboys/date_range.php:22
 msgid "Date"
 msgstr "Dato"
 
-#: includes/facets/date_range.php:25 includes/facets/date_range.php:208
+#: includes/eboys/date_range.php:25 includes/eboys/date_range.php:208
 msgid "Start Date"
 msgstr "Startdato"
 
-#: includes/facets/date_range.php:28 includes/facets/date_range.php:209
+#: includes/eboys/date_range.php:28 includes/eboys/date_range.php:209
 msgid "End Date"
 msgstr "Sluttdato"
 
-#: includes/facets/date_range.php:154
+#: includes/eboys/date_range.php:154
 msgid "Clear"
 msgstr "Fjern"
 
-#: includes/facets/date_range.php:173 includes/facets/number_range.php:108
-#: includes/facets/slider.php:168
+#: includes/eboys/date_range.php:173 includes/eboys/number_range.php:108
+#: includes/eboys/slider.php:168
 msgid "Other data source"
 msgstr "Andre datakilde"
 
-#: includes/facets/date_range.php:176 includes/facets/number_range.php:111
-#: includes/facets/slider.php:171
+#: includes/eboys/date_range.php:176 includes/eboys/number_range.php:111
+#: includes/eboys/slider.php:171
 msgid "Use a separate value for the upper limit?"
 msgstr "Bruk en egen verdi for øvre grense?"
 
-#: includes/facets/date_range.php:193 includes/facets/number_range.php:128
-#: includes/facets/slider.php:188
+#: includes/eboys/date_range.php:193 includes/eboys/number_range.php:128
+#: includes/eboys/slider.php:188
 msgid "Compare type"
 msgstr "Sammenligne type"
 
-#: includes/facets/date_range.php:196 includes/facets/number_range.php:131
-#: includes/facets/slider.php:191
+#: includes/eboys/date_range.php:196 includes/eboys/number_range.php:131
+#: includes/eboys/slider.php:191
 msgid "Basic"
 msgstr "Grunnleggende"
 
-#: includes/facets/date_range.php:197
+#: includes/eboys/date_range.php:197
 #, fuzzy
 msgid "Enclose"
 msgstr "Omslutter"
 
-#: includes/facets/date_range.php:198 includes/facets/number_range.php:132
-#: includes/facets/slider.php:192
+#: includes/eboys/date_range.php:198 includes/eboys/number_range.php:132
+#: includes/eboys/slider.php:192
 msgid "Intersect"
 msgstr "Krysse"
 
-#: includes/facets/date_range.php:203
+#: includes/eboys/date_range.php:203
 msgid "Fields to show"
 msgstr "Vis felter"
 
-#: includes/facets/date_range.php:206
+#: includes/eboys/date_range.php:206
 msgid "Start + End Dates"
 msgstr "Start + sluttdatoer"
 
-#: includes/facets/date_range.php:207
+#: includes/eboys/date_range.php:207
 msgid "Exact Date"
 msgstr "Eksakt dato"
 
-#: includes/facets/date_range.php:215
+#: includes/eboys/date_range.php:215
 msgid "Display format"
 msgstr "Visningsformat"
 
-#: includes/facets/dropdown.php:7 includes/facets/proximity.php:275
+#: includes/eboys/dropdown.php:7 includes/eboys/proximity.php:275
 msgid "Dropdown"
 msgstr "Nedtrekksmeny"
 
-#: includes/facets/dropdown.php:78 includes/facets/dropdown.php:172
-#: includes/facets/fselect.php:140 includes/facets/fselect.php:214
-#: includes/facets/fselect.php:303 includes/facets/hierarchy.php:67
+#: includes/eboys/dropdown.php:78 includes/eboys/dropdown.php:172
+#: includes/eboys/fselect.php:140 includes/eboys/fselect.php:214
+#: includes/eboys/fselect.php:303 includes/eboys/hierarchy.php:67
 msgid "Any"
 msgstr "Alle"
 
-#: includes/facets/dropdown.php:163 includes/facets/fselect.php:301
+#: includes/eboys/dropdown.php:163 includes/eboys/fselect.php:301
 msgid "Default label"
 msgstr "Standardetikett"
 
-#: includes/facets/fselect.php:7
+#: includes/eboys/fselect.php:7
 msgid "fSelect"
 msgstr "fSelect"
 
-#: includes/facets/fselect.php:219
+#: includes/eboys/fselect.php:219
 msgid "{n} selected"
 msgstr "(n) valgt"
 
-#: includes/facets/fselect.php:220 includes/facets/search.php:7
+#: includes/eboys/fselect.php:220 includes/eboys/search.php:7
 msgid "Search"
 msgstr "Søk"
 
-#: includes/facets/fselect.php:291
+#: includes/eboys/fselect.php:291
 msgid "Multi-select?"
 msgstr "Mercer?"
 
-#: includes/facets/hierarchy.php:7
+#: includes/eboys/hierarchy.php:7
 msgid "Hierarchy"
 msgstr "Hierarki"
 
-#: includes/facets/hierarchy.php:151
+#: includes/eboys/hierarchy.php:151
 msgid "See more"
 msgstr "Se mer"
 
-#: includes/facets/number_range.php:7
+#: includes/eboys/number_range.php:7
 msgid "Number Range"
 msgstr "Tallområde"
 
-#: includes/facets/number_range.php:19
+#: includes/eboys/number_range.php:19
 msgid "Min"
 msgstr "Min"
 
-#: includes/facets/number_range.php:21
+#: includes/eboys/number_range.php:21
 msgid "Max"
 msgstr "Maks"
 
-#: includes/facets/number_range.php:23
+#: includes/eboys/number_range.php:23
 #, fuzzy
 msgid "OK"
 msgstr "OK"
 
-#: includes/facets/proximity.php:14
+#: includes/eboys/proximity.php:14
 msgid "Proximity"
 msgstr "Avstand"
 
-#: includes/facets/proximity.php:63
+#: includes/eboys/proximity.php:63
 msgid "Enter location"
 msgstr "Legg inn beliggenhet"
 
-#: includes/facets/proximity.php:227
+#: includes/eboys/proximity.php:227
 #, fuzzy
 #| msgid "Enter location"
 msgid "Clear location"
 msgstr "Legg inn beliggenhet"
 
-#: includes/facets/proximity.php:239
+#: includes/eboys/proximity.php:239
 #, fuzzy
 msgid "Longitude"
 msgstr "Lengdegrad"
 
-#: includes/facets/proximity.php:242
+#: includes/eboys/proximity.php:242
 msgid "(Optional) use a separate longitude field"
 msgstr ""
 
-#: includes/facets/proximity.php:260
+#: includes/eboys/proximity.php:260
 msgid "Unit of measurement"
 msgstr "Måleenhet"
 
-#: includes/facets/proximity.php:264
+#: includes/eboys/proximity.php:264
 msgid "Miles"
 msgstr "Miles"
 
-#: includes/facets/proximity.php:265
+#: includes/eboys/proximity.php:265
 msgid "Kilometers"
 msgstr "Kilometer"
 
-#: includes/facets/proximity.php:271
+#: includes/eboys/proximity.php:271
 msgid "Radius UI"
 msgstr ""
 
-#: includes/facets/proximity.php:276 includes/facets/slider.php:7
+#: includes/eboys/proximity.php:276 includes/eboys/slider.php:7
 msgid "Slider"
 msgstr "Glidebryter"
 
-#: includes/facets/proximity.php:283
+#: includes/eboys/proximity.php:283
 msgid "Radius options"
 msgstr ""
 
-#: includes/facets/proximity.php:297
+#: includes/eboys/proximity.php:297
 #, fuzzy
 #| msgid "Slider"
 msgid "Slider range"
 msgstr "Glidebryter"
 
-#: includes/facets/proximity.php:312
+#: includes/eboys/proximity.php:312
 #, fuzzy
 #| msgid "Default label"
 msgid "Default radius"
 msgstr "Standardetikett"
 
-#: includes/facets/proximity.php:368
+#: includes/eboys/proximity.php:368
 msgid "Distance"
 msgstr "Avstand"
 
-#: includes/facets/radio.php:7
+#: includes/eboys/radio.php:7
 msgid "Radio"
 msgstr "Radioknapp"
 
-#: includes/facets/search.php:19
+#: includes/eboys/search.php:19
 msgid "Enter keywords"
 msgstr "Legg inn nøkkelord"
 
-#: includes/facets/search.php:93
+#: includes/eboys/search.php:93
 msgid "Search engine"
 msgstr "Søkemotor"
 
-#: includes/facets/search.php:96
+#: includes/eboys/search.php:96
 msgid "WP Default"
 msgstr "WP-standard"
 
-#: includes/facets/search.php:109
+#: includes/eboys/search.php:109
 msgid "Auto refresh"
 msgstr ""
 
-#: includes/facets/search.php:112
+#: includes/eboys/search.php:112
 msgid "Automatically refresh the results while typing?"
 msgstr ""
 
-#: includes/facets/slider.php:20
+#: includes/eboys/slider.php:20
 msgid "Reset"
 msgstr "Nullstill"
 
-#: includes/facets/slider.php:198
+#: includes/eboys/slider.php:198
 msgid "Prefix"
 msgstr "Prefiks"
 
-#: includes/facets/slider.php:201
+#: includes/eboys/slider.php:201
 msgid "Text that appears before each slider value"
 msgstr "Test som vises før hver glidebryterverdi"
 
-#: includes/facets/slider.php:208
+#: includes/eboys/slider.php:208
 msgid "Suffix"
 msgstr "Endelse"
 
-#: includes/facets/slider.php:211
+#: includes/eboys/slider.php:211
 msgid "Text that appears after each slider value"
 msgstr "Tekst som vises før hver glidebryterverdi"
 
-#: includes/facets/slider.php:218
+#: includes/eboys/slider.php:218
 msgid "Format"
 msgstr "Format"
 
-#: includes/facets/slider.php:221
+#: includes/eboys/slider.php:221
 msgid "The number format"
 msgstr "Tallformatet"
 
-#: includes/facets/slider.php:242
+#: includes/eboys/slider.php:242
 msgid "Step"
 msgstr "Steg"
 
-#: includes/facets/slider.php:245
+#: includes/eboys/slider.php:245
 msgid "The amount of increase between intervals"
 msgstr "Økning mellom intervaller"
 
@@ -751,7 +751,7 @@ msgid "Select some items"
 msgstr "Velge noen elementer"
 
 #: templates/page-settings.php:22
-msgid "This facet type has no additional settings."
+msgid "This eboy type has no additional settings."
 msgstr "Slike fasett har ingen ekstra innstillinger."
 
 #: templates/page-settings.php:62
@@ -785,7 +785,7 @@ msgid "Name"
 msgstr "Navn"
 
 #: templates/page-settings.php:167
-msgid "Facet type"
+msgid "Eboy type"
 msgstr "Fasettype"
 
 #: templates/page-settings.php:180
@@ -830,7 +830,7 @@ msgstr "Sende å editor"
 #~ msgid "Welcome"
 #~ msgstr "Velkommen"
 
-#~ msgid "Facets"
+#~ msgid "Eboys"
 #~ msgstr "Fasetter"
 
 #~ msgid "Templates"
