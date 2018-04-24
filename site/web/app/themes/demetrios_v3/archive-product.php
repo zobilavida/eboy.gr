@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div id="mybutton">
+<div class="mybutton mybutton_vertical">
 <a href="#" class="btn btn-info feedback" role="button">Book an Appointment</a>
 </div>
 
@@ -59,21 +59,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
     <div class="container">
-      <div class="row pb-3 pt-5">
+      <div class="row product-cat-if-desc p-4">
         <div class="col-12 text-center">
 <?php do_action( 'woocommerce_archive_description' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php echo eboywp_display( 'facet', 'a_lasting_love_fabric' ); ?>
+        <?php echo eboywp_display( 'eboy', 'fabric' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php echo eboywp_display( 'facet', 'neckline' ); ?>
+        <?php// echo eboywp_display( 'facet', 'neckline' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php echo eboywp_display( 'facet', 'silhouette' ); ?>
+        <?php //echo eboywp_display( 'facet', 'silhouette' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php echo eboywp_display( 'facet', 'style' ); ?>
+        <?php //echo eboywp_display( 'facet', 'style' ); ?>
         </div>
 				<div class="container pt-3">
   <div class="row justify-content-center">

@@ -1032,7 +1032,7 @@ function button_book(){
   if( $button_book ) {
 
 ?>
-<div id="mybutton">
+<div class="mybutton mybutton_vertical">
 <button class="feedback"><?php echo $button_book; ?></button>
 </div>
 <?php
@@ -1206,10 +1206,19 @@ function woo_cat_thumb() {
 
       <section class="module bg-dark-60 parallax-bg h-100" data-background="<?php echo $image ?>" style="background-position: 50% 15%;">
 
-          <div class="titan-caption">
-            <div class="caption-content">
-              <div class="font-alt mb-30 p-5 mt-5 mb-5"><h2><?php single_term_title(); ?></h2></div>
-            </div>
+
+          <div class="container h-100">
+              <div class="row product-cat-if-head h-100 align-items-end p-5">
+                  <div class="col-lg-2 col-sm-1 col-1">
+
+                  </div>
+                  <div class="col-lg-8 col-sm-10 col-10 text-center">
+                    <h2><?php single_term_title(); ?></h2>
+                </div>
+                  <div class="col-lg-2 col-sm-1 col-1">
+
+                  </div>
+              </div>
           </div>
 
       </section>

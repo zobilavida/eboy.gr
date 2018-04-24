@@ -124,8 +124,8 @@ class bs4Navwalker extends Walker_Nav_Menu
         }
 
         if ($depth === 0 && in_array('menu-item-has-children', $classes)) {
-            $atts['class']       .= ' dropdown-toggle';
-            $atts['data-toggle']  = 'dropdown';
+          //  $atts['class']       .= ' dropdown-toggle';
+          //  $atts['data-toggle']  = 'dropdown';
         }
 
         if ($depth > 0) {
