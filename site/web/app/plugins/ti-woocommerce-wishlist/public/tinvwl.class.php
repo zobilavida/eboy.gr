@@ -361,7 +361,7 @@ class TInvWL_Public_TInvWL {
 	 * Load style
 	 */
 	function enqueue_styles() {
-		wp_enqueue_style( 'tinvwl', TINVWL_URL . 'asset/css/public.min.css', array(), $this->_v, 'all' );
+	//	wp_enqueue_style( 'tinvwl', TINVWL_URL . 'asset/css/public.min.css', array(), $this->_v, 'all' );
 		if ( ! tinv_get_option( 'style', 'customstyle' ) ) {
 			wp_enqueue_style( 'tinvwl-theme', TINVWL_URL . 'asset/css/theme.min.css', array(), $this->_v, 'all' );
 		}
@@ -372,7 +372,7 @@ class TInvWL_Public_TInvWL {
 				wp_add_inline_style( $name_style, $newcss );
 			}
 		}
-		wp_enqueue_style( 'tinvwl-font-awesome', TINVWL_URL . 'asset/css/font-awesome.min.css', array(), $this->_v, 'all' );
+	//	wp_enqueue_style( 'tinvwl-font-awesome', TINVWL_URL . 'asset/css/font-awesome.min.css', array(), $this->_v, 'all' );
 	}
 
 	/**
