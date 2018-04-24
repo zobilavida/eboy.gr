@@ -30,6 +30,7 @@ unset($file, $filepath);
 // Include custom navwalker
 require_once('bs4navwalker.php');
 
+
 // Register WordPress nav menu
 register_nav_menu('top', 'Top menu');
 
@@ -568,7 +569,7 @@ add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 function custom_header(){
   if (is_page('Home')) {
       // below content only show when page id is 12
-      $home_logo = get_field( "home_logo" );
+      $home_logo = get_field( "logo_home" );
 
 ?>
 
@@ -592,7 +593,7 @@ function custom_header(){
               'container_id'    => '',
               'container_class' => '',
               'menu_id'         => false,
-              'menu_class'      => 'navbar-nav ml-auto',
+              'menu_class'      => 'navbar-nav navbar-nav-home ml-auto',
               'depth'           => 2,
               'fallback_cb'     => 'bs4navwalker::fallback',
               'walker'          => new bs4navwalker()
@@ -647,24 +648,30 @@ add_action('demetrios_custom_header', 'custom_header');
 
 function demetrios_front_video(){
 
-  $video = get_field( "video_url" );
-  $text_over_video = get_field( "text_over_video" );
+  $video = get_field( "video_file" );
+  $video_background_text_1 = get_field( "video_background_text_1" );
+  $video_background_text_2 = get_field( "video_background_text_2" );
+  $video_link = get_field( "video_link" );
   $video_bg_image = get_field( "video_bg_image" );
 ?>
-<section class="video">
+<section class="video h-30">
 
 
+  <div class="container h-100 d-flex video-background-image" data-background="<?php //echo $video_bg_image; ?>">
+    <div class="row m-auto">
+      <div class="col-12 text-center">
+    <div class="display-1-w pb-4"><?php echo $video_background_text_1; ?></div>
 
-      <div class="jumbotron" data-background="<?php echo $video_bg_image; ?>" style="background-position: 50% 15%;">
+    <?php if( $video_background_text_2 ) { ?><a href="<?php echo $video_link; ?>" class="btn btn-outline-light btn-lg" > <?php echo $video_background_text_2; ?> </a><?php }?>
+    </div>
+    </div>
+
         <video id="video-background" preload="" muted="" autoplay="" loop="">
           <source src="<?php echo $video; ?>" type="video/mp4">
         </video>
-        <div class="titan-caption">
-          <div class="caption-content">
-          <?php echo $text_over_video; ?>
-        </div>
-        </div>
-      </div>
+
+  </div>
+
 
 </section>
 
@@ -814,7 +821,7 @@ function parallax_1(){
     <div class="titan-caption">
       <div class="caption-content">
         <div class="font-alt mb-30"><h2><?php echo $parallax_1_text_1; ?></h2></div>
-        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_1_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_1_button_url; ?>"><?php echo $parallax_1_button; ?></a>
+        <div class="pb-3"><?php echo $parallax_1_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_1_button_url; ?>"><?php echo $parallax_1_button; ?></a>
       </div>
     </div>
 
@@ -831,10 +838,12 @@ add_action( 'custom_parallax_1', 'parallax_1', 15 );
 function half_1(){
   $half_1 = get_field( "half_1" );
   $section_half_1_header = get_field( "section_half_1_header" );
-  $half_1_text_1 = get_field( "half_text_1" );
-  $half_1_text_2 = get_field( "half_text_2" );
+  $half_1_text_1 = get_field( "half_1_text_1" );
+  $half_1_text_2 = get_field( "half_1_text_2" );
+  $half_1_text_3 = get_field( "half_1_text_3" );
   $half_1_button = get_field( "half_1_button" );
   $half_1_button_url = get_field( "half_1_button_url" );
+  $calendar = get_field( "calendar" );
 
   if( $half_1 ) {
 
@@ -843,7 +852,7 @@ function half_1(){
   <div class="container-fluid h-100 pl-0">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <h3><?php echo $section_half_1_header; ?></h3>
+        <div class="display-3-b-it p-1"><?php echo $section_half_1_header; ?></div>
       </div>
     </div>
   <div class="row position-relative m-0">
@@ -853,11 +862,14 @@ function half_1(){
     <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
       <div class="row h-100">
         <div class="col-sm-12 align-self-center pl-5">
-<span class="align-middle">
-  <h2><?php echo $half_1_text_1; ?></h2>
-  <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $half_1_text_2; ?></div><a class="section-scroll btn btn-border-d btn-round" href="<?php echo $half_1_button_url; ?>"><?php echo $half_1_button; ?></a>
 
-</span>
+  <div class="display-1-g"><?php echo $half_1_text_1; ?></div>
+  <div class="display-1-b"><?php echo $half_1_text_2; ?></div>
+  <?php if( $calendar ) {?> <div class="simply-countdown-inline"> </div><?}?>
+<div class="display-2-b pt-2"><?php echo $half_1_text_3; ?></div>
+
+  <a class="btn btn-outline-secondary" href="<?php echo $half_1_button_url; ?>"><?php echo $half_1_button; ?></a>
+
         </div>
       </div>
     </div>
@@ -887,19 +899,28 @@ function parallax_2(){
 <div class="container-fluid bg-white">
   <div class="row justify-content-center pb-1">
     <div class="col-12 text-center">
-      <h3><?php echo $section_parallax_2_header; ?></h3>
+        <div class="display-3-b-it p-1"><?php echo $section_parallax_2_header; ?></div>
     </div>
   </div>
 </div>
-<section class="module bg-dark-60 parallax-bg h-25" data-background="<?php echo $parallax_2; ?>" style="background-position: 50% 15%;">
+<section class="module bg-dark-60 parallax-bg h-30" data-background="<?php echo $parallax_2; ?>" style="background-position: 50% 15%;">
 
-    <div class="titan-caption">
-      <div class="caption-content">
-        <div class="font-alt mb-30"><h2><?php echo $parallax_2_text_1; ?></h2></div>
-        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_2_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_2_button_url; ?>"><?php echo $parallax_2_button; ?></a>
+  <div class="container h-100">
+      <div class="row h-100 align-items-end pb-3">
+          <div class="col-lg-2 col-sm-1 col-1">
+
+          </div>
+          <div class="col-lg-8 col-sm-10 col-10 text-center pb-5 malakia-koutaki">
+            <div class="display-2-g pt-2"><?php echo $parallax_2_text_1; ?></div>
+            <div class="display-3-b pt-2 pb-4"><?php echo $parallax_2_text_2; ?></div>
+
+              <a class="btn btn-outline-secondary" href="<?php echo $parallax_2_button_url; ?>"><?php echo $parallax_2_button; ?></a>
+          </div>
+          <div class="col-lg-2 col-sm-1 col-1">
+
+          </div>
       </div>
-    </div>
-
+  </div>
 </section>
 <?php
 } else { echo "Niente parallax_2";}
@@ -927,7 +948,7 @@ function external_1(){
   <div class="container-fluid h-100">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <h3><?php echo $section_external_header; ?></h3>
+        <div class="display-3-b-it p-1"><?php echo $section_external_header; ?></div>
       </div>
     </div>
     <div class="row">
@@ -935,26 +956,26 @@ function external_1(){
         <a href="<?php echo $external_1_button_url; ?>">
         <img src="<?php echo $external_img_1; ?>" class="img-fluid">
         </a>
-        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
+        <a class="display-2-g mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
       </div>
       <div class="col-4 text-center p-0">
         <a href="<?php echo $external_2_button_url; ?>">
         <img src="<?php echo $external_img_2; ?>" class="img-fluid">
         </a>
-        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
+        <a class="display-2-g mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
       </div>
       <div class="col-4 text-center p-0">
         <a href="<?php echo $external_3_button_url; ?>">
         <img src="<?php echo $external_img_3; ?>" class="img-fluid">
         </a>
-        <a class="section-scroll btn btn-border-g btn-round mt-3" href="<?php echo $external_3_button_url; ?>"><?php echo $external_3_button; ?></a>
+        <a class="display-2-g mt-3" href="<?php echo $external_3_button_url; ?>"><?php echo $external_3_button; ?></a>
       </div>
     </div>
   </div>
 </section>
 
 <?php
-} else { echo "Niente half_1";}
+} else { echo "";}
 
 }
 add_action( 'custom_external', 'external_1', 15 );
@@ -968,7 +989,7 @@ function parallax_3(){
   $parallax_3_button_url = get_field( "parallax_3_button_url" );
 
 
-  if( $section_parallax_3_header ) {
+  if( $parallax_3 ) {
 
 ?>
 <div class="container-fluid bg-white">
@@ -980,12 +1001,22 @@ function parallax_3(){
 </div>
 <section class="module bg-dark-60 parallax-bg h-25" data-background="<?php echo $parallax_3; ?>" style="background-position: 50% 15%;">
 
-    <div class="titan-caption">
-      <div class="caption-content">
-        <div class="font-alt mb-30"><h2><?php echo $parallax_3_text_1; ?></h2></div>
-        <div class="font-alt mb-40 titan-title-size-4 pb-3"><?php echo $parallax_3_text_2; ?></div><a class="section-scroll btn btn-border-w btn-round" href="<?php echo $parallax_3_button_url; ?>"><?php echo $parallax_3_button; ?></a>
+  <div class="container h-100">
+      <div class="row h-100 align-items-end pb-3">
+          <div class="col-lg-2 col-sm-1 col-1">
+
+          </div>
+          <div class="col-lg-8 col-sm-10 col-10 text-center pb-5 malakia-koutaki">
+            <div class="display-2-g pt-2"><?php echo $parallax_3_text_1; ?></div>
+            <div class="display-3-b pt-2 pb-4"><?php echo $parallax_3_text_2; ?></div>
+
+              <a class="btn btn-outline-secondary" href="<?php echo $parallax_3_button_url; ?>"><?php echo $parallax_3_button; ?></a>
+          </div>
+          <div class="col-lg-2 col-sm-1 col-1">
+
+          </div>
       </div>
-    </div>
+  </div>
 
 </section>
 <?php
