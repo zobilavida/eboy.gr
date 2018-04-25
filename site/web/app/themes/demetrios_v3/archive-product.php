@@ -59,22 +59,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
     <div class="container">
-      <div class="row product-cat-if-desc p-4">
-        <div class="col-12 text-center">
+			<div class="row">
+				<div class="col-12 text-center p-4">
 <?php do_action( 'woocommerce_archive_description' ); ?>
-        </div>
-        <div class="col-lg-3">
-        <?php echo eboywp_display( 'eboy', 'fabric' ); ?>
-        </div>
-        <div class="col-lg-3">
-        <?php echo eboywp_display( 'eboy', 'neckline' ); ?>
-        </div>
-        <div class="col-lg-3">
+		</div>
+			</div>
+      <div class="row product-cat-if-desc py-2">
+				<div class="col-lg-2 col-4 test">
+					<div class="row h-100">
+						<div class="col-4 align-self-center test">
+							1
+							</div>
+							<div class="col-4 align-self-center test">
+								2
+								</div>
+								<div class="col-4 align-self-center test">
+									3
+									</div>
+						</div>
+					</div>
+				<div class="col-lg-10 col-8 test">
+					<div class="row">
+						<div class="col-3  test">
+				<?php echo eboywp_display( 'eboy', 'fabric' ); ?>
+							</div>
+							<div class="col-3  test">
+				<?php echo eboywp_display( 'eboy', 'neckline' ); ?>
+								</div>
+								<div class="col-3  test">
         <?php echo eboywp_display( 'eboy', 'silhouette' ); ?>
-        </div>
-        <div class="col-lg-3">
-        <?php echo eboywp_display( 'eboy', 'style' ); ?>
-        </div>
+									</div>
+									<div class="col-3  test">
+	      <?php echo eboywp_display( 'eboy', 'style' ); ?>
+										</div>
+						</div>
+				</div>
+
 				<div class="container pt-3">
   <div class="row justify-content-center">
 					<button class="small-grid">small</button>
