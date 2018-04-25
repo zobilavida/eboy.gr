@@ -597,7 +597,7 @@ window.EWP = window.EWP || {};
                         values += '<span class="eboywp-selection-value" data-value="' + choice.value + '">' + EWP.helper.escape_html(choice.label) + '</span>';
                     });
 
-                    selections += '<li data-eboy="' + key + '"><span class="eboywp-selection-label">' + EWP.settings.labels[key] + ':</span> ' + values + '</li>';
+                    selections += '<li data-eboy="' + key + '"><span class="eboywp-selection-label 23">' + EWP.settings.labels[key] + ':</span> ' + values + '</li>';
                 });
 
                 if ('' !== selections) {

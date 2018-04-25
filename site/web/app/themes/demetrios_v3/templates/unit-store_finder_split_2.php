@@ -4,7 +4,7 @@
           <?php do_action( 'custom_store_finder', 'store_finder' ); ?>
         </div>
         <div class="col-sm-6 invisible col-2"><!--hidden spacer--></div>
-        <div class="col offset-2 offset-sm-6 py-2">
+        <div class="col offset-2 offset-sm-6 py-0">
             <?php do_action( 'custom_store_spilt_finder_2', 'store_finder_split_2' ); ?>
         </div>
     </div>

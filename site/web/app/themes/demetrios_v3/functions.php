@@ -1152,10 +1152,17 @@ add_action( 'custom_store_spilt_finder', 'store_finder_split', 15 );
 
 function store_finder_split_2(){
         ?>
-        <div class="container">
-        <div class="row pt-3">
-          <div class="col-12">
-            <?php echo eboywp_display( 'eboy', 'country' ); ?>
+        <div class="container p-0">
+        <div class="row">
+          <div class="col-12 p-0">
+            <?php echo eboywp_display( 'eboy', 'country_or_city' ); ?>
+            <?php //echo eboywp_display( 'eboy', 'proximity' ); ?>
+            <div class="row">
+                <div class="col-12 text-center">
+            <?php echo eboywp_display('selections'); ?>
+            <?php echo eboywp_display('counts'); ?>
+            </div>
+            </div>
             </div>
         </div>
 
@@ -1217,7 +1224,7 @@ function store_finder_split_2(){
 
   <?php else : ?>
             <?php wp_reset_postdata();?>
-    <?php get_template_part( 'parts/content', 'missing' ); ?>
+    <?php get_template_part( 'templates/unit', 'missing' ); ?>
 
   <?php endif; ?>
   </div>
@@ -1483,3 +1490,8 @@ function populate_posts_store_finder( $form ) {
     }
     return $form;
 }
+
+add_filter( 'eboywp_result_count', function( $output, $params ) {
+    $output = 'found <h1>' . $params['total'] . '</h1> Retailers';
+    return $output;
+}, 10, 2 );
