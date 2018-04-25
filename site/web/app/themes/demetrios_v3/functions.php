@@ -1157,11 +1157,10 @@ function store_finder_split_2(){
           <div class="col-12 p-0">
             <?php echo eboywp_display( 'eboy', 'country_or_city' ); ?>
             <?php //echo eboywp_display( 'eboy', 'proximity' ); ?>
-            <div class="row">
-                <div class="col-12 text-center">
-            <?php echo eboywp_display('selections'); ?>
+            <div class="row pl-5 pt-2">
+
             <?php echo eboywp_display('counts'); ?>
-            </div>
+            <?php echo eboywp_display('selections'); ?>
             </div>
             </div>
         </div>
@@ -1198,7 +1197,7 @@ function store_finder_split_2(){
   <h5 class="card-header"><?php the_title(); ?></h5>
     <div class="card-body">
 
-      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php the_title(); ?>" ><?php echo $street_address; ?>, <?php echo $country; ?></h6>
+      <h6 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h6>
 
        <footer class="blockquote-footer">
   <?php foreach($term_list as $term_single) {
@@ -1492,6 +1491,6 @@ function populate_posts_store_finder( $form ) {
 }
 
 add_filter( 'eboywp_result_count', function( $output, $params ) {
-    $output = 'found <h1>' . $params['total'] . '</h1> Retailers';
+    $output = 'found ' . $params['total'] . ' Retailers ';
     return $output;
 }, 10, 2 );

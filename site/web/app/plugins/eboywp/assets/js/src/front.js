@@ -594,14 +594,14 @@ window.EWP = window.EWP || {};
 
                     var values = '';
                     $.each(choices, function(idx, choice) {
-                        values += '<span class="eboywp-selection-value" data-value="' + choice.value + '">' + EWP.helper.escape_html(choice.label) + '</span>';
+                        values += '' + EWP.helper.escape_html(choice.label) + '';
                     });
 
-                    selections += '<li data-eboy="' + key + '"><span class="eboywp-selection-label 23">' + EWP.settings.labels[key] + ':</span> ' + values + '</li>';
+                    selections += ' in: ' + values + '';
                 });
 
                 if ('' !== selections) {
-                    selections = '<ul>' + selections + '</ul>';
+                    selections = '' + selections + '';
                 }
 
                 $('.eboywp-selections').html(selections);
