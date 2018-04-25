@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php do_action( 'woocommerce_archive_description' ); ?>
 		</div>
 			</div>
-      <div class="row product-cat-if-desc py-2">
+      <div class="row product-cat-if-desc pt-2 pb-4">
 				<div class="col-lg-2 col-4 test">
 					<div class="row h-100">
 						<div class="col-4 align-self-center test">
@@ -95,13 +95,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 				</div>
 
-				<div class="container pt-3">
-  <div class="row justify-content-center">
-					<button class="small-grid">small</button>
-					 <button class="medium-grid">medium</button>
-					 <button class="large-grid">large</button>
-				</div>
-					</div>
       </div>
     </div>
 
