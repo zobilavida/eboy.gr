@@ -67,13 +67,13 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php echo eboywp_display( 'eboy', 'fabric' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php// echo eboywp_display( 'facet', 'neckline' ); ?>
+        <?php echo eboywp_display( 'eboy', 'neckline' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php //echo eboywp_display( 'facet', 'silhouette' ); ?>
+        <?php echo eboywp_display( 'eboy', 'silhouette' ); ?>
         </div>
         <div class="col-lg-3">
-        <?php //echo eboywp_display( 'facet', 'style' ); ?>
+        <?php echo eboywp_display( 'eboy', 'style' ); ?>
         </div>
 				<div class="container pt-3">
   <div class="row justify-content-center">

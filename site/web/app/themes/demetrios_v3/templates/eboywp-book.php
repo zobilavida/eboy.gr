@@ -33,7 +33,7 @@
   } ?>
   <span class="float-right">
     <a class="btn btn-outline-primary btn-sm" href="tel:<?php echo $phone; ?>"><?php echo $phone_icon; ?> <?php echo $phone; ?></a>
- <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
+ <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=Current+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
 </span>
   </footer>
 
