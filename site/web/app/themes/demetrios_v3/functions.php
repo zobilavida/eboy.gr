@@ -1155,8 +1155,8 @@ function store_finder_split_2(){
         <div class="container p-0">
         <div class="row">
           <div class="col-12 p-0">
-            <?php echo eboywp_display( 'eboy', 'country_or_city' ); ?>
-            <?php //echo eboywp_display( 'eboy', 'proximity' ); ?>
+            <?php //echo eboywp_display( 'eboy', 'country_or_city' ); ?>
+            <?php echo eboywp_display( 'eboy', 'proximity' ); ?>
             <div class="row pl-5 pt-2">
               <div class="col-6">
             <?php echo eboywp_display('counts'); ?>

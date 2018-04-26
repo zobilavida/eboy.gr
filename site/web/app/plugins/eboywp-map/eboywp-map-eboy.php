@@ -332,7 +332,7 @@ class eboywp_Eboy_Map_Addon
         }
 
         $output = '<div id="eboywp-map" style="width:' . $width . '; height:' . $height . '"></div>';
-      //  $output .= '<div><button class="eboywp-map-filtering' . $class . '">' . esc_html( $btn_label ) . '</button></div>';
+        $output .= '<div><button class="eboywp-map-filtering' . $class . '">' . esc_html( $btn_label ) . '</button></div>';
         return $output;
     }
 
@@ -567,10 +567,11 @@ class eboywp_Eboy_Map_Addon
      * Output any front-end scripts
      */
     function front_scripts() {
-        EWP()->display->assets['gmaps'] = $this->get_gmaps_url();
+
         EWP()->display->assets['oms'] = eboywp_MAP_URL . '/assets/js/oms.min.js';
         EWP()->display->assets['markerclusterer'] = eboywp_MAP_URL . '/assets/js/markerclusterer.js';
         EWP()->display->assets['eboywp-map-front'] = eboywp_MAP_URL . '/assets/js/front.js';
+        EWP()->display->assets['gmaps'] = $this->get_gmaps_url();
 
         EWP()->display->json['map']['filterText'] = __( 'Enable filtering', 'EWP-map' );
         EWP()->display->json['map']['resetText'] = __( 'Reset', 'EWP-map' );
