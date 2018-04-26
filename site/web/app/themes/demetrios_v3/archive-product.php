@@ -60,38 +60,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <div class="container">
 			<div class="row">
-				<div class="col-12 text-center p-4">
+				<div class="col-12 text-center pt-4 pb-2">
 <?php do_action( 'woocommerce_archive_description' ); ?>
 		</div>
 			</div>
       <div class="row product-cat-if-desc pt-2 pb-4">
-				<div class="col-lg-2 col-4 test">
+				<div class="col-lg-2 col-4 ">
 					<div class="row h-100">
-						<div class="col-4 align-self-center test">
-							1
+						<div class="col-6 align-self-center ">
+							<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_view_2.svg">
 							</div>
-							<div class="col-4 align-self-center test">
-								2
+							<div class="col-6 align-self-center ">
+								<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_view_4.svg">
 								</div>
-								<div class="col-4 align-self-center test">
-									3
-									</div>
+
 						</div>
 					</div>
-				<div class="col-lg-10 col-8 test">
+					<div class="col-8 d-md-none text-right">
+						<a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+													<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_settings.svg">
+						</a>
+					</div>
+
+				<div class="col-lg-10 col-12  filters" id="collapseExample">
+
 					<div class="row">
-						<div class="col-3  test">
-				<?php echo eboywp_display( 'eboy', 'fabric' ); ?>
-							</div>
-							<div class="col-3  test">
-				<?php echo eboywp_display( 'eboy', 'neckline' ); ?>
-								</div>
-								<div class="col-3  test">
-        <?php echo eboywp_display( 'eboy', 'silhouette' ); ?>
+
+							<div class="col-12  ">
+								<div class="row">
+
+															<div class="col-lg-3 col-12  ">
+													<?php echo eboywp_display( 'eboy', 'fabric' ); ?>
+																</div>
+																<div class="col-lg-3 col-12  ">
+													<?php echo eboywp_display( 'eboy', 'neckline' ); ?>
+																	</div>
+																	<div class="col-lg-3 col-12  ">
+									        <?php echo eboywp_display( 'eboy', 'silhouette' ); ?>
+																		</div>
+																		<div class="col-lg-3 col-12  ">
+										      <?php echo eboywp_display( 'eboy', 'style' ); ?>
+																			</div>
 									</div>
-									<div class="col-3  test">
-	      <?php echo eboywp_display( 'eboy', 'style' ); ?>
-										</div>
+								</div>
+
 						</div>
 				</div>
 

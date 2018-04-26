@@ -1158,9 +1158,13 @@ function store_finder_split_2(){
             <?php echo eboywp_display( 'eboy', 'country_or_city' ); ?>
             <?php //echo eboywp_display( 'eboy', 'proximity' ); ?>
             <div class="row pl-5 pt-2">
-
+              <div class="col-6">
             <?php echo eboywp_display('counts'); ?>
             <?php echo eboywp_display('selections'); ?>
+            </div>
+            <div class="col-6 loc">
+              Your location
+          </div>
             </div>
             </div>
         </div>
@@ -1245,17 +1249,11 @@ function book(){
                  <div class="col-lg-6 text-right">
                    <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
                 </div>
-
-
-
-
-            </div>
-            </div>
-
             </div>
             </div>
             </div>
-
+            </div>
+            </div>
         <div class="container mt-5 book-appontment">
           <div class="row">
             <div class="col-12">
@@ -1264,7 +1262,6 @@ function book(){
               </div>
                 </div>
               </div>
-
         <?php
 }
 add_action( 'custom_book', 'book', 15 );
@@ -1494,3 +1491,12 @@ add_filter( 'eboywp_result_count', function( $output, $params ) {
     $output = 'found ' . $params['total'] . ' Retailers ';
     return $output;
 }, 10, 2 );
+
+add_filter( 'eboywp_preload_url_vars', function( $url_vars ) {
+    if ( 'store-finder' == EWP()->helper->get_uri() ) {
+        if ( empty( $url_vars['country_or_city'] ) ) {
+            $url_vars['country_or_city'] = array( 'audi' );
+        }
+    }
+    return $url_vars;
+} );
