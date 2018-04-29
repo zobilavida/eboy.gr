@@ -1,4 +1,4 @@
-  <div class="row eboywp_t_radios">
+  <div class="row facetwp_t_radios">
 
   <div class="col-12 text-center p-3">
   Available Stores

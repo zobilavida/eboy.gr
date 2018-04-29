@@ -212,7 +212,7 @@ class eboywp_Eboy_Proximity_Core extends eboywp_Eboy
         if ( apply_filters( 'eboywp_proximity_load_js', true ) ) {
 
             // hard-coded
-            $api_key = defined( 'GMAPS_API_KEY' ) ? GMAPS_API_KEY : '';
+            $api_key = defined( 'AIzaSyAY55sLjGdZyuE5fX9gIH0NegqSeB24LEU' ) ? GMAPS_API_KEY : '';
 
             // admin ui
             $tmp_key = EWP()->helper->get_setting( 'gmaps_api_key' );

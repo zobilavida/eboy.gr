@@ -90,16 +90,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<div class="row">
 
 															<div class="col-lg-3 col-12  ">
-													<?php echo eboywp_display( 'eboy', 'fabric' ); ?>
+													<?php echo facetwp_display( 'facet', 'fabric' ); ?>
 																</div>
 																<div class="col-lg-3 col-12  ">
-													<?php echo eboywp_display( 'eboy', 'neckline' ); ?>
+													<?php echo facetwp_display( 'facet', 'neckline' ); ?>
 																	</div>
 																	<div class="col-lg-3 col-12  ">
-									        <?php echo eboywp_display( 'eboy', 'silhouette' ); ?>
+									        <?php echo facetwp_display( 'facet', 'silhouette' ); ?>
 																		</div>
 																		<div class="col-lg-3 col-12  ">
-										      <?php echo eboywp_display( 'eboy', 'style' ); ?>
+										      <?php echo facetwp_display( 'facet', 'style' ); ?>
 																			</div>
 									</div>
 								</div>

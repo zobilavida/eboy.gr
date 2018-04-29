@@ -15,7 +15,9 @@ $demetrios_3_includes = [
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
-  'lib/customizer.php' // Theme customizer
+  'lib/customizer.php', // Theme customizer
+  'plugins/facetwp/index.php' // Theme extends
+  //'plugins/facetwp-map-facet/facetwp-map-facet.php' // Theme extends
 ];
 
 foreach ($demetrios_3_includes as $file) {
@@ -29,7 +31,7 @@ unset($file, $filepath);
 
 // Include custom navwalker
 require_once('bs4navwalker.php');
-
+//require_once('plugins/facetwp/index.php');
 
 // Register WordPress nav menu
 register_nav_menu('top', 'Top menu');
@@ -153,6 +155,8 @@ function child_manage_woocommerce_styles() {
 			wp_dequeue_script( 'jquery-placeholder' );
 			wp_dequeue_script( 'fancybox' );
 			wp_dequeue_script( 'jqueryui' );
+    //  wp_deregister_script( 'jquery' );
+        wp_deregister_script( 'js-cookie' );
 		}
 	}
 
@@ -525,30 +529,30 @@ add_filter("manage_stores_posts_columns", "stores_columns");
 } // end the_breadcrumb()
 
 //// BREADCRUMB END ////
-add_filter( 'eboywp_pager_html', function( $output, $params ) {
+add_filter( 'facetwp_pager_html', function( $output, $params ) {
     $output = '<nav aria-label="Resources Pagination"><ul class="pagination mt-1 justify-content-center">';
     $page = $params['page'];
     $i = 1;
     $total_pages = $params['total_pages'];
     $limit = ($total_pages >= 5) ? 3 : $total_pages;
     $prev_disabled = ($params['page'] <= 1) ? 'disabled' : '';
-    $output .= '<li class="page-item ' . $prev_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page - 1) . '">Prev</a></li>';
+    $output .= '<li class="page-item ' . $prev_disabled . '"><a class="facetwp-page page-link" data-page="' . ($page - 1) . '">Prev</a></li>';
     $loop = ($limit) ? $limit : $total_pages;
     while($i <= $loop) {
       $active = ($i == $page) ? 'active' : '';
-      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . $i . '">' . $i . '</a></li>';
+      $output .= '<li class="page-item ' . $active . '"><a class="facetwp-page page-link" data-page="' . $i . '">' . $i . '</a></li>';
       $i++;
     }
     if($limit && $total_pages > '3') {
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page <= ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
-      $output .= '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>';
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page > ($limit + 1)) ? '<li class="page-item active"><a class="eboywp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
-      $output .= ($page > $limit && $page != ($total_pages - 1) && $page != ($total_pages - 2) && $page > ($limit + 1)) ? '<li class="page-item disabled"><a class="eboywp-page page-link">...</a></li>' : '';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page <= ($limit + 1)) ? '<li class="page-item active"><a class="facetwp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= '<li class="page-item disabled"><a class="facetwp-page page-link">...</a></li>';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page > ($limit + 1)) ? '<li class="page-item active"><a class="facetwp-page page-link" data-page="' . $page . '">' . $page . '</a></li>' : '';
+      $output .= ($page > $limit && $page != ($total_pages - 1) && $page != ($total_pages - 2) && $page > ($limit + 1)) ? '<li class="page-item disabled"><a class="facetwp-page page-link">...</a></li>' : '';
       $active = ($page == ($total_pages - 1)) ? 'active' : '';
-      $output .= '<li class="page-item ' . $active . '"><a class="eboywp-page page-link" data-page="' . ($total_pages - 1) .'">' . ($total_pages - 1) .'</a></li>';
+      $output .= '<li class="page-item ' . $active . '"><a class="facetwp-page page-link" data-page="' . ($total_pages - 1) .'">' . ($total_pages - 1) .'</a></li>';
     }
     $next_disabled = ($page >= $total_pages) ? 'disabled' : '';
-    $output .= '<li class="page-item ' . $next_disabled . '"><a class="eboywp-page page-link" data-page="' . ($page + 1) . '">Next</a></li>';
+    $output .= '<li class="page-item ' . $next_disabled . '"><a class="facetwp-page page-link" data-page="' . ($page + 1) . '">Next</a></li>';
     $output .= '</ul></nav>';
     return $output;
 }, 10, 2 );
@@ -1042,13 +1046,13 @@ function button_book(){
 add_action( 'demetrios_butt_book', 'button_book', 0 );
 
 
-function my_eboywp_is_main_query( $is_main_query, $query ) {
-    if ( isset( $query->query_vars['eboywp'] ) ) {
+function my_facetwp_is_main_query( $is_main_query, $query ) {
+    if ( isset( $query->query_vars['facetwp'] ) ) {
         $is_main_query = true;
     }
     return $is_main_query;
 }
-add_filter( 'eboywp_is_main_query', 'my_eboywp_is_main_query', 10, 2 );
+add_filter( 'facetwp_is_main_query', 'my_facetwp_is_main_query', 10, 2 );
 
 function store_finder(){
         ?>
@@ -1057,8 +1061,7 @@ function store_finder(){
           <div class="row">
             <div class="col-12 p-0">
 <div class="container-fluid p-0" id="google_map">
-<?php echo eboywp_display( 'eboy', 'map' ); ?>
-
+<?php  echo facetwp_display( 'facet', 'map' ); ?>
 </div>
 </div>
 </div>
@@ -1078,7 +1081,7 @@ function store_finder_split(){
           <div class="col-12">
             <?php gravity_form_enqueue_scripts(  2, false ); ?>
                     <?php gravity_form('Store finder', false, false, false, '', false); ?>
-                    <button class="reset" onclick="EWP.reset()">Reset</button>
+                    <button class="reset" onclick="FWP.reset()">Reset</button>
             </div>
         </div>
 
@@ -1091,12 +1094,12 @@ function store_finder_split(){
     "orderby" => "title",
     "order" => "ASC",
     "posts_per_page" => 35,
-    'eboywp' => true
+    'facetwp' => true
   );
 
   $query = new WP_Query( $args );
   ?>
-  <div class="eboywp-template container">
+  <div class="facetwp-template container">
     <div class="row">
     <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
     $email_2 = get_field( "email_2" );
@@ -1154,21 +1157,37 @@ function store_finder_split_2(){
         ?>
         <div class="container p-0">
         <div class="row">
-          <div class="col-12 p-0">
-            <?php //echo eboywp_display( 'eboy', 'country_or_city' ); ?>
-            <?php echo eboywp_display( 'eboy', 'proximity' ); ?>
-            <div class="row pl-5 pt-2">
-              <div class="col-6">
-            <?php echo eboywp_display('counts'); ?>
-            <?php echo eboywp_display('selections'); ?>
+            <div class="col-12 p-0">
+            <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
+            <?php  echo facetwp_display( 'facet', 'proximity' ); ?>
             </div>
-            <div class="col-6 loc">
-              Your location
+              </div>
+              <div class="row p-3">
+              <div class="col-4">
+              <?php  echo facetwp_display( 'facet', 'country_proximity' ); ?>
+            </div>
+            <div class="col-4">
+            <?php  echo facetwp_display( 'facet', 'state' ); ?>
           </div>
-            </div>
-            </div>
+          <div class="col-4">
+          <?php  echo facetwp_display( 'facet', 'city' ); ?>
         </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-5 py-3">
+            <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
+            <?php  echo facetwp_display( 'facet', 'store_category' ); ?>
+            </div>
+              </div>
 
+        <div class="row px-3">
+              <div class="col-12">
+                <div class="row px-3">
+            <?php echo facetwp_display('counts'); ?>
+            <?php echo facetwp_display('selections'); ?>
+            </div>
+            </div>
+            </div>
         </div>
 <?php
   // WP_Query arguments
@@ -1178,12 +1197,12 @@ function store_finder_split_2(){
     "orderby" => "title",
     "order" => "ASC",
     "posts_per_page" => 35,
-    'eboywp' => true
+    'facetwp' => true
   );
 
   $query = new WP_Query( $args );
   ?>
-  <div class="eboywp-template container">
+  <div class="facetwp-template container">
     <div class="row">
     <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
     $email_2 = get_field( "email_2" );
@@ -1195,6 +1214,7 @@ function store_finder_split_2(){
     $country = get_field( "country" );
     $term_list = wp_get_post_terms($post->ID, 'store_cat', array("fields" => "all"));
     $location = get_field('location');
+    $distance = facetwp_get_distance();
     ?>
 <div class="col-lg-12 py-3">
   <div class="card">
@@ -1210,6 +1230,9 @@ function store_finder_split_2(){
   echo ' - ';
   } ?>
   <span class="float-right">
+    <?php if ( false !== $distance ) {
+    echo round( $distance, 2 );
+} ?>
     <a class="btn btn-outline-primary btn-sm" href="tel:<?php echo $phone; ?>"><?php echo $phone_icon; ?> <?php echo $phone; ?></a>
  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=Current+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
 </span>
@@ -1487,16 +1510,22 @@ function populate_posts_store_finder( $form ) {
     return $form;
 }
 
-add_filter( 'eboywp_result_count', function( $output, $params ) {
-    $output = 'found ' . $params['total'] . ' Retailers ';
+add_filter( 'facetwp_result_count', function( $output, $params ) {
+    $output = 'found ' . $params['total'] . ' Retailers' . '&nbsp;';
     return $output;
 }, 10, 2 );
 
-add_filter( 'eboywp_preload_url_vars', function( $url_vars ) {
-    if ( 'store-finder' == EWP()->helper->get_uri() ) {
+add_filter( 'facetwp_preload_url_vars', function( $url_vars ) {
+    if ( 'store-finder' == FWP()->helper->get_uri() ) {
         if ( empty( $url_vars['country_or_city'] ) ) {
             $url_vars['country_or_city'] = array( 'audi' );
         }
     }
     return $url_vars;
 } );
+
+add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
+
+add_filter( 'facetwp_facetwp_checkbox_show_counts', '__return_false' );
+
+add_filter( 'facetwp_proximity_store_distance', '__return_true' );
