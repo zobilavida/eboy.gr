@@ -1056,16 +1056,8 @@ add_filter( 'facetwp_is_main_query', 'my_facetwp_is_main_query', 10, 2 );
 
 function store_finder(){
         ?>
-        <div class="container-fluid p-0" id="wrapper">
-
-          <div class="row">
-            <div class="col-12 p-0">
-<div class="container-fluid p-0" id="google_map">
 <?php  echo facetwp_display( 'facet', 'map' ); ?>
-</div>
-</div>
-</div>
-</div>
+
       <?php
 }
 add_action( 'custom_store_finder', 'store_finder', 15 );
@@ -1138,19 +1130,31 @@ function store_finder_split_2(){
     ?>
 <div class="col-lg-12 py-3">
   <div class="card">
-  <h5 class="card-header"><?php the_title(); ?></h5>
+  <div class="card-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-8 p-0">
+    <?php the_title(); ?>
+      </div>
+      <div class="col-lg-3 col-4 text-right">
+        <?php if ( false !== $distance ) {
+        echo round( $distance, 2 );
+        echo ' Km';
+    } ?>
+  </div>
+  </div>
+</div>
+  </div>
     <div class="card-body">
+
 
       <h6 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h6>
 
        <footer class="blockquote-footer">
   <?php echo wp_strip_all_tags(
-    get_the_term_list( get_the_ID(), 'store_cat', ' ', ' , ', ' ') 
+    get_the_term_list( get_the_ID(), 'store_cat', ' ', ' , ', ' ')
 );?>
-  <span class="float-right">
-    <?php if ( false !== $distance ) {
-    echo round( $distance, 2 );
-} ?>
+  <span class="float-right pt-3">
     <a class="btn btn-outline-primary btn-sm" href="tel:<?php echo $phone; ?>"><?php echo $phone_icon; ?> <?php echo $phone; ?></a>
  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=Current+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
 </span>
@@ -1444,3 +1448,8 @@ add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
 add_filter( 'facetwp_facetwp_checkbox_show_counts', '__return_false' );
 
 add_filter( 'facetwp_proximity_store_distance', '__return_true' );
+
+add_filter( 'facetwp_map_marker_args', function( $args, $post_id ) {
+    $args['icon'] = get_template_directory_uri() . '/dist/images/map_pin.svg';
+    return $args;
+}, 10, 2 );
