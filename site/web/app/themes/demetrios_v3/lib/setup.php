@@ -18,7 +18,7 @@ function setup() {
   add_theme_support('woocommerce');
   add_theme_support( 'wc-product-gallery-zoom' );
   add_theme_support( 'wc-product-gallery-lightbox' );
-  add_theme_support( 'wc-product-gallery-slider' );
+add_theme_support( 'wc-product-gallery-slider' );
 
   // Make theme available for translation
   // Community translations can be found at https://github.com/eboy/demetrios_3-translations
@@ -129,7 +129,7 @@ function assets() {
   }
 
   wp_enqueue_script('demetrios_3/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
- wp_enqueue_script('demetrios_3/facet_js', Assets\asset_path('scripts/facet.js'), ['demetrios_3/js'], null, true);
+//  wp_enqueue_script('demetrios_3/IfBreakpoint_js', Assets\asset_path('scripts/IfBreakpoint.js'), ['demetrios_3/js'], null, true);
 //  wp_enqueue_script('demetrios_3/front_js', Assets\asset_path('scripts/front.min.js'), ['demetrios_3/js'], null, true);
 //  wp_enqueue_script('demetrios_3/query_string', Assets\asset_path('scripts/query-string.js'), ['demetrios_3/js'], null, true);
 

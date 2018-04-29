@@ -1072,87 +1072,6 @@ add_action( 'custom_store_finder', 'store_finder', 15 );
 
 
 
-
-
-function store_finder_split(){
-        ?>
-        <div class="container">
-        <div class="row pt-3">
-          <div class="col-12">
-            <?php gravity_form_enqueue_scripts(  2, false ); ?>
-                    <?php gravity_form('Store finder', false, false, false, '', false); ?>
-                    <button class="reset" onclick="FWP.reset()">Reset</button>
-            </div>
-        </div>
-
-        </div>
-<?php
-  // WP_Query arguments
-  $args = array(
-    "post_type" => "stores",
-    "post_status" => "publish",
-    "orderby" => "title",
-    "order" => "ASC",
-    "posts_per_page" => 35,
-    'facetwp' => true
-  );
-
-  $query = new WP_Query( $args );
-  ?>
-  <div class="facetwp-template container">
-    <div class="row">
-    <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
-    $email_2 = get_field( "email_2" );
-    $street_address = get_field( "street_address" );
-    $phone = get_field( "phone" );
-    $phone_icon = '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/phone.svg">';
-    $directions_icon = '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/directions.svg">';
-    $city = get_field( "city" );
-    $country = get_field( "country" );
-    $term_list = wp_get_post_terms($post->ID, 'store_cat', array("fields" => "all"));
-    $location = get_field('location');
-    ?>
-<div class="col-lg-12 py-3">
-  <div class="card">
-  <h5 class="card-header"><?php the_title(); ?></h5>
-    <div class="card-body">
-
-      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php the_title(); ?>" ><?php echo $street_address; ?>, <?php echo $country; ?></h6>
-
-       <footer class="blockquote-footer">
-  <?php foreach($term_list as $term_single) {
-
-  echo $term_single->name;
-  echo ' - ';
-  } ?>
-  <span class="float-right">
-    <a class="btn btn-outline-primary btn-sm" href="tel:<?php echo $phone; ?>"><?php echo $phone_icon; ?> <?php echo $phone; ?></a>
- <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=Current+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
-</span>
-  </footer>
-
-
-    </div>
-  </div>
-</div>
-
-
-  <?php endwhile; ?>
-</div>
-    <?php // joints_page_navi(); ?>
-
-  <?php else : ?>
-            <?php wp_reset_postdata();?>
-    <?php get_template_part( 'parts/content', 'missing' ); ?>
-
-  <?php endif; ?>
-  </div>
-<?php
-}
-add_action( 'custom_store_spilt_finder', 'store_finder_split', 15 );
-
-
-
 function store_finder_split_2(){
         ?>
         <div class="container p-0">
@@ -1196,7 +1115,7 @@ function store_finder_split_2(){
     "post_status" => "publish",
     "orderby" => "title",
     "order" => "ASC",
-    "posts_per_page" => 35,
+    "posts_per_page" => 5,
     'facetwp' => true
   );
 
@@ -1213,6 +1132,7 @@ function store_finder_split_2(){
     $city = get_field( "city" );
     $country = get_field( "country" );
     $term_list = wp_get_post_terms($post->ID, 'store_cat', array("fields" => "all"));
+
     $location = get_field('location');
     $distance = facetwp_get_distance();
     ?>
@@ -1224,11 +1144,9 @@ function store_finder_split_2(){
       <h6 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h6>
 
        <footer class="blockquote-footer">
-  <?php foreach($term_list as $term_single) {
-
-  echo $term_single->name;
-  echo ' - ';
-  } ?>
+  <?php echo wp_strip_all_tags(
+    get_the_term_list( get_the_ID(), 'store_cat', ' ', ' , ', ' ') 
+);?>
   <span class="float-right">
     <?php if ( false !== $distance ) {
     echo round( $distance, 2 );
@@ -1245,6 +1163,9 @@ function store_finder_split_2(){
 
 
   <?php endwhile; ?>
+  <div class="col-12">
+  <?php echo facetwp_display( 'pager' ); ?>
+  </div>
 </div>
     <?php // joints_page_navi(); ?>
 
@@ -1510,19 +1431,13 @@ function populate_posts_store_finder( $form ) {
     return $form;
 }
 
+
+
 add_filter( 'facetwp_result_count', function( $output, $params ) {
-    $output = 'found ' . $params['total'] . ' Retailers' . '&nbsp;';
+    $output = $params['lower'] . '-' . $params['upper'] . ' of ' . $params['total'] . ' Retailers' . '&nbsp;';
     return $output;
 }, 10, 2 );
 
-add_filter( 'facetwp_preload_url_vars', function( $url_vars ) {
-    if ( 'store-finder' == FWP()->helper->get_uri() ) {
-        if ( empty( $url_vars['country_or_city'] ) ) {
-            $url_vars['country_or_city'] = array( 'audi' );
-        }
-    }
-    return $url_vars;
-} );
 
 add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
 

@@ -110,7 +110,7 @@ class FacetWP_Display
               //  $this->assets['front.css'] = FACETWP_URL . '/assets/css/front.css';
             }
 
-          //  $this->assets['front.js'] = Assets\asset_path('scripts/front.min.js');
+          //  $this->assets['front.js'] = FACETWP_URL . '/assets/js/dist/front.min.js';
 
 
 
