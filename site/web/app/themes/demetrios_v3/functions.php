@@ -603,7 +603,9 @@ function custom_header(){
               'walker'          => new bs4navwalker()
             ]);
             ?>
+              <span id='trigger' class="navbar-toggler-icon ml-5"></span>
         </div>
+
     </div>
 </nav>
 
@@ -638,7 +640,9 @@ function custom_header(){
               ]);
               ?>
           </div>
+                <span id='trigger' class="navbar-toggler-icon ml-5"></span>
       </div>
+
   </nav>
 
   <?php
@@ -1082,6 +1086,7 @@ function store_finder_split_2(){
           </div>
           <div class="col-4">
           <?php  echo facetwp_display( 'facet', 'city' ); ?>
+          <!-- <?php  //echo facetwp_display( 'facet', 'rating' ); ?> -->
         </div>
         </div>
         <div class="row">
@@ -1105,8 +1110,9 @@ function store_finder_split_2(){
   $args = array(
     "post_type" => "stores",
     "post_status" => "publish",
-    "orderby" => "title",
-    "order" => "ASC",
+  //  'meta_key'			=> 'rating',
+  	'orderby'			=> 'modified',
+    "order" => "DESC",
     "posts_per_page" => 5,
     'facetwp' => true
   );
@@ -1453,3 +1459,45 @@ add_filter( 'facetwp_map_marker_args', function( $args, $post_id ) {
     $args['icon'] = get_template_directory_uri() . '/dist/images/map_pin.svg';
     return $args;
 }, 10, 2 );
+
+add_action( 'pre_get_posts', function( $query ) {
+    if ( ! class_exists( 'FacetWP_Helper' ) ) {
+        return;
+    }
+
+    $facets_in_use = FWP()->facet->facets;
+    $prefix = FWP()->helper->get_setting( 'prefix' );
+    $using_sort = isset( FWP()->facet->http_params['get'][ $prefix . 'sort' ] );
+
+    $is_main_query = false;
+    if ( is_array( FWP()->facet->template ) ) {
+        if ( 'wp' != FWP()->facet->template['name'] || true === $query->get( 'facetwp' ) ) {
+            $is_main_query = true;
+        }
+    }
+
+    if ( ! empty( $facets_in_use ) && ! $using_sort && $is_main_query ) {
+        foreach ( $facets_in_use as $f ) {
+            if ( 'proximity' == $f['type'] && ! empty( $f['selected_values'] ) ) {
+                $query->set( 'orderby', 'post__in' );
+                $query->set( 'order', 'ASC' );
+            }
+        }
+    }
+});
+
+function namespace_footer_sidebar_params($params) {
+
+    $sidebar_id = $params[0]['id'];
+
+    if ( $sidebar_id == 'sidebar-footer' ) {
+
+        $total_widgets = wp_get_sidebars_widgets();
+        $sidebar_widgets = count($total_widgets[$sidebar_id]);
+
+        $params[0]['before_widget'] = str_replace('<section class="widget ', '<section class="widget col-xs-6 col-md-' . floor(12 / $sidebar_widgets) . ' ', $params[0]['before_widget']);
+    }
+
+    return $params;
+}
+add_filter('dynamic_sidebar_params','namespace_footer_sidebar_params');

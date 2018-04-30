@@ -22,17 +22,21 @@ use Roots\Sage\Wrapper;
       <div class="content row">
         <main class="main p-0" role="main">
           <?php include Wrapper\template_path(); ?>
+          <?php
+            do_action('get_footer');
+            get_template_part('templates/footer');
+      
+          ?>
         </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
           <aside class="sidebar">
             <?php include Wrapper\sidebar_path(); ?>
           </aside><!-- /.sidebar -->
         <?php endif; ?>
+
       </div><!-- /.content -->
     </div><!-- /.wrap -->
     <?php
-      do_action('get_footer');
-      get_template_part('templates/footer');
       wp_footer();
     ?>
   </body>
