@@ -894,12 +894,11 @@ function half_1(){
     <div class="col-xs-12 col-md-6 side-image  pl-0" >
 
       <picture>
-
-<source srcset="<?php echo $image_url_0; ?>" media="(min-width: 1400px)">
-<source srcset="<?php echo $image_url_1;  ?>" media="(min-width: 769px)">
-<source srcset="<?php echo $image_url_2; ?>" media="(min-width: 577px)">
-<img srcset="<?php echo $image_url_3;?>" alt="responsive image" class="d-block img-fluid">
-</picture>
+        <source srcset="<?php echo $image_url_0; ?>" media="(min-width: 1400px)">
+      <source srcset="<?php echo $image_url_1;  ?>" media="(min-width: 769px)">
+      <source srcset="<?php echo $image_url_2; ?>" media="(min-width: 577px)">
+      <img srcset="<?php echo $image_url_3;?>" alt="responsive image" class="d-block img-fluid">
+      </picture>
     </div>
     <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
       <div class="row h-100">
@@ -973,15 +972,41 @@ add_action( 'custom_parallax_2', 'parallax_2', 15 );
 
 function external_1(){
   $section_external_header = get_field( "section_external_header" );
-  $external_img_1 = get_field( "external_img_1" );
+  //$external_img_1 = get_field( "external_img_1" );
   $external_1_button = get_field( "external_butt_1" );
   $external_1_button_url = get_field( "external_butt_1_url" );
-  $external_img_2 = get_field( "external_img_2" );
+//  $external_img_2 = get_field( "external_img_2" );
   $external_2_button = get_field( "external_butt_2" );
   $external_2_button_url = get_field( "external_butt_2_url" );
-  $external_img_3 = get_field( "external_img_3" );
+  //$external_img_3 = get_field( "external_img_3" );
   $external_3_button = get_field( "external_butt_3" );
   $external_3_button_url = get_field( "external_butt_3_url" );
+
+  $image_object_1 = get_field('external_img_1');
+  $image_object_2 = get_field('external_img_2');
+  $image_object_3 = get_field('external_img_3');
+  $image_size_0 = 'img-half-xl';
+  $image_size_1 = 'img-half-lg';
+  $image_size_2 = 'img-half-md';
+  $image_size_3 = 'img-half-sm';
+  $image_size_4 = 'img-half-xs';
+  $image_url_1_0 = $image_object_1['sizes'][$image_size_0];
+  $image_url_1_1 = $image_object_1['sizes'][$image_size_1];
+  $image_url_1_2 = $image_object_1['sizes'][$image_size_2];
+  $image_url_1_3 = $image_object_1['sizes'][$image_size_3];
+  $image_url_1_4 = $image_object_1['sizes'][$image_size_4];
+
+  $image_url_2_0 = $image_object_2['sizes'][$image_size_0];
+  $image_url_2_1 = $image_object_2['sizes'][$image_size_1];
+  $image_url_2_2 = $image_object_2['sizes'][$image_size_2];
+  $image_url_2_3 = $image_object_2['sizes'][$image_size_3];
+  $image_url_2_4 = $image_object_2['sizes'][$image_size_4];
+
+  $image_url_3_0 = $image_object_3['sizes'][$image_size_0];
+  $image_url_3_1 = $image_object_3['sizes'][$image_size_1];
+  $image_url_3_2 = $image_object_3['sizes'][$image_size_2];
+  $image_url_3_3 = $image_object_3['sizes'][$image_size_3];
+  $image_url_3_4 = $image_object_3['sizes'][$image_size_4];
 
   if( $section_external_header ) {
 
@@ -996,19 +1021,34 @@ function external_1(){
     <div class="row">
       <div class="col-4 text-center p-0">
         <a href="<?php echo $external_1_button_url; ?>">
-        <img src="<?php echo $external_img_1; ?>" class="img-fluid">
+          <picture>
+            <source srcset="<?php echo $image_url_1_0; ?>" media="(min-width: 1400px)">
+          <source srcset="<?php echo $image_url_1_1;  ?>" media="(min-width: 769px)">
+          <source srcset="<?php echo $image_url_1_2; ?>" media="(min-width: 577px)">
+          <img srcset="<?php echo $image_url_1_3;?>" alt="responsive image" class="d-block img-fluid">
+          </picture>
         </a>
         <a class="display-2-g mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
       </div>
       <div class="col-4 text-center p-0">
         <a href="<?php echo $external_2_button_url; ?>">
-        <img src="<?php echo $external_img_2; ?>" class="img-fluid">
+          <picture>
+            <source srcset="<?php echo $image_url_2_0; ?>" media="(min-width: 1400px)">
+          <source srcset="<?php echo $image_url_2_1;  ?>" media="(min-width: 769px)">
+          <source srcset="<?php echo $image_url_2_2; ?>" media="(min-width: 577px)">
+          <img srcset="<?php echo $image_url_2_3;?>" alt="responsive image" class="d-block img-fluid">
+          </picture>
         </a>
         <a class="display-2-g mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
       </div>
       <div class="col-4 text-center p-0">
         <a href="<?php echo $external_3_button_url; ?>">
-        <img src="<?php echo $external_img_3; ?>" class="img-fluid">
+          <picture>
+            <source srcset="<?php echo $image_url_3_0; ?>" media="(min-width: 1400px)">
+          <source srcset="<?php echo $image_url_3_1;  ?>" media="(min-width: 769px)">
+          <source srcset="<?php echo $image_url_3_2; ?>" media="(min-width: 577px)">
+          <img srcset="<?php echo $image_url_3_3;?>" alt="responsive image" class="d-block img-fluid">
+          </picture>
         </a>
         <a class="display-2-g mt-3" href="<?php echo $external_3_button_url; ?>"><?php echo $external_3_button; ?></a>
       </div>
