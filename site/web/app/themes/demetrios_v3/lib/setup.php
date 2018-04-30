@@ -14,6 +14,7 @@ function setup() {
   add_theme_support('soil-nav-walker');
   add_theme_support('soil-nice-search');
   add_theme_support('soil-jquery-cdn');
+  add_theme_support('soil-js-to-footer');
   add_theme_support('soil-relative-urls');
   add_theme_support('woocommerce');
   add_theme_support( 'wc-product-gallery-zoom' );
@@ -45,6 +46,11 @@ function setup() {
   add_image_size( 'carousel-size-2', 1440, 700, true );
   add_image_size( 'carousel-size-3', 800, 500, true );
   add_image_size( 'carousel-size-4', 600, 500, true );
+  add_image_size( 'img-half-xl', 1257, 9999 );
+  add_image_size( 'img-half-lg', 582, 9999 );
+  add_image_size( 'img-half-md', 479, 9999 );
+  add_image_size( 'img-half-sm', 387, 9999 );
+  add_image_size( 'img-half-xs', 507, 9999 );
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
   add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);

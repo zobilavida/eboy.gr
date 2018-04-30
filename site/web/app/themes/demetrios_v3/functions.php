@@ -860,7 +860,18 @@ add_action( 'custom_parallax_1', 'parallax_1', 15 );
 
 
 function half_1(){
-  $half_1 = get_field( "half_1" );
+  $image = get_field( "half_1" );
+  $image_object = get_field('half_1');
+  $image_size_0 = 'img-half-xl';
+  $image_size_1 = 'img-half-lg';
+  $image_size_2 = 'img-half-md';
+  $image_size_3 = 'img-half-sm';
+  $image_size_4 = 'img-half-xs';
+  $image_url_0 = $image_object['sizes'][$image_size_0];
+  $image_url_1 = $image_object['sizes'][$image_size_1];
+  $image_url_2 = $image_object['sizes'][$image_size_2];
+  $image_url_3 = $image_object['sizes'][$image_size_3];
+  $image_url_4 = $image_object['sizes'][$image_size_4];
   $section_half_1_header = get_field( "section_half_1_header" );
   $half_1_text_1 = get_field( "half_1_text_1" );
   $half_1_text_2 = get_field( "half_1_text_2" );
@@ -869,7 +880,7 @@ function half_1(){
   $half_1_button_url = get_field( "half_1_button_url" );
   $calendar = get_field( "calendar" );
 
-  if( $half_1 ) {
+  if( $image ) {
 
 ?>
 <section class="module pt-1">
@@ -881,7 +892,14 @@ function half_1(){
     </div>
   <div class="row position-relative m-0">
     <div class="col-xs-12 col-md-6 side-image  pl-0" >
-      <img src="<?php echo $half_1; ?>" class="img-fluid">
+
+      <picture>
+
+<source srcset="<?php echo $image_url_0; ?>" media="(min-width: 1400px)">
+<source srcset="<?php echo $image_url_1;  ?>" media="(min-width: 769px)">
+<source srcset="<?php echo $image_url_2; ?>" media="(min-width: 577px)">
+<img srcset="<?php echo $image_url_3;?>" alt="responsive image" class="d-block img-fluid">
+</picture>
     </div>
     <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
       <div class="row h-100">
