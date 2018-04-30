@@ -18,7 +18,7 @@ function setup() {
   add_theme_support('woocommerce');
   add_theme_support( 'wc-product-gallery-zoom' );
   add_theme_support( 'wc-product-gallery-lightbox' );
-add_theme_support( 'wc-product-gallery-slider' );
+  add_theme_support( 'wc-product-gallery-slider' );
 
   // Make theme available for translation
   // Community translations can be found at https://github.com/eboy/demetrios_3-translations
@@ -32,7 +32,8 @@ add_theme_support( 'wc-product-gallery-slider' );
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
     'primary_navigation' => __('Primary Navigation', 'demetrios_3'),
-    'Primary'   =>  __( 'Primary Menu', 'THEMENAME' )
+    'top_navigation' => __('Top menu', 'demetrios_3'),
+    'side_navigation' => __('Side menu', 'demetrios_3')
   ]);
 
   // Enable post thumbnails

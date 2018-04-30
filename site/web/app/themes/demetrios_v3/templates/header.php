@@ -13,4 +13,4 @@
     <!--container-->
 </div>
 <?php do_action('demetrios_custom_header', 'custom_header'); ?>
-<div id='slider' class="side-panel side-panel-left" >Hello World!!</div>
+<?php do_action('demetrios_custom_side_menu', 'demetrios_side_menu'); ?>

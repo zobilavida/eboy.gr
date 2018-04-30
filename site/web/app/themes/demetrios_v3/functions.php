@@ -16,8 +16,8 @@ $demetrios_3_includes = [
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
   'lib/customizer.php', // Theme customizer
-  'plugins/facetwp/index.php' // Theme extends
-  //'plugins/facetwp-map-facet/facetwp-map-facet.php' // Theme extends
+  'plugins/facetwp/index.php', // Theme extends
+  'bs4navwalker.php'
 ];
 
 foreach ($demetrios_3_includes as $file) {
@@ -29,12 +29,7 @@ foreach ($demetrios_3_includes as $file) {
 }
 unset($file, $filepath);
 
-// Include custom navwalker
-require_once('bs4navwalker.php');
-//require_once('plugins/facetwp/index.php');
 
-// Register WordPress nav menu
-register_nav_menu('top', 'Top menu');
 
 // Add svg & swf support
 function cc_mime_types( $mimes ){
@@ -425,7 +420,7 @@ add_filter("manage_stores_posts_columns", "stores_columns");
  function the_breadcrumb() {
 
   $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
-  $delimiter = '&raquo;'; // delimiter between crumbs
+  $delimiter = '&#8728;'; // delimiter between crumbs
   $home = 'Home'; // text for the 'Home' link
   $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
   $before = '<span class="current">'; // tag before the current crumb
@@ -436,11 +431,11 @@ add_filter("manage_stores_posts_columns", "stores_columns");
 
   if (is_home() || is_front_page()) {
 
-    if ($showOnHome == 1) echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
+    if ($showOnHome == 1) echo '<span class="align-text-bottom"><a href="' . $homeLink . '">' . $home . '</a></span>';
 
   } else {
 
-    echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
+    echo '<span class="align-text-bottom"><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
 
     if ( is_category() ) {
       $thisCat = get_category(get_query_var('cat'), false);
@@ -523,7 +518,7 @@ add_filter("manage_stores_posts_columns", "stores_columns");
       if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
     }
 
-    echo '</div>';
+    echo '</span>';
 
   }
 } // end the_breadcrumb()
@@ -650,6 +645,27 @@ function custom_header(){
     }
 }
 add_action('demetrios_custom_header', 'custom_header');
+
+
+function demetrios_side_menu (){ ?>
+<div id="slider" class="side-panel side-panel-right">
+<?php
+wp_nav_menu([
+  'menu'            => '',
+  'theme_location'  => 'side_navigation',
+  'container'       => '',
+  'container_id'    => '',
+  'container_class' => '',
+  'menu_id'         => false,
+  'menu_class'      => '',
+  'depth'           => 2,
+  'fallback_cb'     => 'bs4navwalker::fallback',
+  'walker'          => new bs4navwalker()
+]);
+?>
+</div>
+<?php }
+add_action('demetrios_custom_side_menu', 'demetrios_side_menu');
 ####################################################
 #    VIDEO
 ####################################################
