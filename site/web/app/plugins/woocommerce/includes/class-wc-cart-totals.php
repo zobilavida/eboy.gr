@@ -425,7 +425,7 @@ final class WC_Cart_Totals {
 			$taxes                    = WC_Tax::calc_tax( $item->price, $base_tax_rates, true );
 
 			// Now we have a new item price (excluding TAX).
-			$item->price              = absint( $item->price - array_sum( $taxes ) );
+			$item->price              = round( $item->price - array_sum( $taxes ) );
 			$item->price_includes_tax = false;
 		}
 		return $item;
@@ -453,7 +453,7 @@ final class WC_Cart_Totals {
 				$new_taxes   = WC_Tax::calc_tax( $item->price - array_sum( $taxes ), $item->tax_rates, false );
 
 				// Now we have a new item price.
-				$item->price = $item->price - array_sum( $taxes ) + array_sum( $new_taxes );
+				$item->price = round( $item->price - array_sum( $taxes ) + array_sum( $new_taxes ) );
 			}
 		}
 		return $item;

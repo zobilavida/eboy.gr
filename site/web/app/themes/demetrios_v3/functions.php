@@ -678,7 +678,7 @@ function demetrios_front_video(){
   $video_link = get_field( "video_link" );
   $video_bg_image = get_field( "video_bg_image" );
 ?>
-<section class="video h-30">
+<section class="video h-25">
 
 
   <div class="container h-100 d-flex video-background-image" data-background="<?php //echo $video_bg_image; ?>">
@@ -891,7 +891,7 @@ function half_1(){
       </div>
     </div>
   <div class="row position-relative m-0">
-    <div class="col-xs-12 col-md-6 side-image  pl-0" >
+    <div class="col-12 col-md-6 side-image p-0" >
 
       <picture>
         <source srcset="<?php echo $image_url_0; ?>" media="(min-width: 1400px)">
@@ -1373,18 +1373,7 @@ add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_prod
 add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 45 );
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
-remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 
-
-function woocommerce_template_loop_product_thumbnail_responsive() {
-
-  echo  woocommerce_get_product_thumbnail();
-
-
-
-}
-
-add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 15 );
 
 //remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 //add_action( 'woocommerce_after_single_product_c', 'woocommerce_output_related_products', 10 );

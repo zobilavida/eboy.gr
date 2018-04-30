@@ -29,6 +29,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 ?>
 
 <div class="w-24 card m-1 product">
+	<div class="card-img-overlay">
+<?php echo do_shortcode("[ti_wishlists_addtowishlist loop=yes]") ?>
+	                </div>
+
+
 	<?php
 	/**
 	 * woocommerce_before_shop_loop_item hook.
