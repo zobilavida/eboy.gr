@@ -16,5 +16,5 @@
  * @version     2.0.0
  */
 ?>
-<div class="container facetwp-template">
-  <div class="row justify-content-center">
+<div class="container facetwp-template" >
+  <div class="row grid">

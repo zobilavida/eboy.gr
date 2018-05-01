@@ -21,7 +21,7 @@ function setup() {
   add_theme_support( 'wc-product-gallery-lightbox' );
   add_theme_support( 'wc-product-gallery-slider' );
   add_theme_support( 'woocommerce', array(
-    'thumbnail_image_width'         => 450,
+    'thumbnail_image_width'         => 612,
     'gallery_thumbnail_image_width' => 100,
     'single_image_width'            => 500,
 ) );

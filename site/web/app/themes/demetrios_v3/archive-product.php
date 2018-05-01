@@ -24,9 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="mybutton mybutton_vertical">
-<a href="#" class="btn btn-info feedback" role="button">Book an Appointment</a>
-</div>
 
 	<?php
 		/**
@@ -65,16 +62,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 			</div>
       <div class="row product-cat-if-desc pt-2 pb-4">
-				<div class="col-lg-2 col-4 ">
-					<div class="row h-100">
-						<div class="col-6 align-self-center ">
-							<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_view_2.svg">
-							</div>
-							<div class="col-6 align-self-center ">
-								<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_view_4.svg">
-								</div>
+				<div class="col-lg-1 col-4 ">
 
-						</div>
+						<div class="cc-selector pt-3">
+								<div class="row h-100">
+									<div class="col-6">
+				         <input id="view_2" type="radio" name="credit-card" value="view_2" />
+				         <label class="drinkcard-cc view_2" for="view_2"></label>
+							 </div>
+							 <div class="col-6">
+				         <input id="view_4" type="radio" name="credit-card" value="view_4" />
+				         <label class="drinkcard-cc view_4"for="view_4"></label>
+								 </div>
+							 	</div>
+
+				     </div>
+
 					</div>
 					<div class="col-8 d-md-none text-right">
 						<a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -106,7 +109,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						</div>
 				</div>
+				<div class="col-lg-1 align-self-center">
+					<img class="ico" onclick="FWP.reset()" src="<?= get_template_directory_uri(); ?>/dist/images/reset.svg">
 
+				</div>
       </div>
     </div>
 

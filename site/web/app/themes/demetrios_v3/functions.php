@@ -1351,7 +1351,7 @@ add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 function new_loop_shop_per_page( $cols ) {
   // $cols contains the current number of products per page based on the value stored on Options -> Reading
   // Return the number of products you wanna show per page.
-  $cols = 8;
+  $cols = 6;
   return $cols;
 }
 
@@ -1404,10 +1404,10 @@ remove_action( 'woocommerce_shop_loop_item_title' , 'woocommerce_template_loop_p
 
 function woocommerce_template_loop_product_title_custom() {
   ?>
+
 <h4 class="woocommerce-loop-product__title text-center p-3"><?php the_title(); ?></h4>
+
 <?php
-
-
 
 }
 add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title_custom', 10);
@@ -1564,3 +1564,8 @@ function namespace_footer_sidebar_params($params) {
     return $params;
 }
 add_filter('dynamic_sidebar_params','namespace_footer_sidebar_params');
+
+//function woocommerce_template_loop_product_thumbnail() {
+  //$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'img-half-sm' );
+  //echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
+//}
