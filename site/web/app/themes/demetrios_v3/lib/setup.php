@@ -17,13 +17,13 @@ function setup() {
   add_theme_support('soil-js-to-footer');
   add_theme_support('soil-relative-urls');
   add_theme_support('woocommerce');
-  add_theme_support( 'wc-product-gallery-zoom' );
+  //add_theme_support( 'wc-product-gallery-zoom' );
   add_theme_support( 'wc-product-gallery-lightbox' );
   add_theme_support( 'wc-product-gallery-slider' );
   add_theme_support( 'woocommerce', array(
-    'thumbnail_image_width'         => 612,
-    'gallery_thumbnail_image_width' => 100,
-    'single_image_width'            => 500,
+    'thumbnail_image_width'         => 212,
+    'gallery_thumbnail_image_width' => 200,
+    'single_image_width'            => 587,
 ) );
 
   // Make theme available for translation
