@@ -1251,6 +1251,7 @@ function store_finder_split_2(){
   <div class="col-12">
   <?php echo facetwp_display( 'pager' ); ?>
   </div>
+
 </div>
     <?php // joints_page_navi(); ?>
 

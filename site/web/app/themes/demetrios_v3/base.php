@@ -22,11 +22,7 @@ use Roots\Sage\Wrapper;
       <div class="content row">
         <main class="main p-0" role="main">
           <?php include Wrapper\template_path(); ?>
-          <?php
-            do_action('get_footer');
-            get_template_part('templates/footer');
-      
-          ?>
+
         </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
           <aside class="sidebar">
@@ -35,9 +31,16 @@ use Roots\Sage\Wrapper;
         <?php endif; ?>
 
       </div><!-- /.content -->
+
     </div><!-- /.wrap -->
     <?php
-      wp_footer();
-    ?>
+
+do_action('get_footer');
+if (!is_page_template('template-store_finder_split_2.php') && !is_page_template('template-front_video.php')) {
+get_template_part('templates/footer');}
+
+  wp_footer();
+?>
+
   </body>
 </html>

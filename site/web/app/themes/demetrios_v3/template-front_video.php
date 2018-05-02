@@ -14,3 +14,9 @@
 <?php get_template_part('templates/unit', 'external_1'); ?>
 <?php get_template_part('templates/unit', 'parallax_3'); ?>
 <?php get_template_part('templates/unit', 'butt_book'); ?>
+<?php
+
+
+get_template_part('templates/footer');
+
+?>
