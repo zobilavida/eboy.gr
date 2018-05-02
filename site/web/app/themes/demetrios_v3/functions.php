@@ -634,8 +634,9 @@ function custom_header(){
                 'walker'          => new bs4navwalker()
               ]);
               ?>
+              <div id='trigger' class="navbar-toggler-icon d-none d-md-block ml-5"></div>
+
           </div>
-                <span id='trigger' class="navbar-toggler-icon ml-5"></span>
       </div>
 
   </nav>
@@ -1351,7 +1352,7 @@ add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 function new_loop_shop_per_page( $cols ) {
   // $cols contains the current number of products per page based on the value stored on Options -> Reading
   // Return the number of products you wanna show per page.
-  $cols = 6;
+  $cols = 8;
   return $cols;
 }
 
@@ -1564,6 +1565,24 @@ function namespace_footer_sidebar_params($params) {
     return $params;
 }
 add_filter('dynamic_sidebar_params','namespace_footer_sidebar_params');
+
+function namespace_header_right_sidebar_params($params) {
+
+    $sidebar_id = $params[0]['id'];
+
+    if ( $sidebar_id == 'sidebar-header-right' ) {
+
+        $total_widgets = wp_get_sidebars_widgets();
+        $sidebar_widgets = count($total_widgets[$sidebar_id]);
+
+        $params[0]['before_widget'] = str_replace('<section class="widget ', '<section class="pl-4 py-1 ', $params[0]['before_widget']);
+    }
+
+    return $params;
+}
+add_filter('dynamic_sidebar_params','namespace_header_right_sidebar_params');
+
+
 
 //function woocommerce_template_loop_product_thumbnail() {
   //$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'img-half-sm' );

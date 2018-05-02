@@ -107,6 +107,14 @@ function widgets_init() {
     'before_title'  => '<h3>',
     'after_title'   => '</h3>'
   ]);
+  register_sidebar([
+    'name'          => __('Top Slider', 'demetrios_3'),
+    'id'            => 'sidebar-top-slider',
+    'before_widget' => '<div class="col-12">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ]);
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 

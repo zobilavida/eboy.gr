@@ -1,11 +1,17 @@
 <div class="header bg-light sticky-top p-2">
+
     <div class="container">
         <div class="row">
             <div class="col-6">
                 <?php dynamic_sidebar('sidebar-header-left'); ?>
             </div>
             <div class="col-6 text-right">
+              <div class="container p-0">
+                  <div class="d-flex justify-content-end">
+
                 <?php dynamic_sidebar('sidebar-header-right'); ?>
+              </div>
+          </div>
             </div>
         </div>
         <!--/row-->
