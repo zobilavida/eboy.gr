@@ -1583,3 +1583,15 @@ function namespace_header_right_sidebar_params($params) {
     return $params;
 }
 add_filter('dynamic_sidebar_params','namespace_header_right_sidebar_params');
+
+
+add_action( 'woocommerce_single_product_summary', 'wc_next_prev_products_links', 60 );
+function wc_next_prev_products_links() {
+    previous_post_link( '%link', '< Previous' );
+	echo ' | ';
+	next_post_link( '%link', 'Next >' );
+}
+//function woocommerce_template_loop_product_thumbnail() {
+//$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'img-half-sm' );/
+//echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
+//}
