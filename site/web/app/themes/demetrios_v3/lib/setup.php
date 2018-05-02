@@ -88,8 +88,17 @@ function widgets_init() {
     'id'            => 'sidebar-footer',
     'before_widget' => '<section class="widget %1$s %2$s">',
     'after_widget'  => '</section>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
+    'before_title'  => '<h5>',
+    'after_title'   => '</h5>'
+  ]);
+  register_sidebar([
+    'name'          => __('Footer Bottom', 'demetrios_3'),
+    'id'            => 'sidebar-footer-bottom',
+    'before_widget' => '<div class="col-12">',
+    'before_widget' => '<section class="px-5 py-4 %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h4>',
+    'after_title'   => '</h4>'
   ]);
   register_sidebar([
     'name'          => __('Header Left', 'demetrios_3'),

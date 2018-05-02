@@ -17,7 +17,8 @@ $demetrios_3_includes = [
   'lib/wrapper.php',   // Theme wrapper class
   'lib/customizer.php', // Theme customizer
   'plugins/facetwp/index.php', // Theme extends
-  'bs4navwalker.php'
+  'bs4navwalker.php',
+  'custom-nav-walker.php'
 ];
 
 foreach ($demetrios_3_includes as $file) {
@@ -1560,7 +1561,7 @@ function namespace_footer_sidebar_params($params) {
         $total_widgets = wp_get_sidebars_widgets();
         $sidebar_widgets = count($total_widgets[$sidebar_id]);
 
-        $params[0]['before_widget'] = str_replace('<section class="widget ', '<section class="widget col-xs-6 col-md-' . floor(12 / $sidebar_widgets) . ' ', $params[0]['before_widget']);
+        $params[0]['before_widget'] = str_replace('<section class="widget ', '<section class="widget text-center p-4 col-xs-6 col-md-' . floor(12 / $sidebar_widgets) . ' ', $params[0]['before_widget']);
     }
 
     return $params;
