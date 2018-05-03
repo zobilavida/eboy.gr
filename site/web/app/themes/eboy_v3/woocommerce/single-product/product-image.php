@@ -48,12 +48,8 @@ $next_arrow		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/i
 
 	<div class="row">
 <div class="col-lg-12 col-sm-12">
-
 	 <div class="carousel slide w-100 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
 		 <div class="carousel-inner" role="listbox">
-
-
-
 			<?php
 			 $args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_mime_type' => 'image', 'post_status' => 'inherit', 'post_parent' => $post->ID );
 			 $attachments = get_posts($args);
@@ -64,19 +60,15 @@ $next_arrow		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/i
 											 if ($src) {
 												 echo '<div class="carousel-item active">';
 												 //echo '<div class="col-md-12">';
-
 												 echo '<img class="d-block w-100" src="' . $src[0] . '" alt="">';
 												 //echo $src[0];
 												 echo '</div>';
-
-
 											 }
 											 // Method #2: Would always return the "attached-image" size
 											 //echo $attachment->guid;
 							 }
 			 } ?>
 			 <?php
-
 				$args = array( 'post_type' => 'attachment', 'offset' => 1, 'post_mime_type' => 'image', 'post_status' => 'inherit', 'post_parent' => $post->ID );
 				$attachments = get_posts($args);
 				if ($attachments) {

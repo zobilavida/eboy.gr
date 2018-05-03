@@ -152,11 +152,20 @@ function child_manage_woocommerce_styles() {
 			wp_dequeue_script( 'fancybox' );
 			wp_dequeue_script( 'jqueryui' );
     //  wp_deregister_script( 'jquery' );
-      wp_deregister_script( 'js-cookie' );
+//     wp_deregister_script( 'js-cookie' );
 		}
 	}
 
 }
+
+// remove wp version param from any enqueued scripts
+function vc_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
+add_filter( 'script_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 
 
 if ( ! function_exists('custom_sliders_post_type') ) {
@@ -716,19 +725,14 @@ function demetrios_front_carousel(){
   <section class="top-carousel">
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
       <div class="carousel-inner" role="listbox">
-
           <?php
           // the query
           $$wpb_rest_query = new WP_Query(array('post_type'=>'sliders', 'post_status'=>'publish', 'offset' => 0, 'posts_per_page'=>1)); ?>
-
           <?php if ( $$wpb_rest_query->have_posts() ) : ?>
-
-
-
-              <!-- the loop -->
-              <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
-                <div class="carousel-item active h-100">
-                  <picture>
+          <!-- the loop -->
+          <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
+          <div class="carousel-item active h-100">
+          <picture>
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
           <source srcset="<?php the_post_thumbnail_url( 'carousel-size-3' ); ?>" media="(min-width: 577px)">
@@ -741,35 +745,24 @@ function demetrios_front_carousel(){
          <span class="btn btn-sm btn-outline-secondary">Learn More</span>
         </div>
         </div>
-                </div>
-
-              <?php endwhile; ?>
-              <!-- end of the loop -->
-
-
-
-              <?php wp_reset_postdata(); ?>
-
+        </div>
+        <?php endwhile; ?>
+        <!-- end of the loop -->
+        <?php wp_reset_postdata(); ?>
           <?php else : ?>
               <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
           <?php endif; ?>
-
-
   <?php
   // the query
   $$wpb_rest_query = new WP_Query(array('post_type'=>'sliders', 'post_status'=>'publish', 'offset' => -1)); ?>
-
   <?php if ( $$wpb_rest_query->have_posts() ) : ?>
-
-
-
-      <!-- the loop -->
-      <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
-        <div class="carousel-item h-100">
-          <picture>
- <source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
- <source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
-  <source srcset="<?php the_post_thumbnail_url( 'carousel-size-3' ); ?>" media="(min-width: 577px)">
+  <!-- the loop -->
+  <?php while ( $$wpb_rest_query->have_posts() ) : $$wpb_rest_query->the_post(); ?>
+  <div class="carousel-item h-100">
+<picture>
+<source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
+<source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
+<source srcset="<?php the_post_thumbnail_url( 'carousel-size-3' ); ?>" media="(min-width: 577px)">
  <img srcset="<?php the_post_thumbnail_url( 'carousel-size-4' ); ?>" alt="responsive image" class="d-block img-fluid">
 </picture>
 <div class="carousel-caption">
@@ -779,17 +772,11 @@ function demetrios_front_carousel(){
  <span class="btn btn-sm btn-outline-secondary">Learn More</span>
 </div>
 </div>
-
-        </div>
-
-      <?php endwhile; ?>
-      <!-- end of the loop -->
-
-
-
-      <?php wp_reset_postdata(); ?>
-
-  <?php else : ?>
+</div>
+<?php endwhile; ?>
+<!-- end of the loop -->
+<?php wp_reset_postdata(); ?>
+<?php else : ?>
       <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
   <?php endif; ?>
   </div>
