@@ -152,7 +152,7 @@ function child_manage_woocommerce_styles() {
 			wp_dequeue_script( 'fancybox' );
 			wp_dequeue_script( 'jqueryui' );
     //  wp_deregister_script( 'jquery' );
-    //  wp_deregister_script( 'js-cookie' );
+      wp_deregister_script( 'js-cookie' );
 		}
 	}
 
