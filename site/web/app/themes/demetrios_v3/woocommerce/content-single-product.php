@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="row">
 <div class="col-6">
 <?php $thumb_id = get_post_thumbnail_id();
-$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'shop_single', true);
+$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'product-lg', true);
 $thumb_url = $thumb_url_array[0];
 
 ?>

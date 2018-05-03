@@ -152,7 +152,7 @@ function child_manage_woocommerce_styles() {
 			wp_dequeue_script( 'fancybox' );
 			wp_dequeue_script( 'jqueryui' );
     //  wp_deregister_script( 'jquery' );
-        wp_deregister_script( 'js-cookie' );
+    //  wp_deregister_script( 'js-cookie' );
 		}
 	}
 
@@ -732,7 +732,7 @@ function demetrios_front_carousel(){
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-1' ); ?>" media="(min-width: 1400px)">
          <source srcset="<?php the_post_thumbnail_url( 'carousel-size-2' ); ?>" media="(min-width: 769px)">
           <source srcset="<?php the_post_thumbnail_url( 'carousel-size-3' ); ?>" media="(min-width: 577px)">
-         <img srcset="<?php the_post_thumbnail_url( 'carousel-size-4' ); ?>" alt="responsive image" class="d-block img-fluid">
+         <img srcset="<?php the_post_thumbnail_url( 'carousel-size-4' ); ?>" alt="Demetrios Wedding" class="d-block img-fluid">
         </picture>
         <div class="carousel-caption">
         <div>
@@ -1675,9 +1675,18 @@ add_action('demetrios_product_attributes', 'isa_woocommerce_all_pa', 25);
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail');
 
 function woocommerce_template_loop_product_thumbnail_responsive() {
-$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-lg' );
+$product_lg = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-lg' );
+$product_md = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-md' );
+$product_sm = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-sm' );
+$product_xs = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-xs' );
 //echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
-echo '<img src="' . $image_src[0] . '" class="img-fluid" alt="Demetrios Wedding Dresses">';
-}
+//echo '<img src="' . $image_src[0] . '" class="img-fluid" alt="Demetrios Wedding Dresses">';
 
+echo '<picture>';
+echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
+echo '<source srcset=" ' . $product_md[0] . ' " media="(min-width: 769px)">';
+echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 577px)">';
+echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
+echo '</picture>';
+}
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
