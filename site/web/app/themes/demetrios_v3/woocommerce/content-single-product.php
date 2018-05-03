@@ -36,36 +36,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div id="product-<?php the_ID(); ?>" <?php post_class('pt-5'); ?>>
+
 <div class="container">
-	<?php
-		/**
-		 * woocommerce_before_single_product_summary hook.
-		 *
-		 * @hooked woocommerce_show_product_sale_flash - 10
-		 * @hooked woocommerce_show_product_images - 20
-		 */
-		do_action( 'woocommerce_before_single_product_summary' );
-	?>
+<div class="row">
+<div class="col-6">
+<?php $thumb_id = get_post_thumbnail_id();
+$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'shop_single', true);
+$thumb_url = $thumb_url_array[0];
 
-	<div class="summary entry-summary">
+?>
 
-		<?php
-			/**
-			 * woocommerce_single_product_summary hook.
-			 *
-			 * @hooked woocommerce_template_single_title - 5
-			 * @hooked woocommerce_template_single_rating - 10
-			 * @hooked woocommerce_template_single_price - 10
-			 * @hooked woocommerce_template_single_excerpt - 20
-			 * @hooked woocommerce_template_single_add_to_cart - 30
-			 * @hooked woocommerce_template_single_meta - 40
-			 * @hooked woocommerce_template_single_sharing - 50
-			 * @hooked WC_Structured_Data::generate_product_data() - 60
-			 */
-			do_action( 'woocommerce_single_product_summary' );
-		?>
-			</div>
+<img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
+
+</div>
+<div class="col-6">
+	<?php echo esc_html( get_the_title() ); ?>
+	<?php the_content( ); ?>
+	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
+<?php //the_post_thumbnail_url( $size ); ?>
+<?php // echo get_the_post_thumbnail_url( $post->ID, $image_size ); ?>
+<?php
+    global $product;
+
+    $attachment_ids = $product->get_gallery_attachment_ids();
+
+    foreach( $attachment_ids as $attachment_id ) {
+        echo wp_get_attachment_image($attachment_id, 'shop_thumbnail');
+    }
+?>
+
+
+</div>
+
+</div>
 	</div><!-- .summary -->
 
 	<?php
@@ -79,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		do_action( 'woocommerce_after_single_product_summary' );
 	?>
 
-</div><!-- #product-<?php the_ID(); ?> -->
+
 
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

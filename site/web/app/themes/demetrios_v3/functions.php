@@ -127,7 +127,7 @@ function child_manage_woocommerce_styles() {
 	//first check that woo exists to prevent fatal errors
 	if ( function_exists( 'is_woocommerce' ) ) {
 		//dequeue scripts and styles
-		if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+		if (  ! is_cart() && ! is_checkout() ) {
 			wp_dequeue_style( 'woocommerce_frontend_styles' );
 			wp_dequeue_style( 'woocommerce_fancybox_styles' );
 			wp_dequeue_style( 'woocommerce_chosen_styles' );
@@ -1591,6 +1591,87 @@ function wc_next_prev_products_links() {
 	echo ' | ';
 	next_post_link( '%link', 'Next >' );
 }
+
+add_filter( 'woocommerce_single_product_carousel_options', 'ud_update_woo_flexslider_options' );
+
+function ud_update_woo_flexslider_options( $options ) {
+
+    $options['directionNav'] = true;
+
+    return $options;
+}
+
+//remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+//add_action( 'woocommerce_single_product_summary', 'woocommerce_show_product_thumbnails', 30 );
+function isa_woocommerce_all_pa(){
+
+    global $product;
+    $attributes = $product->get_attributes();
+
+    if ( ! $attributes ) {
+        return;
+    }
+
+    $out = '<ul class="custom-attributes">';
+
+    foreach ( $attributes as $attribute ) {
+
+
+        // skip variations
+        if ( $attribute->get_variation() ) {
+        continue;
+        }
+        $name = $attribute->get_name();
+        if ( $attribute->is_taxonomy() ) {
+
+            $terms = wp_get_post_terms( $product->get_id(), $name, 'all' );
+            // get the taxonomy
+            $tax = $terms[0]->taxonomy;
+            // get the tax object
+            $tax_object = get_taxonomy($tax);
+            // get tax label
+            if ( isset ( $tax_object->labels->singular_name ) ) {
+                $tax_label = $tax_object->labels->singular_name;
+            } elseif ( isset( $tax_object->label ) ) {
+                $tax_label = $tax_object->label;
+                // Trim label prefix since WC 3.0
+                if ( 0 === strpos( $tax_label, 'Product ' ) ) {
+                   $tax_label = substr( $tax_label, 8 );
+                }
+            }
+
+
+            $out .= '<li class="' . esc_attr( $name ) . '">';
+            $out .= '<span class="attribute-label">' . esc_html( $tax_label ) . ': </span> ';
+            $out .= '<span class="attribute-value">';
+            $tax_terms = array();
+            foreach ( $terms as $term ) {
+                $single_term = esc_html( $term->name );
+                // Show terms as links, when available
+                if ( $single_product ) {
+                    $term_link = get_term_link( $term );
+                    if ( ! is_wp_error( $term_link ) ) {
+                        $single_term = '<a href="' . esc_url( $term_link ) . '">' . esc_html( $term->name ) . '</a>';
+                    }
+                }                array_push( $tax_terms, $single_term );
+            }
+            $out .= implode(', ', $tax_terms);
+            $out .= '</span></li>';
+
+        } else {
+            $value_string = implode( ', ', $attribute->get_options() );
+            $out .= '<li class="' . sanitize_title($name) . ' ' . sanitize_title( $value_string ) . '">';
+            $out .= '<span class="attribute-label">' . $name . ': </span> ';
+            $out .= '<span class="attribute-value">' . esc_html( $value_string ) . '</span></li>';
+        }
+    }
+
+    $out .= '</ul>';
+
+    echo $out;
+}
+add_action('demetrios_product_attributes', 'isa_woocommerce_all_pa', 25);
+
 //function woocommerce_template_loop_product_thumbnail() {
 //$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'img-half-sm' );/
 //echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
