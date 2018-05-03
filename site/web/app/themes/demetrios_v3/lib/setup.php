@@ -56,6 +56,10 @@ function setup() {
   add_image_size( 'img-half-md', 479, 9999 );
   add_image_size( 'img-half-sm', 387, 9999 );
   add_image_size( 'img-half-xs', 507, 9999 );
+  add_image_size( 'product-lg', 600, 9999 );
+  add_image_size( 'product-md', 461, 9999 );
+  add_image_size( 'product-sm', 345, 9999 );
+  add_image_size( 'product-xs', 1080, 9999 );
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
   add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);

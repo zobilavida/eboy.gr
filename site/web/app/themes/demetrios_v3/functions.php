@@ -1672,7 +1672,12 @@ function isa_woocommerce_all_pa(){
 }
 add_action('demetrios_product_attributes', 'isa_woocommerce_all_pa', 25);
 
-//function woocommerce_template_loop_product_thumbnail() {
-//$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'img-half-sm' );/
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail');
+
+function woocommerce_template_loop_product_thumbnail_responsive() {
+$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-lg' );
 //echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
-//}
+echo '<img src="' . $image_src[0] . '" class="img-fluid" alt="Demetrios Wedding Dresses">';
+}
+
+add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
