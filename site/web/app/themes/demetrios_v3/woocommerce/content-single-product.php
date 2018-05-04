@@ -50,22 +50,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php echo esc_html( get_the_title() ); ?>
 	<?php the_content( ); ?>
 	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
-<?php //the_post_thumbnail_url( $size ); ?>
-<?php // echo get_the_post_thumbnail_url( $post->ID, $image_size ); ?>
-<?php
-    global $product;
-
-    $attachment_ids = $product->get_gallery_attachment_ids();
-
-    foreach( $attachment_ids as $attachment_id ) {
-        echo wp_get_attachment_image($attachment_id, 'shop_thumbnail');
-    }
-?>
-
-
-
-
-
 </div>
 
 </div>

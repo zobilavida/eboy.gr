@@ -1682,9 +1682,14 @@ function product_carousel() {
   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'product-lg', true);
   $thumb_url = $thumb_url_array[0];
   $attachment_ids = $product->get_gallery_attachment_ids();
-  $attachment_ids_array = wp_get_attachment_image_src($attachment_ids, 'product-lg', true);
-  $attachment_ids_url = $attachment_ids_url[0];
+  $attachment_small_ids = $product->get_gallery_attachment_ids();
+//  $attachment_ids_array = wp_get_attachment_image_src($attachment_ids, 'product-lg', true);
+//  $attachment_ids_url = $attachment_ids_url[0];
 
+
+  $thumb_small_id = get_post_thumbnail_id();
+  $thumb_small_url_array = wp_get_attachment_image_src($thumb_small_id, 'shop_thumbnail', true);
+  $thumb_small_url = $thumb_small_url_array[0];
   //$gallery_image = echo $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0];
   $number = 1;
   ?>
@@ -1696,25 +1701,25 @@ function product_carousel() {
     <!-- main slider carousel nav controls -->
 
     <div class="row">
-    <div class="col-3">
-        <div class="item active">
+    <div class="col-3 pr-2">
+        <div class="item pb-2 active">
             <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-                <img src="http://placehold.it/80x60&amp;text=one" class="img-fluid">
+                <img src="<?php echo $thumb_small_url; ?>" class="img-fluid" alt="Example">
             </a>
         </div>
-        <div class="item">
-            <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
-                <img src="http://placehold.it/80x60&amp;text=two" class="img-fluid">
-            </a>
-        </div>
-        <div class="item">
-            <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
-                <img src="http://placehold.it/80x60&amp;text=three" class="img-fluid">
-            </a>
-        </div>
+        <?php
+          foreach( $attachment_small_ids as $attachment_small_id ) {
+            echo '<div class="item pb-2">';
+            echo '  <a id="carousel-selector" class="" data-slide-to="' . $number++ . '" data-target="#myCarousel">';
+        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
+          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_small_id, 'shop_thumbnail' )[0] . ' " class="img-fluid" alt="Example">';
+          echo '</a>';
+          echo '</div>';
+            }
+        ?>
     </div>
     <!-- main slider carousel items -->
-    <div class="carousel-inner col-9">
+    <div class="carousel-inner col-9 p-0">
         <div class="active item carousel-item" data-slide-number="0">
             <img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
         </div>
@@ -1726,20 +1731,22 @@ function product_carousel() {
           echo '</div>';
             }
         ?>
-
-
-
         <a class="carousel-control previous pt-3" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
         <a class="carousel-control next pt-3" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-
     </div>
   </div>
-
-                      </div>
-                      </div>
-                        </div>
-
-
+  </div>
+</div>
+</div>
 <?
 }
 add_action('demetrios_product_carousel', 'product_carousel', 10);
+
+
+add_filter( 'woocommerce_get_image_size_gallery_thumbnail', function( $size ) {
+return array(
+'width' => 152.28,
+'height' => 228.42,
+'crop' => 0,
+);
+} );
