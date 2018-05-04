@@ -22,7 +22,7 @@ function setup() {
   //add_theme_support( 'wc-product-gallery-slider' );
   add_theme_support( 'woocommerce', array(
     'thumbnail_image_width'         => 600,
-    'gallery_thumbnail_image_width' => 200,
+    'gallery_thumbnail_image_width' => 160,
     'single_image_width'            => 560,
 ) );
 

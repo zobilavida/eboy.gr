@@ -158,7 +158,6 @@ function child_manage_woocommerce_styles() {
 
 }
 
-// remove wp version param from any enqueued scripts
 function vc_remove_wp_ver_css_js( $src ) {
     if ( strpos( $src, 'ver=' ) )
         $src = remove_query_arg( 'ver', $src );
@@ -166,7 +165,6 @@ function vc_remove_wp_ver_css_js( $src ) {
 }
 add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 add_filter( 'script_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
-
 
 if ( ! function_exists('custom_sliders_post_type') ) {
 
@@ -616,7 +614,6 @@ function custom_header(){
 
 <?php
   }
-  // if page id is not 12 & 14 then below line will be print
   else {
   ?>
   <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
@@ -1677,3 +1674,72 @@ echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="d-bl
 echo '</picture>';
 }
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
+
+
+function product_carousel() {
+  global $product;
+  $thumb_id = get_post_thumbnail_id();
+  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'product-lg', true);
+  $thumb_url = $thumb_url_array[0];
+  $attachment_ids = $product->get_gallery_attachment_ids();
+  $attachment_ids_array = wp_get_attachment_image_src($attachment_ids, 'product-lg', true);
+  $attachment_ids_url = $attachment_ids_url[0];
+
+  //$gallery_image = echo $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0];
+  $number = 1;
+  ?>
+
+
+  <div class="row">
+  <div class="col-12">
+  <div id="myCarousel" class="carousel slide">
+    <!-- main slider carousel nav controls -->
+
+    <div class="row">
+    <div class="col-3">
+        <div class="item active">
+            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                <img src="http://placehold.it/80x60&amp;text=one" class="img-fluid">
+            </a>
+        </div>
+        <div class="item">
+            <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
+                <img src="http://placehold.it/80x60&amp;text=two" class="img-fluid">
+            </a>
+        </div>
+        <div class="item">
+            <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
+                <img src="http://placehold.it/80x60&amp;text=three" class="img-fluid">
+            </a>
+        </div>
+    </div>
+    <!-- main slider carousel items -->
+    <div class="carousel-inner col-9">
+        <div class="active item carousel-item" data-slide-number="0">
+            <img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
+        </div>
+        <?php
+          foreach( $attachment_ids as $attachment_id ) {
+            echo '<div class="item carousel-item" data-slide-number="' . $number++ . '">';
+        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
+          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0] . ' " class="img-fluid" alt="Example">';
+          echo '</div>';
+            }
+        ?>
+
+
+
+        <a class="carousel-control previous pt-3" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+        <a class="carousel-control next pt-3" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+
+    </div>
+  </div>
+
+                      </div>
+                      </div>
+                        </div>
+
+
+<?
+}
+add_action('demetrios_product_carousel', 'product_carousel', 10);

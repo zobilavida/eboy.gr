@@ -36,20 +36,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-
 <div class="container">
 <div class="row">
-<div class="col-6">
-<?php $thumb_id = get_post_thumbnail_id();
-$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'product-lg', true);
-$thumb_url = $thumb_url_array[0];
+<div class="col-7">
 
-?>
+	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
 
-<img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
+
+
 
 </div>
-<div class="col-6">
+<div class="col-5">
 	<?php echo esc_html( get_the_title() ); ?>
 	<?php the_content( ); ?>
 	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
@@ -64,6 +61,9 @@ $thumb_url = $thumb_url_array[0];
         echo wp_get_attachment_image($attachment_id, 'shop_thumbnail');
     }
 ?>
+
+
+
 
 
 </div>
