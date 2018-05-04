@@ -1702,14 +1702,14 @@ function product_carousel() {
 
     <div class="row">
     <div class="col-3 pr-2">
-        <div class="item pb-2 active">
+        <div class="item pb-3 active">
             <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
                 <img src="<?php echo $thumb_small_url; ?>" class="img-fluid" alt="Example">
             </a>
         </div>
         <?php
           foreach( $attachment_small_ids as $attachment_small_id ) {
-            echo '<div class="item pb-2">';
+            echo '<div class="item pb-3">';
             echo '  <a id="carousel-selector" class="" data-slide-to="' . $number++ . '" data-target="#myCarousel">';
         //  echo wp_get_attachment_image($attachment_id, 'product-lg');
           echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_small_id, 'shop_thumbnail' )[0] . ' " class="img-fluid" alt="Example">';
@@ -1719,7 +1719,7 @@ function product_carousel() {
         ?>
     </div>
     <!-- main slider carousel items -->
-    <div class="carousel-inner col-9 p-0">
+    <div class="carousel-inner col-9 px-2">
         <div class="active item carousel-item" data-slide-number="0">
             <img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
         </div>
@@ -1750,3 +1750,18 @@ return array(
 'crop' => 0,
 );
 } );
+
+add_filter( 'the_content', 'wti_remove_autop_for_image', 0 );
+
+function wti_remove_autop_for_image( $content )
+{
+     global $post;
+
+     // Check for single page and image post type and remove
+     if ( is_single() && $post->post_type == 'product' )
+          remove_filter('the_content', 'wpautop');
+
+     return $content;
+}
+
+add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);

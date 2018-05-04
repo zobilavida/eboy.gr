@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div class="container">
+<div class="container pt-5">
 <div class="row">
 <div class="col-7">
 
@@ -46,10 +46,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 </div>
-<div class="col-5">
-	<?php echo esc_html( get_the_title() ); ?>
-	<?php the_content( ); ?>
+<div class="col-5 px-4">
+
+	<div class="d-flex flex-row ">
+
+<div class="pr-2"><h1><?php echo esc_html( get_the_title() ); ?></h1></div>
+<div class="p-2 align-self-center"><?php do_action('demetrios_current_product_category', 'woocommerce_category_description');  ?></div>
+<div class="p-2">Flex item 3</div>
+
+	</div>
+	<p class="text-product"><?php the_content( ); ?></p>
 	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
+	
 </div>
 
 </div>
