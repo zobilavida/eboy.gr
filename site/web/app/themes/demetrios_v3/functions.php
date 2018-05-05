@@ -1753,6 +1753,28 @@ return array(
 
 add_filter( 'the_content', 'wti_remove_autop_for_image', 0 );
 
+
+function social_sharing()
+{
+	extract(shortcode_atts(array(), $atts));
+	return'
+	<div class="container d-flex h-100">
+    	<div class="row justify-content-center align-self-center">
+      <div class="col-12">
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"><i class="fa fa-facebook-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"><i class="fa fa-twitter-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"><i class="fa fa-pinterest-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"><i class="fa fa-google-plus-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"><i class="fa fa-linkedin-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"><i class="fa fa-tumblr-square"></i></a>
+		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"><i class="fa fa-share"></i></a>
+    </div>
+  </div>
+  </div>
+';
+}
+add_shortcode("social_sharing", "social_sharing");
+
 function wti_remove_autop_for_image( $content )
 {
      global $post;
@@ -1765,3 +1787,31 @@ function wti_remove_autop_for_image( $content )
 }
 
 add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);
+
+function woocommerce_template_single_whishlist() {
+  echo '<div class="pb-2 pr-2 title-item">';
+  echo do_shortcode("[ti_wishlists_addtowishlist]");
+  echo '</div>';
+
+}
+add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_whishlist', 7);
+
+function woocommerce_template_single_title_open() {
+  echo '<div class="d-flex flex-row align-items-center title-item">';
+
+}
+add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_title_open', 1);
+
+function woocommerce_template_single_title_close() {
+  echo '</div>';
+
+}
+add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_title_close', 9);
+
+function woocommerce_template_single_social() {
+  echo '<div class="pb-2 pr-2 title-item">';
+  echo do_shortcode("[social_sharing]");
+  echo '</div>';
+
+}
+add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_social', 8);

@@ -39,25 +39,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="container pt-5">
 <div class="row">
 <div class="col-7">
-
 	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
-
-
-
+</div>
+<div class="col-5">
+	<?php
+		/**
+		 * Hook: Woocommerce_single_product_summary.
+		 *
+		 * @hooked woocommerce_template_single_title - 5
+		 * @hooked woocommerce_template_single_rating - 10
+		 * @hooked woocommerce_template_single_price - 10
+		 * @hooked woocommerce_template_single_excerpt - 20
+		 * @hooked woocommerce_template_single_add_to_cart - 30
+		 * @hooked woocommerce_template_single_meta - 40
+		 * @hooked woocommerce_template_single_sharing - 50
+		 * @hooked WC_Structured_Data::generate_product_data() - 60
+		 */
+		do_action( 'woocommerce_single_product_summary' );
+	?>
 
 </div>
-<div class="col-5 px-4">
-
-	<div class="d-flex flex-row ">
-
-<div class="pr-2"><h1><?php echo esc_html( get_the_title() ); ?></h1></div>
-<div class="p-2 align-self-center"><?php do_action('demetrios_current_product_category', 'woocommerce_category_description');  ?></div>
-<div class="p-2">Flex item 3</div>
-
 	</div>
-	<p class="text-product"><?php the_content( ); ?></p>
-	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
-	
+	</div>
+
+
 </div>
 
 </div>
@@ -71,8 +76,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked woocommerce_upsell_display - 15
 		 * @hooked woocommerce_output_related_products - 20
 		 */
+
 		do_action( 'woocommerce_after_single_product_summary' );
 	?>
+	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
 
 
 
