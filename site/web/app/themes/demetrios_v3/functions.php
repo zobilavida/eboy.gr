@@ -1822,7 +1822,7 @@ function open_big_image() {
   <div class="slideshow-image">
       <img
       data-image-url="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"
-      src="<?php bloginfo('template_directory'); ?>/images/blank.gif"
+      src=""
       alt="slideshow image" />
   </div>
 <?php
