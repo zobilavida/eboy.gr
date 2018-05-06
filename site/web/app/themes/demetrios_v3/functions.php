@@ -1670,7 +1670,7 @@ echo '<picture>';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
 echo '<source srcset=" ' . $product_md[0] . ' " media="(min-width: 769px)">';
 echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 577px)">';
-echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
+echo '<img srcset=" ' . $product_sm[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
 echo '</picture>';
 }
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
@@ -1825,4 +1825,4 @@ function open_big_image() {
 }
 add_action ('woocommerce_after_single_product_summary', 'open_big_image', 5);
 
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products' );
+//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
