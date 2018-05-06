@@ -1761,13 +1761,13 @@ function social_sharing()
 	<div class="container d-flex h-100">
     	<div class="row justify-content-center align-self-center">
       <div class="col-12">
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"><i class="fa fa-facebook-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"><i class="fa fa-twitter-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"><i class="fa fa-pinterest-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"><i class="fa fa-google-plus-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"><i class="fa fa-linkedin-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"><i class="fa fa-tumblr-square"></i></a>
-		<a class="btn btn-outline-secondary p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"><i class="fa fa-share"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"><i class="fa fa-facebook-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"><i class="fa fa-twitter-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"><i class="fa fa-pinterest-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"><i class="fa fa-google-plus-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"><i class="fa fa-linkedin-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"><i class="fa fa-tumblr-square"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"><i class="fa fa-share"></i></a>
     </div>
   </div>
   </div>
@@ -1818,13 +1818,11 @@ add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_s
 
 function open_big_image() {
   ?>
-
-  <div class="slideshow-image">
-      <img
-      data-image-url="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"
-      src=""
-      alt="slideshow image" />
+  <div class="slide-pan">
+  <div class="tile" data-scale="1.1" data-image="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"></div>
   </div>
 <?php
 }
 add_action ('woocommerce_after_single_product_summary', 'open_big_image', 5);
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products' );
