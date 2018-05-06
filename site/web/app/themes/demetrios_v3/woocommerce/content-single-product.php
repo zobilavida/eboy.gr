@@ -63,10 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 
-</div>
 
-</div>
-	</div><!-- .summary -->
 
 	<?php
 		/**
@@ -79,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		do_action( 'woocommerce_after_single_product_summary' );
 	?>
-	<?php do_action('demetrios_product_attributes', 'isa_woocommerce_all_pa'); ?>
+
 
 
 

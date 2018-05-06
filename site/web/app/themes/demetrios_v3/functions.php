@@ -1815,3 +1815,16 @@ function woocommerce_template_single_social() {
 
 }
 add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_social', 8);
+
+function open_big_image() {
+  ?>
+
+  <div class="slideshow-image">
+      <img
+      data-image-url="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"
+      src="<?php bloginfo('template_directory'); ?>/images/blank.gif"
+      alt="slideshow image" />
+  </div>
+<?php
+}
+add_action ('woocommerce_after_single_product_summary', 'open_big_image', 5);
