@@ -1131,24 +1131,60 @@ add_action( 'custom_store_finder', 'store_finder', 15 );
 function store_finder_split_2(){
         ?>
         <div class="container p-0">
-        <div class="row">
-            <div class="col-12 p-0">
-            <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
-            <?php  echo facetwp_display( 'facet', 'proximity' ); ?>
-            </div>
-              </div>
-              <div class="row p-3">
-              <div class="col-4">
-              <?php  echo facetwp_display( 'facet', 'country_proximity' ); ?>
-            </div>
-            <div class="col-4">
-            <?php  echo facetwp_display( 'facet', 'state' ); ?>
-          </div>
-          <div class="col-4">
-          <?php  echo facetwp_display( 'facet', 'city' ); ?>
-          <!-- <?php  //echo facetwp_display( 'facet', 'rating' ); ?> -->
-        </div>
-        </div>
+          <div id="accordion">
+  <div class="card">
+
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+  <?php  echo facetwp_display( 'facet', 'proximity' ); ?>
+      </div>
+    </div>
+
+  </div>
+  <div class="card">
+
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <div class="row p-4">
+        <div class="col-4">
+        <?php  echo facetwp_display( 'facet', 'country_proximity' ); ?>
+      </div>
+      <div class="col-4">
+      <?php  echo facetwp_display( 'facet', 'state' ); ?>
+    </div>
+    <div class="col-4">
+    <?php  echo facetwp_display( 'facet', 'city' ); ?>
+    <!-- <?php  //echo facetwp_display( 'facet', 'rating' ); ?> -->
+  </div>
+  </div>      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="d-flex flex-row justify-content-center">
+  <div class="p-2">  <h5 class="mb-0">
+      <button class="btn btn-link btn_location " data-toggle="collapse" onclick="FWP.reset()" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Enter your location
+      </button>
+    </h5>
+  </div>
+  <div class="px-2 py-3">- OR -</div>
+  <div class="p-2">    <h5 class="mb-0">
+      <button class="btn btn-link collapsed" onclick="FWP.reset()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Choose by country
+      </button>
+    </h5></div>
+
+</div>
+
+
+  </div>
+</div>
+</div>
+
+
+
         <div class="row">
             <div class="col-12 px-5 py-3">
             <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
@@ -1158,7 +1194,7 @@ function store_finder_split_2(){
 
         <div class="row px-3">
               <div class="col-12">
-                <div class="row px-3">
+                <div class="row px-4 py-2">
             <?php echo facetwp_display('counts'); ?>
             <?php echo facetwp_display('selections'); ?>
             </div>
@@ -1194,7 +1230,7 @@ function store_finder_split_2(){
     $location = get_field('location');
     $distance = facetwp_get_distance();
     ?>
-<div class="col-lg-12 py-3">
+<div class="col-lg-12 py-3 px-4">
   <div class="card">
   <div class="card-header">
     <div class="container">
@@ -1236,7 +1272,6 @@ function store_finder_split_2(){
   <div class="col-12">
   <?php echo facetwp_display( 'pager' ); ?>
   </div>
-
 </div>
     <?php // joints_page_navi(); ?>
 
@@ -1253,7 +1288,7 @@ add_action( 'custom_store_spilt_finder_2', 'store_finder_split_2', 15 );
 
 function book(){
         ?>
-        <div class="container-fluid back-grey500 top-page">
+        <div class="container-fluid back-grey500 top-page ">
           <div class="row">
             <div class="col-12">
               <div class="container py-4">
@@ -1881,15 +1916,10 @@ function demetrios_search_custom_page() {
 <div class="facetwp-template container">
   <div class="row">
     <div class="col-12">
-
-
           <?php while ( have_posts() ) : the_post(); ?>
   <?php the_title(); ?>
   <?php get_template_part( 'content', 'search' ); ?>
             <?php endwhile; ?>
-
-
-
   </div>
   </div>
   </div>

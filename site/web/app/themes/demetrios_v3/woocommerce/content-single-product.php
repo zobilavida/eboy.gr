@@ -38,10 +38,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="container py-5">
 <div class="row">
-<div class="col-12 col-lg-7 ">
+<div class="col-12 col-lg-7 pb-5">
 	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
 </div>
-<div class="col-12 col-lg-5 py-4">
+<div class="col-12 col-lg-5 pb-4">
 	<?php
 		/**
 		 * Hook: Woocommerce_single_product_summary.
