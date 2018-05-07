@@ -22,25 +22,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<table class="shop_attributes">
+<div class="accordion-heading pb-3 pl-4 pt-2">
+    <a class="accordion-toggle"
+       data-toggle="collapse"
+       data-parent="#accordion2"
+       href="#collapseOne"><h5>Additional info</h5></a>
+</div>
+<div id="collapseOne" class="accordion-body collapse">
+    <div class="row">
+			<div class="col-1">
+			</div>
+        <div class="col-11">
+            <div class="accordion-toggle">
+<table class="table shop_attributes w-100">
 	<?php if ( $display_dimensions && $product->has_weight() ) : ?>
-		<tr>
+		<tr class="row">
 			<th><?php _e( 'Weight', 'woocommerce' ) ?></th>
 			<td class="product_weight"><?php echo esc_html( wc_format_weight( $product->get_weight() ) ); ?></td>
 		</tr>
 	<?php endif; ?>
 
 	<?php if ( $display_dimensions && $product->has_dimensions() ) : ?>
-		<tr>
+		<tr class="row">
 			<th><?php _e( 'Dimensions', 'woocommerce' ) ?></th>
 			<td class="product_dimensions"><?php echo esc_html( wc_format_dimensions( $product->get_dimensions( false ) ) ); ?></td>
 		</tr>
 	<?php endif; ?>
 
 	<?php foreach ( $attributes as $attribute ) : ?>
-		<tr>
-			<th><?php echo wc_attribute_label( $attribute->get_name() ); ?></th>
-			<td><?php
+		<tr class="row">
+			<th class="col-4"><h6><?php echo wc_attribute_label( $attribute->get_name() ); ?>:</h6></th>
+			<td class="col-8"><?php
 				$values = array();
 
 				if ( $attribute->is_taxonomy() ) {
@@ -69,3 +81,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</tr>
 	<?php endforeach; ?>
 </table>
+</div>
+			 </div>
+	 </div>
+
+</div>

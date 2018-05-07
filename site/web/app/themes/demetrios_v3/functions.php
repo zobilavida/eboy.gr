@@ -1342,23 +1342,10 @@ function new_loop_shop_per_page( $cols ) {
   return $cols;
 }
 
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs' );
-
-function woocommerce_output_product_data_tabs_no() {
-  ?>
-<div class="clear pt-5">
-</div>
-
-<?php
-
-
-
-}
-add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs_no', 10);
 
 
 add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 45 );
-remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+//remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
 
 
@@ -1570,10 +1557,21 @@ add_filter('dynamic_sidebar_params','namespace_header_right_sidebar_params');
 
 
 add_action( 'woocommerce_single_product_summary', 'wc_next_prev_products_links', 60 );
-function wc_next_prev_products_links() {
-    previous_post_link( '%link', '< Previous' );
-	echo ' | ';
-	next_post_link( '%link', 'Next >' );
+function wc_next_prev_products_links() { ?>
+  <div class="row">
+  <div class="col-12 text-right">
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary btn-sm btn_previous">
+    <?php previous_post_link( '%link', '&nbsp; &nbsp; Previous' ); ?>
+  </button>
+
+  <button type="button" class="btn btn-secondary btn-sm btn_next">
+	<?php next_post_link( '%link', 'Next &nbsp; &nbsp;' ); ?>
+  </button>
+  </div>
+  </div>
+  </div>
+  <?php
 }
 
 add_filter( 'woocommerce_single_product_carousel_options', 'ud_update_woo_flexslider_options' );
@@ -1758,16 +1756,16 @@ function social_sharing()
 {
 	extract(shortcode_atts(array(), $atts));
 	return'
-	<div class="container d-flex h-100">
+	<div class="container d-flex h-100 px-0">
     	<div class="row justify-content-center align-self-center">
       <div class="col-12">
-		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"><i class="fa fa-facebook-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"><i class="fa fa-twitter-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"><i class="fa fa-pinterest-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"><i class="fa fa-google-plus-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"><i class="fa fa-linkedin-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"><i class="fa fa-tumblr-square"></i></a>
-		<a class="p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"><i class="fa fa-share"></i></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"></a>
     </div>
   </div>
   </div>
@@ -1818,11 +1816,60 @@ add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_s
 
 function open_big_image() {
   ?>
-  <div class="slide-pan">
-  <div class="tile" data-scale="1.1" data-image="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"></div>
+  <div class="slide-pan " id="carouselExampleControls" data-ride="carousel">
+
+
+  <div class="tile carousel-item active" data-scale="1.1" data-image="<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"></div>
+
+
+
   </div>
+
 <?php
 }
 add_action ('woocommerce_after_single_product_summary', 'open_big_image', 5);
 
-//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+
+
+function woocommerce_output_related_products_single() {
+  ?>
+<div class="container demetrios-product-title title-unzoomed">
+  <div class="row">
+    <div class="col-12">
+      <h1><?php do_action( 'woocommerce_shop_loop_item_title' ); ?></h1>
+    </div>
+  </div>
+</div>
+<?
+}
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products_single', 17 );
+
+add_action( 'wp', 'init' );
+
+function init() {
+
+  if ( is_product() ) {
+
+    // yipee, this works!
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+  //  add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 20 );
+
+  }
+
+}
+
+function woocommerce_after_single_product_related() {
+  ?>
+  <section>
+<div class="container demetrios-product-related">
+  <div class="row">
+    <div class="col-12">
+      <h1>Test</h1>
+    </div>
+  </div>
+</div>
+</section>
+<?
+}

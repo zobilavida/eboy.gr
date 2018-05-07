@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div class="container pt-5">
+<div class="container py-5">
 <div class="row">
 <div class="col-7">
 	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
