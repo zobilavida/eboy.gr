@@ -2,10 +2,10 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <?php dynamic_sidebar('sidebar-header-left'); ?>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-9 text-right">
               <div class="container p-0">
                   <div class="d-flex justify-content-end">
 

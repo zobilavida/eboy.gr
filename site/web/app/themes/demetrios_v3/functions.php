@@ -1756,9 +1756,8 @@ function social_sharing()
 {
 	extract(shortcode_atts(array(), $atts));
 	return'
-	<div class="container d-flex h-100 px-0">
-    	<div class="row justify-content-center align-self-center">
-      <div class="col-12">
+
+    <div class="col-12 p-0 d-none d-sm-block">
 		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"></a>
 		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"></a>
 		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"></a>
@@ -1767,8 +1766,7 @@ function social_sharing()
 		<a class="p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"></a>
 		<a class="p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"></a>
     </div>
-  </div>
-  </div>
+
 ';
 }
 add_shortcode("social_sharing", "social_sharing");
@@ -1860,16 +1858,42 @@ function init() {
 
 }
 
-function woocommerce_after_single_product_related() {
-  ?>
-  <section>
-<div class="container demetrios-product-related">
+function demetrios_search_custom_page() {
+?>
+<div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Test</h1>
-    </div>
+      <?php  echo facetwp_display( 'facet', 'search' ); ?>
   </div>
-</div>
-</section>
-<?
+  </div>
+  </div>
+  <?php
+    $args_search = array(
+    "post_type" => "any",
+    "post_status" => "publish",
+    "orderby" => "date",
+    "order" => "DESC",
+    "posts_per_page" => 10
+  );
+    $query_search = new WP_Query( $args_search );
+  ?>
+
+<div class="facetwp-template container">
+  <div class="row">
+    <div class="col-12">
+
+
+          <?php while ( have_posts() ) : the_post(); ?>
+  <?php the_title(); ?>
+  <?php get_template_part( 'content', 'search' ); ?>
+            <?php endwhile; ?>
+
+
+
+  </div>
+  </div>
+  </div>
+
+<?php
 }
+add_action( 'demetrios_search_custom', 'demetrios_search_custom_page', 10 );
