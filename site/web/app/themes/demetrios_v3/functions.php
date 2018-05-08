@@ -18,7 +18,8 @@ $demetrios_3_includes = [
   'lib/customizer.php', // Theme customizer
   'plugins/facetwp/index.php', // Theme extends
   'bs4navwalker.php',
-  'custom-nav-walker.php'
+  'custom-nav-walker.php',
+  'recalculate-acf-locations.php'
 ];
 
 foreach ($demetrios_3_includes as $file) {
@@ -1250,7 +1251,7 @@ function store_finder_split_2(){
     <div class="card-body">
 
 
-      <h6 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h6>
+      <h5 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h5>
 
        <footer class="blockquote-footer">
   <?php echo wp_strip_all_tags(
