@@ -57,14 +57,8 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     '
 ) ) );
 }
 
-add_action ('customize_register', 'themeslug_theme_customizer');
 
-function fwp_import_posts( $import_id ) {
-    if ( function_exists( 'FWP' ) ) {
-        FWP()->indexer->index();
-    }
-}
-add_action( 'pmxi_after_xml_import', 'fwp_import_posts' );
+add_action ('customize_register', 'themeslug_theme_customizer');
 
 function ravs_slider_image_sizes( $image_sizes ){
 
@@ -1415,9 +1409,6 @@ function update_end_date_cf( $value, $post_id, $field ) {
 }
 add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
 
-
-
-
 remove_action( 'woocommerce_shop_loop_item_title' , 'woocommerce_template_loop_product_title', 10 );
 
 function woocommerce_template_loop_product_title_custom() {
@@ -1568,7 +1559,31 @@ add_action( 'pre_get_posts', function( $query ) {
 });
 
 
+function searchfilter( $query )
+ {
+    	$myposttype = $_GET['post'];
+    	if ( !is_admin() && $query->is_main_query() )
+    	{
+    		if ( $query->is_search )
+    		{
+    			if ( in_array( 'post', $myposttype) && in_array( 'post_type2', $myposttype) )
+    			{
+    				$query->set( 'post_type', array( 'post_type1', 'post_type2' ) );
+    			}
+    			else if ( in_array('post_type1', $myposttype))
+    			{
+    				$query->set( 'post_type', array( 'post_type1' ) );
+    			}
+    			else if ( in_array('post_type2', $myposttype))
+    			{
+    				$query->set( 'post_type', array( 'post_type2' ) );
+    			}
+    		}
+    	}
+    	return $query;
+    }
 
+    add_filter( 'pre_get_posts','searchfilter' );
 
 function namespace_footer_sidebar_params($params) {
 
@@ -1916,7 +1931,7 @@ function demetrios_search_custom_page() {
   </div>
   <?php
     $args_search = array(
-    "post_type" => "any",
+    "post_type" => "store",
     "post_status" => "publish",
     "orderby" => "date",
     "order" => "DESC",
@@ -1929,8 +1944,8 @@ function demetrios_search_custom_page() {
   <div class="row">
     <div class="col-12">
           <?php while ( have_posts() ) : the_post(); ?>
-  <?php //the_title(); ?>
-  <?php //get_template_part( 'content', 'search' ); ?>
+  <?php the_title(); ?>
+  <?php get_template_part( 'content', 'search' ); ?>
             <?php endwhile; ?>
   </div>
   </div>
