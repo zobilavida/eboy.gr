@@ -1417,30 +1417,6 @@ add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
 
 
 
-function myswp_before_post_import( $import_id ) {
-    // Pause the SearchWP indexer during import
-    SWP()->indexer_pause();
-
-    // Tell SearchWP to ignore edit events
-    searchwp_update_option( 'prevent_delta_triggers', true );
-    // Purge SearchWP index
-    SWP()->purge_index();
-}
-add_action( 'pmxi_before_post_import', 'myswp_before_post_import', 10, 1 );
-/**
- * WP All Import SearchWP POST-import routine
- *
- * @link https://searchwp.com/docs/kb/best-work-content-imports/
- */
-function myswp_after_post_import( $import_id ) {
-    // Tell SearchWP to resume listening to edit triggers
-    searchwp_update_option( 'prevent_delta_triggers', false );
-    // Re-enable the SearchWP indexer
-    SWP()->indexer_unpause();
-    // Trigger the indexer to rebuild the index
-    SWP()->trigger_index();
-}
-add_action( 'pmxi_after_post_import', 'myswp_after_post_import', 10, 1 );
 
 remove_action( 'woocommerce_shop_loop_item_title' , 'woocommerce_template_loop_product_title', 10 );
 
