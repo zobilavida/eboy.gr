@@ -139,7 +139,7 @@ jQuery( function( $ ) {
 			gallery = this;
 
 		var options = $.extend( {
-			selector: '.woocommerce-product-gallery__wrapper > .woocommerce-product-gallery__image',
+			selector: '.entry-summary',
 			start: function() {
 				$target.css( 'opacity', 1 );
 			},

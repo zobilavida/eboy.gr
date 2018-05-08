@@ -108,7 +108,7 @@ class TInvWL_Notice {
 		if ( empty( $message ) ) {
 			return;
 		}
-		$output = '<div id="message" class="updated woocommerce-message"><a class="woocommerce-message-close notice-dismiss" href="' . esc_url( wp_nonce_url( add_query_arg( 'ti-hide-notice', $name, add_query_arg( 'ti-hide-notice-trigger', $key ) ), 'ti_hide', '_ti_notice_nonce' ) ) . '">' . __( 'Dismiss', 'tinvwl' ) . '</a>' . wp_kses_post( wpautop( $message ) ) . '</div>';
+	$output = '<div id="message" class="updated woocommerce-message text-center"><a class="woocommerce-message-close notice-dismiss" href="' . esc_url( wp_nonce_url( add_query_arg( 'ti-hide-notice', $name, add_query_arg( 'ti-hide-notice-trigger', $key ) ), 'ti_hide', '_ti_notice_nonce' ) ) . '">' . __( 'Dismiss', 'tinvwl' ) . '</a>' . wp_kses_post( wpautop( $message ) ) . '</div>';
 
 	echo apply_filters( 'tinv_notice_' . $name, $output, $key, $message );
 	}

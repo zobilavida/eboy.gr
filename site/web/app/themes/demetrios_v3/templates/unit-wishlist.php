@@ -1,8 +1,3 @@
-<?php
-/**
- * Template Name: Whishlist
- */
-?>
 <div class="container-fluid back-grey500 top-page">
   <div class="row">
     <div class="col-12">
@@ -19,7 +14,7 @@
     </div>
     </div>
     </div>
-    <div class="container p-0">
+    <div class="container-fluid p-0">
       <div class="row">
         <div class="col-12">
   <?php

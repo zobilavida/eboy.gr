@@ -1413,9 +1413,13 @@ add_filter('acf/update_value/name=email_2', 'update_end_date_cf', 10, 3);
 remove_action( 'woocommerce_shop_loop_item_title' , 'woocommerce_template_loop_product_title', 10 );
 
 function woocommerce_template_loop_product_title_custom() {
-  ?>
 
-<h4 class="woocommerce-loop-product__title text-center p-3"><?php the_title(); ?></h4>
+  $url = get_permalink($product_id)
+  ?>
+  <div class="flex-row d-flex justify-content-between align-items-center flex-wrap product_archive_view_info">
+    <div class="py-2 pl-4"><?php the_title('<h4>', '</h4>'); ?></div>
+    <div class="p-2"><a class="details" href="<?php echo $url; ?>" >Details</a></div>
+  </div>
 
 <?php
 
@@ -1560,31 +1564,6 @@ add_action( 'pre_get_posts', function( $query ) {
 });
 
 
-function searchfilter( $query )
- {
-    	$myposttype = $_GET['post'];
-    	if ( !is_admin() && $query->is_main_query() )
-    	{
-    		if ( $query->is_search )
-    		{
-    			if ( in_array( 'post', $myposttype) && in_array( 'post_type2', $myposttype) )
-    			{
-    				$query->set( 'post_type', array( 'post_type1', 'post_type2' ) );
-    			}
-    			else if ( in_array('post_type1', $myposttype))
-    			{
-    				$query->set( 'post_type', array( 'post_type1' ) );
-    			}
-    			else if ( in_array('post_type2', $myposttype))
-    			{
-    				$query->set( 'post_type', array( 'post_type2' ) );
-    			}
-    		}
-    	}
-    	return $query;
-    }
-
-    add_filter( 'pre_get_posts','searchfilter' );
 
 function namespace_footer_sidebar_params($params) {
 
@@ -1955,3 +1934,29 @@ function demetrios_search_custom_page() {
 <?php
 }
 add_action( 'demetrios_search_custom', 'demetrios_search_custom_page', 10 );
+
+function custom_whishlist() {
+?>
+  <div class="container test">
+    <div class="row">
+      <div class="col-12">
+        Test
+        </div>
+        </div>
+      </div>
+
+<?php
+}
+add_action( 'demetrios_custom_whishlist', 'custom_whishlist', 10, 10 );
+
+
+function demetrios_wishlist_custom_description() {
+	global $product;
+	if ( ! $product->post->post_excerpt ) return;
+	?>
+	<div itemprop="description">
+		<?php echo apply_filters( 'woocommerce_short_description', $product->post->post_content ); ?>
+	</div>
+	<?php
+}
+add_action('demetrios_wishlist_custom', 'demetrios_wishlist_custom_description', 5);
