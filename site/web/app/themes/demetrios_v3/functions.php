@@ -1813,6 +1813,25 @@ function social_sharing()
 }
 add_shortcode("social_sharing", "social_sharing");
 
+function social_sharing_2()
+{
+	extract(shortcode_atts(array(), $atts));
+	return'
+
+    <div class="p-2">
+		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-google-plus" target="_new" href="https://plus.google.com/share?url=' . urlencode(get_the_permalink()) . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-linkedin" target="_new" href="http://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()) . '&source=' . get_bloginfo("url") . '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-tumblr" target="_new" href="http://www.tumblr.com/share?v=3&u=' . urlencode(get_the_permalink()) . '&t=' . urlencode(get_the_title()). '"></a>
+		<a class="p-3 social-sharing-icon social-sharing-icon-email" target="_new" href="mailto:?subject=' . urlencode(get_the_permalink()) . '&body=Check out this article I came across '. get_the_permalink() .'"></a>
+    </div>
+
+';
+}
+add_shortcode("social_sharing_2", "social_sharing_2");
+
 function wti_remove_autop_for_image( $content )
 {
      global $post;
@@ -1909,16 +1928,7 @@ function demetrios_search_custom_page() {
   </div>
   </div>
   </div>
-  <?php
-    $args_search = array(
-    "post_type" => "store",
-    "post_status" => "publish",
-    "orderby" => "date",
-    "order" => "DESC",
-    "posts_per_page" => 10
-  );
-    $query_search = new WP_Query( $args_search );
-  ?>
+
 
 <div class="facetwp-template container">
   <div class="row">
@@ -1960,3 +1970,43 @@ function demetrios_wishlist_custom_description() {
 	<?php
 }
 add_action('demetrios_wishlist_custom', 'demetrios_wishlist_custom_description', 5);
+
+function wishlist_custom_notices(){
+?>
+<div class="container-fluid pt-4">
+  <div class="row">
+    <div class="col-12 text-center">
+<?php if ( function_exists( 'wc_print_notices' ) ) {
+  wc_print_notices();
+} ?>
+
+</div>
+</div>
+</div>
+<?php
+}
+add_action('demetrios_wishlist_custom_notices', 'wishlist_custom_notices', 10, 5);
+
+
+
+function demetrios_wishlist_meta_custom() {
+  ?>
+  <div class="col-12">
+  <?php do_action( 'woocommerce_product_meta_start' ); ?>
+
+  <?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
+
+
+  <?php endif; ?>
+
+  <?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( '', '', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+
+  <?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+
+  <?php do_action( 'woocommerce_product_meta_end' ); ?>
+</div>
+<?php
+}
+
+
+add_action ('demetrios_wishlist_meta', 'demetrios_wishlist_meta_custom', 10);

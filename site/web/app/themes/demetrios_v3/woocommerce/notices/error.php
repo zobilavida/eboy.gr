@@ -1,8 +1,8 @@
 <?php
 /**
- * Show messages
+ * Show error messages
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/notices/success.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/notices/error.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -25,11 +25,8 @@ if ( ! $messages ) {
 }
 
 ?>
-
-<?php foreach ( $messages as $message ) : ?>
-	<div class="alert alert-warning alert-dismissible fade show" role="alert"><?php echo wp_kses_post( $message ); ?>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	  <span aria-hidden="true">&times;</span>
-	</button>
-	</div>
-<?php endforeach; ?>
+<ul class="woocommerce-error" role="alert">
+	<?php foreach ( $messages as $message ) : ?>
+		<li><?php echo wp_kses_post( $message ); ?></li>
+	<?php endforeach; ?>
+</ul>

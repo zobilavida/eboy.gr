@@ -7,7 +7,7 @@
 .tinv-wishlist input[type="button"],
 .tinv-wishlist input[type="reset"],
 .tinv-wishlist input[type="submit"] {
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
     font-size: 14px;
     font-weight: normal;
     text-transform: none;
@@ -26,23 +26,23 @@
 
 .tinv-wishlist ::-webkit-input-placeholder {
     color: #1a1a1a;
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
 }
 
 .tinv-wishlist :-moz-placeholder {
     color: #1a1a1a;
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
 }
 
 .tinv-wishlist ::-moz-placeholder {
     color: #1a1a1a;
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
     opacity: 1;
 }
 
 .tinv-wishlist :-ms-input-placeholder {
     color: #1a1a1a;
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
 }
 
 .tinv-wishlist select {
@@ -464,7 +464,7 @@
 }
 
 .tinv-wishlist .tinv-header h2 {
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
     text-transform: none;
     text-shadow: none;
     letter-spacing: 0;
@@ -817,7 +817,7 @@
 }
 
 .tinv-wishlist .tinv-modal h2 {
-    font-family: Georgia, serif;
+    font-family: 'museosansitalic100-it',sans-serif;
     text-transform: none;
     text-shadow: none;
     letter-spacing: 0;

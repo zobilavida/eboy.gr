@@ -363,7 +363,7 @@ class TInvWL_Public_TInvWL {
 	function enqueue_styles() {
 	//	wp_enqueue_style( 'tinvwl', TINVWL_URL . 'asset/css/public.min.css', array(), $this->_v, 'all' );
 		if ( ! tinv_get_option( 'style', 'customstyle' ) ) {
-			wp_enqueue_style( 'tinvwl-theme', TINVWL_URL . 'asset/css/theme.min.css', array(), $this->_v, 'all' );
+		//	wp_enqueue_style( 'tinvwl-theme', TINVWL_URL . 'asset/css/theme.min.css', array(), $this->_v, 'all' );
 		}
 		if ( ! tinv_get_option( 'style', 'customstyle' ) || ( tinv_get_option( 'style_plain', 'allow' ) && tinv_get_option( 'style_plain', 'css' ) ) ) {
 			$newcss = $this->dynaminc_css();
