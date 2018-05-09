@@ -1919,27 +1919,114 @@ function init() {
 
 }
 
-function demetrios_search_custom_page() {
+function demetrios_pages_header_custom_1() {
 ?>
-<div class="container">
+<div class="container-fluid back-grey500 top-page">
   <div class="row">
     <div class="col-12">
-      <?php  echo facetwp_display( 'facet', 'search' ); ?>
+      <div class="container py-4">
+        <div class="row align-items-center h-100">
+          <div class="col-lg-6">
+          <h1><?php echo esc_html( get_the_title() ); ?></h1>
+         </div>
+         <div class="col-lg-6 text-right">
+           <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<?php
+}
+add_action ('demetrios_pages_header', 'demetrios_pages_header_custom_1', 10, 10 );
+
+
+function demetrios_pages_header_custom_2() {
+?>
+<div class="container-fluid back-grey500 top-page">
+  <div class="row">
+    <div class="col-12">
+      <div class="container py-4">
+        <div class="row align-items-center h-100">
+          <div class="col-lg-3">
+          <h1><?php echo esc_html( get_the_title() ); ?></h1>
+         </div>
+         <div class="col-lg-6 text-left">
+          <div class="p-2"> <?php  echo facetwp_display( 'facet', 'search' ); ?></div>
+         </div>
+         <div class="col-lg-3 text-right">
+           <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<?php
+}
+add_action ('demetrios_pages_header_2', 'demetrios_pages_header_custom_2', 10, 10 );
+
+function demetrios_search_custom_page() {
+  add_filter( 'facetwp_result_count', function( $output, $params ) {
+      $output = $params['total'] . ' Products' . '&nbsp;';
+      return $output;
+  }, 10, 2 );
+  // WP_Query arguments
+  $args = array(
+    "post_type" => "product",
+    "post_status" => "publish",
+  //  'meta_key'			=> 'rating',
+    'orderby'			=> 'modified',
+    "order" => "DESC",
+    "posts_per_page" => -1,
+    'facetwp' => true
+  );
+
+  $query_search = new WP_Query( $args );
+
+
+
+?>
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-12 text-center">
+
+      <div class="d-flex flex-column">
+        <div class="p-4">
+          <?php echo facetwp_display('counts'); ?>
+        </div>
+  <div class="p-0">
+    <div class="facetwp-template container">
+    <div class="row grid">
+
+
+            <?php if ($query_search->have_posts()) : while ($query_search->have_posts()) : $query_search->the_post(); global $product;?>
+<?php wc_get_template_part('content', 'product'); ?>
+    <?php // get_template_part( 'content', 'search' ); ?>
+    <?php endwhile; ?>
+    <div class="col-12">
+    <?php echo facetwp_display( 'pager' ); ?>
+    </div>
+
+      <?php // joints_page_navi(); ?>
+
+    <?php else : ?>
+              <?php wp_reset_postdata();?>
+      <?php get_template_part( 'templates/unit', 'missing' ); ?>
+    <?php endif; ?>
+
+    </div>
+    </div>
+    </div>
+</div>
+
+</div>
   </div>
   </div>
   </div>
 
 
-<div class="facetwp-template container">
-  <div class="row">
-    <div class="col-12">
-          <?php while ( have_posts() ) : the_post(); ?>
-  <?php the_title(); ?>
-  <?php get_template_part( 'content', 'search' ); ?>
-            <?php endwhile; ?>
-  </div>
-  </div>
-  </div>
 
 <?php
 }
