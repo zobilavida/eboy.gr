@@ -1979,7 +1979,7 @@ function demetrios_search_custom_page() {
   //  'meta_key'			=> 'rating',
     'orderby'			=> 'modified',
     "order" => "DESC",
-    "posts_per_page" => -1,
+    "posts_per_page" => 8,
     'facetwp' => true
   );
 
