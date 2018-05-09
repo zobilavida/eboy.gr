@@ -1708,9 +1708,9 @@ $product_xs = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-xs' 
 
 echo '<picture>';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
-echo '<source srcset=" ' . $product_md[0] . ' " media="(min-width: 769px)">';
+echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 769px)">';
 echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 577px)">';
-echo '<img srcset=" ' . $product_sm[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
+echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
 echo '</picture>';
 }
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
@@ -1977,8 +1977,8 @@ function demetrios_search_custom_page() {
     "post_type" => "product",
     "post_status" => "publish",
   //  'meta_key'			=> 'rating',
-    'orderby'			=> 'modified',
-    "order" => "DESC",
+  'orderby' => 'date',
+  'order' => 'desc',
     "posts_per_page" => 8,
     'facetwp' => true
   );

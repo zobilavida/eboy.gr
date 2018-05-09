@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				     </div>
 
 					</div>
-					<div class="col-8 d-md-none text-right pt-3">
+					<div class="col-8 d-lg-none text-right pt-3">
 						<a class="" data-toggle="collapse" href="#collapsible" role="button" aria-expanded="false" aria-controls="collapsible">
 				<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_settings.svg">
 						</a>

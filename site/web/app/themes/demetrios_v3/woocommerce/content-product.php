@@ -28,7 +28,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 
-<div class="card m-1 product grid-item w-24">
+<div class="card m-1 product grid-item">
 	<div class="card-img-overlay">
 <?php echo do_shortcode("[ti_wishlists_addtowishlist loop=yes]") ?>
 	                </div>
