@@ -21,7 +21,7 @@ function setup() {
   //add_theme_support( 'wc-product-gallery-lightbox' );
   //add_theme_support( 'wc-product-gallery-slider' );
   add_theme_support( 'woocommerce', array(
-    'thumbnail_image_width'         => 600,
+    'thumbnail_image_width'         => 612,
   //  'gallery_thumbnail_image_width' => 160,
     'single_image_width'            => 560,
 ) );
@@ -56,7 +56,7 @@ function setup() {
   add_image_size( 'img-half-md', 479, 9999 );
   add_image_size( 'img-half-sm', 387, 9999 );
   add_image_size( 'img-half-xs', 507, 9999 );
-  add_image_size( 'product-lg', 600, 9999 );
+  add_image_size( 'product-lg', 612, 760, true );
   add_image_size( 'product-md', 461, 9999 );
   add_image_size( 'product-sm', 345, 9999 );
   add_image_size( 'product-xs', 1080, 9999 );
@@ -115,8 +115,8 @@ function widgets_init() {
   register_sidebar([
     'name'          => __('Header Right', 'demetrios_3'),
     'id'            => 'sidebar-header-right',
-    'before_widget' => '<section class="widget %1$s %2$s">',
-    'after_widget'  => '</section>',
+    'before_widget' => '<div class="px-2 d-flex align-items-center %1$s %2$s">',
+    'after_widget'  => '</div>',
     'before_title'  => '<h3>',
     'after_title'   => '</h3>'
   ]);

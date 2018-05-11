@@ -617,36 +617,47 @@ function custom_header(){
   }
   else {
   ?>
-  <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white">
+  <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white p-0">
       <div class="container">
-          <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
-            <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+        <div class="d-flex justify-content-between flex-row w-100 h-100">
 
-          </a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbar1">
+  <div class="p-2 d-flex w-25 h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
+    <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+  </a>
+</div>
 
-              <?php
-              wp_nav_menu([
-                'menu'            => 'top',
-                'theme_location'  => 'top',
-                'container'       => '',
-                'container_id'    => '',
-                'container_class' => '',
-                'menu_id'         => false,
-                'menu_class'      => 'navbar-nav ml-auto',
-                'depth'           => 2,
-                'fallback_cb'     => 'bs4navwalker::fallback',
-                'walker'          => new bs4navwalker()
-              ]);
-              ?>
-              <div id='trigger' class="navbar-toggler-icon d-none d-md-block ml-5"></div>
+  <div class="p-1 d-flex d-sm-none w-100 h-100">
 
-          </div>
-      </div>
+    <?php dynamic_sidebar('sidebar-header-right'); ?>
 
+  </div>
+
+<div class="p-1 d-none d-lg-block d-lg-none w-75" id="navbar1">
+
+    <?php
+    wp_nav_menu([
+      'menu'            => 'top',
+      'theme_location'  => 'top',
+      'container'       => '',
+      'container_id'    => '',
+      'container_class' => '',
+      'menu_id'         => false,
+      'menu_class'      => 'navbar-nav',
+      'depth'           => 2,
+      'fallback_cb'     => 'bs4navwalker::fallback',
+      'walker'          => new bs4navwalker()
+    ]);
+    ?>
+</div>
+
+
+
+    <div class="p-1 justify-content-center align-self-center d-block d-sm-none">
+      test 2
+    </div>
+
+</div>
+    </div>
   </nav>
 
   <?php
@@ -674,7 +685,31 @@ wp_nav_menu([
 ?>
 </div>
 <?php }
-add_action('demetrios_custom_side_menu', 'demetrios_side_menu');
+add_action('demetrios_custom_side_menu', 'demetrios_side_menu', 10 );
+
+function slider_search (){ ?>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      <?php do_action( 'demetrios_search_custom', 'demetrios_search_custom_page' ); ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php }
+add_action('demetrios_custom_side_menu', 'slider_search' , 20 );
 ####################################################
 #    VIDEO
 ####################################################
@@ -951,7 +986,7 @@ function parallax_2(){
   </div>
 </section>
 <?php
-} else { echo "Niente parallax_2";}
+} else { echo ".";}
 
 }
 add_action( 'custom_parallax_2', 'parallax_2', 15 );
@@ -1335,7 +1370,7 @@ function woo_cat_thumb() {
       ?>
 
 
-      <section class="module bg-dark-60 parallax-bg h-100" data-background="<?php echo $image ?>" style="background-position: 50% 15%;">
+      <section class="module bg-dark-60 parallax-bg h-100" data-background="<?php echo $image ?>" style="background-position: 50% 35%;">
 
 
           <div class="container h-100">
@@ -1344,7 +1379,8 @@ function woo_cat_thumb() {
 
                   </div>
                   <div class="col-lg-8 col-sm-10 col-10 text-center">
-                    <h2><?php single_term_title(); ?></h2>
+                    <h1 class="woocommerce-products-header__title page-title"><?php single_term_title(); ?></h1>
+
                 </div>
                   <div class="col-lg-2 col-sm-1 col-1">
 
@@ -1360,6 +1396,8 @@ function woo_cat_thumb() {
 
 }
 add_action( 'demetrios_woo_cat_thumb', 'woo_cat_thumb', 10);
+
+
 
 add_action( 'init', 'woo_remove_wc_breadcrumbs' );
 function woo_remove_wc_breadcrumbs() {
@@ -1416,7 +1454,7 @@ function woocommerce_template_loop_product_title_custom() {
 
   $url = get_permalink($product_id)
   ?>
-  <div class="flex-row d-flex justify-content-between align-items-center flex-wrap product_archive_view_info">
+  <div class="d-flex justify-content-between align-items-center flex-wrap product_archive_view_info">
     <div class="py-2 pl-4"><?php the_title('<h4>', '</h4>'); ?></div>
     <div class="p-2"><a class="details" href="<?php echo $url; ?>" >Details</a></div>
   </div>
@@ -1581,21 +1619,7 @@ function namespace_footer_sidebar_params($params) {
 }
 add_filter('dynamic_sidebar_params','namespace_footer_sidebar_params');
 
-function namespace_header_right_sidebar_params($params) {
 
-    $sidebar_id = $params[0]['id'];
-
-    if ( $sidebar_id == 'sidebar-header-right' ) {
-
-        $total_widgets = wp_get_sidebars_widgets();
-        $sidebar_widgets = count($total_widgets[$sidebar_id]);
-
-        $params[0]['before_widget'] = str_replace('<section class="widget ', '<section class="pl-4 py-1 ', $params[0]['before_widget']);
-    }
-
-    return $params;
-}
-add_filter('dynamic_sidebar_params','namespace_header_right_sidebar_params');
 
 
 add_action( 'woocommerce_single_product_summary', 'wc_next_prev_products_links', 60 );
@@ -1709,8 +1733,8 @@ $product_xs = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-xs' 
 echo '<picture>';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 769px)">';
-echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 577px)">';
-echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="d-block img-fluid">';
+echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 577px)">';
+echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="img-fluid">';
 echo '</picture>';
 }
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);
@@ -1976,10 +2000,10 @@ function demetrios_search_custom_page() {
   $args = array(
     "post_type" => "product",
     "post_status" => "publish",
-  //  'meta_key'			=> 'rating',
-  'orderby' => 'date',
-  'order' => 'desc',
-    "posts_per_page" => 8,
+    "orderby" => "name",
+    "order" => "ASC",
+    "posts_per_page" => 10,
+    "ignore_custom_sort" => true,
     'facetwp' => true
   );
 
@@ -1994,10 +2018,13 @@ function demetrios_search_custom_page() {
 
       <div class="d-flex flex-column">
         <div class="p-4">
+          <?php  echo facetwp_display( 'facet', 'search' ); ?>
+        </div>
+        <div class="p-4">
           <?php echo facetwp_display('counts'); ?>
         </div>
   <div class="p-0">
-    <div class="facetwp-template container">
+    <div class="facetwp-template facetwp-template-search container">
     <div class="row grid">
 
 
@@ -2097,3 +2124,11 @@ function demetrios_wishlist_meta_custom() {
 
 
 add_action ('demetrios_wishlist_meta', 'demetrios_wishlist_meta_custom', 10);
+
+add_filter( 'facetwp_sort_options', function( $options, $params ) {
+  $options['default']['query_args'] = array(
+            'orderby' => 'name',
+            'order' => 'ASC',
+        );
+    return $options;
+}, 10, 2 );

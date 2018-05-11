@@ -33,48 +33,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked woocommerce_breadcrumb - 20
 		 * @hooked WC_Structured_Data::generate_website_data() - 30
 		 */
-		do_action( 'woocommerce_before_main_content' );
+	//	do_action( 'woocommerce_before_main_content' );
 	?>
 
-    <header class="woocommerce-products-header">
+    <header class="woocommerce-products-header pb-3 mb-3">
 
-		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
-			<h1 class="woocommerce-products-header__title page-title"></h1>
-
-		<?php endif; ?>
+	<?php  do_action( 'demetrios_woo_cat_thumb', 'woo_cat_thumb' ); ?>
 
     </header>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
 
-<?php  do_action( 'demetrios_woo_cat_thumb', 'woo_cat_thumb' ); ?>
-        </div>
-      </div>
-    </div>
 
 
     <div class="container">
 			<div class="row">
-				<div class="col-12 text-center pt-4 pb-2">
+				<div class="col-12 text-center">
 <?php do_action( 'woocommerce_archive_description' ); ?>
 		</div>
 			</div>
-      <div class="row product-cat-if-desc pt-2 pb-4">
-				<div class="col-lg-1 col-4 ">
+      <div class="row product-cat-if-desc">
+				<div class="col-lg-1 col-4 p-0">
 
-						<div class="cc-selector pt-3">
+						<div class="cc-selector px-2 py-3">
+							<div class="container p-0">
 								<div class="row h-100">
 									<div class="col-6">
 				         <input id="view_2" type="radio" name="credit-card" value="view_2" />
 				         <label class="drinkcard-cc view_2" for="view_2"></label>
 							 </div>
+
 							 <div class="col-6">
 				         <input id="view_4" type="radio" name="credit-card" value="view_4" />
 				         <label class="drinkcard-cc view_4"for="view_4"></label>
 								 </div>
-
+								 </div>
 							 	</div>
 
 				     </div>
@@ -86,30 +78,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</a>
 					</div>
 
-				<div class="col-lg-10 col-12 filters" id="collapsible">
+				<div class="col-lg-10 col-12 px-3 filters" id="collapsible">
 
 					<div class="row">
 
 							<div class="col-12  ">
 								<div class="row">
 
-															<div class="col-lg-3 col-12 filter-dropdown">
+															<div class="col-lg-3 col-12 px-3 filter-dropdown">
 													<?php echo facetwp_display( 'facet', 'fabric' ); ?>
 																</div>
-																<div class="col-lg-3 col-12 filter-dropdown">
+																<div class="col-lg-3 col-12 px-3 filter-dropdown">
 													<?php echo facetwp_display( 'facet', 'neckline' ); ?>
 																	</div>
-																	<div class="col-lg-3 col-12 filter-dropdown">
+																	<div class="col-lg-3 col-12 px-3 filter-dropdown">
 									        <?php echo facetwp_display( 'facet', 'silhouette' ); ?>
 																		</div>
-																		<div class="col-lg-3 col-12 filter-dropdown">
+																		<div class="col-lg-3 col-12 px-3 filter-dropdown">
 										      <?php echo facetwp_display( 'facet', 'style' ); ?>
 																			</div>
 									</div>
 								</div>
 
 						</div>
-				</div>
+					</div>
+
+
+
 				<div class="col-lg-1 d-none d-lg-block align-self-center text-center">
 					<img class="ico" onclick="FWP.reset()" src="<?= get_template_directory_uri(); ?>/dist/images/reset.svg">
 
