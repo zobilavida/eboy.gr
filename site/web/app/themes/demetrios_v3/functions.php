@@ -1198,17 +1198,19 @@ function store_finder_split_2(){
     <div class="col-12 text-center">
       <div class="d-flex flex-row justify-content-center">
   <div class="p-2">  <h5 class="mb-0">
-      <button class="btn btn-link btn_location " data-toggle="collapse" onclick="FWP.reset()" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="btn btn-link btn_location " onclick="FWP.reset()">
         Enter your location
       </button>
     </h5>
   </div>
   <div class="px-2 py-3">- OR -</div>
-  <div class="p-2">    <h5 class="mb-0">
-      <button class="btn btn-link collapsed" onclick="FWP.reset()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+  <div class="p-2">
+    <h5 class="mb-0">
+      <button class="btn btn-link collapsed btn_country" onclick="FWP.reset()">
         Choose by country
       </button>
-    </h5></div>
+    </h5>
+  </div>
 
 </div>
 
@@ -1241,7 +1243,7 @@ function store_finder_split_2(){
     "post_type" => "stores",
     "post_status" => "publish",
   //  'meta_key'			=> 'rating',
-  	'orderby'			=> 'modified',
+  	'orderby'			=> 'post__in',
     "order" => "DESC",
     "posts_per_page" => 5,
     'facetwp' => true
