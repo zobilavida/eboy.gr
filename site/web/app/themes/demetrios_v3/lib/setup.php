@@ -128,6 +128,14 @@ function widgets_init() {
     'before_title'  => '<h3>',
     'after_title'   => '</h3>'
   ]);
+  register_sidebar([
+    'name'          => __('Next to Main Menu', 'demetrios_3'),
+    'id'            => 'main-next',
+    'before_widget' => '<li class="menu-item-widget py-2 pl-4">',
+    'after_widget'  => '</li>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ]);
 }
 add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 

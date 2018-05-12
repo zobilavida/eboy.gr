@@ -18,6 +18,8 @@ $demetrios_3_includes = [
   'lib/customizer.php', // Theme customizer
   'plugins/facetwp/index.php', // Theme extends
   'bs4navwalker.php',
+  'bs4navwalker_right.php',
+  'wp-bootstrap-navwalker.php',
   'custom-nav-walker.php',
   'recalculate-acf-locations.php'
 ];
@@ -607,7 +609,11 @@ function custom_header(){
               'walker'          => new bs4navwalker()
             ]);
             ?>
-              <span id='trigger' class="navbar-toggler-icon ml-5"></span>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar2">
+
         </div>
 
     </div>
@@ -638,16 +644,19 @@ function custom_header(){
     wp_nav_menu([
       'menu'            => 'top',
       'theme_location'  => 'top',
-      'container'       => '',
+     'items_wrap' => '<ul id="fals" class="navbar-nav float-right">%3$s',
+      'container'       => false,
       'container_id'    => '',
       'container_class' => '',
-      'menu_id'         => false,
+      'menu_id'         => fals,
       'menu_class'      => 'navbar-nav',
       'depth'           => 2,
-      'fallback_cb'     => 'bs4navwalker::fallback',
-      'walker'          => new bs4navwalker()
+      'fallback_cb'     => 'bs4Navwalker::fallback',
+      'walker'          => new bs4Navwalker()
     ]);
     ?>
+    <?php dynamic_sidebar('main-next'); ?>
+  </ul>
 </div>
 
 
@@ -669,20 +678,20 @@ add_action('demetrios_custom_header', 'custom_header');
 
 function demetrios_side_menu (){ ?>
 <div id="slider" class="side-panel side-panel-right">
-<?php
-wp_nav_menu([
-  'menu'            => '',
-  'theme_location'  => 'side_navigation',
-  'container'       => '',
-  'container_id'    => '',
-  'container_class' => '',
-  'menu_id'         => false,
-  'menu_class'      => '',
-  'depth'           => 2,
-  'fallback_cb'     => 'bs4navwalker::fallback',
-  'walker'          => new bs4navwalker()
-]);
-?>
+  <?php
+         wp_nav_menu( array(
+             'theme_location'    => 'side_navigation',
+             'depth'             => 2,
+             'container'         => 'div',
+             'container_class'   => 'collapse navbar-collapse',
+             'container_id'      => 'bs-example-navbar-collapse-1',
+             'menu_class'        => 'nav navbar-nav',
+             'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+             'walker'            => new WP_Bootstrap_Navwalker()
+ 		) );
+         ?>
+  <?php dynamic_sidebar('main-next'); ?>
+
 </div>
 <?php }
 add_action('demetrios_custom_side_menu', 'demetrios_side_menu', 10 );
