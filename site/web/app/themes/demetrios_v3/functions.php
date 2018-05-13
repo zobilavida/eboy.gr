@@ -60,6 +60,7 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     '
 ) ) );
 }
 
+add_filter( 'searchwp_short_circuit', '__return_true' );
 
 add_action ('customize_register', 'themeslug_theme_customizer');
 
@@ -1293,10 +1294,7 @@ function store_finder_split_2(){
 </div>
   </div>
     <div class="card-body">
-
-
       <h5 class="card-title"><?php echo $street_address; ?>, <?php echo $city; ?>, <?php echo $country; ?></h5>
-
        <footer class="blockquote-footer">
   <?php echo wp_strip_all_tags(
     get_the_term_list( get_the_ID(), 'store_cat', ' ', ' , ', ' ')
@@ -1306,20 +1304,15 @@ function store_finder_split_2(){
  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps?saddr=Current+Location&daddr=<?php  echo $location['lat'] . ',' . $location['lng']; ?>"><?php echo $directions_icon; ?> <?php _e('Get Directions','demetrios'); ?></a>
 </span>
   </footer>
-
-
     </div>
   </div>
 </div>
-
-
   <?php endwhile; ?>
   <div class="col-12">
   <?php echo facetwp_display( 'pager' ); ?>
   </div>
 </div>
     <?php // joints_page_navi(); ?>
-
   <?php else : ?>
             <?php wp_reset_postdata();?>
     <?php get_template_part( 'templates/unit', 'missing' ); ?>
@@ -1329,7 +1322,6 @@ function store_finder_split_2(){
 <?php
 }
 add_action( 'custom_store_spilt_finder_2', 'store_finder_split_2', 15 );
-
 
 function book(){
         ?>
