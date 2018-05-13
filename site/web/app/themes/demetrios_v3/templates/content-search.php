@@ -18,7 +18,7 @@
         </div>
 </div>
 
-  <div class="facetwp-template container">
+  <div class="facetwp-template search container">
     <div class="row">
     <div class="col-12 text-center">
       <?php echo $wp_query->found_posts; ?>
@@ -28,6 +28,7 @@
     <div class="row grid">
 
 
+
         <?php if ( have_posts() ) { ?>
 
 
@@ -35,7 +36,7 @@
           <?php if ($post->post_type == "post") { ?>
 
 
-            <div class="card w-24">
+            <div class="card ml-2 mb-3 grid-item w-24">
                <h3><a href="<?php echo get_permalink(); ?>">
                  <?php the_title();  ?>
                </a></h3>
@@ -47,8 +48,8 @@
           <?php } ?>
           <?php if ($post->post_type == "product") { ?>
 
-            <div class="card w-24">
-product             </div>
+
+              <?php wc_get_template_part( 'content', 'product' ); ?>
 
           <?php } ?>
 
