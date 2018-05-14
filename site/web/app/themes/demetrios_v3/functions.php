@@ -579,120 +579,84 @@ function my_acf_google_map_api( $api ){
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 function custom_header(){
-  if (is_page('Home')) {
+
       // below content only show when page id is 12
       $home_logo = get_field( "logo_home" );
+      $sandwitch_small = '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/sc_sandwitch_small.svg">';
 
 ?>
 
-<nav class="navbar navbar-expand-sm  navbar-dark">
+<nav class="navbar navbar-expand-sm sticky navbar-light bg-white p-0">
     <div class="container">
-        <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
-          <img class="logo_2" src='<?php echo $home_logo; ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-          <img class="logo hidden" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+      <div class="d-flex justify-content-between align-items-center flex-row w-100 h-100">
 
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar1">
-
-            <?php
-            wp_nav_menu([
-              'menu'            => 'top',
-              'theme_location'  => 'top',
-              'container'       => '',
-              'container_id'    => '',
-              'container_class' => '',
-              'menu_id'         => false,
-              'menu_class'      => 'navbar-nav navbar-nav-home ml-auto',
-              'depth'           => 2,
-              'fallback_cb'     => 'bs4navwalker::fallback',
-              'walker'          => new bs4navwalker()
-            ]);
-            ?>
-
-        </div>
-
-
-    </div>
-</nav>
-
-<?php
-  }
-  else {
-  ?>
-  <nav class="navbar navbar-expand-sm sticky navbar-light bg-white p-0">
-      <div class="container">
-        <div class="d-flex justify-content-between flex-row w-100 h-100">
-
-  <div class="p-2 d-flex h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
-    <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-  </a>
+<div class="p-2 d-flex h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
+  <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+</a>
 </div>
 
-  <div class="p-1 d-flex d-sm-none w-100 h-100">
+<div class="p-1 d-flex d-sm-none w-100 h-100">
 
-    <?php dynamic_sidebar('sidebar-header-right'); ?>
+  <?php dynamic_sidebar('sidebar-header-right'); ?>
 
-  </div>
+</div>
+<div class="pr-2 d-block d-sm-none">
+  <a href="#" class="trigger_top">
+<?php echo $sandwitch_small; ?>
+</a>
+</div>
 
 <div class="p-1 d-none d-lg-block d-lg-none w-75" id="navbar1">
 
-    <?php
-    wp_nav_menu([
-      'menu'            => 'top',
-      'theme_location'  => 'top',
-     'items_wrap' => '<ul id="fals" class="navbar-nav float-right">%3$s',
-      'container'       => false,
-      'container_id'    => '',
-      'container_class' => '',
-      'menu_id'         => fals,
-      'menu_class'      => 'navbar-nav',
-      'depth'           => 2,
-      'fallback_cb'     => 'bs4Navwalker::fallback',
-      'walker'          => new bs4Navwalker()
-    ]);
-    ?>
-    <?php dynamic_sidebar('main-next'); ?>
-  </ul>
-</div>
-
-
-<?php $sandwitch_small = '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/sc_sandwitch_small.svg">'; ?>
-
-    <div class="p-1 justify-content-center align-self-center d-block d-sm-none">
-      <a href="#" class="trigger_top">
-    <?php echo $sandwitch_small; ?>
-  </a>
-    </div>
-
-
-</div>
-    </div>
-
-  </nav>
-<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
   <?php
-         wp_nav_menu( array(
-             'theme_location'    => 'top',
-             'depth'             => 2,
-             'container'         => 'div',
-             'container_class'   => 'collapse navbar-collapse',
-             'container_id'      => 'bs-example-navbar-collapse-1',
-             'menu_class'        => 'nav navbar-nav',
-             'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
-             'walker'            => new WP_Bootstrap_Navwalker_top()
- 		) );
-         ?>
+  wp_nav_menu([
+    'menu'            => 'top',
+    'theme_location'  => 'top',
+   'items_wrap' => '<ul id="fals" class="navbar-nav float-right">%3$s',
+    'container'       => false,
+    'container_id'    => '',
+    'container_class' => '',
+    'menu_id'         => fals,
+    'menu_class'      => 'navbar-nav',
+    'depth'           => 2,
+    'fallback_cb'     => 'bs4Navwalker::fallback',
+    'walker'          => new bs4Navwalker()
+  ]);
+  ?>
+  <?php dynamic_sidebar('main-next'); ?>
+</ul>
+</div>
+
+
+
+
+
+
+</div>
+  </div>
+
+</nav>
+<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
+<?php
+       wp_nav_menu( array(
+           'theme_location'    => 'top',
+           'depth'             => 2,
+           'container'         => 'div',
+           'container_class'   => 'collapse navbar-collapse',
+           'container_id'      => 'bs-example-navbar-collapse-1',
+           'menu_class'        => 'nav navbar-nav',
+           'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
+           'walker'            => new WP_Bootstrap_Navwalker_top()
+  ) );
+       ?>
 
 </ul>
 </div>
 
 
+
   <?php
 
-    }
 }
 add_action('demetrios_custom_header', 'custom_header');
 

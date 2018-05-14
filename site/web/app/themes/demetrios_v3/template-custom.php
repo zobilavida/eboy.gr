@@ -3,23 +3,36 @@
  * Template Name: Custom Template
  */
 ?>
+<?php if (is_front_page()) { ?>
 
-<div class="container-fluid back-grey500 top-page">
-  <div class="row">
-    <div class="col-12">
-      <div class="container py-4">
-        <div class="row align-items-center h-100">
-          <div class="col-lg-6">
-          <h1><?php echo esc_html( get_the_title() ); ?></h1>
-         </div>
-         <div class="col-lg-6 text-right">
-           <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+<?php }
+else { ?>
+
+  <div class="container-fluid back-grey500 top-page">
+    <div class="row">
+      <div class="col-12">
+        <div class="container py-4">
+          <div class="row align-items-center h-100">
+            <div class="col-lg-6">
+            <h1><?php echo esc_html( get_the_title() ); ?></h1>
+           </div>
+           <div class="col-lg-6 text-right">
+             <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
+          </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
+<?php
+}
+
+?>
+
+
+
     <div class="container-fluid p-0">
       <div class="row">
         <div class="col-12">
