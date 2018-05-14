@@ -20,6 +20,7 @@ $demetrios_3_includes = [
   'bs4navwalker.php',
   'bs4navwalker_right.php',
   'wp-bootstrap-navwalker.php',
+  'wp-bootstrap-navwalker-top.php',
   'custom-nav-walker.php',
   'recalculate-acf-locations.php'
 ];
@@ -584,7 +585,7 @@ function custom_header(){
 
 ?>
 
-<nav class="navbar navbar-expand-sm sticky-top navbar-dark">
+<nav class="navbar navbar-expand-sm  navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>">
           <img class="logo_2" src='<?php echo $home_logo; ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
@@ -613,9 +614,6 @@ function custom_header(){
 
         </div>
 
-        <div class="collapse navbar-collapse" id="navbar2">
-
-        </div>
 
     </div>
 </nav>
@@ -624,11 +622,11 @@ function custom_header(){
   }
   else {
   ?>
-  <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-white p-0">
+  <nav class="navbar navbar-expand-sm sticky navbar-light bg-white p-0">
       <div class="container">
         <div class="d-flex justify-content-between flex-row w-100 h-100">
 
-  <div class="p-2 d-flex w-25 h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
+  <div class="p-2 d-flex h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
     <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
   </a>
 </div>
@@ -661,14 +659,36 @@ function custom_header(){
 </div>
 
 
+<?php $sandwitch_small = '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/sc_sandwitch_small.svg">'; ?>
 
     <div class="p-1 justify-content-center align-self-center d-block d-sm-none">
-      test 2
+      <a href="#" class="trigger_top">
+    <?php echo $sandwitch_small; ?>
+  </a>
     </div>
+
 
 </div>
     </div>
+
   </nav>
+<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
+  <?php
+         wp_nav_menu( array(
+             'theme_location'    => 'top',
+             'depth'             => 2,
+             'container'         => 'div',
+             'container_class'   => 'collapse navbar-collapse',
+             'container_id'      => 'bs-example-navbar-collapse-1',
+             'menu_class'        => 'nav navbar-nav',
+             'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
+             'walker'            => new WP_Bootstrap_Navwalker_top()
+ 		) );
+         ?>
+
+</ul>
+</div>
+
 
   <?php
 
@@ -1728,14 +1748,16 @@ $product_lg = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-lg' 
 $product_md = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-md' );
 $product_sm = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-sm' );
 $product_xs = wp_get_attachment_image_src( get_post_thumbnail_id(),'product-xs' );
+$image_id = $image->id;
+$image_alt = get_post_meta( $image->id, '_wp_attachment_image_alt', true);
 //echo '<img data-src="' . $image_src[0] . '" width="100" height="100">';
 //echo '<img src="' . $image_src[0] . '" class="img-fluid" alt="Demetrios Wedding Dresses">';
 
 echo '<picture>';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
-echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 769px)">';
-echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 577px)">';
-echo '<img srcset=" ' . $product_lg[0] . ' " alt="Demetrios Wedding" class="img-fluid">';
+echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 769px)">';
+echo '<source srcset=" ' . $product_xs[0] . ' " media="(min-width: 577px)">';
+echo '<img srcset=" ' . $product_lg[0] . ' " alt=" ' . $image_alt .' " class="img-fluid">';
 echo '</picture>';
 }
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail_responsive', 10);

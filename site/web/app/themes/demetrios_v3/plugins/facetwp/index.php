@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: FacetWP
-Description: Advanced Filtering for WordPress
+Plugin Name: EbpyWP
+Description: WordPress ajax search
 Version: 3.1.5
-Author: FacetWP, LLC
-Author URI: https://facetwp.com/
+Author: eboy
+Author URI: https://eboy.gr/
 
 Copyright 2018 FacetWP, LLC
 

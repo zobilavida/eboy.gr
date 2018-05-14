@@ -1,4 +1,4 @@
-<div class="header bg-light sticky-top p-0 d-none d-sm-block">
+<div class="header bg-light p-0 d-none d-sm-block">
 
     <div class="container">
         <div class="row">
