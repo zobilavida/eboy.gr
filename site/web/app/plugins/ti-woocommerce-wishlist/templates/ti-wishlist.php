@@ -34,9 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 					<div class="card w-100 m-3 <?php echo esc_attr( apply_filters( 'tinvwl_wishlist_item_class', 'wishlist_item', $wl_product, $product ) ); ?>">
 
-						<div class="d-flex flex-row">
+						<div class="d-flex flex-wrap">
 
-											<div class="col-2 pl-0">
+											<div class="col-lg-2 col-12 pl-0">
 												<?php
 															$thumbnail = apply_filters( 'tinvwl_wishlist_item_thumbnail', $product->get_image('image-fluid card-img-top'), $wl_product, $product );
 
@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 															}
 															?>
 														</div>
-											  <div class="col-10 p-3">
+											  <div class="col-lg-10 col-12 p-3">
 													<div class="d-flex flex-row flex-wrap">
 													<div class="col-8 px-0">
 														<div class="d-flex flex-row align-items-center">
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 												 </div>
 													</div>
-													<div class="col-4 product-remove" >
+													<div class="col-1 product-remove" >
 														<div class="d-flex flex-row justify-content-end">
   <div class="p-2">
 		<?php if ( isset( $wishlist_table_row['colm_date'] ) && $wishlist_table_row['colm_date'] ) { ?>
@@ -88,22 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		<?php } ?>
 
-		<?php if ( isset( $wishlist_table_row['colm_stock'] ) && $wishlist_table_row['colm_stock'] ) { ?>
-			<div class="product-stock">
-				<?php
-				$availability = (array) $product->get_availability();
-				if ( ! array_key_exists( 'availability', $availability ) ) {
-					$availability['availability'] = '';
-				}
-				if ( ! array_key_exists( 'class', $availability ) ) {
-					$availability['class'] = '';
-				}
-				$availability_html = empty( $availability['availability'] ) ? '<p class="stock ' . esc_attr( $availability['class'] ) . '"><span><i class="fa fa-check"></i></span><span class="tinvwl-txt">' . esc_html__( 'In stock', 'ti-woocommerce-wishlist' ) . '</span></p>' : '<p class="stock ' . esc_attr( $availability['class'] ) . '"><span><i class="fa fa-check"></i></span><span>' . esc_html( $availability['availability'] ) . '</span></p>';
 
-				echo apply_filters( 'tinvwl_wishlist_item_status', $availability_html, $availability['availability'], $wl_product, $product ); // WPCS: xss ok.
-				?>
-			</div>
-		<?php } ?>
 	</div>
   <div class="pl-4">
 		<button type="submit" name="tinvwl-remove"

@@ -1124,18 +1124,11 @@ function parallax_3(){
 add_action( 'custom_parallax_3', 'parallax_3', 15 );
 
 function button_book(){
-  $button_book = get_field( "button_book" );
-  $button_book_url = get_field( "button_book_url" );
-
-  if( $button_book ) {
-
 ?>
 <div class="mybutton mybutton_vertical">
-<button class="feedback"><?php echo $button_book; ?></button>
+<a href="/demetrios/book-an-appointment/" class="btn btn-info feedback" role="button">Book an Appointment</a>
 </div>
 <?php
-} else { echo "Niente button"; }
-
 }
 add_action( 'demetrios_butt_book', 'button_book', 0 );
 

@@ -4,11 +4,11 @@
  */
 ?>
 <?php if (is_front_page()) { ?>
-
+<?php do_action( 'demetrios_butt_book', 'button_book' ); ?>
 <?php }
 else { ?>
-
-  <div class="container-fluid back-grey500 top-page">
+<?php do_action( 'demetrios_butt_book', 'button_book' ); ?>
+    <div class="container-fluid back-grey500 top-page">
     <div class="row">
       <div class="col-12">
         <div class="container py-4">
