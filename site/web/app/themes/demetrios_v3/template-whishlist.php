@@ -3,6 +3,7 @@
  * Template Name: Whishlist
  */
 ?>
+<?php do_action( 'demetrios_butt_book', 'button_book' ); ?>
 <?php do_action ('demetrios_pages_header', 'demetrios_pages_header_custom_1', 10, 10 ); ?>
 
     <div class="container p-0">

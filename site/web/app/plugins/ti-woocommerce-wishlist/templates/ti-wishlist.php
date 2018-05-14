@@ -32,8 +32,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$product_url = apply_filters( 'tinvwl_wishlist_item_url', $product->get_permalink(), $wl_product, $product );
 					do_action( 'tinvwl_wishlist_row_before', $wl_product, $product );
 					?>
-					<div class="card w-100 m-3 <?php echo esc_attr( apply_filters( 'tinvwl_wishlist_item_class', 'wishlist_item', $wl_product, $product ) ); ?>">
-
+					<div class="card product w-100 m-3 <?php echo esc_attr( apply_filters( 'tinvwl_wishlist_item_class', 'wishlist_item', $wl_product, $product ) ); ?>">
+						<div class="card-img-overlay right-overlay">
+							<button class="btn btn-secondary d-md-none" type="submit" name="tinvwl-remove"
+											value="<?php echo esc_attr( $wl_product['ID'] ); ?>">X
+							</button>
+						                </div>
 						<div class="d-flex flex-wrap">
 
 											<div class="col-lg-2 col-12 pl-0">
@@ -48,9 +52,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 															?>
 														</div>
 											  <div class="col-lg-10 col-12 p-3">
-													<div class="d-flex flex-row flex-wrap">
-													<div class="col-8 px-0">
-														<div class="d-flex flex-row align-items-center">
+													<div class="d-flex flex-wrap">
+
+
 
 														<?php
 														if ( ! $product->is_visible() ) {
@@ -62,49 +66,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 														echo apply_filters( 'tinvwl_wishlist_item_meta_data', tinv_wishlist_get_item_data( $product, $wl_product ), $wl_product, $product ); // WPCS: xss ok.
 														?>
 														<?php echo do_shortcode("[social_sharing_2]"); ?>
-
-
-												 </div>
-													</div>
-													<div class="col-1 product-remove" >
-														<div class="d-flex flex-row justify-content-end">
-  <div class="p-2">
-		<?php if ( isset( $wishlist_table_row['colm_date'] ) && $wishlist_table_row['colm_date'] ) { ?>
-
-				<?php
-				echo apply_filters( 'tinvwl_wishlist_item_date', sprintf( // WPCS: xss ok.
-					'<time class="entry-date" datetime="%1$s">%2$s</time>', $wl_product['date'], mysql2date( get_option( 'date_format' ), $wl_product['date'] )
-				), $wl_product, $product );
-				?>
-
-		<?php } ?>
-	</div>
-  <div class="p-2">
-		<?php if ( isset( $wishlist_table_row['colm_price'] ) && $wishlist_table_row['colm_price'] ) { ?>
-			<div class="product-price">
-				<?php
-				echo apply_filters( 'tinvwl_wishlist_item_price', $product->get_price_html(), $wl_product, $product ); // WPCS: xss ok.
-				?>
-			</div>
-		<?php } ?>
-
-
-	</div>
-  <div class="pl-4">
-		<button type="submit" name="tinvwl-remove"
-						value="<?php echo esc_attr( $wl_product['ID'] ); ?>">X
-		</button>
-	</div>
-</div>
+														<div class="ml-auto d-none d-lg-block d-lg-none p-2">
+														<button class="btn btn-outline-primary" type="submit" name="tinvwl-remove"
+																		value="<?php echo esc_attr( $wl_product['ID'] ); ?>">X
+														</button>
+														</div>
 
 
 
-														<?php if ( isset( $wishlist_table_row['add_to_cart'] ) && $wishlist_table_row['add_to_cart'] ) { ?>
 
-														<?php } ?>
-													</div>
 
-													<div class="col-12 py-3 px-2">
+													<div class="col-12 py-3 px-2 order-3">
 													<?php
 												//	echo '<p class="card-text">';
 													echo apply_filters( 'woocommerce_short_description', $product->post->post_content );

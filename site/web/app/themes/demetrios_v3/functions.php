@@ -588,14 +588,14 @@ function custom_header(){
 
 <nav class="navbar navbar-expand-sm sticky navbar-light bg-white p-0">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center flex-row w-100 h-100">
+      <div class="d-flex flex-row justify-content-between align-items-center w-100 h-100">
 
-<div class="p-2 d-flex h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
+<div class="d-flex h-100"><a class="" href="<?= esc_url(home_url('/')); ?>">
   <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
 </a>
 </div>
 
-<div class="p-1 d-flex d-sm-none w-100 h-100">
+<div class="d-flex d-sm-none justify-content-end w-100 h-100 header-right p-1">
 
   <?php dynamic_sidebar('sidebar-header-right'); ?>
 
@@ -1930,10 +1930,10 @@ function demetrios_pages_header_custom_1() {
     <div class="col-12">
       <div class="container py-4">
         <div class="row align-items-center h-100">
-          <div class="col-lg-6">
+          <div class="col-6">
           <h1><?php echo esc_html( get_the_title() ); ?></h1>
          </div>
-         <div class="col-lg-6 text-right">
+         <div class="col-6 text-right">
            <?php if (function_exists('the_breadcrumb')) the_breadcrumb(); ?>
         </div>
     </div>
@@ -1973,7 +1973,7 @@ add_action('demetrios_wishlist_custom', 'demetrios_wishlist_custom_description',
 
 function wishlist_custom_notices(){
 ?>
-<div class="container-fluid pt-4">
+<div class="container-fluid pt-2">
   <div class="row">
     <div class="col-12 text-center">
 <?php if ( function_exists( 'wc_print_notices' ) ) {
