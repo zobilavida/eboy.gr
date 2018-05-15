@@ -74,7 +74,7 @@ class FacetWP_Facet_Proximity_Core extends FacetWP_Facet
 
         <?php elseif ( 'slider' == $radius_ui ) : ?>
 
-          <div class="col-12">
+          <div class="col-12 d-none d-lg-block ">
         <div class="row facetwp-radius-wrap py-2 px-5">
             <input class="col-10 facetwp-radius facetwp-radius-slider" type="range"
                 min="<?php echo $facet['radius_min']; ?>"

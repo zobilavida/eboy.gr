@@ -1167,8 +1167,8 @@ function store_finder_split_2(){
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
         <div class="d-flex flex-row">
-  <div class="p-0 w-100"><?php  echo facetwp_display( 'facet', 'proximity' ); ?></div>
-  <div class="p-2 d-md-none">Flex item 2</div>
+  <div class="proximity p-0 w-100"><?php  echo facetwp_display( 'facet', 'proximity' ); ?></div>
+
 
 </div>
 
