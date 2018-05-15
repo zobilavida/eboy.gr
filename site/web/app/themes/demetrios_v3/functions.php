@@ -601,9 +601,11 @@ function custom_header(){
 
 </div>
 <div class="pr-2 d-block d-sm-none">
-  <a href="#" class="trigger_top">
-<?php echo $sandwitch_small; ?>
-</a>
+  <button class="hamburger small-hamburger hamburger--vortex btn btn-light pl-4" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
 </div>
 
 <div class="p-1 d-none d-lg-block d-lg-none w-75" id="navbar1">
@@ -623,7 +625,13 @@ function custom_header(){
     'walker'          => new bs4Navwalker()
   ]);
   ?>
-  <?php dynamic_sidebar('main-next'); ?>
+
+  <button class="hamburger big-hamburger hamburger--vortex btn btn-light pl-4" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+
 </ul>
 </div>
 
@@ -1158,14 +1166,19 @@ function store_finder_split_2(){
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-  <?php  echo facetwp_display( 'facet', 'proximity' ); ?>
+        <div class="d-flex flex-row">
+  <div class="p-0 w-100"><?php  echo facetwp_display( 'facet', 'proximity' ); ?></div>
+  <div class="p-2 d-md-none">Flex item 2</div>
+
+</div>
+
       </div>
     </div>
 
   </div>
-  <div class="card">
 
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card">
       <div class="card-body">
         <div class="row p-4">
         <div class="col-4">
