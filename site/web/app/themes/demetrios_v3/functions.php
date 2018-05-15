@@ -1196,21 +1196,14 @@ function store_finder_split_2(){
   </div>
   <div class="row">
     <div class="col-12 text-center">
-      <div class="d-flex flex-row justify-content-center">
-  <div class="p-2">  <h5 class="mb-0">
-      <button class="btn btn-link btn_location " onclick="FWP.reset()">
-        Enter your location
-      </button>
-    </h5>
+      <div class="choose_search d-flex flex-row justify-content-center align-items-center">
+  <div class="pb-2"><h5 class="mb-0"><button class="btn btn-link btn_location " onclick="FWP.reset()">Enter your location</button></h5>
   </div>
-  <div class="px-2 py-3">- OR -</div>
-  <div class="p-2">
-    <h5 class="mb-0">
-      <button class="btn btn-link collapsed btn_country" onclick="FWP.reset()">
-        Choose by country
-      </button>
-    </h5>
+  <div class="pb-2">- OR -</div>
+  <div class="pb-2">
+    <h5 class="mb-0"><button class="btn btn-link collapsed btn_country" onclick="FWP.reset()">Choose by country</button></h5>
   </div>
+
 
 </div>
 
@@ -1222,7 +1215,7 @@ function store_finder_split_2(){
 
 
         <div class="row">
-            <div class="col-12 px-5 py-3">
+            <div class="col-12 px-5 pb-3">
             <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
             <?php  echo facetwp_display( 'facet', 'store_category' ); ?>
             </div>
