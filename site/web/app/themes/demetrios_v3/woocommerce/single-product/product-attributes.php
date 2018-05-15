@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
        data-parent="#accordion2"
        href="#collapseOne"><h5>Additional info</h5></a>
 </div>
-<div id="collapseOne" class="accordion-body collapse">
+<div id="collapseOne" class="accordion-body collapse show">
     <div class="row">
 			<div class="col-1">
 			</div>

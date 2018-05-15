@@ -1136,6 +1136,9 @@ function button_book(){
 <div class="mybutton mybutton_vertical">
 <a href="/demetrios/book-an-appointment/" class="btn btn-info feedback" role="button">Book an Appointment</a>
 </div>
+<div class="mybutton mybutton_vertical">
+<a href="/demetrios/book-an-appointment/" class="btn btn-primary feedback" role="button">Book an Appointment</a>
+</div>
 <?php
 }
 add_action( 'demetrios_butt_book', 'button_book', 0 );
@@ -1203,17 +1206,10 @@ function store_finder_split_2(){
   <div class="pb-2">
     <h5 class="mb-0"><button class="btn btn-link collapsed btn_country" onclick="FWP.reset()">Choose by country</button></h5>
   </div>
-
-
 </div>
-
-
   </div>
 </div>
 </div>
-
-
-
         <div class="row">
             <div class="col-12 px-5 pb-3">
             <?php //echo facetwp_display( 'facet', 'country_or_city' ); ?>
@@ -1809,7 +1805,7 @@ function social_sharing()
 	extract(shortcode_atts(array(), $atts));
 	return'
 
-    <div class="col-12 p-0 d-none d-sm-block">
+    <div class="col-12 p-0">
 		<a class="p-3 social-sharing-icon social-sharing-icon-facebook" target="_new" href="http://www.facebook.com/share.php?u=' . urlencode(get_the_permalink()) . '&title=' . urlencode(get_the_title()). '"></a>
 		<a class="p-3 social-sharing-icon social-sharing-icon-twitter" target="_new" href="http://twitter.com/home?status='. urlencode(get_the_title()). '+'. urlencode(get_the_permalink()) . '"></a>
 		<a class="p-3 social-sharing-icon social-sharing-icon-pinterest" target="_new" href="https://pinterest.com/pin/create/button/?url=' . urlencode(get_the_permalink()) . '&media=' . urlencode(get_template_directory_uri()."/img/logo.png") . '&description=' . urlencode(get_the_title()). '"></a>
@@ -1864,7 +1860,7 @@ function woocommerce_template_single_whishlist() {
 add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_whishlist', 7);
 
 function woocommerce_template_single_title_open() {
-  echo '<div class="d-flex flex-row align-items-center title-item">';
+  echo '<div class="d-flex flex-wrap justify-content-between align-items-center custom-title-item">';
 
 }
 add_action ('woocommerce_single_product_summary', 'woocommerce_template_single_title_open', 1);

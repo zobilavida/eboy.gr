@@ -30,7 +30,7 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $tabs ) ) : ?>
 
-	<div class="woocommerce-tabs wc-tabs-wrapper py-3">
+	<div class="woocommerce-tabs wc-tabs-wrapper pb-3">
 
 		<?php foreach ( $tabs as $key => $tab ) : ?>
 			<div class="row woocommerce-Tabs-panel py-2 px-0 woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">

@@ -36,12 +36,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 ?>
 
-<div class="container py-5">
+<div class="container py-2">
+	<div class="row">
+		<div class="custom_breadcrumb col-12 pt-2 pb-3">
+			<?php
+				$args = array(
+						'delimiter' => ' &#8728; '
+					//	'before' => '<span class="breadcrumb-title">' . __( 'This is where you are:', 'woothemes' ) . '</span>'
+				);
+			?>
+			<?php woocommerce_breadcrumb( $args ); ?>
+		</div>
+	</div>
 <div class="row">
 <div class="col-12 col-lg-7 pb-5">
 	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
+
 </div>
+
+
 <div class="col-12 col-lg-5 pb-4">
+
 	<?php
 		/**
 		 * Hook: Woocommerce_single_product_summary.
