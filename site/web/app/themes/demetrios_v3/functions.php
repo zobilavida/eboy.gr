@@ -644,28 +644,8 @@ function custom_header(){
   </div>
 
 </nav>
-<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
-<?php
-       wp_nav_menu( array(
-           'theme_location'    => 'top',
-           'depth'             => 2,
-           'container'         => 'div',
-           'container_class'   => 'collapse navbar-collapse',
-           'container_id'      => 'bs-example-navbar-collapse-1',
-           'menu_class'        => 'nav navbar-nav',
-           'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
-           'walker'            => new WP_Bootstrap_Navwalker_top()
-  ) );
-       ?>
 
-</ul>
-</div>
-
-
-
-  <?php
-
-}
+  <?php }
 add_action('demetrios_custom_header', 'custom_header');
 
 
@@ -689,29 +669,6 @@ function demetrios_side_menu (){ ?>
 <?php }
 add_action('demetrios_custom_side_menu', 'demetrios_side_menu', 10 );
 
-function slider_search (){ ?>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-full" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-      <?php do_action( 'demetrios_search_custom', 'demetrios_search_custom_page' ); ?>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php }
-add_action('demetrios_custom_side_menu', 'slider_search' , 20 );
 ####################################################
 #    VIDEO
 ####################################################
@@ -1231,7 +1188,7 @@ function store_finder_split_2(){
 
         <div class="row px-3">
               <div class="col-12">
-                <div class="row px-4 py-2">
+                <div class="row p-2">
             <?php echo facetwp_display('counts'); ?>
             <?php echo facetwp_display('selections'); ?>
             </div>
@@ -1267,7 +1224,7 @@ function store_finder_split_2(){
     $location = get_field('location');
     $distance = facetwp_get_distance();
     ?>
-<div class="col-lg-12 py-3 px-4">
+<div class="col-lg-12 py-3 px-2">
   <div class="card">
   <div class="card-header">
     <div class="container">
@@ -1275,7 +1232,7 @@ function store_finder_split_2(){
         <div class="col-lg-9 col-8 p-0">
     <?php the_title(); ?>
       </div>
-      <div class="col-lg-3 col-4 text-right">
+      <div class="col-lg-3 col-4 text-right p-0">
         <?php if ( false !== $distance ) {
         echo round( $distance, 2 );
         echo ' Km';
