@@ -16,5 +16,9 @@
     </div>
     </div>
   </div>
-
+  <div class="row">
+    <div class="container-fluid">
+    <?php do_action( 'demetrios_footer', 'demetrios_footer_buttons' ); ?>
+      </div>
+  </div>
 </footer>

@@ -586,7 +586,7 @@ function custom_header(){
 
 ?>
 
-<nav class="navbar navbar-expand-sm sticky navbar-light bg-white p-0">
+<nav class="navbar navbar-expand-sm sticky navbar-light bg-white">
     <div class="container">
       <div class="d-flex flex-row justify-content-between align-items-center w-100 h-100">
 
@@ -600,7 +600,7 @@ function custom_header(){
   <?php dynamic_sidebar('sidebar-header-right'); ?>
 
 </div>
-<div class="pr-2 d-block d-sm-none">
+<div class="d-block d-sm-none p-0">
   <button class="hamburger small-hamburger hamburger--vortex btn btn-light pl-4" type="button">
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>
@@ -626,7 +626,7 @@ function custom_header(){
   ]);
   ?>
 
-  <button class="hamburger big-hamburger hamburger--vortex btn btn-light pl-4" type="button">
+  <button class="hamburger big-hamburger hamburger--vortex btn btn-light pl-4 pt-2" type="button">
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>
   </span>
@@ -1136,12 +1136,24 @@ function button_book(){
 <div class="mybutton mybutton_vertical">
 <a href="/demetrios/book-an-appointment/" class="btn btn-info feedback" role="button">Book an Appointment</a>
 </div>
-<div class="mybutton mybutton_vertical">
-<a href="/demetrios/book-an-appointment/" class="btn btn-primary feedback" role="button">Book an Appointment</a>
-</div>
+
 <?php
 }
 add_action( 'demetrios_butt_book', 'button_book', 0 );
+
+function demetrios_footer_buttons(){
+?>
+<div class="d-flex d-sm-none bottom_buttons text-center w-100">
+  <div class="button_botom_1 w-50 px-1 py-2"><a href="https://eboy.gr/demetrios/store-finder/">Stores near you</a></div>
+  <div class="button_botom_2 w-50 px-1 py-2"><a href="https://eboy.gr/demetrios/book-an-appointment/">Book an Appointment</a></div>
+
+</div>
+<?php
+}
+add_action( 'demetrios_footer', 'demetrios_footer_buttons', 10 );
+
+
+
 
 add_filter( 'facetwp_is_main_query', function( $is_main_query, $query ) {
 	if ( isset( $query->query_vars['facetwp'] ) ) {
