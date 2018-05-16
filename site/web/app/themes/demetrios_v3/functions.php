@@ -586,7 +586,7 @@ function custom_header(){
 
 ?>
 
-<nav class="navbar navbar-expand-sm sticky navbar-light bg-white">
+<nav class="navbar navbar-expand-sm sticky navbar-light bg-white px-2">
     <div class="container">
       <div class="d-flex flex-row justify-content-between align-items-center w-100 h-100">
 
@@ -601,7 +601,7 @@ function custom_header(){
 
 </div>
 <div class="d-block d-sm-none p-0">
-  <button class="hamburger small-hamburger hamburger--vortex btn btn-light pl-4" type="button">
+  <button class="hamburger small-hamburger hamburger--vortex btn btn-light pl-4 pt-2" type="button">
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>
   </span>
@@ -644,8 +644,28 @@ function custom_header(){
   </div>
 
 </nav>
+<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
+<?php
+       wp_nav_menu( array(
+           'theme_location'    => 'top',
+           'depth'             => 2,
+           'container'         => false,
+           'container_class'   => 'collapse navbar-collapse',
+           'container_id'      => 'bs-example-navbar-collapse-1',
+           'menu_class'        => 'nav navbar-nav',
+           'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
+           'walker'            => new WP_Bootstrap_Navwalker_top()
+  ) );
+       ?>
 
-  <?php }
+</ul>
+</div>
+
+
+
+  <?php
+
+}
 add_action('demetrios_custom_header', 'custom_header');
 
 

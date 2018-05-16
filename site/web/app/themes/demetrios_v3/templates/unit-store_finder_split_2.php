@@ -6,6 +6,7 @@
      <div class = "col-lg-6 display-results right">
        <?php do_action( 'custom_store_spilt_finder_2', 'store_finder_split_2' ); ?>
      </div>
+
      <?php get_template_part('templates/footer'); ?>
    </div>
  </div>
