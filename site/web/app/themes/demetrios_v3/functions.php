@@ -22,17 +22,9 @@ $demetrios_3_includes = [
   'wp-bootstrap-navwalker.php',
   'wp-bootstrap-navwalker-top.php',
   'custom-nav-walker.php',
-  'recalculate-acf-locations.php',
-  'create-license.php'
+  'recalculate-acf-locations.php'
 ];
 
-$api_params = array(
-'slm_action' => 'slm_check',
-'secret_key' => '5afd5ed9ba1853.54896313',
-'license_key' => 'KEYTOCHECK',
-);
-// Send query to the license manager server
-$response = wp_remote_get(add_query_arg($api_params, 'https://eboy.gr/wp'), array('timeout' => 20, 'sslverify' => false));
 
 foreach ($demetrios_3_includes as $file) {
   if (!$filepath = locate_template($file)) {
