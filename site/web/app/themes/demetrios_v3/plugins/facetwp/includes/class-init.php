@@ -38,7 +38,7 @@ class FacetWP_Init
         include( FACETWP_DIR . '/includes/class-indexer.php' );
         include( FACETWP_DIR . '/includes/class-display.php' );
         include( FACETWP_DIR . '/includes/class-overrides.php' );
-      //  include( FACETWP_DIR . '/includes/class-settings-admin.php' );
+        include( FACETWP_DIR . '/includes/class-settings-admin.php' );
         include( FACETWP_DIR . '/includes/class-upgrade.php' );
         include( FACETWP_DIR . '/includes/functions.php' );
 
@@ -60,7 +60,7 @@ class FacetWP_Init
         include( FACETWP_DIR . '/includes/integrations/acf/acf.php' );
 
         // hooks
-      //  add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+        add_action( 'admin_menu', array( $this, 'admin_menu' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'front_scripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
         add_filter( 'redirect_canonical', array( $this, 'redirect_canonical' ), 10, 2 );
