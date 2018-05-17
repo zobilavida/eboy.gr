@@ -22,7 +22,8 @@ $demetrios_3_includes = [
   'wp-bootstrap-navwalker.php',
   'wp-bootstrap-navwalker-top.php',
   'custom-nav-walker.php',
-  'recalculate-acf-locations.php'
+  'recalculate-acf-locations.php',
+  'create-license.php'
 ];
 
 foreach ($demetrios_3_includes as $file) {
