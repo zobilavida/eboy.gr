@@ -47,7 +47,7 @@ class FacetWP
         define( 'FACETWP_VERSION', '3.1.5' );
         define( 'FACETWP_DIR', dirname( __FILE__ ) );
         //define( 'FACETWP_URL', plugins_url( '', __FILE__ ) );
-        define( 'FACETWP_URL', get_template_directory_uri() . '/plugins/facetwp/index.php');
+        define( 'FACETWP_URL', get_template_directory_uri() . '/plugins/facetwp/');
         define( 'FACETWP_BASENAME', plugin_basename( __FILE__ ) );
 
         // get the gears turning
