@@ -15,6 +15,9 @@
   $country = get_field( "country" );
   $term_list = wp_get_post_terms($post->ID, 'store_cat', array("fields" => "all"));
   $location = get_field('location');
+  $username = get_field('shop_manager');
+  $userID = $username['ID'];
+  $theemail = get_the_author_meta('user_email', $userID);
   ?>
 
   <div class="row ">
@@ -23,7 +26,7 @@
   <h5 class="card-header"><?php the_title(); ?></h5>
     <div class="card-body">
 
-      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php echo $email_2; ?>" ><?php echo $street_address; ?>, <?php echo $country; ?></h6>
+      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php echo $email_2; ?>" data-manager="<?php echo $theemail; ?>"><?php echo $street_address; ?>, <?php echo $country; ?></h6>
 
        <footer class="blockquote-footer">
   <?php foreach($term_list as $term_single) {

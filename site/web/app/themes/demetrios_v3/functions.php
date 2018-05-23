@@ -1021,7 +1021,7 @@ function external_1(){
       </div>
     </div>
     <div class="row">
-      <div class="col-4 text-center p-0">
+      <div class="col-12 text-center p-0">
         <a href="<?php echo $external_1_button_url; ?>">
           <picture>
             <source srcset="<?php echo $image_url_1_0; ?>" media="(min-width: 1400px)">
@@ -1032,7 +1032,7 @@ function external_1(){
         </a>
         <a class="display-2-g mt-3" href="<?php echo $external_1_button_url; ?>"><?php echo $external_1_button; ?></a>
       </div>
-      <div class="col-4 text-center p-0">
+      <div class="col-12 text-center p-0">
         <a href="<?php echo $external_2_button_url; ?>">
           <picture>
             <source srcset="<?php echo $image_url_2_0; ?>" media="(min-width: 1400px)">
@@ -1043,7 +1043,7 @@ function external_1(){
         </a>
         <a class="display-2-g mt-3" href="<?php echo $external_2_button_url; ?>"><?php echo $external_2_button; ?></a>
       </div>
-      <div class="col-4 text-center p-0">
+      <div class="col-12 text-center p-0">
         <a href="<?php echo $external_3_button_url; ?>">
           <picture>
             <source srcset="<?php echo $image_url_3_0; ?>" media="(min-width: 1400px)">
@@ -1704,7 +1704,7 @@ $image_alt = get_post_meta( $image->id, '_wp_attachment_image_alt', true);
 
 echo '<picture>';
 echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 1400px)">';
-echo '<source srcset=" ' . $product_sm[0] . ' " media="(min-width: 769px)">';
+echo '<source srcset=" ' . $product_lg[0] . ' " media="(min-width: 769px)">';
 echo '<source srcset=" ' . $product_xs[0] . ' " media="(min-width: 577px)">';
 echo '<img srcset=" ' . $product_lg[0] . ' " alt=" ' . $image_alt .' " class="img-fluid">';
 echo '</picture>';
@@ -1999,6 +1999,5 @@ function demetrios_wishlist_meta_custom() {
 </div>
 <?php
 }
-
 
 add_action ('demetrios_wishlist_meta', 'demetrios_wishlist_meta_custom', 10);
