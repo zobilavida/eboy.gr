@@ -42,9 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php  do_action( 'demetrios_woo_cat_thumb', 'woo_cat_thumb' ); ?>
 
     </header>
-
-
-
     <div class="container">
 			<div class="row">
 				<div class="col-12 text-center">
@@ -53,7 +50,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
       <div class="row product-cat-if-desc">
 				<div class="col-lg-1 col-4 p-0">
-
 						<div class="cc-selector px-2 py-3">
 							<div class="container p-0">
 								<div class="row h-100">
@@ -61,31 +57,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 				         <input id="view_2" type="radio" name="credit-card" value="view_2" />
 				         <label class="drinkcard-cc view_2" for="view_2"></label>
 							 </div>
-
 							 <div class="col-6">
 				         <input id="view_4" type="radio" name="credit-card" value="view_4" />
 				         <label class="drinkcard-cc view_4"for="view_4"></label>
 								 </div>
 								 </div>
 							 	</div>
-
 				     </div>
-
 					</div>
 					<div class="col-8 d-lg-none text-right pt-3">
 						<a class="" data-toggle="collapse" href="#collapsible" role="button" aria-expanded="false" aria-controls="collapsible">
 				<img class="ico" src="<?= get_template_directory_uri(); ?>/dist/images/ico_settings.svg">
 						</a>
 					</div>
-
 				<div class="col-lg-10 col-12 px-3 filters" id="collapsible">
-
 					<div class="row">
-
 							<div class="col-12  ">
 								<div class="row">
-
-															<div class="col-lg-3 col-12 px-3 filter-dropdown">
+									<div class="col-lg-3 col-12 px-3 filter-dropdown">
 													<?php echo facetwp_display( 'facet', 'fabric' ); ?>
 																</div>
 																<div class="col-lg-3 col-12 px-3 filter-dropdown">
@@ -99,21 +88,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 																			</div>
 									</div>
 								</div>
-
 						</div>
 					</div>
-
-
-
 				<div class="col-lg-1 d-none d-lg-block align-self-center text-center">
 					<img class="ico" onclick="FWP.reset()" src="<?= get_template_directory_uri(); ?>/dist/images/reset.svg">
-
 				</div>
       </div>
     </div>
-
 		<?php if ( have_posts() ) : ?>
-
 			<?php
 				/**
 				 * woocommerce_before_shop_loop hook.
@@ -124,14 +106,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 */
 				do_action( 'woocommerce_before_shop_loop' );
 			?>
-
 			<?php woocommerce_product_loop_start(); ?>
-
-				<?php woocommerce_product_subcategories(); ?>
-
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php
+			<?php woocommerce_product_subcategories(); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+			<?php
 						/**
 						 * woocommerce_shop_loop hook.
 						 *
