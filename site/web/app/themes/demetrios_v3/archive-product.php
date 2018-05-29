@@ -54,11 +54,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="container p-0">
 								<div class="row h-100">
 									<div class="col-6">
-				         <input id="view_2" type="radio" name="credit-card" value="w-27" />
+				         <input id="view_2" type="radio" name="credit-card" value="small" />
 				         <label class="drinkcard-cc view_2" for="view_2"></label>
 							 </div>
 							 <div class="col-6">
-				         <input id="view_4" type="radio" name="credit-card" value="w-49" />
+				         <input id="view_4" type="radio" name="credit-card" value="large" checked="true"/>
 				         <label class="drinkcard-cc view_4"for="view_4"></label>
 								 </div>
 								 </div>
