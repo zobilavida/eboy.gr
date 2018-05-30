@@ -1110,9 +1110,11 @@ function parallax_3(){
 add_action( 'custom_parallax_3', 'parallax_3', 15 );
 
 function button_book(){
+  $link_appointment = site_url( '/book-an-appointment/', 'https' );
+  $link_store = site_url( '/store-finder/', 'https' );
 ?>
 <div class="mybutton mybutton_vertical">
-<a href="/demetrios/book-an-appointment/" class="btn btn-info feedback" role="button">Book an Appointment</a>
+<a href="<?php echo $link_appointment; ?>" class="btn btn-info feedback" role="button">Book an Appointment</a>
 </div>
 
 <?php
@@ -1121,9 +1123,9 @@ add_action( 'demetrios_butt_book', 'button_book', 0 );
 
 function demetrios_footer_buttons(){
 ?>
-<div class="d-flex d-sm-none bottom_buttons text-center w-100">
-  <div class="button_botom_1 w-50 px-1 py-2"><a href="https://eboy.gr/demetrios/store-finder/">Stores near you</a></div>
-  <div class="button_botom_2 w-50 px-1 py-2"><a href="https://eboy.gr/demetrios/book-an-appointment/">Book an Appointment</a></div>
+<div class="d-flex d-lg-none bottom_buttons text-center w-100">
+  <div class="button_botom_1 w-50 px-1 py-2"><a href="<?php echo $link_store; ?>">Stores near you</a></div>
+  <div class="button_botom_2 w-50 px-1 py-2"><a href="<?php echo $link_appointment; ?>">Book an Appointment</a></div>
 
 </div>
 <?php

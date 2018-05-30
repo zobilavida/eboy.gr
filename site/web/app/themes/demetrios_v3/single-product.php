@@ -1,7 +1,4 @@
-<div class="mybutton mybutton_vertical">
-<a href="#" class="btn btn-info feedback" role="button">Book an Appointment</a>
-</div>
-
+<?php do_action( 'demetrios_butt_book', 'button_book' );?>
 <?php
   /**
    * woocommerce_before_main_content hook.

@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-
+<?php do_action( 'demetrios_butt_book', 'button_book' );?>
 	<?php
 		/**
 		 * woocommerce_before_main_content hook.
