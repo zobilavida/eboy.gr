@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				         <label class="drinkcard-cc view_2" for="view_2"></label>
 							 </div>
 							 <div class="col-6">
-				         <input id="view_4" type="radio" name="credit-card" value="large" checked="true"/>
+				         <input id="view_4" type="radio" name="credit-card" value="large" />
 				         <label class="drinkcard-cc view_4"for="view_4"></label>
 								 </div>
 								 </div>
