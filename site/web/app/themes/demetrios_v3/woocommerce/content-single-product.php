@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 <div class="row">
-<div class="col-12 col-lg-7 pb-5">
+<div class="col-12 col-lg-7 pb-2">
 	<?php do_action('demetrios_product_carousel', 'product_carousel'); ?>
 
 </div>

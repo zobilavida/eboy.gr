@@ -1589,14 +1589,33 @@ function namespace_footer_sidebar_params($params) {
 }
 add_filter('dynamic_sidebar_params','namespace_footer_sidebar_params');
 
+add_action( 'woocommerce_single_product_summary', 'wc_next_prev_products_links_small', 0 );
+function wc_next_prev_products_links_small() { ?>
+  <div class="row">
+  <div class="col-12 d-lg-none text-center py-2">
+  <div class="btn-group" role="group" aria-label="nav_buttons">
+  <button type="button" class="btn btn-secondary btn-sm btn_previous">
+    <?php previous_post_link( '%link', '&nbsp; &nbsp; Previous' ); ?>
+  </button>
+
+  <button type="button" class="btn btn-secondary btn-sm btn_next">
+	<?php next_post_link( '%link', 'Next &nbsp; &nbsp;' ); ?>
+  </button>
+  </div>
+  </div>
+  </div>
+  <?php
+}
+
+
 
 
 
 add_action( 'woocommerce_single_product_summary', 'wc_next_prev_products_links', 60 );
 function wc_next_prev_products_links() { ?>
   <div class="row">
-  <div class="col-12 text-right">
-  <div class="btn-group" role="group" aria-label="Basic example">
+  <div class="col-12 d-none d-lg-block text-right">
+  <div class="btn-group" role="group" aria-label="nav_buttons">
   <button type="button" class="btn btn-secondary btn-sm btn_previous">
     <?php previous_post_link( '%link', '&nbsp; &nbsp; Previous' ); ?>
   </button>
