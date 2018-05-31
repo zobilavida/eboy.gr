@@ -601,7 +601,7 @@ function custom_header(){
   <?php dynamic_sidebar('sidebar-header-right'); ?>
 
 </div>
-<div class="d-block d-sm-none p-0">
+<div class="d-block d-lg-none p-0">
   <button class="hamburger small-hamburger hamburger--vortex btn btn-light pl-4 pt-2" type="button">
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>
@@ -645,7 +645,7 @@ function custom_header(){
   </div>
 
 </nav>
-<div class="side-panel side-panel-top d-sm-none " id="slider-top" >
+<div class="side-panel side-panel-top d-lg-none " id="slider-top" >
 <?php
        wp_nav_menu( array(
            'theme_location'    => 'top',
@@ -1426,8 +1426,8 @@ function woocommerce_template_loop_product_title_custom() {
 
   $url = get_permalink($product_id)
   ?>
-  <div class="d-flex justify-content-between align-items-center flex-wrap product_archive_view_info">
-    <div class="py-2 pl-4"><?php the_title('<h4>', '</h4>'); ?></div>
+  <div class="d-flex justify-content-between align-items-center flex-nowrap product_archive_view_info">
+    <div class="py-2 pl-1"><?php the_title('<h4>', '</h4>'); ?></div>
     <div class="p-2"><a class="details" href="<?php echo $url; ?>" >Details</a></div>
   </div>
 

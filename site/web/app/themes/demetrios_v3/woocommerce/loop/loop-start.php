@@ -17,4 +17,4 @@
  */
 ?>
 <div class="container facetwp-template py-3" >
-  <div class="row grid">
+  <div class="row grid justify-content-center">
