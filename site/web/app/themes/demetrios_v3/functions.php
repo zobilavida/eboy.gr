@@ -635,15 +635,8 @@ function custom_header(){
 
 </ul>
 </div>
-
-
-
-
-
-
 </div>
-  </div>
-
+</div>
 </nav>
 <div class="side-panel side-panel-top d-lg-none " id="slider-top" >
 <?php
@@ -653,22 +646,16 @@ function custom_header(){
            'container'         => 'div',
            'container_class'   => 'collapse navbar-collapse',
            'container_id'      => 'bs-example-navbar-collapse-1',
-           'menu_class'        => 'nav navbar-nav',
+           'menu_class'        => 'nav navbar-nav pt-3',
            'fallback_cb'       => 'WP_Bootstrap_Navwalker_top::fallback',
            'walker'            => new WP_Bootstrap_Navwalker_top()
   ) );
        ?>
-
 </ul>
 </div>
-
-
-
   <?php
-
 }
 add_action('demetrios_custom_header', 'custom_header');
-
 
 function demetrios_side_menu (){ ?>
 <div id="slider" class="side-panel side-panel-right">
@@ -1426,7 +1413,7 @@ function woocommerce_template_loop_product_title_custom() {
 
   $url = get_permalink($product_id)
   ?>
-  <div class="d-flex justify-content-between align-items-center flex-nowrap product_archive_view_info">
+  <div class="d-flex justify-content-between flex-nowrap product_archive_view_info">
     <div class="py-2 pl-1"><?php the_title('<h4>', '</h4>'); ?></div>
     <div class="p-2"><a class="details" href="<?php echo $url; ?>" >Details</a></div>
   </div>
@@ -1927,7 +1914,6 @@ function init() {
 
   if ( is_product() ) {
 
-    // yipee, this works!
     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
   //  add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 20 );
@@ -1999,8 +1985,6 @@ function wishlist_custom_notices(){
 <?php
 }
 add_action('demetrios_wishlist_custom_notices', 'wishlist_custom_notices', 10, 5);
-
-
 
 function demetrios_wishlist_meta_custom() {
   ?>
