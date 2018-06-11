@@ -73,7 +73,7 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>Doors:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_doors', 'show_attributes_doors' );
+add_action( 'woocommerce_attribute', 'show_attributes_doors', 10 );
 
 function show_attributes_passengers() {
 global $product;
@@ -83,7 +83,7 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>passengers:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_passengers', 'show_attributes_passengers' );
+add_action( 'woocommerce_attribute', 'show_attributes_passengers', 20 );
 
 function show_attributes_luggage() {
 global $product;
@@ -93,7 +93,7 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>luggage:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_luggage', 'show_attributes_luggage' );
+add_action( 'woocommerce_attribute', 'show_attributes_luggage', 30 );
 
 function show_attributes_transmission() {
 global $product;
@@ -103,7 +103,7 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>transmission:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_tansmission', 'show_attributes_transmission' );
+add_action( 'woocommerce_attribute', 'show_attributes_transmission', 40 );
 
 function show_attributes_air_conditioning() {
 global $product;
@@ -113,7 +113,7 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>air condtitoning:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_air_conditioning', 'show_attributes_air_conditioning' );
+add_action( 'woocommerce_attribute', 'show_attributes_air_conditioning', 50 );
 
 function show_attributes_drive_wheel() {
 global $product;
@@ -123,51 +123,15 @@ $array = wc_get_product_terms( $product_id , 'pa_' . $attribute_slug, array( 'fi
 $text = array_shift( $array );
 echo '<div class="cars-slider_item-option car-option-' . $attribute_slug . '"><h6>Drive wheel:<span class="attribute">' . $text . '</span></h6></div>';
 }
-add_action( 'woocommerce_attribute_drive_wheel', 'show_attributes_drive_wheel' );
+add_action( 'woocommerce_attribute', 'show_attributes_drive_wheel', 60 );
 
 
 
-add_filter( 'woocommerce_add_cart_item_data', 'ps_empty_cart', 10,  3);
-
-function ps_empty_cart( $cart_item_data, $product_id, $variation_id ) {
-
-    global $woocommerce;
-    $woocommerce->cart->empty_cart();
-
-    // Do nothing with the data and return
-    return $cart_item_data;
-}
 
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5, 0) ;
 remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40) ;
 
 
-function woocommerce_template_loop_cart( $booking_id ) {
-  $product_id = get_post_meta( $booking_id, '_booking_product_id', true );
-  $product   = wc_get_product( $product_id );
-
-  if ( ! is_a( $product, 'WC_Product_Accommodation_Booking' ) ) {
-    return;
-  }
-
-    echo 'Test';
-    global $woocommerce;
-   $items = $woocommerce->cart->get_cart();
-
-       foreach($items as $item => $values) {
-           $_product =  wc_get_product( $values['data']->get_id());
-           echo "<b>".$_product->get_title().'</b>  <br> Quantity: '.$values['quantity'].'<br>';
-           $price = get_post_meta($values['product_id'] , '_price', true);
-           $check_in  = WC_Product_Accommodation_Booking::get_check_times( 'in' );
-           $start = get_post_meta( $booking_id, '_booking_start', true );
-       		$end   = get_post_meta( $booking_id, '_booking_end', true );
-           echo "  Price: ".$price."<br>";
-           echo "  Check on: ".$check_in."<br>";
-           echo "  Check out: ".$start."<br>";
-
-       }
-}
-add_action ('woocommerce_cart_front', 'woocommerce_template_loop_cart', 10) ;
 
 
 
@@ -194,24 +158,17 @@ function woocommerce_loop_item_image_open() {
  }
  add_action( 'woocommerce_before_booking_calendar', 'woocommerce_before_booking_calendar_open', 10 );
 
-
-
  function woocommerce_after_booking_calendar_close() {
      echo '</div>';
  }
  add_action( 'woocommerce_after_booking_calendar', 'woocommerce_after_booking_calendar_close', 40 );
 
-
 /**
  * The following hook will add a input field right before "add to cart button"
  * will be used for getting Your first name
  */
-
-
-
-
  function add_before_your_first_name_field() {
-   echo '<div class="col-12 p-0">';
+   echo '<div class="col-8 p-0">';
      echo '<fieldset class="second_step">';
      echo '<div class="container">';
      echo '<div class="row">';
@@ -219,8 +176,61 @@ function woocommerce_loop_item_image_open() {
  add_action( 'woocommerce_before_add_to_cart_button', 'add_before_your_first_name_field', 8 );
 
 
+  function pick_up_field() {
+?>
+
+  <div class="col-12">
+    <div class="row ">
+      <div class="col-8 pl-0">
+        <div class="input-group addon">
+          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-map-marker"></i> Pick-up</span>
+        <select class="form-control js-example-tags" style="width: 82%">
+          <option selected="selected">Santorini Airport</option>
+          <option>Santorini Port</option>
+
+        </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="input-group addon">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-clock-o"></i></span>
+        <select class="form-control select-time" style="width: 82%">
+<option value="12:00 am">12:00 am</option><option value="12:15 am">12:15 am</option><option value="12:30 am">12:30 am</option><option value="12:45 am">12:45 am</option><option value="1:00 am">1:00 am</option><option value="1:15 am">1:15 am</option><option value="1:30 am">1:30 am</option><option value="1:45 am">1:45 am</option><option value="2:00 am">2:00 am</option><option value="2:15 am">2:15 am</option><option value="2:30 am">2:30 am</option><option value="2:45 am">2:45 am</option><option value="3:00 am">3:00 am</option><option value="3:15 am">3:15 am</option><option value="3:30 am">3:30 am</option><option value="3:45 am">3:45 am</option><option value="4:00 am">4:00 am</option><option value="4:15 am">4:15 am</option><option value="4:30 am">4:30 am</option><option value="4:45 am">4:45 am</option><option value="5:00 am">5:00 am</option><option value="5:15 am">5:15 am</option><option value="5:30 am">5:30 am</option><option value="5:45 am">5:45 am</option><option value="6:00 am">6:00 am</option><option value="6:15 am">6:15 am</option><option value="6:30 am">6:30 am</option><option value="6:45 am">6:45 am</option><option value="7:00 am">7:00 am</option><option value="7:15 am">7:15 am</option><option value="7:30 am">7:30 am</option><option value="7:45 am">7:45 am</option><option value="8:00 am">8:00 am</option><option value="8:15 am">8:15 am</option><option value="8:30 am">8:30 am</option><option value="8:45 am">8:45 am</option><option value="9:00 am">9:00 am</option><option value="9:15 am">9:15 am</option><option value="9:30 am">9:30 am</option><option value="9:45 am">9:45 am</option><option value="10:00 am">10:00 am</option><option value="10:15 am">10:15 am</option><option value="10:30 am">10:30 am</option><option value="10:45 am">10:45 am</option><option value="11:00 am">11:00 am</option><option value="11:15 am">11:15 am</option><option value="11:30 am">11:30 am</option><option value="11:45 am">11:45 am</option><option value="12:00 pm" selected="selected">12:00 pm</option><option value="12:15 pm">12:15 pm</option><option value="12:30 pm">12:30 pm</option><option value="12:45 pm">12:45 pm</option><option value="1:00 pm">1:00 pm</option><option value="1:15 pm">1:15 pm</option><option value="1:30 pm">1:30 pm</option><option value="1:45 pm">1:45 pm</option><option value="2:00 pm">2:00 pm</option><option value="2:15 pm">2:15 pm</option><option value="2:30 pm">2:30 pm</option><option value="2:45 pm">2:45 pm</option><option value="3:00 pm">3:00 pm</option><option value="3:15 pm">3:15 pm</option><option value="3:30 pm">3:30 pm</option><option value="3:45 pm">3:45 pm</option><option value="4:00 pm">4:00 pm</option><option value="4:15 pm">4:15 pm</option><option value="4:30 pm">4:30 pm</option><option value="4:45 pm">4:45 pm</option><option value="5:00 pm">5:00 pm</option><option value="5:15 pm">5:15 pm</option><option value="5:30 pm">5:30 pm</option><option value="5:45 pm">5:45 pm</option><option value="6:00 pm">6:00 pm</option><option value="6:15 pm">6:15 pm</option><option value="6:30 pm">6:30 pm</option><option value="6:45 pm">6:45 pm</option><option value="7:00 pm">7:00 pm</option><option value="7:15 pm">7:15 pm</option><option value="7:30 pm">7:30 pm</option><option value="7:45 pm">7:45 pm</option><option value="8:00 pm">8:00 pm</option><option value="8:15 pm">8:15 pm</option><option value="8:30 pm">8:30 pm</option><option value="8:45 pm">8:45 pm</option><option value="9:00 pm">9:00 pm</option><option value="9:15 pm">9:15 pm</option><option value="9:30 pm">9:30 pm</option><option value="9:45 pm">9:45 pm</option><option value="10:00 pm">10:00 pm</option><option value="10:15 pm">10:15 pm</option><option value="10:30 pm">10:30 pm</option><option value="10:45 pm">10:45 pm</option><option value="11:00 pm">11:00 pm</option><option value="11:15 pm">11:15 pm</option><option value="11:30 pm">11:30 pm</option><option value="11:45 pm">11:45 pm</option>
+
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-8 pl-0">
+        <div class="input-group addon">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i> Drop-off</span>
+        <select class="form-control js-example-tags" style="width: 82%">
+          <option selected="selected">Santorini Airport</option>
+          <option>Santorini Port</option>
+
+        </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="input-group addon">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-clock-o"></i></span>
+        <select class="form-control select-time" style="width: 82%">
+<option value="12:00 am">12:00 am</option><option value="12:15 am">12:15 am</option><option value="12:30 am">12:30 am</option><option value="12:45 am">12:45 am</option><option value="1:00 am">1:00 am</option><option value="1:15 am">1:15 am</option><option value="1:30 am">1:30 am</option><option value="1:45 am">1:45 am</option><option value="2:00 am">2:00 am</option><option value="2:15 am">2:15 am</option><option value="2:30 am">2:30 am</option><option value="2:45 am">2:45 am</option><option value="3:00 am">3:00 am</option><option value="3:15 am">3:15 am</option><option value="3:30 am">3:30 am</option><option value="3:45 am">3:45 am</option><option value="4:00 am">4:00 am</option><option value="4:15 am">4:15 am</option><option value="4:30 am">4:30 am</option><option value="4:45 am">4:45 am</option><option value="5:00 am">5:00 am</option><option value="5:15 am">5:15 am</option><option value="5:30 am">5:30 am</option><option value="5:45 am">5:45 am</option><option value="6:00 am">6:00 am</option><option value="6:15 am">6:15 am</option><option value="6:30 am">6:30 am</option><option value="6:45 am">6:45 am</option><option value="7:00 am">7:00 am</option><option value="7:15 am">7:15 am</option><option value="7:30 am">7:30 am</option><option value="7:45 am">7:45 am</option><option value="8:00 am">8:00 am</option><option value="8:15 am">8:15 am</option><option value="8:30 am">8:30 am</option><option value="8:45 am">8:45 am</option><option value="9:00 am">9:00 am</option><option value="9:15 am">9:15 am</option><option value="9:30 am">9:30 am</option><option value="9:45 am">9:45 am</option><option value="10:00 am">10:00 am</option><option value="10:15 am">10:15 am</option><option value="10:30 am">10:30 am</option><option value="10:45 am">10:45 am</option><option value="11:00 am">11:00 am</option><option value="11:15 am">11:15 am</option><option value="11:30 am">11:30 am</option><option value="11:45 am">11:45 am</option><option value="12:00 pm" selected="selected">12:00 pm</option><option value="12:15 pm">12:15 pm</option><option value="12:30 pm">12:30 pm</option><option value="12:45 pm">12:45 pm</option><option value="1:00 pm">1:00 pm</option><option value="1:15 pm">1:15 pm</option><option value="1:30 pm">1:30 pm</option><option value="1:45 pm">1:45 pm</option><option value="2:00 pm">2:00 pm</option><option value="2:15 pm">2:15 pm</option><option value="2:30 pm">2:30 pm</option><option value="2:45 pm">2:45 pm</option><option value="3:00 pm">3:00 pm</option><option value="3:15 pm">3:15 pm</option><option value="3:30 pm">3:30 pm</option><option value="3:45 pm">3:45 pm</option><option value="4:00 pm">4:00 pm</option><option value="4:15 pm">4:15 pm</option><option value="4:30 pm">4:30 pm</option><option value="4:45 pm">4:45 pm</option><option value="5:00 pm">5:00 pm</option><option value="5:15 pm">5:15 pm</option><option value="5:30 pm">5:30 pm</option><option value="5:45 pm">5:45 pm</option><option value="6:00 pm">6:00 pm</option><option value="6:15 pm">6:15 pm</option><option value="6:30 pm">6:30 pm</option><option value="6:45 pm">6:45 pm</option><option value="7:00 pm">7:00 pm</option><option value="7:15 pm">7:15 pm</option><option value="7:30 pm">7:30 pm</option><option value="7:45 pm">7:45 pm</option><option value="8:00 pm">8:00 pm</option><option value="8:15 pm">8:15 pm</option><option value="8:30 pm">8:30 pm</option><option value="8:45 pm">8:45 pm</option><option value="9:00 pm">9:00 pm</option><option value="9:15 pm">9:15 pm</option><option value="9:30 pm">9:30 pm</option><option value="9:45 pm">9:45 pm</option><option value="10:00 pm">10:00 pm</option><option value="10:15 pm">10:15 pm</option><option value="10:30 pm">10:30 pm</option><option value="10:45 pm">10:45 pm</option><option value="11:00 pm">11:00 pm</option><option value="11:15 pm">11:15 pm</option><option value="11:30 pm">11:30 pm</option><option value="11:45 pm">11:45 pm</option>
+
+        </select>
+        </div>
+      </div>
+    </div>
+    <hr/>
+  </div>
 
 
+
+
+<?  }
+  add_action( 'woocommerce_before_add_to_cart_button', 'pick_up_field', 28 );
 
 
  function add_your_first_name_field() {
@@ -242,7 +252,6 @@ function woocommerce_loop_item_image_open() {
  }
  add_action( 'woocommerce_before_add_to_cart_button', 'add_your_last_name_field', 30 );
 
-
  function add_your_email_field() {
    echo '<div class="input-group col-lg-6 p-0"><div class="input-group addon">';
      echo '<span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>';
@@ -260,13 +269,11 @@ function woocommerce_loop_item_image_open() {
  add_action( 'woocommerce_before_add_to_cart_button', 'add_your_phone_field', 32 );
 
  function add_additional_info_field() {
-   echo '<div class="input-group col-lg-4 py-3">';
-   echo '<textarea name="pick-up" class="input-text form-control additional-info" data-require-pair="" id="order_comments" placeholder="Additional info" rows="5" cols="5"></textarea>';
+   echo '<div class="input-group col-lg-4 ml-0 pr-0">';
+   echo '<textarea name="pick-up" class="input-text form-control additional-info addon" data-require-pair="" id="order_comments" placeholder="Additional info" rows="5" cols="5"></textarea>';
    echo '</div>';
  }
  add_action( 'woocommerce_before_add_to_cart_button', 'add_additional_info_field', 33 );
-
-
 
  function add_after_your_first_name_field() {
    echo '</div>';
@@ -274,9 +281,6 @@ function woocommerce_loop_item_image_open() {
      echo '</fieldset>';
  }
  add_action( 'woocommerce_before_add_to_cart_button', 'add_after_your_first_name_field', 34 );
-
-
-
 
   function save_your_first_name_field( $cart_item_data, $product_id ) {
       if( isset( $_REQUEST['your-first-name'] ) ) {
@@ -407,23 +411,23 @@ function woocommerce_loop_item_image_open() {
  	//first check that woo exists to prevent fatal errors
  	if ( function_exists( 'is_woocommerce' ) ) {
  		//dequeue scripts and styles
- 		if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+ 		if ( ! is_cart() && ! is_checkout() ) {
  			wp_dequeue_style( 'woocommerce_frontend_styles' );
  			wp_dequeue_style( 'woocommerce_fancybox_styles' );
  			wp_dequeue_style( 'woocommerce_chosen_styles' );
  			wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
-    //  wp_dequeue_style( 'woocommerce-layout' );
-    //  wp_dequeue_style( 'woocommerce-smallscreen' );
-      //wp_dequeue_style('gforms_css');
-      //wp_dequeue_script( 'datepicker' );
+     wp_dequeue_style( 'woocommerce-layout' );
+     wp_dequeue_style( 'woocommerce-smallscreen' );
+    wp_dequeue_style('gforms_css');
+    //  wp_dequeue_script( 'datepicker' );
  			wp_dequeue_script( 'wc_price_slider' );
  			wp_dequeue_script( 'wc-single-product' );
- 			wp_dequeue_script( 'wc-add-to-cart' );
- 			wp_dequeue_script( 'wc-cart-fragments' );
+ 	//		wp_dequeue_script( 'wc-add-to-cart' );
+ 		//	wp_dequeue_script( 'wc-cart-fragments' );
  			wp_dequeue_script( 'wc-checkout' );
- 			wp_dequeue_script( 'wc-add-to-cart-variation' );
+ 		//	wp_dequeue_script( 'wc-add-to-cart-variation' );
  			wp_dequeue_script( 'wc-single-product' );
- 			wp_dequeue_script( 'wc-cart' );
+ 		//	wp_dequeue_script( 'wc-cart' );
  			wp_dequeue_script( 'wc-chosen' );
  			wp_dequeue_script( 'woocommerce' );
  			wp_dequeue_script( 'prettyPhoto' );
@@ -431,15 +435,13 @@ function woocommerce_loop_item_image_open() {
  			wp_dequeue_script( 'jquery-blockui' );
  			wp_dequeue_script( 'jquery-placeholder' );
  			wp_dequeue_script( 'fancybox' );
- 			//wp_dequeue_script( 'jqueryui' );
+      	wp_dequeue_script( 'photoswipe' );
+ 	//		wp_dequeue_script( 'jqueryui' );
 
  		}
  	}
 
  }
-
-
-
  // Hook in specified cart item data
  add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 
@@ -456,7 +458,6 @@ $stored_value = "something pulled from the DB";
    unset($fields['billing']['billing_city']);
  $fields['order']['order_comments']['placeholder'] = 'My new placeholder';
 
-
      return $fields;
  }
  add_filter('woocommerce_email_order_meta_keys', 'my_custom_order_meta_keys');
@@ -465,7 +466,6 @@ $stored_value = "something pulled from the DB";
       $keys[] = 'Your Phone'; // This will look for a custom field called 'Tracking Code' and add it to emails
       return $keys;
  }
-
 
  //*Add custom redirection
 add_action( 'template_redirect', 'wc_custom_redirect_after_purchase' );
@@ -477,138 +477,171 @@ function wc_custom_redirect_after_purchase() {
  }
 }
 
-
 add_action('wp_footer', 'my_custom_wc_button_script');
 function my_custom_wc_button_script() {
 	?>
-	<script>
-		jQuery(document).ready(function($) {
-			var ajaxurl = "<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>"; // get the url we use to submit AJAX
-			$( document.body).on('click', '.wc-bookings-date-picker-date-fields', function(e) { // i made this delegated, rather than a traditional click handler, so you could add additional buttons via AJAx, if you ever wanted to
-				e.preventDefault(); // stop the click from doing normal button things
-				var $this = $(this);
-				if( $this.is(':disabled') ) { // don't do anything if the button is disabled (item is in cart)... this could be changed to toggle whether you are in cart or not
-					return;
-				}
-				var id = $(this).data("product-id"); // get the product ID from the button
-				var data = { // prep our AJAX request
-					action     : 'my_custom_add_to_cart', // This is the AJAX function we define in PHP below
-					product_id : id
-				};
-				$.post(ajaxurl, data, function(response) {
-					if( response.success ) {
-						// we added to cart so change the message, and make sure no one can add again
-						$this.text("added to cart");
-						$this.attr('disabled', 'disabled');
-						// make woocommerce update cart counts in the menu widget
-						$( document.body ).trigger( 'wc_fragment_refresh' );
-					}
-				}, 'json');
-			})
-		});
-	</script>
+
 	<?php
 }
 // here's where we define the ajax processing functions.. the part after wp_ajax, and wp_ajax_nopriv has to match the action we used in our javascript
 add_action('wp_ajax_my_custom_add_to_cart', "my_custom_add_to_cart");
 add_action('wp_ajax_nopriv_my_custom_add_to_cart', "my_custom_add_to_cart");
 
-function my_custom_add_to_cart() {
-	// just setting up data to return... we override this as we go
-	$retval = array(
-		'success' => false,
-		'message' => ""
-	);
-
-	if( !function_exists( "WC" ) ) {
-		// check if woocommerce is installed
-		$retval['message'] = "woocommerce not installed";
-	} elseif( empty( $_POST['product_id'] ) ) {
-		// check product id was sent
-		$retval['message'] = "no product id provided";
-	} else {
-		$product_id = $_POST['product_id'];
-		// my_custom_cart_contains is defined below.. checks if the cart contains a product
-		if( my_custom_cart_contains( $product_id ) ) {
-			// make sure we can't add a product twice
-			$retval['message'] = "product already in cart";
-		} else {
-			// we are good to add to cart
-			$cart = WC()->cart;
-			//add_to_cart returns an id, but we only need to make sure it doesn't return false... hence casting to a boolean
-			$retval['success'] = (bool) $cart->add_to_cart( $product_id );
-			if( !$retval['success'] ) {
-				// the add to cart failed
-				$retval['message'] = "product could not be added to cart";
-			} else {
-				// the add succeeded
-				$retval['message'] = "product added to cart";
-			}
-		}
-	}
-	// we send the data back to javascript by outputting it as JSON, and exiting.
-	echo json_encode( $retval );
-	wp_die();
-}
-
-// check if cart contains product
-function my_custom_cart_contains( $product_id ) {
-	$cart = WC()->cart;
-	$cart_items = $cart->get_cart();
-	if( $cart_items ) {
-		foreach( $cart_items as $item ) {
-			$product = $item['data'];
-			if( $product_id == $product->get_id() ) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-// before add to cart, only allow 1 item in a cart
-add_filter( 'woocommerce_add_to_cart_validation', 'woo_custom_add_to_cart_before' );
-
-function woo_custom_add_to_cart_before( $cart_item_data ) {
-
-    global $woocommerce;
-    $woocommerce->cart->empty_cart();
-
-    // Do nothing with the data and return
-    return true;
-}
-
 
 /**
- * Add product to cart on page load
+ * When an item is added to the cart, remove other products
  */
- add_action( 'template_redirect', 'bbloomer_add_product_to_cart' );
+function so_27030769_maybe_empty_cart( $valid, $product_id, $quantity ) {
 
- function bbloomer_add_product_to_cart() {
+    if( ! empty ( WC()->cart->get_cart() ) && $valid ){
+        WC()->cart->empty_cart();
+        wc_add_notice( 'Whoa hold up. You can only have 1 item in your cart', 'error' );
+    }
 
-                 // select ID
-                 $product_id = 851;
+    return $valid;
 
-                 //check if product already in cart
-         if ( WC()->cart->get_cart_contents_count() == 0 ) {
-
-                         // if no products in cart, add it
-             WC()->cart->add_to_cart( $product_id );
-
-                 }
- }
-
- function single_post_insert() {
-        $new_post = array(
-        'post_title'    => $_POST['title'],
-        'post_content'  => $_POST['content'],
-        'post_status'   => 'publish',
-        'post_type'     => 'post'
-        );
-        //insert the the post into database by passing $new_post to wp_insert_post
-        //store our post ID in a variable $pid
-        $pid = wp_insert_post($new_post);
-    echo json_encode(array('flag'=>'1'));
-  die;
 }
-add_action( 'wp_ajax_single_post', 'single_post_insert' );    // If called from admin panel
-add_action( 'wp_ajax_nopriv_single_post', 'single_post_insert' );
+add_filter( 'woocommerce_add_to_cart_validation', 'so_27030769_maybe_empty_cart', 10, 3 );
+
+
+// Skip the cart and redirect to check out url when clicking on Add to cart
+add_filter ( 'add_to_cart_redirect', 'redirect_to_checkout' );
+function redirect_to_checkout() {
+
+	global $woocommerce;
+	// Remove the default `Added to cart` message
+	wc_clear_notices();
+	return $woocommerce->cart->get_checkout_url();
+
+}
+// Global redirect to check out when hitting cart page
+add_action( 'template_redirect', 'redirect_to_checkout_if_cart' );
+function redirect_to_checkout_if_cart() {
+
+	if ( !is_cart() ) return;
+	global $woocommerce;
+    // Redirect to check out url
+	wp_redirect( $woocommerce->cart->get_checkout_url(), '301' );
+	exit;
+
+}
+// Empty cart each time you click on add cart to avoid multiple element selected
+add_action( 'woocommerce_add_cart_item_data', 'clear_cart', 0 );
+function clear_cart () {
+	global $woocommerce;
+	$woocommerce->cart->empty_cart();
+}
+// Edit default add_to_cart button text
+add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' );
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'custom_cart_button_text' );
+function custom_cart_button_text() {
+	return __( 'Buy', 'woocommerce' );
+}
+// Unset all options related to the cart
+update_option( 'woocommerce_cart_redirect_after_add', 'no' );
+update_option( 'woocommerce_enable_ajax_add_to_cart', 'no' );
+
+
+
+
+
+
+function product_carousel() {
+  global $product;
+  $number = 1;
+  ?>
+
+  <div id="main-slider" class="carousel slide mt-4" data-ride="carousel" data-interval="false">
+
+              <?php $args = array(
+                 'posts_per_page' => 5,
+                 'post_type' => 'product'
+              );
+              $slider = new WP_Query($args);
+              if($slider->have_posts()):
+              $count = $slider->found_posts;
+
+              ?>
+              <!--   <ol class="carousel-indicators">
+                    <?php for($i = 0; $i < $count ;  $i++) { ?>
+                           <li data-target="#main-slider" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0) ? 'active' : ''?>"></li>
+                     <?php } ?>
+                 </ol> .carousel-indicators-->
+
+                 <div class="carousel-inner" role="listbox">
+                    <?php $i = 0; while($slider->have_posts()): $slider->the_post();
+                    $title = get_the_title();
+                  //  $price = get_post_meta( get_the_ID(), '_regular_price', true);
+                    ?>
+                        <div class="carousel-item <?php echo ($i == 0) ? 'active' : ''?>">
+
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-12 p-0">
+
+                              <div class="d-flex flex-wrap justify-content-between align-content-center">
+                                <div class="col-12 col-lg-2 p-2">
+                                  <div class="d-flex flex-row flex-wrap align-items-center">
+                                    <div class="col-8 col-lg-12 px-2"><h2><?php echo $title; ?></h2></div>
+                                  </hr>
+                                    <div class="col-4 col-lg-12 px-2 mx-auto"><?php wc_get_template( 'loop/price.php' ); ?> </div>
+                                    <div class="col-12 p-2">
+                                      <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Book Now!
+                                      </a></div>
+                                  </div>
+
+                                </div>
+                                <div class="col-12 col-lg-8 p-2 cars" data-href="<?php echo get_permalink(); ?>">
+                                  <?php the_post_thumbnail( 'slider', array(
+                                                                          'class' => 'mx-auto d-block img-fluid',
+                                                                          'alt' => get_the_title() ) ) ; ?>
+                                </div>
+                                <div class="col-12 col-lg-2 p-2">
+                                  <?php do_action ( 'woocommerce_attribute' );  ?>
+                                </div>
+                                <div class="col-12 col-lg-8 p-2">
+
+                                </div>
+                                </div>
+                              </div>
+                              </div>
+                              </div>
+
+
+                                <div class="row">
+                                  <div class="col-12 collapse" id="collapseExample<?php echo $i; ?>">
+                              <?php echo wc_get_template_part( 'content', 'single-car' ); ?>
+                              </div>
+                              </div>
+
+
+
+                        </div><!--.carousel-item-->
+                     <?php $i++; endwhile; ?>
+                 </div> <!--.carouse-inner-->
+
+
+                 <a href="#main-slider" class="carousel-control-prev" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                 </a>
+                 <a href="#main-slider" class="carousel-control-next" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                 </a>
+
+              <?php endif;  wp_reset_postdata(); ?>
+           </div>
+<?
+}
+add_action('carhub_product_carousel', 'product_carousel', 10);
+
+function product_form() {
+  ?>
+
+<?
+}
+add_action('carhub_product_carousel', 'product_form', 20);
+
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);

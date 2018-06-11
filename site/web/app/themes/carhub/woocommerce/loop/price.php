@@ -24,5 +24,11 @@ global $product;
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) : ?>
-	<span class="price"><?php echo $price_html; ?></span>
+	<div class="d-flex flex-wrap preprice">
+  <div class="col-12 p-0">From: </div>
+	<div class="col-12 p-0"><?php echo $price_html; ?></div>
+	<div class="col-12 p-0"> /Day</div>
+
+</div>
+
 <?php endif; ?>

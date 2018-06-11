@@ -10,12 +10,11 @@
     "bootstrap": "^4.0.0",
     "bootstrap-align": "^0.1.1",
     "gsap": "^1.20.3",
-    "moment": "^2.19.2",
+    "components-font-awesome": "^4.7.0",
     "select2": "^4.0.5",
-    "flatpickr": "flatpickr-calendar#^4.1.4",
-    "components-font-awesome": "^4.7.0"
+    "select2-bootstrap4-theme": "^2.0.0"
   },
-    "overrides": {
+  "overrides": {
     "bootstrap": {
       "main": [
         "./scss/bootstrap.scss",
