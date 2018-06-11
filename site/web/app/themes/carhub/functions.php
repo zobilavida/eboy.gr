@@ -168,7 +168,7 @@ function woocommerce_loop_item_image_open() {
  * will be used for getting Your first name
  */
  function add_before_your_first_name_field() {
-   echo '<div class="col-8 p-0">';
+   echo '<div class="col-lg-8 col-12 p-0">';
      echo '<fieldset class="second_step">';
      echo '<div class="container">';
      echo '<div class="row">';
@@ -181,17 +181,17 @@ function woocommerce_loop_item_image_open() {
 
   <div class="col-12">
     <div class="row ">
-      <div class="col-8 pl-0">
+      <div class="col-lg-8 col-12 pl-0">
         <div class="input-group addon">
           <span class="input-group-addon" id="basic-addon2"><i class="fa fa-map-marker"></i> Pick-up</span>
-        <select class="form-control js-example-tags" style="width: 82%">
+        <select class="form-control js-example-tags" style="width: 82%;">
           <option selected="selected">Santorini Airport</option>
           <option>Santorini Port</option>
 
         </select>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4 col-12">
         <div class="input-group addon">
           <span class="input-group-addon" id="basic-addon1"><i class="fa fa-clock-o"></i></span>
         <select class="form-control select-time" style="width: 82%">
@@ -203,7 +203,7 @@ function woocommerce_loop_item_image_open() {
     </div>
 
     <div class="row ">
-      <div class="col-8 pl-0">
+      <div class="col-lg-8 col-12 pl-0">
         <div class="input-group addon">
           <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i> Drop-off</span>
         <select class="form-control js-example-tags" style="width: 82%">
@@ -213,7 +213,7 @@ function woocommerce_loop_item_image_open() {
         </select>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4 col-12">
         <div class="input-group addon">
           <span class="input-group-addon" id="basic-addon1"><i class="fa fa-clock-o"></i></span>
         <select class="form-control select-time" style="width: 82%">
@@ -597,7 +597,7 @@ function product_carousel() {
                                                                           'class' => 'mx-auto d-block img-fluid',
                                                                           'alt' => get_the_title() ) ) ; ?>
                                 </div>
-                                <div class="col-12 col-lg-2 p-2">
+                                <div class="attributes col-12 col-lg-2 p-2">
                                   <?php do_action ( 'woocommerce_attribute' );  ?>
                                 </div>
                                 <div class="col-12 col-lg-8 p-2">
