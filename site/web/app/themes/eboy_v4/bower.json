@@ -1,0 +1,28 @@
+{
+  "name": "sage",
+  "homepage": "https://roots.io/sage/",
+  "authors": [
+    "Ben Word <ben@benword.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "isotope": "^3.0.4",
+    "imagesloaded": "^4.1.4"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./scss/bootstrap.scss",
+        "./dist/js/bootstrap.bundle.js"
+      ]
+    },
+    "isotope": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
+    }
+  }
+}
