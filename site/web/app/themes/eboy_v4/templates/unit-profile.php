@@ -65,7 +65,7 @@
               <label for="user_comment" class="p-4">Message</label>
               <textarea id="user_comment" name="comment" class="form-control form-control-lg p-4"></textarea>
               <button type="button" class="btn btn-primary btn-lg btn-block custom-btn contact_btn" disabled>Send Message</button>
-
+              <button>Submit</button>
             </div>
 
           </div>
