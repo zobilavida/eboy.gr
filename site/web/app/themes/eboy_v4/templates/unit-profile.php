@@ -39,7 +39,7 @@
         <button type="button" class="btn btn-secondary custom-btn btn-lg btn-block">Download CV</button>
         </div>
         <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="contactModalLabel">Modal title</h5>
@@ -48,13 +48,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <?php gravity_form_enqueue_scripts( 1, true ); ?>
-        <?php gravity_form(1, false, false, false, '', true, 12); ?>
+        <form action="javascript:void(null);" method="post" id="form_contact">
+        	<input type="text" id="user_name" name="name">
+        	<input type="email" id="user_email" name="email">
+        	<input type="tel" id="user_phone" name="phone">
+        	<textarea id="user_comment" name="comment"></textarea>
+        	<button>Submit</button>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
     </div>
   </div>
 </div>
