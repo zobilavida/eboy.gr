@@ -229,13 +229,7 @@ function the_breadcrumb() {
 	echo '</ul>';
 }
 
-// filter the Gravity Forms button type
-add_filter("gform_submit_button_1", "form_submit_button", 10, 2);
-function form_submit_button($button, $form){
-return "<button class='btn btn-primary custom-btn btn-lg btn-block' id='gform_submit_button_{$form["id"]}'><span><i class='fa fa-share fa-2x'></i> Send </span></button>";
-}
 
-add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
 
 
 add_filter( 'wp_mail_from_name', 'my_mail_from_name' );
@@ -245,7 +239,7 @@ function my_mail_from_name( $name ) {
 
 add_filter( 'wp_mail_from', 'my_mail_from' );
 function my_mail_from( $email ) {
-    return "your@email.com";
+    return "giannisduke@gmail.com";
 }
 
 // AJAX send contact form
@@ -255,10 +249,10 @@ function contacts_form()
 
     $name = trim(htmlspecialchars($_POST['name']));
     $mail = trim(htmlspecialchars($_POST['email']));
-    $phone = trim(htmlspecialchars($_POST['phone']));
+  //  $phone = trim(htmlspecialchars($_POST['phone']));
     $comment = trim(htmlspecialchars($_POST['comment']));
 
-    $mailTo = 'youremail@mail.com';
+    $mailTo = 'giannisduke@gmail.com';
     //$mailTo = get_field('email', 'option');
 
     $textMessage = "<table>
