@@ -39,21 +39,37 @@
         <button type="button" class="btn btn-secondary custom-btn btn-lg btn-block">Download CV</button>
         </div>
         <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="contactModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+
       <div class="modal-body">
+
         <form action="javascript:void(null);" method="post" id="form_contact">
-        	<input type="text" id="user_name" name="name">
-        	<input type="email" id="user_email" name="email">
-        	<input type="tel" id="user_phone" name="phone">
-        	<textarea id="user_comment" name="comment"></textarea>
-        	<button>Submit</button>
+          <div class="d-flex flex-row">
+
+
+            <div class="py-5 px-5 col-5 test">
+              <h1 class="pb-5">Contact Me<span class="dot p-1">.</span></h1>
+              <label for="user_name">Name</label>
+              <input type="text" id="user_name" name="name" class="form-control form-control-lg mb-4">
+              <label for="user_email">Email</label>
+              <input type="email" id="user_email" name="email" class="form-control form-control-lg mb-4">
+              <label for="customCheck1">Verification</label>
+              <div class="custom-control custom-checkbox">
+
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">I' m not a robot</label>
+              </div>
+            	</div>
+            <div class="mt-5 px-0 col-7 message-area">
+              <label for="user_comment" class="p-4">Message</label>
+              <textarea id="user_comment" name="comment" class="form-control form-control-lg p-4"></textarea>
+              <button type="button" class="btn btn-primary btn-lg btn-block custom-btn contact_btn" disabled>Submit</button>
+
+            </div>
+
+          </div>
+
         </form>
       </div>
 
