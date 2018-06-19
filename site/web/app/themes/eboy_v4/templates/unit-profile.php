@@ -44,7 +44,7 @@
 
       <div class="modal-body">
 
-        <form action="javascript:void(null);" method="post" id="form_contact">
+        <form class="wordpress-ajax-form" method="post" action="<?php echo admin_url('admin-ajax.php'); ?>">
           <div class="d-flex flex-row">
 
 
@@ -54,6 +54,7 @@
               <input type="text" id="user_name" name="name" class="form-control form-control-lg mb-4">
               <label for="user_email">Email</label>
               <input type="email" id="user_email" name="email" class="form-control form-control-lg mb-4">
+              <input type="hidden" name="action" value="custom_action">
               <label for="customCheck1">Verification</label>
               <div class="custom-control custom-checkbox">
 
@@ -65,12 +66,14 @@
               <label for="user_comment" class="p-4">Message</label>
               <textarea id="user_comment" name="comment" class="form-control form-control-lg p-4"></textarea>
               <button type="button" class="btn btn-primary btn-lg btn-block custom-btn contact_btn" disabled>Submit</button>
-              <button>Submit</button>
+            <button>Send</button>
             </div>
 
           </div>
-
         </form>
+
+
+
       </div>
 
     </div>

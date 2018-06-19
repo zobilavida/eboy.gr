@@ -229,61 +229,26 @@ function the_breadcrumb() {
 	echo '</ul>';
 }
 
+add_action( 'wp_ajax_custom_action', 'custom_action' );
+add_action( 'wp_ajax_nopriv_custom_action', 'custom_action' );
+function custom_action() {
+    // A default response holder, which will have data for sending back to our js file
+    $response = array(
+    	'error' => false,
+    );
 
+    // Example for creating an response with error information, to know in our js file
+    // about the error and behave accordingly, like adding error message to the form with JS
+    if (trim($_POST['email']) == '') {
+    	$response['error'] = true;
+    	$response['error_message'] = 'Email is required';
 
+    	// Exit here, for not processing further because of the error
+    	exit(json_encode($response));
+    }
 
-add_filter( 'wp_mail_from_name', 'my_mail_from_name' );
-function my_mail_from_name( $name ) {
-    return "Site name";
+    // ... Do some code here, like storing inputs to the database, but don't forget to properly sanitize input data!
+
+    // Don't forget to exit at the end of processing
+    exit(json_encode($response));
 }
-
-add_filter( 'wp_mail_from', 'my_mail_from' );
-function my_mail_from( $email ) {
-    return "giannisduke@gmail.com";
-}
-
-// AJAX send contact form
-function contacts_form()
-{
-    $headers  = 'Content-type: text/html; charset=utf-8';
-
-    $name = trim(htmlspecialchars($_POST['name']));
-    $mail = trim(htmlspecialchars($_POST['email']));
-  //  $phone = trim(htmlspecialchars($_POST['phone']));
-    $comment = trim(htmlspecialchars($_POST['comment']));
-
-    $mailTo = 'giannisduke@gmail.com';
-    //$mailTo = get_field('email', 'option');
-
-    $textMessage = "<table>
-                        <tr>
-                            <td style='padding: 5px 0px;'><b>Name:</b></td>
-                            <td style='padding: 5px 0px; padding-left: 20px;'>" . $name . "</td>
-                        </tr>";
-    if(!empty($mail)) {
-        $textMessage .= "<tr>
-                            <td style='padding: 5px 0px;'><b>E-mail:</b></td>
-                            <td style='padding: 5px 0px; padding-left: 20px;'>" . $mail . "</td>
-                        </tr>";
-    }
-    if(!empty($phone)) {
-        $textMessage .= "<tr>
-                            <td style='padding: 5px 0px;'><b>Phone:</b></td>
-                            <td style='padding: 5px 0px; padding-left: 20px;'>" . $phone . "</td>
-                        </tr>";
-    }
-    if(!empty($comment)) {
-        $textMessage .= "<tr>
-                            <td style='padding: 5px 0px;'><b>Comment:</b></td>
-                            <td style='padding: 5px 0px; padding-left: 20px;'>" . $comment ."</td>
-                        </tr>
-                    </table>";
-    }
-    if(!empty($name) || !empty($mail) || !empty($phone)) {
-        wp_mail($mailTo, '|Your Site', $textMessage, $headers);
-    }
-    wp_die();
-}
-
-add_action('wp_ajax_contacts_form', 'contacts_form');
-add_action('wp_ajax_nopriv_contacts_form', 'contacts_form');
