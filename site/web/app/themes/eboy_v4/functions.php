@@ -229,26 +229,4 @@ function the_breadcrumb() {
 	echo '</ul>';
 }
 
-add_action( 'wp_ajax_custom_action', 'custom_action' );
-add_action( 'wp_ajax_nopriv_custom_action', 'custom_action' );
-function custom_action() {
-    // A default response holder, which will have data for sending back to our js file
-    $response = array(
-    	'error' => false,
-    );
-
-    // Example for creating an response with error information, to know in our js file
-    // about the error and behave accordingly, like adding error message to the form with JS
-    if (trim($_POST['email']) == '') {
-    	$response['error'] = true;
-    	$response['error_message'] = 'Email is required';
-
-    	// Exit here, for not processing further because of the error
-    	exit(json_encode($response));
-    }
-
-    // ... Do some code here, like storing inputs to the database, but don't forget to properly sanitize input data!
-
-    // Don't forget to exit at the end of processing
-    exit(json_encode($response));
-}
+add_filter( 'wpcf7_autop_or_not', '__return_false' );

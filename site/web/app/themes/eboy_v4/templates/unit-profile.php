@@ -43,35 +43,15 @@
     <div class="modal-content">
 
       <div class="modal-body">
+        <?php
+if (function_exists('wpcf7')) {
+  echo do_shortcode( '[contact-form-7 id="413" title="Contact form 1"]' );
+  } else {
+    echo "<p class='title'>Please install <a href='http://wordpress.org/plugins/contact-form-7/' rel='nofollow'>Contact Form 7</a> plugin and build some contact form. Then use your shortcode on the contact page.</p>";
+  }
 
-        <form class="wordpress-ajax-form" method="post" action="<?php echo admin_url('admin-ajax.php'); ?>">
-          <div class="d-flex flex-row">
 
-
-            <div class="py-5 px-5 col-5 test">
-              <h1 class="pb-5">Contact Me<span class="dot p-1">.</span></h1>
-              <label for="user_name">Name</label>
-              <input type="text" id="user_name" name="name" class="form-control form-control-lg mb-4">
-              <label for="user_email">Email</label>
-              <input type="email" id="user_email" name="email" class="form-control form-control-lg mb-4">
-              <input type="hidden" name="action" value="custom_action">
-              <label for="customCheck1">Verification</label>
-              <div class="custom-control custom-checkbox">
-
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">I' m not a robot</label>
-              </div>
-            	</div>
-            <div class="mt-5 px-0 col-7 message-area">
-              <label for="user_comment" class="p-4">Message</label>
-              <textarea id="user_comment" name="comment" class="form-control form-control-lg p-4"></textarea>
-              <button type="button" class="btn btn-primary btn-lg btn-block custom-btn contact_btn" disabled>Submit</button>
-            <button>Send</button>
-            </div>
-
-          </div>
-        </form>
-
+?>
 
 
       </div>

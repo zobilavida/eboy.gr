@@ -28,9 +28,9 @@ the_excerpt();
 					<div class="p-2">
 						<?php if ( has_post_thumbnail() ) {
 			        $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'large' );
-			        echo '<a href="'.get_permalink( $post->ID ).'" >';
+			      //  echo '<a href="'.get_permalink( $post->ID ).'" >';
 			         echo '<img width="100%" src="' . $image_src_thumbnail[0] . '" alt="eboy">';
-			         echo '</a>';
+			      //   echo '</a>';
 			       }
 			      ?>
 					</div>
