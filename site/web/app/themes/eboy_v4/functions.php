@@ -189,7 +189,7 @@ add_action ('eboy_woocommerce_current_tags_thumb', 'eboy_woocommerce_current_tag
 
 function eboy_portfolio_demo() { ?>
 <?php if( get_field('demo') ): ?>
-  <a href="<?php the_field('demo'); ?>" class="btn-info btn-sm active" role="button" aria-pressed="true">Demo</a>
+  <a href="<?php the_field('demo'); ?>" target="_blank" class="btn-info btn-sm active" role="button" aria-pressed="true">Demo</a>
 
 
 <?php endif; ?>

@@ -56,3 +56,32 @@ function asset_path($filename) {
     return $dist_path . $directory . $file;
   }
 }
+
+/**
+ * Google Analytics snippet from HTML5 Boilerplate
+ *
+ * Cookie domain is 'auto' configured. See: http://goo.gl/VUCHKM
+ */
+function google_analytics() {
+  ?>
+  <script>
+    <?php if (WP_ENV === 'production' && !current_user_can('manage_options')) : ?>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    <?php else : ?>
+      function ga() {
+        if (window.console) {
+          console.log('Google Analytics: ' + [].slice.call(arguments));
+        }
+      }
+    <?php endif; ?>
+    ga('create','<?= 'UA-2151567-30'; ?>','auto');ga('send','pageview');
+  </script>
+  <?php
+}
+if ('UA-2151567-30') {
+  add_action('wp_footer', __NAMESPACE__ . '\\google_analytics', 20);
+}
