@@ -1,26 +1,7 @@
 <section class="portfolio">
 <div class="container-fluid">
 
-  <div class="d-flex justify-content-between">
-  <div class="p-2">Flex item 1</div>
-  <div class="p-2">
-    <div class="cc-selector px-2 py-3">
-      <div class="container p-0">
-        <div class="row h-100">
-          <div class="col-6">
-         <input id="view_2" type="radio" name="credit-card" value="small" />
-         <label class="drinkcard-cc view_2" for="view_2"></label>
-       </div>
-       <div class="col-6">
-         <input id="view_4" type="radio" name="credit-card" value="large" />
-         <label class="drinkcard-cc view_4"for="view_4"></label>
-         </div>
-         </div>
-        </div>
-     </div>
-  </div>
 
-</div>
     <!-- add extra container element for Masonry -->
     <div class="grid ">
 
