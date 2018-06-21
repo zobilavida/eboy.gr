@@ -31,7 +31,7 @@ class Microdot_Walker_Nav_Menu extends Walker_Nav_Menu {
         $icon = get_template_directory_uri();
 
       //  $output .= '<div'. $active_class . '><a href="' . $url . '">' . $item->title . '</a>';
-				$output .= '<a href="' . $url . '" class="btn btn-primary btn2'. $active_class . '" role="button" >  ' ;
+				$output .= '<a href="' . $url . '" class="btn btn-primary btn2 mx-3'. $active_class . '" role="button" >  ' ;
       //  $output .= '<img class="ico" src="';
       //  $output .=  $icon;
 //$output .= '/dist/images/ico_';

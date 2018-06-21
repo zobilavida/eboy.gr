@@ -191,42 +191,6 @@
 
         // ScrollMagic
 
-        var scale_tween = TweenMax.to('.logo', 0.5, {
-          scale:0.75,
-          rotation:360,
-          transformOrigin:"50% 50%",
-          ease: Linear.easeNone
-        });
-
-        var background_white_tween = TweenMax.to('.navbar-custom ', 0.25, {backgroundColor:"#fff", opacity: 0.95, ease:Linear.easeNone});
-
-        var filters_move = TweenMax.to('.filter_index ', 0.25, {opacity: 0, ease:Linear.easeNone});
-
-        // init ScrollMagic Controller
-        var controller = new ScrollMagic.Controller();
-        // Scale Scene
-        var scale_scene = new ScrollMagic.Scene({
-          triggerElement: '.filters'
-        })
-        .setTween(scale_tween);
-
-        // background Scene
-        var background_scene = new ScrollMagic.Scene({
-          triggerElement: '.filters', triggerHook: 0.042
-        })
-        .setTween(background_white_tween);
-
-        var scene_filters = new ScrollMagic.Scene({triggerElement: ".filters", triggerHook: 0.012})
-        .setPin(".filters", {pushFollowers: false})
-        //.addIndicators({name: "1 (duration: 2000)"}) // add indicators (requires plugin)
-        .setTween(filters_move);
-
-        controller.addScene([
-        scale_scene,
-        background_scene,
-        scene_filters
-        ]);
-
         // Button Hover
         var div1 = $(".btn1"),
             tn1 = TweenMax.to(div1, 0.25, {scale:1.25, repeat:0, yoyo:false, ease:Linear.easeNone, paused:true});

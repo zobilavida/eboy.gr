@@ -1,13 +1,13 @@
 <section class="portfolio">
-<div class="container-fluid">
-  <div class="row py-5">
-    <div class="col-12">
+<div class="container-fluid p-0">
+  <div class="row p-5">
+    <div class="col-12 p-0">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group" id="box2">
             <ul id="menu2">
                 <?php $filter_icon		= '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
 
-              <li class="active pl-0 filter_index" data-filter="*"><a href="javascript:;"><?php echo $filter_icon; ?></a></li>
+              <li class="active pl-0 filter_index" data-filter="*"><a href="javascript:;">All</a></li>
   <?php
   $tags = get_terms( 'product_tag', array(
     'smallest' => 1, // size of least used tag
@@ -40,7 +40,7 @@
 
       <?php
 
-      $query = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'posts_per_page' => -1, 'facetwp' => true,) );
+      $query = new WP_Query( array( 'post_type' => 'product', 'order' => 'DESC', 'posts_per_page' => -1, 'facetwp' => true,) );
 
 
       if ( $query->have_posts() ) : ?>
@@ -48,7 +48,7 @@
       <div class="product grid-item card col-6 col-md-4 col-lg-4 mb-3 <?php do_action( 'eboy_woocommerce_current_tags_thumb' ); ?>" data-href="<?php echo get_permalink( $post->ID ); ?>" >
         <div class="grid-item-content">
       <?php if ( has_post_thumbnail() ) {
-        $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' );
+        $image_src_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(),'large' );
         echo '<a href="'.get_permalink( $post->ID ).'" >';
          echo '<img width="100%" src="' . $image_src_thumbnail[0] . '" alt="eboy">';
          echo '</a>';
