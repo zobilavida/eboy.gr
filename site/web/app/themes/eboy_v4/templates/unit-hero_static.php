@@ -1,4 +1,4 @@
-<section id="top" class="h-50 test">
+<section id="top" class="h-100">
 
 
     <div class="d-flex flex-row flex-wrap align-items-center h-100">

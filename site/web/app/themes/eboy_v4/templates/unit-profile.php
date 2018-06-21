@@ -2,7 +2,7 @@
 
 
     <div class="d-flex flex-row flex-wrap align-items-center h-100 test intro">
-        <div class="col-8 p-0 test">
+        <div class="col-md-8 p-0 test">
           <div class="d-flex flex-row flex-wrap align-items-center h-100 test">
             <div class="col-12 px-0 pb-5 test">
           <?= get_post_field('post_content', $post->ID) ?>
@@ -41,7 +41,15 @@
         <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
+      <div class="d-flex justify-content-between">
+  <div class="p-2"></div>
+  <div class="p-2">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
 
+  </div>
+</div>
       <div class="modal-body">
         <?php
 if (function_exists('wpcf7')) {
@@ -66,7 +74,7 @@ if (function_exists('wpcf7')) {
     if (has_post_thumbnail( $post->ID ) ):
         $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
 ?>
-        <div class="col-4 p-0 test"><img src="<?php echo $image[0]; ?>" alt="..." class="rounded-circle mx-auto d-block"></div>
+        <div class="col-md-4 p-0 profile_photo"><img src="<?php echo $image[0]; ?>" alt="..." class="rounded-circle mx-auto d-block"></div>
 <?php endif; ?>
 
 </section>

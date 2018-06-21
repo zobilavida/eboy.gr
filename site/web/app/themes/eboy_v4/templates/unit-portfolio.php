@@ -1,9 +1,9 @@
 <section class="portfolio">
-<div class="container-fluid">
+
 
 
     <!-- add extra container element for Masonry -->
-    <div class="grid ">
+    <div class="grid container">
 
       <?php
 
@@ -12,7 +12,7 @@
 
       if ( $query->have_posts() ) : ?>
       <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-				<div class="d-flex flex-row justify-content-between product grid-item py-4 px-0 w-100 <?php do_action( 'eboy_woocommerce_current_tags_thumb' ); ?>" data-href="<?php echo get_permalink( $post->ID ); ?>">
+				<div class="row grid-item <?php do_action( 'eboy_woocommerce_current_tags_thumb' ); ?> py-4" data-href="<?php echo get_permalink( $post->ID ); ?>">
 					<div class="pl-0 pr-5 grid-item-content col-lg-7 col-12">
             <div class="d-flex flex-row">
             <div class="p-0"><?php the_title( '<h1>', '</h1>' ); ?></div>
@@ -47,5 +47,4 @@ the_excerpt();
   </div>
 
 
-</div>
 </section>
