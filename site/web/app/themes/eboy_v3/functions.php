@@ -378,3 +378,38 @@ if( count($terms) > 0 ){
 }
 }
 add_action ('eboy_woocommerce_current_tags_thumb', 'eboy_woocommerce_current_tags_sketo');
+
+
+function eboy_woocommerce_categories() { ?>
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="filters btn-group mr-2 filter-button-group" role="group" aria-label="First group" id="box2">
+          <ul id="menu2">
+              <?php $filter_icon		= '<img class="ico svg-convert" src=" ' .get_template_directory_uri() .'/dist/images/ico_filter.svg">'; ?>
+
+            <li class="active pl-0 filter_index" data-filter="*"><a href="javascript:;">All</a></li>
+<?php
+$tags = get_terms( 'product_cat', array(
+  'smallest' => 1, // size of least used tag
+  'largest'  => 2, // size of most used tag
+  'unit'     => 'rem', // unit for sizing the tags
+  'number'   => 45, // displays at most 45 tags
+  'orderby'  => 'count', // order tags alphabetically
+  'order'    => 'DESC', // order tags by ascending order
+  'show_count'=> 0, // you can even make tags for custom taxonomies
+  'hide_empty' => true
+) );
+
+if ( $tags ) :
+    foreach ( $tags as $tag ) : ?>
+      <li data-filter=".<?php echo esc_html( $tag->slug ); ?>">
+        <a href="javascript:;" >
+        <?php echo esc_html( $tag->name ); ?>
+        </a>
+      </li>
+    <?php endforeach; ?>
+<?php endif; ?>
+</ul>
+</div>
+</div>
+<?php }
+add_action ('eboy_woocommerce_portfolio', 'eboy_woocommerce_categories', 10);

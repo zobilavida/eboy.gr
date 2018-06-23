@@ -7,35 +7,21 @@
                       <?php query_posts('post_type=post&showposts=1'); ?>
                           <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
                             <div class="carousel-item active">
-
-
                                       <span><?php echo the_title(); ?></span>
                                       <h3><?php echo the_content(); ?></h3>
-
-
                             </div>
                           <?php endwhile; endif; ?>
                           <?php wp_reset_query(); ?>
-
                           <?php query_posts('post_type=post&showposts=4&offset=1'); ?>
-
                               <?php if (have_posts()) : while (have_posts()) : the_post(); global $post;?>
                                 <div class="carousel-item">
-
-
                                           <span><?php echo the_title(); ?></span>
                                           <h3><?php echo the_content(); ?></h3>
-
-
                                 </div>
                               <?php endwhile; endif; ?>
                               <?php wp_reset_query(); ?>
-
-
                 </div>
-          
               </div>
-
             </div>
             <div class="col-xl-4 ml-xl-auto col-lg-4 ml-lg-auto col-md-5 ml-md-auto py-3">
                 <blockquote class="blockquote">
