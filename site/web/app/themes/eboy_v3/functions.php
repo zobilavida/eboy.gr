@@ -357,7 +357,7 @@ function eboy_woocommerce_current_tags_sketo() {
   $output = array();
 
 // get an array of the WP_Term objects for a defined product ID
-$terms = wp_get_post_terms( get_the_id(), 'product_tag' );
+$terms = wp_get_post_terms( get_the_id(), 'product_cat' );
 
 // Loop through each product tag for the current product
 if( count($terms) > 0 ){
@@ -365,7 +365,7 @@ if( count($terms) > 0 ){
         $term_id = $term->term_id; // Product tag Id
         $term_name = $term->name; // Product tag Name
         $term_slug = $term->slug; // Product tag slug
-        $term_link = get_term_link( $term, 'product_tag' ); // Product tag link
+        $term_link = get_term_link( $term, 'product_cat' ); // Product tag link
 
         // Set the product tag names in an array
         $output[] = $term_slug;
