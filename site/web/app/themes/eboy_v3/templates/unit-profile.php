@@ -1,6 +1,6 @@
 <section id="profile" class="profile pt-5">
 
-
+<div class="container-fluid p-5">
     <div class="d-flex flex-row flex-wrap align-items-center h-100 test intro">
         <div class="col-md-8 p-0 test">
           <div class="d-flex flex-row flex-wrap align-items-center h-100 test">
@@ -76,5 +76,5 @@ if (function_exists('wpcf7')) {
 ?>
         <div class="col-md-4 p-0 profile_photo"><img src="<?php echo $image[0]; ?>" alt="..." class="rounded-circle mx-auto d-block"></div>
 <?php endif; ?>
-
+</div>
 </section>

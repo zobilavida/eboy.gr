@@ -1,6 +1,6 @@
 
-	<header class="d-flex flex-wrap justify-content-between px-5">
-  <div class="col-12 col-lg-6 p-0">
+	<header class="d-flex flex-wrap justify-content-between px-5 py-3">
+  <div class="col-12 col-lg-6 p-1">
 		<a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
 	</div>
 

@@ -1,5 +1,5 @@
 <section id="skills" class="skills pt-5">
-
+<div class="container-fluid p-5">
   <div class="d-flex flex-row flex-wrap align-items-start h-100">
         <div class="col-12 col-md-4 pr-5 pl-0 pt-0 pb-5"><h1>Skills<span class="dot p-1">.</span></h1><span>I am inspired by creating great work with people who are as passionate as I am about building something awesome.</span></div>
         <div class="col-12 col-md-8 p-0 test">
@@ -14,4 +14,5 @@
         </div>
 
     </div>
+        </div>
 </section>

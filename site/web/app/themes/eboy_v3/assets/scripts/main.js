@@ -158,9 +158,6 @@
 
         $('.svg-convert').svgConvert();
 
-        $('.btn').hover(
-        function(){$(this).toggleClass('test');}
-        );
 
         // click event way
         // adds sliding underline HTML
