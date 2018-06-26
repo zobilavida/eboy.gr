@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( $related_products ) : ?>
-<div class="container-fluid">
-	<section class="related products">
+
+	<section class="related products container-fluid py-5">
 
 
 
@@ -42,7 +42,7 @@ if ( $related_products ) : ?>
 		<?php woocommerce_product_loop_end(); ?>
 
 	</section>
-</div>
+
 <?php endif;
 
 wp_reset_postdata();

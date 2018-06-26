@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<div class="row py-0">
-		<div class="container">
+		<div class="container pb-5">
 			<div class="row">
 				<div class="col-lg-8 pt-5 pr-5">
 				<?php do_action( 'woocommerce_product_title' ); ?>
@@ -107,4 +107,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 */
 do_action( 'woocommerce_after_single_product_summary' );
 ?>
+
 <?php do_action( 'woocommerce_after_single_product' ); ?>
