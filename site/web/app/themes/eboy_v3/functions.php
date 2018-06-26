@@ -341,7 +341,7 @@ if( count($terms) > 0 ){
         $term_link = get_term_link( $term, 'product_tag' ); // Product tag link
 
         // Set the product tag names in an array
-        $output[] = '<a href="'.$term_link.'">'.$term_name.'</a>';
+        $output[] = $term_name;
     }
     // Set the array in a coma separated string of product tags for example
     $output = implode( ', ', $output );
