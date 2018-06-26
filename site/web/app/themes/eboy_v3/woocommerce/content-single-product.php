@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<div class="row">
 				<div class="col-8 summary entry-summary pr-5">
-				
+
 			<?php
 				/**
 				 * woocommerce_single_product_summary hook.
@@ -91,24 +91,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 
-	<div class="col-12">
 
-
-	<?php
-		/**
-		 * woocommerce_after_single_product_summary hook.
-		 *
-		 * @hooked woocommerce_output_product_data_tabs - 10
-		 * @hooked woocommerce_upsell_display - 15
-		 * @hooked woocommerce_output_related_products - 20
-		 */
-// do_action( 'woocommerce_after_single_product_summary' );
-	?>
-</div>
 			</div>
 
 
 
 </div><!-- #product-<?php the_ID(); ?> -->
-
+<?php
+	/**
+	 * woocommerce_after_single_product_summary hook.
+	 *
+	 * @hooked woocommerce_output_product_data_tabs - 10
+	 * @hooked woocommerce_upsell_display - 15
+	 * @hooked woocommerce_output_related_products - 20
+	 */
+do_action( 'woocommerce_after_single_product_summary' );
+?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>
