@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 			</div>
 			<div class="row">
-				<div class="col-8 summary entry-summary pr-5">
+				<div class="col-lg-8 summary entry-summary pr-5">
 
 			<?php
 				/**
@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 
-	<div class="col-4 pt-0">
+	<div class="col-lg-4 pt-0">
 <?php //get_template_part('templates/unit', 'bars'); ?>
 <?php //dynamic_sidebar('sidebar-product'); ?>
 <?php do_action( 'eboy_woocommerce_current_tags' ); ?>

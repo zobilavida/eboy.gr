@@ -47,7 +47,7 @@ $next_arrow		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/i
 
 
 	<div class="row">
-<div class="col-lg-12 col-sm-12">
+<div class="col-lg-8 col-sm-12 mx-auto">
 	 <div class="carousel slide w-100 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
 		 <div class="carousel-inner" role="listbox">
 			<?php
