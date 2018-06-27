@@ -1,7 +1,9 @@
 
 	<header class="d-flex flex-wrap justify-content-between px-5 py-3">
   <div class="col-12 col-lg-6 p-1 brand-container">
-		<a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+		<a class="brand" href="<?= esc_url(home_url('/')); ?>">
+			  <img class="" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+		</a>
 	</div>
 
 
