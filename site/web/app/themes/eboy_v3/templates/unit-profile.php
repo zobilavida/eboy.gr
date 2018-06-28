@@ -36,7 +36,7 @@
           <button type="button" class="btn btn-primary custom-btn btn-lg btn-block" data-toggle="modal" data-target="#contactModal">Contact me</button>
           </div>
           <div class="col-6 pl-2 pr-0">
-            <a class="btn btn-secondary custom-btn btn-lg btn-block" href="https://eboy.gr/app/uploads/2018/06/cv_giannis-sergentakis.pdf" role="button">Link</a>
+            <a class="btn btn-secondary custom-btn btn-lg btn-block" href="https://eboy.gr/app/uploads/2018/06/cv_giannis-sergentakis.pdf" role="button">Download CV</a>
 
         </div>
         <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
