@@ -33,10 +33,10 @@
             </div>
             <div class="d-flex flex-row flex-wrap align-items-center h-100 test">
             <div class="col-6 pl-0 pr-2">
-          <button type="button" class="btn btn-primary custom-btn btn-lg btn-block" data-toggle="modal" data-target="#contactModal">Contact me</button>
+          <button type="button" class="btn btn-primary custom-btn btn-lg" data-toggle="modal" data-target="#contactModal">Contact me</button>
           </div>
           <div class="col-6 pl-2 pr-0">
-            <a class="btn btn-secondary custom-btn btn-lg btn-block" href="https://eboy.gr/app/uploads/2018/06/cv_giannis-sergentakis.pdf" role="button">Download CV</a>
+            <a class="btn btn-secondary custom-btn btn-lg" href="https://eboy.gr/app/uploads/2018/06/cv_giannis-sergentakis.pdf" role="button">Download CV</a>
 
         </div>
         <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
