@@ -1,0 +1,180 @@
+/*!
+ * Hamburgers
+ */
+html, body {
+  height: 100%;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  letter-spacing: .05rem; }
+
+h3 {
+  font-size: 1.85rem;
+  margin-bottom: 1.2rem; }
+
+h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem; }
+
+p {
+  font-size: 0.875rem; }
+
+.grey {
+  background-color: #c6c6c6; }
+
+.box {
+  display: block;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.colored {
+  color: #af3d63; }
+
+.underline {
+  border-bottom: 3px solid #af3d63; }
+
+.skyline-back {
+  min-width: 215px; }
+
+.skyline_fixed h1 .colored {
+  font-weight: 400; }
+
+.hero_image {
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.skyline_fixed h1 {
+  font-size: 2rem;
+  color: #fff;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  text-transform: uppercase;
+  letter-spacing: .55rem;
+  padding-bottom: .6rem;
+  border-bottom: 3px solid #af3d63;
+  font-weight: 100; }
+
+.skyline_fixed {
+  position: absolute;
+  width: 212px;
+  left: 50%;
+  margin-left: -106px;
+  z-index: 1000;
+  background-color: #000;
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.sticky-scroll-box {
+  background: -moz-linear-gradient(top, black 0%, black 73%, rgba(125, 185, 232, 0) 100%);
+  background: -webkit-linear-gradient(top, black 0%, black 73%, rgba(125, 185, 232, 0) 100%);
+  background: linear-gradient(to bottom, black 0%, black 73%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#007db9e8',GradientType=0 ); }
+
+.left {
+  width: calc(50% - 106px); }
+
+.right {
+  width: calc(50% - 106px); }
+
+@media (max-width: 576px) {
+  .left {
+    width: calc(100%); }
+  .right {
+    width: calc(100%); }
+  .skyline-back {
+    display: none; } }
+
+.small {
+  min-height: 250px; }
+
+.large {
+  min-height: 500px; }
+
+footer {
+  background-image: url("../images/bg_footer.jpg");
+  min-height: 287px;
+  background-color: #000;
+  /* Center and scale the image nicely */
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+footer h1 {
+  font-size: 3rem;
+  color: #af3d63;
+  border-bottom: 1px solid #af3d63; }
+
+.hamburger {
+  padding: 15px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible; }
+  .hamburger:hover {
+    opacity: 0.7; }
+
+.hamburger-box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative; }
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px; }
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 40px;
+    height: 4px;
+    background-color: #af3d63;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease; }
+  .hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block; }
+  .hamburger-inner::before {
+    top: -10px; }
+  .hamburger-inner::after {
+    bottom: -10px; }
+
+/*
+  * Elastic
+  */
+.hamburger--elastic .hamburger-inner {
+  top: 2px;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+  .hamburger--elastic .hamburger-inner::before {
+    top: 10px;
+    transition: opacity 0.15s 0.4s ease; }
+  .hamburger--elastic .hamburger-inner::after {
+    top: 20px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+
+.hamburger--elastic.is-active .hamburger-inner {
+  transform: translate3d(0, 10px, 0) rotate(135deg);
+  transition-delay: 0.1s;
+  background-color: #af3d63; }
+  .hamburger--elastic.is-active .hamburger-inner::before {
+    transition-delay: 0s;
+    opacity: 0; }
+  .hamburger--elastic.is-active .hamburger-inner::after {
+    transform: translate3d(0, -20px, 0) rotate(-270deg);
+    transition-delay: 0.1s; }

@@ -1,0 +1,28 @@
+{
+  "name": "observatrory",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Giannis Sergentakis",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "hamburgers": "^0.9.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "*",
+    "gulp-sass": "^4.0.1",
+    "gulp-scss-lint": "^0.6.1",
+    "gulp-sourcemaps": "^2.6.4"
+  }
+}
