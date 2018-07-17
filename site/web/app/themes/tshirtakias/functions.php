@@ -129,76 +129,63 @@ function custom_stamp_cats() {
 }
 add_action( 'init', 'custom_stamp_cats', 0 );
 
+function load_product () {
+?>
 
-
-
-function product_carousel() {
-  global $product;
-  $thumb_id = get_post_thumbnail_id();
-  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'shop_thumbnail', true);
-  $thumb_url = $thumb_url_array[0];
-  $attachment_ids = $product->get_gallery_attachment_ids();
-  $attachment_small_ids = $product->get_gallery_attachment_ids();
-//  $attachment_ids_array = wp_get_attachment_image_src($attachment_ids, 'product-lg', true);
-//  $attachment_ids_url = $attachment_ids_url[0];
-
-
-  $thumb_small_id = get_post_thumbnail_id();
-  $thumb_small_url_array = wp_get_attachment_image_src($thumb_small_id, 'shop_thumbnail', true);
-  $thumb_small_url = $thumb_small_url_array[0];
-  //$gallery_image = echo $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0];
-  $number = 1;
-  ?>
-
-
-  <div class="row">
-  <div class="col-12">
-  <div id="myCarousel" class="carousel slide">
-    <!-- main slider carousel nav controls -->
-
-    <div class="row">
-    <div class="col-3 pr-2">
-        <div class="item pb-3 active">
-            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-                <img src="<?php echo $thumb_small_url; ?>" class="img-fluid" alt="Example">
-            </a>
-        </div>
-        <?php
-          foreach( $attachment_small_ids as $attachment_small_id ) {
-            echo '<div class="item pb-3">';
-            echo '  <a id="carousel-selector" class="" data-slide-to="' . $number++ . '" data-target="#myCarousel">';
-        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
-          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_small_id, 'shop_thumbnail' )[0] . ' " class="img-fluid" alt="Example">';
-          echo '</a>';
-          echo '</div>';
-            }
-        ?>
-    </div>
-    <!-- main slider carousel items -->
-    <div class="carousel-inner col-9 px-2">
-        <div class="active item carousel-item" data-slide-number="0">
-            <img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
-        </div>
-        <?php
-          foreach( $attachment_ids as $attachment_id ) {
-            echo '<div class="item carousel-item" data-slide-number="' . $number++ . '">';
-        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
-          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0] . ' " class="img-fluid" alt="Example">';
-          echo '</div>';
-            }
-        ?>
-        <a class="carousel-control previous pt-3" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-        <a class="carousel-control next pt-3" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-    </div>
-  </div>
-  </div>
-</div>
-</div>
-<?
+<?php
+$args = array(
+'post_type' => 'product',
+'stock' => 1,
+'posts_per_page' => 4,
+'orderby' =>'date',
+'order' => 'DESC' );
+$loop = new WP_Query( $args );
+while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
+<div class="span3">
+<a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+<?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="My Image Placeholder" width="65px" height="115px" />'; ?>
+<h3><?php the_title(); ?></h3>
+<span class="price"><?php echo $product->get_price_html(); ?></span>
+</a>
+<?php  $product->get_attributes(); ?>
+</div><!-- /span3 -->
+<?php endwhile; ?>
+<?php wp_reset_query(); ?>
+<?php
 }
-add_action('tshirtakias_product_carousel', 'product_carousel', 10);
+add_action ( 'tshirtakias_product', 'load_product', 10 );
 
 
+
+function load_stamps () {
+
+echo do_shortcode('[facetwp facet="stamps"]');
+    // WP_Query arguments
+    $args = array(
+      "post_type" => "stamps",
+      "post_status" => "publish",
+    //  'meta_key'			=> 'rating',
+    //	'orderby'			=> 'post__in',
+      "order" => "DESC",
+      "posts_per_page" => 15
+    );
+
+    $query = new WP_Query( $args );
+    if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+    $thumb_id = get_post_thumbnail_id();
+    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+    $thumb_url = $thumb_url_array[0];
+
+
+?>
+  <div class="w-25">
+      <img src="<?php echo $thumb_url ?>" class="img-fluid stamp" alt="Responsive image">
+    </div>
+<?php
+endwhile;
+endif;
+}
+add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 function load_single_product_content () {
      $post_id = intval(isset($_POST['post_id']) ? $_POST['post_id'] : 0);
 

@@ -7,7 +7,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0"
+    "bootstrap": "^4.0.0",
+    "isotope": "^3.0.4",
+    "imagesloaded": "^4.1.4"
   },
     "overrides": {
     "bootstrap": {
@@ -15,6 +17,12 @@
         "./scss/bootstrap.scss",
         "./dist/js/bootstrap.bundle.js"
       ]
+    },
+    "isotope": {
+      "main": [
+        "./dist/isotope.pkgd.min.js"
+      ],
+      "dependencies": {}
     }
   }
 }

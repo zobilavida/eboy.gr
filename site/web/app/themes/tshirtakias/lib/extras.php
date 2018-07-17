@@ -34,3 +34,9 @@ add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
 
 add_filter('woocommerce_show_page_title', '__return_false');
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+
+add_action( 'after_setup_theme', function() {
+  add_theme_support( 'wc-product-gallery-zoom' );
+  add_theme_support( 'wc-product-gallery-lightbox' );
+  add_theme_support( 'wc-product-gallery-slider' );
+} );
