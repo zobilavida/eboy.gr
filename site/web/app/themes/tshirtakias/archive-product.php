@@ -13,7 +13,7 @@
        categories
 
 
-       <a class="btn btn-primary project-preview" href="#" data-project-id="10" role="button">Link</a>
+       <a class="btn btn-primary project-preview" href="#" data-project-id="8" role="button">Link</a>
      </div>
      <div class = "col-lg-5 display-results right">
        Right<?php do_action('tshirtakias_product' ); ?>
