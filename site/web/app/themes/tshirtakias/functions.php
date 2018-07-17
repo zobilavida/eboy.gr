@@ -131,31 +131,72 @@ add_action( 'init', 'custom_stamp_cats', 0 );
 
 
 
-function tshirtakias_front_product(){
-?>
 
-<ul class="products">
-	<?php
-		$args = array(
-			'post_type' => 'product',
-			'posts_per_page' => 12
-			);
-		$loop = new WP_Query( $args );
-		if ( $loop->have_posts() ) {
-			while ( $loop->have_posts() ) : $loop->the_post();
-				wc_get_template_part( 'content', 'product' );
-			endwhile;
-		} else {
-			echo __( 'No products found' );
-		}
-		wp_reset_postdata();
-	?>
-</ul><!--/.products-->
+function product_carousel() {
+  global $product;
+  $thumb_id = get_post_thumbnail_id();
+  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'shop_thumbnail', true);
+  $thumb_url = $thumb_url_array[0];
+  $attachment_ids = $product->get_gallery_attachment_ids();
+  $attachment_small_ids = $product->get_gallery_attachment_ids();
+//  $attachment_ids_array = wp_get_attachment_image_src($attachment_ids, 'product-lg', true);
+//  $attachment_ids_url = $attachment_ids_url[0];
 
-<?php
+
+  $thumb_small_id = get_post_thumbnail_id();
+  $thumb_small_url_array = wp_get_attachment_image_src($thumb_small_id, 'shop_thumbnail', true);
+  $thumb_small_url = $thumb_small_url_array[0];
+  //$gallery_image = echo $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0];
+  $number = 1;
+  ?>
+
+
+  <div class="row">
+  <div class="col-12">
+  <div id="myCarousel" class="carousel slide">
+    <!-- main slider carousel nav controls -->
+
+    <div class="row">
+    <div class="col-3 pr-2">
+        <div class="item pb-3 active">
+            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                <img src="<?php echo $thumb_small_url; ?>" class="img-fluid" alt="Example">
+            </a>
+        </div>
+        <?php
+          foreach( $attachment_small_ids as $attachment_small_id ) {
+            echo '<div class="item pb-3">';
+            echo '  <a id="carousel-selector" class="" data-slide-to="' . $number++ . '" data-target="#myCarousel">';
+        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
+          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_small_id, 'shop_thumbnail' )[0] . ' " class="img-fluid" alt="Example">';
+          echo '</a>';
+          echo '</div>';
+            }
+        ?>
+    </div>
+    <!-- main slider carousel items -->
+    <div class="carousel-inner col-9 px-2">
+        <div class="active item carousel-item" data-slide-number="0">
+            <img src="<?php echo $thumb_url; ?>" class="img-fluid" alt="Example">
+        </div>
+        <?php
+          foreach( $attachment_ids as $attachment_id ) {
+            echo '<div class="item carousel-item" data-slide-number="' . $number++ . '">';
+        //  echo wp_get_attachment_image($attachment_id, 'product-lg');
+          echo '<img src=" ' . $shop_thumbnail_image_url = wp_get_attachment_image_src( $attachment_id, 'product-lg' )[0] . ' " class="img-fluid" alt="Example">';
+          echo '</div>';
+            }
+        ?>
+        <a class="carousel-control previous pt-3" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+        <a class="carousel-control next pt-3" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+<?
 }
-
-add_action('tshirtakias', 'tshirtakias_front_product');
+add_action('tshirtakias_product_carousel', 'product_carousel', 10);
 
 
 function load_single_product_content () {
@@ -175,4 +216,4 @@ function load_single_product_content () {
 }
 
 add_action('wp_ajax_load_single_product_content', 'load_single_product_content');
-add_action('wp_ajax_nopriv_load_single_product_content', 'load_single_product_content'); 
+add_action('wp_ajax_nopriv_load_single_product_content', 'load_single_product_content');
