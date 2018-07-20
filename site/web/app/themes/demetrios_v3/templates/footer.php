@@ -21,4 +21,5 @@
         <?php do_action( 'demetrios_footer', 'demetrios_footer_buttons' ); ?>
       </div>
   </div>
+<?php do_action('demetrios_custom_side_menu', 'demetrios_side_menu'); ?>
 </footer>

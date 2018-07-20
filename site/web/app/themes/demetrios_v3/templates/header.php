@@ -20,4 +20,3 @@
     <!--container-->
 </div>
 <?php do_action('demetrios_custom_header', 'custom_header'); ?>
-<?php do_action('demetrios_custom_side_menu', 'demetrios_side_menu'); ?>

@@ -26,7 +26,7 @@
   <h5 class="card-header"><?php the_title(); ?></h5>
     <div class="card-body">
 
-      <h6 class="card-title"><input type="radio" name="store_name" id="store_name_id" value="<?php echo $email_2; ?>" data-manager="<?php echo $theemail; ?>"><?php echo $street_address; ?>, <?php echo $country; ?></h6>
+      <h6 class="card-title"><input type="radio" name="<?php the_title(); ?>" id="store_name_id" value="<?php echo $email_2; ?>" data-manager="<?php echo $theemail; ?>" store-manager=""><?php echo $street_address; ?>, <?php echo $country; ?></h6>
 
        <footer class="blockquote-footer">
   <?php foreach($term_list as $term_single) {
