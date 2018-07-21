@@ -1,3 +1,25 @@
+<?php
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     3.3.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class = "container-fluid">
    <div class = "row row-height">
      <div class = "col-lg-5 display-map left p-0">
@@ -10,10 +32,14 @@
        </div>
      </div>
      <div class="col-2">
-       categories
+       
+       <div class="d-flex flex-row">
+      <?php do_action('tshirtakias_product_category_images' ); ?>
+      </div>
 
 
-       <a class="btn btn-primary project-preview" href="#" data-project-id="8" role="button">Link</a>
+       <a class="btn btn-primary project-preview" href="#" data-project-id="10" role="button">Link</a>
+
      </div>
      <div class = "col-lg-5 display-results right">
        Right<?php do_action('tshirtakias_product' ); ?>

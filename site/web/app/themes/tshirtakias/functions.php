@@ -28,7 +28,14 @@ foreach ($sage_includes as $file) {
 }
 unset($file, $filepath);
 
+// Add svg & swf support
+function cc_mime_types( $mimes ){
+    $mimes['svg'] = 'image/svg+xml';
+    $mimes['swf']  = 'application/x-shockwave-flash';
 
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'cc_mime_types' );
 
 if ( ! function_exists('custom_stamps_post_type') ) {
 
@@ -129,33 +136,6 @@ function custom_stamp_cats() {
 }
 add_action( 'init', 'custom_stamp_cats', 0 );
 
-function load_product () {
-?>
-
-<?php
-$args = array(
-'post_type' => 'product',
-'stock' => 1,
-'posts_per_page' => 4,
-'orderby' =>'date',
-'order' => 'DESC' );
-$loop = new WP_Query( $args );
-while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
-<div class="span3">
-<a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-<?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="My Image Placeholder" width="65px" height="115px" />'; ?>
-<h3><?php the_title(); ?></h3>
-<span class="price"><?php echo $product->get_price_html(); ?></span>
-</a>
-<?php  $product->get_attributes(); ?>
-</div><!-- /span3 -->
-<?php endwhile; ?>
-<?php wp_reset_query(); ?>
-<?php
-}
-add_action ( 'tshirtakias_product', 'load_product', 10 );
-
-
 
 function load_stamps () {
 
@@ -186,6 +166,127 @@ endwhile;
 endif;
 }
 add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
+
+function load_product () {
+?>
+
+<?php
+$args = array(
+'post_type' => 'product',
+'stock' => 1,
+'posts_per_page' => 4,
+'orderby' =>'date',
+'order' => 'DESC' );
+$loop = new WP_Query( $args );
+while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
+<div class="span3">
+<a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+<?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="My Image Placeholder" width="65px" height="115px" />'; ?>
+<h3><?php the_title(); ?></h3>
+<span class="price"><?php echo $product->get_price_html(); ?></span>
+</a>
+<?php  $product->get_attributes(); ?>
+</div><!-- /span3 -->
+<?php endwhile; ?>
+<?php wp_reset_query(); ?>
+<?php
+}
+add_action ( 'tshirtakias_product', 'load_product', 10 );
+
+function get_product_category_mens_images () {
+
+  $mens_args = array(
+    'post_type' => 'product',
+    'product_cat' => 'mens',
+    'post_status' => 'publish',
+    'posts_per_page' => '1',
+    'orderby' => 'ID',
+    'order' => 'ASC', # Keep ASC for First 3 products or keep DESC for Latest 3 products as required
+);
+$mens_product_id = get_posts($mens_args);
+
+foreach($mens_product_id AS $mens_product_id){
+  echo $mens_product_id->ID; # You will get different product ids here
+}
+
+  $get_featured_mens_cat = array(
+	'taxonomy'     => 'product_cat',
+  'slug'          => 'mens',
+	'orderby'      => 'name',
+	'hide_empty'   => '0',
+	'include'      => $cat_array
+);
+$mens_category = get_categories( $get_featured_mens_cat );
+$j = 1;
+foreach ($mens_category as $mens_cat) {
+	$mens_thumbnail_id = get_woocommerce_term_meta( $mens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
+	$mens_image = wp_get_attachment_url( $mens_thumbnail_id );
+	if ( $mens_image ) {
+    echo '<div class="p-2 w-100">';
+    echo '<a href="#" class="project-preview" data-project-id="' . $mens_product_id->ID . '">';
+    echo $mens_cat->name;
+		echo '<img src="' . $mens_image . '" alt="" />';
+    echo '</a>';
+    echo '</div>';
+	}
+//echo $cat->name; // Get Category Name
+//	echo $cat->description; // Get Category Description
+	$j++;
+}
+// Reset Post Data
+wp_reset_query();
+}
+add_action ( 'tshirtakias_product_category_images', 'get_product_category_mens_images', 10 );
+
+
+function get_product_category_womens_images () {
+
+  $mens_args = array(
+    'post_type' => 'product',
+    'product_cat' => 'womens',
+    'post_status' => 'publish',
+    'posts_per_page' => '1',
+    'orderby' => 'ID',
+    'order' => 'ASC', # Keep ASC for First 3 products or keep DESC for Latest 3 products as required
+);
+$womens_product_id = get_posts($womens_args);
+
+foreach($womens_product_id AS $womens_product_id){
+  echo $womens_product_id->ID; # You will get different product ids here
+}
+
+  $get_featured_womens_cat = array(
+	'taxonomy'     => 'product_cat',
+  'slug'          => 'womens',
+	'orderby'      => 'name',
+	'hide_empty'   => '0',
+	'include'      => $cat_array
+);
+$womens_category = get_categories( $get_featured_womens_cat );
+$j = 1;
+foreach ($womens_category as $womens_cat) {
+	$womens_thumbnail_id = get_woocommerce_term_meta( $womens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
+	$womens_image = wp_get_attachment_url( $womens_thumbnail_id );
+	if ( $womens_image ) {
+    echo '<div class="p-2 w-100">';
+    echo '<a href="#" class="project-preview" data-project-id="' . $womens_product_id->ID . '">';
+    echo $womens_cat->name;
+		echo '<img src="' . $womens_image . '" alt="" />';
+    echo '</a>';
+    echo '</div>';
+	}
+//echo $cat->name; // Get Category Name
+//	echo $cat->description; // Get Category Description
+	$j++;
+}
+// Reset Post Data
+wp_reset_query();
+}
+add_action ( 'tshirtakias_product_category_images', 'get_product_category_womens_images', 20 );
+
+
+
+
 function load_single_product_content () {
      $post_id = intval(isset($_POST['post_id']) ? $_POST['post_id'] : 0);
 
