@@ -241,7 +241,7 @@ add_action ( 'tshirtakias_product_category_images', 'get_product_category_mens_i
 
 function get_product_category_womens_images () {
 
-  $mens_args = array(
+  $womens_args = array(
     'post_type' => 'product',
     'product_cat' => 'womens',
     'post_status' => 'publish',
@@ -263,7 +263,7 @@ foreach($womens_product_id AS $womens_product_id){
 	'include'      => $cat_array
 );
 $womens_category = get_categories( $get_featured_womens_cat );
-$j = 1;
+$w = 1;
 foreach ($womens_category as $womens_cat) {
 	$womens_thumbnail_id = get_woocommerce_term_meta( $womens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$womens_image = wp_get_attachment_url( $womens_thumbnail_id );
@@ -277,13 +277,147 @@ foreach ($womens_category as $womens_cat) {
 	}
 //echo $cat->name; // Get Category Name
 //	echo $cat->description; // Get Category Description
-	$j++;
+	$w++;
 }
 // Reset Post Data
 wp_reset_query();
 }
 add_action ( 'tshirtakias_product_category_images', 'get_product_category_womens_images', 20 );
 
+function get_product_category_hoodies_images () {
+
+  $hoodies_args = array(
+    'post_type' => 'product',
+    'product_cat' => 'hoodies',
+    'post_status' => 'publish',
+    'posts_per_page' => '1',
+    'orderby' => 'ID',
+    'order' => 'ASC', # Keep ASC for First 3 products or keep DESC for Latest 3 products as required
+);
+$hoodies_product_id = get_posts($hoodies_args);
+
+foreach($hoodies_product_id AS $hoodies_product_id){
+  echo $hoodies_product_id->ID; # You will get different product ids here
+}
+
+  $get_featured_hoodies_cat = array(
+	'taxonomy'     => 'product_cat',
+  'slug'          => 'hoodies',
+	'orderby'      => 'name',
+	'hide_empty'   => '0',
+	'include'      => $cat_array
+);
+$hoodies_category = get_categories( $get_featured_hoodies_cat );
+$w = 1;
+foreach ($hoodies_category as $hoodies_cat) {
+	$hoodies_thumbnail_id = get_woocommerce_term_meta( $hoodies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
+	$hoodies_image = wp_get_attachment_url( $hoodies_thumbnail_id );
+	if ( $hoodies_image ) {
+    echo '<div class="p-2 w-100">';
+    echo '<a href="#" class="project-preview" data-project-id="' . $hoodies_product_id->ID . '">';
+    echo $hoodies_cat->name;
+		echo '<img src="' . $hoodies_image . '" alt="" />';
+    echo '</a>';
+    echo '</div>';
+	}
+//echo $cat->name; // Get Category Name
+//	echo $cat->description; // Get Category Description
+	$w++;
+}
+// Reset Post Data
+wp_reset_query();
+}
+add_action ( 'tshirtakias_product_category_images', 'get_product_category_hoodies_images', 30 );
+
+function get_product_category_kids_images () {
+
+  $kids_args = array(
+    'post_type' => 'product',
+    'product_cat' => 'kids',
+    'post_status' => 'publish',
+    'posts_per_page' => '1',
+    'orderby' => 'ID',
+    'order' => 'ASC', # Keep ASC for First 3 products or keep DESC for Latest 3 products as required
+);
+$kids_product_id = get_posts($kids_args);
+
+foreach($kids_product_id AS $kids_product_id){
+  echo $kids_product_id->ID; # You will get different product ids here
+}
+
+  $get_featured_kids_cat = array(
+	'taxonomy'     => 'product_cat',
+  'slug'          => 'kids',
+	'orderby'      => 'name',
+	'hide_empty'   => '0',
+	'include'      => $cat_array
+);
+$kids_category = get_categories( $get_featured_kids_cat );
+$w = 1;
+foreach ($kids_category as $kids_cat) {
+	$kids_thumbnail_id = get_woocommerce_term_meta( $kids_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
+	$kids_image = wp_get_attachment_url( $kids_thumbnail_id );
+	if ( $kids_image ) {
+    echo '<div class="p-2 w-100">';
+    echo '<a href="#" class="project-preview" data-project-id="' . $kids_product_id->ID . '">';
+    echo $kids_cat->name;
+		echo '<img src="' . $kids_image . '" alt="" />';
+    echo '</a>';
+    echo '</div>';
+	}
+//echo $cat->name; // Get Category Name
+//	echo $cat->description; // Get Category Description
+	$w++;
+}
+// Reset Post Data
+wp_reset_query();
+}
+add_action ( 'tshirtakias_product_category_images', 'get_product_category_kids_images', 40 );
+
+function get_product_category_babies_images () {
+
+  $babies_args = array(
+    'post_type' => 'product',
+    'product_cat' => 'babies',
+    'post_status' => 'publish',
+    'posts_per_page' => '1',
+    'orderby' => 'ID',
+    'order' => 'ASC', # Keep ASC for First 3 products or keep DESC for Latest 3 products as required
+);
+$babies_product_id = get_posts($babies_args);
+
+foreach($babies_product_id AS $babies_product_id){
+  echo $babies_product_id->ID; # You will get different product ids here
+}
+
+  $get_featured_babies_cat = array(
+	'taxonomy'     => 'product_cat',
+  'slug'          => 'babies',
+	'orderby'      => 'name',
+	'hide_empty'   => '0',
+	'include'      => $cat_array
+);
+$babies_category = get_categories( $get_featured_babies_cat );
+$w = 1;
+foreach ($babies_category as $babies_cat) {
+	$babies_thumbnail_id = get_woocommerce_term_meta( $babies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
+	$babies_image = wp_get_attachment_url( $babies_thumbnail_id );
+	if ( $babies_image ) {
+    echo '<div class="p-2 w-100">';
+    echo '<a href="#" class="project-preview" data-project-id="' . $babies_product_id->ID . '">';
+    echo $babies_cat->name;
+		echo '<img src="' . $babies_image . '" alt="" />';
+    echo '</a>';
+    echo '</div>';
+	}
+//echo $cat->name; // Get Category Name
+//	echo $cat->description; // Get Category Description
+	$w++;
+}
+// Reset Post Data
+wp_reset_query();
+}
+add_action ( 'tshirtakias_product_category_images', 'get_product_category_babies_images', 50 );
 
 
 

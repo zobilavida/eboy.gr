@@ -33,13 +33,13 @@ if ( ! defined( 'ABSPATH' ) ) {
      </div>
      <div class="col-2">
 
-       <div class="d-flex flex-row">
+       <div class="d-flex flex-wrap">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
 
      </div>
      <div class = "col-lg-5 display-results right">
-       Right<?php do_action('tshirtakias_product' ); ?>
+      
      </div>
 
      <?php get_template_part('templates/footer'); ?>
