@@ -32,13 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
        </div>
      </div>
      <div class="col-2">
-       
+
        <div class="d-flex flex-row">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
-
-
-       <a class="btn btn-primary project-preview" href="#" data-project-id="10" role="button">Link</a>
 
      </div>
      <div class = "col-lg-5 display-results right">
