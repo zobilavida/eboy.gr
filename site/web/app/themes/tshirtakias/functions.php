@@ -421,11 +421,7 @@ add_action ( 'tshirtakias_product_category_images', 'get_product_category_babies
 
 remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 
-add_filter('woocommerce_single_product_image_thumbnail_html','wc_remove_link_on_thumbnails' );
 
-function wc_remove_link_on_thumbnails( $html ) {
-     return strip_tags( $html,'<div><img>' );
-}
 
 function load_single_product_content () {
      $post_id = intval(isset($_POST['post_id']) ? $_POST['post_id'] : 0);
