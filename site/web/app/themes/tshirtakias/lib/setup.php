@@ -106,12 +106,12 @@ function assets() {
     wp_enqueue_script('comment-reply');
   }
   if ( is_shop() ) {
-    wp_enqueue_script( 'wc-single-product' );
-    wp_enqueue_script( 'wc-add-to-cart-variation' );
-    wp_enqueue_script( 'flexslider' );
-    wp_enqueue_script( 'photoswipe-ui-default' );
-   wp_enqueue_script( 'photoswipe' );
-   wp_enqueue_script( 'zoom' );
+  //  wp_enqueue_script( 'wc-single-product' );
+  //  wp_enqueue_script( 'wc-add-to-cart-variation' );
+//    wp_enqueue_script( 'flexslider' );
+  //  wp_enqueue_script( 'photoswipe-ui-default' );
+  // wp_enqueue_script( 'photoswipe' );
+  // wp_enqueue_script( 'zoom' );
   }
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
