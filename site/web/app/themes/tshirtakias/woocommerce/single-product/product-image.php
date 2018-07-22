@@ -13,41 +13,86 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 3.3.2
+ * @version 3.1.0
  */
 
-defined( 'ABSPATH' ) || exit;
-
-// Note: `wc_get_gallery_image_html` was added in WC 3.3.2 and did not exist prior. This check protects against theme overrides being used on older versions of WC.
-if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
-	return;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-global $product;
-
+global $post, $product;
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
-$post_thumbnail_id = $product->get_image_id();
+$thumbnail_size    = apply_filters( 'woocommerce_product_thumbnails_large_size', 'full' );
+$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
+$full_size_image   = wp_get_attachment_image_src( $post_thumbnail_id, $thumbnail_size );
+$placeholder       = has_post_thumbnail() ? 'with-images' : 'without-images';
 $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_classes', array(
 	'woocommerce-product-gallery',
-	'woocommerce-product-gallery--' . ( has_post_thumbnail() ? 'with-images' : 'without-images' ),
+	'woocommerce-product-gallery--' . $placeholder,
 	'woocommerce-product-gallery--columns-' . absint( $columns ),
 	'images',
 ) );
+$next_arrow		= '<img class="ico" src=" ' .get_template_directory_uri() .'/dist/images/button_icon_2.svg">';
+
 ?>
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 1; transition: opacity .25s ease-in-out;">
-	<figure class="woocommerce-product-gallery__wrapper">
-		<?php
-		if ( has_post_thumbnail() ) {
-			$html  = wc_get_gallery_image_html( $post_thumbnail_id, true );
-		} else {
-			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= '</div>';
-		}
+<div class="container">
+	<a class="carousel-control-prev" href="#postsCarousel" role="button" data-slide="prev">
+		<img class="" src="<?= get_template_directory_uri(); ?>/dist/images/ico_previous_01.svg">
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#postsCarousel" role="button" data-slide="next">
+		<img class="" src="<?= get_template_directory_uri(); ?>/dist/images/ico_next_01.svg">
+		<span class="sr-only">Next</span>
+	</a>
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id );
 
-		do_action( 'woocommerce_product_thumbnails' );
-		?>
-	</figure>
+	<div class="row">
+<div class="col-lg-8 col-sm-12 mx-auto">
+	 <div class="carousel slide w-100 ml-auto mr-auto" data-ride="carousel" id="postsCarousel">
+		 <div class="carousel-inner" role="listbox">
+			<?php
+			 $args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_mime_type' => 'image', 'post_status' => 'inherit', 'post_parent' => $post->ID );
+			 $attachments = get_posts($args);
+			 if ($attachments) {
+							 foreach ( $attachments as $attachment ) {
+											 // Method #1: Allows you to define the image size
+											 $src = wp_get_attachment_image_src( $attachment->ID, "large");
+											 if ($src) {
+												 echo '<div class="carousel-item active">';
+												 //echo '<div class="col-md-12">';
+												 echo '<img class="d-block w-100" src="' . $src[0] . '" alt="">';
+												 //echo $src[0];
+												 echo '</div>';
+											 }
+											 // Method #2: Would always return the "attached-image" size
+											 //echo $attachment->guid;
+							 }
+			 } ?>
+			 <?php
+				$args = array( 'post_type' => 'attachment', 'offset' => 1, 'post_mime_type' => 'image', 'post_status' => 'inherit', 'post_parent' => $post->ID );
+				$attachments = get_posts($args);
+				if ($attachments) {
+								foreach ( $attachments as $attachment ) {
+												// Method #1: Allows you to define the image size
+												$src = wp_get_attachment_image_src( $attachment->ID, "full-size");
+												if ($src) {
+													echo '<div class="carousel-item">';
+												//  echo '<div class="col-md-12">';
+
+													echo '<img class="d-block w-100" src="' . $src[0] . '" alt="">';
+													//echo $src[0];
+													echo '</div>';
+
+												}
+												// Method #2: Would always return the "attached-image" size
+												//echo $attachment->guid;
+								}
+				}
+				?>
+		 </div>
+
+	 </div>
+
+	</div>
+</div>
 </div>
