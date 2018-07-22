@@ -421,23 +421,11 @@ add_action ( 'tshirtakias_product_category_images', 'get_product_category_babies
 
 remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 
-// Remove "Select options" button from (variable) products on the main WooCommerce shop page.
-add_filter( 'woocommerce_loop_add_to_cart_link', function( $product ) {
-	global $product;
+add_filter('woocommerce_single_product_image_thumbnail_html','wc_remove_link_on_thumbnails' );
 
-	if ( is_shop() && 'variable' === $product->product_type ) {
-		return '';
-	} else {
-		return sprintf( '<a rel="nofollow" href="%s" data-quantity="%s" data-product_id="%s" data-product_sku="%s" class="%s">%s</a>',
-			esc_url( $product->add_to_cart_url() ),
-			esc_attr( isset( $quantity ) ? $quantity : 1 ),
-			esc_attr( $product->id ),
-			esc_attr( $product->get_sku() ),
-			esc_attr( isset( $class ) ? $class : 'button' ),
-			esc_html( $product->add_to_cart_text() )
-		);
-	}
-} );
+function wc_remove_link_on_thumbnails( $html ) {
+     return strip_tags( $html,'<div><img>' );
+}
 
 function load_single_product_content () {
      $post_id = intval(isset($_POST['post_id']) ? $_POST['post_id'] : 0);
