@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap related-products-preview">
     <?php
         $args = array( 'post_type' => 'product', 'posts_per_page' => -1, 'product_cat' => 'mens', 'orderby' => 'name', 'order' => 'ASC' );
 

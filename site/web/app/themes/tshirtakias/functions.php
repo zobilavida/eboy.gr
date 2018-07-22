@@ -223,7 +223,7 @@ foreach ($mens_category as $mens_cat) {
 	$mens_image = wp_get_attachment_url( $mens_thumbnail_id );
 	if ( $mens_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="product-preview mens" data-project-id="' . $mens_product_id->ID . '">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $mens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
     echo $mens_cat->name;
 		echo '<img src="' . $mens_image . '" alt="" />';
     echo '</a>';
