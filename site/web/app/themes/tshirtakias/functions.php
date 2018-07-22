@@ -223,7 +223,7 @@ foreach ($mens_category as $mens_cat) {
 	$mens_image = wp_get_attachment_url( $mens_thumbnail_id );
 	if ( $mens_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="project-preview" data-project-id="' . $mens_product_id->ID . '">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $mens_product_id->ID . '">';
     echo $mens_cat->name;
 		echo '<img src="' . $mens_image . '" alt="" />';
     echo '</a>';
@@ -269,7 +269,7 @@ foreach ($womens_category as $womens_cat) {
 	$womens_image = wp_get_attachment_url( $womens_thumbnail_id );
 	if ( $womens_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="project-preview" data-project-id="' . $womens_product_id->ID . '">';
+    echo '<a href="#" class="product-preview womens" data-project-id="' . $womens_product_id->ID . '">';
     echo $womens_cat->name;
 		echo '<img src="' . $womens_image . '" alt="" />';
     echo '</a>';
@@ -314,7 +314,7 @@ foreach ($hoodies_category as $hoodies_cat) {
 	$hoodies_image = wp_get_attachment_url( $hoodies_thumbnail_id );
 	if ( $hoodies_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="project-preview" data-project-id="' . $hoodies_product_id->ID . '">';
+    echo '<a href="#" class="product-preview hoodies" data-project-id="' . $hoodies_product_id->ID . '">';
     echo $hoodies_cat->name;
 		echo '<img src="' . $hoodies_image . '" alt="" />';
     echo '</a>';
@@ -359,7 +359,7 @@ foreach ($kids_category as $kids_cat) {
 	$kids_image = wp_get_attachment_url( $kids_thumbnail_id );
 	if ( $kids_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="project-preview" data-project-id="' . $kids_product_id->ID . '">';
+    echo '<a href="#" class="product-preview kids" data-project-id="' . $kids_product_id->ID . '">';
     echo $kids_cat->name;
 		echo '<img src="' . $kids_image . '" alt="" />';
     echo '</a>';
@@ -404,7 +404,7 @@ foreach ($babies_category as $babies_cat) {
 	$babies_image = wp_get_attachment_url( $babies_thumbnail_id );
 	if ( $babies_image ) {
     echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="project-preview" data-project-id="' . $babies_product_id->ID . '">';
+    echo '<a href="#" class="product-preview babies" data-project-id="' . $babies_product_id->ID . '">';
     echo $babies_cat->name;
 		echo '<img src="' . $babies_image . '" alt="" />';
     echo '</a>';

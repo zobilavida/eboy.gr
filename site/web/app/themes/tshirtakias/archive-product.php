@@ -22,24 +22,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class = "container-fluid">
    <div class = "row row-height">
-     <div class = "col-lg-5 display-map left p-0">
-       <div class="container">
-         <div class="row facetwp-template">
+     <div class = "col-lg-5">
+       <div class = "container">
+         <div class ="row facetwp-template">
 
        <?php do_action( 'tshirtakias_stamps' ); ?>
 
        </div>
        </div>
      </div>
-     <div class="col-2">
+     <div class = "col-2">
 
        <div class="d-flex flex-wrap">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
 
      </div>
-     <div class = "col-lg-5 display-results right">
-      
+     <div class = "col-lg-5">
+			 <div class="d-flex flex-column">
+		   <div class="p-2 right-product">Flex item 1</div>
+		   <div class="p-2 right-category">Flex item 2</div>
+		 </div>
      </div>
 
      <?php get_template_part('templates/footer'); ?>
