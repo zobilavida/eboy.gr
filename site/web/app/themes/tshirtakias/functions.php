@@ -421,6 +421,10 @@ add_action ( 'tshirtakias_product_category_images', 'get_product_category_babies
 
 remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 
+remove_action ('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+remove_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+remove_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+
 
 
 function load_single_product_content () {

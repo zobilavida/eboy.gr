@@ -35,7 +35,7 @@ if ( post_password_required() ) {
 
 
 <div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-TEst
+
 	<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
