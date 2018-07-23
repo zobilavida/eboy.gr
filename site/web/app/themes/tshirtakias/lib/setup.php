@@ -118,5 +118,8 @@ function assets() {
   wp_register_script('pa_script', Assets\asset_path('scripts/custom_ajax.js'), ['jquery'], true);
   wp_localize_script( 'pa_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
   wp_enqueue_script('pa_script');
+  wp_register_script('pb_script', Assets\asset_path('scripts/related_ajax.js'), ['jquery'], true);
+  wp_localize_script( 'pb_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+  wp_enqueue_script('pb_script');
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
