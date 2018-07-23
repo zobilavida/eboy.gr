@@ -552,5 +552,5 @@ function wc_custom_get_gallery_image_html( $attachment_id, $main_image = false )
 		'class'                   => $main_image ? 'wp-post-image' : '',
 	) );
 
-	return '<div class="test"></div><div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
+	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
 }
