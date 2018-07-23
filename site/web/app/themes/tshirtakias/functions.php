@@ -159,7 +159,9 @@ echo do_shortcode('[facetwp facet="stamps"]');
 
 ?>
   <div class="w-25">
+    <a href="#" stamp-name="<?php the_title(); ?>" class="stamp">
       <img src="<?php echo $thumb_url ?>" class="img-fluid stamp" alt="Responsive image">
+    </a>
     </div>
 <?php
 endwhile;
@@ -446,3 +448,87 @@ function load_single_product_content () {
 
 add_action('wp_ajax_load_single_product_content', 'load_single_product_content');
 add_action('wp_ajax_nopriv_load_single_product_content', 'load_single_product_content');
+
+
+
+function kia_custom_option(){
+    $value = isset( $_POST['_custom_option'] ) ? sanitize_text_field( $_POST['_custom_option'] ) : '';
+    printf( '<label>%s</label><input name="_custom_option" value="%s" />', __( 'Stamp code', 'kia-plugin-textdomain' ), esc_attr( $value ) );
+}
+add_action( 'woocommerce_before_add_to_cart_button', 'kia_custom_option', 9 );
+
+function kia_add_to_cart_validation($passed, $product_id, $qty){
+
+    if( isset( $_POST['_custom_option'] ) && sanitize_text_field( $_POST['_custom_option'] ) == '' ){
+        $product = wc_get_product( $product_id );
+        wc_add_notice( sprintf( __( '%s cannot be added to the cart until you enter some Stamp code.', 'kia-plugin-textdomain' ), $product->get_title() ), 'error' );
+        return false;
+    }
+
+    return $passed;
+
+}
+add_filter( 'woocommerce_add_to_cart_validation', 'kia_add_to_cart_validation', 10, 3 );
+
+function kia_add_cart_item_data( $cart_item, $product_id ){
+
+    if( isset( $_POST['_custom_option'] ) ) {
+        $cart_item['custom_option'] = sanitize_text_field( $_POST['_custom_option'] );
+    }
+
+    return $cart_item;
+
+}
+add_filter( 'woocommerce_add_cart_item_data', 'kia_add_cart_item_data', 10, 2 );
+
+function kia_get_cart_item_from_session( $cart_item, $values ) {
+
+    if ( isset( $values['custom_option'] ) ){
+        $cart_item['custom_option'] = $values['custom_option'];
+    }
+
+    return $cart_item;
+
+}
+add_filter( 'woocommerce_get_cart_item_from_session', 'kia_get_cart_item_from_session', 20, 2 );
+
+function kia_add_order_item_meta( $item_id, $values ) {
+
+    if ( ! empty( $values['custom_option'] ) ) {
+        woocommerce_add_order_item_meta( $item_id, 'custom_option', $values['custom_option'] );
+    }
+}
+add_action( 'woocommerce_add_order_item_meta', 'kia_add_order_item_meta', 10, 2 );
+
+function kia_get_item_data( $other_data, $cart_item ) {
+
+    if ( isset( $cart_item['custom_option'] ) ){
+
+        $other_data[] = array(
+            'name' => __( 'Your custom text', 'kia-plugin-textdomain' ),
+            'value' => sanitize_text_field( $cart_item['custom_option'] )
+        );
+
+    }
+
+    return $other_data;
+
+}
+add_filter( 'woocommerce_get_item_data', 'kia_get_item_data', 10, 2 );
+
+function kia_order_item_product( $cart_item, $order_item ){
+
+    if( isset( $order_item['custom_option'] ) ){
+        $cart_item_meta['custom_option'] = $order_item['custom_option'];
+    }
+
+    return $cart_item;
+
+}
+add_filter( 'woocommerce_order_item_product', 'kia_order_item_product', 10, 2 );
+
+function kia_email_order_meta_fields( $fields ) {
+    $fields['custom_field'] = __( 'Your custom text', 'kia-plugin-textdomain' );
+    return $fields;
+}
+add_filter('woocommerce_email_order_meta_fields', 'kia_email_order_meta_fields');
