@@ -38,7 +38,6 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<figure class="woocommerce-product-gallery__wrapper test">
 		<?php
 		if ( has_post_thumbnail() ) {
-			$html = '<img src="..." class="img-fluid stamp" alt="Responsive image">';
 			$html  = wc_custom_get_gallery_image_html( $post_thumbnail_id, true );
 		} else {
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
