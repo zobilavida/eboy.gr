@@ -2,7 +2,12 @@
 
 
 
+function assets() {
+  wp_enqueue_style('custom/css', ('/assets/css/main.css'), false, null);
 
+
+}
+add_action('wp_enqueue_scripts', 'assets', 100);
 
 
 // Add svg & swf support
