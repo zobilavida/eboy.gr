@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
        <?php do_action( 'tshirtakias_stamps' ); ?>
 
        </div>
-			 <input name="stamp_url" value="" />
+			 <input name="stamp_url" value="" class="stamp_url"/>
        </div>
      </div>
      <div class = "col-2">
