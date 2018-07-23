@@ -159,7 +159,7 @@ echo do_shortcode('[facetwp facet="stamps"]');
 
 ?>
   <div class="w-25">
-    <a href="#" stamp-name="<?php the_title(); ?>" class="stamp">
+    <a href="#" stamp-name="<?php the_title(); ?>" stamp-url="<?php echo $thumb_url ?>" class="stamp">
       <img src="<?php echo $thumb_url ?>" class="img-fluid stamp" alt="Responsive image">
     </a>
     </div>
