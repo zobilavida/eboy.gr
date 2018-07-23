@@ -35,7 +35,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 ) );
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 1; transition: opacity .25s ease-in-out;">
-	<div class="selected-stamp"><img src="" alt="" />stamp</div>
+	<div><img src="#" alt="" class="selected-stamp"/>stamp</div>
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		if ( has_post_thumbnail() ) {
