@@ -19,7 +19,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Note: `wc_get_gallery_image_html` was added in WC 3.3.2 and did not exist prior. This check protects against theme overrides being used on older versions of WC.
-if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
+if ( ! function_exists( 'wc_custom_get_gallery_image_html' ) ) {
 	return;
 }
 
@@ -36,7 +36,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 ) );
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 1; transition: opacity .25s ease-in-out; position: absolute; padding-top: 490px;">
-	
+
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		if ( has_post_thumbnail() ) {
