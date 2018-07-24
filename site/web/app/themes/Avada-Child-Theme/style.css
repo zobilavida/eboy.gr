@@ -44,6 +44,10 @@ div {
 .post-type-archive-product table.variations {
     height: 500px;
 }
+
+.post-type-archive-product div.swatch-label {
+    display: none;
+}
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
