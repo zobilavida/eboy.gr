@@ -37,7 +37,6 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 			<tbody>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
-						<td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
 						<td class="value">
 							<?php
 								wc_dropdown_variation_attribute_options( array(
@@ -51,7 +50,6 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				<?php endforeach; ?>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>
 				  <tr>
-					<td class="label"></td>
 					<td class="value">
 						<div class="single_variation_price_reset">
 							<div class="single_variation_wrap">
