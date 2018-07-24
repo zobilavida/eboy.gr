@@ -8,7 +8,7 @@ Version: 1.0.0
 Text Domain:  tshirtakias
 */
 div {
-  border: 1px solid red;
+  border: 0px solid red;
 }
 
 .post-type-archive-product .fusion-row {
@@ -24,6 +24,12 @@ div {
 .selected-stamp-wrapper {
   position: relative;
   top: 406px;
+  z-index: 1000;
+}
+
+.selected-stamp-wrapper img {
+    width: 215px;
+    height: auto;
 }
 
 /*!
