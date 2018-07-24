@@ -15,11 +15,6 @@ div {
       max-width: 100%!important;
 }
 
-.product .images {
-    float: left;
-    width: 100%!important;
-    margin-right: 30px;
-}
 
 .selected-stamp-wrapper {
   position: relative;
