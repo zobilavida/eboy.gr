@@ -180,7 +180,7 @@ add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_sho
     wc_get_template( 'single-product/custom-title.php' );
   }
 
-add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_template_single_custom_title', 5 );
+//add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_template_single_custom_title', 5 );
 add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 
 function get_product_category_mens_images () {
