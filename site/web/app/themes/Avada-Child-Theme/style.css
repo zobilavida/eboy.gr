@@ -8,7 +8,7 @@ Version: 1.0.0
 Text Domain:  tshirtakias
 */
 div {
-  border: 0px solid red;
+  border: 1px solid red;
 }
 
 .post-type-archive-product .fusion-row {
@@ -25,6 +25,15 @@ div {
 .selected-stamp-wrapper img {
     width: 140px;
     height: auto;
+}
+
+.woocommerce-product-gallery .flex-control-thumbs li {
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+    margin: 0 12px;
+    padding: 4px;
+    border: 1px solid black;
 }
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
