@@ -40,6 +40,10 @@ div {
 .post-type-archive-product .woocommerce-product-gallery--columns-4 .flex-control-thumbs li {
     width: 12%!important;
 }
+
+.post-type-archive-product table.variations {
+    height: 500px;
+}
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
