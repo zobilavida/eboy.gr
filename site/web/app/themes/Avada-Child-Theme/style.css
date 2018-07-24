@@ -21,6 +21,11 @@ div {
     margin-right: 30px;
 }
 
+.selected-stamp-wrapper {
+  position: relative;
+  top: 406px;
+}
+
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
