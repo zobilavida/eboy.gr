@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
   $('.product-preview.mens').trigger('click');
+  var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
+  $('.selected-stamp').attr('src', demourl);
 
   $(".product-preview.mens").click(function(){
     var post_url = $(this).attr('data-href');
