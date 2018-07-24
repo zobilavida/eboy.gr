@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 ?>
 
 
-<div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="product-<?php the_ID(); ?>" <?php post_class('d-flex'); ?>>
 
 	<?php
 		/**
