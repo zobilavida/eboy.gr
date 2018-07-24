@@ -6,6 +6,14 @@ function avada_child_styles() {
 }
 }
 function avada_child_scripts() {
+  if ( is_shop() ) {
+    wp_enqueue_script( 'wc-single-product' );
+    wp_enqueue_script( 'wc-add-to-cart-variation' );
+   wp_enqueue_script( 'flexslider' );
+  //  wp_enqueue_script( 'photoswipe-ui-default' );
+  // wp_enqueue_script( 'photoswipe' );
+  // wp_enqueue_script( 'zoom' );
+  }
 
         wp_enqueue_script('child_script', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), false, true);
           wp_register_script('pa_script', get_stylesheet_directory_uri() . '/js/custom_ajax.js', array('jquery'), false, true);
