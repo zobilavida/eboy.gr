@@ -49,17 +49,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 					</tr>
 				<?php endforeach; ?>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>
-				  <tr>
-					<td class="value">
-						<div class="single_variation_price_reset">
-							<div class="single_variation_wrap">
-								<div class="avada-variation single_variation"></div>
-							</div>
 
-							<?php echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear selection', 'Avada' ) . '</a>' ) ) : ''; ?>
-						</div>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 
