@@ -20,17 +20,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
+<?php get_header(); ?>
 <div class = "container-fluid">
    <div class = "row row-height">
      <div class = "col-lg-5">
-       <div class = "container">
+      
          <div class ="row facetwp-template">
 
        <?php do_action( 'tshirtakias_stamps' ); ?>
 
        </div>
 			 <input name="stamp_url" value="" class="stamp_url"/>
-       </div>
+
      </div>
      <div class = "col-2">
 
@@ -46,6 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 </div>
      </div>
 
-     <?php get_template_part('templates/footer'); ?>
+		 <?php
+	 	get_footer();?>
    </div>
  </div>

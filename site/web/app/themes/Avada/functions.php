@@ -738,6 +738,4 @@ function fusion_doing_ajax() {
 	return defined( 'DOING_AJAX' ) && DOING_AJAX;
 }
 
-include get_template_directory() . '/store_app_functions.php';
-
 /* Omit closing PHP tag to avoid "Headers already sent" issues. */

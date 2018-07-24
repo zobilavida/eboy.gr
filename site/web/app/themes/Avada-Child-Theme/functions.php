@@ -1,13 +1,20 @@
 <?php
 
+function avada_child_styles() {
+    if ( is_shop() ) {
+        wp_enqueue_style( 'avada-child-stylesheet', get_stylesheet_uri()  );
+}
+}
+function avada_child_scripts() {
 
-
-function assets() {
-  wp_enqueue_style('custom/css', ('/assets/css/main.css'), false, null);
-
+        wp_enqueue_script('child_script', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), false, true);
+          wp_register_script('pa_script', get_stylesheet_directory_uri() . '/js/custom_ajax.js', array('jquery'), false, true);
+          wp_localize_script( 'pa_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+          wp_enqueue_script('pa_script');
 
 }
-add_action('wp_enqueue_scripts', 'assets', 100);
+add_action('wp_enqueue_scripts', 'avada_child_styles');
+add_action('wp_enqueue_scripts', 'avada_child_scripts', 20);
 
 
 // Add svg & swf support
@@ -151,31 +158,21 @@ endif;
 }
 add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 
-function load_product () {
-?>
+add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
 
-<?php
-$args = array(
-'post_type' => 'product',
-'stock' => 1,
-'posts_per_page' => 4,
-'orderby' =>'date',
-'order' => 'DESC' );
-$loop = new WP_Query( $args );
-while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
-<div class="span3">
-<a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-<?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="My Image Placeholder" width="65px" height="115px" />'; ?>
-<h3><?php the_title(); ?></h3>
-<span class="price"><?php echo $product->get_price_html(); ?></span>
-</a>
-<?php  $product->get_attributes(); ?>
-</div><!-- /span3 -->
-<?php endwhile; ?>
-<?php wp_reset_query(); ?>
-<?php
-}
-add_action ( 'tshirtakias_product', 'load_product', 10 );
+
+	/**
+	 * Output the product image before the single product summary.
+	 */
+	function woocommerce_show_product_custom_images() {
+		wc_get_template( 'single-product/product-custom-image.php' );
+	}
+
+  add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_template_single_custom_title', 5 );
+  function woocommerce_template_single_custom_title() {
+    wc_get_template( 'single-product/custom-title.php' );
+  }
+
 
 function get_product_category_mens_images () {
 
@@ -198,6 +195,7 @@ foreach($mens_product_id AS $mens_product_id){
   'slug'          => 'mens',
 	'orderby'      => 'name',
 	'hide_empty'   => '0',
+	//'include'      => $cat_array
 );
 $mens_category = get_categories( $get_featured_mens_cat );
 $j = 1;
@@ -401,7 +399,7 @@ foreach ($babies_category as $babies_cat) {
 wp_reset_query();
 }
 add_action ( 'tshirtakias_product_category_images', 'get_product_category_babies_images', 50 );
-remove_action ('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action ('woocommerce_single_custom_product_summary', 'woocommerce_template_single_meta', 40 );
 remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
@@ -418,7 +416,7 @@ function load_single_product_content () {
          $the_query = new WP_query(array('p' => $post_id, 'post_type' => 'product'));
          if ($the_query->have_posts()) {
              while ($the_query->have_posts()) : $the_query->the_post();
-             wc_get_template_part( 'content', 'single-product' );
+             wc_get_template_part( 'content', 'single-custom-product' );
          endwhile;
          } else {
              echo "There were no products found";
@@ -535,3 +533,5 @@ function wc_custom_get_gallery_image_html( $attachment_id, $main_image = false )
 
 	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
 }
+
+?>
