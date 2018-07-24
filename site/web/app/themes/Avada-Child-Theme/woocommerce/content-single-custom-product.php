@@ -35,7 +35,7 @@ if ( post_password_required() ) {
 
 
 <div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-Test
+
 	<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
@@ -46,7 +46,7 @@ Test
 		do_action( 'woocommerce_before_single_product_custom_summary' );
 	?>
 
-	<div class="summary entry-summary">
+	<div class="summary custom-entry-summary">
 		<?php
 			/**
 			 * Hook: Woocommerce_single_product_summary.
