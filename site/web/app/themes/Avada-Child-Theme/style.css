@@ -48,6 +48,19 @@ div {
 .post-type-archive-product div.swatch-label {
     display: none;
 }
+
+.custom-entry-summary {
+  z-index: 3000;
+}
+.post-type-archive-product .woocommerce-product-gallery .flex-control-thumbs {
+    margin: 15px 0px 0!important;
+    width: auto;
+    text-align: inherit;
+    z-index: 3999!important;
+    position: absolute;
+    width: 500px!important;
+    bottom: -26px;
+}
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
