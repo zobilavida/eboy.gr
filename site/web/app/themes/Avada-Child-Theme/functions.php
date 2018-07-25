@@ -214,7 +214,7 @@ return false;
 }
 function load_stamps () {
 
-echo do_shortcode('[facetwp facet="stamps"]');
+//echo do_shortcode('[facetwp facet="stamps"]');
     // WP_Query arguments
     $args = array(
       "post_type" => "stamps",
