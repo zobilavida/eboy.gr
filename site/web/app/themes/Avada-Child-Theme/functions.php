@@ -19,6 +19,9 @@ function avada_child_scripts() {
           wp_register_script('pa_script', get_stylesheet_directory_uri() . '/js/custom_ajax.js', array('jquery'), false, true);
           wp_localize_script( 'pa_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
           wp_enqueue_script('pa_script');
+          wp_register_script('pb_script', get_stylesheet_directory_uri() . '/js/related_ajax.js', array('jquery'), false, true);
+          wp_localize_script( 'pb_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+          wp_enqueue_script('pb_script');
 
 }
 add_action('wp_enqueue_scripts', 'avada_child_styles');
