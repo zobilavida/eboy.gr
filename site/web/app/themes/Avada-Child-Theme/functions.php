@@ -176,7 +176,7 @@ add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_sho
 	 * Output the product image before the single product summary.
 	 */
 	function woocommerce_show_product_custom_images() {
-		wc_get_template( 'single-product/product-custom-image.php' );
+		wc_get_template( 'single-product/product-image.php' );
 	}
 
   function woocommerce_template_single_custom_title() {
