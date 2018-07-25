@@ -21,11 +21,20 @@ div {
       top: 320px;
   z-index: 1000;
       min-height: 140px;
+  text-align: center;
 }
 
 .selected-stamp-wrapper img {
     width: 140px;
     height: auto;
+}
+
+.page-template-store-app .product .images {
+    float: left;
+    width: 500px;
+    margin-right: 30px;
+    position: absolute;
+    padding-top: 272px;
 }
 
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs li {
@@ -52,6 +61,7 @@ div {
 .custom-entry-summary {
   position: absolute;
   z-index: 3000;
+  padding-top: 492px;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
 margin: 31px -32% 0!important;
