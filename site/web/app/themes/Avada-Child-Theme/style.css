@@ -11,7 +11,56 @@ div {
   border: 0px solid red;
 }
 
+.post-type-archive-product .fusion-row {
+      max-width: 100%!important;
+}
 
+
+.selected-stamp-wrapper {
+  position: relative;
+      top: 320px;
+  z-index: 1000;
+      min-height: 140px;
+}
+
+.selected-stamp-wrapper img {
+    width: 140px;
+    height: auto;
+}
+
+.post-type-archive-product .woocommerce-product-gallery .flex-control-thumbs li {
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+    margin: 0 12px!important;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.post-type-archive-product .woocommerce-product-gallery--columns-4 .flex-control-thumbs li {
+    width: 12%!important;
+}
+
+.post-type-archive-product table.variations {
+    height: 500px;
+}
+
+.post-type-archive-product div.swatch-label {
+    display: none;
+}
+
+.custom-entry-summary {
+  z-index: 3000;
+}
+.post-type-archive-product .woocommerce-product-gallery .flex-control-thumbs {
+    margin: 15px 0px 0!important;
+    width: auto;
+    text-align: inherit;
+    z-index: 3999!important;
+    position: absolute;
+    width: 500px!important;
+    bottom: -26px;
+}
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
