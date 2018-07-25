@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
-  
+
   $(document).on('facetwp-loaded', function() {
-      if (FWP.loaded) {
+
   $('.product-preview.mens').trigger('click');
   var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
   $('.selected-stamp').attr('src', demourl);
@@ -40,6 +40,6 @@ jQuery(document).ready(function($) {
     $('.selected-stamp').attr('src', url);
   });
 
-}
+
 });
   });
