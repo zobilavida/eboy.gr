@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 
   var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
-
+    $('.selected-stamp').attr('src', demourl);
   $(document).on('facetwp-loaded', function() {
 
-  $('.selected-stamp').attr('src', demourl);
+
 
   $(".product-preview.mens").click(function(){
     var post_url = $(this).attr('data-href');
