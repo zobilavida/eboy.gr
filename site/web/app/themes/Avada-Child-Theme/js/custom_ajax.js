@@ -1,4 +1,4 @@
-$(document).on('facetwp-loaded', function() {
+jQuery(document).on('facetwp-loaded', function() {
 
 "use strict";
 
