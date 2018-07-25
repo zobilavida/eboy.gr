@@ -19,7 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class = "container-fluid">
    <div class = "row row-height">
      <div class = "col-lg-5 left">
+			 <div class="row">
+				 <div class="col-12">
+<?php echo facetwp_display( 'facet', 'stamps' ); ?>
+				 </div>
 
+			 </div>
          <div class ="row facetwp-template">
 
        <?php do_action( 'tshirtakias_stamps' ); ?>

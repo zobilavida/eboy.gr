@@ -1,5 +1,5 @@
 <?php
-
+//include get_template_directory() . '/../Avada-Child-Theme/plugins/facetwp/index.php';
 function avada_child_styles() {
     if ( is_page_template('store-app.php') ) {
         wp_enqueue_style( 'avada-child-stylesheet', get_stylesheet_uri()  );
@@ -214,7 +214,7 @@ return false;
 }
 function load_stamps () {
 
-//echo do_shortcode('[facetwp facet="stamps"]');
+
     // WP_Query arguments
     $args = array(
       "post_type" => "stamps",

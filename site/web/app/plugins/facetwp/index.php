@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: FacetWP |  VestaThemes.com
+Plugin Name: FacetWP 
 Description: Advanced Filtering for WordPress
 Version: 3.1.5
 Author: FacetWP, LLC
