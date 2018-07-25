@@ -1,12 +1,12 @@
 <?php
 
 function avada_child_styles() {
-    if ( is_shop() ) {
+    if ( is_page_template('store-app.php') ) {
         wp_enqueue_style( 'avada-child-stylesheet', get_stylesheet_uri()  );
 }
 }
 function avada_child_scripts() {
-  if ( is_shop() ) {
+  if ( is_page_template('store-app.php') ) {
     wp_enqueue_script( 'wc-single-product' );
     wp_enqueue_script( 'wc-add-to-cart-variation' );
    wp_enqueue_script( 'flexslider' );
