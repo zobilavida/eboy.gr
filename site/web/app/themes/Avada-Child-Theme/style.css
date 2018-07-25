@@ -37,6 +37,21 @@ div {
     padding-top: 272px;
 }
 
+.page-template-store-app .avada-availability {
+  display: none;
+}
+
+.page-template-store-app .variations .label {
+    display: none;
+}
+
+.page-template-store-app .single_variation_price_reset {
+  display: none;
+}
+
+.page-template-store-app .product .product-border {
+display: none;}
+
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs li {
     display: inline-block;
     vertical-align: top;
