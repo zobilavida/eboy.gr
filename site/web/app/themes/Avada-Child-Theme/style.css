@@ -110,6 +110,10 @@ right: 0;
     overflow-y: scroll;
 }
 
+.right-category {
+  padding-top: 600px;
+}
+
 
 .slick-product {
   width: 150px;

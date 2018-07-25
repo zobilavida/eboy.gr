@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      <div class = "col-lg-5 right">
 			 <div class="d-flex flex-column">
 		   <div class="p-2 right-product">Flex item 1</div>
-		   <div class="p-2 right-category">Flex item 2</div>
+		   <div class="right-category">Flex item 2</div>
 		 </div>
      </div>
 
