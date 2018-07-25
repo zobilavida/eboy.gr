@@ -1,9 +1,15 @@
 jQuery(document).ready(function($) {
-
+$('.slick-product').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  centerMode: true,
+  variableWidth: true
+});
   var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
     $('.selected-stamp').attr('src', demourl);
   $(document).on('facetwp-loaded', function() {
-
 
 
   $(".product-preview.mens").click(function(){

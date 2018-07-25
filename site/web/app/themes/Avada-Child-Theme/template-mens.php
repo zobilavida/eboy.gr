@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-        <div class="p-2">
+        <div class="p-2 slick-product">
           <a href="#" class="related-product-preview" data-project-id="<?php echo $id; ?>">
           <?php //the_title(); ?>
           <?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="Placeholder" width="300px" height="300px" />'; ?>
