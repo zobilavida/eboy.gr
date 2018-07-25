@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      <div class = "col-lg-5 left">
 			 <div class="row">
 				 <div class="col-12">
-<?php //echo facetwp_display( 'facet', 'stamps' ); ?>
+<?php echo facetwp_display( 'facet', 'stamps' ); ?>
 				 </div>
 
 			 </div>
