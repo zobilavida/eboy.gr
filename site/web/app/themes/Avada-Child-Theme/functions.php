@@ -169,7 +169,7 @@ endif;
 }
 add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 
-add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
+add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_images', 20 );
 
 
 	/**
