@@ -5,6 +5,8 @@ function avada_child_styles() {
         wp_enqueue_style( 'avada-child-stylesheet', get_stylesheet_uri()  );
 }
 }
+add_action('wp_enqueue_scripts', 'avada_child_styles');
+
 function avada_child_scripts() {
   if ( is_page_template('store-app.php') ) {
     wp_enqueue_script( 'wc-single-product' );
@@ -14,7 +16,6 @@ function avada_child_scripts() {
   // wp_enqueue_script( 'photoswipe' );
   // wp_enqueue_script( 'zoom' );
   }
-
         wp_enqueue_script('child_script', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), false, true);
           wp_register_script('pa_script', get_stylesheet_directory_uri() . '/js/custom_ajax.js', array('jquery'), false, true);
           wp_localize_script( 'pa_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
@@ -22,10 +23,26 @@ function avada_child_scripts() {
           wp_register_script('pb_script', get_stylesheet_directory_uri() . '/js/related_ajax.js', array('jquery'), false, true);
           wp_localize_script( 'pb_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
           wp_enqueue_script('pb_script');
-
 }
-add_action('wp_enqueue_scripts', 'avada_child_styles');
+
 add_action('wp_enqueue_scripts', 'avada_child_scripts', 20);
+
+
+
+
+function add_admin_scripts( $hook ) {
+
+global $post;
+
+if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+if ( 'stamps' === $post->post_type ) {
+wp_enqueue_script( 'myscript', get_stylesheet_directory_uri().'/js/second_featured.js' );
+}
+}
+}
+add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
+
+
 
 
 // Add svg & swf support
@@ -137,6 +154,64 @@ function custom_stamp_cats() {
 add_action( 'init', 'custom_stamp_cats', 0 );
 
 
+add_action( 'add_meta_boxes', 'listing_image_add_metabox' );
+function listing_image_add_metabox () {
+	add_meta_box( 'listingimagediv', __( 'PNG image', 'tshirtakias' ), 'listing_image_metabox', 'stamps', 'side', 'low');
+}
+
+function listing_image_metabox ( $post ) {
+	global $content_width, $_wp_additional_image_sizes;
+
+	$image_id = get_post_meta( $post->ID, '_listing_image_id', true );
+
+	$old_content_width = $content_width;
+	$content_width = 254;
+
+	if ( $image_id && get_post( $image_id ) ) {
+
+		if ( ! isset( $_wp_additional_image_sizes['post-thumbnail'] ) ) {
+			$thumbnail_html = wp_get_attachment_image( $image_id, array( $content_width, $content_width ) );
+		} else {
+			$thumbnail_html = wp_get_attachment_image( $image_id, 'post-thumbnail' );
+		}
+
+		if ( ! empty( $thumbnail_html ) ) {
+			$content = $thumbnail_html;
+			$content .= '<p class="hide-if-no-js"><a href="javascript:;" id="remove_listing_image_button" >' . esc_html__( 'Remove PNG image', 'tshirtakias' ) . '</a></p>';
+			$content .= '<input type="hidden" id="upload_listing_image" name="_listing_cover_image" value="' . esc_attr( $image_id ) . '" />';
+		}
+
+		$content_width = $old_content_width;
+	} else {
+
+		$content = '<img src="" style="width:' . esc_attr( $content_width ) . 'px;height:auto;border:0;display:none;" />';
+		$content .= '<p class="hide-if-no-js"><a title="' . esc_attr__( 'Set PNG image', 'tshirtakias' ) . '" href="javascript:;" id="upload_listing_image_button" id="set-listing-image" data-uploader_title="' . esc_attr__( 'Choose an image', 'tshirtakias' ) . '" data-uploader_button_text="' . esc_attr__( 'Set listing image', 'tshirtakias' ) . '">' . esc_html__( 'Set listing image', 'tshirtakias' ) . '</a></p>';
+		$content .= '<input type="hidden" id="upload_listing_image" name="_listing_cover_image" value="" />';
+
+	}
+
+	echo $content;
+}
+
+add_action( 'save_post', 'listing_image_save', 10, 1 );
+function listing_image_save ( $post_id ) {
+	if( isset( $_POST['_listing_cover_image'] ) ) {
+		$image_id = (int) $_POST['_listing_cover_image'];
+		update_post_meta( $post_id, '_listing_image_id', $image_id );
+	}
+}
+
+function listing_image_get_meta ($value) {
+global $post;
+
+$image_id = get_post_meta ($post->ID, $value, true);
+
+if (!empty ($image_id)) {
+return is_array ($image_id) ? stripslashes_deep ($image_id) : stripslashes (wp_kses_decode_entities ($image_id));
+} else {
+return false;
+}
+}
 function load_stamps () {
 
 echo do_shortcode('[facetwp facet="stamps"]');
@@ -155,11 +230,11 @@ echo do_shortcode('[facetwp facet="stamps"]');
     $thumb_id = get_post_thumbnail_id();
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
     $thumb_url = $thumb_url_array[0];
-
+    $imagething = wp_get_attachment_image_src( listing_image_get_meta('_listing_image_id'), 'full');
 
 ?>
   <div class="w-25">
-    <a href="#" stamp-name="<?php the_title(); ?>" stamp-url="<?php echo $thumb_url ?>" class="stamp">
+    <a href="#" stamp-name="<?php the_title(); ?>" stamp-url="<?php echo $imagething[0] ?>" class="stamp">
       <img src="<?php echo $thumb_url ?>" class="img-fluid stamp" alt="Responsive image">
     </a>
     </div>

@@ -27,17 +27,16 @@ $attribute_keys = array_keys( $attributes );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<form class="variations_form cart test2" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $available_variations ) ); // WPCS: XSS ok. ?>">
+<form class="variations_form cart test3" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $available_variations ) ); // WPCS: XSS ok. ?>">
 	<?php do_action( 'woocommerce_before_variations_form' ); ?>
 
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
-		<p class="stock out-of-stock"><?php esc_html_e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
+
 	<?php else : ?>
-		<table class="variations 3" cellspacing="0">
+		<table class="variations 2" cellspacing="0">
 			<tbody>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
-						<td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
 						<td class="value">
 							<?php
 								wc_dropdown_variation_attribute_options( array(
@@ -50,18 +49,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 					</tr>
 				<?php endforeach; ?>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>
-				  <tr>
-					<td class="label"></td>
-					<td class="value">
-						<div class="single_variation_price_reset">
-							<div class="single_variation_wrap">
-								<div class="avada-variation single_variation"></div>
-							</div>
 
-							<?php echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear selection', 'Avada' ) . '</a>' ) ) : ''; ?>
-						</div>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 
