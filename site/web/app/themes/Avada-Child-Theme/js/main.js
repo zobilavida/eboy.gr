@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
 
+  var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
+
   $(document).on('facetwp-loaded', function() {
 
-  
-  var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
   $('.selected-stamp').attr('src', demourl);
 
   $(".product-preview.mens").click(function(){
