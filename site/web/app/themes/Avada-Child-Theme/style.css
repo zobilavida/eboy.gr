@@ -50,16 +50,18 @@ div {
 }
 
 .custom-entry-summary {
+  position: absolute;
   z-index: 3000;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
-    margin: 15px 0px 0!important;
-    width: auto;
-    text-align: inherit;
-    z-index: 3999!important;
-    position: absolute;
-    width: 500px!important;
-    bottom: -26px;
+margin: 31px -32% 0!important;
+width: auto;
+text-align: inherit;
+z-index: 3999!important;
+position: absolute;
+width: 500px!important;
+bottom: -26px;
+right: 0;
 }
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
