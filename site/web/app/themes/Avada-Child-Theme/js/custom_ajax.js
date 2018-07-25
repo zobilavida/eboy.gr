@@ -1,4 +1,7 @@
 jQuery(document).ready(function($) {
+  $(document).on('facetwp-loaded', function() {
+      if (FWP.loaded) {
+
 "use strict";
 
 $('.product-preview').on('click',function(){
@@ -41,5 +44,6 @@ function loadRelatedScript() {
 function loadKeepStampScript() {
    $.getScript("https://eboy.gr/app/themes/tshirtakias/dist/scripts/keepstamp_ajax-7cea83afa4.js?ver=1");
 }
-
+}
+});
 });
