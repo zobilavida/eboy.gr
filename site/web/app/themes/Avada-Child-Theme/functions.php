@@ -169,14 +169,14 @@ endif;
 }
 add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 
-add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_images', 20 );
+add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
 
 
 	/**
 	 * Output the product image before the single product summary.
 	 */
 	function woocommerce_show_product_custom_images() {
-		wc_get_template( 'single-product/product-image.php' );
+		wc_get_template( 'single-product/product-custom-image.php' );
 	}
 
   function woocommerce_template_single_custom_title() {
