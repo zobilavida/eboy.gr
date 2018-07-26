@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
   var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
     $('.selected-stamp').attr('src', demourl);
-jQuery('.product-preview.mens').trigger('click');
+
   $(document).on('facetwp-loaded', function() {
 
 

@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?><?php get_header(); ?>
 <div class = "container-fluid">
    <div class = "row row-height">
-     <div class = "col-lg-5 left">
+     <div class = "col-12 col-lg-5 left">
 			 <div class="row">
-				 <div class="col-12 order-sm-12">
+				 <div class="col-12">
 <?php echo facetwp_display( 'facet', 'stamps' ); ?>
 				 </div>
 
@@ -33,14 +33,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 <input name="stamp_url" value="" class="stamp_url"/>
 
      </div>
-     <div class = "col-2">
+     <div class = "col-12 col-lg-2">
 
        <div class="d-flex flex-wrap">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
 
      </div>
-     <div class = "col-lg-5 order-sm-1 right">
+     <div class = "col-12 col-lg-5 right">
 			 <div class="d-flex flex-column">
 		   <div class="p-2 right-product">Flex item 1</div>
 		   <div class="right-category">Flex item 2</div>
