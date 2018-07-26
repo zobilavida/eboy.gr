@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    <div class = "row row-height">
      <div class = "col-12 col-lg-6 left">
 			 <div class="row">
-				 <div class="col-12 text-right">
+				 <div class="col-12 text-right filter">
 <?php echo facetwp_display( 'facet', 'stamps' ); ?>
 				 </div>
 

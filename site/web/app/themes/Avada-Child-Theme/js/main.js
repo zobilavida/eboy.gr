@@ -1,9 +1,8 @@
 jQuery(document).ready(function($) {
-    $(".right-category").html("loading1...");
-var def_url = 'https://eboy.gr/tshirtakias/mens/';
+
 $(".right-category").load(def_url + " .related-products-preview-wrapper");
   $(document).on('facetwp-loaded', function() {
-
+$(".filter").stick_in_parent();
 
   $(".product-preview.mens").click(function(){
     var post_url = $(this).attr('data-href');
