@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-$(".right-category").load(def_url + " .related-products-preview-wrapper");
+
   $(document).on('facetwp-loaded', function() {
 $(".filter").stick_in_parent();
 
