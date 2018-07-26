@@ -130,6 +130,21 @@ display: none;}
     margin-top: 20px;
 }
 
+.page-template-store-app .quantity.buttons_added {
+  width: 98px;
+    display: inline-block;
+}
+
+.page-template-store-app .single_add_to_cart_button, .wpcf7-submit {
+    background: #a0ce4e;
+    border-color: #a0ce4e;
+    color: #ffffff;
+    top: 28px;
+    position: absolute;
+    top: 0;
+    padding: 6px 50px;
+}
+
 .related-product-preview img {
   border: 1px solid #ccc!important;
 }

@@ -26,7 +26,7 @@ if ( ! $product ) {
 $attribute_keys = array_keys( $attributes );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
-
+<p class="price"><?php echo $product->get_price_html(); ?></p>
 <form class="variations_form cart test4" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $available_variations ) ); // WPCS: XSS ok. ?>">
 	<?php do_action( 'woocommerce_before_variations_form' ); ?>
 
@@ -37,7 +37,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 
-						<div class="col value">
+						<div class="col-6 value">
 							<?php
 								wc_dropdown_variation_attribute_options( array(
 									'options'   => $options,
@@ -48,6 +48,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 						</div>
 
 				<?php endforeach; ?>
+				<div class="col-12 value">
+				<?php do_action( 'woocommerce_single_variation' ); ?>
+				</div>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>
 
 
@@ -67,7 +70,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				 * @hooked woocommerce_single_variation - 10 Empty div for variation data.
 				 * @hooked woocommerce_single_variation_add_to_cart_button - 20 Qty and cart button.
 				 */
-				do_action( 'woocommerce_single_variation' );
+
 
 				/**
 				 * Hook: woocommerce_after_single_variation.
