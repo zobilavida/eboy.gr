@@ -482,7 +482,7 @@ function get_product_category_babies_images () {
 $babies_product_id = get_posts($babies_args);
 
 foreach($babies_product_id AS $babies_product_id){
-  echo $babies_product_id->ID; # You will get different product ids here
+//  echo $babies_product_id->ID; # You will get different product ids here
 }
 
   $get_featured_babies_cat = array(
