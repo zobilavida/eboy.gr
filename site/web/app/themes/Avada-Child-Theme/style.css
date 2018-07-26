@@ -79,13 +79,12 @@ display: none;}
     padding-top: 1156px;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
-  margin: 0 0 0!important;
+
   width: auto;
   text-align: center;
   z-index: 3999!important;
-  position: absolute;
-  width: 500px!important;
-  bottom: -54px;
+
+  bottom: 0;
   /* right: 0; */
 }
 
