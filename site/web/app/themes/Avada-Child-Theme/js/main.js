@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-$(".filter").stick_in_parent();
 
   $(document).on('facetwp-loaded', function() {
 
