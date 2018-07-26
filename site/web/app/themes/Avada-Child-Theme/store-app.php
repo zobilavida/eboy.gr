@@ -42,7 +42,24 @@ if ( ! defined( 'ABSPATH' ) ) {
      </div>
      <div class = "col-12 col-lg-5 right">
 			 <div class="d-flex flex-column">
-		   <div class="p-2 right-product">Flex item 1</div>
+		   <div class="p-2 right-product">
+				 <?php
+				 $params = array(
+				  'p' => '8',
+				  'post_type' => 'product'
+				 );
+				 $wc_query = new WP_Query($params);
+				 ?>
+				 <?php if ($wc_query->have_posts()) :  ?>
+				 <?php while ($wc_query->have_posts()) : $wc_query->the_post();  ?>
+				 <?php  wc_get_template_part( 'content', 'single-custom-product' );  ?>
+
+				 <?php endwhile; ?>
+				 <?php wp_reset_postdata();  ?>
+				 <?php else:  ?>
+				 <p><?php _e( 'No Product' );  ?></p>
+				 <?php endif; ?>
+			 </div>
 		   <div class="right-category">Flex item 2</div>
 		 </div>
      </div>

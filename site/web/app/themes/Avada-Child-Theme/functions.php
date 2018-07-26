@@ -546,6 +546,8 @@ add_action('wp_ajax_nopriv_load_single_product_content', 'load_single_product_co
 
 
 
+
+
 function kia_custom_option(){
     $value = isset( $_POST['_custom_option'] ) ? sanitize_text_field( $_POST['_custom_option'] ) : '';
     printf( '<label>%s</label><input name="_custom_option" value="%s" />', __( 'Stamp code', 'kia-plugin-textdomain' ), esc_attr( $value ) );

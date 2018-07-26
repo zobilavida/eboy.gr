@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+  jQuery('.col-3').find('.product-preview.mens').trigger('click');
   $(document).on('facetwp-loaded', function() {
 
 
