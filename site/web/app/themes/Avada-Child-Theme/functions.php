@@ -362,7 +362,7 @@ foreach ($womens_category as $womens_cat) {
     echo $womens_cat->name ;
     echo '</div>';
     echo '<div class="col-3 col-lg-12 text-center p-2">';
-    echo '<a href="#" class="product-preview mens" data-project-id="' . $womens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $womens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/womens/">';
 		echo '<img src="' . $womens_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
@@ -409,7 +409,7 @@ foreach ($hoodies_category as $hoodies_cat) {
     echo $hoodies_cat->name ;
     echo '</div>';
     echo '<div class="col-3 col-lg-12 text-center p-2">';
-    echo '<a href="#" class="product-preview mens" data-project-id="' . $hoodies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $hoodies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/hoodies/">';
 		echo '<img src="' . $hoodies_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
@@ -456,7 +456,7 @@ foreach ($kids_category as $kids_cat) {
     echo $kids_cat->name ;
     echo '</div>';	}
     echo '<div class="col-3 col-lg-12 text-center p-2">';
-    echo '<a href="#" class="product-preview mens" data-project-id="' . $kids_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $kids_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/kids/">';
 		echo '<img src="' . $kids_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
