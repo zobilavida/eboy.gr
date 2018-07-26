@@ -126,6 +126,11 @@ display: none;}
   display: none;
 }
 
+.page-template-store-app figure img {
+  width: 500px;
+  height: auto;
+}
+
 .row-height {
     height: 100vh;
 }
