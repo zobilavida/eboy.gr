@@ -84,6 +84,14 @@ display: none;}
   /* right: 0; */
 }
 
+.page-template-store-app .avada-product-gallery .flex-direction-nav {
+    display: block;
+    position: relative;
+    bottom: 245px;
+    /* border: 1px solid black; */
+    z-index: 4000;
+}
+
 .page-template-store-app .product_title {
   display: none;
 }
