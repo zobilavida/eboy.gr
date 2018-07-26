@@ -92,6 +92,14 @@ display: none;}
     z-index: 4000;
 }
 
+.page-template-store-app .flex-next {
+  background-image: url("/img/flex-nav-next.svg");
+}
+
+.page-template-store-app .flex-prev {
+  background-image: url("/img/flex-nav-prev.svg");
+}
+
 .page-template-store-app .product_title {
   display: none;
 }
