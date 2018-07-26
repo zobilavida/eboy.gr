@@ -93,7 +93,7 @@ display: none;}
 }
 
 .page-template-store-app .flex-next {
-  background-image: url("/img/flex-nav-next.svg");
+  background-image: url("../img/flex-nav-next.svg");
 }
 
 .page-template-store-app .flex-prev {
