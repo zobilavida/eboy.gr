@@ -111,7 +111,7 @@ display: none;}
 }
 
 .right-category {
-  padding-top: 600px;
+    padding-top: 645px;
 }
 
 .middle-col {
@@ -130,6 +130,9 @@ display: none;}
     margin-top: 20px;
 }
 
+.related-product-preview img {
+  border: 1px solid #ccc!important;
+}
 
 
 
