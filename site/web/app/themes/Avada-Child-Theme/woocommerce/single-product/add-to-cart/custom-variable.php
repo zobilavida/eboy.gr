@@ -33,11 +33,11 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
 
 	<?php else : ?>
-		<table class="variations" cellspacing="0">
-			<tbody>
+		<div class="row variations" cellspacing="0">
+
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
-					<tr>
-						<td class="value">
+
+						<div class="col value">
 							<?php
 								wc_dropdown_variation_attribute_options( array(
 									'options'   => $options,
@@ -45,13 +45,13 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 									'product'   => $product,
 								) );
 							?>
-						</td>
-					</tr>
+						</div>
+
 				<?php endforeach; ?>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>
 
-			</tbody>
-		</table>
+
+		</div>
 
 		<div class="single_variation_wrap">
 			<?php
