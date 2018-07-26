@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    <div class = "row row-height">
      <div class = "col-lg-5 left">
 			 <div class="row">
-				 <div class="col-12">
+				 <div class="col-12 order-sm-12">
 <?php echo facetwp_display( 'facet', 'stamps' ); ?>
 				 </div>
 
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
 
      </div>
-     <div class = "col-lg-5 right">
+     <div class = "col-lg-5 order-sm-1 right">
 			 <div class="d-flex flex-column">
 		   <div class="p-2 right-product">Flex item 1</div>
 		   <div class="right-category">Flex item 2</div>

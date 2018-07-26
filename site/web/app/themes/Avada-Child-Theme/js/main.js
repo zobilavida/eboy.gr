@@ -2,15 +2,9 @@ jQuery(document).ready(function($) {
 
   var demourl = 'https://eboy.gr/app/themes/Avada-Child-Theme/img/stamp_placeholder.png';
     $('.selected-stamp').attr('src', demourl);
+jQuery('.product-preview.mens').trigger('click');
   $(document).on('facetwp-loaded', function() {
-    $('.slick-product').slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 3,
-      centerMode: true,
-      variableWidth: false
-    });
+
 
   $(".product-preview.mens").click(function(){
     var post_url = $(this).attr('data-href');
