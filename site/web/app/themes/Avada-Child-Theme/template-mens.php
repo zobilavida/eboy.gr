@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
 ?><?php get_header(); ?>
-<div class="related-products-preview-wrapper">
+<div class="row related-products-preview-wrapper">
     <?php
         $args = array( 'post_type' => 'product', 'posts_per_page' => -1, 'product_cat' => 'mens', 'orderby' => 'name', 'order' => 'ASC' );
 
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-        <div class="slick-product">
+        <div class="col-3 slick-product">
           <a href="#" class="related-product-preview" data-project-id="<?php echo $id; ?>">
           <?php //the_title(); ?>
           <?php if (has_post_thumbnail( $loop->post->ID )) echo get_the_post_thumbnail($loop->post->ID, 'thumbnail'); else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="Placeholder" width="300px" height="300px" />'; ?>
