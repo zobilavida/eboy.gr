@@ -1,8 +1,8 @@
 jQuery(document).ready(function($) {
-
+$(".filter").stick_in_parent();
 
   $(document).on('facetwp-loaded', function() {
-$(".filter").stick_in_parent();
+
 
   $(".product-preview.mens").click(function(){
     var post_url = $(this).attr('data-href');
