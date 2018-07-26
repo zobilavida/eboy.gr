@@ -2,32 +2,6 @@ jQuery(document).ready(function($) {
 
   $(document).on('facetwp-loaded', function() {
 
-
-  $(".product-preview.mens").click(function(){
-    var post_url = $(this).attr('data-href');
-    $(".right-category").html("loading...");
-      $(".right-category").load(post_url + " .related-products-preview-wrapper");
-  });
-  $(".product-preview.womens").click(function(){
-    var post_url = $(this).attr('data-href');
-    $(".right-category").html("loading...");
-      $(".right-category").load(post_url + " .related-products-preview-wrapper");
-  });
-  $(".product-preview.hoodies").click(function(){
-    var post_url = $(this).attr('data-href');
-    $(".right-category").html("loading...");
-      $(".right-category").load(post_url + " .related-products-preview-wrapper");
-  });
-  $(".product-preview.kids").click(function(){
-    var post_url = $(this).attr('data-href');
-    $(".right-category").html("loading...");
-      $(".right-category").load(post_url + " .related-products-preview-wrapper");
-  });
-  $(".product-preview.babies").click(function(){
-    var post_url = $(this).attr('data-href');
-    $(".right-category").html("loading...");
-      $(".right-category").load(post_url + " .related-products-preview-wrapper");
-  });
   $( ".stamp" ).click(function() {
     var text = $( this ).attr('stamp-name');
     var url = $( this ).attr('stamp-url');

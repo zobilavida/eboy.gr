@@ -244,6 +244,15 @@ endif;
 }
 add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 
+
+function woocommerce_output_custom_related_products() {
+  wc_get_template( 'single-product/related.php' );
+}
+
+
+add_action( 'woocommerce_after_single_custom_product_summary', 'woocommerce_output_custom_related_products', 10 );
+
+
 add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
 
 
