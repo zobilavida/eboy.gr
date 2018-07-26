@@ -248,9 +248,6 @@ add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
 
 
-	/**
-	 * Output the product image before the single product summary.
-	 */
 	function woocommerce_show_product_custom_images() {
 		wc_get_template( 'single-product/product-custom-image.php' );
 	}
@@ -259,10 +256,7 @@ add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_sho
     wc_get_template( 'single-product/custom-title.php' );
   }
 
-//add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_template_single_custom_title', 5 );
 add_action( 'woocommerce_single_custom_product_summary', 'woocommerce_custom_variable_add_to_cart', 30 );
-
-
 
 function woocommerce_custom_variable_add_to_cart() {
   global $product;
@@ -649,7 +643,7 @@ function wc_custom_get_gallery_image_html( $attachment_id, $main_image = false )
 		'class'                   => $main_image ? 'wp-post-image' : '',
 	) );
 
-	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
+	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="woocommerce-product-gallery__image 2"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
 }
 
 ?>
