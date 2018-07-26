@@ -48,7 +48,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 						</div>
 
 				<?php endforeach; ?>
-				<div class="col-12 value">
+				<div class="col-12 text-center value">
 				<?php do_action( 'woocommerce_single_variation' ); ?>
 				</div>
 				<?php // ThemeFusion edit for Avada theme: move the price reset button. ?>

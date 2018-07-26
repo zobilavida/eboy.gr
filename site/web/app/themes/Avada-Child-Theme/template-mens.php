@@ -11,6 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
 ?><?php get_header(); ?>
+<div class="d-flex flex-row">
+  <div class="p-2">Flex item 1</div>
+  <div class="p-2">Flex item 2</div>
+  <div class="p-2">Flex item 3</div>
+</div>
 <div class="row related-products-preview-wrapper">
     <?php
         $args = array( 'post_type' => 'product', 'posts_per_page' => -1, 'product_cat' => 'mens', 'orderby' => 'name', 'order' => 'ASC' );
