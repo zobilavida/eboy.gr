@@ -294,7 +294,7 @@ function get_product_category_mens_images () {
 $mens_product_id = get_posts($mens_args);
 
 foreach($mens_product_id AS $mens_product_id){
-  echo $mens_product_id->ID; # You will get different product ids here
+//  echo $mens_product_id->ID; # You will get different product ids here
 }
 
   $get_featured_mens_cat = array(
@@ -310,9 +310,11 @@ foreach ($mens_category as $mens_cat) {
 	$mens_thumbnail_id = get_woocommerce_term_meta( $mens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$mens_image = wp_get_attachment_url( $mens_thumbnail_id );
 	if ( $mens_image ) {
-    echo '<div class="p-2 w-100">';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo $mens_cat->name ;
+    echo '</div>';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview mens" data-project-id="' . $mens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
-    echo $mens_cat->name;
 		echo '<img src="' . $mens_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
@@ -340,7 +342,7 @@ function get_product_category_womens_images () {
 $womens_product_id = get_posts($womens_args);
 
 foreach($womens_product_id AS $womens_product_id){
-  echo $womens_product_id->ID; # You will get different product ids here
+//  echo $womens_product_id->ID; # You will get different product ids here
 }
 
   $get_featured_womens_cat = array(
@@ -356,9 +358,11 @@ foreach ($womens_category as $womens_cat) {
 	$womens_thumbnail_id = get_woocommerce_term_meta( $womens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$womens_image = wp_get_attachment_url( $womens_thumbnail_id );
 	if ( $womens_image ) {
-    echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="product-preview womens" data-project-id="' . $womens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/womens/">';
-    echo $womens_cat->name;
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo $womens_cat->name ;
+    echo '</div>';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $womens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
 		echo '<img src="' . $womens_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
@@ -385,7 +389,7 @@ function get_product_category_hoodies_images () {
 $hoodies_product_id = get_posts($hoodies_args);
 
 foreach($hoodies_product_id AS $hoodies_product_id){
-  echo $hoodies_product_id->ID; # You will get different product ids here
+//  echo $hoodies_product_id->ID; # You will get different product ids here
 }
 
   $get_featured_hoodies_cat = array(
@@ -401,9 +405,11 @@ foreach ($hoodies_category as $hoodies_cat) {
 	$hoodies_thumbnail_id = get_woocommerce_term_meta( $hoodies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$hoodies_image = wp_get_attachment_url( $hoodies_thumbnail_id );
 	if ( $hoodies_image ) {
-    echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="product-preview hoodies" data-project-id="' . $hoodies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/hoodies/">';
-    echo $hoodies_cat->name;
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo $hoodies_cat->name ;
+    echo '</div>';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $hoodies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
 		echo '<img src="' . $hoodies_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
@@ -430,7 +436,7 @@ function get_product_category_kids_images () {
 $kids_product_id = get_posts($kids_args);
 
 foreach($kids_product_id AS $kids_product_id){
-  echo $kids_product_id->ID; # You will get different product ids here
+  //echo $kids_product_id->ID; # You will get different product ids here
 }
 
   $get_featured_kids_cat = array(
@@ -446,13 +452,14 @@ foreach ($kids_category as $kids_cat) {
 	$kids_thumbnail_id = get_woocommerce_term_meta( $kids_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$kids_image = wp_get_attachment_url( $kids_thumbnail_id );
 	if ( $kids_image ) {
-    echo '<div class="p-2 w-100">';
-    echo '<a href="#" class="product-preview kids" data-project-id="' . $kids_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/kids/">';
-    echo $kids_cat->name;
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo $kids_cat->name ;
+    echo '</div>';	}
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<a href="#" class="product-preview mens" data-project-id="' . $kids_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
 		echo '<img src="' . $kids_image . '" alt="" />';
     echo '</a>';
     echo '</div>';
-	}
 //echo $cat->name; // Get Category Name
 //	echo $cat->description; // Get Category Description
 	$w++;
@@ -491,7 +498,10 @@ foreach ($babies_category as $babies_cat) {
 	$babies_thumbnail_id = get_woocommerce_term_meta( $babies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$babies_image = wp_get_attachment_url( $babies_thumbnail_id );
 	if ( $babies_image ) {
-    echo '<div class="p-2 w-100">';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo $babies_cat->name ;
+    echo '</div>';
+    echo '<div class="col-3 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview babies" data-project-id="' . $babies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/babies/">';
     echo $babies_cat->name;
 		echo '<img src="' . $babies_image . '" alt="" />';

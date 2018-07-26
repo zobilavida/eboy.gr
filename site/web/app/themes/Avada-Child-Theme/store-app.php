@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    <div class = "row row-height">
      <div class = "col-12 col-lg-5 left">
 			 <div class="row">
-				 <div class="col-12">
+				 <div class="col-12 text-right">
 <?php echo facetwp_display( 'facet', 'stamps' ); ?>
 				 </div>
 
@@ -33,9 +33,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 <input name="stamp_url" value="" class="stamp_url"/>
 
      </div>
-     <div class = "col-12 col-lg-2">
+     <div class = "col-12 col-lg-1 middle-col">
 
-       <div class="d-flex flex-wrap">
+       <div class="row">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
 
