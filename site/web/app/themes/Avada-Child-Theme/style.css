@@ -56,9 +56,9 @@ display: none;}
     margin: 123px 0 0;
 }
 
-.page-template-store-app .woocommerce-product-gallery .flex-control-thumbs li {
 
-    border: 1px solid black;
+.page-template-store-app .woocommerce-product-gallery--columns-4 .flex-control-thumbs li {
+    width: 20%!important;
 }
 
 .page-template-store-app table.variations {
