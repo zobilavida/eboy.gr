@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?><?php get_header(); ?>
 <div class = "container-fluid">
    <div class = "row row-height">
-     <div class = "col-12 col-lg-5 left">
+     <div class = "col-12 col-lg-6 left">
 			 <div class="row">
 				 <div class="col-12 text-right">
 <?php echo facetwp_display( 'facet', 'stamps' ); ?>
