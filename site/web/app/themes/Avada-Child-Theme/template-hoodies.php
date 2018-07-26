@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: mens Template
+ * Template Name: hoodies Template
  */
 ?>
 
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="row related-products-preview-wrapper">
     <?php
-        $args = array( 'post_type' => 'product', 'posts_per_page' => -1, 'product_cat' => 'mens', 'orderby' => 'name', 'order' => 'ASC' );
+        $args = array( 'post_type' => 'product', 'posts_per_page' => -1, 'product_cat' => 'hoodies', 'orderby' => 'name', 'order' => 'ASC' );
 
         $loop = new WP_Query( $args );
 
