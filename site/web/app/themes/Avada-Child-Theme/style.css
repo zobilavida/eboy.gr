@@ -74,7 +74,7 @@ display: none;}
 .custom-entry-summary {
   position: absolute;
   z-index: 3000;
-  padding-top: 1227px;
+      padding-top: 1073px;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
 
@@ -130,9 +130,14 @@ display: none;}
     height: 100vh;
 }
 
-.left, .right {
+.left {
     height: 100%;
     overflow-y: scroll;
+}
+
+.right {
+    height: 100%;
+
 }
 
 .right-category {
