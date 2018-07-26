@@ -503,7 +503,6 @@ foreach ($babies_category as $babies_cat) {
     echo '</div>';
     echo '<div class="col-3 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview babies" data-project-id="' . $babies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/babies/">';
-    echo $babies_cat->name;
 		echo '<img src="' . $babies_image . '" alt="" />';
     echo '</a>';
     echo '</div>';

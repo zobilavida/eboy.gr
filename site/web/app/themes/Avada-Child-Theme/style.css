@@ -83,14 +83,14 @@ display: none;}
   padding-top: 512px;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
-margin: 31px -32% 0!important;
-width: auto;
-text-align: inherit;
-z-index: 3999!important;
-position: absolute;
-width: 500px!important;
-bottom: -26px;
-right: 0;
+  margin: 0 0 0!important;
+  width: auto;
+  text-align: center;
+  z-index: 3999!important;
+  position: absolute;
+  width: 500px!important;
+  bottom: -54px;
+  /* right: 0; */
 }
 
 .page-template-store-app .product_title {
