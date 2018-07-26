@@ -57,17 +57,10 @@ display: none;}
 }
 
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs li {
-    display: inline-block;
-    vertical-align: top;
-    float: none;
-    margin: 0 12px!important;
-    padding: 4px;
+
     border: 1px solid black;
 }
 
-.page-template-store-app .woocommerce-product-gallery--columns-4 .flex-control-thumbs li {
-    width: 12%!important;
-}
 
 .page-template-store-app table.variations {
     height: 500px;
