@@ -61,6 +61,9 @@ display: none;}
     border: 1px solid black;
 }
 
+.page-template-store-app .woocommerce-product-gallery--columns-4 .flex-control-thumbs li {
+    width: 12%!important;
+}
 
 .page-template-store-app table.variations {
     height: 500px;
