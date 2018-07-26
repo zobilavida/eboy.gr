@@ -602,7 +602,7 @@ function kia_get_item_data( $other_data, $cart_item ) {
     if ( isset( $cart_item['custom_option'] ) ){
 
         $other_data[] = array(
-            'name' => __( 'Your custom text', 'kia-plugin-textdomain' ),
+            'name' => __( 'Stamp Code', 'kia-plugin-textdomain' ),
             'value' => sanitize_text_field( $cart_item['custom_option'] )
         );
 
@@ -625,7 +625,7 @@ function kia_order_item_product( $cart_item, $order_item ){
 add_filter( 'woocommerce_order_item_product', 'kia_order_item_product', 10, 2 );
 
 function kia_email_order_meta_fields( $fields ) {
-    $fields['custom_field'] = __( 'Your custom text', 'kia-plugin-textdomain' );
+    $fields['custom_field'] = __( 'Stamp Code', 'kia-plugin-textdomain' );
     return $fields;
 }
 add_filter('woocommerce_email_order_meta_fields', 'kia_email_order_meta_fields');
