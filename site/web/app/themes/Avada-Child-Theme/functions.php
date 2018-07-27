@@ -255,13 +255,23 @@ remove_action ('woocommerce_after_single_product_summary', 'woocommerce_output_r
 //remove_action ('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
 
-function woocommerce_output_custom_related_products() {
-  echo "test";
-  wc_get_template( 'single-product/custom-related.php' );
-}
 
 
 add_action( 'woocommerce_after_single_custom_product_summary', 'woocommerce_output_custom_related_products', 10 );
+function woocommerce_output_custom_related_products($args = array())
+{
+    global $product, $woocommerce_loop;
+    $defaults = array('posts_per_page' => 2, 'columns' => 2, 'orderby' => 'rand', 'order' => 'desc');
+    $args = wp_parse_args($args, $defaults);
+    // Get visble related products then sort them at random.
+    $args['related_products'] = array_filter(array_map('wc_get_product', wc_get_related_products($product->get_id(), $args['posts_per_page'], $product->get_upsell_ids())), 'wc_products_array_filter_visible');
+    // Handle orderby.
+    $args['related_products'] = wc_products_array_orderby($args['related_products'], $args['orderby'], $args['order']);
+    // Set global loop values.
+    $woocommerce_loop['name'] = 'related';
+    $woocommerce_loop['columns'] = apply_filters('woocommerce_related_products_columns', $args['columns']);
+    wc_get_template('single-product/custom-related.php', $args);
+}
 
 
 add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );

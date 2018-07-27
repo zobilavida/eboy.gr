@@ -172,6 +172,12 @@ display: none;}
 }
 
 
+.custom.related.products, .upsells.products {
+
+    position: relative;
+    top: 715px;
+}
+
 
 .page-template-store-app .single_add_to_cart_button, .wpcf7-submit {
     background: #a0ce4e;
