@@ -36,6 +36,7 @@ div {
     width: 100%;
     margin-right: 30px;
     position: absolute;
+    padding-top: 215px;
 }
 
 .page-template-store-app .avada-availability {
@@ -73,7 +74,7 @@ display: none;}
 .custom-entry-summary {
   position: absolute;
   z-index: 3000;
-  padding-top: 610px;
+  padding-top: 837px;
   width: 100%;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
@@ -135,13 +136,10 @@ display: none;}
     height: 100vh;
 }
 
-.facetwp-template {
-    height: 100%;
-    overflow-y: scroll;
-}
+
 .left {
     height: 100%;
-
+    overflow-y: scroll;
 }
 
 .right {

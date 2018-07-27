@@ -17,14 +17,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?><?php get_header(); ?>
 <div class = "container-fluid">
+	<div class="row filter">
+		<div class="col-12 col-lg-6 text-right ">
+<?php echo facetwp_display( 'facet', 'stamps' ); ?>
+		</div>
+		<div class = "col-12 col-lg-1 middle-col">
+</div>
+<div class = "col-12 col-lg-5 ">
+	</div>
    <div class = "row row-height">
      <div class = "col-12 col-lg-6 left">
-			 <div class="row filter">
-				 <div class="col-12 text-right ">
-<?php echo facetwp_display( 'facet', 'stamps' ); ?>
-				 </div>
 
-			 </div>
          <div class ="row facetwp-template">
 
        <?php do_action( 'tshirtakias_stamps' ); ?>
@@ -60,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 <p><?php _e( 'No Product' );  ?></p>
 				 <?php endif; ?>
 			 </div>
-		   <div class="right-category">Flex item 2</div>
+
 		 </div>
      </div>
 
