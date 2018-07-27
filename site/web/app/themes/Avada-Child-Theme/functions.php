@@ -246,6 +246,7 @@ add_action ( 'tshirtakias_stamps', 'load_stamps', 10 );
 
 
 function woocommerce_output_custom_related_products() {
+  echo "test";
   wc_get_template( 'single-product/related.php' );
 }
 
