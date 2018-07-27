@@ -276,15 +276,16 @@ function woocommerce_output_custom_related_products($args = array())
 
 add_action( 'woocommerce_before_single_product_custom_summary', 'woocommerce_show_product_custom_images', 20 );
 
-function woocommerce_before_custom_shop_loop_item() {
+function woocommerce_template_custom_loop_product_link_open() {
   global $product;
   $id = $product->get_id();
 
-  $link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
-
   echo '<a href="#" data-project-id="' . $id . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link product-preview">';
 }
-add_action( 'woocommerce_before_custom_shop_loop_item', 'woocommerce_before_custom_shop_loop_item', 10 );
+add_action( 'woocommerce_before_custom_shop_loop_item', 'woocommerce_template_custom_loop_product_link_open', 10 );
+
+
+add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
 
 

@@ -9,6 +9,7 @@
  * @subpackage Core
  * @since      5.1.0
  */
-
+ global $product;
+$id = $product->get_id();
 ?>
-<a href="<?php the_permalink(); ?>" class="product-images" aria-label="<?php the_title_attribute(); ?>">
+<a href="<?php the_permalink(); ?>" data-project-id="<?php echo $id; ?>" class="product-images 2" aria-label="<?php the_title_attribute(); ?>">
