@@ -261,7 +261,7 @@ add_action( 'woocommerce_after_single_custom_product_summary', 'woocommerce_outp
 function woocommerce_output_custom_related_products($args = array())
 {
     global $product, $woocommerce_loop;
-    $defaults = array('posts_per_page' => -1, 'columns' => -1, 'orderby' => 'rand', 'order' => 'desc');
+    $defaults = array('posts_per_page' => -1, 'columns' => 4, 'orderby' => 'rand', 'order' => 'desc');
     $args = wp_parse_args($args, $defaults);
     // Get visble related products then sort them at random.
     $args['related_products'] = array_filter(array_map('wc_get_product', wc_get_related_products($product->get_id(), $args['posts_per_page'], $product->get_upsell_ids())), 'wc_products_array_filter_visible');
