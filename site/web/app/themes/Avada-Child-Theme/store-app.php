@@ -19,7 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class = "container-fluid">
 	<div class="row filter">
 		<div class="col-12 col-lg-6 text-right ">
-<?php echo facetwp_display( 'facet', 'stamps' ); ?>
+			<div class="d-flex flex-row justify-content-between align-items-center">
+  <div class="p-2"><?php echo facetwp_display( 'pager' ); ?></div>
+  <div class="p-2"><?php echo facetwp_display( 'facet', 'stamps' ); ?></div>
+
+</div>
+
+
 		</div>
 		<div class = "col-12 col-lg-1 middle-col">
 </div>

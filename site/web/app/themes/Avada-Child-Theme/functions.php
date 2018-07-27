@@ -222,7 +222,7 @@ function load_stamps () {
     //  'meta_key'			=> 'rating',
     //	'orderby'			=> 'post__in',
       "order" => "DESC",
-      "posts_per_page" => 15
+      "posts_per_page" => 32
     );
 
     $query = new WP_Query( $args );
