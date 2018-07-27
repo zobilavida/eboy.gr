@@ -1,10 +1,8 @@
 jQuery(document).ready(function($) {
-  jQuery('.col-3').find('.product-preview.mens').trigger('click');
   $(document).on('facetwp-loaded', function() {
 
 
 "use strict";
-
 $('.product-preview').on('click',function(){
     var theId = $(this).attr('data-project-id');
     var div = $('.right-product');

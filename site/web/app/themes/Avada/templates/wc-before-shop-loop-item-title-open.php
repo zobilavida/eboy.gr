@@ -12,4 +12,4 @@
  global $product;
 $id = $product->get_id();
 ?>
-<a href="<?php the_permalink(); ?>" data-project-id="<?php echo $id; ?>" class="product-images 2" aria-label="<?php the_title_attribute(); ?>">
+<a href="<?php the_permalink(); ?>" data-project-id="<?php echo $id; ?>" class="product-images product-preview" aria-label="<?php the_title_attribute(); ?>">

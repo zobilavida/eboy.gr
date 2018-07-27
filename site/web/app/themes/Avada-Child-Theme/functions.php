@@ -284,8 +284,14 @@ function woocommerce_template_custom_loop_product_link_open() {
 }
 add_action( 'woocommerce_before_custom_shop_loop_item', 'woocommerce_template_custom_loop_product_link_open', 10 );
 
-
-add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+function woocommerce_template_loop_custom_product_link_close() {
+  global $product;
+$thumbnail = get_the_post_thumbnail_url($product->ID);
+echo $thumbnail;
+  echo '<img src="'. $thumbnail .'" class="img-fluid" alt="Responsive image">';
+  echo '</a>';
+}
+add_action( 'woocommerce_after_shop_custom_loop_item', 'woocommerce_template_loop_custom_product_link_close', 5 );
 
 
 
