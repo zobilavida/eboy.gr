@@ -36,7 +36,6 @@ div {
     width: 100%;
     margin-right: 30px;
     position: absolute;
-    padding-top: 417px;
 }
 
 .page-template-store-app .avada-availability {
@@ -74,7 +73,7 @@ display: none;}
 .custom-entry-summary {
   position: absolute;
   z-index: 3000;
-  padding-top: 1073px;
+  padding-top: 610px;
   width: 100%;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
@@ -173,9 +172,9 @@ display: none;}
 
 
 .custom.related.products, .upsells.products {
-      margin-top: 0px;
-    position: relative;
-    top: 715px;
+  margin-top: -181px;
+  position: relative;
+  top: 890px;
 }
 
 
