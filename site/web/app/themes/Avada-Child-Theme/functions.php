@@ -287,7 +287,7 @@ add_action( 'woocommerce_before_custom_shop_loop_item', 'woocommerce_template_cu
 function woocommerce_template_loop_custom_product_link_close() {
   global $product;
 $thumbnail = get_the_post_thumbnail_url($product->ID);
-echo $thumbnail;
+
   echo '<img src="'. $thumbnail .'" class="img-fluid" alt="Responsive image">';
   echo '</a>';
 }

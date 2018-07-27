@@ -64,8 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 </div>
      </div>
 
-
+		 <?php
+		get_footer();?>
    </div>
  </div>
- <?php
-get_footer();?>

@@ -28,7 +28,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <li <?php post_class(); ?>>
-	test
+
 	<?php
 	/**
 	 * woocommerce_before_shop_loop_item hook.
