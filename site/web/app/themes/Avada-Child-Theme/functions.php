@@ -17,7 +17,7 @@ function avada_child_scripts() {
   // wp_enqueue_script( 'zoom' );
   }
         wp_enqueue_script('child_script', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), false, true);
-        wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/js/slick.min.js', array('jquery'), false, true);
+        wp_enqueue_script('ifbreakpoint', get_stylesheet_directory_uri() . '/js/IfBreakpoint.js', array('jquery'), false, true);
           wp_register_script('pa_script', get_stylesheet_directory_uri() . '/js/custom_ajax.js', array('jquery'), false, true);
           wp_localize_script( 'pa_script', 'singleprojectajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
           wp_enqueue_script('pa_script');
@@ -27,9 +27,6 @@ function avada_child_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'avada_child_scripts', 20);
-
-
-
 
 function add_admin_scripts( $hook ) {
 
@@ -42,9 +39,6 @@ wp_enqueue_script( 'myscript', get_stylesheet_directory_uri().'/js/second_featur
 }
 }
 add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
-
-
-
 
 // Add svg & swf support
 function cc_mime_types( $mimes ){
@@ -261,7 +255,7 @@ add_action( 'woocommerce_after_single_custom_product_summary', 'woocommerce_outp
 function woocommerce_output_custom_related_products($args = array())
 {
     global $product, $woocommerce_loop;
-    $defaults = array('posts_per_page' => -1, 'columns' => 4, 'orderby' => 'rand', 'order' => 'desc');
+    $defaults = array('posts_per_page' => 4, 'columns' => 4, 'orderby' => 'rand', 'order' => 'desc');
     $args = wp_parse_args($args, $defaults);
     // Get visble related products then sort them at random.
     $args['related_products'] = array_filter(array_map('wc_get_product', wc_get_related_products($product->get_id(), $args['posts_per_page'], $product->get_upsell_ids())), 'wc_products_array_filter_visible');
@@ -322,6 +316,25 @@ function woocommerce_custom_variable_add_to_cart() {
   ) );
 }
 
+function get_product_subcategories_list( $category_slug ){
+    $terms_html = array();
+    $taxonomy = 'product_cat';
+    // Get the product category (parent) WP_Term object
+    $parent = get_term_by( 'slug', $category_slug, $taxonomy );
+    // Get an array of the subcategories IDs (children IDs)
+    $children_ids = get_term_children( $parent->term_id, $taxonomy );
+
+    // Loop through each children IDs
+    foreach($children_ids as $children_id){
+        $term = get_term( $children_id, $taxonomy ); // WP_Term object
+        $term_link = get_term_link( $term, $taxonomy ); // The term link
+        if ( is_wp_error( $term_link ) ) $term_link = '';
+        // Set in an array the html formated subcategory name/link
+        $terms_html[] = '<a href="' . esc_url( $term_link ) . '" rel="tag" class="' . $term->slug . '">' . $term->name . '</a>';
+    }
+    return '<span class="subcategories-' . $category_slug . '">' . implode( ', ', $terms_html ) . '</span>';
+}
+
 function get_product_category_mens_images () {
 
   $mens_args = array(
@@ -351,10 +364,10 @@ foreach ($mens_category as $mens_cat) {
 	$mens_thumbnail_id = get_woocommerce_term_meta( $mens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$mens_image = wp_get_attachment_url( $mens_thumbnail_id );
 	if ( $mens_image ) {
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2 d-none d-md-block">';
     echo $mens_cat->name ;
     echo '</div>';
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview mens" data-project-id="' . $mens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/mens/">';
 		echo '<img src="' . $mens_image . '" alt="" />';
     echo '</a>';
@@ -399,10 +412,10 @@ foreach ($womens_category as $womens_cat) {
 	$womens_thumbnail_id = get_woocommerce_term_meta( $womens_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$womens_image = wp_get_attachment_url( $womens_thumbnail_id );
 	if ( $womens_image ) {
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2 d-none d-md-block">';
     echo $womens_cat->name ;
     echo '</div>';
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview mens" data-project-id="' . $womens_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/womens/">';
 		echo '<img src="' . $womens_image . '" alt="" />';
     echo '</a>';
@@ -446,10 +459,10 @@ foreach ($hoodies_category as $hoodies_cat) {
 	$hoodies_thumbnail_id = get_woocommerce_term_meta( $hoodies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$hoodies_image = wp_get_attachment_url( $hoodies_thumbnail_id );
 	if ( $hoodies_image ) {
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2 d-none d-md-block">';
     echo $hoodies_cat->name ;
     echo '</div>';
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview mens" data-project-id="' . $hoodies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/hoodies/">';
 		echo '<img src="' . $hoodies_image . '" alt="" />';
     echo '</a>';
@@ -493,10 +506,10 @@ foreach ($kids_category as $kids_cat) {
 	$kids_thumbnail_id = get_woocommerce_term_meta( $kids_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$kids_image = wp_get_attachment_url( $kids_thumbnail_id );
 	if ( $kids_image ) {
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2 d-none d-md-block">';
     echo $kids_cat->name ;
     echo '</div>';	}
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview mens" data-project-id="' . $kids_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/kids/">';
 		echo '<img src="' . $kids_image . '" alt="" />';
     echo '</a>';
@@ -539,10 +552,10 @@ foreach ($babies_category as $babies_cat) {
 	$babies_thumbnail_id = get_woocommerce_term_meta( $babies_cat->term_id, 'thumbnail_id', true ); // Get Category Thumbnail
 	$babies_image = wp_get_attachment_url( $babies_thumbnail_id );
 	if ( $babies_image ) {
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2 d-none d-md-block">';
     echo $babies_cat->name ;
     echo '</div>';
-    echo '<div class="col-3 col-lg-12 text-center p-2">';
+    echo '<div class="col-2 col-lg-12 text-center p-2">';
     echo '<a href="#" class="product-preview babies" data-project-id="' . $babies_product_id->ID . '" data-href="https://eboy.gr/tshirtakias/babies/">';
 		echo '<img src="' . $babies_image . '" alt="" />';
     echo '</a>';

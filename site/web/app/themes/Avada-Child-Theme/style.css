@@ -36,7 +36,7 @@ div {
     width: 100%;
     margin-right: 30px;
     position: absolute;
-    padding-top: 215px;
+    padding-top:  70px;
 }
 
 .page-template-store-app .avada-availability {
@@ -74,7 +74,7 @@ display: none;}
 .custom-entry-summary {
   position: absolute;
   z-index: 3000;
-  padding-top: 837px;
+  padding-top: 740px;
   width: 100%;
 }
 .page-template-store-app .woocommerce-product-gallery .flex-control-thumbs {
@@ -135,8 +135,22 @@ display: none;}
 .row-height {
     height: 100vh;
 }
+@media (min-width: 544px) {
+  .left {
+      height: 25%;
+      overflow-y: scroll;
+  }
+}
+@media (min-width: 576px) {
+
+  .left {
+      height: 25%;
+      overflow-y: scroll;
+  }
 
 
+
+}
 .left {
     height: 100%;
     overflow-y: scroll;

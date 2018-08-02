@@ -24,12 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
   <div class="p-2"><?php echo facetwp_display( 'facet', 'stamps' ); ?></div>
 
 </div>
-
-
 		</div>
 		<div class = "col-12 col-lg-1 middle-col">
 </div>
 <div class = "col-12 col-lg-5 ">
+	</div>
 	</div>
    <div class = "row row-height">
      <div class = "col-12 col-lg-6 left">
@@ -54,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		   <div class="p-2 right-product">
 				 <?php
 				 $params = array(
-				  'p' => '8',
+				  'p' => '21057',
 				  'post_type' => 'product'
 				 );
 				 $wc_query = new WP_Query($params);
@@ -66,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 <?php endwhile; ?>
 				 <?php wp_reset_postdata();  ?>
 				 <?php else:  ?>
-				 <p><?php _e( 'No Product' );  ?></p>
+				 <p><?php _e( 'No Product no' );  ?></p>
 				 <?php endif; ?>
 			 </div>
 
