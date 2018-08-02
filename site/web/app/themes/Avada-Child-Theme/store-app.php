@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      </div>
      <div class = "col-12 col-lg-1 middle-col">
 
-       <div class="row">
+       <div class="row justify-content-center">
       <?php do_action('tshirtakias_product_category_images' ); ?>
       </div>
 
