@@ -1,0 +1,21 @@
+{
+  "name": "telesphorus",
+  "homepage": "https://eboy.gr/telesphorus/",
+  "authors": [
+    "Giannis Sergentakis <giannis@eboy.gr>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "css-hamburgers": "^0.9.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./scss/bootstrap.scss",
+        "./dist/js/bootstrap.bundle.js"
+      ]
+    }
+  }
+}
