@@ -1280,15 +1280,15 @@
 
                 // Force dev_mode on WP_DEBUG = true and if it's a local server
                 if ( Redux_Helpers::isLocalHost() || ( Redux_Helpers::isWpDebug() ) ) {
-                    if ( $this->args['dev_mode'] != false ) {
+                    if ( $this->args['dev_mode'] != true ) {
                         $this->args['update_notice'] = false;
                     }
                     $this->dev_mode_forced  = true;
                     $this->args['dev_mode'] = true;
-                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
-                        $this->dev_mode_forced  = false;
-                        $this->args['dev_mode'] = false;
-                    }
+//                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
+//                        $this->dev_mode_forced  = false;
+//                        $this->args['dev_mode'] = false;
+//                    }
                 }
 
                 // Auto create the page_slug appropriately
