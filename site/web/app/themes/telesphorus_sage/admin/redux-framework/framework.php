@@ -517,6 +517,7 @@
                     // Enable sites as well as admin when using network database mode
                     'hide_reset'                => false,
                     'hide_save'                 => false,
+                    'dev_mode'                  => false,
                     'hints'                     => array(
                         'icon'          => 'el el-question-sign',
                         'icon_position' => 'right',
@@ -1284,7 +1285,7 @@
                         $this->args['update_notice'] = false;
                     }
                     $this->dev_mode_forced  = true;
-                    $this->args['dev_mode'] = true;
+                    $this->args['dev_mode'] = false;
 //                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
 //                        $this->dev_mode_forced  = false;
 //                        $this->args['dev_mode'] = false;
