@@ -1284,7 +1284,7 @@
                     if ( $this->args['dev_mode'] != true ) {
                         $this->args['update_notice'] = false;
                     }
-                    $this->dev_mode_forced  = true;
+                    $this->dev_mode_forced  = false;
                     $this->args['dev_mode'] = false;
 //                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
 //                        $this->dev_mode_forced  = false;
