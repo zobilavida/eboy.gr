@@ -1,0 +1,301 @@
+//
+// Grid
+//
+
+.elementor {
+
+	&:after {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+		clip: rect(0,0,0,0);
+		border: 0;
+
+		@media (min-width: $screen-lg-min) {
+			content: 'desktop';
+		}
+
+		@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+			content: 'tablet';
+		}
+
+		@media (max-width: $screen-sm-max) {
+			content: 'mobile';
+		}
+
+	}
+}
+
+// Section
+.elementor-section {
+	position: relative;
+
+	// Container
+	.elementor-container {
+		display: flex;
+		margin-right: auto;
+		margin-left: auto;
+		position: relative;
+	}
+
+	// Max-width of container depending on section settings
+	&.elementor-section-boxed {
+		& > .elementor-container {
+			max-width: 1140px;
+		}
+	}
+
+	// Stretched section settings
+	&.elementor-section-stretched {
+		position: relative;
+		width: 100%;
+	}
+
+	// In section min-height / fit to screen mode
+	&.elementor-section-items- {
+
+		&top {
+
+			> .elementor-container {
+				align-items: flex-start;
+			}
+		}
+
+		&middle {
+
+			> .elementor-container {
+				align-items: center;
+			}
+		}
+
+		&bottom {
+
+			> .elementor-container {
+				align-items: flex-end;
+			}
+		}
+	}
+
+	@media (min-width: $screen-md-min) {
+
+		// Section Full Height (note: don't be smart - min-height does not work well with the content position)
+		&.elementor-section-height-full {
+			height: 100vh;
+
+			> .elementor-container {
+				height: 100%;
+			}
+		}
+	}
+}
+
+
+// In columns stretch mode
+
+.elementor-container {
+
+	> .elementor-row {
+
+		> .elementor-column {
+
+			> .elementor-column-wrap {
+
+				.elementor-section-content-top > & {
+					align-items: flex-start;
+				}
+
+				.elementor-section-content-middle > & {
+					align-items: center;
+				}
+
+				.elementor-section-content-bottom > & {
+					align-items: flex-end;
+				}
+			}
+		}
+	}
+}
+
+// Row
+.elementor-row {
+	width: 100%;
+	display: flex;
+
+	@media (max-width: $screen-md-max) {
+		flex-wrap: wrap;
+	}
+}
+
+// Widget
+.elementor-column-wrap {
+	width: 100%;
+	position: relative;
+	display: flex;
+}
+
+.elementor-widget-wrap {
+	position: relative;
+	width: 100%;
+}
+
+.elementor-widget {
+	position: relative;
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}
+
+// Columns
+.elementor-column {
+	position: relative;
+	min-height: 1px;
+	display: flex;
+
+}
+
+@mixin elementor-grid-classes {
+
+	@each $sizeKey, $size in $column-sizes {
+
+		&.elementor-col-#{$sizeKey}, &[data-col="#{$sizeKey}"] {
+			width: $size;
+		}
+	}
+}
+
+@mixin elementor-responsive($breakpoint-name) {
+
+	@each $size-name, $size in $column-sizes {
+
+		&.elementor-#{$breakpoint-name}-#{$size-name} {
+			width: $size;
+		}
+	}
+
+}
+
+// Columns Gap
+.elementor-row {
+	> .elementor-column {
+		> .elementor-element-populated {
+			.elementor-column-gap-narrow  > & {
+				padding: 5px;
+			}
+
+			.elementor-column-gap-default > & {
+				padding: 10px;
+			}
+
+			.elementor-column-gap-extended > & {
+				padding: 15px;
+			}
+
+			.elementor-column-gap-wide > & {
+				padding: 20px;
+			}
+
+			.elementor-column-gap-wider > & {
+				padding: 30px;
+			}
+		}
+	}
+}
+
+// Columns Gap for Inner section
+.elementor-inner-section {
+
+	.elementor-column-gap-no {
+
+		.elementor-element-populated {
+			padding: 0;
+		}
+	}
+}
+
+// Responsive Grid
+
+@media (min-width: $screen-md-min) {
+
+	.elementor-column {
+		@include elementor-grid-classes;
+	}
+}
+
+.elementor-column {
+
+	@media (max-width: $screen-xs-max) {
+		@include elementor-responsive(xs);
+	}
+
+	@media (max-width: $screen-sm-max) {
+		@include elementor-responsive(sm);
+	}
+
+	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+		@include elementor-responsive(md);
+	}
+}
+
+@media (max-width: $screen-sm-max) {
+
+	.elementor-column {
+		width: 100%;
+	}
+
+	.elementor-reverse-mobile > .elementor-container > .elementor-row {
+		flex-direction: column-reverse;
+	}
+}
+
+
+// Minimal simple Grid
+
+ul.elementor-icon-list-items.elementor-inline-items {
+	display: flex;
+	flex-wrap: wrap;
+
+	.elementor-inline-item {
+		word-break: break-word;
+	}
+}
+
+// Simple 12 Columns responsive grid
+.elementor-grid {
+	display: grid;
+
+	.elementor-grid-item {
+		word-break: break-word;
+	}
+
+	@mixin grid_loop($device) {
+		@for $i from 1 through 12 {
+
+			&#{$device}-#{$i} {
+				.elementor-grid {
+					grid-template-columns: repeat(#{$i} , 1fr);
+				}
+			}
+		}
+	}
+
+	@include grid_loop('');
+
+	@media (max-width: $screen-md-max) {
+		@include grid_loop(-tablet);
+	}
+
+	@media (max-width: $screen-sm-max) {
+		@include grid_loop(-mobile);
+	}
+}
+
+.elementor-grid-0 {
+	.elementor-grid {
+		display: flex;
+		overflow: hidden;
+	}
+}
