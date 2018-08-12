@@ -91,6 +91,9 @@ function display_sidebar() {
   return apply_filters('telesphorus/display_sidebar', $display);
 }
 
+
+
+
 /**
  * Theme assets
  */

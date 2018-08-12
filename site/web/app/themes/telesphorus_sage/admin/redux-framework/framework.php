@@ -517,8 +517,6 @@
                     // Enable sites as well as admin when using network database mode
                     'hide_reset'                => false,
                     'hide_save'                 => false,
-                    'dev_mode'                  => false,
-                    'forced_dev_mode_off' => true,
                     'hints'                     => array(
                         'icon'          => 'el el-question-sign',
                         'icon_position' => 'right',
@@ -1285,12 +1283,12 @@
                     if ( $this->args['dev_mode'] != true ) {
                         $this->args['update_notice'] = false;
                     }
-                    $this->dev_mode_forced  = false;
-                    $this->args['dev_mode'] = false;
-                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
-                        $this->dev_mode_forced  = false;
-                        $this->args['dev_mode'] = false;
-                    }
+                    $this->dev_mode_forced  = true;
+                    $this->args['dev_mode'] = true;
+//                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
+//                        $this->dev_mode_forced  = false;
+//                        $this->args['dev_mode'] = false;
+//                    }
                 }
 
                 // Auto create the page_slug appropriately
@@ -2766,7 +2764,7 @@
                         }
                     }
                 }
-
+                
                 unset ( $plugin_options['defaults'], $plugin_options['defaults_section'], $plugin_options['import'], $plugin_options['import_code'], $plugin_options['import_link'], $plugin_options['compiler'], $plugin_options['redux-section'] );
                 if ( $this->args['database'] == 'transient' || $this->args['database'] == 'theme_mods' || $this->args['database'] == 'theme_mods_expanded' ) {
                     $this->set_options( $plugin_options );

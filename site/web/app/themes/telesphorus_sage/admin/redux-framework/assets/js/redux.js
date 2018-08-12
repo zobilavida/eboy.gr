@@ -1001,7 +1001,7 @@
                 function( key ) {
                     return [key, parentValue[key]];
                 }
-            );
+            );            
         }
 
         switch ( operation ) {

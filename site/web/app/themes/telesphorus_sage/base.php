@@ -8,7 +8,7 @@ use Roots\telesphorus\Wrapper;
 <!doctype html>
 <html <?php language_attributes(); ?>>
   <?php get_template_part('templates/head'); ?>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> style="background-color:<?php echo get_theme_mod( 'color_setting_hex', '#FFFFFF' ); ?>">
     <!--[if IE]>
       <div class="alert alert-warning">
         <?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'telesphorus'); ?>
@@ -18,7 +18,7 @@ use Roots\telesphorus\Wrapper;
       do_action('get_header');
       get_template_part('templates/header');
     ?>
-    <div class="wrap container" role="document">
+    <div class="wrap container-fluid" role="document">
       <div class="content row">
         <main class="main">
           <?php include Wrapper\template_path(); ?>

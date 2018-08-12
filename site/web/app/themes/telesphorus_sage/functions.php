@@ -27,9 +27,80 @@ foreach ($sage_includes as $file) {
 }
 unset($file, $filepath);
 
+include_once( dirname( __FILE__ ) . '/includes/kirki/kirki.php' );
+
+function mytheme_kirki_configuration() {
+    return array( 'url_path'     => get_stylesheet_directory_uri() . '/includes/kirki/' );
+}
+add_filter( 'kirki/config', 'mytheme_kirki_configuration' );
+
+function up_kirki_section( $wp_customize ) {
+ /**
+ * Add panels
+ */
+
+
+ /**
+ * Add sections
+ */
+     $wp_customize->add_section( 'body_options', array(
+ 'title'       => __( 'Body Options', 'telesphorus' ),
+ 'priority'    => 10,
+// 'panel'       => 'telesphorus_options',
+ ) );
+
+
+
+}
+add_action( 'customize_register', 'up_kirki_section' );
+
+function up_kirki_fields( $wp_customize ) {
+
+ /*General Options*/
+ $fields[] = array(
+   'type'        => 'color',
+ 	'settings'    => 'color_setting_hex',
+ 	'label'       => __( 'Body Background Color', 'textdomain' ),
+ 	'description' => esc_attr__( 'This is a color control - without alpha channel.', 'textdomain' ),
+ 	'section'     => 'body_options',
+ 	'default'     => '#0088CC',
+);
+
+$fields[] = array(
+  'type'        => 'typography',
+	'settings'    => 'my_setting',
+	'label'       => esc_attr__( 'Control Label', 'textdomain' ),
+	'section'     => 'body_options',
+	'default'     => array(
+		'font-family'    => 'Roboto',
+		'variant'        => 'regular',
+		'font-size'      => '14px',
+		'line-height'    => '1.5',
+		'letter-spacing' => '0',
+		'color'          => '#333333',
+		'text-transform' => 'none',
+		'text-align'     => 'left',
+	),
+	'priority'    => 10,
+	'output'      => array(
+		array(
+			'element' => 'body',
+		),
+	),
+ );
+
+
+    return $fields;
+}
+
+add_filter( 'kirki/fields', 'up_kirki_fields' );
+
+
+/* Include Redux
 if ( is_admin() ) {
     include 'admin/admin-init.php';
 }
+*/
 
 // Add svg & swf support
 function cc_mime_types( $mimes ){
@@ -40,12 +111,18 @@ function cc_mime_types( $mimes ){
 }
 add_filter( 'upload_mimes', 'cc_mime_types' );
 
-function removeDemoModeLink() { // Be sure to rename this function to something more unique
-    if ( class_exists('ReduxFrameworkPlugin') ) {
-        remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks'), null, 2 );
-    }
-    if ( class_exists('ReduxFrameworkPlugin') ) {
-        remove_action('admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
-    }
+function themeslug_theme_customizer( $wp_customize ) {
+    $wp_customize->add_section( 'themeslug_logo_section' , array(
+    'title'       => __( 'Logo', 'themeslug' ),
+    'priority'    => 30,
+    'description' => 'Upload a logo to replace the default site name and description     in the header',
+) );
+$wp_customize->add_setting( 'themeslug_logo' );
+$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     'themeslug_logo', array(
+    'label'    => __( 'Logo', 'themeslug' ),
+    'section'  => 'themeslug_logo_section',
+    'settings' => 'themeslug_logo',
+    'extensions' => array( 'jpg', 'jpeg', 'gif', 'png', 'svg' ),
+) ) );
 }
-add_action('init', 'removeDemoModeLink');
+add_action ('customize_register', 'themeslug_theme_customizer');

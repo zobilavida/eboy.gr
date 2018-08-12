@@ -23,10 +23,11 @@
 
     $args = array(
         'opt_name' => 'telesphorus_options',
+        'dev_mode' => false,
         'display_name' => 'Telesphorus Options',
         'display_version' => '1.0.0',
         'page_title' => 'Telesphorus Options',
-        'update_notice' => TRUE,
+        'update_notice' => false,
         'intro_text' => 'Text to appear at the top of the options panel, below the title.',
         'footer_text' => 'Text to be displayed at the bottom of the options panel, in the footer area.',
         'menu_type' => 'menu',
@@ -77,28 +78,7 @@
         'network_sites' => TRUE,
     );
 
-    // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-    $args['share_icons'][] = array(
-        'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-        'title' => 'Visit us on GitHub',
-        'icon'  => 'el el-github'
-        //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-    );
-    $args['share_icons'][] = array(
-        'url'   => 'https://www.facebook.com/pages/Redux-Framework/243141545850368',
-        'title' => 'Like us on Facebook',
-        'icon'  => 'el el-facebook'
-    );
-    $args['share_icons'][] = array(
-        'url'   => 'http://twitter.com/reduxframework',
-        'title' => 'Follow us on Twitter',
-        'icon'  => 'el el-twitter'
-    );
-    $args['share_icons'][] = array(
-        'url'   => 'http://www.linkedin.com/company/redux-framework',
-        'title' => 'Find us on LinkedIn',
-        'icon'  => 'el el-linkedin'
-    );
+
 
     Redux::setArgs( $opt_name, $args );
 
@@ -110,23 +90,7 @@
      * ---> START HELP TABS
      */
 
-    $tabs = array(
-        array(
-            'id'      => 'redux-help-tab-1',
-            'title'   => __( 'Theme Information 1', 'admin_folder' ),
-            'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'admin_folder' )
-        ),
-        array(
-            'id'      => 'redux-help-tab-2',
-            'title'   => __( 'Theme Information 2', 'admin_folder' ),
-            'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'admin_folder' )
-        )
-    );
-    Redux::setHelpTab( $opt_name, $tabs );
 
-    // Set the help sidebar
-    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'admin_folder' );
-    Redux::setHelpSidebar( $opt_name, $content );
 
 
     /*
@@ -134,69 +98,64 @@
      */
 
 
-    /*
-     *
-     * ---> START SECTIONS
-     *
-     */
 
-    Redux::setSection( $opt_name, array(
-        'title'  => __( 'Basic Field', 'redux-framework-demo' ),
-        'id'     => 'basic',
-        'desc'   => __( 'Basic field with no subsections.', 'redux-framework-demo' ),
-        'icon'   => 'el el-home',
-        'fields' => array(
-            array(
-                'id'       => 'opt-text',
-                'type'     => 'text',
-                'title'    => __( 'Example Text', 'redux-framework-demo' ),
-                'desc'     => __( 'Example description.', 'redux-framework-demo' ),
-                'subtitle' => __( 'Example subtitle.', 'redux-framework-demo' ),
-            )
-        )
-    ) );
+         Redux::setSection( $opt_name, array(
+             'title'  => __( 'Basic Field', 'redux-framework-demo' ),
+             'id'     => 'basic',
+             'desc'   => __( 'Basic field with no subsections.', 'redux-framework-demo' ),
+             'icon'   => 'el el-home',
+             'fields' => array(
+                 array(
+                     'id'       => 'opt-text',
+                     'type'     => 'text',
+                     'title'    => __( 'Example Text', 'redux-framework-demo' ),
+                     'desc'     => __( 'Example description.', 'redux-framework-demo' ),
+                     'subtitle' => __( 'Example subtitle.', 'redux-framework-demo' ),
+                 )
+             )
+         ) );
 
-    Redux::setSection( $opt_name, array(
-        'title' => __( 'Basic Fields', 'redux-framework-demo' ),
-        'id'    => 'basic',
-        'desc'  => __( 'Basic fields as subsections.', 'redux-framework-demo' ),
-        'icon'  => 'el el-home'
-    ) );
+         Redux::setSection( $opt_name, array(
+             'title' => __( 'Basic Fields', 'redux-framework-demo' ),
+             'id'    => 'basic',
+             'desc'  => __( 'Basic fields as subsections.', 'redux-framework-demo' ),
+             'icon'  => 'el el-home'
+         ) );
 
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Text', 'redux-framework-demo' ),
-        'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
-        'id'         => 'opt-text-subsection',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'       => 'text-example',
-                'type'     => 'text',
-                'title'    => __( 'Text Field', 'redux-framework-demo' ),
-                'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
-                'desc'     => __( 'Field Description', 'redux-framework-demo' ),
-                'default'  => 'Default Text',
-            ),
-        )
-    ) );
+         Redux::setSection( $opt_name, array(
+             'title'      => __( 'Text', 'redux-framework-demo' ),
+             'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
+             'id'         => 'opt-text-subsection',
+             'subsection' => true,
+             'fields'     => array(
+                 array(
+                     'id'       => 'text-example',
+                     'type'     => 'text',
+                     'title'    => __( 'Text Field', 'redux-framework-demo' ),
+                     'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
+                     'desc'     => __( 'Field Description', 'redux-framework-demo' ),
+                     'default'  => 'Default Text',
+                 ),
+             )
+         ) );
 
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Text Area', 'redux-framework-demo' ),
-        'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
-        'id'         => 'opt-textarea-subsection',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'       => 'textarea-example',
-                'type'     => 'textarea',
-                'title'    => __( 'Text Area Field', 'redux-framework-demo' ),
-                'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
-                'desc'     => __( 'Field Description', 'redux-framework-demo' ),
-                'default'  => 'Default Text',
-            ),
-        )
-    ) );
+         Redux::setSection( $opt_name, array(
+             'title'      => __( 'Text Area', 'redux-framework-demo' ),
+             'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+             'id'         => 'opt-textarea-subsection',
+             'subsection' => true,
+             'fields'     => array(
+                 array(
+                     'id'       => 'textarea-example',
+                     'type'     => 'textarea',
+                     'title'    => __( 'Text Area Field', 'redux-framework-demo' ),
+                     'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
+                     'desc'     => __( 'Field Description', 'redux-framework-demo' ),
+                     'default'  => 'Default Text',
+                 ),
+             )
+         ) );
 
-    /*
-     * <--- END SECTIONS
-     */
+         /*
+          * <--- END SECTIONS
+          */
