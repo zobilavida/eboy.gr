@@ -104,11 +104,17 @@ $fields[] = array(
 // Hero iprions
 $fields[] = array(
   'type'      => 'image',
-  'settings'  => 'hero_background',
-  'label'     => esc_attr__( 'Hero background', 'mytheme' ),
+  'settings'  => 'hero_image_background',
+  'label'     => esc_attr__( 'Hero image background', 'telesphorus' ),
   'section'   => 'hero_options',
-  'priority'  => 9,
-
+  'priority'  => 7,
+);
+$fields[] = array(
+  'type'      => 'upload',
+  'settings'  => 'hero_video_background',
+  'label'     => esc_attr__( 'Hero video background', 'telesphorus' ),
+  'section'   => 'hero_options',
+  'priority'  => 8,
 );
 
 
@@ -116,7 +122,7 @@ $fields[] = array(
   $fields[] = array(
     'type'      => 'color',
   	'settings'  => 'color_top',
-  	'label'     => esc_attr__( 'Left Color', 'mytheme' ),
+  	'label'     => esc_attr__( 'Left Color', 'telesphorus' ),
   	'section'   => 'hero_options',
   	'default'   => '#2b97e8',
   	'priority'  => 10,

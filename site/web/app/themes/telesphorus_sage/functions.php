@@ -60,3 +60,19 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     '
 ) ) );
 }
 add_action ('customize_register', 'themeslug_theme_customizer');
+
+
+function get_hero_content(){
+  $image_url = get_theme_mod( 'hero_image_background', '' );
+  $video_url = get_theme_mod( 'hero_video_background', '' );
+  if( get_theme_mod('hero_image_background') ){?>
+
+    <video poster="<?php echo esc_url( get_theme_mod( 'hero_image_background' ) ); ?>" class="video-fluid" playsinline autoplay muted loop>
+      <source src="<?php echo esc_url( get_theme_mod( 'hero_video_background' ) ); ?>" type="video/mp4">
+    </video>
+<?php }else{
+  //your code
+
+}
+}
+add_action ('telesphorus_hero', 'get_hero_content');
