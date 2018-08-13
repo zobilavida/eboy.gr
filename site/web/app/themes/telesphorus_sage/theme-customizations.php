@@ -42,17 +42,40 @@ function up_kirki_fields( $wp_customize ) {
 
 $fields[] = array(
   'type'        => 'typography',
+	'settings'    => 'link_settings',
+	'label'       => esc_attr__( 'Links', 'telesphorus' ),
+	'section'     => 'body_options',
+	'default'     => array(
+		'font-family'    => 'poppins',
+		'font-weight'        => '800',
+		'font-size'      => '1rem',
+		'line-height'    => '1.5',
+		'letter-spacing' => '0',
+		'color'          => '#333333',
+		'text-transform' => 'uppercase',
+		'text-align'     => 'left',
+	),
+	'priority'    => 10,
+	'output'      => array(
+		array(
+			'element' => 'a',
+		),
+	),
+ );
+
+$fields[] = array(
+  'type'        => 'typography',
 	'settings'    => 'my_setting',
 	'label'       => esc_attr__( 'Control Label', 'telesphorus' ),
 	'section'     => 'body_options',
 	'default'     => array(
-		'font-family'    => 'Roboto',
+		'font-family'    => 'poppins',
 		'variant'        => 'regular',
 		'font-size'      => '14px',
 		'line-height'    => '1.5',
 		'letter-spacing' => '0',
 		'color'          => '#333333',
-		'text-transform' => 'none',
+		'text-transform' => 'uppercase',
 		'text-align'     => 'left',
 	),
 	'priority'    => 10,
@@ -78,17 +101,28 @@ $fields[] = array(
  		),
  	),
   );
+// Hero iprions
+$fields[] = array(
+  'type'      => 'image',
+  'settings'  => 'hero_background',
+  'label'     => esc_attr__( 'Hero background', 'mytheme' ),
+  'section'   => 'hero_options',
+  'priority'  => 9,
+
+);
+
+
 
   $fields[] = array(
     'type'      => 'color',
   	'settings'  => 'color_top',
   	'label'     => esc_attr__( 'Left Color', 'mytheme' ),
   	'section'   => 'hero_options',
-  	'default'   => '#FFFFFF',
+  	'default'   => '#2b97e8',
   	'priority'  => 10,
   	'output'    => array(
   		array(
-  			'element'         => '.hero-section',
+  			'element'         => '.hero-section::before',
   			'property'        => 'background',
   			'value_pattern'   => 'linear-gradient(90deg, $ topPos%,bottomCol bottomPos%)',
   			'pattern_replace' => array(
@@ -105,11 +139,11 @@ $fields[] = array(
 	'settings'  => 'color_bottom',
 	'label'     => esc_attr__( 'Right Color', 'mytheme' ),
 	'section'   => 'hero_options',
-	'default'   => '#F2F2F2',
+	'default'   => '#0d2153',
 	'priority'  => 11,
 	'output'    => array(
 		array(
-			'element'         => '.hero-section',
+			'element'         => '.hero-section::before',
 			'property'        => 'background',
 			'value_pattern'   => 'linear-gradient(90deg, topCol topPos%,$ bottomPos%)',
 			'pattern_replace' => array(
@@ -135,7 +169,7 @@ $fields[] = array(
  	),
      'output'    => array(
  		array(
- 			'element'         => '.hero-section',
+ 			'element'         => '.hero-section::before',
  			'property'        => 'background',
  			'value_pattern'   => 'linear-gradient(90deg, topCol $%,bottomCol bottomPos%)',
  			'pattern_replace' => array(
@@ -161,7 +195,7 @@ $fields[] = array(
  	),
      'output'    => array(
  		array(
- 			'element'         => '.hero-section',
+ 			'element'         => '.hero-section::before',
  			'property'        => 'background',
  			'value_pattern'   => 'linear-gradient(90deg, topCol topPos%,bottomCol $%)',
  			'pattern_replace' => array(
@@ -173,7 +207,25 @@ $fields[] = array(
  	),
 );
 
-
+$fields[] = array(
+  'type'      => 'slider',
+ 'settings'  => 'hero_opacity',
+ 'label'     => esc_attr__( 'Hero opacity', 'telesphorus' ),
+ 'section'   => 'hero_options',
+ 'default'   => .8,
+ 'priority'  => 14,
+ 'choices'   => array(
+   'min'  => 0,
+   'max'  => 1,
+   'step' => .1,
+ ),
+    'output'    => array(
+   array(
+     'element'         => '.hero-section::before',
+     'property'        => 'opacity',
+     ),
+   ),
+);
 
 
     return $fields;
