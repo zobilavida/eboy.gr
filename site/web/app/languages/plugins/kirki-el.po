@@ -1,0 +1,559 @@
+# Translation of Plugins - Kirki - Stable (latest release) in Greek
+# This file is distributed under the same license as the Plugins - Kirki - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-05-31 14:06:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: el_GR\n"
+"Project-Id-Version: Plugins - Kirki - Stable (latest release)\n"
+
+#: controls/php/class-kirki-control-image.php:55
+#: field/class-kirki-field-image.php:47
+msgid "Choose image"
+msgstr "Επιλογή εικόνας"
+
+#: controls/php/class-kirki-control-image.php:53
+#: field/class-kirki-field-image.php:45
+msgid "No image selected"
+msgstr "Καμία εικόνα"
+
+#: controls/php/class-kirki-control-image.php:50
+#: field/class-kirki-field-image.php:42
+msgid "Change image"
+msgstr "Αλλαγή εικόνας"
+
+#: controls/php/class-kirki-control-image.php:49
+#: controls/php/class-kirki-control-image.php:54
+#: field/class-kirki-field-image.php:41 field/class-kirki-field-image.php:46
+msgid "Select image"
+msgstr "Επιλογή εικόνας"
+
+#: controls/php/class-kirki-control-code.php:37
+msgid "Please update your WordPress installation to a version newer than 4.9 to access the code control."
+msgstr "Παρακαλώ αναβαθμίστε την εγκατάσταση του WordPress σε μια έκδοση μεγαλύτερη του 4.9 για να μπορέσετε να χτησιμοποιήσετε τον έλεγχο κώδικα."
+
+#. Author URI of the plugin/theme
+msgid "http://aristath.github.io"
+msgstr "https://aristath.github.io"
+
+#. Plugin URI of the plugin/theme
+msgid "http://aristath.github.io/kirki"
+msgstr "https://aristath.github.io/kirki"
+
+#: controls/php/class-kirki-control-typography.php:199
+msgid "Line-Through"
+msgstr "Διεγραμμένο"
+
+#: controls/php/class-kirki-control-typography.php:198
+msgid "Overline"
+msgstr "Γραμμή από πάνω"
+
+#: controls/php/class-kirki-control-typography.php:197
+msgid "Underline"
+msgstr "Υπογραμισμένο"
+
+#: controls/php/class-kirki-control-typography.php:193
+msgid "Text Decoration"
+msgstr "Διακόσμιση κειμένου"
+
+#: controls/php/class-kirki-control-base.php:136
+msgid "Google Fonts"
+msgstr "Γραμματοσειρές Google"
+
+#: controls/php/class-kirki-control-base.php:135
+msgid "Standard Fonts"
+msgstr "Κανονικές Γραμματοσειρές"
+
+#: controls/php/class-kirki-control-slider.php:65
+msgid "Reset"
+msgstr "Αρχικοποίηση"
+
+#. translators: %1$s represents the field ID where the error occurs. %2%s is
+#. buttonset/image.
+#: field/class-kirki-field-radio.php:37
+msgid "Error in field %1$s. The \"mode\" argument has been deprecated since Kirki v0.8. Use the \"radio-%2$s\" type instead."
+msgstr "Σφάλμα στο πεδίο %1$s. Η παράμετρος \"mode\" έχει καταργηθεί από την έκδοση Kirki v0.8. Χρησιμοποιήστε πεδίο τύπου \"radio-%2$s\"."
+
+#: field/class-kirki-field-color.php:55
+msgid "Do not use \"alpha\" as an argument in color controls. Use \"choices[alpha]\" instead."
+msgstr "Μη χρησιμοποιείτε \"alpha\" ως παράμετρο σε χρωματικά πεδία. Αντ'αυτού χρησιμοποιήστε \"choices[alpha]\"."
+
+#: deprecated/functions.php:19
+msgid "%1$s or %2$s"
+msgstr "%1$s ή %2$s"
+
+#: core/class-kirki.php:228
+msgid "Kirki fields should not be added on customize_register. Please add them directly, or on init."
+msgstr "Τα πεδία Kirki fields δεν πρέπει να προστίθενται στο \"customize_register\". Παρακαλώ προσθέστε τα απευθείας, ή στο \"init\" action."
+
+#: core/class-kirki-init.php:282
+msgid "We detected you're using Kirki_Init::get_variables(). Please use Kirki_Util::get_variables() instead."
+msgstr "Χρησιμοποιείτε Kirki_Init::get_variables(). Παρακαλώ αντικαταστήστε το με Kirki_Util::get_variables()."
+
+#. translators: The field ID where the error occurs.
+#: core/class-kirki-field.php:554 core/class-kirki-field.php:564
+msgid "\"output\" invalid format in field %s. The \"output\" argument should be defined as an array of arrays."
+msgstr "Μη έγκυρη μορφή \"output\" στο πεδίο %s. Το πεδίο \"output\" πρέπει να χρησιμοποιεί σειρές σειρών (array of arrays)."
+
+#. translators: %1$s represents the field ID where the error occurs.
+#: core/class-kirki-field.php:425
+msgid "\"partial_refresh\" invalid entry in field %s"
+msgstr "Μη έγκυρη μορφή \"partial_refresh\" στο πεδίο %s"
+
+#. translators: %1$s represents the field ID where the error occurs.
+#: core/class-kirki-field.php:407
+msgid "Typo found in field %s - \"theme_mods\" vs \"theme_mod\""
+msgstr "Σφάλμα στο πεδίο %s - \"theme_mods\" αντί για \"theme_mod\""
+
+#. translators: %1$s represents the field ID where the error occurs. %2$s is
+#. the URL in the documentation site.
+#: core/class-kirki-field.php:257 core/class-kirki-field.php:267
+msgid "Config not defined for field %1$s - See %2$s for details on how to properly add fields."
+msgstr "Μη δηλωμένο config για το πεδίο %1$s - Δείτε %2$s για λεπτομέρεις πως πρέπει να χρησιμοποιούνται τα πεδία."
+
+#. translators: %s represents the field ID where the error occurs.
+#: core/class-kirki-field.php:248
+msgid "Typo found in field %s - setting instead of settings."
+msgstr "Σφάλμα στο πεδίο %s - setting αντί για settings."
+
+#: controls/php/class-kirki-control-base.php:133
+#: controls/php/class-kirki-control-image.php:51
+#: field/class-kirki-field-image.php:43
+msgid "Default"
+msgstr "Αρχική τιμή"
+
+#. translators: The title.
+#: modules/custom-sections/sections/class-kirki-sections-nested-section.php:62
+msgid "Customizing &#9656; %s"
+msgstr "Παραμετροποίηση &#9656; %s"
+
+#: modules/custom-sections/sections/class-kirki-sections-nested-section.php:59
+msgid "Customizing"
+msgstr "Παραμετροποίηση"
+
+#: controls/php/class-kirki-control-switch.php:56
+#: field/class-kirki-field-switch.php:43
+msgid "Off"
+msgstr "Όχι"
+
+#: controls/php/class-kirki-control-switch.php:52
+#: field/class-kirki-field-switch.php:42
+msgid "On"
+msgstr "Ναι"
+
+#: controls/php/class-kirki-control-typography.php:217
+msgid "Margin Bottom"
+msgstr "Κάτω Περιθώριο"
+
+#: controls/php/class-kirki-control-typography.php:209
+msgid "Margin Top"
+msgstr "Πάνω Περιθώριο"
+
+#: controls/php/class-kirki-control-typography.php:85
+msgid "Backup Font"
+msgstr "Εφεδρική Γραμματοσειρά"
+
+#: controls/php/class-kirki-control-typography.php:81
+#: controls/php/class-kirki-control-typography.php:86
+msgid "Select Font Family"
+msgstr "Επιλογή γραμματοσειράς"
+
+#. translators: %s represents the label of the row.
+#: controls/php/class-kirki-control-repeater.php:87
+msgid "Add new %s"
+msgstr "Προσθήκη νέου %s"
+
+#: controls/php/class-kirki-control-dimensions.php:138
+msgid "Width"
+msgstr "Πλάτος"
+
+#: controls/php/class-kirki-control-dimensions.php:129
+#: controls/php/class-kirki-control-typography.php:130
+msgid "Word Spacing"
+msgstr "Απόσταση λέξεων"
+
+#: controls/php/class-kirki-control-background.php:106
+msgid "Auto"
+msgstr "Αυτόματο"
+
+#: controls/php/class-kirki-control-background.php:63
+#: controls/php/class-kirki-control-base.php:134
+msgid "Select File"
+msgstr "Επιλογή αρχείου"
+
+#: upgrade-notifications.php:30
+msgid "Important Upgrade Notice:"
+msgstr "Σημαντική ειδοποίηση αναβάθμισης"
+
+#: controls/php/class-kirki-control-repeater.php:362
+msgid "Hex Value"
+msgstr "Τιμή hex"
+
+#: controls/php/class-kirki-control-background.php:59
+#: controls/php/class-kirki-control-base.php:131
+#: controls/php/class-kirki-control-repeater.php:409
+#: controls/php/class-kirki-control-repeater.php:414
+msgid "No File Selected"
+msgstr "Κανένα επιλεγμένο αρχείο"
+
+#: controls/php/class-kirki-control-repeater.php:420
+#: controls/php/class-kirki-control-repeater.php:422
+msgid "Change File"
+msgstr "Αλλαγή αρχείου"
+
+#: controls/php/class-kirki-control-repeater.php:420
+#: controls/php/class-kirki-control-repeater.php:424
+msgid "Add File"
+msgstr "Προσθήκη αρχείου"
+
+#: controls/php/class-kirki-control-repeater.php:78
+msgid "row"
+msgstr "Σειρά"
+
+#: controls/php/class-kirki-control-repeater.php:122
+msgid "Select a Page"
+msgstr "Επιλέξτε σελίδα"
+
+#: controls/php/class-kirki-control-typography.php:184
+#: controls/php/class-kirki-control-typography.php:200
+msgid "Initial"
+msgstr "Αρχική"
+
+#: controls/php/class-kirki-control-typography.php:183
+msgid "Lowercase"
+msgstr "Μικρά"
+
+#: controls/php/class-kirki-control-typography.php:182
+msgid "Uppercase"
+msgstr "Κεφαλαία"
+
+#: controls/php/class-kirki-control-typography.php:181
+msgid "Capitalize"
+msgstr "Πρώτο γράμμα Κεφαλαίο"
+
+#: controls/php/class-kirki-control-typography.php:180
+#: controls/php/class-kirki-control-typography.php:196
+msgid "None"
+msgstr "Καμμία"
+
+#: controls/php/class-kirki-control-typography.php:177
+msgid "Text Transform"
+msgstr "Μετασχηματισμός κειμένου"
+
+#: controls/php/class-kirki-control-typography.php:138
+msgid "Text Align"
+msgstr "Στοίχιση κειμένου"
+
+#: controls/php/class-kirki-control-typography.php:167
+msgid "Justify"
+msgstr "Στοίχιση"
+
+#: controls/php/class-kirki-control-dimensions.php:134
+#: controls/php/class-kirki-control-typography.php:155
+msgid "Center"
+msgstr "Κέντρο"
+
+#. translators: %s represents the number of rows we're limiting the repeater to
+#. allow.
+#: controls/php/class-kirki-control-repeater.php:228
+msgid "Limit: %s rows"
+msgstr "Όριο: %s γραμμές"
+
+#: controls/php/class-kirki-control-dimension.php:39
+#: controls/php/class-kirki-control-dimensions.php:140
+msgid "Invalid Value"
+msgstr "Μη έγκυρη τιμή"
+
+#: modules/webfonts/class-kirki-fonts.php:232
+msgid "Ultra-Bold 900 Italic"
+msgstr "Ultra-Bold 900 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:230
+#: modules/webfonts/class-kirki-fonts.php:231
+msgid "Ultra-Bold 900"
+msgstr "Ultra-Bold 900"
+
+#: modules/webfonts/class-kirki-fonts.php:229
+msgid "Extra-Bold 800 Italic"
+msgstr "Extra-Bold 800 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:227
+#: modules/webfonts/class-kirki-fonts.php:228
+msgid "Extra-Bold 800"
+msgstr "Extra-Bold 800"
+
+#: modules/webfonts/class-kirki-fonts.php:226
+msgid "Bold 700 Italic"
+msgstr "Bold 700 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:225
+msgid "Bold 700"
+msgstr "Bold 700"
+
+#: modules/webfonts/class-kirki-fonts.php:224
+msgid "Semi-Bold 600 Italic"
+msgstr "Semi-Bold 600 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:222
+#: modules/webfonts/class-kirki-fonts.php:223
+msgid "Semi-Bold 600"
+msgstr "Semi-Bold 600"
+
+#: modules/webfonts/class-kirki-fonts.php:221
+msgid "Medium 500 Italic"
+msgstr "Medium 500 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:220
+msgid "Medium 500"
+msgstr "Medium 500"
+
+#: modules/webfonts/class-kirki-fonts.php:219
+msgid "Normal 400 Italic"
+msgstr "Κανονικά 400 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:217
+#: modules/webfonts/class-kirki-fonts.php:218
+msgid "Normal 400"
+msgstr "Κανονικά 400"
+
+#: modules/webfonts/class-kirki-fonts.php:216
+msgid "Book 300 Italic"
+msgstr "Book 300 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:215
+msgid "Book 300"
+msgstr "Book 300"
+
+#: modules/webfonts/class-kirki-fonts.php:214
+msgid "Light 200 Italic"
+msgstr "Light 200 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:213
+msgid "Light 200"
+msgstr "Light 200"
+
+#: modules/webfonts/class-kirki-fonts.php:212
+msgid "Ultra-Light 100 Italic"
+msgstr "Ultra-Light 100 Πλάγια"
+
+#: modules/webfonts/class-kirki-fonts.php:210
+#: modules/webfonts/class-kirki-fonts.php:211
+msgid "Ultra-Light 100"
+msgstr "Ultra-Light 100"
+
+#: controls/php/class-kirki-control-dimensions.php:137
+msgid "Spacing"
+msgstr "Απόσταση"
+
+#: controls/php/class-kirki-control-dimensions.php:136
+#: controls/php/class-kirki-control-dimensions.php:139
+msgid "Height"
+msgstr "Ύψος"
+
+#: controls/php/class-kirki-control-dimensions.php:135
+msgid "Size"
+msgstr "μέγεθος"
+
+#: controls/php/class-kirki-control-typography.php:91
+msgid "Variant"
+msgstr "Παραλλαγή"
+
+#: controls/php/class-kirki-control-dimensions.php:127
+msgid "Font Style"
+msgstr "Στυλ Γραμματοσειράς"
+
+#: controls/php/class-kirki-control-repeater.php:377
+#: controls/php/class-kirki-control-repeater.php:382
+msgid "No Image Selected"
+msgstr "Καμία εικόνα επιλεγμένη"
+
+#: controls/php/class-kirki-control-background.php:62
+#: controls/php/class-kirki-control-base.php:132
+#: controls/php/class-kirki-control-image.php:52
+#: controls/php/class-kirki-control-repeater.php:387
+#: controls/php/class-kirki-control-repeater.php:444
+#: field/class-kirki-field-image.php:44
+msgid "Remove"
+msgstr "Διαγραφή"
+
+#: controls/php/class-kirki-control-repeater.php:388
+#: controls/php/class-kirki-control-repeater.php:390
+msgid "Change Image"
+msgstr "Αλλαγή εικόνας"
+
+#: controls/php/class-kirki-control-repeater.php:388
+#: controls/php/class-kirki-control-repeater.php:392
+msgid "Add Image"
+msgstr "Προσθήκη εικόνας"
+
+#: controls/php/class-kirki-control-typography.php:225
+msgid "Color"
+msgstr "χρώμα"
+
+#: controls/php/class-kirki-control-dimensions.php:133
+#: controls/php/class-kirki-control-typography.php:161
+#: field/class-kirki-field-spacing.php:36
+msgid "Right"
+msgstr "Δεξιά"
+
+#: controls/php/class-kirki-control-dimensions.php:132
+#: controls/php/class-kirki-control-typography.php:149
+#: field/class-kirki-field-spacing.php:35
+msgid "Left"
+msgstr "Αριστερά"
+
+#: controls/php/class-kirki-control-dimensions.php:131
+#: field/class-kirki-field-spacing.php:34
+msgid "Bottom"
+msgstr "Κάτω"
+
+#: controls/php/class-kirki-control-dimensions.php:130
+#: field/class-kirki-field-spacing.php:33
+msgid "Top"
+msgstr "Πάνω μέρος"
+
+#: controls/php/class-kirki-control-dimensions.php:128
+#: controls/php/class-kirki-control-typography.php:122
+msgid "Letter Spacing"
+msgstr "Απόσταση γραμμάτων"
+
+#: controls/php/class-kirki-control-dimensions.php:126
+#: controls/php/class-kirki-control-typography.php:114
+msgid "Line Height"
+msgstr "Ύψος Γραμμής"
+
+#: controls/php/class-kirki-control-dimensions.php:124
+#: controls/php/class-kirki-control-typography.php:106
+msgid "Font Size"
+msgstr "Μέγεθος Γραμματοσειράς"
+
+#. Author of the plugin/theme
+msgid "Aristeides Stathopoulos"
+msgstr "Αριστείδης Σταθόπουλος"
+
+#. Description of the plugin/theme
+msgid "The ultimate WordPress Customizer Toolkit"
+msgstr "The ultimate WordPress Customizer Toolkit"
+
+#. Plugin Name of the plugin/theme
+msgid "Kirki Toolkit"
+msgstr "Kirki Toolkit"
+
+#: controls/php/class-kirki-control-dimensions.php:125
+msgid "Font Weight"
+msgstr "Βάρος Γραμματοσειράς"
+
+#: controls/php/class-kirki-control-typography.php:80
+msgid "Font Family"
+msgstr "Γραμματοσειρά"
+
+#: controls/php/class-kirki-control-background.php:81
+msgid "Background Position"
+msgstr "Θέση φόντου"
+
+#: controls/php/class-kirki-control-background.php:91
+#: controls/php/class-kirki-control-dimensions.php:123
+msgid "Center Bottom"
+msgstr "Κέντρο κάτω"
+
+#: controls/php/class-kirki-control-background.php:90
+#: controls/php/class-kirki-control-dimensions.php:122
+msgid "Center Center"
+msgstr "Κέντρο κέντρο"
+
+#: controls/php/class-kirki-control-background.php:89
+#: controls/php/class-kirki-control-dimensions.php:121
+msgid "Center Top"
+msgstr "Κέντρο πάνω"
+
+#: controls/php/class-kirki-control-background.php:88
+#: controls/php/class-kirki-control-dimensions.php:120
+msgid "Right Bottom"
+msgstr "Δεξιά Κάτω"
+
+#: controls/php/class-kirki-control-background.php:87
+#: controls/php/class-kirki-control-dimensions.php:119
+msgid "Right Center"
+msgstr "Δεξιά Κέντρο"
+
+#: controls/php/class-kirki-control-background.php:86
+#: controls/php/class-kirki-control-dimensions.php:118
+msgid "Right Top"
+msgstr "Δεξιά Πάνω"
+
+#: controls/php/class-kirki-control-background.php:85
+#: controls/php/class-kirki-control-dimensions.php:117
+msgid "Left Bottom"
+msgstr "Αριστερά Κάτω"
+
+#: controls/php/class-kirki-control-background.php:84
+#: controls/php/class-kirki-control-dimensions.php:116
+msgid "Left Center"
+msgstr "Αριστερά Κέντρο"
+
+#: controls/php/class-kirki-control-background.php:83
+#: controls/php/class-kirki-control-dimensions.php:115
+msgid "Left Top"
+msgstr "Αριστερά Πάνω"
+
+#: controls/php/class-kirki-control-background.php:113
+msgid "Background Attachment"
+msgstr "Επισύναψη φόντου"
+
+#: controls/php/class-kirki-control-background.php:116
+msgid "Scroll"
+msgstr "Κυλιόμενη"
+
+#: controls/php/class-kirki-control-background.php:119
+msgid "Fixed"
+msgstr "Σταθερή"
+
+#: controls/php/class-kirki-control-background.php:97
+msgid "Background Size"
+msgstr "Μέγεθος Φόντου "
+
+#: controls/php/class-kirki-control-background.php:103
+msgid "Contain"
+msgstr "Περιορισμός"
+
+#: controls/php/class-kirki-control-background.php:100
+msgid "Cover"
+msgstr "cover"
+
+#: controls/php/class-kirki-control-background.php:70
+msgid "Background Repeat"
+msgstr "Επανάληψη φόντου"
+
+#: controls/php/class-kirki-control-typography.php:143
+#: controls/php/class-kirki-control-typography.php:185
+#: controls/php/class-kirki-control-typography.php:201
+msgid "Inherit"
+msgstr "Κληρονομημένο - inherit"
+
+#: controls/php/class-kirki-control-background.php:75
+msgid "Repeat Vertically"
+msgstr "Κάθετη Επανάληψη"
+
+#: controls/php/class-kirki-control-background.php:74
+msgid "Repeat Horizontally"
+msgstr "Οριζόντια Επανάληψη"
+
+#: controls/php/class-kirki-control-background.php:73
+msgid "Repeat All"
+msgstr "Επανάληψη"
+
+#: controls/php/class-kirki-control-background.php:72
+msgid "No Repeat"
+msgstr "Όχι Επανάλληψη"
+
+#: controls/php/class-kirki-control-background.php:54
+msgid "Background Image"
+msgstr "Εικόνα Φόντου"
+
+#: controls/php/class-kirki-control-background.php:48
+msgid "Background Color"
+msgstr "Χρώμα Φόντου"
