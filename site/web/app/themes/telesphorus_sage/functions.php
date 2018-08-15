@@ -15,9 +15,11 @@ $sage_includes = [
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
+  'lib/tgm-plugin-activation.php',   // TGM plugin activation
   'lib/customizer.php',
-  'bs4navwalker.php',
-  'theme-customizations.php' // Theme menu
+  'lib/bs4navwalker.php',
+  'lib/theme-settings.php'
+  //'theme-customizations.php' // Theme menu
 ];
 
 foreach ($sage_includes as $file) {
@@ -28,6 +30,7 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
 
 
 /* Include Redux
@@ -44,22 +47,6 @@ function cc_mime_types( $mimes ){
     return $mimes;
 }
 add_filter( 'upload_mimes', 'cc_mime_types' );
-
-function themeslug_theme_customizer( $wp_customize ) {
-    $wp_customize->add_section( 'themeslug_logo_section' , array(
-    'title'       => __( 'Logo', 'themeslug' ),
-    'priority'    => 30,
-    'description' => 'Upload a logo to replace the default site name and description     in the header',
-) );
-$wp_customize->add_setting( 'themeslug_logo' );
-$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,     'themeslug_logo', array(
-    'label'    => __( 'Logo', 'themeslug' ),
-    'section'  => 'themeslug_logo_section',
-    'settings' => 'themeslug_logo',
-    'extensions' => array( 'jpg', 'jpeg', 'gif', 'png', 'svg' ),
-) ) );
-}
-add_action ('customize_register', 'themeslug_theme_customizer');
 
 
 function get_hero_content(){

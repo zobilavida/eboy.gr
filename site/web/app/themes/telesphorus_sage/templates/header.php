@@ -11,9 +11,15 @@
   <div class="d-flex align-items-center justify-content-between">
 
 <div class="p-2">
-    <a class="brand" href="<?= esc_url(home_url('/')); ?>">
-        <img class="logo" src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
-    </a>
+  <?php
+      $logo_image = Kirki::get_option( 'mk', 'header_logo_setting' );
+      if ( $logo_image ) : ?>
+          <a class="navmenu-brand" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
+              <img src='<?php echo esc_url( $logo_image ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
+          </a>
+      <?php else : ?>
+          <h1 class='site-title'><a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a></h1>
+  <?php endif; ?>
 </div>
   <div class="p-2 w-75">
 
