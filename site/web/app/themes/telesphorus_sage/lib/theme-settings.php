@@ -45,34 +45,64 @@ add_filter( 'kirki/config', 'customizer_config' );
 
 Kirki::add_config( 'telesphorus_sage', array(
     'capability'    => 'edit_theme_options',
-    'option_type'   => 'option',
+    'option_type'   => 'theme_mod',
     'option_name'   => 'telesphorus_sage',
 ) );
 
 
 Kirki::add_panel( 'header', array(
     'priority'    => 10,
-    'title'       => __( 'Header', 'theme_slug' ),
-    'description' => __( 'This panel will provide all the options of the header.', 'theme_slug' ),
+    'title'       => __( 'Header', 'telesphorus' ),
+    'description' => __( 'This panel will provide all the options of the header.', 'telesphorus' ),
 ) );
 
 /* adding header_logo section*/
 Kirki::add_section( 'header_logo', array(
     'title'          => __( 'Logo' ),
-    'description'    => __( 'Add a logo.' ),
+    'description'    => __( 'Add a logo.', 'telesphorus' ),
     'panel'          => 'header', // Not typically needed.
-    'priority'       => 160,
+    'priority'       => 10,
     'capability'     => 'edit_theme_options',
     'theme_supports' => '', // Rarely needed.
 ) );
 /* adding header_logo_setting field */
-Kirki::add_field( 'mk', array(
+Kirki::add_field( 'logo', array(
     'settings' => 'header_logo_setting',
-    'label'    => __( 'Setting for the logo', 'theme_slug' ),
+    'label'    => __( 'Setting for the logo', 'telesphorus' ),
     'section'  => 'header_logo',
     'type'     => 'image',
     'priority' => 10,
     'default'  => '',
+) );
+
+/* adding header_color section*/
+Kirki::add_section( 'header_color', array(
+    'title'          => __( 'Color',  'telesphorus' ),
+    'description'    => __( 'Choose Header Background color.', 'telesphorus' ),
+    'panel'          => 'header', // Not typically needed.
+    'priority'       => 20,
+    'capability'     => 'edit_theme_options',
+    'theme_supports' => '', // Rarely needed.
+) );
+/* adding header_color_setting field */
+Kirki::add_field( 'kirki_demo', array(
+	'type'        => 'color',
+	'settings'    => 'color',
+	'description' => esc_attr__( 'Description.', 'kirki-demo' ),
+	'label'       => __( 'Background Color', 'telesphorus' ),
+	'section'     => 'header_color',
+	'default'     => '#333333',
+	'priority'    => 10,
+	'transport'   => 'auto',
+	'choices'     => array(
+		'alpha' => true,
+	),
+	'output' => array(
+		array(
+			'element'  => 'header',
+			'property' => 'background-color',
+		),
+	),
 ) );
 
 	}

@@ -12,7 +12,8 @@
 
 <div class="p-2">
   <?php
-      $logo_image = Kirki::get_option( 'mk', 'header_logo_setting' );
+
+      $logo_image = get_theme_mod( 'header_logo_setting', '' );
       if ( $logo_image ) : ?>
           <a class="navmenu-brand" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
               <img src='<?php echo esc_url( $logo_image ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'>
