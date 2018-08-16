@@ -85,19 +85,25 @@ Kirki::add_section( 'header_color', array(
     'theme_supports' => '', // Rarely needed.
 ) );
 /* adding header_color_setting field */
-Kirki::add_field( 'color', array(
-	'type'        => 'color',
-	'settings'    => 'color',
-	'description' => esc_attr__( 'Description.', 'kirki-demo' ),
-	'label'       => __( 'Background Color', 'telesphorus' ),
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'        => 'color-palette',
+	'settings'    => 'color-palette-3',
+	'description' => esc_attr__( 'Light, tiny.', 'kirki-demo' ),
+	'label'       => __( 'Color-Palette control', 'kirki-demo' ),
 	'section'     => 'header_color',
-	'default'     => '#333333',
+	'default'     => '#E8EAF6',
 	'priority'    => 10,
 	'transport'   => 'auto',
 	'choices'     => array(
-		'alpha' => true,
+		'colors' => Kirki_Helper::get_material_design_colors( 'A100' ),
+		'size'   => 20,
 	),
-
+	'output' => array(
+		array(
+			'element'  => 'header',
+			'property' => 'background-color',
+		),
+	),
 ) );
 
 	}
