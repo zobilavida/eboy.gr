@@ -93,7 +93,7 @@ Kirki::add_field( 'telesphorus_sage', array(
 	'section'     => 'header_color',
 	'default'     => '#E8EAF6',
 	'priority'    => 10,
-	'transport'   => 'auto',
+//	'transport'   => 'auto',
 	'choices'     => array(
 		'colors' => Kirki_Helper::get_material_design_colors( 'A100' ),
 		'size'   => 20,
