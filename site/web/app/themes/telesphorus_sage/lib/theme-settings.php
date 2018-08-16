@@ -86,16 +86,16 @@ Kirki::add_section( 'header_color', array(
 ) );
 /* adding header_color_setting field */
 Kirki::add_field( 'telesphorus_sage', array(
-	'type'        => 'color-palette',
+	'type'        => 'color',
 	'settings'    => 'color-palette-3',
-	'description' => esc_attr__( 'Light, tiny.', 'kirki-demo' ),
-	'label'       => __( 'Color-Palette control', 'kirki-demo' ),
+	'description' => esc_attr__( 'Light, tiny.', 'telesphorus' ),
+	'label'       => __( 'Color-Palette control', 'telesphorus' ),
 	'section'     => 'header_color',
-	'default'     => '#E8EAF6',
+	'default'     => '#ffffff',
 	'priority'    => 10,
 //	'transport'   => 'auto',
 	'choices'     => array(
-		'colors' => Kirki_Helper::get_material_design_colors( 'A100' ),
+		'alpha' => true,
 		'size'   => 20,
 	),
 	'output' => array(
@@ -106,6 +106,138 @@ Kirki::add_field( 'telesphorus_sage', array(
 	),
 ) );
 
+
+Kirki::add_panel( 'hero', array(
+    'priority'    => 15,
+    'title'       => __( 'Hero', 'telesphorus' ),
+    'description' => __( 'This panel will provide all the options of the Hero.', 'telesphorus' ),
+) );
+
+/* adding hero section*/
+Kirki::add_section( 'hero', array(
+    'title'          => __( 'Hero gradient overlay' ),
+    'description'    => __( 'Customize Hero.', 'telesphorus' ),
+    'panel'          => 'hero', // Not typically needed.
+    'priority'       => 10,
+    'capability'     => 'edit_theme_options',
+    'theme_supports' => '', // Rarely needed.
+) );
+
+// Add Fields.
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'color',
+	'settings'  => 'color_top',
+	'label'     => esc_attr__( 'Top Color', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => '#FFFFFF',
+	'priority'  => 10,
+	'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'background',
+			'value_pattern'   => 'linear-gradient(to bottom, $ topPos%,bottomCol bottomPos%)',
+			'pattern_replace' => array(
+				'topPos'    => 'color_bottom',
+				'bottomCol' => 'color_top_position',
+				'bottomPos' => 'color_bottom_position',
+			),
+		),
+	),
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'color',
+	'settings'  => 'color_bottom',
+	'label'     => esc_attr__( 'Bottom Color', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => '#F2F2F2',
+	'priority'  => 11,
+	'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'background',
+			'value_pattern'   => 'linear-gradient(to bottom, topCol topPos%,$ bottomPos%)',
+			'pattern_replace' => array(
+				'topCol'    => 'color_top',
+				'topPos'    => 'color_top_position',
+				'bottomPos' => 'color_bottom_position',
+			),
+		),
+	),
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'slider',
+	'settings'  => 'color_top_position',
+	'label'     => esc_attr__( 'Top Color Position', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => 0,
+	'priority'  => 12,
+	'choices'   => array(
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	),
+    'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'background',
+			'value_pattern'   => 'linear-gradient(to bottom, topCol $%,bottomCol bottomPos%)',
+			'pattern_replace' => array(
+				'topCol'    => 'color_top',
+				'bottomCol' => 'color_bottom',
+				'bottomPos' => 'color_bottom_position',
+			),
+		),
+	),
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'slider',
+	'settings'  => 'color_bottom_position',
+	'label'     => esc_attr__( 'Bottom Color Position', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => 0,
+	'priority'  => 13,
+	'choices'   => array(
+		'min'  => 0,
+		'max'  => 100,
+		'step' => 1,
+	),
+    'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'background',
+			'value_pattern'   => 'linear-gradient(to bottom, topCol topPos%,bottomCol $%)',
+			'pattern_replace' => array(
+				'topCol'    => 'color_top',
+				'topPos'    => 'color_top_position',
+				'bottomCol' => 'color_bottom',
+			),
+		),
+	),
+) );
+
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'slider',
+	'settings'  => 'gradient_opacity',
+	'label'     => esc_attr__( 'Gradient opacity', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => 0.5,
+	'priority'  => 15,
+	'choices'   => array(
+		'min'  => 0,
+		'max'  => 1,
+		'step' => 0.1,
+	),
+    'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'opacity',
+		),
+	),
+) );
 	}
 }
 add_action( 'after_setup_theme', 'my_plugin_include_kirki' );
