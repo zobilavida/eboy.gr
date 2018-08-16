@@ -85,7 +85,7 @@ Kirki::add_section( 'header_color', array(
     'theme_supports' => '', // Rarely needed.
 ) );
 /* adding header_color_setting field */
-Kirki::add_field( 'kirki_demo', array(
+Kirki::add_field( 'color', array(
 	'type'        => 'color',
 	'settings'    => 'color',
 	'description' => esc_attr__( 'Description.', 'kirki-demo' ),
@@ -97,12 +97,7 @@ Kirki::add_field( 'kirki_demo', array(
 	'choices'     => array(
 		'alpha' => true,
 	),
-	'output' => array(
-		array(
-			'element'  => 'header',
-			'property' => 'background-color',
-		),
-	),
+
 ) );
 
 	}

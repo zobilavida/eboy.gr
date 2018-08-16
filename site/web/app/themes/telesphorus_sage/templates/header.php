@@ -1,4 +1,4 @@
-<header class="banner">
+<header class="banner" style="background-color:<?php echo get_theme_mod( 'color', '#FFFFFF' ); ?>">
 
   <button class="hamburger hamburger--collapse" type="button">
   <span class="hamburger-box">
