@@ -135,11 +135,12 @@ Kirki::add_field( 'telesphorus_sage', array(
 		array(
 			'element'         => '.hero-section::before',
 			'property'        => 'background',
-			'value_pattern'   => 'linear-gradient(to bottom, $ topPos%,bottomCol bottomPos%)',
+			'value_pattern'   => 'linear-gradient(angledeg, $ topPos%,bottomCol bottomPos%)',
 			'pattern_replace' => array(
 				'topPos'    => 'color_bottom',
 				'bottomCol' => 'color_top_position',
 				'bottomPos' => 'color_bottom_position',
+				'angle' => 'direction_angle',
 			),
 		),
 	),
@@ -156,11 +157,12 @@ Kirki::add_field( 'telesphorus_sage', array(
 		array(
 			'element'         => '.hero-section::before',
 			'property'        => 'background',
-			'value_pattern'   => 'linear-gradient(to bottom, topCol topPos%,$ bottomPos%)',
+			'value_pattern'   => 'linear-gradient(angledeg, topCol topPos%,$ bottomPos%)',
 			'pattern_replace' => array(
 				'topCol'    => 'color_top',
 				'topPos'    => 'color_top_position',
 				'bottomPos' => 'color_bottom_position',
+				'angle' => 'direction_angle',
 			),
 		),
 	),
@@ -182,11 +184,12 @@ Kirki::add_field( 'telesphorus_sage', array(
 		array(
 			'element'         => '.hero-section::before',
 			'property'        => 'background',
-			'value_pattern'   => 'linear-gradient(to bottom, topCol $%,bottomCol bottomPos%)',
+			'value_pattern'   => 'linear-gradient(angledeg, topCol $%,bottomCol bottomPos%)',
 			'pattern_replace' => array(
 				'topCol'    => 'color_top',
 				'bottomCol' => 'color_bottom',
 				'bottomPos' => 'color_bottom_position',
+				'angle' => 'direction_angle',
 			),
 		),
 	),
@@ -208,11 +211,39 @@ Kirki::add_field( 'telesphorus_sage', array(
 		array(
 			'element'         => '.hero-section::before',
 			'property'        => 'background',
-			'value_pattern'   => 'linear-gradient(to bottom, topCol topPos%,bottomCol $%)',
+			'value_pattern'   => 'linear-gradient(angledeg, topCol topPos%,bottomCol $%)',
 			'pattern_replace' => array(
 				'topCol'    => 'color_top',
 				'topPos'    => 'color_top_position',
 				'bottomCol' => 'color_bottom',
+				'angle' => 'direction_angle',
+			),
+		),
+	),
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'      => 'slider',
+	'settings'  => 'direction_angle',
+	'label'     => esc_attr__( 'Gradient angle', 'telesphorus_sage' ),
+	'section'   => 'hero',
+	'default'   => 90,
+	'priority'  => 14,
+	'choices'   => array(
+		'min'  => 0,
+		'max'  => 180,
+		'step' => 1,
+	),
+    'output'    => array(
+		array(
+			'element'         => '.hero-section::before',
+			'property'        => 'background',
+			'value_pattern'   => 'linear-gradient($deg, topCol topPos%,bottomCol bottomPos%)',
+			'pattern_replace' => array(
+				'topCol'    => 'color_top',
+				'topPos'    => 'color_top_position',
+				'bottomCol' => 'color_bottom',
+				'bottomPos' => 'color_bottom_position',
 			),
 		),
 	),
