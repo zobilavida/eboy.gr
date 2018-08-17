@@ -113,6 +113,8 @@ Kirki::add_panel( 'hero', array(
     'description' => __( 'This panel will provide all the options of the Hero.', 'telesphorus' ),
 ) );
 
+
+
 /* adding hero section*/
 Kirki::add_section( 'hero_background', array(
     'title'          => __( 'Image or Video background' ),

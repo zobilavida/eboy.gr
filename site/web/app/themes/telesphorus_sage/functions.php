@@ -32,7 +32,6 @@ foreach ($sage_includes as $file) {
 unset($file, $filepath);
 
 
-
 /* Include Redux
 if ( is_admin() ) {
     include 'admin/admin-init.php';
