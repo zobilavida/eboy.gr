@@ -91,46 +91,107 @@ function get_hero_content(){
 add_action ('telesphorus_hero', 'get_hero_content');
 
 
-class jpen_Example_Widget extends WP_Widget {
-  /**
-  * To create the example widget all four methods will be
-  * nested inside this single instance of the WP_Widget class.
-  **/
-	public function __construct() {
-	    $widget_options = array(
-	      'classname' => 'example_widget',
-	      'description' => 'This is an Example Widget',
-	    );
-	    parent::__construct( 'example_widget', 'Example Widget', $widget_options );
-	  }
+/**
+* Adds Bootstrap Carousel widget
+*/
+class Bootstrapcarousel_Widget extends WP_Widget {
 
-		public function widget( $args, $instance ) {
-  $title = apply_filters( 'widget_title', $instance[ 'title' ] );
-  $blog_title = get_bloginfo( 'name' );
-  $tagline = get_bloginfo( 'description' );
-  echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title']; ?>
+	/**
+	* Register widget with WordPress
+	*/
+	function __construct() {
+		parent::__construct(
+			'bootstrapcarousel_widget', // Base ID
+			esc_html__( 'Bootstrap Carousel', 'telesphorus' ), // Name
+			array( 'description' => esc_html__( 'Creates Bootstrap carousel', 'telesphorus' ), ) // Args
+		);
+	}
 
-  <p><strong>Site Name:</strong> <?php echo $blog_title ?></p>
-  <p><strong>Tagline:</strong> <?php echo $tagline ?></p>
+	/**
+	* Widget Fields
+	*/
+	private $widget_fields = array(
+		array(
+			'label' => 'Title',
+			'id' => 'title_51949',
+			'default' => 'Default title',
+			'type' => 'textarea',
+		),
+	);
 
-  <?php echo $args['after_widget'];
-}
+	/**
+	* Front-end display of widget
+	*/
+	public function widget( $args, $instance ) {
+		echo $args['before_widget'];
 
-public function form( $instance ) {
-  $title = ! empty( $instance['title'] ) ? $instance['title'] : ''; ?>
-  <p>
-    <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
-    <input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" />
-  </p><?php
-}
+		// Output widget title
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
 
-public function update( $new_instance, $old_instance ) {
-$instance = $old_instance;
-$instance[ 'title' ] = strip_tags( $new_instance[ 'title' ] );
-return $instance;
+		// Output generated fields
+		echo '<p>'.$instance['title_51949'].'</p>';
+
+		echo $args['after_widget'];
+	}
+
+	/**
+	* Back-end widget fields
+	*/
+	public function field_generator( $instance ) {
+		$output = '';
+		foreach ( $this->widget_fields as $widget_field ) {
+			$widget_value = ! empty( $instance[$widget_field['id']] ) ? $instance[$widget_field['id']] : esc_html__( $widget_field['default'], 'telesphorus' );
+			switch ( $widget_field['type'] ) {
+				case 'textarea':
+					$output .= '<p>';
+					$output .= '<label for="'.esc_attr( $this->get_field_id( $widget_field['id'] ) ).'">'.esc_attr( $widget_field['label'], 'telesphorus' ).':</label> ';
+					$output .= '<textarea class="widefat" id="'.esc_attr( $this->get_field_id( $widget_field['id'] ) ).'" name="'.esc_attr( $this->get_field_name( $widget_field['id'] ) ).'" rows="6" cols="6" value="'.esc_attr( $widget_value ).'">'.$widget_value.'</textarea>';
+					$output .= '</p>';
+					break;
+				default:
+					$output .= '<p>';
+					$output .= '<label for="'.esc_attr( $this->get_field_id( $widget_field['id'] ) ).'">'.esc_attr( $widget_field['label'], 'telesphorus' ).':</label> ';
+					$output .= '<input class="widefat" id="'.esc_attr( $this->get_field_id( $widget_field['id'] ) ).'" name="'.esc_attr( $this->get_field_name( $widget_field['id'] ) ).'" type="'.$widget_field['type'].'" value="'.esc_attr( $widget_value ).'">';
+					$output .= '</p>';
+			}
+		}
+		echo $output;
+	}
+
+	public function form( $instance ) {
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( '', 'telesphorus' );
+		?>
+		<p>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'telesphorus' ); ?></label>
+		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php
+		$this->field_generator( $instance );
+	}
+
+	/**
+	* Sanitize widget form values as they are saved
+	*/
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		foreach ( $this->widget_fields as $widget_field ) {
+			switch ( $widget_field['type'] ) {
+				case 'checkbox':
+					$instance[$widget_field['id']] = $_POST[$this->get_field_id( $widget_field['id'] )];
+					break;
+				default:
+					$instance[$widget_field['id']] = ( ! empty( $new_instance[$widget_field['id']] ) ) ? strip_tags( $new_instance[$widget_field['id']] ) : '';
+			}
+		}
+		return $instance;
+	}
+} // class Bootstrapcarousel_Widget
+
+// register Bootstrap Carousel widget
+function register_bootstrapcarousel_widget() {
+	register_widget( 'Bootstrapcarousel_Widget' );
 }
-}
-function jpen_register_example_widget() {
-  register_widget( 'jpen_Example_Widget' );
-}
-add_action( 'widgets_init', 'jpen_register_example_widget' );
+add_action( 'widgets_init', 'register_bootstrapcarousel_widget' );
