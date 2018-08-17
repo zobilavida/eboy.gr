@@ -114,11 +114,41 @@ Kirki::add_panel( 'hero', array(
 ) );
 
 /* adding hero section*/
+Kirki::add_section( 'hero_background', array(
+    'title'          => __( 'Image or Video background' ),
+    'description'    => __( 'Customize Hero.', 'telesphorus' ),
+    'panel'          => 'hero', // Not typically needed.
+    'priority'       => 10,
+    'capability'     => 'edit_theme_options',
+    'theme_supports' => '', // Rarely needed.
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'        => 'image',
+	'settings'    => 'hero_image_url',
+	'label'       => esc_attr__( 'Image Control (URL)', 'telesphorus' ),
+	'description' => esc_attr__( 'Description Here.', 'telesphorus' ),
+	'section'     => 'hero_background',
+	'priority'    => 10,
+	'default'     => '',
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'        => 'upload',
+	'settings'    => 'hero_video_url',
+	'label'       => esc_attr__( 'Video Control (URL)', 'telesphorus' ),
+	'description' => esc_attr__( 'Description Here.', 'telesphorus' ),
+	'section'     => 'hero_background',
+	'priority'    => 20,
+	'default'     => '',
+) );
+
+/* adding hero section*/
 Kirki::add_section( 'hero', array(
     'title'          => __( 'Hero gradient overlay' ),
     'description'    => __( 'Customize Hero.', 'telesphorus' ),
     'panel'          => 'hero', // Not typically needed.
-    'priority'       => 10,
+    'priority'       => 20,
     'capability'     => 'edit_theme_options',
     'theme_supports' => '', // Rarely needed.
 ) );

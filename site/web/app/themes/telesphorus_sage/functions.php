@@ -50,12 +50,11 @@ add_filter( 'upload_mimes', 'cc_mime_types' );
 
 
 function get_hero_content(){
-  $image_url = get_theme_mod( 'hero_image_background', '' );
-  $video_url = get_theme_mod( 'hero_video_background', '' );
-  if( get_theme_mod('hero_image_background') ){?>
 
-    <video poster="<?php echo esc_url( get_theme_mod( 'hero_image_background' ) ); ?>" class="video-fluid" playsinline autoplay muted loop>
-      <source src="<?php echo esc_url( get_theme_mod( 'hero_video_background' ) ); ?>" type="video/mp4">
+  if( get_theme_mod('hero_image_url') ){?>
+
+    <video poster="<?php echo esc_url( get_theme_mod( 'hero_image_url' ) ); ?>" class="video-fluid" playsinline autoplay muted loop>
+      <source src="<?php echo esc_url( get_theme_mod( 'hero_video_url' ) ); ?>" type="video/mp4">
     </video>
 <?php }else{
   //your code
