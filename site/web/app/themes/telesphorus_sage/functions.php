@@ -60,14 +60,27 @@ function get_hero_content(){
     <div class="hero-content-static container-fluid">
       <div class="row">
         <div class="col-12">
+
+          <?php if ( get_theme_mod( 'hero-static-text-option' ) == 'static') { ?>
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+      <h2 class=""><?php echo esc_html( get_theme_mod( 'hero-static-text' ) ); ?></h2><br>
+     <a class="btn btn-primary btn-lg" href="#" role="button">Enquire Now</a>
+               </div>
+               </div>
+               </div>
+        <?php  } ?>
+        <?php if ( get_theme_mod( 'hero-static-text-option' ) == 'carousel') { ?>
           <div class="container">
             <div class="row">
               <div class="col-12">
-    <h2 class=""><?php echo esc_html( get_theme_mod( 'hero-static-text' ) ); ?></h2><br>
+    <h2 class="">Carousel</h2><br>
    <a class="btn btn-primary btn-lg" href="#" role="button">Enquire Now</a>
- </div>
- </div>
- </div>
+             </div>
+             </div>
+             </div>
+      <?php  } ?>
  </div>
  </div>
  </div>

@@ -311,12 +311,38 @@ Kirki::add_section( 'hero_content', array(
 ) );
 
 Kirki::add_field( 'telesphorus_sage', array(
+	'type'        => 'radio',
+	'settings'    => 'hero-static-text-option',
+	'label'       => __( 'Radio Control', 'textdomain' ),
+	'section'     => 'hero_content',
+	'default'     => 'static',
+	'priority'    => 10,
+	'choices'     => array(
+		'static'   => array(
+			esc_attr__( 'Static Text', 'my_textdomain' ),
+			esc_attr__( 'These are some extra details about Red', 'textdomain' ),
+		),
+		'carousel' => array(
+			esc_attr__( 'Carousel', 'kirki' ),
+			esc_attr__( 'These are some extra details about Green', 'textdomain' ),
+		),
+	),
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
 	'type'     => 'textarea',
 	'settings' => 'hero-static-text',
 	'label'    => __( 'Textarea Control', 'textdomain' ),
 	'section'  => 'hero_content',
 	'default'  => esc_attr__( 'This is a defualt value', 'textdomain' ),
 	'priority' => 10,
+	'required'    => array(
+		array(
+				'setting'  => 'hero-static-text-option',
+				'value'    => 'static',
+				'operator' => '==',
+		),
+),
 ) );
 	}
 }
