@@ -55,7 +55,22 @@ function get_hero_content(){
 
     <video poster="<?php echo esc_url( get_theme_mod( 'hero_image_url' ) ); ?>" class="video-fluid" playsinline autoplay muted loop>
       <source src="<?php echo esc_url( get_theme_mod( 'hero_video_url' ) ); ?>" type="video/mp4">
+
     </video>
+    <div class="hero-content-static container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+    <h2 class=""><?php echo esc_html( get_theme_mod( 'hero-static-text' ) ); ?></h2><br>
+   <a class="btn btn-primary btn-lg" href="#" role="button">Enquire Now</a>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
 <?php }else{
   //your code
 

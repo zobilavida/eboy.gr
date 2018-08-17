@@ -299,6 +299,25 @@ Kirki::add_field( 'telesphorus_sage', array(
 		),
 	),
 ) );
+
+/* adding hero section*/
+Kirki::add_section( 'hero_content', array(
+    'title'          => __( 'Hero Content' ),
+    'description'    => __( 'Customize Hero.', 'telesphorus' ),
+    'panel'          => 'hero', // Not typically needed.
+    'priority'       => 30,
+    'capability'     => 'edit_theme_options',
+    'theme_supports' => '', // Rarely needed.
+) );
+
+Kirki::add_field( 'telesphorus_sage', array(
+	'type'     => 'textarea',
+	'settings' => 'hero-static-text',
+	'label'    => __( 'Textarea Control', 'textdomain' ),
+	'section'  => 'hero_content',
+	'default'  => esc_attr__( 'This is a defualt value', 'textdomain' ),
+	'priority' => 10,
+) );
 	}
 }
 add_action( 'after_setup_theme', 'my_plugin_include_kirki' );
