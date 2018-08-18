@@ -1,0 +1,7 @@
+<a href="{{ fn( 'esc_url', site.url ) }}" class="site-name-logo">
+	{% if site_logo.id %}
+		<img src="{{ fn( 'esc_url', TimberImage(site_logo.id).src ) }}" srcset="{{ TimberImage(site_logo.id).src|retina(1) }} 1x, {{ TimberImage(site_logo.id).src|retina(2) }}  2x">
+	{% else %}
+		{{ site.name }}
+	{% endif %}
+</a>

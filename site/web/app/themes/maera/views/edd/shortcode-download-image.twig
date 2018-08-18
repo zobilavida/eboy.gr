@@ -1,0 +1,9 @@
+{% set width  = content_width // columns %}
+{% set height = width // 1.618 %}
+<a class="download-featured-image" href="{{ post.link }}">
+    {% if post.thumbnail %}
+        <img src="{{ fn( 'esc_url', post.thumbnail.src|resize( width, height ) ) }}">
+    {% else %}
+        <img src="{{ fn( 'esc_url', default_image.src|resize( width, height, 'center' ) ) }}">
+    {% endif %}
+</a>

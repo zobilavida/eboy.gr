@@ -1,0 +1,20 @@
+{#<?php#}
+{% from 'alert.html.twig' import alert as alert %}
+
+<section id="comments" class="comments">
+
+	{% if post.comment_status == 'closed' %}
+		{{ alert('warning', fn( 'esc_html__', 'Comments are closed.', 'maera' ), false, 'comments-disabled', false) }}
+	{% endif %}
+
+	<div class="respond">
+		<h2 class="h2">{{ fn( 'esc_html__', 'Comments', 'maera' ) }} <span class="dashicons dashicons-testimonial"></span></h2>
+
+		{% if post.comments %}
+			{{ function( 'wp_list_comments', comments_args ) }}
+		{% endif %}
+
+		{{ comment_form }}
+	</div>
+
+</section>

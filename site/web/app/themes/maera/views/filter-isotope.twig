@@ -1,0 +1,35 @@
+{% from 'button_group_classes.html.twig' import button_group_classes as button_group_classes %}
+{% from 'button_classes.html.twig' import button_classes as button_classes %}
+{% from 'clearfix.html.twig' import clearfix as clearfix %}
+
+<div id="isotope-filter">
+
+	<div class="{{ button_group_classes() }}" id="isotope-categories">
+		<a class="button {{ button_classes( 'default', 'extra-small', null, null ) }}" data-filter="*">
+			{{ fn( 'esc_html__', 'All', 'maera' ) }}
+		</a>
+		{% for download_category in download_categories %}
+			{% if download_category.get_posts %}
+				<a class="button {{ button_classes( 'default', 'extra-small', null, null ) }}" data-filter=".edd-download-cat-{{ download_category.slug }}">
+					{{ download_category.name }}
+				</a>
+			{% endif %}
+		{% endfor %}
+		{% for download_tag in download_tags %}
+			{% if download_tag.get_posts %}
+				<a class="button {{ button_classes( 'default', 'extra-small', null, null ) }}" data-filter=".edd-download-tag-{{ download_tag.slug }}">
+					{{ download_tag.name }}
+				</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<div id="isotope-sort">
+		<h5 class="secondary label">{{ fn( 'esc_html__', 'Sort by:', 'maera' ) }}</h5>
+		<a class="active"  data-sort-by="title-def">{{ fn( 'esc_html__', 'Default', 'maera' ) }} <i class="fi-minus"></i></a>
+		<a data-sort-by="title-asc">{{ fn( 'esc_html__', 'Title', 'maera' ) }} <i class="dashicons dashicons-arrow-up"></i></a>
+		<a data-sort-by="title-dsc">{{ fn( 'esc_html__', 'Title', 'maera' ) }} <i class="dashicons dashicons-arrow-down"></i></a>
+	</div>
+
+</div>
+{{ clearfix() }}

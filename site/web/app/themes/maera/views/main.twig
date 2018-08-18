@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+{% block main %}
+<main class="{{ 'main'|apply_filters( 'maera/section_class/content' ) }}" role="main" id="main">
+	{% if title %}<h1>{{ title }}</h1>{% endif %}
+	{% block content %}
+		{{ fn( 'esc_html__', 'Sorry, no content', 'maera' ) }}
+	{% endblock %}
+
+	{# If comments are open or we have at least one comment, load up the comment template #}
+	{% if post.post_type != 'product' and ( function('comments_open') or function('get_comments_number', post.ID ) ) > 0 %}
+	    {{ function('comments_template') }}
+	{% endif %}
+</main><!-- /.main -->
+{% endblock %}

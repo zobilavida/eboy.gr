@@ -1,0 +1,21 @@
+{#<?php#}
+{% import 'grid_classes.html.twig' as grid %}
+{% from 'clearfix.html.twig' import clearfix as clearfix %}
+
+{% do action( 'maera/wrap/before', post.ID ) %}
+
+<div class="{{ grid.container() }} wrap main-section" id="wrap-main-section">
+	{% do action( 'maera/content/before', post.ID ) %}
+	<div class="content" id="content" itemprop="mainContentOfPage">
+		<div class="{{ grid.row() }} bg">
+			<div class="content-primary-wrapper {{ 'main'|apply_filters( 'maera/section_class/wrapper' ) }}">
+				{% do action( 'maera/main/before', post.ID ) %}
+				{% block main %}{{ fn( 'esc_html__', 'Sorry, no content', 'maera' ) }}{% endblock %}
+				{% do action( 'maera/main/after', post.ID ) %}
+				{% include 'sidebar.twig'|apply_filters('maera/sidebar_template') %}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div><!-- /#content -->
+	{% do action( 'maera/content/after' ) %}
+</div>
