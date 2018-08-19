@@ -15,7 +15,8 @@ $sage_includes = [
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
-  'lib/customizer.php' // Theme customizer
+  'lib/customizer.php', // Theme customizer
+  'lib/post-types.php'
 ];
 
 foreach ($sage_includes as $file) {
@@ -26,6 +27,8 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+
 
 // Add svg & swf support
 function cc_mime_types( $mimes ){

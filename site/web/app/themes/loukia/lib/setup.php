@@ -102,5 +102,15 @@ function assets() {
   }
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
+
+function admin_assets( $hook ) {
+if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
+  wp_enqueue_script('admin_scripts_js', Assets\asset_path('scripts/admin.js'), ['jquery'], null, true);
+  wp_enqueue_style('sage/admin_css', Assets\asset_path('styles/admin.css'), false, null);
+
+}
+}
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_assets', 100);
