@@ -113,4 +113,4 @@ if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
 
 }
 }
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_assets', 100);
+//add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_assets', 100);

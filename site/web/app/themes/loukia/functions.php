@@ -57,3 +57,30 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'them
 }
 
 add_action ('customize_register', 'themeslug_theme_customizer');
+
+
+function collections_menu(){
+
+    query_posts(array(
+        'post_type' => 'collection',
+        'showposts' => -1
+    ) );
+?>
+<div class="col-2">
+<nav class="navbar navbar-full navbar-light">
+  <ul class="nav navbar-nav">
+<?php while (have_posts()) : the_post(); ?>
+  <li class="nav-item pull-sm-right">
+    <a class="nav-link" href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+  </li>
+<?php endwhile;?>
+</ul>
+</nav>
+</div>
+<div class="col-10">
+
+
+</div>
+<?php }
+
+add_action ('collection', 'collections_menu', 10 );
