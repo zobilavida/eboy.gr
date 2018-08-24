@@ -65,11 +65,15 @@ function collections_menu(){
         'post_type' => 'collection',
         'showposts' => -1
     ) );
+
+
 ?>
 <div class="col-2">
-<nav class="navbar navbar-full navbar-light">
+<nav class="navbar navbar-full navbar-light navbar-left">
   <ul class="nav navbar-nav">
-<?php while (have_posts()) : the_post(); ?>
+<?php while (have_posts()) : the_post();
+
+?>
   <li class="nav-item pull-sm-right">
     <a class="nav-link" href="<?php the_permalink() ?>"><?php the_title(); ?></a>
   </li>
@@ -78,8 +82,29 @@ function collections_menu(){
 </nav>
 </div>
 <div class="col-10">
+  <?php
+  $images = get_field('photos');
+  $size = 'medium'; // (thumbnail, medium, large, full or custom size)
+  global $post;
+  while (have_posts()) : the_post();
 
 
+if( $images ): ?>
+<section class="<?php echo $post->post_name; ?>">
+   <ul>
+     <li class="nav-item pull-sm-right">
+       <a class="nav-link" href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+     </li>
+       <?php foreach( $images as $image ): ?>
+           <li>
+             <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+           </li>
+       <?php endforeach; ?>
+   </ul>
+<?php endif; ?>
+<?php previous_post_link(); ?> &bull; <?php next_post_link(); ?>
+</section>
+  		    <?php endwhile; ?>
 </div>
 <?php }
 
